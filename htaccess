@@ -1,0 +1,41 @@
+ErrorDocument 403 /page92821626.html
+ErrorDocument 404 /page92821626.html
+
+DirectoryIndex page94832006.html
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} /robots.txt
+RewriteCond "%{DOCUMENT_ROOT}/robots_%{HTTP_HOST}.txt" -f
+RewriteRule ^(.*)$ robots_%{HTTP_HOST}.txt [NC,L]
+RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome$ page96476846.html [NC]
+RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome/$ page96476846.html [NC]
+
+RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii$ page96490096.html [NC]
+RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii/$ page96490096.html [NC]
+
+RewriteRule ^prototype_01$ page88831166.html [NC]
+RewriteRule ^prototype_01/$ page88831166.html [NC]
+
+RewriteRule ^design_03$ page92627706.html [NC]
+RewriteRule ^design_03/$ page92627706.html [NC]
+
+RewriteRule ^privacy$ page92826026.html [NC]
+RewriteRule ^privacy/$ page92826026.html [NC]
+
+RewriteRule ^error$ page92821626.html [NC]
+RewriteRule ^error/$ page92821626.html [NC]
+
+RewriteRule ^prototype_02$ page89911026.html [NC]
+RewriteRule ^prototype_02/$ page89911026.html [NC]
+
+RewriteRule ^design_04$ page94622536.html [NC]
+RewriteRule ^design_04/$ page94622536.html [NC]
+
+RewriteRule ^design_05$ page94715026.html [NC]
+RewriteRule ^design_05/$ page94715026.html [NC]
+
+RewriteRule ^perfomance_review_dlya_proizvoditelya$ page101071766.html [NC]
+RewriteRule ^perfomance_review_dlya_proizvoditelya/$ page101071766.html [NC]
+
+
