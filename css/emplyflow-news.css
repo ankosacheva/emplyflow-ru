@@ -1,4 +1,27 @@
 /* EmplyFlow — блок новостей без Tilda Feed */
+
+/*
+ * ВРЕМЕННО СКРЫТО до появления контента.
+ * Чтобы вернуть блок и пункт меню «Новости» — удалите этот блок правил.
+ */
+#rec1575211761,
+#rec1569934171,
+#rec1569858251 {
+  display: none !important;
+}
+
+#rec1575214531 .tn-elem[data-elem-id="176238469560647670"],
+#rec1556668851 .tn-elem[data-elem-id="176297827948881700"],
+#rec1575263871 .tn-elem[data-elem-id="176344774983334480"] {
+  display: none !important;
+}
+
+/* Сдвигаем «Контакты» на место скрытых «Новостей», чтобы не было дыры в меню */
+#rec1575214531 .tn-elem[data-elem-id="176238469560313220"],
+#rec1556668851 .tn-elem[data-elem-id="176297827948264220"] {
+  left: calc(50% - 600px + 761px) !important;
+}
+
 .ef-news {
   box-sizing: border-box;
   width: 100%;
