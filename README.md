@@ -27,7 +27,7 @@
 
 ## Формы заявок (демо / получить доступ)
 
-Попап «Получить доступ» на главной — Tilda Zero Form. Параллельно с отправкой в Tilda заявки уходят в **Google Sheet + email** по той же схеме, что у Hub.
+Попап «Получить доступ» на главной — Tilda Zero Form. На экспорте Tilda **не принимает** домен `emplyflow.ru` (`not on the list of the approved domains`), поэтому отправку через `forms.tildacdn.com` мы отключаем: валидацию Tilda оставляем, а данные уходят только в **Google Sheet + email** (Apps Script), по той же схеме, что у Hub.
 
 | Что | Где |
 |---|---|
