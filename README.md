@@ -25,6 +25,27 @@
 
 Каталог `/hub/` на сервере **не** из этого репозитория — его деплоит Competency Hub.
 
+## Формы заявок (демо / получить доступ)
+
+Попап «Получить доступ» на главной — Tilda Zero Form. Параллельно с отправкой в Tilda заявки уходят в **Google Sheet + email** по той же схеме, что у Hub.
+
+| Что | Где |
+|---|---|
+| Клиентский JS | `js/emplyflow-site-leads.js` |
+| Endpoint | `window.EMPLYFLOW_LEAD_ENDPOINT` в `page94832006.html` (и др. страницах с формой) |
+| Apps Script (шаблон) | `docs/google-apps-script-site-leads.js` |
+| Почта уведомлений | `headoffice@emplyflow.ru` (задаётся в Apps Script, `NOTIFY_EMAIL`) |
+
+Сейчас endpoint указывает на **тот же Web App**, что и Hub (`HUB_LEAD_ENDPOINT`). Чтобы письма шли на `headoffice@emplyflow.ru`:
+
+1. Откройте Google Sheet → Apps Script проекта заявок Hub/сайта.
+2. Поставьте `NOTIFY_EMAIL = 'headoffice@emplyflow.ru'` (можно через запятую добавить запасной адрес).
+3. Deploy → Manage deployments → Edit → **New version** → Deploy.
+
+Либо задеплойте отдельный скрипт из `docs/google-apps-script-site-leads.js` и подставьте новый `/exec` URL в `EMPLYFLOW_LEAD_ENDPOINT`.
+
+Поле `source` в таблице: `site_demo_popup` (попап на главной), `site_demo` (прочие формы сайта), плюс источники Hub (`nav`, `case`, …).
+
 ## Локально
 
 ```bash
