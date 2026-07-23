@@ -1,0 +1,194 @@
+/**
+ * EmplyFlow — адаптивные правки поверх Tilda-экспорта.
+ * Главный фикс: мобильное/планшетное меню (#rec1575263871) на iPad
+ * раньше открывалось пустым белым блоком (пункты были только для ≤639px).
+ */
+
+/* ---------- Global safety ---------- */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Mobile / tablet slide-in menu ---------- */
+/* NLM держит .t396 как position:fixed на весь экран — добиваем фон и пункты */
+#rec1575263871 .t396,
+#rec1575263871 .t396__artboard,
+#rec1575263871 .t396__filter,
+#rec1575263871 .t396__carrier {
+  background-color: #050230 !important;
+  background-image: none !important;
+}
+
+@media screen and (max-width: 1199px) {
+  #rec1575263871 .t396 {
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  /* Полноэкранная область меню */
+  #rec1575263871 .t396__artboard,
+  #rec1575263871 .t396__filter,
+  #rec1575263871 .t396__carrier {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-height: 100vh !important;
+    height: 100vh !important;
+    background-color: #050230 !important;
+  }
+
+  #rec1575263871 .t396__artboard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: #050230;
+    pointer-events: none;
+  }
+
+  /* Светлая «карточка» → тёмный полноэкранный фон */
+  #rec1575263871 .tn-elem[data-elem-id="1762446704436"] {
+    display: block !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+    z-index: 1 !important;
+  }
+
+  #rec1575263871 .tn-elem[data-elem-id="1762446704436"] .tn-atom {
+    background-color: #050230 !important;
+    background-image: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+  }
+
+  /* Крестик закрытия */
+  #rec1575263871 .tn-elem[data-elem-id="1762448412447"] {
+    display: block !important;
+    top: 18px !important;
+    left: auto !important;
+    right: 18px !important;
+    width: 22px !important;
+    height: 22px !important;
+    z-index: 20 !important;
+  }
+
+  /* Вертикальный список пунктов */
+  #rec1575263871 .tn-elem[data-elem-id="176344774985099490"], /* Модули */
+  #rec1575263871 .tn-elem[data-elem-id="176344774984687280"], /* О нас */
+  #rec1575263871 .tn-elem[data-elem-id="176344774984262520"], /* Внедрение */
+  #rec1575263871 .tn-elem[data-elem-id="176999100000000003"], /* Библиотека */
+  #rec1575263871 .tn-elem[data-elem-id="176344774983898070"], /* Кейсы */
+  #rec1575263871 .tn-elem[data-elem-id="176344774983334480"], /* Новости */
+  #rec1575263871 .tn-elem[data-elem-id="176344774982827990"]  /* Контакты */ {
+    display: block !important;
+    left: 28px !important;
+    width: calc(100% - 56px) !important;
+    height: auto !important;
+    min-height: 40px !important;
+    z-index: 10 !important;
+  }
+
+  #rec1575263871 .tn-elem[data-elem-id="176344774985099490"] { top: 72px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774984687280"] { top: 120px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774984262520"] { top: 168px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176999100000000003"] { top: 216px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774983898070"] { top: 264px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774983334480"] { top: 312px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774982827990"] { top: 360px !important; }
+
+  #rec1575263871 .tn-elem[data-elem-id="176344774985099490"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774984687280"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774984262520"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176999100000000003"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774983898070"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774983334480"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774982827990"] .tn-atom {
+    color: #ffffff !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+    text-align: left !important;
+  }
+
+  /* CTA в меню */
+  #rec1575263871 .tn-elem[data-elem-id="176344782412392490"] {
+    display: block !important;
+    top: 430px !important;
+    left: 28px !important;
+    right: auto !important;
+    width: calc(100% - 56px) !important;
+    max-width: 280px !important;
+    height: 48px !important;
+    z-index: 10 !important;
+    transform: none !important;
+  }
+
+  #rec1575263871 .tn-elem[data-elem-id="176344782412392490"] .tn-atom {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 48px !important;
+    border-radius: 60px !important;
+    background-color: #ffb777 !important;
+    color: #0b0531 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+  }
+}
+
+/* На узких телефонах чуть плотнее */
+@media screen and (max-width: 639px) {
+  #rec1575263871 .tn-elem[data-elem-id="176344774985099490"] { top: 64px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774984687280"] { top: 112px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774984262520"] { top: 160px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176999100000000003"] { top: 208px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774983898070"] { top: 256px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774983334480"] { top: 304px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344774982827990"] { top: 352px !important; }
+  #rec1575263871 .tn-elem[data-elem-id="176344782412392490"] { top: 420px !important; }
+
+  #rec1575263871 .tn-elem[data-elem-id="176344774985099490"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774984687280"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774984262520"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176999100000000003"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774983898070"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774983334480"] .tn-atom,
+  #rec1575263871 .tn-elem[data-elem-id="176344774982827990"] .tn-atom {
+    font-size: 18px !important;
+  }
+}
+
+/* ---------- Header: гамбургер удобнее нажимать ---------- */
+@media screen and (max-width: 959px) {
+  #rec1575214531 .tn-elem[data-elem-id="176249655801132330"] {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* ---------- Demo form on tablets ---------- */
+@media screen and (max-width: 959px) {
+  .ef-lead-form {
+    max-width: 100% !important;
+  }
+}
+
+/* ---------- Prevent horizontal scroll from Zero-blocks ---------- */
+.t396__artboard,
+.t396__carrier,
+.t396 {
+  max-width: 100vw;
+}
