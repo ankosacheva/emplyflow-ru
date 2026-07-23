@@ -1,0 +1,37 @@
+<form id="ef-lead-form" class="ef-lead-form" data-ef-lead-source="site_demo_popup" novalidate>
+  <div class="ef-lead-form__fields">
+    <div class="ef-lead-form__field">
+      <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required />
+    </div>
+    <div class="ef-lead-form__field">
+      <input class="ef-lead-form__input" type="text" name="Input" placeholder="Название компании" autocomplete="organization" required />
+    </div>
+    <div class="ef-lead-form__field">
+      <input class="ef-lead-form__input" type="tel" name="Phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required />
+    </div>
+    <div class="ef-lead-form__field">
+      <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required />
+    </div>
+    <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
+      <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
+      <div class="ef-lead-form__radios">
+        <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Telegram" required /> Telegram</label>
+        <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="WhatsApp" /> WhatsApp</label>
+        <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Звонок" /> Звонок</label>
+      </div>
+    </fieldset>
+    <div class="ef-lead-form__field">
+      <textarea class="ef-lead-form__textarea" name="Textarea" rows="2" placeholder="Коротко расскажите о своей задаче"></textarea>
+    </div>
+    <label class="ef-lead-form__check">
+      <input type="checkbox" name="Checkbox" value="yes" required />
+      <span>Я соглашаюсь с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+    </label>
+    <div class="ef-lead-form__error" data-ef-error role="alert"></div>
+  </div>
+  <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+  <div class="ef-lead-form__success" data-ef-success>
+    <h3>Заявка отправлена</h3>
+    <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+  </div>
+</form>

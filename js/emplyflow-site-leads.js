@@ -1,20 +1,12 @@
 /**
- * EmplyFlow marketing site — заявки с форм «Получить доступ/демо»
- * уходят в Google Apps Script (Sheet + email), минуя Tilda Forms API.
- *
- * Почему так: на экспорте Tilda отклоняет домен emplyflow.ru
- * («not on the list of the approved domains»). Валидацию Tilda оставляем,
- * а send() подменяем на наш endpoint (как в Competency Hub).
- *
- * Подключение (перед </body>):
- *   <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/.../exec';</script>
- *   <script src="js/emplyflow-site-leads.js" charset="utf-8"></script>
+ * EmplyFlow marketing site — нативные формы заявок → Google Apps Script.
+ * Не зависит от Tilda Forms API / подписки Tilda.
  */
 (function () {
   'use strict';
 
   var ENDPOINT = (window.EMPLYFLOW_LEAD_ENDPOINT || '').trim();
-  var SOURCE_DEFAULT = 'site_demo';
+  var FORM_SELECTOR = 'form.ef-lead-form';
 
   function val(fd, name) {
     var v = fd.get(name);
@@ -56,21 +48,12 @@
       caseId: '',
       caseTitle: '',
       comment: comment,
-      source: form.getAttribute('data-ef-lead-source') || SOURCE_DEFAULT,
+      source: form.getAttribute('data-ef-lead-source') || 'site_demo',
       page: window.location.href,
       ts: new Date().toISOString(),
       visitor_id: '',
       session_id: '',
     };
-  }
-
-  function looksLikeLeadForm(form) {
-    if (!form || !form.querySelector) return false;
-    var hasName = !!form.querySelector('[name="Name"],[name="name"]');
-    var hasEmail = !!form.querySelector('[name="Email"],[name="email"]');
-    if (hasName && hasEmail) return true;
-    if (form.closest && form.closest('#rec1572865321, .tn-atom__form')) return true;
-    return false;
   }
 
   function sendLead(payload) {
@@ -88,9 +71,7 @@
       body: body,
     })
       .then(function (res) {
-        // Apps Script часто отвечает opaque/redirect — для CORS это норма
         if (res.type === 'opaque' || res.ok) return res;
-        // даже при странном статусе пробуем no-cors fallback ниже
         throw new Error('HTTP ' + res.status);
       })
       .catch(function () {
@@ -103,132 +84,133 @@
       });
   }
 
-  function resetSendingBtn(btn) {
-    if (!btn) return;
-    if (typeof t_removeClass === 'function') t_removeClass(btn, 't-btn_sending');
-    else btn.classList.remove('t-btn_sending');
-    btn.tildaSendingStatus = '0';
+  function setError(form, message) {
+    var box = form.querySelector('[data-ef-error]');
+    if (!box) return;
+    if (message) {
+      box.textContent = message;
+      box.classList.add('is-visible');
+    } else {
+      box.textContent = '';
+      box.classList.remove('is-visible');
+    }
   }
 
-  function showFormError(form, message) {
-    var boxes = form.querySelectorAll('.js-errorbox-all, .t-form__errorbox-wrapper, .t-form__errorbox-text');
-    var shown = false;
-    Array.prototype.forEach.call(boxes, function (el) {
-      if (el.classList.contains('js-errorbox-all') || el.classList.contains('t-form__errorbox-wrapper')) {
-        el.style.display = 'block';
+  function clearFieldErrors(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll('.is-error'),
+      function (el) {
+        el.classList.remove('is-error');
       }
-      if (el.classList.contains('t-form__errorbox-text') || el.classList.contains('js-rule-error-all')) {
-        el.innerHTML = message;
-        el.style.display = 'block';
-        shown = true;
+    );
+  }
+
+  function validate(form) {
+    clearFieldErrors(form);
+    setError(form, '');
+
+    var required = form.querySelectorAll('[required]');
+    var invalid = [];
+    Array.prototype.forEach.call(required, function (el) {
+      var ok = true;
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        if (el.type === 'radio') {
+          var group = form.querySelectorAll('[name="' + el.name + '"]');
+          ok = Array.prototype.some.call(group, function (r) {
+            return r.checked;
+          });
+        } else {
+          ok = !!el.checked;
+        }
+      } else if (el.type === 'email') {
+        ok = !!el.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+      } else {
+        ok = !!el.value.trim();
+      }
+      if (!ok) {
+        invalid.push(el);
+        if (el.classList) el.classList.add('is-error');
       }
     });
-    if (!shown && typeof console !== 'undefined') {
-      console.warn('[EmplyFlow leads]', message);
-      alert(message);
+
+    if (invalid.length) {
+      setError(form, 'Пожалуйста, заполните обязательные поля.');
+      try {
+        invalid[0].focus();
+      } catch (e) {}
+      return false;
     }
-    if (typeof t_addClass === 'function') t_addClass(form, 'js-send-form-error');
-    else form.classList.add('js-send-form-error');
+    return true;
   }
 
   function showSuccess(form) {
-    var successUrl = form.getAttribute('data-success-url') || '';
-    var successCallback = form.getAttribute('data-success-callback') || '';
-
-    if (window.tildaForm && typeof window.tildaForm.successEnd === 'function') {
-      window.tildaForm.successEnd(form, successUrl, successCallback);
-      return;
-    }
-
-    // fallback, если Tilda API UI недоступен
-    if (successCallback && typeof window[successCallback] === 'function') {
-      window[successCallback](form);
-      return;
-    }
-    alert('Спасибо! Заявка отправлена — мы свяжемся с вами.');
-    try {
-      form.reset();
-    } catch (e) {}
+    form.classList.add('is-success');
+    var success = form.querySelector('[data-ef-success]');
+    if (success) success.classList.add('is-visible');
   }
 
-  function submitViaAppsScript(form, btn) {
-    var payload;
-    try {
-      payload = collectPayload(form);
-    } catch (err) {
-      resetSendingBtn(btn);
-      showFormError(form, 'Не удалось прочитать форму. Попробуйте ещё раз.');
-      return;
-    }
+  function onSubmit(event) {
+    var form = event.target;
+    if (!form || !form.classList || !form.classList.contains('ef-lead-form')) return;
 
-    if (!payload.email && !payload.phone && !payload.name) {
-      resetSendingBtn(btn);
-      showFormError(form, 'Заполните поля формы.');
-      return;
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (form.getAttribute('data-ef-sending') === '1') return;
+    if (!validate(form)) return;
+
+    var btn = form.querySelector('[type="submit"]');
+    var payload = collectPayload(form);
+
+    form.setAttribute('data-ef-sending', '1');
+    if (btn) {
+      btn.disabled = true;
+      btn.dataset.efOriginalText = btn.textContent;
+      btn.textContent = 'Отправляем…';
     }
 
     sendLead(payload)
       .then(function () {
-        resetSendingBtn(btn);
         showSuccess(form);
       })
       .catch(function (err) {
-        resetSendingBtn(btn);
         if (typeof console !== 'undefined' && console.warn) {
           console.warn('[EmplyFlow leads] send failed', err);
         }
-        showFormError(
+        setError(
           form,
           'Не удалось отправить заявку. Напишите на headoffice@emplyflow.ru или попробуйте позже.'
         );
+      })
+      .then(function () {
+        form.removeAttribute('data-ef-sending');
+        if (btn) {
+          btn.disabled = false;
+          if (btn.dataset.efOriginalText) btn.textContent = btn.dataset.efOriginalText;
+        }
       });
   }
 
-  function patchTildaSend() {
-    if (!window.tildaForm || typeof window.tildaForm.send !== 'function') return false;
-    if (window.tildaForm.__efLeadPatched) return true;
+  function bindForms(root) {
+    var scope = root && root.querySelectorAll ? root : document;
+    var forms = scope.querySelectorAll
+      ? scope.querySelectorAll(FORM_SELECTOR)
+      : document.querySelectorAll(FORM_SELECTOR);
 
-    var original = window.tildaForm.send;
-    window.tildaForm.send = function (formNode, btnNode) {
-      var form =
-        typeof formNode === 'string'
-          ? document.querySelector(formNode)
-          : formNode && formNode.jquery
-            ? formNode[0]
-            : formNode;
-      var btn =
-        typeof btnNode === 'string'
-          ? document.querySelector(btnNode)
-          : btnNode && btnNode.jquery
-            ? btnNode[0]
-            : btnNode;
+    // if root itself is the form
+    if (root && root.matches && root.matches(FORM_SELECTOR)) {
+      forms = [root];
+    }
 
-      // Только lead-формы сайта — в Apps Script, без Tilda domain check
-      if (form && looksLikeLeadForm(form)) {
-        submitViaAppsScript(form, btn);
-        return false;
-      }
-      return original.apply(this, arguments);
-    };
-    window.tildaForm.__efLeadPatched = true;
-    return true;
-  }
-
-  function tagForms() {
-    var forms = document.querySelectorAll('form.js-form-proccess, .tn-atom__form form');
     Array.prototype.forEach.call(forms, function (form) {
-      if (!looksLikeLeadForm(form)) return;
-      if (!form.getAttribute('data-ef-lead-source')) {
-        var src = SOURCE_DEFAULT;
-        if (form.closest('#rec1572865321')) src = 'site_demo_popup';
-        form.setAttribute('data-ef-lead-source', src);
-      }
+      if (form.__efBound) return;
+      form.__efBound = true;
+      form.addEventListener('submit', onSubmit);
     });
   }
 
   function boot() {
-    patchTildaSend();
-    tagForms();
+    bindForms(document);
   }
 
   if (document.readyState === 'loading') {
@@ -237,19 +219,17 @@
     boot();
   }
 
-  var tries = 0;
-  var timer = setInterval(function () {
-    tries += 1;
-    boot();
-    if ((window.tildaForm && window.tildaForm.__efLeadPatched && tries > 10) || tries > 40) {
-      clearInterval(timer);
-    }
-  }, 500);
-
   if (typeof MutationObserver !== 'undefined') {
-    var mo = new MutationObserver(function () {
-      tagForms();
-      patchTildaSend();
+    var mo = new MutationObserver(function (mutations) {
+      for (var i = 0; i < mutations.length; i++) {
+        var nodes = mutations[i].addedNodes;
+        for (var j = 0; j < nodes.length; j++) {
+          var n = nodes[j];
+          if (n.nodeType !== 1) continue;
+          if (n.matches && n.matches(FORM_SELECTOR)) bindForms(n);
+          else if (n.querySelectorAll) bindForms(n);
+        }
+      }
     });
     mo.observe(document.documentElement, { childList: true, subtree: true });
   }

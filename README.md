@@ -27,14 +27,17 @@
 
 ## Формы заявок (демо / получить доступ)
 
-Попап «Получить доступ» на главной — Tilda Zero Form. На экспорте Tilda **не принимает** домен `emplyflow.ru` (`not on the list of the approved domains`), поэтому отправку через `forms.tildacdn.com` мы отключаем: валидацию Tilda оставляем, а данные уходят только в **Google Sheet + email** (Apps Script), по той же схеме, что у Hub.
+Попап «Получить доступ» — **обычная HTML-форма** (не Tilda Forms).  
+Отправка только в **Google Sheet + email** через Apps Script, как у Hub. Не зависит от подписки Tilda и их `forms.tildacdn.com`.
 
 | Что | Где |
 |---|---|
+| Разметка формы | `partials/ef-lead-form.html` (встроена в страницы) |
+| Стили | `css/emplyflow-demo-form.css` |
 | Клиентский JS | `js/emplyflow-site-leads.js` |
-| Endpoint | `window.EMPLYFLOW_LEAD_ENDPOINT` в `page94832006.html` (и др. страницах с формой) |
+| Endpoint | `window.EMPLYFLOW_LEAD_ENDPOINT` на страницах с формой |
 | Apps Script (шаблон) | `docs/google-apps-script-site-leads.js` |
-| Почта уведомлений | `headoffice@emplyflow.ru` (задаётся в Apps Script, `NOTIFY_EMAIL`) |
+| Почта уведомлений | `headoffice@emplyflow.ru` (`NOTIFY_EMAIL` в Apps Script) |
 
 Сейчас endpoint указывает на **тот же Web App**, что и Hub (`HUB_LEAD_ENDPOINT`). Чтобы письма шли на `headoffice@emplyflow.ru`:
 
