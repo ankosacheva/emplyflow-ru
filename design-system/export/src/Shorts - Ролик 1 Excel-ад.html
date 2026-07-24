@@ -1,0 +1,664 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="YouTube Shorts — Ролик №1 «Excel-ад»" subtitle="Раскадровка 9:16 для Canva AI · 6 кадров 1080×1920" viewport="1180x900" -->
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>EmplyFlow · Shorts · Ролик №1 «Excel-ад»</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background:
+      radial-gradient(60% 40% at 12% 0%, rgba(74,59,255,.18) 0%, transparent 60%),
+      radial-gradient(50% 30% at 100% 8%, rgba(255,184,226,.10) 0%, transparent 60%),
+      var(--c-black-rock);
+    color: var(--fg1);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 56px 40px 96px; }
+
+  /* ============ HEADER ============ */
+  .top { display: flex; gap: 48px; align-items: stretch; }
+  .top-l { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--c-cotton-candy);
+  }
+  .kicker .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--c-cotton-candy); box-shadow: 0 0 12px var(--c-cotton-candy); }
+  .series {
+    margin-top: 18px; font-size: 15px; color: var(--fg2); font-weight: 500;
+  }
+  .title {
+    margin-top: 10px;
+    font-size: clamp(44px, 6vw, 76px); font-weight: 800; line-height: .98; letter-spacing: -0.03em;
+  }
+  .title .hl {
+    background: var(--c-blue-ribbon); color: #fff;
+    padding: 0 .12em; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+    transform: rotate(-1.2deg); display: inline-block;
+  }
+  .logline {
+    margin-top: 22px; max-width: 560px; font-size: 18px; line-height: 1.5; color: var(--fg2);
+  }
+  .logline b { color: var(--fg1); font-weight: 700; }
+
+  .specs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .spec {
+    font-size: 12.5px; font-weight: 600; color: var(--fg2);
+    background: var(--bg-glass); border: 1px solid var(--stroke);
+    border-radius: 999px; padding: 7px 14px;
+  }
+  .spec b { color: var(--c-frosted-mint); font-weight: 700; }
+
+  .tags { margin-top: auto; padding-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .tag { font-size: 13px; font-weight: 600; color: var(--c-fog); opacity: .75; }
+
+  .ctrl {
+    margin-top: 22px;
+    display: inline-flex; align-items: center; gap: 11px;
+    align-self: flex-start;
+    background: var(--bg-glass); border: 1px solid var(--stroke-strong);
+    border-radius: 999px; padding: 9px 16px 9px 12px; cursor: pointer;
+    color: var(--fg2); font-size: 13px; font-weight: 600; user-select: none;
+    transition: background var(--t-base) var(--ease-out);
+  }
+  .ctrl:hover { background: var(--bg-glass-strong); }
+  .ctrl .sw {
+    width: 38px; height: 22px; border-radius: 999px; background: rgba(217,214,255,.18);
+    position: relative; transition: background var(--t-base) var(--ease-out); flex: none;
+  }
+  .ctrl .sw::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px;
+    border-radius: 999px; background: var(--c-fog); transition: transform var(--t-base) var(--ease-out);
+  }
+  body.show-safe .ctrl .sw { background: var(--c-blue-ribbon); }
+  body.show-safe .ctrl .sw::after { transform: translateX(16px); background: #fff; }
+
+  /* cover frame on right of header */
+  .top-r { flex: none; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .cover-cap { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--fg3); font-weight: 700; }
+
+  /* ============ FRAME SCALER ============ */
+  .fw { position: relative; overflow: hidden; border-radius: 26px; background: #000;
+        box-shadow: 0 30px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(217,214,255,.10) inset; }
+  .fw-lg { width: 392px; height: 696.9px; }
+  .fw-sm { width: 300px; height: 533.3px; }
+  .frame { position: absolute; top: 0; left: 0; width: 1080px; height: 1920px; transform-origin: top left; overflow: hidden; }
+  .fw-lg .frame { transform: scale(0.36296); }
+  .fw-sm .frame { transform: scale(0.27778); }
+
+  /* base scene background */
+  .scn { position: absolute; inset: 0; background: var(--c-black-rock); overflow: hidden; }
+  .bloom-i { position: absolute; inset: 0; background: radial-gradient(46% 36% at 80% 12%, rgba(74,59,255,.55) 0%, transparent 66%); }
+  .bloom-p { position: absolute; inset: 0; background: radial-gradient(42% 30% at 8% 88%, rgba(255,184,226,.22) 0%, transparent 66%); }
+
+  /* safe zones */
+  .safe { position: absolute; inset: 0; z-index: 60; pointer-events: none; opacity: 0; transition: opacity var(--t-base) var(--ease-out); }
+  body.show-safe .safe { opacity: 1; }
+  .safe::before, .safe::after {
+    content: ""; position: absolute; left: 0; right: 0; background: rgba(255,90,140,.10);
+    border-top: 2px dashed rgba(255,120,170,.7); border-bottom: 2px dashed rgba(255,120,170,.7);
+  }
+  .safe::before { top: 0; height: 220px; }
+  .safe::after { bottom: 0; height: 380px; }
+  .safe-lbl { position: absolute; left: 26px; font-size: 22px; font-weight: 700; color: rgba(255,150,190,.95); letter-spacing: .06em; }
+  .safe-lbl.t { top: 232px; }
+  .safe-lbl.b { bottom: 392px; }
+
+  /* sparkles */
+  .spk { position: absolute; z-index: 40; }
+
+  /* ---- kinetic plate ---- */
+  .plate { position: absolute; z-index: 30; left: 80px; right: 80px; }
+  .plate .pl {
+    font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; color: #fff;
+    text-shadow: 0 6px 30px rgba(0,0,0,.5);
+  }
+  .mark {
+    background: var(--c-blue-ribbon); color: #fff; padding: 0 .1em;
+    border-radius: 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  }
+  .mark.pink { background: var(--c-cotton-candy); color: var(--c-cod-gray); }
+  .mark.mint { background: var(--c-frosted-mint); color: var(--c-cod-gray); }
+  .mark.orange { background: var(--c-mac-cheese); color: var(--c-cod-gray); }
+
+  /* ---- subtitle ---- */
+  .sub {
+    position: absolute; z-index: 50; left: 70px; right: 70px; bottom: 430px; text-align: center;
+  }
+  .sub span {
+    display: inline; background: rgba(5,2,48,.62); -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    color: #fff; font-size: 40px; font-weight: 600; line-height: 1.62; letter-spacing: -0.01em;
+    padding: 8px 16px; border-radius: 10px;
+  }
+
+  /* =================================================================
+     SCENE 1 — Excel hell spreadsheet
+     ================================================================= */
+  .xl { position: absolute; inset: 0; background: #eef1f7; }
+  .xl-head {
+    display: flex; height: 64px; background: #1f7a4d; color: #fff; align-items: center; padding: 0 20px; gap: 18px;
+    font-size: 24px; font-weight: 700; font-family: var(--font-mono);
+  }
+  .xl-head .dotw { width: 14px; height: 14px; border-radius: 999px; background: rgba(255,255,255,.5); }
+  .xl-cols { display: grid; grid-template-columns: 1.4fr .7fr .7fr .7fr .7fr .8fr; background: #d7deea; border-bottom: 2px solid #b9c4d6; }
+  .xl-cols div { padding: 14px 16px; font-size: 22px; font-weight: 700; color: #3b475c; font-family: var(--font-mono); border-right: 1px solid #c3ccdb; }
+  .xl-rows { font-family: var(--font-mono); }
+  .xl-row { display: grid; grid-template-columns: 1.4fr .7fr .7fr .7fr .7fr .8fr; border-bottom: 1px solid #d3dae6; }
+  .xl-row:nth-child(even) { background: #f6f8fc; }
+  .xl-row div { padding: 13px 16px; font-size: 22px; color: #46536a; border-right: 1px solid #e0e6f0; white-space: nowrap; overflow: hidden; }
+  .xl-row .nm { color: #1f2b3e; font-weight: 600; }
+  .xl-tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,2,48,.12) 0%, rgba(5,2,48,.55) 64%, rgba(5,2,48,.82) 100%); mix-blend-mode: multiply; }
+  .xl-tint2 { position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 60%, transparent 0%, rgba(5,2,48,.5) 100%); }
+  .cursor { position: absolute; z-index: 25; width: 54px; height: 54px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+
+  /* =================================================================
+     SCENE 2 — scattered files
+     ================================================================= */
+  .file {
+    position: absolute; width: 360px; background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 30px 60px -18px rgba(0,0,0,.6); border: 1px solid rgba(0,0,0,.06);
+  }
+  .file .ftab { height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 16px; color: #fff; font-size: 19px; font-weight: 700; font-family: var(--font-mono); }
+  .file .fbody { padding: 0; }
+  .file .fr { display: grid; grid-template-columns: 1.3fr .6fr .6fr; }
+  .file .fr div { padding: 9px 14px; font-size: 16px; font-family: var(--font-mono); color: #51607a; border-bottom: 1px solid #eef1f7; border-right: 1px solid #eef1f7; white-space: nowrap; overflow: hidden; }
+  .file .fr:nth-child(even) { background: #f7f9fc; }
+  .bubble {
+    position: absolute; z-index: 35; background: #fff; color: #1f2b3e; font-size: 26px; font-weight: 600;
+    padding: 20px 26px; border-radius: 22px 22px 22px 6px; box-shadow: 0 24px 50px -16px rgba(0,0,0,.55); max-width: 520px; line-height: 1.3;
+  }
+  .bubble .who { display: block; font-size: 18px; color: #8a96ab; font-weight: 700; margin-bottom: 6px; }
+  .deadline-chip {
+    position: absolute; z-index: 36; display: inline-flex; align-items: center; gap: 12px;
+    background: #ff5a6e; color: #fff; font-size: 26px; font-weight: 800; padding: 16px 26px; border-radius: 999px;
+    box-shadow: 0 0 50px -6px rgba(255,90,110,.8);
+  }
+  .deadline-chip svg { width: 34px; height: 34px; }
+
+  /* =================================================================
+     SCENE 3 — logo flash transition
+     ================================================================= */
+  .flash-core { position: absolute; inset: 0; background: radial-gradient(38% 26% at 50% 46%, rgba(74,59,255,.85) 0%, rgba(74,59,255,0) 62%); }
+  .ghost-xl { position: absolute; z-index: 10; left: 50%; top: 46%; transform: translate(-50%,-50%) scale(.5); opacity: .14; width: 760px; height: 520px; border-radius: 18px;
+    background-image: repeating-linear-gradient(0deg, rgba(217,214,255,.5) 0 2px, transparent 2px 56px), repeating-linear-gradient(90deg, rgba(217,214,255,.5) 0 2px, transparent 2px 120px); }
+  .logo-flash { position: absolute; z-index: 30; left: 50%; top: 46%; transform: translate(-50%,-50%); width: 760px; border-radius: 28px; overflow: hidden;
+    box-shadow: 0 0 120px -10px rgba(74,59,255,.9); }
+  .logo-flash img { width: 100%; display: block; }
+  .beat-note { position: absolute; z-index: 30; bottom: 470px; left: 0; right: 0; text-align: center; font-size: 28px; font-weight: 600; color: var(--fg3); letter-spacing: .1em; text-transform: uppercase; }
+
+  /* =================================================================
+     SCENE 4 — product 9-box
+     ================================================================= */
+  .app { position: absolute; z-index: 20; left: 70px; right: 70px; top: 700px; border-radius: 32px; overflow: hidden;
+    background: rgba(217,214,255,.07); border: 1px solid rgba(217,214,255,.18); backdrop-filter: blur(8px);
+    box-shadow: 0 40px 90px -30px rgba(0,0,0,.7); }
+  .app-bar { display: flex; align-items: center; gap: 14px; padding: 22px 28px; border-bottom: 1px solid rgba(217,214,255,.12); }
+  .app-bar .b-logo { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+  .app-bar .b-tabs { margin-left: auto; display: flex; gap: 10px; }
+  .app-bar .b-tab { font-size: 18px; font-weight: 600; color: var(--fg2); padding: 8px 16px; border-radius: 999px; background: rgba(217,214,255,.08); }
+  .app-bar .b-tab.on { background: var(--c-blue-ribbon); color: #fff; }
+  .app-body { display: grid; grid-template-columns: 340px 1fr; gap: 24px; padding: 28px; }
+  .emp { background: rgba(5,2,48,.4); border-radius: 22px; padding: 26px; border: 1px solid rgba(217,214,255,.1); }
+  .emp-top { display: flex; align-items: center; gap: 16px; }
+  .emp-av { width: 70px; height: 70px; border-radius: 999px; background: linear-gradient(135deg, var(--c-cotton-candy), var(--c-blue-ribbon)); display: grid; place-items: center; font-size: 28px; font-weight: 800; color: #fff; }
+  .emp-nm { font-size: 26px; font-weight: 700; }
+  .emp-role { font-size: 18px; color: var(--fg3); }
+  .emp-score { margin-top: 22px; display: flex; align-items: baseline; gap: 10px; }
+  .emp-score .v { font-size: 72px; font-weight: 800; line-height: 1; color: var(--c-frosted-mint); letter-spacing: -0.03em; }
+  .emp-score .l { font-size: 19px; color: var(--fg2); font-weight: 600; }
+  .emp-rows { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .emp-rows .er { display: flex; align-items: center; gap: 12px; font-size: 20px; color: var(--fg1); font-weight: 500; }
+  .emp-rows .er .ck { width: 26px; height: 26px; border-radius: 999px; background: var(--c-frosted-mint); display: grid; place-items: center; flex: none; }
+  .emp-rows .er .ck svg { width: 16px; height: 16px; }
+  .emp-rows .er .vv { margin-left: auto; color: var(--fg2); font-family: var(--font-mono); font-size: 19px; }
+
+  .matrix-wrap { display: flex; flex-direction: column; }
+  .mx-title { font-size: 22px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .mx-title .ai { font-size: 15px; font-weight: 700; color: var(--c-cod-gray); background: var(--c-cotton-candy); padding: 4px 11px; border-radius: 999px; }
+  .mx { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 10px; aspect-ratio: 1 / .92; }
+  .cell { border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
+  .cell .cnt { display: flex; gap: 7px; flex-wrap: wrap; }
+  .cell .pt { width: 26px; height: 26px; border-radius: 999px; border: 2px solid rgba(255,255,255,.85); }
+  .cell .clab { font-size: 16px; font-weight: 700; color: var(--c-cod-gray); opacity: .72; }
+  .cell.hipo { background: var(--c-frosted-mint); }
+  .cell.hipo .clab { opacity: 1; color: #0c6b52; }
+  .cell.key { background: var(--c-periwinkle); }
+  .cell.core { background: var(--c-fog); }
+  .cell.risk { background: rgba(255,184,226,.5); }
+  .cell.mid { background: rgba(217,214,255,.16); }
+  .cell.mid .clab { color: var(--fg2); }
+  .cell .star { color: #0c6b52; }
+  .mx-axis-x { margin-top: 12px; text-align: center; font-size: 17px; color: var(--fg2); font-weight: 600; letter-spacing: .04em; }
+
+  /* =================================================================
+     SCENE 5 — CTA
+     ================================================================= */
+  .cta-logo { position: absolute; z-index: 30; left: 50%; top: 620px; transform: translateX(-50%); width: 720px; border-radius: 30px; overflow: hidden; box-shadow: 0 0 110px -16px rgba(74,59,255,.85); }
+  .cta-logo img { width: 100%; display: block; }
+  .cta-btn {
+    position: absolute; z-index: 30; left: 50%; top: 1180px; transform: translateX(-50%);
+    background: var(--c-mac-cheese); color: var(--c-cod-gray); font-size: 40px; font-weight: 800;
+    padding: 30px 56px; border-radius: 999px; display: inline-flex; align-items: center; gap: 18px; white-space: nowrap;
+    box-shadow: 0 24px 60px -16px rgba(255,183,119,.6);
+  }
+  .cta-btn svg { width: 38px; height: 38px; }
+  .cta-url { position: absolute; z-index: 30; left: 0; right: 0; top: 1320px; text-align: center; font-size: 34px; font-weight: 700; color: var(--c-frosted-mint); letter-spacing: .02em; }
+
+  /* ============ SCENE ROW LAYOUT ============ */
+  .strip-head { margin-top: 64px; display: flex; align-items: center; gap: 18px; }
+  .strip-head h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+  .strip-head .line { flex: 1; height: 1px; background: var(--stroke); }
+  .strip-head .meta { font-size: 13px; color: var(--fg3); font-weight: 600; }
+
+  .scene { display: flex; gap: 36px; align-items: flex-start; padding: 34px 0; border-bottom: 1px solid var(--stroke); }
+  .scene:last-child { border-bottom: 0; }
+  .scene-l { flex: none; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .tc {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--c-frosted-mint);
+    background: rgba(213,255,243,.08); border: 1px solid rgba(213,255,243,.2);
+    border-radius: 999px; padding: 6px 14px; letter-spacing: .02em;
+  }
+  .scene-r { flex: 1; min-width: 0; padding-top: 6px; }
+  .scene-no { display: flex; align-items: baseline; gap: 14px; }
+  .scene-no .n { font-family: var(--font-mono); font-size: 15px; font-weight: 800; color: var(--c-blue-ribbon); }
+  .scene-no h3 { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+  .scene-desc { margin-top: 12px; font-size: 16px; line-height: 1.55; color: var(--fg2); max-width: 620px; }
+  .scene-desc b { color: var(--fg1); font-weight: 700; }
+
+  .meta-grid { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 720px; }
+  .mcard { background: var(--bg-glass); border: 1px solid var(--stroke); border-radius: var(--r-sm); padding: 16px 18px; }
+  .mcard.full { grid-column: span 2; }
+  .mcard .ml { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--fg3); margin-bottom: 8px; }
+  .mcard .mv { font-size: 15.5px; line-height: 1.5; color: var(--fg1); }
+  .mcard.plate-card { border-color: rgba(74,59,255,.4); background: rgba(74,59,255,.1); }
+  .mcard.plate-card .ml { color: var(--c-fog); }
+  .mcard.plate-card .mv { font-weight: 700; }
+  .mcard .vo { color: var(--fg2); font-style: normal; }
+  .mcard .vo::before { content: "«"; color: var(--c-cotton-candy); }
+  .mcard .vo::after { content: "»"; color: var(--c-cotton-candy); }
+
+  /* style note strip */
+  .notes { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .note { background: var(--bg-glass); border: 1px solid var(--stroke); border-radius: var(--r-md); padding: 18px 20px; }
+  .note .nl { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--c-cotton-candy); margin-bottom: 9px; }
+  .note .nv { font-size: 14px; line-height: 1.5; color: var(--fg2); }
+  .note .nv b { color: var(--fg1); font-weight: 700; }
+
+  @media (max-width: 900px) {
+    .top { flex-direction: column; }
+    .meta-grid { grid-template-columns: 1fr; }
+    .notes { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0a0540"/>
+        <stop offset="1" stop-color="#050230"/>
+      </linearGradient>
+    </defs>
+    <rect width="100" height="100" rx="16" fill="url(#bg)"/>
+    <rect x="38" y="30" width="24" height="40" rx="4" fill="none" stroke="#4a3bff" stroke-width="2.5"/>
+    <rect x="42" y="44" width="16" height="6" rx="2" fill="#ffb8e2"/>
+    <path d="M50 14 L51.6 21.4 L59 23 L51.6 24.6 L50 32 L48.4 24.6 L41 23 L48.4 21.4 Z" fill="#d5fff3"/>
+  </svg>
+</template>
+<body>
+<div class="wrap">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="top">
+    <div class="top-l">
+      <span class="kicker"><span class="dot"></span>EmplyFlow · Shorts · раскадровка для Canva AI</span>
+      <div class="series">Мини-сериал «Вопросы, которые задаёт растущий бизнес» · выпуск 01</div>
+      <h1 class="title">Ролик №1 —<br><span class="hl">Excel-ад</span></h1>
+      <p class="logline">
+        Ручная сборка Performance Review в таблицах против автоматической сборки в EmplyFlow.
+        Хук бьёт в боль, разворот — спокойная уверенность через продукт. Цель — <b>узнаваемость</b>, не продажа в лоб.
+      </p>
+      <div class="specs">
+        <span class="spec"><b>9:16</b></span>
+        <span class="spec">1080×1920</span>
+        <span class="spec"><b>30</b> fps · H.264</span>
+        <span class="spec">25–30 сек</span>
+        <span class="spec">Безопасные зоны: <b>верх 220</b> · <b>низ 380</b></span>
+      </div>
+      <div class="ctrl" id="safeToggle" role="button" tabindex="0" aria-pressed="false">
+        <span class="sw"></span>Показать безопасные зоны YouTube / Shorts
+      </div>
+      <div class="tags">
+        <span class="tag">#HRTech</span>
+        <span class="tag">#PerformanceReview</span>
+        <span class="tag">#HRBP</span>
+        <span class="tag">#оценкаперсонала</span>
+      </div>
+    </div>
+
+    <div class="top-r">
+      <span class="cover-cap">Обложка</span>
+      <!-- ===== COVER FRAME ===== -->
+      <div class="fw fw-sm">
+        <div class="frame">
+          <div class="scn">
+            <div class="bloom-i"></div>
+            <div class="bloom-p"></div>
+            <svg class="spk" style="top:300px; right:120px; width:120px; height:120px" viewBox="0 0 24 24" fill="#ffb8e2"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+            <svg class="spk" style="top:1180px; left:120px; width:80px; height:80px" viewBox="0 0 24 24" fill="#d5fff3"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+            <div style="position:absolute; z-index:30; top:340px; left:90px; right:90px;">
+              <div style="font-size:30px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--c-cotton-candy);">Выпуск 01</div>
+              <div style="margin-top:40px; font-size:118px; font-weight:800; line-height:1.0; letter-spacing:-0.035em; color:#fff;">
+                Performance<br>Review
+              </div>
+              <div style="margin-top:28px; font-size:118px; font-weight:800; line-height:1.0; letter-spacing:-0.03em;">
+                <span class="mark pink" style="font-size:118px;">без Excel</span>
+              </div>
+            </div>
+            <div style="position:absolute; z-index:30; bottom:300px; left:90px; font-size:52px; font-weight:800; letter-spacing:-0.02em; color:#fff;">ЭмплиФлоу</div>
+            <div class="safe"><span class="safe-lbl t">UI YouTube</span><span class="safe-lbl b">UI Shorts</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="cover-cap" style="color:var(--fg3); opacity:.7; max-width:300px; text-align:center;">Текст обложки: «Performance Review без Excel»</div>
+    </div>
+  </header>
+
+  <!-- ===================== SCENES STRIP ===================== -->
+  <div class="strip-head">
+    <h2>Основные сцены</h2>
+    <span class="line"></span>
+    <span class="meta">6 кадров · от боли к продукту</span>
+  </div>
+
+  <!-- ===== SCENE 1 ===== -->
+  <section class="scene" data-screen-label="Сцена 1 · Хук">
+    <div class="scene-l">
+      <span class="tc">00:00 – 00:02</span>
+      <div class="fw fw-lg">
+        <div class="frame">
+          <div class="scn">
+            <!-- spreadsheet -->
+            <div class="xl">
+              <div class="xl-head"><span class="dotw"></span>Performance_Review_2026_FINAL_v7(2).xlsx</div>
+              <div class="xl-cols"><div>Сотрудник</div><div>360</div><div>KPI</div><div>Цели</div><div>Комп.</div><div>Итог</div></div>
+              <div class="xl-rows" data-xl="1"></div>
+            </div>
+            <div class="xl-tint"></div>
+            <div class="xl-tint2"></div>
+            <svg class="cursor" style="top:560px; left:430px" viewBox="0 0 24 24" fill="#fff" stroke="#1f2b3e" stroke-width="1.2"><path d="M5 2l14 11-6 1 4 7-3 1-4-7-5 4z"/></svg>
+
+            <div class="bloom-i" style="opacity:.5"></div>
+            <!-- plate -->
+            <div class="plate" style="top:760px;">
+              <div class="pl" style="font-size:104px;">ВСЁ ЕЩЁ<br>СВОДИШЬ<br><span class="mark" style="font-size:104px;">ВРУЧНУЮ?</span></div>
+            </div>
+            <!-- subtitle -->
+            <div class="sub"><span>Если ты до сих пор собираешь Performance Review в Excel — это для тебя.</span></div>
+            <div class="safe"><span class="safe-lbl t">UI YouTube</span><span class="safe-lbl b">UI Shorts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scene-r">
+      <div class="scene-no"><span class="n">01</span><h3>Хук — «Excel-ад»</h3></div>
+      <p class="scene-desc">Крупный план бесконечной таблицы оценок, курсор лихорадочно скроллит. Холодная сине-серая палитра Excel против тёплого бренда. В первые 2 секунды — <b>удар по боли</b>.</p>
+      <div class="meta-grid">
+        <div class="mcard plate-card full"><div class="ml">Плашка на экране</div><div class="mv">ВСЁ ЕЩЁ СВОДИШЬ ВРУЧНУЮ?</div></div>
+        <div class="mcard full"><div class="ml">Закадр</div><div class="mv"><span class="vo">Если ты до сих пор собираешь Performance Review в Excel — это для тебя.</span></div></div>
+        <div class="mcard full"><div class="ml">Звук / переход</div><div class="mv">Удар + резкий старт бита. Короткая пауза на хуке, чтобы зацепить внимание.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 2 ===== -->
+  <section class="scene" data-screen-label="Сцена 2 · Хаос файлов">
+    <div class="scene-l">
+      <span class="tc">00:02 – 00:12</span>
+      <div class="fw fw-lg">
+        <div class="frame">
+          <div class="scn">
+            <div class="bloom-i"></div>
+            <div class="bloom-p"></div>
+
+            <!-- scattered files -->
+            <div class="file" style="left:70px; top:250px; transform:rotate(-7deg);">
+              <div class="ftab" style="background:#1f7a4d;"><span>Оценка_360_v4.xlsx</span></div>
+              <div class="fbody"><div class="fr"><div>Иванов</div><div>4.2</div><div>—</div></div><div class="fr"><div>Петров</div><div>3.9</div><div>—</div></div><div class="fr"><div>Смирнова</div><div>4.6</div><div>—</div></div></div>
+            </div>
+            <div class="file" style="right:60px; top:340px; transform:rotate(6deg);">
+              <div class="ftab" style="background:#b8742a;"><span>KPI_Q2_итог.xlsx</span></div>
+              <div class="fbody"><div class="fr"><div>Отдел</div><div>%</div><div>Δ</div></div><div class="fr"><div>Продажи</div><div>92</div><div>+4</div></div><div class="fr"><div>Маркет.</div><div>78</div><div>−6</div></div></div>
+            </div>
+            <div class="file" style="left:120px; top:720px; transform:rotate(4deg);">
+              <div class="ftab" style="background:#5a3bd4;"><span>Цели_2026_v2.xlsx</span></div>
+              <div class="fbody"><div class="fr"><div>OKR</div><div>прог</div><div>срок</div></div><div class="fr"><div>O1·KR2</div><div>60%</div><div>Q3</div></div><div class="fr"><div>O2·KR1</div><div>30%</div><div>Q2</div></div></div>
+            </div>
+            <div class="file" style="right:90px; top:840px; transform:rotate(-5deg);">
+              <div class="ftab" style="background:#2b6fb8;"><span>Компетенции.xlsx</span></div>
+              <div class="fbody"><div class="fr"><div>Навык</div><div>1–5</div><div>норм</div></div><div class="fr"><div>Лидер.</div><div>3</div><div>4</div></div><div class="fr"><div>Комм.</div><div>4</div><div>4</div></div></div>
+            </div>
+
+            <div class="bubble" style="left:80px; top:560px;"><span class="who">Коллега · 17:48</span>а где финальная версия 360?</div>
+            <div class="deadline-chip" style="right:80px; top:250px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              Дедлайн сегодня
+            </div>
+
+            <!-- plate -->
+            <div class="plate" style="top:1100px;">
+              <div class="pl" style="font-size:62px; line-height:1.18;">
+                360 — в <span class="mark mint" style="font-size:62px;">одном файле</span>.<br>
+                KPI — в <span class="mark orange" style="font-size:62px;">другом</span>.<br>
+                Цели — в <span class="mark pink" style="font-size:62px;">третьем</span>.
+              </div>
+            </div>
+
+            <div class="sub"><span>Неделя жизни уходит на один отчёт.</span></div>
+            <div class="safe"><span class="safe-lbl t">UI YouTube</span><span class="safe-lbl b">UI Shorts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scene-r">
+      <div class="scene-no"><span class="n">02</span><h3>Разрозненные файлы</h3></div>
+      <p class="scene-desc">4–5 файлов на экране, всплывает переписка <b>«а где финальная версия 360?»</b>, иконка дедлайна тикает. Нарастающее напряжение — оценки врассыпную, цели и KPI по разным таблицам.</p>
+      <div class="meta-grid">
+        <div class="mcard plate-card full"><div class="ml">Плашка на экране</div><div class="mv">360 — в одном файле. KPI — в другом. Цели — в третьем</div></div>
+        <div class="mcard full"><div class="ml">Закадр</div><div class="mv"><span class="vo">Сотни строк, оценки 360 врассыпную, цели отдельно, KPI отдельно. Неделя жизни уходит на один отчёт.</span></div></div>
+        <div class="mcard full"><div class="ml">Звук / переход</div><div class="mv">Нарастающее напряжение, тиканье.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 3 ===== -->
+  <section class="scene" data-screen-label="Сцена 3 · Переход">
+    <div class="scene-l">
+      <span class="tc">00:12 – 00:14</span>
+      <div class="fw fw-lg">
+        <div class="frame">
+          <div class="scn" style="background:#020019;">
+            <div class="ghost-xl"></div>
+            <div class="flash-core"></div>
+            <svg class="spk" style="top:560px; left:160px; width:90px; height:90px" viewBox="0 0 24 24" fill="#d5fff3"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+            <svg class="spk" style="top:1180px; right:160px; width:120px; height:120px" viewBox="0 0 24 24" fill="#ffb8e2"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+            <div class="logo-flash"><img src="assets/logo.png" alt="EmplyFlow"></div>
+            <div class="beat-note">затемнение → лого-вспышка · пауза</div>
+            <div class="safe"><span class="safe-lbl t">UI YouTube</span><span class="safe-lbl b">UI Shorts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scene-r">
+      <div class="scene-no"><span class="n">03</span><h3>Переход «боль → продукт»</h3></div>
+      <p class="scene-desc">Резкий разворот: таблицы <b>схлопываются</b>, экран затемняется и вспыхивает логотип EmplyFlow. Двухсекундная пауза-вдох перед раскрытием продукта.</p>
+      <div class="meta-grid">
+        <div class="mcard plate-card full"><div class="ml">Плашка на экране</div><div class="mv">(затемнение → лого-вспышка)</div></div>
+        <div class="mcard full"><div class="ml">Закадр</div><div class="mv">пауза</div></div>
+        <div class="mcard full"><div class="ml">Звук / переход</div><div class="mv">Whoosh, бит «раскрывается».</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 4 ===== -->
+  <section class="scene" data-screen-label="Сцена 4 · Продукт 9-box">
+    <div class="scene-l">
+      <span class="tc">00:14 – 00:25</span>
+      <div class="fw fw-lg">
+        <div class="frame">
+          <div class="scn">
+            <div class="bloom-i"></div>
+            <div class="bloom-p"></div>
+            <svg class="spk" style="top:340px; right:150px; width:80px; height:80px" viewBox="0 0 24 24" fill="#ffb8e2"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+
+            <!-- plate top -->
+            <div class="plate" style="top:230px;">
+              <div class="pl" style="font-size:66px; line-height:1.1;">Одно окно вместо<br><span class="mark mint" style="font-size:66px;">пяти файлов</span></div>
+              <div style="margin-top:22px; font-size:38px; font-weight:700; color:var(--c-fog);">→ ИИ строит 9-box за секунды</div>
+            </div>
+
+            <!-- product window -->
+            <div class="app">
+              <div class="app-bar">
+                <span class="b-logo">ЭмплиФлоу</span>
+                <div class="b-tabs"><span class="b-tab">360</span><span class="b-tab">Цели</span><span class="b-tab on">9-box</span></div>
+              </div>
+              <div class="app-body">
+                <div class="emp">
+                  <div class="emp-top"><div class="emp-av">АП</div><div><div class="emp-nm">А. Петров</div><div class="emp-role">Аналитик</div></div></div>
+                  <div class="emp-score"><span class="v">4.6</span><span class="l">итоговый балл</span></div>
+                  <div class="emp-rows">
+                    <div class="er"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#0c6b52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg></span>Оценка 360<span class="vv">4.4</span></div>
+                    <div class="er"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#0c6b52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg></span>KPI<span class="vv">92%</span></div>
+                    <div class="er"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#0c6b52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg></span>Цели OKR<span class="vv">5/6</span></div>
+                  </div>
+                </div>
+                <div class="matrix-wrap">
+                  <div class="mx-title">Матрица 9-box <span class="ai">ИИ</span></div>
+                  <div class="mx">
+                    <div class="cell mid"><span class="clab">Дилемма</span><div class="cnt"><span class="pt" style="background:#cec8ff"></span></div></div>
+                    <div class="cell key"><span class="clab">Ключевые</span><div class="cnt"><span class="pt" style="background:#fff"></span><span class="pt" style="background:#fff"></span></div></div>
+                    <div class="cell hipo"><span class="clab">★ HiPo</span><div class="cnt"><span class="pt" style="background:#fff"></span><span class="pt" style="background:#fff"></span><span class="pt" style="background:#fff"></span></div></div>
+                    <div class="cell risk"><span class="clab">Зона риска</span><div class="cnt"><span class="pt" style="background:#fff"></span></div></div>
+                    <div class="cell core"><span class="clab">Ядро</span><div class="cnt"><span class="pt" style="background:#fff"></span><span class="pt" style="background:#fff"></span></div></div>
+                    <div class="cell key"><span class="clab">Рост</span><div class="cnt"><span class="pt" style="background:#fff"></span><span class="pt" style="background:#fff"></span></div></div>
+                    <div class="cell risk"><span class="clab">Низкие</span><div class="cnt"><span class="pt" style="background:#fff"></span></div></div>
+                    <div class="cell mid"><span class="clab">Средние</span><div class="cnt"><span class="pt" style="background:#cec8ff"></span></div></div>
+                    <div class="cell core"><span class="clab">Стабильные</span><div class="cnt"><span class="pt" style="background:#fff"></span><span class="pt" style="background:#fff"></span></div></div>
+                  </div>
+                  <div class="mx-axis-x">Результативность →</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub"><span>Оценка, цели и итоговый балл — в одном окне. ИИ сам строит матрицу.</span></div>
+            <div class="safe"><span class="safe-lbl t">UI YouTube</span><span class="safe-lbl b">UI Shorts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scene-r">
+      <div class="scene-no"><span class="n">04</span><h3>Продукт — 9-box за секунды</h3></div>
+      <p class="scene-desc">Скринкаст: в одном окне — 360, ИИ-оценка компетенций, цели OKR/KPI и итоговый балл. Матрица <b>9-box собирается сама</b>, карточки раскрашиваются, ИИ подсвечивает HiPo и зону риска. Плавный зум на нужный элемент.</p>
+      <div class="meta-grid">
+        <div class="mcard plate-card full"><div class="ml">Плашка на экране</div><div class="mv">ОДНО ОКНО ВМЕСТО ПЯТИ ФАЙЛОВ → ИИ строит 9-box за секунды</div></div>
+        <div class="mcard full"><div class="ml">Закадр</div><div class="mv"><span class="vo">EmplyFlow собирает это автоматически. Оценка, цели и итоговый балл — в одном окне. ИИ сам строит матрицу потенциала и подсвечивает, кто HiPo, а кто в зоне риска.</span></div></div>
+        <div class="mcard full"><div class="ml">Звук / переход</div><div class="mv">Лёгкие click при появлении карточек.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 5 ===== -->
+  <section class="scene" data-screen-label="Сцена 5 · CTA">
+    <div class="scene-l">
+      <span class="tc">00:25 – 00:30</span>
+      <div class="fw fw-lg">
+        <div class="frame">
+          <div class="scn">
+            <div class="bloom-i" style="opacity:.9"></div>
+            <div class="bloom-p"></div>
+            <svg class="spk" style="top:420px; left:140px; width:90px; height:90px" viewBox="0 0 24 24" fill="#d5fff3"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+            <svg class="spk" style="top:980px; right:130px; width:110px; height:110px" viewBox="0 0 24 24" fill="#ffb8e2"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+
+            <!-- plate top -->
+            <div class="plate" style="top:300px;">
+              <div class="pl" style="font-size:74px; line-height:1.06;">Перестань считать<br>людей <span class="mark pink" style="font-size:74px;">в таблицах</span></div>
+            </div>
+
+            <div class="cta-logo"><img src="assets/logo.png" alt="EmplyFlow"></div>
+            <div class="cta-btn">
+              Получить демодоступ
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </div>
+            <div class="cta-url">emplyflow.ru</div>
+
+            <div class="sub"><span>Демодоступ — на emplyflow.ru.</span></div>
+            <div class="safe"><span class="safe-lbl t">UI YouTube</span><span class="safe-lbl b">UI Shorts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scene-r">
+      <div class="scene-no"><span class="n">05</span><h3>CTA — приглашение</h3></div>
+      <p class="scene-desc">Логотип EmplyFlow на фирменном градиенте, кнопка демодоступа. Тон — спокойная уверенность, <b>приглашение, а не приказ</b>. Финальный акцент, бит затухает.</p>
+      <div class="meta-grid">
+        <div class="mcard plate-card full"><div class="ml">Плашка на экране</div><div class="mv">ПЕРЕСТАНЬ СЧИТАТЬ ЛЮДЕЙ В ТАБЛИЦАХ → emplyflow.ru</div></div>
+        <div class="mcard full"><div class="ml">Закадр</div><div class="mv"><span class="vo">Демодоступ — на emplyflow.ru.</span></div></div>
+        <div class="mcard full"><div class="ml">Звук / переход</div><div class="mv">Финальный акцент, бит затухает.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STYLE NOTES ===================== -->
+  <div class="strip-head">
+    <h2>Стиль серии для Canva AI</h2>
+    <span class="line"></span>
+    <span class="meta">единый визуальный язык всех выпусков</span>
+  </div>
+  <div class="notes">
+    <div class="note"><div class="nl">Фон и свет</div><div class="nv">Тёмный <b>navy → violet</b> градиент, лёгкое движение (медленный параллакс/глоу), стеклянные карточки.</div></div>
+    <div class="note"><div class="nl">Акцент и текст</div><div class="nv">Кинетические плашки: ключевые слова «вылетают» и подсвечиваются <b>violet-заливкой</b>. 5–6 слов в строке. Манроп.</div></div>
+    <div class="note"><div class="nl">Голос</div><div class="nv">Единый закадровый рассказчик, мужской, <b>30–35 лет</b>, тёплый, разговорный. Один голос во всех выпусках.</div></div>
+    <div class="note"><div class="nl">Музыка</div><div class="nv">Минималистичный электронный бит, низкий, под голосом <b>−18…−20 dB</b>. Whoosh/click на плашках.</div></div>
+  </div>
+
+</div>
+
+<script>
+  // Safe-zone toggle
+  (function(){
+    var t = document.getElementById('safeToggle');
+    function flip(){
+      var on = document.body.classList.toggle('show-safe');
+      t.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    t.addEventListener('click', flip);
+    t.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); flip(); }});
+  })();
+
+  // Decorative spreadsheet rows (background only)
+  (function(){
+    var names = ['Иванов И.','Петрова А.','Смирнов Д.','Кузнецова Е.','Попов Р.','Соколова М.','Лебедев К.','Новикова О.','Морозов П.','Волкова Н.','Алексеев С.','Зайцева Т.','Орлов В.','Федорова Ю.','Макаров А.','Громова Л.'];
+    function rnd(a,b){ return (a + Math.random()*(b-a)); }
+    document.querySelectorAll('[data-xl]').forEach(function(host){
+      var html='';
+      for(var i=0;i<16;i++){
+        var n = names[i % names.length];
+        html += '<div class="xl-row">'
+          + '<div class="nm">'+n+'</div>'
+          + '<div>'+rnd(3.1,4.9).toFixed(1)+'</div>'
+          + '<div>'+Math.round(rnd(62,99))+'%</div>'
+          + '<div>'+Math.round(rnd(2,6))+'/6</div>'
+          + '<div>'+rnd(2.8,4.8).toFixed(1)+'</div>'
+          + '<div>'+rnd(3.2,4.8).toFixed(1)+'</div>'
+          + '</div>';
+      }
+      host.innerHTML = html;
+    });
+  })();
+</script>
+</body>
+</html>

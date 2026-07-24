@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Glass Panel" subtitle="Awards / floating callouts on dark" viewport="700x240" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+body {
+  display: flex; align-items: center; justify-content: center; padding: 28px;
+  background: radial-gradient(60% 80% at 30% 50%, rgba(74,59,255,0.45) 0%, transparent 60%), #050230;
+}
+.glass {
+  background: rgba(217, 214, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(217,214,255,0.22);
+  border-radius: 28px;
+  padding: 22px 28px;
+  color: #fff;
+  max-width: 320px;
+}
+.glass .award { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+.glass .desc { font-size: 13px; color: rgba(255,255,255,.62); margin-top: 8px; line-height: 1.4; }
+.star { font-size: 18px; }
+</style></head><body>
+<div class="glass">
+  <div class="star">⭐︎</div>
+  <div class="award" style="margin-top:8px">Лучший проект</div>
+  <div class="desc">в сфере HR по версии Rusbase в 2024 году</div>
+</div>
+</body></html>

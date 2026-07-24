@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>EmplyFlow · Roll-up v2 · HR Conference</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  /* ---- print canvas: 1m × 2m = 1000 × 2000 px @ 1:2 ----- */
+  :root {
+    --w: 1000px;
+    --h: 2000px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a1438; font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+
+  /* Fit-to-screen scaling for on-screen preview */
+  .stage { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+  .rollup {
+    width: var(--w);
+    height: var(--h);
+    background: #050230;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 120px -30px rgba(0,0,0,.7);
+    transform-origin: center top;
+  }
+  @media (max-aspect-ratio: 1/2) { .rollup { transform: scale(calc((100vw - 48px) / 1000)); } }
+  @media (min-aspect-ratio: 1/2) { .rollup { transform: scale(calc((100vh - 48px) / 2000)); } }
+
+  /* ---- ambient bloom layer (deep navy with indigo + pink glows) ---- */
+  .bg-bloom {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(45% 30% at 78% 8%,  rgba(74, 59, 255, 0.55) 0%, transparent 70%),
+      radial-gradient(40% 25% at 8% 40%,  rgba(255, 184, 226, 0.20) 0%, transparent 70%),
+      radial-gradient(50% 20% at 50% 70%, rgba(74, 59, 255, 0.30) 0%, transparent 70%);
+  }
+  .bg-grain {
+    position: absolute; inset: 0; opacity: .35; pointer-events: none; mix-blend-mode: overlay;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
+  }
+
+  /* ---------------- shared chrome ---------------- */
+  .pad { padding: 0 60px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(213,255,243,.85);
+  }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 999px; background: #d5fff3; box-shadow: 0 0 12px #d5fff3; }
+
+  /* =================  1. HEADER  ================= */
+  .hdr { padding: 56px 60px 0; position: relative; z-index: 2; }
+  .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+  .brand {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 32px; letter-spacing: -0.03em; line-height: 1;
+  }
+  .brand-meta { font-size: 12px; color: rgba(255,255,255,.55); letter-spacing: .14em; text-transform: uppercase; }
+
+  .h-headline {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 70px; line-height: 0.96; letter-spacing: -0.04em;
+    margin-top: 12px;
+  }
+  .h-headline .pink { color: #ffb8e2; }
+  .h-headline .mint { color: #d5fff3; }
+  .h-headline .ai-wrap {
+    display: inline-block; padding: 2px 18px;
+    border: 3px dashed #ffb8e2; border-radius: 999px;
+    color: #fff;
+  }
+
+  .h-sub {
+    margin-top: 18px; font-size: 18px; line-height: 1.4;
+    color: rgba(255,255,255,.78); max-width: 880px; font-weight: 400;
+  }
+
+  /* dashboard mockup — angled, sits BELOW the subheadline, inline */
+  .dash-wrap {
+    margin: 26px 0 0;
+    height: 200px;
+    transform: rotate(-2.5deg);
+    filter: drop-shadow(0 26px 50px rgba(74,59,255,0.45));
+    position: relative; z-index: 1;
+  }
+  .dash {
+    background: linear-gradient(180deg, #f6f4ff 0%, #ffffff 100%);
+    border-radius: 22px; padding: 18px; height: 100%;
+    box-shadow: 0 2px 0 rgba(0,0,0,.04), inset 0 0 0 1px rgba(0,0,0,.04);
+    display: grid; grid-template-columns: 200px 1fr 1fr; gap: 14px;
+  }
+  .dash .panel { background: #f3f1ff; border-radius: 14px; padding: 12px; }
+  .dash .person { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+  .dash .ava { width: 36px; height: 36px; border-radius: 999px; background: linear-gradient(135deg, #ffb8e2, #cec8ff); }
+  .dash .name { font-size: 12px; color: #050230; font-weight: 700; line-height: 1.1; }
+  .dash .role { font-size: 9px; color: rgba(5,2,48,.55); }
+  .dash .pill { display: inline-block; padding: 3px 8px; border-radius: 999px; background: #d5fff3; color: #050230; font-size: 9px; font-weight: 700; margin-bottom: 4px; }
+  .dash .row { display: flex; justify-content: space-between; font-size: 10px; color: rgba(5,2,48,.7); padding: 3px 0; border-bottom: 1px solid rgba(5,2,48,.06); }
+  .dash .row:last-child { border: 0; }
+  .dash .row b { color: #050230; font-weight: 700; }
+  .dash .chart { display: flex; align-items: flex-end; gap: 6px; height: 90px; padding: 4px 0; }
+  .dash .bar { flex: 1; background: linear-gradient(180deg, #4a3bff, #cec8ff); border-radius: 4px; }
+  .dash .label { font-size: 10px; color: #050230; font-weight: 700; margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .dash .label .ai-tag { font-size: 8px; padding: 2px 6px; background: #050230; color: #fff; border-radius: 999px; letter-spacing: .08em; }
+  .dash .ring-wrap { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+  .dash .ring { width: 56px; height: 56px; border-radius: 999px;
+    background: conic-gradient(#4a3bff 0 78%, #e6e3ff 78% 100%);
+    display: grid; place-items: center;
+  }
+  .dash .ring::before { content: ""; width: 38px; height: 38px; border-radius: 999px; background: #f3f1ff; position: absolute; }
+  .dash .ring span { position: relative; font-size: 12px; font-weight: 700; color: #050230; }
+  .dash .ai-rec { font-size: 10px; color: #050230; line-height: 1.35; margin-top: 6px; }
+  .dash .ai-rec b { color: #4a3bff; }
+
+  /* sparkles */
+  .spark { position: absolute; pointer-events: none; }
+
+  /* =================  2. VALUE CARDS  ================= */
+  .values { margin-top: 36px; padding: 0 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; position: relative; z-index: 2; }
+  .v-card {
+    border-radius: 24px; padding: 20px 20px; color: #050230;
+    min-height: 200px; display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .v-card .v-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: rgba(5,2,48,.10); display: grid; place-items: center;
+  }
+  .v-card.is-dark { color: #fff; }
+  .v-card.is-dark .v-icon { background: rgba(255,255,255,.18); }
+  .v-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; margin-top: 12px; }
+  .v-card .v-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .v-card .v-tag {
+    font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 999px;
+    background: rgba(5,2,48,.08);
+  }
+  .v-card.is-dark .v-tag { background: rgba(255,255,255,.18); color: #fff; }
+
+  /* =================  3. MODULES  ================= */
+  .modules { margin-top: 32px; padding: 0 60px; position: relative; z-index: 2; }
+  .m-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 18px; }
+  .m-title {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 44px; letter-spacing: -0.035em; line-height: 1;
+  }
+  .m-title .accent { color: #d5fff3; }
+  .m-sub { font-size: 13px; color: rgba(255,255,255,.55); max-width: 260px; text-align: right; letter-spacing: .04em; }
+  .m-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .m-card {
+    background: rgba(217,214,255,0.06);
+    border: 1px solid rgba(217,214,255,0.18);
+    border-radius: 20px; padding: 18px 20px; backdrop-filter: blur(20px);
+    position: relative; overflow: hidden;
+  }
+  .m-card.glow::before {
+    content: ""; position: absolute; inset: -30px; pointer-events: none;
+    background: radial-gradient(40% 60% at 80% 0%, rgba(74,59,255,0.35) 0%, transparent 60%);
+  }
+  .m-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: #050230; border: 1px solid rgba(217,214,255,.25);
+    display: grid; place-items: center; color: #d5fff3; margin-bottom: 10px;
+    position: relative;
+  }
+  .m-card.is-ai .m-icon { background: linear-gradient(135deg, #4a3bff, #ffb8e2); border-color: transparent; color: #fff; box-shadow: 0 0 24px rgba(74,59,255,.6); }
+  .m-card h4 { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .m-card p { font-size: 12px; color: rgba(255,255,255,.65); line-height: 1.4; margin-top: 6px; }
+  .m-ai-pill {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 9px; font-weight: 700; padding: 3px 7px;
+    background: #ffb8e2; color: #050230; border-radius: 999px; letter-spacing: .1em;
+  }
+
+  /* =================  4. SOCIAL PROOF  ================= */
+  .social { margin-top: 28px; padding: 0 60px; position: relative; z-index: 2; }
+  .social .lbl { font-size: 12px; color: rgba(255,255,255,.55); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
+  .logos { display: flex; align-items: stretch; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
+  .logo-chip {
+    flex: 1;
+    background: #fff;
+    border-radius: 18px;
+    padding: 14px 22px;
+    height: 76px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .logo-chip img { max-height: 44px; max-width: 100%; object-fit: contain; display: block; }
+  .logo-chip.glow-indigo { box-shadow: 0 0 50px -6px rgba(74,59,255,0.70), 0 0 20px rgba(74,59,255,0.30); }
+  .logo-chip.glow-pink   { box-shadow: 0 0 50px -6px rgba(255,184,226,0.70), 0 0 20px rgba(255,184,226,0.30); }
+  .logo-chip.glow-mint   { box-shadow: 0 0 50px -6px rgba(213,255,243,0.70), 0 0 20px rgba(213,255,243,0.30); }
+  .checks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .check {
+    background: rgba(213,255,243,0.08);
+    border: 1px solid rgba(213,255,243,.30);
+    border-radius: 14px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; line-height: 1.2;
+  }
+  .check svg { flex: none; }
+
+  /* =================  5. CTA / FOOTER  ================= */
+  .cta {
+    margin-top: 24px; padding: 22px 60px 24px;
+    background: linear-gradient(180deg, transparent 0%, #0a0540 30%);
+    position: relative; z-index: 2;
+  }
+  .cta-row { display: grid; grid-template-columns: 1fr 170px; gap: 24px; align-items: center; }
+  .cta-text {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 46px; line-height: 0.96; letter-spacing: -0.035em;
+  }
+  .cta-text .demo { color: #ffb777; }
+  .cta-sub {
+    margin-top: 10px; font-size: 16px; color: rgba(255,255,255,.7);
+  }
+  .qr {
+    width: 170px; height: 170px; background: #fff; border-radius: 18px;
+    padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,.5);
+  }
+  .qr svg { width: 100%; height: 100%; }
+  .qr-label { text-align: center; margin-top: 8px; font-size: 11px; color: rgba(255,255,255,.7); letter-spacing: .12em; text-transform: uppercase; }
+
+  .contacts {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid rgba(217,214,255,.16);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 16px; color: #fff;
+  }
+  .contacts .em { color: #d5fff3; font-weight: 600; }
+
+  /* ============== v2 overrides: cropped layout ============== */
+  .v2-gap {
+    margin-top: 90px;
+    padding: 0 60px 0;
+    position: relative; z-index: 2;
+  }
+  .v2-gap .v2-eyebrow {
+    font-size: 16px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: #d5fff3; margin-bottom: 18px;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .v2-gap .v2-eyebrow .bar { width: 60px; height: 2px; background: #d5fff3; border-radius: 999px; }
+  .v2-gap .v2-title {
+    font-family: 'Manrope', sans-serif; font-weight: 800;
+    font-size: 64px; letter-spacing: -0.035em; line-height: 0.98;
+    margin-bottom: 36px; color: #fff;
+  }
+  .v2-gap .v2-title .accent { color: #ffb8e2; }
+  .values.v2 {
+    margin-top: 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .values.v2 .v-card {
+    min-height: 420px;
+    padding: 28px 24px;
+    border-radius: 28px;
+  }
+  .values.v2 .v-card .v-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+  }
+  .values.v2 .v-card .v-icon svg { width: 30px; height: 30px; }
+  .values.v2 .v-card h3 {
+    font-size: 30px; line-height: 1.06; margin-top: 24px;
+    letter-spacing: -0.025em;
+  }
+  .values.v2 .v-card .v-tags { gap: 6px; margin-top: 16px; }
+  .values.v2 .v-card .v-tag {
+    font-size: 13px; padding: 6px 12px;
+  }
+
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="rollup" data-screen-label="Roll-up · 1×2 m">
+  <div class="bg-bloom"></div>
+  <div class="bg-grain"></div>
+
+  <!-- floating sparkles -->
+  <svg class="spark" style="top:80px; right:80px" width="28" height="32" viewBox="0 0 24 24" fill="#ffb8e2"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+  <svg class="spark" style="top:560px; left:40px" width="22" height="22" viewBox="0 0 24 24" fill="#d5fff3"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+  <svg class="spark" style="top:140px; left:280px" width="14" height="16" viewBox="0 0 24 24" fill="#cec8ff"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+
+  <!-- ======================= 1. HEADER ======================= -->
+  <header class="hdr">
+    <div class="brand-row">
+      <div class="brand">ЭмплиФлоу</div>
+      <div class="brand-meta">HR · Performance · AI</div>
+    </div>
+
+    <div class="eyebrow"><span class="dot"></span>HR-Tech · AI на каждом шаге</div>
+
+    <h1 class="h-headline">
+      HR-платформа с <span class="ai-wrap">AI-ассистентами</span><br />
+      для <span class="mint">оценки</span>, развития<br />
+      и Performance Review
+    </h1>
+
+    <p class="h-sub">
+      Автоматизируем HR-процессы, снижаем нагрузку на команду и помогаем принимать решения быстрее — на основе данных, а не интуиции.
+    </p>
+  </header>
+
+  <!-- Dashboard mockup (sits below the subheadline, inline) -->
+  <div class="dash-wrap">
+    <div class="dash">
+      <!-- Employee card -->
+      <div class="panel">
+        <div class="person">
+          <div class="ava"></div>
+          <div>
+            <div class="name">Анна Петрова</div>
+            <div class="role">Product Manager · L4</div>
+          </div>
+        </div>
+        <div class="pill">HiPo · Кадровый резерв</div>
+        <div class="row"><span>Цели Q4</span><b>92%</b></div>
+        <div class="row"><span>Performance</span><b>4.6 / 5</b></div>
+        <div class="row"><span>360° фидбэк</span><b>4.8</b></div>
+        <div class="row"><span>Потенциал</span><b style="color:#4a3bff">A+</b></div>
+      </div>
+
+      <!-- Chart -->
+      <div class="panel">
+        <div class="label"><span>Эффективность команды</span><span class="ai-tag">AI</span></div>
+        <div class="chart">
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:62%"></div>
+          <div class="bar" style="height:48%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:92%"></div>
+          <div class="bar" style="height:86%"></div>
+        </div>
+        <div class="ring-wrap">
+          <div class="ring"><span>78%</span></div>
+          <div style="font-size:10px; color:#050230">
+            <b>Выполнение OKR</b><br/>
+            <span style="color:rgba(5,2,48,.6)">+12% к прошлому кварталу</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI recommendation -->
+      <div class="panel" style="background:#050230; color:#fff">
+        <div class="label" style="color:#fff"><span>AI рекомендации</span><span class="ai-tag" style="background:#ffb8e2;color:#050230">★</span></div>
+        <div class="ai-rec" style="color:rgba(255,255,255,.85); margin-top:10px">
+          → Назначить <b style="color:#d5fff3">ИПР по управлению</b><br/>
+          → Сильные стороны: <b style="color:#ffb8e2">аналитика</b><br/>
+          → Зоны роста: коммуникация в&nbsp;конфликте
+        </div>
+        <div style="margin-top:8px; padding:6px 10px; background:rgba(74,59,255,.3); border-radius:8px; font-size:10px; line-height:1.3">
+          <b style="color:#fff">95% совпадение</b> с ролью Lead PM
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================= 2. BIG GAP + VALUE CARDS ======================= -->
+  <div class="v2-gap">
+    <div class="v2-eyebrow"><span class="bar"></span>Что вы получаете</div>
+    <h2 class="v2-title">Три причины<br/>выбрать <span class="accent">ЭМПЛИФЛОУ</span></h2>
+  </div>
+  <section class="values v2">
+    <div class="v-card" style="background:#d5fff3">
+      <div>
+        <div class="v-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#050230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg>
+        </div>
+        <h3>AI вместо ручной рутины</h3>
+      </div>
+      <div class="v-tags">
+        <span class="v-tag">Генерация кейсов</span>
+        <span class="v-tag">AI-анализ</span>
+        <span class="v-tag">Авто-отчёты</span>
+      </div>
+    </div>
+
+    <div class="v-card" style="background:#ffb8e2">
+      <div>
+        <div class="v-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#050230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+        </div>
+        <h3>В 3× быстрее процессы оценки</h3>
+      </div>
+      <div class="v-tags">
+        <span class="v-tag">360°</span>
+        <span class="v-tag">Performance Review</span>
+        <span class="v-tag">KPI · OKR</span>
+        <span class="v-tag">Кадровый резерв</span>
+      </div>
+    </div>
+
+    <div class="v-card is-dark" style="background:#4a3bff">
+      <div>
+        <div class="v-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Все данные о&nbsp;сотрудниках в&nbsp;одном&nbsp;месте</h3>
+      </div>
+      <div class="v-tags">
+        <span class="v-tag">Оценка</span>
+        <span class="v-tag">Цели</span>
+        <span class="v-tag">Развитие</span>
+        <span class="v-tag">Карьерные треки</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= 5. CTA ======================= -->
+  <section class="cta">
+    <div class="cta-row">
+      <div>
+        <div class="cta-text">
+          Попробуйте<br/>
+          <span class="demo">ЭмплиФлоу</span>
+        </div>
+        <div class="cta-sub">Демо платформы за 15 минут — сайт + Telegram</div>
+      </div>
+
+      <div>
+        <div class="qr">
+          <img src="assets/qr-code.svg" alt="QR — emplyflow.ru" style="width:100%; height:100%; display:block;">
+        </div>
+        <div class="qr-label">Сайт &nbsp;·&nbsp; Telegram</div>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <span class="em">headoffice@emplyflow.ru</span>
+      <span style="font-weight:600">emplyflow.ru</span>
+    </div>
+  </section>
+
+</div>
+</div>
+</body>
+</html>

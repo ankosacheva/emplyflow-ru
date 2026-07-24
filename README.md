@@ -16,6 +16,7 @@
 | `page96476846.html` и др. | Кейсы / лендинги |
 | `htaccess` | Правила ЧПУ из Tilda (на nginx переписаны в vhost) |
 | `css/`, `js/`, `images/`, `files/` | Статика Tilda (прочие страницы) |
+| `design-system/` | Дизайн-система EmplyFlow (токены, шрифты, UI-kit, макеты). **Не деплоится на сайт** |
 
 ЧПУ на nginx (фрагмент):
 
@@ -55,6 +56,25 @@
 
 Поле `source` в таблице: `site_demo_popup` (попап на главной), `site_demo` (прочие формы сайта), плюс источники Hub (`nav`, `case`, …).
 
+## Дизайн-система
+
+`design-system/` — брендбук и UI-kit EmplyFlow. Хранится в репозитории как источник правды для макетов, презентаций и новых страниц; на прод **не выкладывается** (см. `--exclude design-system` в блоке деплоя).
+
+| Что | Где |
+|---|---|
+| Токены (цвета, типографика, отступы, радиусы, тени) | `design-system/colors_and_type.css` (подключается через `styles.css`) |
+| Гайд по бренду: тон, контент, визуальные основы | `design-system/README.md` |
+| Манифест скилла для Claude Code | `design-system/SKILL.md` |
+| Компоненты лендинга (React + Babel) | `design-system/ui_kits/website/` |
+| Карточки дизайн-системы (цвета, тип, компоненты) | `design-system/preview/*.html` |
+| Шрифты Manrope | `design-system/fonts/` |
+| Печатные и видео-макеты (ролл-ап, буклет, shorts) | `design-system/*.html`, `design-system/export/` |
+| Логотипы, палитра, скриншоты сайта | `design-system/assets/` |
+
+Открыть локально: `python3 -m http.server 8080` → `http://localhost:8080/design-system/ui_kits/website/index.html`.
+
+Из архива при импорте **исключены** файлы оффера IT Project Manager (`Оффер - IT Project Manager*.html` и скриншоты `screenshots/offer-*.png`, `final-p*.png`) — в них персональные данные кандидата и личный телефон, а репозиторий публичный.
+
 ## Локально
 
 ```bash
@@ -69,7 +89,7 @@ python3 -m http.server 8080
 ```bash
 rsync -avz --delete \
   --exclude .git --exclude .gitignore --exclude README.md \
-  --exclude hub \
+  --exclude hub --exclude design-system \
   ./ root@212.113.123.95:/var/www/emplyflow.ru/
 ```
 
