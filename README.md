@@ -10,15 +10,16 @@
 
 | Файл / папка | Назначение |
 |---|---|
-| `page94832006.html` | Главная (DirectoryIndex) |
+| `index.html` | Главная (самодостаточный бандл: стили/шрифты/картинки внутри) |
+| `page94832006.html` | Та же главная (для совместимости со старым DirectoryIndex / nginx) |
 | `page92826026.html` | `/privacy` |
 | `page96476846.html` и др. | Кейсы / лендинги |
 | `htaccess` | Правила ЧПУ из Tilda (на nginx переписаны в vhost) |
-| `css/`, `js/`, `images/`, `files/` | Статика Tilda |
+| `css/`, `js/`, `images/`, `files/` | Статика Tilda (прочие страницы) |
 
 ЧПУ на nginx (фрагмент):
 
-- `/` → `page94832006.html`
+- `/` → `index.html` (или `page94832006.html`)
 - `/privacy` → `page92826026.html`
 - `/avtomatizatsiya-otsenki-po-keysam-v-telekome` → `page96476846.html`
 - и остальные rewrite из `htaccess`
@@ -58,10 +59,10 @@
 
 ```bash
 python3 -m http.server 8080
-# http://localhost:8080/page94832006.html
+# http://localhost:8080/   или   http://localhost:8080/index.html
 ```
 
-ЧПУ локально без nginx не работают — открывайте `page*.html` напрямую.
+Главная (`index.html`) самодостаточна и работает офлайн. ЧПУ остальных страниц локально без nginx не работают — открывайте `page*.html` напрямую.
 
 ## Деплой
 
