@@ -3,3 +3,4 @@
 *.log
 .well-known/
 hub/
+src/assets/

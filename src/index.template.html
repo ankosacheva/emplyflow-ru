@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="5c77c189-edc1-4885-9992-c920e6ebe548"></script>
+</head>
+<body>
+<x-dc>
+
+
+
+
+
+
+<helmet>
+<style>/* =============================================================
+   EmplyFlow / ЭмплиФлоу — Foundational Tokens
+   Colors, Typography, Spacing, Radii, Shadows
+   ============================================================= */
+
+/* Manrope — official EmplyFlow brand font (locally hosted) */
+@font-face { font-family: 'Manrope'; src: url("d179953c-0771-40ea-b9a5-3b91e50e88b4") format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: url("80812e70-b352-44bb-b2e4-cfc6f0bb8fdd")      format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: url("8c78a53a-1c52-4e73-9d8e-6db1e47c1791")    format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: url("91874772-c676-467f-94ee-d4017cccea3e")     format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: url("9eaf06bc-e5f3-4cc7-8ae1-1b743c3c6ea2")   format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: url("aa58ef0e-19d9-4ce7-be19-e74e48340597")       format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: url("495702e6-389d-4f6b-8a70-d65a3706b367")  format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+
+:root {
+  /* ---- BRAND PALETTE -------------------------------------------------
+     Names match the official site-palette SVG.
+     Roles: Black Rock + Blue Ribbon are the workhorses.
+     The four pastels rotate as "tile" colors for cards/sections.
+     Cotton Candy is the accent highlight for callouts. */
+
+  --c-black-rock: #050230;         /* Deep navy — primary background */
+  --c-black-rock-2: #0a0540;       /* Slightly lifted */
+  --c-blue-ribbon: #4a3bff;        /* Primary action / brand indigo */
+  --c-blue-ribbon-deep: #3a2cf0;
+  --c-cotton-candy: #ffb8e2;       /* Pink accent — highlight text, dashed callouts */
+  --c-periwinkle: #cec8ff;         /* Lavender tile */
+  --c-fog: #d9d6ff;                /* Lighter lavender — surfaces, secondary text on dark */
+  --c-frosted-mint: #d5fff3;       /* Mint tile / brand-name highlight */
+  --c-mac-cheese: #ffb777;         /* Soft orange CTA + tile */
+  --c-cod-gray: #151515;           /* Near-black for dark-on-pastel */
+  --c-black: #000000;
+  --c-white: #ffffff;
+
+  /* ---- SEMANTIC SURFACES (dark theme, the brand default) ---------- */
+  --bg: var(--c-black-rock);
+  --bg-elevated: #0d0848;
+  --bg-glass: rgba(217, 214, 255, 0.06);
+  --bg-glass-strong: rgba(217, 214, 255, 0.10);
+
+  /* ---- SEMANTIC FOREGROUNDS --------------------------------------- */
+  --fg1: var(--c-white);           /* Primary text on dark */
+  --fg2: rgba(255, 255, 255, 0.72);/* Secondary */
+  --fg3: rgba(255, 255, 255, 0.48);/* Tertiary, captions */
+  --fg-mute: rgba(217, 214, 255, 0.32);
+
+  --fg-on-light: var(--c-cod-gray);
+  --fg-on-light-2: rgba(21, 21, 21, 0.66);
+
+  --fg-accent: var(--c-cotton-candy);
+  --fg-brand: var(--c-blue-ribbon);
+
+  /* ---- STROKES ----------------------------------------------------- */
+  --stroke: rgba(217, 214, 255, 0.12);
+  --stroke-strong: rgba(217, 214, 255, 0.22);
+  --stroke-dashed-accent: var(--c-cotton-candy);
+
+  /* ---- TYPE FAMILIES ---------------------------------------------- */
+  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-display: 'Manrope', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+
+  /* ---- TYPE SCALE (1920 baseline; scales fine via clamp on web) --- */
+  --fs-hero:   clamp(56px, 7vw, 128px);  /* @kind font */ /* Massive brand title */
+  --fs-h1:     clamp(40px, 4.5vw, 76px); /* @kind font */ /* Section heroes */
+  --fs-h2:     clamp(32px, 3vw, 52px);   /* @kind font */ /* Card titles, big stats */
+  --fs-h3:     clamp(22px, 1.6vw, 28px); /* @kind font */ /* Sub-headings */
+  --fs-h4:     20px;   /* @kind font */
+  --fs-body-l: 20px;   /* @kind font */
+  --fs-body:   17px;   /* @kind font */
+  --fs-body-s: 15px;   /* @kind font */
+  --fs-caption:13px;   /* @kind font */
+  --fs-eyebrow:12px;   /* @kind font */
+
+  /* ---- LINE HEIGHT / TRACKING ------------------------------------- */
+  --lh-tight: 1.02;  /* @kind font */
+  --lh-snug:  1.12;  /* @kind font */
+  --lh-base:  1.45;  /* @kind font */
+  --lh-loose: 1.6;   /* @kind font */
+
+  --tr-tight: -0.02em;   /* @kind font */
+  --tr-base:   0em;      /* @kind font */
+  --tr-eyebrow: 0.12em;  /* @kind font */
+
+  --fw-light: 300;  /* @kind font */
+  --fw-reg: 400;    /* @kind font */
+  --fw-med: 500;    /* @kind font */
+  --fw-semi: 600;   /* @kind font */
+  --fw-bold: 700;   /* @kind font */
+  --fw-black: 800;  /* @kind font */
+
+  /* ---- SPACING SCALE (4px base) ----------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* ---- RADII — rounded but tactile -------------------------------- */
+  --r-xs: 8px;
+  --r-sm: 14px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-xl: 40px;
+  --r-2xl: 56px;
+  --r-pill: 999px;
+
+  /* ---- SHADOWS ----------------------------------------------------- */
+  --shadow-card: 0 2px 0 rgba(0,0,0,0.04), 0 24px 60px -20px rgba(5,2,48,0.55);
+  --shadow-glow-indigo: 0 0 80px -10px rgba(74,59,255,0.55);
+  --shadow-glow-pink:   0 0 80px -10px rgba(255,184,226,0.45);
+
+  /* ---- MOTION ------------------------------------------------------ */
+  --ease-out: cubic-bezier(.2,.7,.2,1);     /* @kind other */
+  --ease-in-out: cubic-bezier(.7,0,.2,1);   /* @kind other */
+  --t-fast: 150ms;   /* @kind other */
+  --t-base: 240ms;   /* @kind other */
+  --t-slow: 420ms;   /* @kind other */
+}
+
+/* =============================================================
+   SEMANTIC CLASSES — drop on elements directly
+   ============================================================= */
+
+html, body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-base);
+  color: var(--fg1);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.h-hero {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+}
+.h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+}
+.h2 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+}
+.h3 {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semi);
+  line-height: 1.25;
+}
+.h4 { font-size: var(--fs-h4); font-weight: var(--fw-semi); }
+
+.body-l { font-size: var(--fs-body-l); line-height: var(--lh-base); }
+.body   { font-size: var(--fs-body);   line-height: var(--lh-base); }
+.body-s { font-size: var(--fs-body-s); line-height: var(--lh-base); }
+
+.caption {
+  font-size: var(--fs-caption);
+  color: var(--fg3);
+  line-height: 1.4;
+}
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  font-weight: var(--fw-semi);
+  color: var(--fg2);
+}
+
+.t-mint   { color: var(--c-frosted-mint); }
+.t-pink   { color: var(--c-cotton-candy); }
+.t-indigo { color: var(--c-blue-ribbon); }
+.t-fog    { color: var(--c-fog); }
+.t-orange { color: var(--c-mac-cheese); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("8bc7ebdf-0a25-4785-9d07-e3518000043e") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("e4fe782c-675d-4d36-ac36-5b8f0f644fb1") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("837f114a-c071-448d-bf85-cd34951760e6") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("2c6808af-900c-4827-9b17-10026cebdd47") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("106489ca-b4a3-4147-90c2-ba634414b399") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("0cc39c19-19d4-4b03-a96a-06efee6364a5") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("8bc7ebdf-0a25-4785-9d07-e3518000043e") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("e4fe782c-675d-4d36-ac36-5b8f0f644fb1") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("837f114a-c071-448d-bf85-cd34951760e6") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("2c6808af-900c-4827-9b17-10026cebdd47") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("106489ca-b4a3-4147-90c2-ba634414b399") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("0cc39c19-19d4-4b03-a96a-06efee6364a5") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("8bc7ebdf-0a25-4785-9d07-e3518000043e") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("e4fe782c-675d-4d36-ac36-5b8f0f644fb1") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("837f114a-c071-448d-bf85-cd34951760e6") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("2c6808af-900c-4827-9b17-10026cebdd47") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("106489ca-b4a3-4147-90c2-ba634414b399") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("0cc39c19-19d4-4b03-a96a-06efee6364a5") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("8bc7ebdf-0a25-4785-9d07-e3518000043e") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("e4fe782c-675d-4d36-ac36-5b8f0f644fb1") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("837f114a-c071-448d-bf85-cd34951760e6") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("2c6808af-900c-4827-9b17-10026cebdd47") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("106489ca-b4a3-4147-90c2-ba634414b399") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("0cc39c19-19d4-4b03-a96a-06efee6364a5") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("8bc7ebdf-0a25-4785-9d07-e3518000043e") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("e4fe782c-675d-4d36-ac36-5b8f0f644fb1") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("837f114a-c071-448d-bf85-cd34951760e6") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("2c6808af-900c-4827-9b17-10026cebdd47") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("106489ca-b4a3-4147-90c2-ba634414b399") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("0cc39c19-19d4-4b03-a96a-06efee6364a5") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("8bc7ebdf-0a25-4785-9d07-e3518000043e") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("e4fe782c-675d-4d36-ac36-5b8f0f644fb1") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("837f114a-c071-448d-bf85-cd34951760e6") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("2c6808af-900c-4827-9b17-10026cebdd47") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("106489ca-b4a3-4147-90c2-ba634414b399") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("0cc39c19-19d4-4b03-a96a-06efee6364a5") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  html,body{margin:0;padding:0;background:#050230;color:#fff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  *{box-sizing:border-box;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;}
+  a{color:#cec8ff;text-decoration:none;}
+  a:hover{color:#ffffff;}
+  @keyframes efFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  @keyframes efFloat2{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(-8deg)}}
+</style>
+</helmet>
+
+<div style="background:#050230;overflow-x:hidden;">
+
+  <!-- ===================== NAV ===================== -->
+  <header style="position:sticky;top:0;z-index:60;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(5,2,48,0.6);border-bottom:1px solid rgba(217,214,255,0.08);">
+    <div style="max-width:1360px;margin:0 auto;padding:16px clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;gap:20px;">
+      <a href="#top" style="font-weight:800;font-size:clamp(20px,2.4vw,26px);letter-spacing:-0.02em;color:#fff;">ЭмплиФлоу</a>
+
+      <sc-if value="{{ showFullNav }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;align-items:center;gap:clamp(14px,1.8vw,30px);">
+          <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+            <a href="{{ link.href }}" style="color:rgba(255,255,255,0.82);font-size:15px;white-space:nowrap;">{{ link.label }}</a>
+          </sc-for>
+        </nav>
+        <button style="background:#ffb777;color:#151515;border:0;border-radius:999px;padding:14px 30px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap;">Получить доступ</button>
+      </sc-if>
+
+      <sc-if value="{{ compact }}" hint-placeholder-val="{{ false }}">
+        <button sc-camel-on-click="{{ toggleMenu }}" aria-label="Меню" style="background:rgba(255,255,255,0.08);border:1px solid rgba(217,214,255,0.18);border-radius:999px;width:48px;height:48px;display:grid;place-items:center;cursor:pointer;">
+          <svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ showMenu }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:8px clamp(16px,4vw,40px) 26px;display:flex;flex-direction:column;gap:4px;background:rgba(5,2,48,0.96);border-top:1px solid rgba(217,214,255,0.08);">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+          <a href="{{ link.href }}" sc-camel-on-click="{{ link.onClick }}" style="color:#fff;font-size:19px;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(217,214,255,0.08);">{{ link.label }}</a>
+        </sc-for>
+        <button style="margin-top:16px;background:#ffb777;color:#151515;border:0;border-radius:999px;padding:15px 28px;font-size:15px;font-weight:600;cursor:pointer;">Получить доступ</button>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="top" style="position:relative;padding:clamp(48px,7vw,96px) clamp(16px,4vw,40px) clamp(60px,9vw,120px);overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(42% 60% at 6% 26%,rgba(74,59,255,0.38) 0%,transparent 62%);pointer-events:none;"></div>
+    <svg width="120" height="150" sc-camel-view-box="0 0 80 100" fill="none" style="position:absolute;top:70px;left:clamp(180px,26vw,360px);opacity:0.6;pointer-events:none;" aria-hidden="true"><path d="M65 8 C 60 15, 55 24, 48 30 C 40 36, 30 38, 18 42" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round" fill="none"></path><path d="M14 38 L 18 42 L 16 48" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg>
+
+    <img src="c079dd13-58fd-4669-938c-0f964cf738dd" alt="" aria-hidden="true" style="position:absolute;left:clamp(-40px,2vw,60px);bottom:clamp(-30px,1vw,10px);width:clamp(120px,15vw,230px);height:auto;animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 24px 50px rgba(74,59,255,.55));pointer-events:none;z-index:0;">
+
+    <div style="max-width:1360px;margin:0 auto;position:relative;">
+      <h1 style="font-weight:800;font-size:clamp(34px,6.4vw,88px);line-height:1.03;letter-spacing:-0.03em;color:#fff;max-width:1120px;margin:0;">HRM-платформа для оценки, целеполагания и мотивации сотрудников <span style="display:inline-block;border:2px dashed #ffb8e2;border-radius:999px;padding:clamp(4px,0.8vw,12px) clamp(14px,2vw,30px);color:#ffb8e2;white-space:nowrap;">на базе ИИ</span></h1>
+
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);margin-top:clamp(40px,6vw,80px);align-items:flex-end;justify-content:space-between;">
+        <div style="flex:1 1 420px;max-width:560px;margin-left:max(0px,min(260px,calc(100vw - 940px)));">
+          <p style="font-size:clamp(16px,1.5vw,19px);line-height:1.5;color:rgba(255,255,255,0.8);margin:0;">Хотите выстроить прозрачные процессы оценки и продвижения сотрудников? Узнать больше об их потенциале и уровне компетенции? Используйте возможности нашего решения!</p>
+          <button style="margin-top:28px;background:#4a3bff;color:#fff;border:0;border-radius:999px;padding:11px 34px 11px 13px;font-size:16px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:14px;">
+            <span style="width:38px;height:38px;border-radius:999px;background:#fff;color:#4a3bff;display:grid;place-items:center;"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+            Что входит в платформу
+          </button>
+        </div>
+
+        <img src="3ac3d2a1-e6b6-47aa-a918-ef167e497d70" alt="Лучший проект в сфере HR по версии Rusbase в 2024 году" style="flex:0 1 300px;width:clamp(240px,26vw,300px);height:auto;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CUSTOMER LOGOS ===================== -->
+  <section style="padding:clamp(24px,4vw,50px) clamp(16px,4vw,40px) clamp(40px,6vw,70px);">
+    <div style="max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:clamp(24px,5vw,48px);">
+      <sc-for list="{{ logos }}" as="logo">
+        <img src="{{ logo.src }}" alt="{{ logo.alt }}" style="height:clamp(28px,3vw,42px);width:auto;object-fit:contain;opacity:0.92;">
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===================== BENEFIT TILES ===================== -->
+  <section style="padding:0 clamp(16px,4vw,40px) clamp(40px,6vw,70px);">
+    <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+      <div style="position:relative;overflow:hidden;background:#7b46ff;border-radius:32px;padding:clamp(28px,3vw,40px);min-height:clamp(300px,34vw,440px);display:flex;align-items:center;">
+        <svg width="26" height="26" sc-camel-view-box="0 0 24 24" fill="#ffcf8a" style="position:absolute;top:36px;left:34px;"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+        <div style="font-weight:800;font-size:clamp(26px,3.4vw,44px);line-height:1.05;letter-spacing:-0.02em;color:#fff;">Экономия более 1000 часов команды по персоналу в год</div>
+      </div>
+      <div style="position:relative;overflow:hidden;border-radius:32px;min-height:clamp(300px,34vw,440px);background:linear-gradient(180deg,#ffd3e0 0%,#d9fff0 100%);display:flex;flex-direction:column;justify-content:flex-end;">
+        <img src="96ee6a4c-d36d-4986-8970-f7c61beb0e23" alt="Сотрудница" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;">
+        <div style="position:relative;padding:clamp(20px,2.4vw,30px);text-align:center;font-weight:800;font-size:clamp(20px,2.4vw,30px);letter-spacing:-0.02em;color:#0e2b25;background:linear-gradient(180deg,transparent,rgba(217,255,240,0.9) 42%);">Удержание ценных специалистов</div>
+      </div>
+      <div style="position:relative;overflow:hidden;background:#ff6a2b;border-radius:32px;padding:clamp(28px,3vw,40px);min-height:clamp(300px,34vw,440px);display:flex;align-items:center;">
+        <svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="#ffe1cf" style="position:absolute;top:40px;left:32px;"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+        <div style="font-weight:800;font-size:clamp(26px,3.4vw,44px);line-height:1.05;letter-spacing:-0.02em;color:#fff;">Повышение вовлечённости и уровня достижения целей на 10–15%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MODULES ===================== -->
+  <section id="platform" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px);">
+    <div style="max-width:1360px;margin:0 auto;">
+      <h2 style="font-weight:800;font-size:clamp(30px,5.2vw,64px);line-height:1.06;letter-spacing:-0.03em;color:#fff;text-align:center;margin:0 auto clamp(36px,5vw,60px);max-width:1080px;"><span style="color:#ffb8e2;">Сократите время</span> на рутинные задачи и сосредоточьтесь на стратегии</h2>
+
+      <div style="background:#4a3bff;border-radius:clamp(24px,3vw,40px);padding:clamp(14px,1.5vw,20px);display:flex;flex-wrap:wrap;gap:clamp(14px,1.5vw,20px);">
+        <div style="flex:1 1 240px;max-width:340px;padding:14px 8px 14px 16px;">
+          <div style="display:flex;align-items:center;gap:10px;color:#fff;margin-bottom:26px;">
+            <span style="width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,0.18);display:grid;place-items:center;"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M3 9h18"></path></svg></span>
+            <span style="font-size:18px;font-weight:600;">Модули</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="6">
+              <button sc-camel-on-click="{{ tab.onClick }}" style="background:transparent;border:0;padding:0;cursor:pointer;text-align:left;font-family:'Manrope',sans-serif;font-size:17px;line-height:1.3;color:{{ tab.color }};font-weight:{{ tab.weight }};">{{ tab.name }}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="flex:3 1 360px;background:#f3f1ff;border-radius:clamp(20px,2.2vw,28px);padding:clamp(24px,3vw,40px);color:#151515;">
+          <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:22px;">
+            <div style="display:inline-block;padding:9px 18px;border:1px solid rgba(21,21,21,0.18);border-radius:999px;font-size:14px;color:#151515;">Модуль {{ active.name }}</div>
+            <button style="background:#ffb8e2;color:#151515;border:0;border-radius:999px;padding:11px 26px;font-size:15px;font-weight:600;cursor:pointer;">Смотреть</button>
+          </div>
+          <h3 style="font-size:clamp(26px,3.6vw,44px);font-weight:800;letter-spacing:-0.025em;line-height:1.06;color:#4a3bff;max-width:760px;margin:0 0 clamp(24px,3vw,34px);">{{ active.headline }}</h3>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,2.4vw,32px);align-items:start;">
+            <div style="border:1.6px dashed #ffb8e2;border-radius:20px;padding:22px 24px;">
+              <div style="font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.25;">{{ active.feature.title }}</div>
+              <div style="font-size:14px;color:rgba(21,21,21,0.7);line-height:1.5;">{{ active.feature.body }}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:26px;">
+              <sc-for list="{{ active.side }}" as="f" hint-placeholder-count="2">
+                <div>
+                  <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;">
+                    <span style="flex:none;margin-top:2px;">{{ f.icon }}</span>
+                    <div style="font-size:17px;font-weight:700;line-height:1.2;">{{ f.title }}</div>
+                  </div>
+                  <div style="font-size:13.5px;color:rgba(21,21,21,0.66);line-height:1.5;">{{ f.body }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT / STATS ===================== -->
+  <section id="aboutus" style="padding:clamp(48px,6vw,90px) clamp(16px,4vw,40px) clamp(56px,8vw,110px);">
+    <div style="max-width:1360px;margin:0 auto;">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,60px);align-items:flex-start;justify-content:space-between;margin-bottom:clamp(28px,4vw,50px);">
+        <h2 style="font-weight:800;font-size:clamp(52px,11vw,150px);line-height:0.92;letter-spacing:-0.04em;color:#d5fff3;margin:0;flex:1 1 380px;">ЭмплиФлоу</h2>
+        <p style="flex:0 1 400px;font-size:clamp(15px,1.4vw,18px);line-height:1.5;color:rgba(255,255,255,0.82);margin:0;padding-top:clamp(8px,2vw,30px);">Помогаем шагать в ногу со временем и управлять собственным персоналом, сочетая современные технологии AI и анализа данных с инструментами повышения мотивации и вовлечённости сотрудников</p>
+      </div>
+      <p style="font-size:clamp(18px,2vw,22px);line-height:1.3;color:#fff;margin:0 0 clamp(28px,4vw,44px);max-width:520px;">Технологическая компания, разрабатывающая решения для направлений оценки и развития компаний среднего и крупного бизнеса</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+        <div style="border-radius:32px;padding:clamp(26px,3vw,34px);min-height:clamp(240px,26vw,300px);box-shadow:inset 0 0 0 1px rgba(217,214,255,0.14);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <span style="font-weight:800;font-size:clamp(64px,8vw,104px);line-height:0.85;letter-spacing:-0.04em;color:#d5fff3;">5+</span>
+            <div style="margin-top:16px;"><span style="font-size:11px;font-weight:600;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:.1em;border:1px solid rgba(217,214,255,0.22);">Заказчиков</span></div>
+          </div>
+          <div style="font-size:13.5px;line-height:1.45;color:rgba(255,255,255,0.78);">на государственном и корпоративном уровне</div>
+        </div>
+        <div style="border-radius:32px;padding:clamp(26px,3vw,34px);min-height:clamp(240px,26vw,300px);background:#ffb8e2;color:#151515;display:flex;flex-direction:column;justify-content:space-between;">
+          <div><span style="font-weight:800;font-size:clamp(64px,8vw,104px);line-height:0.85;letter-spacing:-0.04em;">&gt;35</span><span style="font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;background:rgba(21,21,21,0.08);margin-left:10px;vertical-align:middle;text-transform:uppercase;letter-spacing:.06em;">млн ₽</span></div>
+          <div style="font-size:13.5px;line-height:1.45;color:rgba(21,21,21,0.72);">в год — экономическая окупаемость внедрения нашей платформы для компании</div>
+        </div>
+        <div style="border-radius:32px;padding:clamp(26px,3vw,34px);min-height:clamp(240px,26vw,300px);background:#4a3bff;color:#fff;display:flex;flex-direction:column;justify-content:space-between;">
+          <div><span style="font-weight:800;font-size:clamp(64px,8vw,104px);line-height:0.85;letter-spacing:-0.04em;">500+</span><span style="font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.18);margin-left:10px;vertical-align:middle;text-transform:uppercase;letter-spacing:.06em;">млн ₽</span></div>
+          <div style="font-size:13.5px;line-height:1.45;color:rgba(255,255,255,0.82);">сэкономили компаниям на автоматизации</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== IMPLEMENTATION ===================== -->
+  <section id="stages" style="padding:clamp(48px,6vw,80px) clamp(16px,4vw,40px) clamp(60px,9vw,120px);">
+    <div style="max-width:1360px;margin:0 auto;">
+      <h2 style="font-weight:800;font-size:clamp(28px,4.4vw,56px);line-height:1.06;letter-spacing:-0.03em;color:#fff;text-align:center;margin:0 auto clamp(36px,5vw,60px);max-width:960px;">Как ЭмплиФлоу становится частью вашей системы по управлению персоналом</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+        <sc-for list="{{ impl }}" as="card" hint-placeholder-count="6">
+          <div style="border-radius:32px;padding:clamp(24px,2.6vw,30px);min-height:clamp(260px,26vw,320px);display:flex;flex-direction:column;justify-content:space-between;background:{{ card.bg }};color:{{ card.color }};box-shadow:{{ card.shadow }};">
+            <div style="display:flex;justify-content:flex-end;">
+              <svg width="40" height="40" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{ card.color }}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+            </div>
+            <div>
+              <div style="display:inline-block;font-size:12px;font-weight:700;padding:7px 15px;border-radius:999px;background:{{ card.badgeBg }};margin-bottom:16px;">{{ card.num }}</div>
+              <div style="font-size:clamp(20px,2.2vw,26px);font-weight:800;line-height:1.12;letter-spacing:-0.02em;margin-bottom:12px;">{{ card.title }}</div>
+              <div style="font-size:14px;line-height:1.5;color:{{ card.bodyColor }};">{{ card.body }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CASES ===================== -->
+  <section id="cases" style="padding:clamp(40px,5vw,70px) clamp(16px,4vw,40px) clamp(56px,8vw,100px);">
+    <div style="max-width:1360px;margin:0 auto;">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(28px,4vw,48px);">
+        <h2 style="font-weight:800;font-size:clamp(34px,5.2vw,72px);line-height:1;letter-spacing:-0.03em;color:#fff;margin:0;">Кейсы</h2>
+        <p style="flex:0 1 460px;font-size:clamp(15px,1.5vw,19px);line-height:1.45;color:rgba(255,255,255,0.8);margin:0;">15+ реализованных проектов по автоматизации оценки и построению систем для развития сотрудников</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;">
+        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+          <a href="{{ c.href }}" style="text-decoration:none;border-radius:32px;padding:clamp(26px,2.8vw,34px);min-height:clamp(300px,30vw,380px);display:flex;flex-direction:column;justify-content:space-between;background:{{ c.bg }};color:{{ c.color }};">
+            <div style="display:flex;justify-content:flex-end;">
+              <svg width="38" height="38" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{ c.color }}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+            </div>
+            <div>
+              <div style="font-size:clamp(20px,2.1vw,26px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px;">{{ c.title }}</div>
+              <div style="font-size:14.5px;line-height:1.5;color:{{ c.bodyColor }};">{{ c.body }}</div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="contacts" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px) 36px;background:linear-gradient(180deg,#050230 0%,#0a0540 100%);">
+    <div style="max-width:1360px;margin:0 auto;">
+      <h2 style="font-weight:800;font-size:clamp(34px,6.2vw,84px);line-height:1.04;letter-spacing:-0.03em;color:#fff;max-width:1000px;margin:0 0 clamp(28px,4vw,40px);">Сделайте процессы прозрачными и управляемыми</h2>
+      <button style="background:#4a3bff;color:#fff;border:0;border-radius:999px;padding:12px 34px 12px 14px;font-size:16px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:14px;">
+        <span style="width:36px;height:36px;border-radius:999px;background:#fff;color:#4a3bff;display:grid;place-items:center;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+        Получить демодоступ к платформе
+      </button>
+
+      <div style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;margin-top:clamp(56px,9vw,120px);align-items:flex-end;">
+        <a href="mailto:headoffice@emplyflow.ru" style="font-size:clamp(19px,2.4vw,28px);color:#fff;letter-spacing:-0.01em;">headoffice@emplyflow.ru</a>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.55);line-height:1.6;text-align:right;">Общество с ограниченной ответственностью «ЭМПЛИФЛОУ»<br>ОГРН: 1237700492479<br>ИНН: 7743422816<br>КПП: 773301001</div>
+      </div>
+
+      <div style="font-weight:800;font-size:clamp(56px,13vw,150px);line-height:0.9;letter-spacing:-0.04em;color:#fff;text-align:right;margin-top:clamp(24px,3vw,40px);">ЭмплиФлоу</div>
+
+      <div style="margin-top:36px;padding-top:22px;border-top:1px solid rgba(217,214,255,0.1);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,0.55);">
+        <a href="page92826026.html" style="color:rgba(255,255,255,0.55);">Политика конфиденциальности</a>
+        <span>© 2026. Все права защищены</span>
+        <span>Сайт запустила Молния</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { active: 'pr', compact: false, menuOpen: false };
+
+  componentDidMount() {
+    this._mq = window.matchMedia('(max-width: 900px)');
+    this._upd = () => this.setState({ compact: this._mq.matches, menuOpen: false });
+    this._upd();
+    this._mq.addEventListener('change', this._upd);
+  }
+  componentWillUnmount() {
+    if (this._mq) this._mq.removeEventListener('change', this._upd);
+  }
+
+  icon(kind) {
+    const R = React.createElement;
+    const p = { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: '#4a3bff', strokeWidth: 1.75, strokeLinecap: 'round', strokeLinejoin: 'round' };
+    const paths = {
+      clock: [R('circle', { key: 'c', cx: 12, cy: 12, r: 9 }), R('polyline', { key: 'p', points: '12 7 12 12 16 14' })],
+      ai: [R('rect', { key: 'r', x: 3, y: 3, width: 18, height: 18, rx: 4 }), R('path', { key: 'p', d: 'M9 16V8M15 16V8M9 12h6' })],
+      star: [R('polygon', { key: 'p', points: '12 2 14.6 8.6 21.6 9.2 16.3 13.8 17.9 20.8 12 17 6.1 20.8 7.7 13.8 2.4 9.2 9.4 8.6' })],
+      chart: [R('path', { key: 'p', d: 'M4 20V10M10 20V4M16 20v-7M22 20H2' })],
+      users: [R('circle', { key: 'c', cx: 9, cy: 8, r: 3.2 }), R('path', { key: 'p', d: 'M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M17 14c2.2 0 4 1.8 4 4' })],
+      gift: [R('rect', { key: 'r', x: 3, y: 9, width: 18, height: 12, rx: 2 }), R('path', { key: 'p', d: 'M3 13h18M12 9v12M12 9S9 3 6.5 5 12 9 12 9zm0 0s3-6 5.5-4S12 9 12 9z' })],
+    };
+    return R('svg', p, paths[kind] || paths.star);
+  }
+
+  modules() {
+    const ic = (k) => this.icon(k);
+    return [
+      {
+        id: 'pr', name: 'Performance Review',
+        headline: 'Анализ эффективности сотрудников и команд',
+        feature: { title: 'Оценка результативности сотрудников (Performance Review)', body: 'Подсчёт суммарного балла как объективной оценки по различным показателям сотрудников: от достижения квартальных целей до результатов оценки 360 и обратной связи от коллег' },
+        side: [
+          { icon: ic('clock'), title: 'Автосоздание матрицы потенциала', body: 'Удобная визуализация сотрудников для наглядного восприятия и работы с разными группами (HiPo, низкоэффективные, будущие звёзды, ключевые игроки)' },
+          { icon: ic('ai'), title: 'Глубокий анализ и сравнение с помощью ИИ', body: 'Выявление причин слабых показателей, формирование рекомендаций и сравнительных характеристик как сотрудников, так и команд, отделов, департаментов' },
+          { icon: ic('star'), title: 'Формирование ТОП сотрудников', body: 'Выявление сильных сотрудников и их занесение в кадровый резерв' },
+        ],
+      },
+      {
+        id: 'comp', name: 'Оценка компетенций',
+        headline: 'Автоматизированная оценка компетенций',
+        feature: { title: 'Оценка 360 градусов', body: 'Показывает сильные стороны и зоны роста сотрудников. Руководители, коллеги и подчинённые оценивают друг друга по ключевым компетенциям' },
+        side: [
+          { icon: ic('ai'), title: 'ИИ-оценка компетенций', body: 'Генерация кейсов под профиль должности или описание компетенций, решение практических задач в формате диалога. Оценка ответов и формирование индивидуального отчёта' },
+        ],
+      },
+      {
+        id: 'goals', name: 'Постановка и управление целями',
+        headline: 'Создание измеримых целей на уровне компании (OKR и KPI)',
+        feature: { title: 'Единая структура целей и результатов', body: 'Платформа связывает стратегические цели компании с индивидуальными целями сотрудников, сохраняя полную оргструктуру' },
+        side: [
+          { icon: ic('clock'), title: 'Фиксация и планирование 1:1 встреч', body: 'Автоматическое формирование плана встреч с руководителем, синхронизация с календарём и фиксация договорённостей' },
+          { icon: ic('ai'), title: 'ИИ-декомпозиция целей и планировщик недели', body: 'Поможет декомпозировать стратегические цели до ежедневных задач и достичь поставленных результатов' },
+        ],
+      },
+      {
+        id: 'track', name: 'Карьерные треки и планы развития',
+        headline: 'Персональный путь роста для каждого сотрудника',
+        feature: { title: 'Подбор для каждого сотрудника позиции мечты в компании', body: 'ИИ-помощник для карьерных консультаций — предоставьте возможности для развития внутри, предотвратив отток кадров' },
+        side: [
+          { icon: ic('star'), title: 'Управление моделью компетенций', body: 'Если у вас есть собственная модель компетенций — поможем внести её на платформу. Или постройте модель с нуля, используя нашего ассистента' },
+          { icon: ic('ai'), title: 'ИИ-формирование ИПР', body: 'Искусственный интеллект проанализирует текущие оценки сотрудника и составит поэтапный план развития из обучающих материалов, оценит его сложность и длительность' },
+        ],
+      },
+      {
+        id: 'tasks', name: 'Проекты и задачи',
+        headline: 'Talent Marketplace: управление проектами и вакансиями',
+        feature: { title: 'Поддержка проектного управления', body: 'Можно создавать проекты, назначать участников и отслеживать их выполнение в реальном времени' },
+        side: [
+          { icon: ic('chart'), title: 'Управление сроками и визуализация прогресса', body: 'Доступна диаграмма Ганта и система статусов. Менеджеры по персоналу и руководители видят, как сотрудники распределяют нагрузку и где требуется поддержка' },
+          { icon: ic('users'), title: 'Публикация вакансий в проектах', body: 'Используйте внутренние ресурсы для подбора участников команд. Опубликуйте заявку и собирайте отклики от сотрудников' },
+        ],
+      },
+      {
+        id: 'moti', name: 'Нематериальная мотивация',
+        headline: 'Благодарности и признание достижений сотрудников: внутренние баллы и бонусы',
+        feature: { title: 'Формирование культуры признания внутри компании', body: 'Сотрудники могут отмечать успехи коллег, получать благодарности за реализованные проекты и делиться собственными достижениями' },
+        side: [
+          { icon: ic('gift'), title: 'Внутренние баллы и бонусы', body: 'Мотивируйте сотрудников через систему признания и нематериальных наград за вклад в общее дело' },
+        ],
+      },
+    ];
+  }
+
+  renderVals() {
+    const mods = this.modules();
+    const active = mods.find((m) => m.id === this.state.active) || mods[0];
+    const closeMenu = () => this.setState({ menuOpen: false });
+    const navDefs = [
+      ['Модули системы', '#platform'], ['О нас', '#aboutus'], ['Интеграции', '#stages'],
+      ['Библиотека', 'https://emplyflow.ru/hub/'], ['Проекты', '#cases'], ['Контакты', '#contacts'],
+    ];
+    const navLinks = navDefs.map(([label, href]) => ({ label, href, onClick: closeMenu }));
+
+    const tabs = mods.map((m) => ({
+      id: m.id, name: m.name,
+      color: m.id === this.state.active ? '#ffffff' : 'rgba(255,255,255,0.55)',
+      weight: m.id === this.state.active ? 600 : 400,
+      onClick: () => this.setState({ active: m.id }),
+    }));
+
+    const logos = [
+      { src: 'images/logo11.svg', alt: 'Партнёр' },
+      { src: 'images/novadial.png', alt: 'novadial' },
+      { src: 'images/logograd.svg', alt: 'Партнёр' },
+      { src: 'images/frame.svg', alt: 'Партнёр' },
+      { src: 'images/rt.svg', alt: 'Ростелеком' },
+    ];
+
+    const tone = (t) => (t === 'light' ? '#151515' : '#fff');
+    const bodyTone = (t) => (t === 'light' ? 'rgba(21,21,21,0.7)' : 'rgba(255,255,255,0.8)');
+    const badge = (t) => (t === 'light' ? 'rgba(21,21,21,0.08)' : 'rgba(255,255,255,0.16)');
+
+    const implRaw = [
+      { num: '01', title: 'Определение задачи и диагностика', body: 'Анализируем HR-процессы компании, систему грейдов, формат оценки и развития. Формируем индивидуальную дорожную карту внедрения. Результат этапа — понятное техническое задание и список необходимых модулей', bg: '#4a3bff', t: 'dark' },
+      { num: '02', title: 'Настройка платформы под структуру компании', body: 'Создаём базу должностей и профилей компетенций. Настраиваем уровни доступа и индикаторы компетенций. Если у компании есть собственная модель компетенций — загружаем её и адаптируем под логику системы', bg: '#ffb777', t: 'light' },
+      { num: '03', title: 'Интеграции с привычными сервисами', body: 'Если у компании уже есть HR-системы (1С, Битрикс24, LMS-системы, корп. порталы и другие), EmplyFlow переносит все данные автоматически — без потери информации. Сохраняем историю оценок и планов развития', bg: '#d5fff3', t: 'light' },
+      { num: '04', title: 'Внедрение и запуск', body: 'Проводим финальное тестирование и загрузку демоданных. HR-команда получает рабочую среду с активными модулями и инструкцией по запуску. Платформа готова к использованию', bg: '#0a0540', t: 'dark', stroke: true },
+      { num: '05', title: 'Обучение и сопровождение', body: 'Проводим серию обучающих сессий и вебинаров для HR-отдела, руководителей и сотрудников. Показываем, как работать с оценкой компетенций, карьерными треками и отчётами', bg: '#ffb8e2', t: 'light' },
+      { num: '06', title: 'Аналитика и развитие', body: 'После внедрения компания видит реальные данные: кто из сотрудников обладает потенциалом роста, какие компетенции требуют внимания, как движутся цели. HR-отдел управляет развитием и формирует кадровый резерв', bg: '#cec8ff', t: 'light' },
+    ];
+    const impl = implRaw.map((c) => ({
+      num: c.num, title: c.title, body: c.body, bg: c.bg,
+      color: tone(c.t), bodyColor: bodyTone(c.t), badgeBg: badge(c.t),
+      shadow: c.stroke ? 'inset 0 0 0 1px rgba(217,214,255,0.12)' : 'none',
+    }));
+
+    const casesRaw = [
+      { title: 'Построение системы карьерных треков для инжиниринговой корпорации', body: 'Автоматизация карьерных треков и использование Big Data для формирования модели компетенций', href: 'https://emplyflow.ru/postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii', bg: '#4a3bff', t: 'dark' },
+      { title: 'Автоматизация оценки по компетенциям в крупнейшей российской телекоммуникационной компании', body: 'Ускорили оценку сотрудников по кейсам и сделали процесс прозрачным для HR и руководителей', href: 'https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome', bg: '#d5fff3', t: 'light' },
+      { title: 'Платформа Performance Review c AI для международного FMCG-производителя', body: 'На базе оценки 360 градусов и результатов выполнения целей (OKR+KPI). Лёгкое сравнение команд и сотрудников!', href: 'https://emplyflow.ru/perfomance_review_dlya_proizvoditelya', bg: '#ffb8e2', t: 'light' },
+    ];
+    const cases = casesRaw.map((c) => ({ ...c, color: tone(c.t), bodyColor: bodyTone(c.t) }));
+
+    const news = [
+      { tag: 'Библиотека · 2025', title: 'Запустили библиотеку компетенций и кейсов EmplyFlow Hub', body: 'Открытая библиотека для HR: компетенции, кейсы оценки и материалы для построения системы развития сотрудников', href: 'https://emplyflow.ru/hub/' },
+      { tag: 'Кейс · 2025', title: 'Автоматизация оценки по кейсам в крупнейшей телеком-компании', body: 'Как ускорили оценку сотрудников и сделали процесс прозрачным для HR и руководителей', href: 'https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome' },
+      { tag: 'Кейс · 2025', title: 'Внедрение Performance Review для производителя детского питания', body: 'Построили регулярный цикл оценки, целеполагания и обратной связи на базе EmplyFlow', href: 'https://emplyflow.ru/perfomance_review_dlya_proizvoditelya' },
+    ];
+
+    return {
+      compact: this.state.compact,
+      showFullNav: !this.state.compact,
+      showMenu: this.state.compact && this.state.menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      navLinks, tabs, active, logos, impl, cases,
+    };
+  }
+}
+</script>
+
+
+</body></html>
