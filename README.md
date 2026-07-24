@@ -12,6 +12,7 @@
 |---|---|
 | `index.html` | Главная (самодостаточный бандл: стили/шрифты/картинки внутри) |
 | `page94832006.html` | Та же главная (для совместимости со старым DirectoryIndex / nginx) |
+| `src/index.template.html` | Редактируемый исходник главной, из него собирается бандл |
 | `page92826026.html` | `/privacy` |
 | `page96476846.html` и др. | Кейсы / лендинги |
 | `htaccess` | Правила ЧПУ из Tilda (на nginx переписаны в vhost) |
@@ -25,6 +26,23 @@
 - и остальные rewrite из `htaccess`
 
 Каталог `/hub/` на сервере **не** из этого репозитория — его деплоит Competency Hub.
+
+## Как править главную
+
+`index.html` — бандл: разметка лежит JSON-строкой внутри `<script type="__bundler/template">`, шрифты и картинки — base64 в манифесте и подставляются по uuid уже в браузере. Руками такой файл не редактируют, правки идут через исходник:
+
+```bash
+python3 scripts/bundle_index.py extract   # бандл -> src/index.template.html (одноразово, если файла нет)
+# правим src/index.template.html
+python3 scripts/bundle_index.py build     # обратно в index.html + page94832006.html
+python3 scripts/bundle_index.py assets    # выгрузить ассеты бандла в src/assets/ (по необходимости)
+```
+
+`build` синхронизирует `page94832006.html` и проверяет, что бандл снова парсится. Стили главной живут в `<style>`-блоках внутри `<helmet>` (там же токены дизайн-системы), разметка — в `<x-dc>`, данные секций (модули, кейсы, логотипы) — в `<script type="text/x-dc">` в конце файла.
+
+Первый экран собран по дизайн-системе: тёмный canvas Black Rock, заголовок «От данных — к решению» с лавандовым акцентом (Periwinkle), indigo-пилюля основного CTA, пастельные плитки решений и розовая пунктирная обводка (Cotton Candy) на ИИ-блоках.
+
+`src/` — только исходники, на прод не выкладывается (см. `--exclude src` в блоке деплоя).
 
 ## Адаптив / мобильное меню
 
@@ -69,7 +87,7 @@ python3 -m http.server 8080
 ```bash
 rsync -avz --delete \
   --exclude .git --exclude .gitignore --exclude README.md \
-  --exclude hub \
+  --exclude hub --exclude src \
   ./ root@212.113.123.95:/var/www/emplyflow.ru/
 ```
 
