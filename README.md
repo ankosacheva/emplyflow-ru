@@ -13,6 +13,7 @@
 | `index.html` | Главная (самодостаточный бандл: стили/шрифты/картинки внутри) |
 | `page94832006.html` | Та же главная (для совместимости со старым DirectoryIndex / nginx) |
 | `src/index.template.html` | Редактируемый исходник главной, из него собирается бандл |
+| `media/` | Ролик первого экрана: `hero-animation.mp4`, `.webm`, стоп-кадр `-poster.jpg` |
 | `page92826026.html` | `/privacy` |
 | `page96476846.html` и др. | Кейсы / лендинги |
 | `htaccess` | Правила ЧПУ из Tilda (на nginx переписаны в vhost) |
@@ -43,6 +44,26 @@ python3 scripts/bundle_index.py assets    # выгрузить ассеты ба
 Первый экран повторяет композицию сайта и собран на токенах дизайн-системы: тёмный canvas Black Rock, центрированный заголовок «HRM-платформа для оценки, целеполагания и мотивации сотрудников», пунктирная плашка «на базе ИИ» (Cotton Candy) правее центра, indigo-пилюля «Что входит в платформу», стеклянная карточка Rusbase справа и три пастельные карточки снизу — Оценка результатов (Frosted Mint), Анализ потенциала (Periwinkle), План развития (Cotton Candy), выровненные по нижнему краю с разной высотой.
 
 `src/` — только исходники, на прод не выкладывается (см. `--exclude src` в блоке деплоя).
+
+### Ролик первого экрана
+
+Под кнопкой стоит зацикленный ролик: данные из 1С:ЗУП, Excel, целей и KPI, отзывов коллег, оценки 360° и модели компетенций стягиваются в профиль сотрудника, дальше появляются рекомендации ИИ — кадровый резерв, готовый ИПР, риск перегрузки.
+
+| Что | Где |
+|---|---|
+| Файлы для сайта | `media/hero-animation.mp4` (1600×900, ~450 КБ), `.webm`, `-poster.jpg` |
+| Исходник анимации (DC-компонент) | `src/hero-animation/` — `hero.jsx`, `animations-v2.jsx`, `support.js`, `Hero Animation.dc.html`, `icons/`, `img/` |
+
+Фон ролика совпадает с canvas Black Rock, поэтому он вставлен без рамки, с растворением верхнего края. Играет как `autoplay muted loop playsinline`; на экранах до 700 px и при `prefers-reduced-motion` вместо видео показывается стоп-кадр — мелкий текст внутри ролика там всё равно не читается.
+
+Пересобрать файлы для сайта из нового рендера (`Hero Animation.mp4`):
+
+```bash
+ffmpeg -y -i "Hero Animation.mp4" -vf scale=1600:-2 -c:v libx264 -crf 23 -preset slow \
+  -pix_fmt yuv420p -movflags +faststart -an media/hero-animation.mp4
+ffmpeg -y -i "Hero Animation.mp4" -vf scale=1600:-2 -c:v libvpx-vp9 -crf 31 -b:v 0 -row-mt 1 -an media/hero-animation.webm
+ffmpeg -y -ss 4.7 -i "Hero Animation.mp4" -frames:v 1 -vf scale=1600:-2 -q:v 3 media/hero-animation-poster.jpg
+```
 
 ## Адаптив / мобильное меню
 
