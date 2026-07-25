@@ -365,57 +365,95 @@ document.addEventListener('DOMContentLoaded', async function() {
     const doc = new DOMParser().parseFromString(template, 'text/html');
     await loaderPlayback;
 
-    // Freeze последнего кадра. Вуаль вешаем на <html> ДО замены DOM:
-    // replaceWith(documentElement) и View Transition дают пустой промежуточный кадр.
-    // Меняем только head/body — вуаль остаётся на экране непрерывно.
-    var freezeUrl = '';
-    try {
-      var vid = document.getElementById('__bundler_loader_video');
-      if (vid) {
-        try { vid.pause(); } catch (e1) {}
-        if (vid.videoWidth) {
-          var c = document.createElement('canvas');
-          c.width = vid.videoWidth;
-          c.height = vid.videoHeight;
-          c.getContext('2d').drawImage(vid, 0, 0);
-          freezeUrl = c.toDataURL('image/jpeg', 0.85);
-        }
-      }
-    } catch (e) { /* no frame */ }
+    // Антиблик: на записи был полный белый кадр (~130ms) в момент head/body
+    // replaceWith — UA-стили дают белый body, пока CSS ещё не применился.
+    // Держим ЖИВОЙ video-оверлей внутри body с полными inline-стилями и
+    // переносим children head/body без replaceWith элементов — оверлей не
+    // уничтожается ни на один кадр.
+    function paintDark(el) {
+      if (!el) return;
+      el.style.setProperty('background', '#050230', 'important');
+      el.style.setProperty('background-color', '#050230', 'important');
+      el.style.setProperty('color-scheme', 'dark', 'important');
+    }
+    function rAF2() {
+      return new Promise(function(resolve) {
+        requestAnimationFrame(function() { requestAnimationFrame(resolve); });
+      });
+    }
 
     var htmlEl = document.documentElement;
-    htmlEl.style.background = '#050230';
-    htmlEl.style.colorScheme = 'dark';
-    if (document.body) document.body.style.background = '#050230';
+    paintDark(htmlEl);
+    paintDark(document.body);
 
-    var veil = document.createElement('div');
-    veil.id = 'ef-enter-veil';
-    veil.setAttribute('aria-hidden', 'true');
-    veil.style.cssText = 'position:fixed;inset:0;z-index:2147483647;background:#050230'
-      + (freezeUrl ? ' center/cover no-repeat url("' + freezeUrl + '")' : '')
-      + ';opacity:1;pointer-events:auto;transition:opacity .85s cubic-bezier(.16,1,.3,1);';
-    htmlEl.appendChild(veil);
-    // Дождаться отрисовки вуали поверх прелоадера — только потом меняем DOM.
-    await new Promise(function(resolve) {
-      requestAnimationFrame(function() { requestAnimationFrame(resolve); });
-    });
+    var thumb = document.getElementById('__bundler_thumbnail');
+    var vid = document.getElementById('__bundler_loader_video');
+    if (vid) {
+      try { vid.pause(); } catch (e1) {}
+      vid.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover;background:#050230;';
+    }
+    if (!thumb) {
+      thumb = document.createElement('div');
+      thumb.id = '__bundler_thumbnail';
+      document.body.appendChild(thumb);
+    }
+    thumb.setAttribute('aria-hidden', 'true');
+    thumb.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:block;margin:0;padding:0;border:0;background:#050230;opacity:1;pointer-events:auto;transition:opacity .85s cubic-bezier(.16,1,.3,1);';
+    // Оверлей обязан жить в body: children <html> вне head/body браузеры
+    // часто не рисуют / переносят — отсюда был белый кадр.
+    document.body.appendChild(thumb);
+    await rAF2();
 
     var bootStyle = doc.createElement('style');
-    bootStyle.textContent = 'html,body{background:#050230!important;color-scheme:dark}';
+    bootStyle.textContent = 'html,body{background:#050230!important;color-scheme:dark;margin:0}';
     if (doc.head) doc.head.insertBefore(bootStyle, doc.head.firstChild);
-    if (doc.body) doc.body.style.background = '#050230';
+    paintDark(doc.documentElement);
+    paintDark(doc.body);
 
+    // Атрибуты <html> без потери inline background.
+    var keepBg = htmlEl.getAttribute('style');
     while (htmlEl.attributes.length) htmlEl.removeAttribute(htmlEl.attributes[0].name);
     for (var ai = 0; ai < doc.documentElement.attributes.length; ai++) {
       var attr = doc.documentElement.attributes[ai];
       htmlEl.setAttribute(attr.name, attr.value);
     }
-    htmlEl.style.background = '#050230';
-    htmlEl.style.colorScheme = 'dark';
-    document.head.replaceWith(doc.head);
-    document.body.replaceWith(doc.body);
-    // Браузер мог перенести div из <html> в <body> — вернуть поверх.
-    if (veil.parentNode !== htmlEl) htmlEl.appendChild(veil);
+    if (keepBg) htmlEl.setAttribute('style', keepBg);
+    paintDark(htmlEl);
+
+    // head: перенос children, сам элемент head не трогаем.
+    var newHeadNodes = Array.from(doc.head.childNodes).map(function(n) {
+      return document.adoptNode(n);
+    });
+    while (document.head.firstChild) document.head.removeChild(document.head.firstChild);
+    for (var hi = 0; hi < newHeadNodes.length; hi++) {
+      document.head.appendChild(newHeadNodes[hi]);
+    }
+    paintDark(htmlEl);
+    paintDark(document.body);
+    // Оверлей всё ещё в body с inline — белого кадра нет.
+    if (thumb.parentNode !== document.body) document.body.appendChild(thumb);
+
+    // body: перенос children, оверлей оставляем последним (сверху).
+    var newBodyNodes = Array.from(doc.body.childNodes).map(function(n) {
+      return document.adoptNode(n);
+    });
+    Array.from(document.body.childNodes).forEach(function(n) {
+      if (n !== thumb) document.body.removeChild(n);
+    });
+    // Копируем атрибуты нового body
+    Array.from(document.body.attributes).forEach(function(a) {
+      document.body.removeAttribute(a.name);
+    });
+    for (var bi = 0; bi < doc.body.attributes.length; bi++) {
+      var battr = doc.body.attributes[bi];
+      document.body.setAttribute(battr.name, battr.value);
+    }
+    paintDark(document.body);
+    for (var bj = 0; bj < newBodyNodes.length; bj++) {
+      document.body.insertBefore(newBodyNodes[bj], thumb);
+    }
+    document.body.appendChild(thumb);
+    await rAF2();
 
     // Resolve page-frame markers: mint this document's own blob for each
     // framed page — from local text when this is the root, otherwise by
@@ -466,17 +504,14 @@ document.addEventListener('DOMContentLoaded', async function() {
       window.Babel.transformScriptTags();
     }
 
-    // Сайт уже под вуалью — ждём кадр отрисовки и мягко открываем.
-    // Вуаль на <html> не снималась во время head/body swap.
-    await wait(120);
+    // Сайт собран под живым video-оверлеем — мягко открываем.
+    await wait(160);
     await new Promise(function(resolve) {
       requestAnimationFrame(function() { requestAnimationFrame(resolve); });
     });
-    var v = document.getElementById('ef-enter-veil');
+    var v = document.getElementById('__bundler_thumbnail');
     if (v) {
-      if (v.parentNode !== document.documentElement) {
-        document.documentElement.appendChild(v);
-      }
+      document.body.appendChild(v);
       v.style.pointerEvents = 'none';
       v.style.opacity = '0';
       setTimeout(function() { if (v.parentNode) v.parentNode.removeChild(v); }, 900);
