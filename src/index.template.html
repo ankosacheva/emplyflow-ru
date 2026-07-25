@@ -616,12 +616,12 @@ html, body {
   .ef-benefit--orange .ef-benefit__sparkle{top:40px;left:32px;width:22px;height:22px;fill:#ffe1cf;}
   .ef-benefit--orange .ef-benefit__title{color:#fff;}
 
-  @keyframes efBenefitDrop{from{opacity:0;transform:translateY(-96px);}to{opacity:1;transform:none;}}
-  @keyframes efBenefitRise{from{opacity:0;transform:translateY(96px);}to{opacity:1;transform:none;}}
+  @keyframes efBenefitDrop{from{opacity:0;transform:translateY(-152px);}to{opacity:1;transform:none;}}
+  @keyframes efBenefitRise{from{opacity:0;transform:translateY(152px);}to{opacity:1;transform:none;}}
 
-  .ef-benefit{transition:opacity 1.2s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.22,1,.36,1);}
-  .ef-benefits--animate .ef-benefit--drop:not(.is-visible){opacity:0;transform:translateY(-96px);}
-  .ef-benefits--animate .ef-benefit--rise:not(.is-visible){opacity:0;transform:translateY(96px);}
+  .ef-benefit{transition:opacity 0.92s cubic-bezier(.22,1,.36,1),transform 0.92s cubic-bezier(.22,1,.36,1);}
+  .ef-benefits--animate .ef-benefit--drop:not(.is-visible){opacity:0;transform:translateY(-152px);}
+  .ef-benefits--animate .ef-benefit--rise:not(.is-visible){opacity:0;transform:translateY(152px);}
 
   @supports (animation-timeline:view()){
     @media (prefers-reduced-motion:no-preference){
@@ -639,6 +639,8 @@ html, body {
   .ef-impl__glow--mint{left:32%;bottom:-8%;width:clamp(200px,28vw,440px);height:clamp(170px,21vw,320px);background:radial-gradient(closest-side,rgba(213,255,243,0.26),transparent);animation:efDrift 33s ease-in-out infinite;}
 
   .ef-impl__inner{position:relative;max-width:1360px;margin:0 auto;}
+  .ef-impl__eyebrow,.ef-impl__title{transition:opacity 0.82s cubic-bezier(.16,1,.3,1),transform 0.82s cubic-bezier(.16,1,.3,1);}
+  .ef-impl--animate .ef-impl__eyebrow:not(.is-visible),.ef-impl--animate .ef-impl__title:not(.is-visible){opacity:0;transform:translateY(28px);}
   .ef-impl__eyebrow{display:block;margin:0 auto clamp(14px,1.6vw,20px);font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-align:center;color:rgba(217,214,255,0.6);}
   .ef-impl__title{max-width:960px;margin:0 auto clamp(34px,4.6vw,64px);font-weight:800;font-size:clamp(28px,4.4vw,56px);line-height:1.06;letter-spacing:-0.03em;text-align:center;color:#fff;}
 
@@ -647,7 +649,9 @@ html, body {
   .ef-steps>*:nth-child(3n+2){margin-top:clamp(14px,2.2vw,38px);}
   .ef-steps>*:nth-child(3n){margin-top:clamp(28px,4.4vw,76px);}
 
-  .ef-step-wrap{display:flex;}
+  .ef-step-wrap{display:flex;transition:opacity 0.88s cubic-bezier(.16,1,.3,1),transform 0.88s cubic-bezier(.16,1,.3,1),filter 0.88s cubic-bezier(.16,1,.3,1);}
+  .ef-impl--animate .ef-step-wrap:not(.is-visible){opacity:0;transform:translateY(56px) scale(0.94);filter:blur(10px);}
+  .ef-impl--animate .ef-step-wrap.is-visible .ef-step__sheen{animation:efSheen 0.95s cubic-bezier(.16,1,.3,1) both;animation-delay:0.22s;}
   .ef-step{--ef-accent:#cec8ff;--ef-glow:rgba(206,200,255,0.5);--ef-tint:rgba(206,200,255,0.16);position:relative;isolation:isolate;overflow:hidden;flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(16px,1.8vw,26px);padding:clamp(18px,2.1vw,28px);border-radius:clamp(22px,2.4vw,32px);border:1px solid rgba(217,214,255,0.2);background:linear-gradient(158deg,var(--ef-tint),rgba(217,214,255,0.04));backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 26px 60px -26px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.07);transition:transform 320ms cubic-bezier(.2,.7,.2,1),border-color 320ms,box-shadow 320ms;}
   /* акцентное свечение внутри стекла */
   .ef-step::before{content:"";position:absolute;z-index:-1;top:-46%;left:-22%;width:92%;height:104%;border-radius:999px;background:radial-gradient(closest-side,var(--ef-glow),transparent);filter:blur(22px);opacity:0.7;animation:efGlowPulse 9s ease-in-out infinite;}
@@ -682,11 +686,11 @@ html, body {
   @keyframes efStepIn{from{opacity:0;transform:translateY(44px) scale(0.97);}to{opacity:1;transform:none;}}
   @keyframes efSheen{0%{opacity:0;transform:translateX(-120%) skewX(-14deg);}35%{opacity:1;}100%{opacity:0;transform:translateX(150%) skewX(-14deg);}}
 
-  /* появление по скроллу; каскад по вертикали даёт естественную задержку между карточками */
+  /* fallback без JS */
   @supports (animation-timeline:view()){
     @media (prefers-reduced-motion:no-preference){
-      .ef-step-wrap{animation:efStepIn linear both;animation-timeline:view();animation-range:entry 6% cover 34%;}
-      .ef-step__sheen{animation:efSheen linear both;animation-timeline:view();animation-range:entry 12% cover 46%;}
+      .ef-impl:not(.ef-impl--animate) .ef-step-wrap{animation:efStepIn linear both;animation-timeline:view();animation-range:entry 6% cover 34%;}
+      .ef-impl:not(.ef-impl--animate) .ef-step__sheen{animation:efSheen linear both;animation-timeline:view();animation-range:entry 12% cover 46%;}
     }
   }
 
@@ -995,43 +999,73 @@ class Component extends DCLogic {
     this._upd = () => this.setState({ compact: this._mq.matches, menuOpen: false });
     this._upd();
     this._mq.addEventListener('change', this._upd);
-    this._initBenefitTiles();
+    this._initScrollReveals();
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
-    if (this._benefitObs) this._benefitObs.disconnect();
-    if (this._benefitTimers) this._benefitTimers.forEach((id) => clearTimeout(id));
+    if (this._revealObs) this._revealObs.forEach((obs) => obs.disconnect());
+    if (this._revealTimers) this._revealTimers.forEach((id) => clearTimeout(id));
   }
 
-  _initBenefitTiles() {
-    const section = document.querySelector('.ef-benefits');
-    if (!section) return;
-    const cards = Array.from(section.querySelectorAll('.ef-benefit'));
-    if (!cards.length) return;
-
+  _initScrollReveals() {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      cards.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
+    this._revealObs = [];
+    this._revealTimers = [];
 
-    section.classList.add('ef-benefits--animate');
-    const STAGGER_MS = 1100;
+    const reveal = (section, items, animateClass, staggerMs, opts = {}) => {
+      if (!section || !items.length) return;
+      const headers = (opts.headers || []).filter(Boolean);
 
-    this._benefitObs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          this._benefitTimers = cards.map((el, i) =>
-            setTimeout(() => el.classList.add('is-visible'), i * STAGGER_MS),
-          );
-          this._benefitObs.disconnect();
-          this._benefitObs = null;
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -4% 0px' },
+      if (reduced) {
+        headers.forEach((el) => el.classList.add('is-visible'));
+        items.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+
+      section.classList.add(animateClass);
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            let delay = 0;
+            headers.forEach((el) => {
+              this._revealTimers.push(setTimeout(() => el.classList.add('is-visible'), delay));
+              delay += opts.headerGap || 100;
+            });
+            if (headers.length) delay += opts.afterHeader || 120;
+            items.forEach((el, i) => {
+              this._revealTimers.push(setTimeout(() => el.classList.add('is-visible'), delay + i * staggerMs));
+            });
+            obs.disconnect();
+          });
+        },
+        opts.observer || { threshold: 0.1, rootMargin: '0px 0px -5% 0px' },
+      );
+      obs.observe(section);
+      this._revealObs.push(obs);
+    };
+
+    const benefits = document.querySelector('.ef-benefits');
+    reveal(
+      benefits,
+      Array.from(benefits?.querySelectorAll('.ef-benefit') || []),
+      'ef-benefits--animate',
+      846,
+      { observer: { threshold: 0.12, rootMargin: '0px 0px -4% 0px' } },
     );
-    this._benefitObs.observe(section);
+
+    const impl = document.querySelector('.ef-impl');
+    reveal(
+      impl,
+      Array.from(impl?.querySelectorAll('.ef-step-wrap') || []),
+      'ef-impl--animate',
+      140,
+      {
+        headers: [impl?.querySelector('.ef-impl__eyebrow'), impl?.querySelector('.ef-impl__title')],
+        headerGap: 90,
+        afterHeader: 160,
+      },
+    );
   }
 
   icon(kind) {
