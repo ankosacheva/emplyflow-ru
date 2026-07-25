@@ -616,15 +616,12 @@ html, body {
   .ef-benefit--orange .ef-benefit__sparkle{top:40px;left:32px;width:22px;height:22px;fill:#ffe1cf;}
   .ef-benefit--orange .ef-benefit__title{color:#fff;}
 
-  @keyframes efBenefitDrop{from{opacity:0;transform:translateY(-72px);}to{opacity:1;transform:none;}}
-  @keyframes efBenefitRise{from{opacity:0;transform:translateY(72px);}to{opacity:1;transform:none;}}
+  @keyframes efBenefitDrop{from{opacity:0;transform:translateY(-96px);}to{opacity:1;transform:none;}}
+  @keyframes efBenefitRise{from{opacity:0;transform:translateY(96px);}to{opacity:1;transform:none;}}
 
-  .ef-benefit{transition:opacity 0.78s cubic-bezier(.2,.7,.2,1),transform 0.78s cubic-bezier(.2,.7,.2,1);}
-  .ef-benefits--animate .ef-benefit--drop:not(.is-visible){opacity:0;transform:translateY(-72px);}
-  .ef-benefits--animate .ef-benefit--rise:not(.is-visible){opacity:0;transform:translateY(72px);}
-  .ef-benefits--animate .ef-benefit--drop.is-visible{transition-delay:0ms;}
-  .ef-benefits--animate .ef-benefit--rise.is-visible{transition-delay:90ms;}
-  .ef-benefits--animate .ef-benefit--orange.is-visible{transition-delay:170ms;}
+  .ef-benefit{transition:opacity 1.2s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.22,1,.36,1);}
+  .ef-benefits--animate .ef-benefit--drop:not(.is-visible){opacity:0;transform:translateY(-96px);}
+  .ef-benefits--animate .ef-benefit--rise:not(.is-visible){opacity:0;transform:translateY(96px);}
 
   @supports (animation-timeline:view()){
     @media (prefers-reduced-motion:no-preference){
@@ -1003,12 +1000,13 @@ class Component extends DCLogic {
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
     if (this._benefitObs) this._benefitObs.disconnect();
+    if (this._benefitTimers) this._benefitTimers.forEach((id) => clearTimeout(id));
   }
 
   _initBenefitTiles() {
     const section = document.querySelector('.ef-benefits');
     if (!section) return;
-    const cards = section.querySelectorAll('.ef-benefit');
+    const cards = Array.from(section.querySelectorAll('.ef-benefit'));
     if (!cards.length) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1018,17 +1016,22 @@ class Component extends DCLogic {
     }
 
     section.classList.add('ef-benefits--animate');
+    const STAGGER_MS = 1100;
+
     this._benefitObs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          this._benefitObs.unobserve(entry.target);
+          this._benefitTimers = cards.map((el, i) =>
+            setTimeout(() => el.classList.add('is-visible'), i * STAGGER_MS),
+          );
+          this._benefitObs.disconnect();
+          this._benefitObs = null;
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -6% 0px' },
+      { threshold: 0.12, rootMargin: '0px 0px -4% 0px' },
     );
-    cards.forEach((el) => this._benefitObs.observe(el));
+    this._benefitObs.observe(section);
   }
 
   icon(kind) {
