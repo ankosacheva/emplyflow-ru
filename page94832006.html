@@ -9,15 +9,14 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* EF_LOADER_CSS_BEGIN */
-    body { background:#050230; min-height:100vh; margin:0; overflow:hidden; }
+    html, body { background:#050230; min-height:100vh; margin:0; }
+    body { overflow:hidden; }
     #__bundler_thumbnail {
       position:fixed; inset:0; z-index:9999;
       display:grid; place-items:center;
       background:#050230;
       opacity:1;
-      transition:opacity .55s cubic-bezier(.16,1,.3,1);
     }
-    #__bundler_thumbnail.is-leaving { opacity:0; pointer-events:none; }
     .ef-loader-video {
       display:block;
       width:100%;
@@ -25,10 +24,17 @@
       object-fit:cover;
       background:#050230;
     }
-    html.ef-site-enter body { opacity:0; }
-    html.ef-site-enter body.ef-site-enter--ready { opacity:1; transition:opacity .6s cubic-bezier(.16,1,.3,1); }
+    #ef-enter-veil {
+      position:fixed; inset:0; z-index:99999;
+      background:#050230;
+      opacity:1;
+      pointer-events:none;
+      transition:opacity .75s cubic-bezier(.16,1,.3,1);
+    }
+    #ef-enter-veil.is-gone { opacity:0; }
     @media (prefers-reduced-motion:reduce) {
       .ef-loader-video { object-fit:contain; }
+      #ef-enter-veil { transition:none; }
     }
     @media (min-width:768px) and (max-width:1180px) {
       .ef-loader-video { object-fit:cover; }
@@ -358,18 +364,24 @@ document.addEventListener('DOMContentLoaded', async function() {
     // preserve ordering (React before ReactDOM before Babel before text/babel).
     const doc = new DOMParser().parseFromString(template, 'text/html');
     await loaderPlayback;
-    const loader = document.getElementById('__bundler_thumbnail');
-    if (loader) {
-      loader.classList.add('is-leaving');
-      await wait(480);
+    // Без fade-out прелоадера до swap: иначе мелькает белый canvas браузера.
+    // Сначала подкладываем тёмную вуаль в новый документ, затем мягко снимаем её.
+    doc.documentElement.style.background = '#050230';
+    if (doc.body) {
+      doc.body.style.background = '#050230';
+      var veil = doc.createElement('div');
+      veil.id = 'ef-enter-veil';
+      doc.body.appendChild(veil);
     }
-    doc.documentElement.classList.add('ef-site-enter');
     document.documentElement.replaceWith(doc.documentElement);
-    if (document.body) {
+    requestAnimationFrame(function() {
       requestAnimationFrame(function() {
-        document.body.classList.add('ef-site-enter--ready');
+        var v = document.getElementById('ef-enter-veil');
+        if (!v) return;
+        v.classList.add('is-gone');
+        setTimeout(function() { if (v.parentNode) v.parentNode.removeChild(v); }, 800);
       });
-    }
+    });
 
     // Resolve page-frame markers: mint this document's own blob for each
     // framed page — from local text when this is the root, otherwise by
@@ -422,8 +434,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
-    var loader = document.getElementById('__bundler_thumbnail');
-    if (loader) loader.classList.add('is-leaving');
   }
 });
 

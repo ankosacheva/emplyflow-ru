@@ -1,12 +1,11 @@
-body { background:#050230; min-height:100vh; margin:0; overflow:hidden; }
+html, body { background:#050230; min-height:100vh; margin:0; }
+body { overflow:hidden; }
 #__bundler_thumbnail {
   position:fixed; inset:0; z-index:9999;
   display:grid; place-items:center;
   background:#050230;
   opacity:1;
-  transition:opacity .55s cubic-bezier(.16,1,.3,1);
 }
-#__bundler_thumbnail.is-leaving { opacity:0; pointer-events:none; }
 .ef-loader-video {
   display:block;
   width:100%;
@@ -14,10 +13,17 @@ body { background:#050230; min-height:100vh; margin:0; overflow:hidden; }
   object-fit:cover;
   background:#050230;
 }
-html.ef-site-enter body { opacity:0; }
-html.ef-site-enter body.ef-site-enter--ready { opacity:1; transition:opacity .6s cubic-bezier(.16,1,.3,1); }
+#ef-enter-veil {
+  position:fixed; inset:0; z-index:99999;
+  background:#050230;
+  opacity:1;
+  pointer-events:none;
+  transition:opacity .75s cubic-bezier(.16,1,.3,1);
+}
+#ef-enter-veil.is-gone { opacity:0; }
 @media (prefers-reduced-motion:reduce) {
   .ef-loader-video { object-fit:contain; }
+  #ef-enter-veil { transition:none; }
 }
 @media (min-width:768px) and (max-width:1180px) {
   .ef-loader-video { object-fit:cover; }

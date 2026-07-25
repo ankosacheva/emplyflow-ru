@@ -358,18 +358,25 @@ document.addEventListener('DOMContentLoaded', async function() {
     // preserve ordering (React before ReactDOM before Babel before text/babel).
     const doc = new DOMParser().parseFromString(template, 'text/html');
     await loaderPlayback;
-    const loader = document.getElementById('__bundler_thumbnail');
-    if (loader) {
-      loader.classList.add('is-leaving');
-      await wait(480);
+    // Без fade-out прелоадера до swap: иначе мелькает белый canvas браузера.
+    // Тёмная вуаль перекрывает сайт сразу после swap и плавно растворяется.
+    doc.documentElement.style.background = '#050230';
+    if (doc.body) {
+      doc.body.style.background = '#050230';
+      var veil = doc.createElement('div');
+      veil.id = 'ef-enter-veil';
+      veil.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#050230;opacity:1;pointer-events:none;transition:opacity .75s cubic-bezier(.16,1,.3,1);';
+      doc.body.appendChild(veil);
     }
-    doc.documentElement.classList.add('ef-site-enter');
     document.documentElement.replaceWith(doc.documentElement);
-    if (document.body) {
+    requestAnimationFrame(function() {
       requestAnimationFrame(function() {
-        document.body.classList.add('ef-site-enter--ready');
+        var v = document.getElementById('ef-enter-veil');
+        if (!v) return;
+        v.style.opacity = '0';
+        setTimeout(function() { if (v.parentNode) v.parentNode.removeChild(v); }, 800);
       });
-    }
+    });
 
     // Resolve page-frame markers: mint this document's own blob for each
     // framed page — from local text when this is the root, otherwise by
@@ -422,8 +429,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
-    var loader = document.getElementById('__bundler_thumbnail');
-    if (loader) loader.classList.add('is-leaving');
   }
 });
 
