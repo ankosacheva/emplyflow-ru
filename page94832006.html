@@ -382,14 +382,38 @@ document.addEventListener('DOMContentLoaded', async function() {
       });
     }
 
+    console.log('[bundle] loader swap video-v3');
     var htmlEl = document.documentElement;
     paintDark(htmlEl);
     paintDark(document.body);
 
+    // Несъёмный boot-стиль прямо в <html>: даже если стили head на кадр
+    // слетят при переносе, body/html останутся тёмными (страховка от белого).
+    var bootHtmlStyle = document.getElementById('__ef_boot_style');
+    if (!bootHtmlStyle) {
+      bootHtmlStyle = document.createElement('style');
+      bootHtmlStyle.id = '__ef_boot_style';
+      bootHtmlStyle.textContent = 'html,body{background:#050230 !important;color-scheme:dark}';
+      htmlEl.appendChild(bootHtmlStyle);
+    }
+
     var thumb = document.getElementById('__bundler_thumbnail');
     var vid = document.getElementById('__bundler_loader_video');
+    // Freeze последнего кадра как фон оверлея — если видео мигнёт при
+    // переносе узлов, кадр всё равно перекрывает экран.
+    var freezeUrl = '';
+    try {
+      if (vid) {
+        try { vid.pause(); } catch (e1) {}
+        if (vid.videoWidth) {
+          var c = document.createElement('canvas');
+          c.width = vid.videoWidth; c.height = vid.videoHeight;
+          c.getContext('2d').drawImage(vid, 0, 0);
+          freezeUrl = c.toDataURL('image/jpeg', 0.85);
+        }
+      }
+    } catch (e) { /* tainted / no frame */ }
     if (vid) {
-      try { vid.pause(); } catch (e1) {}
       vid.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover;background:#050230;';
     }
     if (!thumb) {
@@ -398,7 +422,9 @@ document.addEventListener('DOMContentLoaded', async function() {
       document.body.appendChild(thumb);
     }
     thumb.setAttribute('aria-hidden', 'true');
-    thumb.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:block;margin:0;padding:0;border:0;background:#050230;opacity:1;pointer-events:auto;transition:opacity .85s cubic-bezier(.16,1,.3,1);';
+    thumb.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:block;margin:0;padding:0;border:0;background:#050230'
+      + (freezeUrl ? ' center/cover no-repeat url("' + freezeUrl + '")' : '')
+      + ';opacity:1;pointer-events:auto;transition:opacity .85s cubic-bezier(.16,1,.3,1);';
     // Оверлей обязан жить в body: children <html> вне head/body браузеры
     // часто не рисуют / переносят — отсюда был белый кадр.
     document.body.appendChild(thumb);
@@ -514,7 +540,11 @@ document.addEventListener('DOMContentLoaded', async function() {
       document.body.appendChild(v);
       v.style.pointerEvents = 'none';
       v.style.opacity = '0';
-      setTimeout(function() { if (v.parentNode) v.parentNode.removeChild(v); }, 900);
+      setTimeout(function() {
+        if (v.parentNode) v.parentNode.removeChild(v);
+        var bs = document.getElementById('__ef_boot_style');
+        if (bs && bs.parentNode) bs.parentNode.removeChild(bs);
+      }, 1000);
     }
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
