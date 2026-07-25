@@ -595,6 +595,80 @@ html, body {
     .ef-card__title{max-width:none;}
   }
 </style>
+<style>
+  /* ===== Этапы внедрения: glass-карточки на светящемся фоне ===== */
+  .ef-impl{position:relative;overflow:hidden;padding:clamp(48px,6vw,90px) clamp(16px,4vw,40px) clamp(60px,9vw,120px);}
+  .ef-impl__glow{position:absolute;border-radius:999px;filter:blur(60px);opacity:0.72;pointer-events:none;}
+  .ef-impl__glow--indigo{left:-8%;top:4%;width:clamp(280px,44vw,660px);height:clamp(200px,28vw,400px);background:radial-gradient(closest-side,rgba(74,59,255,0.62),transparent);animation:efDrift 22s ease-in-out infinite;}
+  .ef-impl__glow--pink{right:-6%;top:32%;width:clamp(230px,34vw,520px);height:clamp(190px,25vw,360px);background:radial-gradient(closest-side,rgba(255,184,226,0.4),transparent);animation:efDrift 27s ease-in-out infinite reverse;}
+  .ef-impl__glow--mint{left:32%;bottom:-8%;width:clamp(200px,28vw,440px);height:clamp(170px,21vw,320px);background:radial-gradient(closest-side,rgba(213,255,243,0.26),transparent);animation:efDrift 33s ease-in-out infinite;}
+
+  .ef-impl__inner{position:relative;max-width:1360px;margin:0 auto;}
+  .ef-impl__eyebrow{display:block;margin:0 auto clamp(14px,1.6vw,20px);font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-align:center;color:rgba(217,214,255,0.6);}
+  .ef-impl__title{max-width:960px;margin:0 auto clamp(34px,4.6vw,64px);font-weight:800;font-size:clamp(28px,4.4vw,56px);line-height:1.06;letter-spacing:-0.03em;text-align:center;color:#fff;}
+
+  .ef-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,26px);}
+  /* каскад: каждая следующая колонка ниже предыдущей */
+  .ef-steps>*:nth-child(3n+2){margin-top:clamp(14px,2.2vw,38px);}
+  .ef-steps>*:nth-child(3n){margin-top:clamp(28px,4.4vw,76px);}
+
+  .ef-step-wrap{display:flex;}
+  .ef-step{--ef-accent:#cec8ff;--ef-glow:rgba(206,200,255,0.5);--ef-tint:rgba(206,200,255,0.16);position:relative;isolation:isolate;overflow:hidden;flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(16px,1.8vw,26px);padding:clamp(18px,2.1vw,28px);border-radius:clamp(22px,2.4vw,32px);border:1px solid rgba(217,214,255,0.2);background:linear-gradient(158deg,var(--ef-tint),rgba(217,214,255,0.04));backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 26px 60px -26px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.07);transition:transform 320ms cubic-bezier(.2,.7,.2,1),border-color 320ms,box-shadow 320ms;}
+  /* акцентное свечение внутри стекла */
+  .ef-step::before{content:"";position:absolute;z-index:-1;top:-46%;left:-22%;width:92%;height:104%;border-radius:999px;background:radial-gradient(closest-side,var(--ef-glow),transparent);filter:blur(22px);opacity:0.7;animation:efGlowPulse 9s ease-in-out infinite;}
+  /* светящаяся кромка сверху */
+  .ef-step::after{content:"";position:absolute;top:0;left:10%;right:10%;height:1.5px;background:linear-gradient(90deg,transparent,var(--ef-accent),transparent);opacity:0.9;}
+  .ef-step:hover{transform:translateY(-8px);border-color:rgba(217,214,255,0.34);box-shadow:0 34px 74px -26px rgba(5,2,48,0.95),0 0 70px -20px var(--ef-glow);}
+
+  .ef-step-wrap:nth-child(1) .ef-step{--ef-accent:#4a3bff;--ef-glow:rgba(74,59,255,0.62);--ef-tint:rgba(74,59,255,0.24);}
+  .ef-step-wrap:nth-child(2) .ef-step{--ef-accent:#ffb777;--ef-glow:rgba(255,183,119,0.5);--ef-tint:rgba(255,183,119,0.18);}
+  .ef-step-wrap:nth-child(3) .ef-step{--ef-accent:#d5fff3;--ef-glow:rgba(213,255,243,0.55);--ef-tint:rgba(213,255,243,0.15);}
+  .ef-step-wrap:nth-child(4) .ef-step{--ef-accent:#cec8ff;--ef-glow:rgba(206,200,255,0.5);--ef-tint:rgba(206,200,255,0.17);}
+  .ef-step-wrap:nth-child(5) .ef-step{--ef-accent:#ffb8e2;--ef-glow:rgba(255,184,226,0.5);--ef-tint:rgba(255,184,226,0.17);}
+  .ef-step-wrap:nth-child(6) .ef-step{--ef-accent:#d9d6ff;--ef-glow:rgba(217,214,255,0.55);--ef-tint:rgba(217,214,255,0.15);}
+
+  .ef-step-wrap:nth-child(2) .ef-step::before{animation-delay:-1.5s;}
+  .ef-step-wrap:nth-child(3) .ef-step::before{animation-delay:-3s;}
+  .ef-step-wrap:nth-child(4) .ef-step::before{animation-delay:-4.5s;}
+  .ef-step-wrap:nth-child(5) .ef-step::before{animation-delay:-6s;}
+  .ef-step-wrap:nth-child(6) .ef-step::before{animation-delay:-7.5s;}
+
+  .ef-step__top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .ef-step__num{display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:0.06em;color:var(--ef-accent);background:rgba(5,2,48,0.34);box-shadow:inset 0 0 0 1px var(--ef-glow),0 0 26px -12px var(--ef-glow);}
+  .ef-step__arrow{display:grid;place-items:center;width:clamp(32px,3.2vw,42px);height:clamp(32px,3.2vw,42px);border-radius:999px;border:1px solid rgba(217,214,255,0.18);background:rgba(217,214,255,0.07);color:var(--ef-accent);transition:transform 320ms cubic-bezier(.2,.7,.2,1),background 320ms;}
+  .ef-step:hover .ef-step__arrow{transform:translate(3px,-3px);background:rgba(217,214,255,0.15);}
+  .ef-step__title{font-weight:800;font-size:clamp(18px,1.9vw,24px);line-height:1.14;letter-spacing:-0.02em;color:#fff;}
+  .ef-step__body{margin-top:clamp(8px,0.9vw,12px);font-size:clamp(12.5px,1.05vw,14px);line-height:1.5;color:rgba(255,255,255,0.7);}
+
+  .ef-step__sheen{position:absolute;top:0;bottom:0;left:0;width:44%;background:linear-gradient(100deg,transparent,rgba(255,255,255,0.14),transparent);opacity:0;pointer-events:none;}
+
+  @keyframes efDrift{0%,100%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(4%,-5%,0) scale(1.1);}}
+  @keyframes efGlowPulse{0%,100%{opacity:0.42;}50%{opacity:0.9;}}
+  @keyframes efStepIn{from{opacity:0;transform:translateY(44px) scale(0.97);}to{opacity:1;transform:none;}}
+  @keyframes efSheen{0%{opacity:0;transform:translateX(-120%) skewX(-14deg);}35%{opacity:1;}100%{opacity:0;transform:translateX(150%) skewX(-14deg);}}
+
+  /* появление по скроллу; каскад по вертикали даёт естественную задержку между карточками */
+  @supports (animation-timeline:view()){
+    @media (prefers-reduced-motion:no-preference){
+      .ef-step-wrap{animation:efStepIn linear both;animation-timeline:view();animation-range:entry 6% cover 34%;}
+      .ef-step__sheen{animation:efSheen linear both;animation-timeline:view();animation-range:entry 12% cover 46%;}
+    }
+  }
+
+  @media (max-width:980px){
+    .ef-steps{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .ef-steps>*:nth-child(3n+2),.ef-steps>*:nth-child(3n){margin-top:0;}
+    .ef-steps>*:nth-child(2n){margin-top:clamp(16px,3vw,34px);}
+  }
+  @media (max-width:640px){
+    .ef-steps{grid-template-columns:1fr;}
+    .ef-steps>*:nth-child(2n){margin-top:0;}
+    .ef-step{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ef-impl__glow,.ef-step::before{animation:none;}
+  }
+</style>
 </helmet>
 
 <div style="background:#050230;overflow-x:hidden;">
@@ -799,20 +873,29 @@ html, body {
   </section>
 
   <!-- ===================== IMPLEMENTATION ===================== -->
-  <section id="stages" style="padding:clamp(48px,6vw,80px) clamp(16px,4vw,40px) clamp(60px,9vw,120px);">
-    <div style="max-width:1360px;margin:0 auto;">
-      <h2 style="font-weight:800;font-size:clamp(28px,4.4vw,56px);line-height:1.06;letter-spacing:-0.03em;color:#fff;text-align:center;margin:0 auto clamp(36px,5vw,60px);max-width:960px;">Как ЭмплиФлоу становится частью вашей системы по управлению персоналом</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+  <section id="stages" class="ef-impl">
+    <div class="ef-impl__glow ef-impl__glow--indigo" aria-hidden="true"></div>
+    <div class="ef-impl__glow ef-impl__glow--pink" aria-hidden="true"></div>
+    <div class="ef-impl__glow ef-impl__glow--mint" aria-hidden="true"></div>
+
+    <div class="ef-impl__inner">
+      <span class="ef-impl__eyebrow">Этапы внедрения</span>
+      <h2 class="ef-impl__title">Как ЭмплиФлоу становится частью вашей системы по управлению персоналом</h2>
+
+      <div class="ef-steps">
         <sc-for list="{{ impl }}" as="card" hint-placeholder-count="6">
-          <div style="border-radius:32px;padding:clamp(24px,2.6vw,30px);min-height:clamp(260px,26vw,320px);display:flex;flex-direction:column;justify-content:space-between;background:{{ card.bg }};color:{{ card.color }};box-shadow:{{ card.shadow }};">
-            <div style="display:flex;justify-content:flex-end;">
-              <svg width="40" height="40" sc-camel-view-box="0 0 24 24" fill="none" stroke="{{ card.color }}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
-            </div>
-            <div>
-              <div style="display:inline-block;font-size:12px;font-weight:700;padding:7px 15px;border-radius:999px;background:{{ card.badgeBg }};margin-bottom:16px;">{{ card.num }}</div>
-              <div style="font-size:clamp(20px,2.2vw,26px);font-weight:800;line-height:1.12;letter-spacing:-0.02em;margin-bottom:12px;">{{ card.title }}</div>
-              <div style="font-size:14px;line-height:1.5;color:{{ card.bodyColor }};">{{ card.body }}</div>
-            </div>
+          <div class="ef-step-wrap">
+            <article class="ef-step">
+              <span class="ef-step__sheen" aria-hidden="true"></span>
+              <div class="ef-step__top">
+                <span class="ef-step__num">{{ card.num }}</span>
+                <span class="ef-step__arrow"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+              </div>
+              <div>
+                <h3 class="ef-step__title">{{ card.title }}</h3>
+                <p class="ef-step__body">{{ card.body }}</p>
+              </div>
+            </article>
           </div>
         </sc-for>
       </div>
@@ -984,19 +1067,14 @@ class Component extends DCLogic {
     const bodyTone = (t) => (t === 'light' ? 'rgba(21,21,21,0.7)' : 'rgba(255,255,255,0.8)');
     const badge = (t) => (t === 'light' ? 'rgba(21,21,21,0.08)' : 'rgba(255,255,255,0.16)');
 
-    const implRaw = [
-      { num: '01', title: 'Определение задачи и диагностика', body: 'Анализируем HR-процессы компании, систему грейдов, формат оценки и развития. Формируем индивидуальную дорожную карту внедрения. Результат этапа — понятное техническое задание и список необходимых модулей', bg: '#4a3bff', t: 'dark' },
-      { num: '02', title: 'Настройка платформы под структуру компании', body: 'Создаём базу должностей и профилей компетенций. Настраиваем уровни доступа и индикаторы компетенций. Если у компании есть собственная модель компетенций — загружаем её и адаптируем под логику системы', bg: '#ffb777', t: 'light' },
-      { num: '03', title: 'Интеграции с привычными сервисами', body: 'Если у компании уже есть HR-системы (1С, Битрикс24, LMS-системы, корп. порталы и другие), EmplyFlow переносит все данные автоматически — без потери информации. Сохраняем историю оценок и планов развития', bg: '#d5fff3', t: 'light' },
-      { num: '04', title: 'Внедрение и запуск', body: 'Проводим финальное тестирование и загрузку демоданных. HR-команда получает рабочую среду с активными модулями и инструкцией по запуску. Платформа готова к использованию', bg: '#0a0540', t: 'dark', stroke: true },
-      { num: '05', title: 'Обучение и сопровождение', body: 'Проводим серию обучающих сессий и вебинаров для HR-отдела, руководителей и сотрудников. Показываем, как работать с оценкой компетенций, карьерными треками и отчётами', bg: '#ffb8e2', t: 'light' },
-      { num: '06', title: 'Аналитика и развитие', body: 'После внедрения компания видит реальные данные: кто из сотрудников обладает потенциалом роста, какие компетенции требуют внимания, как движутся цели. HR-отдел управляет развитием и формирует кадровый резерв', bg: '#cec8ff', t: 'light' },
+    const impl = [
+      { num: '01', title: 'Определение задачи и диагностика', body: 'Анализируем HR-процессы компании, систему грейдов, формат оценки и развития. Формируем индивидуальную дорожную карту внедрения. Результат этапа — понятное техническое задание и список необходимых модулей' },
+      { num: '02', title: 'Настройка платформы под структуру компании', body: 'Создаём базу должностей и профилей компетенций. Настраиваем уровни доступа и индикаторы компетенций. Если у компании есть собственная модель компетенций — загружаем её и адаптируем под логику системы' },
+      { num: '03', title: 'Интеграции с привычными сервисами', body: 'Если у компании уже есть HR-системы (1С, Битрикс24, LMS-системы, корп. порталы и другие), EmplyFlow переносит все данные автоматически — без потери информации. Сохраняем историю оценок и планов развития' },
+      { num: '04', title: 'Внедрение и запуск', body: 'Проводим финальное тестирование и загрузку демоданных. HR-команда получает рабочую среду с активными модулями и инструкцией по запуску. Платформа готова к использованию' },
+      { num: '05', title: 'Обучение и сопровождение', body: 'Проводим серию обучающих сессий и вебинаров для HR-отдела, руководителей и сотрудников. Показываем, как работать с оценкой компетенций, карьерными треками и отчётами' },
+      { num: '06', title: 'Аналитика и развитие', body: 'После внедрения компания видит реальные данные: кто из сотрудников обладает потенциалом роста, какие компетенции требуют внимания, как движутся цели. HR-отдел управляет развитием и формирует кадровый резерв' },
     ];
-    const impl = implRaw.map((c) => ({
-      num: c.num, title: c.title, body: c.body, bg: c.bg,
-      color: tone(c.t), bodyColor: bodyTone(c.t), badgeBg: badge(c.t),
-      shadow: c.stroke ? 'inset 0 0 0 1px rgba(217,214,255,0.12)' : 'none',
-    }));
 
     const casesRaw = [
       { title: 'Построение системы карьерных треков для инжиниринговой корпорации', body: 'Автоматизация карьерных треков и использование Big Data для формирования модели компетенций', href: 'https://emplyflow.ru/postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii', bg: '#4a3bff', t: 'dark' },
