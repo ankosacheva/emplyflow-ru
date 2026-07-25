@@ -539,108 +539,49 @@ html, body {
   @keyframes efFloat2{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(-8deg)}}
 </style>
 <style>
-  /* ===== HERO «От данных — к решению» ===== */
-  .ef-hero{position:relative;padding:clamp(36px,4.6vw,68px) clamp(16px,4vw,40px) clamp(52px,7vw,92px);overflow:hidden;}
-  .ef-hero__bloom{position:absolute;inset:0;background:radial-gradient(44% 62% at 4% 20%,rgba(74,59,255,0.42) 0%,transparent 62%);pointer-events:none;}
-  .ef-hero__inner{position:relative;max-width:1360px;margin:0 auto;display:grid;grid-template-columns:minmax(288px,0.76fr) minmax(0,1.72fr);gap:clamp(26px,3vw,46px);align-items:center;}
-  .ef-hero__title{margin:0;font-weight:800;font-size:clamp(34px,4.2vw,62px);line-height:1.04;letter-spacing:-0.035em;color:#fff;}
-  .ef-hero__title em{font-style:normal;color:#cec8ff;}
-  .ef-hero__lead{margin:clamp(18px,2vw,26px) 0 0;max-width:31em;font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:rgba(255,255,255,0.78);}
-  .ef-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,3vw,34px);}
-  .ef-hero__meta{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:clamp(22px,2.6vw,32px);font-size:13px;color:rgba(255,255,255,0.5);}
-  .ef-hero__meta i{width:4px;height:4px;border-radius:999px;background:rgba(217,214,255,0.42);}
-  .ef-hero__award{width:clamp(176px,16vw,214px);height:auto;margin-top:clamp(20px,2.4vw,30px);}
+  /* ===== Первый экран: HRM-платформа ... на базе ИИ ===== */
+  .ef-hero{position:relative;padding:clamp(40px,6vw,86px) clamp(16px,4vw,40px) clamp(40px,5vw,72px);overflow:hidden;}
+  .ef-hero__bloom{position:absolute;inset:0;background:radial-gradient(46% 64% at 4% 24%,rgba(74,59,255,0.42) 0%,transparent 64%);pointer-events:none;}
+  .ef-hero__scribble{position:absolute;opacity:0.5;pointer-events:none;}
+  .ef-hero__scribble--1{top:clamp(28px,5vw,74px);left:clamp(96px,17vw,270px);width:clamp(52px,6vw,90px);}
+  .ef-hero__scribble--2{top:clamp(150px,20vw,270px);left:clamp(150px,26vw,400px);width:clamp(44px,5vw,74px);transform:rotate(168deg);}
+  .ef-hero__arrow3d{position:absolute;left:clamp(-24px,1.4vw,44px);top:clamp(200px,26vw,320px);width:clamp(112px,16vw,245px);animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 24px 50px rgba(74,59,255,.55));pointer-events:none;}
+  .ef-hero__star{position:absolute;right:clamp(6vw,14vw,200px);top:clamp(150px,20vw,260px);width:clamp(74px,10vw,150px);animation:efFloat 8s ease-in-out infinite;pointer-events:none;}
 
-  .ef-btn{display:inline-flex;align-items:center;gap:11px;border-radius:999px;padding:14px 26px;font-size:15.5px;font-weight:600;white-space:nowrap;transition:filter 150ms,box-shadow 150ms;}
-  .ef-btn--indigo{background:#4a3bff;color:#fff;}
+  .ef-hero__inner{position:relative;max-width:1200px;margin:0 auto;}
+  .ef-hero__title{max-width:1000px;margin:0 auto;font-weight:800;font-size:clamp(27px,4.1vw,56px);line-height:0.98;letter-spacing:-0.032em;text-align:center;color:#fff;}
+  /* левый край плашки стоит по центру заголовка — как на сайте */
+  .ef-hero__callout-row{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(18px,2.6vw,34px);}
+  .ef-hero__callout{grid-column:2;justify-self:start;border:1.6px dashed #ffb8e2;border-radius:20px;padding:clamp(6px,0.9vw,14px) clamp(14px,1.9vw,28px);font-weight:800;font-size:clamp(23px,3.2vw,42px);line-height:1;letter-spacing:-0.03em;color:#ffb8e2;white-space:nowrap;}
+
+  .ef-hero__lead{max-width:440px;margin:clamp(28px,4vw,60px) auto 0;font-size:clamp(14px,1.25vw,16px);font-weight:600;line-height:1.4;text-align:center;color:#d9d6ff;}
+  .ef-hero__cta{display:flex;justify-content:center;margin-top:clamp(20px,2.6vw,32px);}
+  .ef-btn{display:inline-flex;align-items:center;gap:12px;border-radius:999px;font-size:15px;font-weight:600;transition:filter 150ms,box-shadow 150ms;}
+  .ef-btn--indigo{background:#4a3bff;color:#fff;padding:9px 30px 9px 9px;}
   .ef-btn--indigo:hover{color:#fff;filter:brightness(1.09);}
-  .ef-btn--ghost{color:#fff;box-shadow:inset 0 0 0 1px rgba(217,214,255,0.3);}
-  .ef-btn--ghost:hover{color:#fff;box-shadow:inset 0 0 0 1px rgba(217,214,255,0.62);}
+  .ef-btn__ic{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;background:#fff;color:#4a3bff;}
 
-  /* ---- поток: источники -> сборка -> платформа ---- */
-  .ef-flow{display:grid;gap:clamp(12px,1.4vw,18px);}
-  .ef-flow__top{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,2fr);align-items:center;gap:0;}
-  .ef-feed{display:grid;grid-template-columns:minmax(0,1fr) clamp(96px,8.4vw,132px);align-items:stretch;}
-  .ef-sources{display:grid;gap:8px;}
-  /* фиксированная высота чипа держит веер линий выровненным по центрам источников */
-  .ef-chip{display:flex;align-items:center;gap:9px;height:40px;overflow:hidden;padding:6px 10px;border-radius:13px;background:rgba(217,214,255,0.06);border:1px solid rgba(217,214,255,0.13);font-size:11.5px;line-height:1.15;color:rgba(255,255,255,0.86);}
-  .ef-chip b{font-weight:600;}
-  .ef-chip__ic{flex:0 0 auto;display:grid;place-items:center;width:24px;height:24px;border-radius:8px;}
+  .ef-hero__award{position:absolute;right:0;top:clamp(196px,27vw,330px);width:clamp(158px,16vw,215px);height:auto;}
 
-  .ef-fan{position:relative;}
-  .ef-fan__lines{position:absolute;inset:0;width:100%;height:100%;}
-  .ef-fan__hub{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;}
-  .ef-fan__node{display:grid;place-items:center;width:32px;height:32px;border-radius:999px;border:1.6px dashed #ffb8e2;background:rgba(5,2,48,0.9);}
-  .ef-fan__label{padding:2px 5px;border-radius:8px;background:#050230;font-size:10.5px;line-height:1.25;text-align:center;color:rgba(255,255,255,0.56);}
+  .ef-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);align-items:end;margin-top:clamp(34px,4.6vw,70px);}
+  .ef-card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px);border-radius:30px;padding:clamp(18px,2vw,30px);color:#151515;}
+  .ef-card--mint{background:#d5fff3;min-height:clamp(150px,14vw,200px);}
+  .ef-card--peri{background:#cec8ff;min-height:clamp(170px,16vw,230px);}
+  .ef-card--pink{background:#ffb8e2;min-height:clamp(190px,18vw,260px);}
+  .ef-card__title{max-width:14ch;font-weight:800;font-size:clamp(19px,2.2vw,28px);line-height:1.02;letter-spacing:-0.025em;}
+  .ef-card__body{font-size:clamp(12.5px,1.15vw,15px);font-weight:500;line-height:1.35;color:rgba(21,21,21,0.82);}
+  .ef-card__sparkle{position:absolute;pointer-events:none;}
 
-  /* ---- мокап платформы ---- */
-  .ef-app{border-radius:clamp(16px,1.6vw,22px);background:linear-gradient(180deg,#0d0848 0%,#080436 100%);box-shadow:0 24px 60px -20px rgba(5,2,48,0.85),inset 0 0 0 1px rgba(217,214,255,0.14);overflow:hidden;}
-  .ef-app__bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid rgba(217,214,255,0.1);}
-  .ef-app__brand{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;letter-spacing:-0.01em;color:#fff;}
-  .ef-app__mark{display:grid;place-items:center;width:19px;height:19px;border-radius:6px;background:#4a3bff;font-size:11px;font-weight:800;}
-  .ef-app__search{flex:1 1 auto;max-width:230px;padding:6px 12px;border-radius:999px;background:rgba(217,214,255,0.07);font-size:11px;color:rgba(255,255,255,0.42);}
-  .ef-app__tools{display:flex;align-items:center;gap:8px;margin-left:auto;}
-  .ef-app__user{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:999px;background:rgba(217,214,255,0.08);font-size:11px;color:rgba(255,255,255,0.78);}
-  .ef-app__avatar{display:grid;place-items:center;width:20px;height:20px;border-radius:999px;background:#cec8ff;color:#151515;font-size:9px;font-weight:800;}
-  .ef-app__body{display:grid;grid-template-columns:clamp(118px,14%,152px) minmax(0,1fr);gap:0;}
-  .ef-app__side{display:grid;align-content:start;gap:2px;padding:12px 8px;border-right:1px solid rgba(217,214,255,0.1);}
-  .ef-app__side span{display:flex;align-items:center;gap:6px;padding:6px 7px;border-radius:9px;font-size:10px;line-height:1.2;color:rgba(255,255,255,0.55);}
-  .ef-app__side span.is-active{background:rgba(74,59,255,0.32);color:#fff;font-weight:600;}
-  .ef-app__side i{width:5px;height:5px;border-radius:2px;background:currentColor;opacity:0.7;}
-  .ef-app__main{display:grid;gap:9px;padding:12px;}
-
-  .ef-emp{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:14px;background:rgba(217,214,255,0.07);}
-  .ef-emp__ava{display:grid;place-items:center;flex:0 0 auto;width:42px;height:42px;border-radius:999px;background:linear-gradient(150deg,#cec8ff,#ffb8e2);color:#151515;font-size:14px;font-weight:800;}
-  .ef-emp__name{font-size:15px;font-weight:700;letter-spacing:-0.015em;color:#fff;}
-  .ef-emp__role{margin-top:2px;font-size:11px;line-height:1.35;color:rgba(255,255,255,0.55);}
-
-  .ef-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;}
-  .ef-metric{padding:10px 12px;border-radius:13px;background:rgba(217,214,255,0.07);}
-  .ef-metric__cap{font-size:10.5px;color:rgba(255,255,255,0.55);}
-  .ef-metric__val{margin-top:5px;font-size:16px;font-weight:800;letter-spacing:-0.02em;}
-  .ef-metric__bar{margin-top:7px;height:4px;border-radius:999px;background:rgba(255,255,255,0.14);overflow:hidden;}
-  .ef-metric__bar span{display:block;height:100%;border-radius:999px;background:#d5fff3;}
-  .ef-metric__stars{margin-top:6px;font-size:10px;letter-spacing:1px;color:#ffb777;}
-
-  .ef-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;}
-  .ef-tile{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:12px;background:rgba(217,214,255,0.06);border:1px solid rgba(217,214,255,0.1);font-size:11px;line-height:1.25;color:rgba(255,255,255,0.84);}
-  .ef-tile__ic{flex:0 0 auto;display:grid;place-items:center;width:22px;height:22px;border-radius:7px;}
-  .ef-ipr{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 13px;border-radius:13px;border:1.4px dashed #ffb8e2;background:rgba(255,184,226,0.06);}
-  .ef-ipr__title{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#fff;}
-  .ef-ipr__note{font-size:10.5px;line-height:1.3;color:rgba(255,184,226,0.86);}
-
-  /* ---- решения на выходе ---- */
-  .ef-arrows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.2vw,16px);justify-items:center;}
-  .ef-outcomes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.2vw,16px);}
-  .ef-outcome{display:grid;gap:6px;padding:clamp(12px,1.3vw,17px);border-radius:18px;color:#151515;}
-  .ef-outcome__ic{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:rgba(21,21,21,0.1);}
-  .ef-outcome__title{font-size:13.5px;font-weight:700;line-height:1.2;letter-spacing:-0.01em;}
-  .ef-outcome__body{font-size:11.5px;line-height:1.35;color:rgba(21,21,21,0.68);}
-  .ef-outcome--mint{background:#d5fff3;}
-  .ef-outcome--orange{background:#ffb777;}
-  .ef-outcome--peri{background:#cec8ff;}
-
-  .ef-verdict{display:flex;align-items:center;justify-content:center;gap:10px;padding:clamp(13px,1.5vw,18px) clamp(16px,2vw,26px);border-radius:999px;border:1.6px dashed #ffb8e2;background:rgba(255,184,226,0.05);font-size:clamp(13px,1.35vw,18px);font-weight:700;letter-spacing:-0.015em;color:#fff;text-align:center;}
-  .ef-verdict em{font-style:normal;color:#ffb8e2;}
-
-  @media (max-width:1180px){
-    .ef-hero__inner{grid-template-columns:1fr;}
-    .ef-flow__top{grid-template-columns:1fr;gap:12px;}
-    .ef-feed{grid-template-columns:1fr;gap:10px;}
-    .ef-sources{display:flex;flex-wrap:wrap;justify-content:center;}
-    .ef-chip{flex:0 1 auto;}
-    .ef-fan{display:flex;justify-content:center;}
-    .ef-fan__lines{display:none;}
-    .ef-fan__hub{position:static;transform:none;flex-direction:row;gap:10px;width:auto;padding:7px 14px 7px 7px;border-radius:999px;background:rgba(217,214,255,0.07);}
-    .ef-fan__label{text-align:left;}
-  }
-  @media (max-width:720px){
-    .ef-app__body{grid-template-columns:1fr;}
-    .ef-app__side{display:none;}
-    .ef-metrics,.ef-tiles{grid-template-columns:repeat(2,minmax(0,1fr));}
-    .ef-arrows{display:none;}
-    .ef-outcomes{grid-template-columns:1fr;}
-    .ef-app__search{display:none;}
+  @media (max-width:900px){
+    .ef-hero{padding-top:clamp(28px,6vw,48px);}
+    .ef-hero__scribble,.ef-hero__star{display:none;}
+    .ef-hero__arrow3d{position:static;margin:clamp(18px,4vw,28px) auto 0;width:clamp(88px,22vw,130px);}
+    .ef-hero__callout-row{grid-template-columns:1fr;justify-items:center;}
+    .ef-hero__callout{grid-column:1;justify-self:center;}
+    .ef-hero__award{position:static;display:block;margin:clamp(24px,5vw,34px) auto 0;width:clamp(168px,46vw,210px);}
+    .ef-cards{grid-template-columns:1fr;align-items:stretch;}
+    .ef-card{min-height:0;}
+    .ef-card__title{max-width:none;}
   }
 </style>
 </helmet>
@@ -682,154 +623,59 @@ html, body {
   <section id="top" class="ef-hero">
     <div class="ef-hero__bloom"></div>
 
+    <svg class="ef-hero__scribble ef-hero__scribble--1" sc-camel-view-box="0 0 80 100" fill="none" aria-hidden="true"><path d="M65 8 C 60 15, 55 24, 48 30 C 40 36, 30 38, 18 42" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round"></path><path d="M14 38 L 18 42 L 16 48" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <svg class="ef-hero__scribble ef-hero__scribble--2" sc-camel-view-box="0 0 80 100" fill="none" aria-hidden="true"><path d="M65 8 C 60 15, 55 24, 48 30 C 40 36, 30 38, 18 42" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round"></path><path d="M14 38 L 18 42 L 16 48" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+
+    <img src="c079dd13-58fd-4669-938c-0f964cf738dd" alt="" aria-hidden="true" class="ef-hero__arrow3d">
+
+    <svg class="ef-hero__star" sc-camel-view-box="0 0 100 100" aria-hidden="true">
+      <defs>
+        <linearGradient id="efStarGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#d5fff3"></stop>
+          <stop offset="38%" stop-color="#cec8ff"></stop>
+          <stop offset="76%" stop-color="#4a3bff"></stop>
+          <stop offset="100%" stop-color="#0a0540"></stop>
+        </linearGradient>
+      </defs>
+      <path fill="url(#efStarGrad)" d="M50 2 C 53 30, 58 42, 98 50 C 58 58, 53 70, 50 98 C 47 70, 42 58, 2 50 C 42 42, 47 30, 50 2 Z"></path>
+    </svg>
+
     <div class="ef-hero__inner">
-      <div>
-        <h1 class="ef-hero__title">От&nbsp;данных&nbsp;—<br><em>к решению</em></h1>
-        <p class="ef-hero__lead">ЭмплиФлоу объединяет цели, KPI, оценку 360°, Performance Review и развитие сотрудников в одной системе. ИИ анализирует данные и готовит рекомендации для HR и руководителей.</p>
-        <div class="ef-hero__cta">
-          <a href="#platform" class="ef-btn ef-btn--indigo">Посмотреть платформу
-            <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-          </a>
-          <a href="#contacts" class="ef-btn ef-btn--ghost">Получить демодоступ</a>
-        </div>
-        <div class="ef-hero__meta">Цели<i></i>KPI<i></i>360°<i></i>Performance Review<i></i>ИПР</div>
-        <img src="3ac3d2a1-e6b6-47aa-a918-ef167e497d70" alt="Лучший проект в сфере HR по версии Rusbase в 2024 году" class="ef-hero__award">
+      <h1 class="ef-hero__title">HRM-платформа для оценки, целеполагания и мотивации сотрудников</h1>
+      <div class="ef-hero__callout-row"><span class="ef-hero__callout">на базе ИИ</span></div>
+
+      <p class="ef-hero__lead">Хотите выстроить прозрачные процессы оценки и продвижения сотрудников? Узнать больше об их потенциале и уровне компетенции? Используйте возможности нашего решения!</p>
+
+      <div class="ef-hero__cta">
+        <a href="#platform" class="ef-btn ef-btn--indigo">
+          <span class="ef-btn__ic"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+          Что входит в платформу
+        </a>
       </div>
 
-      <div class="ef-flow">
-        <div class="ef-flow__top">
-          <div class="ef-feed">
-            <div class="ef-sources">
-              <div class="ef-chip"><span class="ef-chip__ic" style="background:#ffb777;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"></path><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg></span><b>1С:ЗУП</b></div>
-              <div class="ef-chip"><span class="ef-chip__ic" style="background:#d5fff3;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 10h18M9 4v16"></path></svg></span>Excel: прошлая оценка</div>
-              <div class="ef-chip"><span class="ef-chip__ic" style="background:#ffb8e2;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg></span>Цели и KPI</div>
-              <div class="ef-chip"><span class="ef-chip__ic" style="background:#cec8ff;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"></path></svg></span>Отзывы коллег</div>
-              <div class="ef-chip"><span class="ef-chip__ic" style="background:#d5fff3;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8a9 4.5 0 1 1-16 2"></path><path d="M4 10V5"></path><path d="M1.5 7.5 4 5l2.5 2.5"></path><circle cx="12" cy="15" r="3"></circle></svg></span>Оценка 360°</div>
-              <div class="ef-chip"><span class="ef-chip__ic" style="background:#ffb777;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Проекты</div>
-              <div class="ef-chip"><span class="ef-chip__ic" style="background:#cec8ff;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="5" rx="1"></rect><rect x="2.5" y="16" width="6" height="5" rx="1"></rect><rect x="15.5" y="16" width="6" height="5" rx="1"></rect><path d="M12 8v4M5.5 16v-2h13v2"></path></svg></span>Модель компетенций</div>
-            </div>
+      <img src="3ac3d2a1-e6b6-47aa-a918-ef167e497d70" alt="Лучший проект в сфере HR по версии Rusbase в 2024 году" class="ef-hero__award">
 
-            <div class="ef-fan">
-              <svg class="ef-fan__lines" sc-camel-view-box="0 0 100 100" sc-camel-preserve-aspect-ratio="none" fill="none" stroke="rgba(217,214,255,0.34)" stroke-width="1" sc-camel-vector-effect="non-scaling-stroke" aria-hidden="true">
-                <path d="M0 6 C 30 6, 20 50, 50 50"></path>
-                <path d="M0 21 C 30 21, 20 50, 50 50"></path>
-                <path d="M0 35 C 30 35, 20 50, 50 50"></path>
-                <path d="M0 50 H 50"></path>
-                <path d="M0 65 C 30 65, 20 50, 50 50"></path>
-                <path d="M0 79 C 30 79, 20 50, 50 50"></path>
-                <path d="M0 94 C 30 94, 20 50, 50 50"></path>
-                <path d="M50 50 H 100"></path>
-              </svg>
-              <div class="ef-fan__hub">
-                <span class="ef-fan__node"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="#ffb8e2" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg></span>
-                <span class="ef-fan__label">Данные собраны и проверены</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="ef-app">
-            <div class="ef-app__bar">
-              <div class="ef-app__brand"><span class="ef-app__mark">Э</span>ЭмплиФлоу</div>
-              <div class="ef-app__search">Поиск сотрудника</div>
-              <div class="ef-app__tools">
-                <svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15V10a6 6 0 1 0-12 0v5l-1.5 3h15z"></path><path d="M10 21h4"></path></svg>
-                <svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.3M12 17h.01"></path></svg>
-                <div class="ef-app__user"><span class="ef-app__avatar">HR</span>HR-директор</div>
-              </div>
-            </div>
-
-            <div class="ef-app__body">
-              <nav class="ef-app__side">
-                <span class="is-active"><i></i>Главная</span>
-                <span><i></i>Сотрудники</span>
-                <span><i></i>Цели и KPI</span>
-                <span><i></i>Оценка 360°</span>
-                <span><i></i>Performance Review</span>
-                <span><i></i>Развитие</span>
-                <span><i></i>Кадровый резерв</span>
-                <span><i></i>Аналитика</span>
-                <span><i></i>Настройки</span>
-              </nav>
-
-              <div class="ef-app__main">
-                <div class="ef-emp">
-                  <span class="ef-emp__ava">АП</span>
-                  <div>
-                    <div class="ef-emp__name">Анна Петрова</div>
-                    <div class="ef-emp__role">Руководитель проекта · Отдел разработки</div>
-                  </div>
-                </div>
-
-                <div class="ef-metrics">
-                  <div class="ef-metric">
-                    <div class="ef-metric__cap">Выполнение целей</div>
-                    <div class="ef-metric__val" style="color:#d5fff3;">86%</div>
-                    <div class="ef-metric__bar"><span style="width:86%;"></span></div>
-                  </div>
-                  <div class="ef-metric">
-                    <div class="ef-metric__cap">Оценка 360°</div>
-                    <div class="ef-metric__val" style="color:#ffb777;">4,3</div>
-                    <div class="ef-metric__stars">★★★★☆</div>
-                  </div>
-                  <div class="ef-metric">
-                    <div class="ef-metric__cap">Потенциал</div>
-                    <div class="ef-metric__val" style="color:#cec8ff;">Высокий</div>
-                    <div class="ef-metric__bar"><span style="width:78%;background:#cec8ff;"></span></div>
-                  </div>
-                </div>
-
-                <div class="ef-tiles">
-                  <div class="ef-tile"><span class="ef-tile__ic" style="background:#d5fff3;"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h5"></path></svg></span>Итоговый Performance Review</div>
-                  <div class="ef-tile"><span class="ef-tile__ic" style="background:#cec8ff;"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18M15 3v18M3 9h18M3 15h18"></path></svg></span>Матрица 9 box</div>
-                  <div class="ef-tile"><span class="ef-tile__ic" style="background:#ffb8e2;"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="#151515" aria-hidden="true"><path d="M12 2l2.6 6.6 7 .6-5.3 4.6 1.6 7L12 17l-5.9 3.8 1.6-7L2.4 9.2l7-.6z"></path></svg></span>Сильные стороны</div>
-                  <div class="ef-tile"><span class="ef-tile__ic" style="background:#ffb777;"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16"></path><path d="M8 15l4-5 3 3 4-6"></path></svg></span>Зоны развития</div>
-                  <div class="ef-tile"><span class="ef-tile__ic" style="background:#d5fff3;"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg></span>Риск недостижения целей</div>
-                  <div class="ef-tile"><span class="ef-tile__ic" style="background:#cec8ff;"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M17 14c2.2 0 4 1.8 4 4"></path></svg></span>Кадровый резерв</div>
-                </div>
-
-                <div class="ef-ipr">
-                  <div class="ef-ipr__title">
-                    <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffb8e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 12.5l2 2 4-4.5"></path></svg>
-                    Готовый ИПР
-                  </div>
-                  <div class="ef-ipr__note">Сформирован на основе данных и рекомендаций ИИ</div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="ef-cards">
+        <div class="ef-card ef-card--mint">
+          <svg class="ef-card__sparkle" style="top:18px;right:22px;width:clamp(26px,3vw,42px);" sc-camel-view-box="0 0 24 24" fill="#ffb8e2" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <div class="ef-card__title">Оценка результатов</div>
+          <div class="ef-card__body">Настройте процессы Performance Review, управляя компонентами эффективности сотрудников: достижения целей, KPI и т.д.</div>
         </div>
-
-        <div class="ef-arrows" aria-hidden="true">
-          <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="rgba(217,214,255,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
-          <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="rgba(217,214,255,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
-          <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="rgba(217,214,255,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
+        <div class="ef-card ef-card--peri">
+          <svg class="ef-card__sparkle" style="bottom:16px;right:20px;width:clamp(24px,2.6vw,36px);" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.85)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <div class="ef-card__title">Анализ потенциала</div>
+          <div class="ef-card__body">Проведите оценку 360°, используйте ИИ-ассистента оценки компетенций и составьте 9-box матрицу талантов вашей компании</div>
         </div>
-
-        <div class="ef-outcomes">
-          <div class="ef-outcome ef-outcome--mint">
-            <span class="ef-outcome__ic"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8" r="3.4"></circle><path d="M3.5 20c0-3.6 2.9-6.5 6.5-6.5"></path><path d="M15 17l2 2 4-4.5"></path></svg></span>
-            <div class="ef-outcome__title">Рекомендована в кадровый резерв</div>
-            <div class="ef-outcome__body">Высокий потенциал и стабильные результаты</div>
-          </div>
-          <div class="ef-outcome ef-outcome--orange">
-            <span class="ef-outcome__ic"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><path d="M18 9v4M18 16h.01"></path></svg></span>
-            <div class="ef-outcome__title">Риск перегрузки команды</div>
-            <div class="ef-outcome__body">Высокая загрузка более 110%</div>
-          </div>
-          <div class="ef-outcome ef-outcome--peri">
-            <span class="ef-outcome__ic"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h4"></path></svg></span>
-            <div class="ef-outcome__title">Сформирован план развития</div>
-            <div class="ef-outcome__body">ИПР готов к согласованию с сотрудником</div>
-          </div>
-        </div>
-
-        <div class="ef-verdict">
-          <svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="#ffb8e2" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          ИИ анализирует. <em>Руководитель принимает решение.</em>
+        <div class="ef-card ef-card--pink">
+          <svg class="ef-card__sparkle" style="top:24px;right:26px;width:clamp(30px,3.4vw,48px);" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.9)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <svg class="ef-card__sparkle" style="top:74px;right:70px;width:clamp(18px,2vw,26px);" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.7)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <div class="ef-card__title">План развития</div>
+          <div class="ef-card__body">Получите готовые индивидуальные планы развития (ИПР) для каждого сотрудника и контролируйте их прохождение!</div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- ===================== CUSTOMER LOGOS ===================== -->
   <section style="padding:clamp(24px,4vw,50px) clamp(16px,4vw,40px) clamp(40px,6vw,70px);">
