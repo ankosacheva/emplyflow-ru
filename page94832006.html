@@ -67,21 +67,16 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   function initLoaderVideo() {
     const video = document.getElementById('__bundler_loader_video');
-    if (!video) return Promise.resolve();
+    if (!video) return wait(600);
     video.muted = true;
     video.setAttribute('playsinline', '');
-    const minShow = wait(1800);
-    const playback = new Promise(function(resolve) {
-      function done() { resolve(); }
-      video.addEventListener('ended', done, { once: true });
-      video.addEventListener('error', done, { once: true });
-      var play = video.play();
-      if (play && play.catch) play.catch(done);
-      setTimeout(done, 3200);
-    });
-    return Promise.all([minShow, playback]);
+    var play = video.play();
+    if (play && play.catch) play.catch(function() {});
+    // Ролик низкодинамичный: показываем коротко и уходим на сайт,
+    // не дожидаясь статичного хвоста видео (было ~3с стоп-кадра).
+    return wait(1050);
   }
-  var loaderPlayback = Promise.race([initLoaderVideo(), wait(4500)]);
+  var loaderPlayback = Promise.race([initLoaderVideo(), wait(2200)]);
 
   const FONT_MIME = /^(font[/]|application[/](x-)?font-|application[/]vnd\.ms-fontobject)/i;
   const MIME_TOKEN = /^[\w.+-]+[/][\w.+-]+$/;
@@ -424,7 +419,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     thumb.setAttribute('aria-hidden', 'true');
     thumb.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:block;margin:0;padding:0;border:0;background:#050230'
       + (freezeUrl ? ' center/cover no-repeat url("' + freezeUrl + '")' : '')
-      + ';opacity:1;pointer-events:auto;transition:opacity .85s cubic-bezier(.16,1,.3,1);';
+      + ';opacity:1;pointer-events:auto;transition:opacity .45s cubic-bezier(.16,1,.3,1);';
     // Оверлей обязан жить в body: children <html> вне head/body браузеры
     // часто не рисуют / переносят — отсюда был белый кадр.
     document.body.appendChild(thumb);
@@ -530,8 +525,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       window.Babel.transformScriptTags();
     }
 
-    // Сайт собран под живым video-оверлеем — мягко открываем.
-    await wait(160);
+    // Сайт собран под живым video-оверлеем — сразу открываем.
     await new Promise(function(resolve) {
       requestAnimationFrame(function() { requestAnimationFrame(resolve); });
     });
@@ -544,7 +538,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (v.parentNode) v.parentNode.removeChild(v);
         var bs = document.getElementById('__ef_boot_style');
         if (bs && bs.parentNode) bs.parentNode.removeChild(bs);
-      }, 1000);
+      }, 550);
     }
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
