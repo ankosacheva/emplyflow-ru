@@ -64,18 +64,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (!video) return Promise.resolve();
     video.muted = true;
     video.setAttribute('playsinline', '');
-    const minShow = wait(2400);
+    const minShow = wait(1800);
     const playback = new Promise(function(resolve) {
       function done() { resolve(); }
       video.addEventListener('ended', done, { once: true });
       video.addEventListener('error', done, { once: true });
       var play = video.play();
       if (play && play.catch) play.catch(done);
-      setTimeout(done, 3400);
+      setTimeout(done, 3200);
     });
     return Promise.all([minShow, playback]);
   }
-  var loaderPlayback = initLoaderVideo();
+  var loaderPlayback = Promise.race([initLoaderVideo(), wait(4500)]);
 
   const FONT_MIME = /^(font[/]|application[/](x-)?font-|application[/]vnd\.ms-fontobject)/i;
   const MIME_TOKEN = /^[\w.+-]+[/][\w.+-]+$/;
@@ -422,6 +422,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
+    var loader = document.getElementById('__bundler_thumbnail');
+    if (loader) loader.classList.add('is-leaving');
   }
 });
 
