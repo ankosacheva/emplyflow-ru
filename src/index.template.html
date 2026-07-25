@@ -619,10 +619,17 @@ html, body {
   @keyframes efBenefitDrop{from{opacity:0;transform:translateY(-72px);}to{opacity:1;transform:none;}}
   @keyframes efBenefitRise{from{opacity:0;transform:translateY(72px);}to{opacity:1;transform:none;}}
 
+  .ef-benefit{transition:opacity 0.78s cubic-bezier(.2,.7,.2,1),transform 0.78s cubic-bezier(.2,.7,.2,1);}
+  .ef-benefits--animate .ef-benefit--drop:not(.is-visible){opacity:0;transform:translateY(-72px);}
+  .ef-benefits--animate .ef-benefit--rise:not(.is-visible){opacity:0;transform:translateY(72px);}
+  .ef-benefits--animate .ef-benefit--drop.is-visible{transition-delay:0ms;}
+  .ef-benefits--animate .ef-benefit--rise.is-visible{transition-delay:90ms;}
+  .ef-benefits--animate .ef-benefit--orange.is-visible{transition-delay:170ms;}
+
   @supports (animation-timeline:view()){
     @media (prefers-reduced-motion:no-preference){
-      .ef-benefit--drop{animation:efBenefitDrop linear both;animation-timeline:view();animation-range:entry 0% cover 32%;}
-      .ef-benefit--rise{animation:efBenefitRise linear both;animation-timeline:view();animation-range:entry 0% cover 32%;}
+      .ef-benefits:not(.ef-benefits--animate) .ef-benefit--drop{animation:efBenefitDrop linear both;animation-timeline:view();animation-range:entry 0% cover 32%;}
+      .ef-benefits:not(.ef-benefits--animate) .ef-benefit--rise{animation:efBenefitRise linear both;animation-timeline:view();animation-range:entry 0% cover 32%;}
     }
   }
 </style>
@@ -991,9 +998,37 @@ class Component extends DCLogic {
     this._upd = () => this.setState({ compact: this._mq.matches, menuOpen: false });
     this._upd();
     this._mq.addEventListener('change', this._upd);
+    this._initBenefitTiles();
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
+    if (this._benefitObs) this._benefitObs.disconnect();
+  }
+
+  _initBenefitTiles() {
+    const section = document.querySelector('.ef-benefits');
+    if (!section) return;
+    const cards = section.querySelectorAll('.ef-benefit');
+    if (!cards.length) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      cards.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    section.classList.add('ef-benefits--animate');
+    this._benefitObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          this._benefitObs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -6% 0px' },
+    );
+    cards.forEach((el) => this._benefitObs.observe(el));
   }
 
   icon(kind) {
