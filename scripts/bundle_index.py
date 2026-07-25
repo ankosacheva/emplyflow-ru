@@ -6,7 +6,7 @@
 base64 в манифесте и подставляются по uuid в рантайме.
 
     python3 scripts/bundle_index.py extract   # бандл -> src/index.template.html
-    python3 scripts/bundle_index.py build     # src/index.template.html -> бандл
+    python3 scripts/bundle_index.py build     # src/index.template.html + src/bundler-loader.* -> бандл
     python3 scripts/bundle_index.py assets    # выгрузить ассеты в src/assets/
 
 `build` также синхронизирует `page94832006.html` (старый DirectoryIndex).
@@ -26,6 +26,8 @@ ROOT = Path(__file__).resolve().parent.parent
 BUNDLE = ROOT / "index.html"
 MIRROR = ROOT / "page94832006.html"
 TEMPLATE_SRC = ROOT / "src" / "index.template.html"
+LOADER_CSS_SRC = ROOT / "src" / "bundler-loader.css"
+LOADER_HTML_SRC = ROOT / "src" / "bundler-loader.html"
 ASSETS_DIR = ROOT / "src" / "assets"
 
 TEMPLATE_RE = re.compile(
@@ -33,6 +35,12 @@ TEMPLATE_RE = re.compile(
 )
 MANIFEST_RE = re.compile(
     r'(<script type="__bundler/manifest">)(.*?)(</script>)', re.S
+)
+LOADER_CSS_RE = re.compile(
+    r'/\* EF_LOADER_CSS_BEGIN \*/.*?/\* EF_LOADER_CSS_END \*/', re.S
+)
+LOADER_HTML_RE = re.compile(
+    r'<!-- EF_LOADER_HTML_BEGIN -->.*?<!-- EF_LOADER_HTML_END -->', re.S
 )
 
 EXT_BY_MIME = {
@@ -64,6 +72,32 @@ def extract() -> None:
     print(f"{TEMPLATE_SRC.relative_to(ROOT)} — {len(template)} символов")
 
 
+def patch_loader(html: str) -> str:
+    if not LOADER_CSS_SRC.exists() or not LOADER_HTML_SRC.exists():
+        sys.exit(
+            f"нет {LOADER_CSS_SRC.relative_to(ROOT)} или "
+            f"{LOADER_HTML_SRC.relative_to(ROOT)}"
+        )
+
+    css = LOADER_CSS_SRC.read_text(encoding="utf-8").strip()
+    markup = LOADER_HTML_SRC.read_text(encoding="utf-8").strip()
+    indented_css = "\n    ".join(css.splitlines())
+
+    html, css_count = LOADER_CSS_RE.subn(
+        f"/* EF_LOADER_CSS_BEGIN */\n    {indented_css}\n    /* EF_LOADER_CSS_END */",
+        html,
+        count=1,
+    )
+    html, html_count = LOADER_HTML_RE.subn(
+        f"<!-- EF_LOADER_HTML_BEGIN -->\n  {markup}\n  <!-- EF_LOADER_HTML_END -->",
+        html,
+        count=1,
+    )
+    if css_count != 1 or html_count != 1:
+        sys.exit("не удалось пропатчить loader в бандле")
+    return html
+
+
 def build() -> None:
     if not TEMPLATE_SRC.exists():
         sys.exit(f"нет {TEMPLATE_SRC.relative_to(ROOT)}, сначала extract")
@@ -80,6 +114,8 @@ def build() -> None:
     )
     if count != 1:
         sys.exit("не удалось заменить template в бандле")
+
+    html = patch_loader(html)
 
     BUNDLE.write_text(html, encoding="utf-8")
     MIRROR.write_text(html, encoding="utf-8")
