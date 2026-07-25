@@ -28,6 +28,14 @@
       object-fit:cover;
       background:#050230;
     }
+    /* Persistent overlay during head/body swap (also styled inline in runtime JS). */
+    #ef-enter-veil {
+      position:fixed;
+      inset:0;
+      z-index:2147483647;
+      background:#050230;
+      pointer-events:auto;
+    }
     @media (prefers-reduced-motion:reduce) {
       .ef-loader-video { object-fit:contain; }
     }
@@ -357,61 +365,57 @@ document.addEventListener('DOMContentLoaded', async function() {
     const doc = new DOMParser().parseFromString(template, 'text/html');
     await loaderPlayback;
 
-    // Снимаем последний кадр прелоадера — им перекрываем swap, чтобы не было белого блика.
+    // Freeze последнего кадра. Вуаль вешаем на <html> ДО замены DOM:
+    // replaceWith(documentElement) и View Transition дают пустой промежуточный кадр.
+    // Меняем только head/body — вуаль остаётся на экране непрерывно.
     var freezeUrl = '';
     try {
       var vid = document.getElementById('__bundler_loader_video');
-      if (vid && vid.videoWidth) {
-        var c = document.createElement('canvas');
-        c.width = vid.videoWidth;
-        c.height = vid.videoHeight;
-        c.getContext('2d').drawImage(vid, 0, 0);
-        freezeUrl = c.toDataURL('image/jpeg', 0.92);
+      if (vid) {
+        try { vid.pause(); } catch (e1) {}
+        if (vid.videoWidth) {
+          var c = document.createElement('canvas');
+          c.width = vid.videoWidth;
+          c.height = vid.videoHeight;
+          c.getContext('2d').drawImage(vid, 0, 0);
+          freezeUrl = c.toDataURL('image/jpeg', 0.85);
+        }
       }
-    } catch (e) { /* canvas tainted / no frame */ }
+    } catch (e) { /* no frame */ }
+
+    var htmlEl = document.documentElement;
+    htmlEl.style.background = '#050230';
+    htmlEl.style.colorScheme = 'dark';
+    if (document.body) document.body.style.background = '#050230';
+
+    var veil = document.createElement('div');
+    veil.id = 'ef-enter-veil';
+    veil.setAttribute('aria-hidden', 'true');
+    veil.style.cssText = 'position:fixed;inset:0;z-index:2147483647;background:#050230'
+      + (freezeUrl ? ' center/cover no-repeat url("' + freezeUrl + '")' : '')
+      + ';opacity:1;pointer-events:auto;transition:opacity .85s cubic-bezier(.16,1,.3,1);';
+    htmlEl.appendChild(veil);
+    // Дождаться отрисовки вуали поверх прелоадера — только потом меняем DOM.
+    await new Promise(function(resolve) {
+      requestAnimationFrame(function() { requestAnimationFrame(resolve); });
+    });
 
     var bootStyle = doc.createElement('style');
     bootStyle.textContent = 'html,body{background:#050230!important;color-scheme:dark}';
     if (doc.head) doc.head.insertBefore(bootStyle, doc.head.firstChild);
-    doc.documentElement.style.background = '#050230';
-    doc.documentElement.style.colorScheme = 'dark';
-    if (doc.body) {
-      doc.body.style.background = '#050230';
-      var veil = doc.createElement('div');
-      veil.id = 'ef-enter-veil';
-      veil.style.cssText = 'position:fixed;inset:0;z-index:2147483647;background:#050230'
-        + (freezeUrl ? ' center/cover no-repeat url(' + freezeUrl + ')' : '')
-        + ';opacity:1;pointer-events:none;transition:opacity .9s cubic-bezier(.16,1,.3,1);';
-      doc.body.insertBefore(veil, doc.body.firstChild);
-    }
+    if (doc.body) doc.body.style.background = '#050230';
 
-    document.documentElement.style.background = '#050230';
-    document.documentElement.style.colorScheme = 'dark';
-    if (document.body) document.body.style.background = '#050230';
-
-    function swapRoot() {
-      document.documentElement.replaceWith(doc.documentElement);
+    while (htmlEl.attributes.length) htmlEl.removeAttribute(htmlEl.attributes[0].name);
+    for (var ai = 0; ai < doc.documentElement.attributes.length; ai++) {
+      var attr = doc.documentElement.attributes[ai];
+      htmlEl.setAttribute(attr.name, attr.value);
     }
-    if (document.startViewTransition) {
-      try {
-        await document.startViewTransition(swapRoot).finished;
-      } catch (e) {
-        swapRoot();
-      }
-    } else {
-      swapRoot();
-    }
-
-    // Держим вуаль, пока сайт не успеет отрисоваться, затем мягко снимаем.
-    await wait(180);
-    await new Promise(function(resolve) {
-      requestAnimationFrame(function() { requestAnimationFrame(resolve); });
-    });
-    var v = document.getElementById('ef-enter-veil');
-    if (v) {
-      v.style.opacity = '0';
-      setTimeout(function() { if (v.parentNode) v.parentNode.removeChild(v); }, 950);
-    }
+    htmlEl.style.background = '#050230';
+    htmlEl.style.colorScheme = 'dark';
+    document.head.replaceWith(doc.head);
+    document.body.replaceWith(doc.body);
+    // Браузер мог перенести div из <html> в <body> — вернуть поверх.
+    if (veil.parentNode !== htmlEl) htmlEl.appendChild(veil);
 
     // Resolve page-frame markers: mint this document's own blob for each
     // framed page — from local text when this is the root, otherwise by
@@ -460,6 +464,22 @@ document.addEventListener('DOMContentLoaded', async function() {
     // which fired before we swapped the document. Trigger manually if present.
     if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
       window.Babel.transformScriptTags();
+    }
+
+    // Сайт уже под вуалью — ждём кадр отрисовки и мягко открываем.
+    // Вуаль на <html> не снималась во время head/body swap.
+    await wait(120);
+    await new Promise(function(resolve) {
+      requestAnimationFrame(function() { requestAnimationFrame(resolve); });
+    });
+    var v = document.getElementById('ef-enter-veil');
+    if (v) {
+      if (v.parentNode !== document.documentElement) {
+        document.documentElement.appendChild(v);
+      }
+      v.style.pointerEvents = 'none';
+      v.style.opacity = '0';
+      setTimeout(function() { if (v.parentNode) v.parentNode.removeChild(v); }, 900);
     }
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
