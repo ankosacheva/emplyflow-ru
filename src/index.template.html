@@ -1692,7 +1692,7 @@ html, body {
     <p style="margin:18px 0 0; font-size:clamp(16px,1.7vw,20px); font-weight:500; line-height:1.5; color:rgba(5,2,48,.66); max-width:64ch; text-wrap:pretty;">Соберите ИИ-тренажёр под любую должность. Ассистент сам генерирует кейсы из реальных рабочих ситуаций, ведёт живой диалог с сотрудником - текстом или голосом - оценивает ответы по индикаторам и формирует индивидуальный отчёт с зонами роста.</p>
 
     <!-- window mockup -->
-    <div class="mock" onMouseEnter="{{ aiOnEnter }}" onMouseLeave="{{ aiOnLeave }}" style="position:relative; width:min(760px,100%); margin:clamp(32px,4.5vw,52px) auto 0; background:#ffffff; border-radius:20px; box-shadow:0 2px 0 rgba(0,0,0,.03), 0 40px 90px -30px rgba(5,2,48,.5); overflow:hidden; border:1px solid rgba(5,2,48,.05);">
+    <div class="mock" style="position:relative; width:min(760px,100%); margin:clamp(32px,4.5vw,52px) auto 0; background:#ffffff; border-radius:20px; box-shadow:0 2px 0 rgba(0,0,0,.03), 0 40px 90px -30px rgba(5,2,48,.5); overflow:hidden; border:1px solid rgba(5,2,48,.05);">
 
       <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid rgba(5,2,48,.07);">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#050230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -1718,7 +1718,7 @@ html, body {
       <div style="position:relative; height:clamp(410px,48vw,470px); background:linear-gradient(180deg,#fbfaff,#ffffff);">
 
         <!-- SCENE 1: Конструктор -->
-        <div style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); will-change:opacity; transform:translateZ(0); animation:AfadeA 19s cubic-bezier(.7,0,.2,1) infinite;">
+        <div id="ef-ai-clock" style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); will-change:opacity; transform:translateZ(0); animation:AfadeA 19s cubic-bezier(.7,0,.2,1) infinite;">
           <div style="position:absolute; top:22px; right:clamp(18px,3vw,30px); font-weight:400; font-size:12px; color:rgba(5,2,48,.42); max-width:130px; text-align:right; line-height:1.4; animation:s1cap 19s cubic-bezier(.7,0,.2,1) infinite;">Настраивается<br>без разработки</div>
 
           <div style="max-width:440px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); border-radius:16px; padding:16px 18px; animation:s1card 19s cubic-bezier(.7,0,.2,1) infinite;">
@@ -1773,13 +1773,13 @@ html, body {
         <div style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; will-change:opacity; transform:translateZ(0); animation:Cfade 19s cubic-bezier(.7,0,.2,1) infinite;">
           <div style="position:absolute; top:18px; right:clamp(16px,3vw,26px); display:inline-flex; align-items:center; gap:6px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); color:#3a2cf0; font-weight:700; font-size:13px; padding:6px 12px; border-radius:999px; font-variant-numeric:tabular-nums; animation:cUi 19s cubic-bezier(.7,0,.2,1) infinite;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
-            {{ aiTimer }}
+            <span id="ef-ai-timer">02:00</span>
           </div>
 
           <div style="display:flex; flex-direction:column; gap:12px; padding-top:6px;">
             <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi1 19s cubic-bezier(.7,0,.2,1) infinite;">Здравствуйте. У нас уже есть провайдер, чем вы лучше?</div>
 
-            <div style="align-self:flex-end; max-width:76%; background:rgba(74,59,255,.1); color:#2a1fb0; font-size:14px; font-weight:600; line-height:1.4; padding:11px 15px; border-radius:16px 16px 4px 16px; border:1px solid rgba(74,59,255,.18); animation:cEmp 19s cubic-bezier(.7,0,.2,1) infinite;">{{ aiTyped }}<span style="display:inline-block; width:2px; height:1em; background:#4A3BFF; margin-left:1px; vertical-align:-2px; animation:caret 1s step-end infinite;"></span></div>
+            <div style="align-self:flex-end; max-width:76%; background:rgba(74,59,255,.1); color:#2a1fb0; font-size:14px; font-weight:600; line-height:1.4; padding:11px 15px; border-radius:16px 16px 4px 16px; border:1px solid rgba(74,59,255,.18); animation:cEmp 19s cubic-bezier(.7,0,.2,1) infinite;"><span id="ef-ai-typed"></span><span style="display:inline-block; width:2px; height:1em; background:#4A3BFF; margin-left:1px; vertical-align:-2px; animation:caret 1s step-end infinite;"></span></div>
 
             <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi2 19s cubic-bezier(.7,0,.2,1) infinite;">Допустим. Но у текущего провайдера дешевле - зачем нам платить больше?</div>
           </div>
@@ -2040,7 +2040,7 @@ html, body {
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900}}">
 class Component extends DCLogic {
-  state = { menuOpen: false, compact: false, aiTyped: '', aiTimer: '02:00' };
+  state = { menuOpen: false, compact: false };
 
   componentDidMount() {
     this._mq = window.matchMedia('(max-width: 900px)');
@@ -2058,31 +2058,43 @@ class Component extends DCLogic {
   }
 
   _initAiAssistantLoop() {
+    const typedEl = document.getElementById('ef-ai-typed');
+    const timerEl = document.getElementById('ef-ai-timer');
+    const clockEl = document.getElementById('ef-ai-clock');
+    const msg = 'У нас гибкая настройка под ваши сделки и аналитика по каждому звонку.';
+    if (!typedEl || !timerEl) return;
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      this.setState({
-        aiTyped: 'У нас гибкая настройка под ваши сделки и аналитика по каждому звонку.',
-        aiTimer: '01:56',
-      });
+      typedEl.textContent = msg;
+      timerEl.textContent = '01:56';
       return;
     }
-    this._aiStart = performance.now();
-    this._aiPaused = false;
-    this._aiMsg = 'У нас гибкая настройка под ваши сделки и аналитика по каждому звонку.';
+
+    const ts = 9.2, te = 10.6;
+    let lastTyped = null, lastTimer = null;
     const loop = () => {
       this._aiRaf = requestAnimationFrame(loop);
-      if (this._aiPaused) return;
-      const t = ((performance.now() - this._aiStart) / 1000) % 19;
-      const ts = 9.2, te = 10.6;
+      // Master clock = CSS timeline itself, so JS typing stays in sync with the
+      // scene keyframes (and freezes together with them on hover pause).
+      let t;
+      const anims = clockEl && clockEl.getAnimations ? clockEl.getAnimations() : [];
+      if (anims.length && anims[0].currentTime != null) {
+        t = (anims[0].currentTime / 1000) % 19;
+      } else {
+        if (this._aiStart == null) this._aiStart = performance.now();
+        t = ((performance.now() - this._aiStart) / 1000) % 19;
+      }
       let n;
       if (t < ts) n = 0;
-      else if (t > te) n = this._aiMsg.length;
-      else n = Math.round(this._aiMsg.length * (t - ts) / (te - ts));
-      const aiTyped = t >= 7.3 && t <= 11.5 ? this._aiMsg.slice(0, n) : '';
+      else if (t > te) n = msg.length;
+      else n = Math.round(msg.length * (t - ts) / (te - ts));
+      const typed = t >= 7.3 && t <= 11.5 ? msg.slice(0, n) : '';
       let secs = 120;
       if (t >= 7.3 && t <= 11.5) secs = 120 - Math.floor(t - 7.3);
       else if (t > 11.5) secs = 116;
-      const aiTimer = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
-      if (aiTyped !== this.state.aiTyped || aiTimer !== this.state.aiTimer) this.setState({ aiTyped, aiTimer });
+      const timer = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
+      if (typed !== lastTyped) { typedEl.textContent = typed; lastTyped = typed; }
+      if (timer !== lastTimer) { timerEl.textContent = timer; lastTimer = timer; }
     };
     this._aiRaf = requestAnimationFrame(loop);
   }
@@ -2194,20 +2206,6 @@ class Component extends DCLogic {
       showMenu: this.state.compact && this.state.menuOpen,
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
       navLinks, logos, impl, cases,
-      aiTyped: this.state.aiTyped,
-      aiTimer: this.state.aiTimer,
-      aiOnEnter: () => {
-        if (!this._aiPaused) {
-          this._aiPaused = true;
-          this._aiPauseAt = performance.now();
-        }
-      },
-      aiOnLeave: () => {
-        if (this._aiPaused) {
-          this._aiStart += performance.now() - this._aiPauseAt;
-          this._aiPaused = false;
-        }
-      },
     };
   }
 }
