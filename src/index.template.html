@@ -744,7 +744,7 @@ html, body {
 
       <sc-if value="{{ showFullNav }}" hint-placeholder-val="{{ true }}">
         <nav style="display:flex;align-items:center;gap:clamp(14px,1.8vw,30px);">
-          <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+          <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="7">
             <a href="{{ link.href }}" style="color:rgba(255,255,255,0.82);font-size:15px;white-space:nowrap;">{{ link.label }}</a>
           </sc-for>
         </nav>
@@ -1593,6 +1593,315 @@ html, body {
     </div>
   </section>
 
+  <!-- ===================== AI ASSESSMENT ASSISTANT ===================== -->
+<style>
+@media (prefers-reduced-motion:reduce){.ef-ai *{animation:none!important;}}
+  .ef-ai,.ef-ai *{box-sizing:border-box;}
+  .ef-ai a{color:#4A3BFF;text-decoration:none;}
+  .ef-ai a:hover{color:#3a2cf0;}
+  .ef-ai .mock:hover *{animation-play-state:paused!important;}
+  .ef-ai .bento:hover{transform:translateY(-3px);box-shadow:0 30px 60px -28px rgba(5,2,48,.4);}
+
+  /* ================= 19s loop ================= */
+  /* S1 0-3s · case in 3-4s · read 4-6.5s · flip 6.5-7.3s · chat 7.3-11.5s · report 11.5-16s · hold 16-19s */
+
+  @keyframes AfadeA { 0%,13%{opacity:1} 15%{opacity:0} 94%{opacity:0} 98%,100%{opacity:1} }
+  @keyframes Bfade  { 0%,15%{opacity:0} 19%,36%{opacity:1} 39%,100%{opacity:0} }
+  @keyframes Cfade  { 0%,37%{opacity:0} 40%,58%{opacity:1} 61%,100%{opacity:0} }
+  @keyframes Dfade  { 0%,58%{opacity:0} 61%,97%{opacity:1} 100%{opacity:0} }
+
+  @keyframes ulK { 0%,36%{opacity:1} 39%{opacity:0} 95%{opacity:0} 98%,100%{opacity:1} }
+  @keyframes ulP { 0%,36%{opacity:0} 39%,95%{opacity:1} 98%,100%{opacity:0} }
+
+  @keyframes s1card { 0%,1%{opacity:0;transform:translateY(14px)} 6%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateY(14px)} }
+  @keyframes s1c1 { 0%,4%{opacity:0;transform:translateX(-12px) scale(.92)} 7%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateX(-12px) scale(.92)} }
+  @keyframes s1c2 { 0%,6%{opacity:0;transform:translateX(-12px) scale(.92)} 9%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateX(-12px) scale(.92)} }
+  @keyframes s1c3 { 0%,8%{opacity:0;transform:translateX(-12px) scale(.92)} 11%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateX(-12px) scale(.92)} }
+  @keyframes s1gen { 0%,9%{opacity:0} 12%,88%{opacity:1} 92%,100%{opacity:0} }
+  @keyframes s1bar { 0%,10%{width:0} 14%{width:100%} 88%{width:100%} 92%,100%{width:0} }
+  @keyframes s1cap { 0%,3%{opacity:0} 7%,88%{opacity:1} 92%,100%{opacity:0} }
+
+  @keyframes s2peek { 0%,15%{opacity:0;transform:translateY(12px) scale(.97)} 19%,34%{opacity:1;transform:translateY(0) scale(.955)} 38%,100%{opacity:0;transform:translateY(-26px) scale(.94)} }
+  @keyframes s2case { 0%,17%{opacity:0;transform:translateY(14px) scale(.96)} 21%,34%{opacity:1;transform:none} 38%{opacity:0;transform:translateY(-34px) scale(.97)} 100%{opacity:0} }
+  @keyframes s2dots { 0%,20%{opacity:0} 22%,34%{opacity:1} 37%,100%{opacity:0} }
+
+  @keyframes cAi1 { 0%,40%{opacity:0;transform:translateY(10px)} 43%,58%{opacity:1;transform:none} 61%,100%{opacity:0;transform:translateY(10px)} }
+  @keyframes cEmp { 0%,45%{opacity:0;transform:translateY(10px)} 48%,58%{opacity:1;transform:none} 61%,100%{opacity:0;transform:translateY(10px)} }
+  @keyframes cAi2 { 0%,53%{opacity:0;transform:translateY(10px)} 56%,58%{opacity:1;transform:none} 61%,100%{opacity:0;transform:translateY(10px)} }
+  @keyframes cUi  { 0%,38%{opacity:0} 41%,58%{opacity:1} 61%,100%{opacity:0} }
+  @keyframes micblink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.9)} }
+  @keyframes caret { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  @keyframes dCard   { 0%,58%{opacity:0;transform:translateY(52px)} 62%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0;transform:translateY(52px)} }
+  @keyframes dScroll { 0%,62%{transform:translateY(0)} 82%,97%{transform:translateY(-172px)} 100%{transform:translateY(0)} }
+  @keyframes dBar    { 0%,62%{width:0} 69%,97%{width:75%} 100%{width:0} }
+  @keyframes dR1 { 0%,62%{opacity:0;transform:translateY(8px)} 65%,96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dR2 { 0%,64%{opacity:0;transform:translateY(8px)} 67%,96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dR3 { 0%,66%{opacity:0;transform:translateY(8px)} 69%,96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dR4 { 0%,68%{opacity:0;transform:translateY(8px)} 71%,96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dStrong { 0%,71%{opacity:0;transform:translateY(8px)} 74%,96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dGrow   { 0%,74%{opacity:0;transform:translateY(8px)} 77%,96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dRec    { 0%,77%{opacity:0;transform:translateY(8px)} 80%,96%{opacity:1;transform:none} 100%{opacity:0} }
+
+</style>
+<section id="ai-assistant" class="ef-ai" aria-labelledby="ef-ai-title" style="position:relative; width:100%; overflow:hidden; font-family:var(--font-sans); color:#050230; background:linear-gradient(180deg,#efe9ff 0%,#f4ecfb 40%,#fdeef4 68%,#eaeefb 100%); padding:clamp(52px,7vw,104px) clamp(20px,5vw,48px);">
+
+  <div style="position:absolute; inset:0; pointer-events:none; opacity:.06; background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"></div>
+  <div style="position:absolute; top:-120px; left:8%; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle,rgba(206,200,255,.6),transparent 70%); filter:blur(20px); pointer-events:none;"></div>
+  <div style="position:absolute; bottom:-140px; right:6%; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle,rgba(255,184,226,.5),transparent 70%); filter:blur(20px); pointer-events:none;"></div>
+
+  <div style="position:relative; max-width:960px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center;">
+
+    <div style="display:inline-flex; align-items:center; gap:8px; background:#ffffff; border:1px solid rgba(74,59,255,.16); box-shadow:0 6px 20px -8px rgba(74,59,255,.35); border-radius:999px; padding:8px 16px; color:#4A3BFF; font-weight:700; font-size:14px; letter-spacing:.01em;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#4A3BFF"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
+      <span>ИИ-ассистент оценки →</span>
+    </div>
+
+    <h1 id="ef-ai-title" style="margin:22px 0 0; font-size:clamp(30px,4.6vw,58px); font-weight:800; line-height:1.05; letter-spacing:-0.03em; max-width:16ch; text-wrap:balance;">Проверяйте навыки на практике, а не на бумаге</h1>
+
+    <p style="margin:18px 0 0; font-size:clamp(16px,1.7vw,20px); font-weight:500; line-height:1.5; color:rgba(5,2,48,.66); max-width:64ch; text-wrap:pretty;">Соберите ИИ-тренажёр под любую должность. Ассистент сам генерирует кейсы из реальных рабочих ситуаций, ведёт живой диалог с сотрудником - текстом или голосом - оценивает ответы по индикаторам и формирует индивидуальный отчёт с зонами роста.</p>
+
+    <!-- window mockup -->
+    <div class="mock" onMouseEnter="{{ aiOnEnter }}" onMouseLeave="{{ aiOnLeave }}" style="position:relative; width:min(760px,100%); margin:clamp(32px,4.5vw,52px) auto 0; background:#ffffff; border-radius:20px; box-shadow:0 2px 0 rgba(0,0,0,.03), 0 40px 90px -30px rgba(5,2,48,.5); overflow:hidden; border:1px solid rgba(5,2,48,.05);">
+
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid rgba(5,2,48,.07);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#050230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        <div style="display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:15px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#4A3BFF"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
+          <span>Тренажёр навыков</span>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#050230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </div>
+
+      <div style="display:flex; gap:26px; padding:0 20px; border-bottom:1px solid rgba(5,2,48,.07);">
+        <div style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:rgba(5,2,48,.5);">
+          Конструктор
+          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulK 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+        </div>
+        <div style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:#050230;">
+          Практика
+          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulP 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+        </div>
+      </div>
+
+      <!-- stage -->
+      <div style="position:relative; height:clamp(410px,48vw,470px); background:linear-gradient(180deg,#fbfaff,#ffffff);">
+
+        <!-- SCENE 1: Конструктор -->
+        <div style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); will-change:opacity; transform:translateZ(0); animation:AfadeA 19s cubic-bezier(.7,0,.2,1) infinite;">
+          <div style="position:absolute; top:22px; right:clamp(18px,3vw,30px); font-weight:400; font-size:12px; color:rgba(5,2,48,.42); max-width:130px; text-align:right; line-height:1.4; animation:s1cap 19s cubic-bezier(.7,0,.2,1) infinite;">Настраивается<br>без разработки</div>
+
+          <div style="max-width:440px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); border-radius:16px; padding:16px 18px; animation:s1card 19s cubic-bezier(.7,0,.2,1) infinite;">
+            <div style="font-size:12px; font-weight:600; color:rgba(5,2,48,.5); text-transform:uppercase; letter-spacing:.08em;">Навык</div>
+            <div style="font-size:19px; font-weight:800; margin-top:3px; letter-spacing:-0.01em;">Ведение переговоров</div>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; max-width:500px;">
+            <div style="animation:s1c1 19s cubic-bezier(.7,0,.2,1) infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Выявление потребностей</div>
+            <div style="animation:s1c2 19s cubic-bezier(.7,0,.2,1) infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Отработка возражений</div>
+            <div style="animation:s1c3 19s cubic-bezier(.7,0,.2,1) infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Завершение сделки</div>
+          </div>
+
+          <div style="margin-top:26px; max-width:460px; animation:s1gen 19s cubic-bezier(.7,0,.2,1) infinite;">
+            <div style="display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#050230;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#4A3BFF"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
+              ИИ генерирует кейсы под должность…
+            </div>
+            <div style="margin-top:10px; height:8px; border-radius:999px; background:rgba(5,2,48,.07); overflow:hidden;">
+              <div style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:s1bar 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 2: Пример задания (во вкладке Конструктор) -->
+        <div style="position:absolute; inset:0; padding:26px clamp(22px,3.5vw,34px); will-change:opacity; transform:translateZ(0); animation:Bfade 19s cubic-bezier(.7,0,.2,1) infinite; display:flex; flex-direction:column;">
+          <div style="position:relative; flex:1;">
+            <div style="position:absolute; top:14px; left:22px; right:22px; height:calc(100% - 46px); background:#ffffff; border:1px solid rgba(5,2,48,.08); border-radius:16px; box-shadow:0 14px 30px -18px rgba(5,2,48,.35); will-change:transform,opacity; animation:s2peek 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+            <div style="position:absolute; inset:0 0 26px; background:#ffffff; border:1px solid rgba(74,59,255,.16); border-radius:16px; box-shadow:0 22px 46px -24px rgba(5,2,48,.45); padding:22px clamp(20px,3vw,28px); will-change:transform,opacity; animation:s2case 19s cubic-bezier(.7,0,.2,1) infinite; text-align:left;">
+              <div style="display:inline-flex; align-items:center; gap:7px; background:rgba(74,59,255,.08); color:#3a2cf0; font-weight:700; font-size:12px; padding:5px 11px; border-radius:999px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#4A3BFF"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
+                Пример задания
+              </div>
+              <div style="font-size:clamp(17px,2.2vw,20px); font-weight:800; margin-top:12px; letter-spacing:-0.01em;">Кейс 1. Встреча с новым клиентом</div>
+              <p style="margin:10px 0 0; font-size:clamp(14px,1.7vw,15.5px); font-weight:500; line-height:1.6; color:rgba(5,2,48,.75); max-width:60ch;">Вы - менеджер по продажам ИТ-решений. Сегодня встреча с директором по закупкам компании, которая уже 3 года работает с другим провайдером и в целом им довольна. Ваша цель - выявить скрытые проблемы, показать ценность вашего решения и договориться о следующем шаге. Клиент настроен скептически и чувствителен к цене.</p>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:center; gap:10px; animation:s2dots 19s cubic-bezier(.7,0,.2,1) infinite;">
+            <span style="font-size:12px; font-weight:600; color:rgba(5,2,48,.45);">Кейс 2 из 6</span>
+            <span style="display:inline-flex; gap:5px; align-items:center;">
+              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
+              <i style="width:7px;height:7px;border-radius:50%;background:#4A3BFF;display:inline-block;"></i>
+              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
+              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
+              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
+              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- SCENE 4: Практика -->
+        <div style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; will-change:opacity; transform:translateZ(0); animation:Cfade 19s cubic-bezier(.7,0,.2,1) infinite;">
+          <div style="position:absolute; top:18px; right:clamp(16px,3vw,26px); display:inline-flex; align-items:center; gap:6px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); color:#3a2cf0; font-weight:700; font-size:13px; padding:6px 12px; border-radius:999px; font-variant-numeric:tabular-nums; animation:cUi 19s cubic-bezier(.7,0,.2,1) infinite;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
+            {{ aiTimer }}
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:12px; padding-top:6px;">
+            <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi1 19s cubic-bezier(.7,0,.2,1) infinite;">Здравствуйте. У нас уже есть провайдер, чем вы лучше?</div>
+
+            <div style="align-self:flex-end; max-width:76%; background:rgba(74,59,255,.1); color:#2a1fb0; font-size:14px; font-weight:600; line-height:1.4; padding:11px 15px; border-radius:16px 16px 4px 16px; border:1px solid rgba(74,59,255,.18); animation:cEmp 19s cubic-bezier(.7,0,.2,1) infinite;">{{ aiTyped }}<span style="display:inline-block; width:2px; height:1em; background:#4A3BFF; margin-left:1px; vertical-align:-2px; animation:caret 1s step-end infinite;"></span></div>
+
+            <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi2 19s cubic-bezier(.7,0,.2,1) infinite;">Допустим. Но у текущего провайдера дешевле - зачем нам платить больше?</div>
+          </div>
+
+          <div style="position:absolute; left:clamp(18px,3vw,28px); right:clamp(18px,3vw,28px); bottom:18px; display:flex; align-items:center; gap:10px; background:#f7f7fb; border:1px solid rgba(5,2,48,.08); border-radius:999px; padding:9px 10px 9px 16px; animation:cUi 19s cubic-bezier(.7,0,.2,1) infinite;">
+            <span style="flex:1; font-size:13px; color:rgba(5,2,48,.4); font-weight:500; text-align:left;">Говорите или введите ответ…</span>
+            <div style="width:34px; height:34px; border-radius:50%; background:#4A3BFF; display:flex; align-items:center; justify-content:center; animation:micblink 1.3s ease-in-out infinite;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 5: Детальный отчёт -->
+        <div style="position:absolute; inset:0; padding:18px clamp(18px,3vw,28px); will-change:opacity; transform:translateZ(0); animation:Dfade 19s cubic-bezier(.7,0,.2,1) infinite; display:flex; align-items:flex-end;">
+          <div style="width:100%; height:100%; background:#ffffff; border:1px solid rgba(255,184,226,.55); box-shadow:0 -10px 40px -18px rgba(255,184,226,.9), 0 20px 50px -24px rgba(5,2,48,.35); border-radius:18px; overflow:hidden; animation:dCard 19s cubic-bezier(.7,0,.2,1) infinite;">
+            <div style="padding:20px 22px; text-align:left; will-change:transform; animation:dScroll 19s cubic-bezier(.7,0,.2,1) infinite;">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+                <div style="font-size:19px; font-weight:800; letter-spacing:-0.01em;">Ваш результат</div>
+                <div style="font-size:13px; font-weight:700; color:#4A3BFF;">Навыки: 6 из 8</div>
+              </div>
+              <div style="margin-top:9px; height:9px; border-radius:999px; background:rgba(5,2,48,.07); overflow:hidden;">
+                <div style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:dBar 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+                <div style="display:flex; align-items:center; gap:10px; animation:dR1 19s cubic-bezier(.7,0,.2,1) infinite;">
+                  <span style="width:20px;height:20px;flex:none;border-radius:50%;background:#4A3BFF;display:flex;align-items:center;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span style="flex:1;font-size:14px;font-weight:600;">Выявление потребностей</span>
+                  <span style="font-size:12px;font-weight:700;color:#3a2cf0;">проявлен</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; animation:dR2 19s cubic-bezier(.7,0,.2,1) infinite;">
+                  <span style="width:20px;height:20px;flex:none;border-radius:50%;background:#FFB8E2;display:flex;align-items:center;justify-content:center;"><i style="width:7px;height:7px;border-radius:50%;background:#c9407f;display:block;"></i></span>
+                  <span style="flex:1;font-size:14px;font-weight:600;">Отработка возражений</span>
+                  <span style="font-size:12px;font-weight:700;color:#c9407f;">частично</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; animation:dR3 19s cubic-bezier(.7,0,.2,1) infinite;">
+                  <span style="width:20px;height:20px;flex:none;border-radius:50%;background:rgba(5,2,48,.1);display:flex;align-items:center;justify-content:center;"><i style="width:9px;height:2px;border-radius:2px;background:rgba(5,2,48,.45);display:block;"></i></span>
+                  <span style="flex:1;font-size:14px;font-weight:600;color:rgba(5,2,48,.6);">Работа с ценой и отстаивание интересов</span>
+                  <span style="font-size:12px;font-weight:700;color:rgba(5,2,48,.4);">не проявлен</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; animation:dR4 19s cubic-bezier(.7,0,.2,1) infinite;">
+                  <span style="width:20px;height:20px;flex:none;border-radius:50%;background:#4A3BFF;display:flex;align-items:center;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span style="flex:1;font-size:14px;font-weight:600;">Завершение сделки</span>
+                  <span style="font-size:12px;font-weight:700;color:#3a2cf0;">проявлен</span>
+                </div>
+              </div>
+
+              <div style="margin-top:16px; background:rgba(74,59,255,.06); border:1px solid rgba(74,59,255,.16); border-radius:14px; padding:13px 15px; animation:dStrong 19s cubic-bezier(.7,0,.2,1) infinite;">
+                <div style="font-weight:700; font-size:13px; color:#3a2cf0;">Сильные стороны</div>
+                <div style="margin-top:5px; font-size:13.5px; font-weight:500; color:rgba(5,2,48,.72); line-height:1.5;">Уверенно выявили потребности и удержали инициативу в начале диалога.</div>
+              </div>
+
+              <div style="margin-top:12px; background:rgba(255,184,226,.16); border:1px solid rgba(255,184,226,.6); border-radius:14px; padding:13px 15px; animation:dGrow 19s cubic-bezier(.7,0,.2,1) infinite;">
+                <div style="font-weight:700; font-size:13px; color:#c9407f;">Зоны роста</div>
+                <div style="margin-top:5px; font-size:13.5px; font-weight:500; color:rgba(5,2,48,.72); line-height:1.5;">Уступили по цене без попытки обосновать ценность - проработайте аргументацию стоимости.</div>
+              </div>
+
+              <div style="margin-top:12px; display:flex; align-items:center; gap:10px; background:#f6f5ff; border-radius:14px; padding:13px 15px; animation:dRec 19s cubic-bezier(.7,0,.2,1) infinite;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#4A3BFF" style="flex:none;"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
+                <span style="font-size:13.5px; font-weight:600; color:#050230;">Рекомендации: <a href="https://emplyflow.ru/hub/" target="_blank" rel="noopener" style="font-weight:700;">ещё тренажёры по этому навыку - в Библиотеке →</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BENTO -->
+    <div style="width:min(960px,100%); margin:clamp(32px,4.5vw,56px) auto 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:clamp(16px,2vw,22px); text-align:left;">
+
+      <div class="bento" style="background:#ffffff; border:1px solid rgba(5,2,48,.06); border-radius:22px; box-shadow:0 20px 44px -30px rgba(5,2,48,.4); overflow:hidden; transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s;">
+        <div style="height:172px; background:linear-gradient(140deg,#efe9ff,#f7e9fb); display:flex; align-items:center; justify-content:center; padding:22px;">
+          <div style="width:100%; background:#fff; border-radius:14px; box-shadow:0 14px 30px -16px rgba(5,2,48,.4); padding:14px 16px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:.08em; color:rgba(5,2,48,.45);">НАВЫК</div>
+            <div style="font-size:14px; font-weight:800; margin-top:2px;">Ведение переговоров</div>
+            <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+              <span style="background:rgba(74,59,255,.1);color:#3a2cf0;font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;">Потребности</span>
+              <span style="background:rgba(74,59,255,.1);color:#3a2cf0;font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;">Возражения</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:18px 20px 22px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <span style="font-size:17px; font-weight:800; letter-spacing:-0.01em;">Кейсы под должность</span>
+            <span style="width:32px;height:32px;flex:none;border-radius:50%;background:#f0eef9;display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+          <p style="margin:8px 0 0; font-size:14px; font-weight:500; line-height:1.5; color:rgba(5,2,48,.6);">ИИ создаёт задания под реальные ситуации и раздаёт каждому свой набор.</p>
+        </div>
+      </div>
+
+      <div class="bento" style="background:#ffffff; border:1px solid rgba(5,2,48,.06); border-radius:22px; box-shadow:0 20px 44px -30px rgba(5,2,48,.4); overflow:hidden; transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s;">
+        <div style="height:172px; background:linear-gradient(140deg,#e4fbf1,#eaf1ff); display:flex; flex-direction:column; justify-content:center; gap:8px; padding:24px 22px;">
+          <div style="align-self:flex-start; max-width:78%; background:#fff; color:#050230; font-size:11px; font-weight:500; padding:9px 12px; border-radius:12px 12px 12px 3px; box-shadow:0 8px 18px -12px rgba(5,2,48,.4);">Чем вы лучше провайдера?</div>
+          <div style="align-self:flex-end; max-width:78%; background:#4A3BFF; color:#fff; font-size:11px; font-weight:600; padding:9px 12px; border-radius:12px 12px 3px 12px; box-shadow:0 8px 18px -10px rgba(74,59,255,.6);">Дадим аналитику по каждому звонку.</div>
+        </div>
+        <div style="padding:18px 20px 22px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <span style="font-size:17px; font-weight:800; letter-spacing:-0.01em;">Живой диалог с оценкой</span>
+            <span style="width:32px;height:32px;flex:none;border-radius:50%;background:#f0eef9;display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+          <p style="margin:8px 0 0; font-size:14px; font-weight:500; line-height:1.5; color:rgba(5,2,48,.6);">Сотрудник отвечает текстом или голосом, ИИ играет роль и оценивает по индикаторам.</p>
+        </div>
+      </div>
+
+      <div class="bento" style="background:#ffffff; border:1px solid rgba(5,2,48,.06); border-radius:22px; box-shadow:0 20px 44px -30px rgba(5,2,48,.4); overflow:hidden; transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s;">
+        <div style="height:172px; background:linear-gradient(140deg,#fce9f3,#eee9ff); display:flex; align-items:center; justify-content:center; padding:22px;">
+          <div style="width:100%; background:#fff; border-radius:14px; box-shadow:0 14px 30px -16px rgba(5,2,48,.4); padding:14px 16px;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-size:12px; font-weight:800;">Ваш результат</span>
+              <span style="font-size:11px; font-weight:700; color:#4A3BFF;">6 из 8</span>
+            </div>
+            <div style="margin-top:9px; height:7px; border-radius:999px; background:rgba(5,2,48,.08); overflow:hidden;"><div style="height:100%; width:75%; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff);"></div></div>
+            <div style="display:flex; align-items:center; gap:6px; margin-top:11px;">
+              <span style="width:15px;height:15px;border-radius:50%;background:#4A3BFF;display:flex;align-items:center;justify-content:center;flex:none;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span style="font-size:10.5px; font-weight:600; color:rgba(5,2,48,.6);">Сильные стороны и зоны роста</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:18px 20px 22px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <span style="font-size:17px; font-weight:800; letter-spacing:-0.01em;">Индивидуальный отчёт</span>
+            <span style="width:32px;height:32px;flex:none;border-radius:50%;background:#f0eef9;display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+          <p style="margin:8px 0 0; font-size:14px; font-weight:500; line-height:1.5; color:rgba(5,2,48,.6);">Балл по навыку, сильные стороны, зоны роста и что делать иначе.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- fork line + buttons -->
+    <div style="width:min(720px,100%); margin:clamp(28px,3.5vw,44px) auto 0; text-align:center;">
+      <p style="margin:0; font-size:clamp(15px,1.6vw,17px); font-weight:500; line-height:1.55; color:rgba(5,2,48,.7); text-wrap:pretty;">Материалы для оценки - описание навыка, индикаторы и кейсы - можно скачать в Библиотеке бесплатно. А чтобы превратить их в интерактивный тренажёр с живым диалогом и автоматической оценкой, оставьте заявку - соберём под ваши должности.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:20px;">
+        <a href="https://emplyflow.ru/hub/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#ffffff; color:#4A3BFF; border:1.5px solid rgba(74,59,255,.3); font-weight:700; font-size:15px; padding:13px 22px; border-radius:999px; transition:filter .15s, transform .12s;">Скачать материалы в Библиотеке →</a>
+        <a href="#contacts" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#4A3BFF; color:#ffffff; font-weight:700; font-size:15px; padding:13px 22px; border-radius:999px; box-shadow:0 12px 26px -10px rgba(74,59,255,.7); transition:filter .15s, transform .12s;">Запросить тренажёр →</a>
+      </div>
+    </div>
+
+    <!-- Library plashka -->
+    <div style="width:min(960px,100%); margin:clamp(30px,4vw,48px) auto 0; display:flex; flex-wrap:wrap; align-items:center; gap:clamp(16px,2.5vw,28px); background:#ffffff; border:1px solid rgba(255,184,226,.7); box-shadow:0 0 46px -14px rgba(255,184,226,.9), 0 20px 48px -26px rgba(5,2,48,.4); border-radius:20px; padding:clamp(20px,2.6vw,30px); text-align:left;">
+      <div style="flex:1 1 360px;">
+        <div style="font-size:clamp(18px,2vw,22px); font-weight:800; letter-spacing:-0.01em; line-height:1.15;">Загляните в Библиотеку - это бесплатно</div>
+        <p style="margin:9px 0 0; font-size:14.5px; font-weight:500; line-height:1.55; color:rgba(5,2,48,.66); text-wrap:pretty;">Наш ИИ уже собрал готовые материалы оценки навыков: описание навыка, индикаторы и практические кейсы под реальные рабочие ситуации. Скачивайте в свободном доступе и используйте как основу - переговоры и продажи, принятие управленческих решений, работа с ИИ и другие навыки.</p>
+      </div>
+      <a href="https://emplyflow.ru/hub/" target="_blank" rel="noopener" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#4A3BFF; color:#ffffff; font-weight:700; font-size:15px; padding:14px 24px; border-radius:999px; box-shadow:0 12px 26px -10px rgba(74,59,255,.7); transition:filter .15s, transform .12s;">Открыть Библиотеку →</a>
+    </div>
+
+  </div>
+</section>
+
+
   <!-- ===================== ABOUT / STATS ===================== -->
   <section id="aboutus" style="padding:clamp(48px,6vw,90px) clamp(16px,4vw,40px) clamp(56px,8vw,110px);">
     <div style="max-width:1360px;margin:0 auto;">
@@ -1703,7 +2012,7 @@ html, body {
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900}}">
 class Component extends DCLogic {
-  state = { compact: false, menuOpen: false };
+  state = { menuOpen: false, compact: false, aiTyped: '', aiTimer: '02:00' };
 
   componentDidMount() {
     this._mq = window.matchMedia('(max-width: 900px)');
@@ -1711,11 +2020,43 @@ class Component extends DCLogic {
     this._upd();
     this._mq.addEventListener('change', this._upd);
     this._initScrollReveals();
+    this._initAiAssistantLoop();
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
     if (this._revealObs) this._revealObs.forEach((obs) => obs.disconnect());
     if (this._revealTimers) this._revealTimers.forEach((id) => clearTimeout(id));
+    if (this._aiRaf) cancelAnimationFrame(this._aiRaf);
+  }
+
+  _initAiAssistantLoop() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.setState({
+        aiTyped: 'У нас гибкая настройка под ваши сделки и аналитика по каждому звонку.',
+        aiTimer: '01:56',
+      });
+      return;
+    }
+    this._aiStart = performance.now();
+    this._aiPaused = false;
+    this._aiMsg = 'У нас гибкая настройка под ваши сделки и аналитика по каждому звонку.';
+    const loop = () => {
+      this._aiRaf = requestAnimationFrame(loop);
+      if (this._aiPaused) return;
+      const t = ((performance.now() - this._aiStart) / 1000) % 19;
+      const ts = 9.2, te = 10.6;
+      let n;
+      if (t < ts) n = 0;
+      else if (t > te) n = this._aiMsg.length;
+      else n = Math.round(this._aiMsg.length * (t - ts) / (te - ts));
+      const aiTyped = t >= 7.3 && t <= 11.5 ? this._aiMsg.slice(0, n) : '';
+      let secs = 120;
+      if (t >= 7.3 && t <= 11.5) secs = 120 - Math.floor(t - 7.3);
+      else if (t > 11.5) secs = 116;
+      const aiTimer = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
+      if (aiTyped !== this.state.aiTyped || aiTimer !== this.state.aiTimer) this.setState({ aiTyped, aiTimer });
+    };
+    this._aiRaf = requestAnimationFrame(loop);
   }
 
   _initScrollReveals() {
@@ -1782,8 +2123,8 @@ class Component extends DCLogic {
   renderVals() {
     const closeMenu = () => this.setState({ menuOpen: false });
     const navDefs = [
-      ['Модули системы', '#platform'], ['О нас', '#aboutus'], ['Интеграции', '#stages'],
-      ['Библиотека', 'https://emplyflow.ru/hub/'], ['Проекты', '#cases'], ['Контакты', '#contacts'],
+      ['Модули системы', '#platform'], ['ИИ-ассистент', '#ai-assistant'], ['О нас', '#aboutus'],
+      ['Интеграции', '#stages'], ['Библиотека', 'https://emplyflow.ru/hub/'], ['Проекты', '#cases'], ['Контакты', '#contacts'],
     ];
     const navLinks = navDefs.map(([label, href]) => ({ label, href, onClick: closeMenu }));
 
@@ -1825,6 +2166,20 @@ class Component extends DCLogic {
       showMenu: this.state.compact && this.state.menuOpen,
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
       navLinks, logos, impl, cases,
+      aiTyped: this.state.aiTyped,
+      aiTimer: this.state.aiTimer,
+      aiOnEnter: () => {
+        if (!this._aiPaused) {
+          this._aiPaused = true;
+          this._aiPauseAt = performance.now();
+        }
+      },
+      aiOnLeave: () => {
+        if (this._aiPaused) {
+          this._aiStart += performance.now() - this._aiPauseAt;
+          this._aiPaused = false;
+        }
+      },
     };
   }
 }
