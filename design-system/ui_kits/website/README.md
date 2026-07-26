@@ -35,3 +35,9 @@ A hi-fidelity recreation of the [emplyflow.ru](https://emplyflow.ru) marketing s
 ## How to use
 
 Open `index.html` directly — it works without a server. Edit `app.jsx` to change component implementations; reload to see updates.
+
+## Module cards
+
+Production pattern for the `#platform` section lives in `src/index.template.html` (`.ef-mods`).
+
+Source prototype: `module-cards.source.html` — flagship Performance Review card + bento grid of six modules with product UI mocks.

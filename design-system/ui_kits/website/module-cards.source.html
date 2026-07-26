@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/emplyflow-design-system-26ae1deb-71c1-4371-ae95-60dcd01b7c25/colors_and_type.css">
+<link rel="stylesheet" href="_ds/emplyflow-design-system-26ae1deb-71c1-4371-ae95-60dcd01b7c25/styles.css">
+<script src="_ds/emplyflow-design-system-26ae1deb-71c1-4371-ae95-60dcd01b7c25/_ds_bundle.js"></script>
+<style>
+  @keyframes efFeed{0%,100%{transform:translateX(0);opacity:.78}45%{transform:translateX(5px);opacity:1}}
+  @keyframes efFlow{to{stroke-dashoffset:-44}}
+  @keyframes efPulse{0%{transform:scale(.9);opacity:.55}70%{transform:scale(1.7);opacity:0}100%{opacity:0}}
+  @keyframes efDot{0%{offset-distance:0%}100%{offset-distance:100%}}
+  .efwin{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .efcard:hover .efwin{transform:scale(1.045) translateY(-6px)}
+  .efcard:hover .scoreB{transform:scale(1.07)}
+  .scoreB{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+  .efarw{transition:transform .2s ease}
+  .efcard:hover .efarw{transform:translateX(3px) translateY(-3px)}
+  .gbar{transition:width .6s cubic-bezier(.2,.7,.2,1)}
+  .efcard:hover .gbar1{width:66%}
+  .efcard:hover .gbar2{width:91%}
+  @media(max-width:980px){.efflag{grid-template-columns:1fr!important}.efpanel{order:-1;min-height:300px!important}.efgrid{grid-template-columns:repeat(2,1fr)!important}}
+  @media(max-width:640px){.efgrid{grid-template-columns:1fr!important}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="position:relative;overflow:hidden;background:var(--page-bg,#050230);padding:clamp(56px,6vw,92px) 24px;font-family:var(--font-sans,'Manrope',system-ui,sans-serif); --accent:{{accent}}; --page-bg:{{pageBg}}; --card-bg:{{cardBg}}; --head-fg:{{headFg}}; --head-sub:{{headSub}}; --play:{{play}}; --bloom:{{bloom}}">
+  <div style="position:absolute;inset:0;pointer-events:none;background:var(--bloom,radial-gradient(60% 55% at 14% -5%, rgba(74,59,255,.4), transparent 66%))"></div>
+
+  <div style="position:relative;max-width:1240px;margin:0 auto">
+    <div style="max-width:820px;margin-bottom:clamp(32px,4vw,48px)">
+      <span style="display:inline-flex;align-items:center;gap:9px;color:var(--accent,#4a3bff);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent,#4a3bff)"></span>Модули платформы
+      </span>
+      <h2 style="font-size:clamp(30px,4.2vw,50px);line-height:1.04;letter-spacing:-.028em;font-weight:800;margin:16px 0 14px;color:var(--head-fg,#fff);text-wrap:balance">Оценка, которой можно верить — <span style="color:var(--accent,#4a3bff)">потому что она собрана из всего сразу</span></h2>
+      <p style="font-size:clamp(16px,1.5vw,19px);line-height:1.5;color:var(--head-sub,rgba(217,214,255,.75));margin:0;max-width:640px">Цели, KPI, оценка 360 и компетенции по отдельности дают однобокую картину. EmplyFlow сводит их в один объективный результат — по сотруднику, команде и всей компании.</p>
+    </div>
+
+    <!-- ============ FLAGSHIP: Performance Review ============ -->
+    <div class="efcard efflag" style="display:grid;grid-template-columns:1fr 1.06fr;background:var(--card-bg,#fff);border-radius:28px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(5,2,48,.7);margin-bottom:24px">
+      <div style="padding:clamp(30px,3.2vw,46px)">
+        <span style="display:inline-block;font-size:12.5px;font-weight:700;color:var(--accent,#4a3bff);border:1px solid rgba(74,59,255,.25);border-radius:999px;padding:7px 14px">Флагман · Performance Review</span>
+        <h3 style="font-size:clamp(24px,2.8vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.08;margin:18px 0 14px;color:#141033">Вся результативность сотрудника — <span style="color:var(--accent,#4a3bff)">в одном балле</span></h3>
+        <p style="font-size:15.5px;line-height:1.56;color:#5b567e;margin:0 0 22px;max-width:460px">Цели, KPI, оценка 360 и компетенции сходятся в один итоговый результат Performance Review. Никаких однобоких оценок — руководитель видит полную картину и решает по повышению и премии.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px">
+          <span style="font-size:12.5px;font-weight:600;color:#3a3568;background:#f1eefe;border:1px solid #e6e1fb;border-radius:999px;padding:7px 13px">Единый профиль</span>
+          <span style="font-size:12.5px;font-weight:600;color:#3a3568;background:#f1eefe;border:1px solid #e6e1fb;border-radius:999px;padding:7px 13px">Матрица потенциала 9-box</span>
+          <span style="font-size:12.5px;font-weight:600;color:#3a3568;background:#f1eefe;border:1px solid #e6e1fb;border-radius:999px;padding:7px 13px">Калибровка оценок</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button style="border:none;border-radius:999px;padding:13px 22px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit;background:var(--accent,#4a3bff);color:#fff">Получить демодоступ</button>
+          <button style="display:inline-flex;align-items:center;gap:7px;border:1.5px solid #dcd8fb;background:#fff;border-radius:999px;padding:13px 20px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--accent,#4a3bff)">Смотреть модуль <svg class="efarw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></button>
+        </div>
+      </div>
+
+      <div class="efpanel" style="position:relative;display:flex;align-items:center;justify-content:center;padding:34px;background:radial-gradient(120% 120% at 82% 0%, #efeafe, #e4defb)">
+        <div class="efwin" style="width:100%;max-width:470px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -26px rgba(5,2,48,.55);border:1px solid #edecf6">
+          <div style="height:36px;background:#f6f6fa;border-bottom:1px solid #edecf3;display:flex;align-items:center;gap:6px;padding:0 13px">
+            <span style="width:9px;height:9px;border-radius:50%;background:#e0e0ea"></span><span style="width:9px;height:9px;border-radius:50%;background:#e0e0ea"></span><span style="width:9px;height:9px;border-radius:50%;background:#e0e0ea"></span>
+            <span style="margin-left:8px;font-size:11px;font-weight:700;color:#8681ab">Performance Review · Анна Ковалёва · Q2'26</span>
+          </div>
+          <div style="position:relative;display:grid;grid-template-columns:1fr 92px 108px;height:264px;padding:16px 16px 16px 16px;gap:0">
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:9px;z-index:2">
+              <div style="display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:#403c68;background:#f5f4fb;border:1px solid #ececf6;border-radius:10px;padding:9px 10px;animation:efFeed 4.4s ease-in-out infinite;animation-play-state:var(--play,running)"><span style="width:15px;height:15px;border-radius:5px;background:#4a3bff"></span>Цели<span style="margin-left:auto;color:#8681ab">54%</span></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:#403c68;background:#f5f4fb;border:1px solid #ececf6;border-radius:10px;padding:9px 10px;animation:efFeed 4.4s ease-in-out .3s infinite;animation-play-state:var(--play,running)"><span style="width:15px;height:15px;border-radius:5px;background:#c6e94b"></span>KPI<span style="margin-left:auto;color:#8681ab">83%</span></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:#403c68;background:#f5f4fb;border:1px solid #ececf6;border-radius:10px;padding:9px 10px;animation:efFeed 4.4s ease-in-out .6s infinite;animation-play-state:var(--play,running)"><span style="width:15px;height:15px;border-radius:5px;background:#5fce87"></span>Оценка 360<span style="margin-left:auto;color:#8681ab">68%</span></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:#403c68;background:#f5f4fb;border:1px solid #ececf6;border-radius:10px;padding:9px 10px;animation:efFeed 4.4s ease-in-out .9s infinite;animation-play-state:var(--play,running)"><span style="width:15px;height:15px;border-radius:5px;background:#ffb8e2"></span>Компетенции<span style="margin-left:auto;color:#8681ab">A</span></div>
+            </div>
+            <svg viewBox="0 0 92 232" preserveAspectRatio="none" style="width:92px;height:232px;align-self:center">
+              <g fill="none" stroke="#c9c3f2" stroke-width="1.6" stroke-dasharray="5 6" style="animation:efFlow 1.6s linear infinite;animation-play-state:var(--play,running)">
+                <path d="M0,28 C50,28 46,116 92,116"></path>
+                <path d="M0,88 C50,88 50,116 92,116"></path>
+                <path d="M0,146 C50,146 50,116 92,116"></path>
+                <path d="M0,204 C50,204 48,116 92,116"></path>
+              </g>
+            </svg>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;z-index:2">
+              <div class="scoreB" style="width:80px;height:80px;border-radius:22px;background:linear-gradient(160deg,#141414,#242424);color:#c6e94b;font-size:44px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -12px rgba(0,0,0,.6)">B</div>
+              <small style="font-size:11px;color:#6c6790;font-weight:700;text-align:center;line-height:1.2">Прекрасный<br>результат</small>
+              <span style="font-size:10.5px;color:#2fa565;font-weight:800;background:#e7f7ee;border-radius:999px;padding:3px 9px">Премия 60%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BENTO GRID ============ -->
+    <div class="efgrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+
+      <!-- 1 · Оценка компетенций -->
+      <div class="efcard" style="display:flex;flex-direction:column;background:var(--card-bg,#fff);border-radius:24px;overflow:hidden;box-shadow:0 26px 54px -34px rgba(5,2,48,.6)">
+        <div style="height:180px;padding:20px 22px 0;overflow:hidden;background:radial-gradient(120% 120% at 72% 0%, #eef2e0, #e6efd0)">
+          <div class="efwin" style="background:#fff;border-radius:13px 13px 0 0;overflow:hidden;box-shadow:0 18px 34px -20px rgba(5,2,48,.4);border:1px solid #edecf6;border-bottom:none">
+            <div style="height:28px;background:#f6f6fa;border-bottom:1px solid #edecf3;display:flex;align-items:center;gap:5px;padding:0 11px"><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="margin-left:6px;font-size:10px;font-weight:700;color:#8681ab">Оценка 360 · итоги</span></div>
+            <div style="display:flex;gap:12px;padding:13px 13px 16px">
+              <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+                <div><div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;color:#403c68;margin-bottom:4px"><span>Лидерство</span><span>4.6</span></div><div style="height:6px;border-radius:4px;background:#edecf4"><div style="width:92%;height:100%;border-radius:4px;background:#5fce87"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;color:#403c68;margin-bottom:4px"><span>Коммуникации</span><span>4.2</span></div><div style="height:6px;border-radius:4px;background:#edecf4"><div style="width:84%;height:100%;border-radius:4px;background:#4a3bff"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;color:#403c68;margin-bottom:4px"><span>Аналитика</span><span>3.9</span></div><div style="height:6px;border-radius:4px;background:#edecf4"><div style="width:78%;height:100%;border-radius:4px;background:#c6a4ff"></div></div></div>
+              </div>
+              <div style="position:relative;width:58px;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+                <span style="position:absolute;top:8px;width:44px;height:44px;border-radius:14px;border:2px solid #ffb8e2;animation:efPulse 2.6s ease-out infinite;animation-play-state:var(--play,running)"></span>
+                <div style="width:44px;height:44px;border-radius:14px;background:#141033;color:#ffb8e2;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center">A</div>
+                <small style="font-size:8.5px;font-weight:700;color:#8681ab;margin-top:2px">итог</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:19px 22px 22px;display:flex;flex-direction:column;flex:1">
+          <span style="display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--accent,#4a3bff);text-transform:uppercase;letter-spacing:.04em"><span style="width:15px;height:15px;border-radius:5px;background:var(--accent,#4a3bff);opacity:.85"></span>Оценка компетенций</span>
+          <div style="font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.13;margin:11px 0 7px;color:#141033">ИИ проводит кейс-интервью</div>
+          <p style="font-size:14px;line-height:1.5;color:#5b567e;margin:0">360 и практические кейсы под должность — с готовым отчётом по сильным сторонам и зонам роста.</p>
+          <span style="margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--accent,#4a3bff);font-weight:700;font-size:14px">Смотреть <svg class="efarw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+        </div>
+      </div>
+
+      <!-- 2 · Цели и KPI -->
+      <div class="efcard" style="display:flex;flex-direction:column;background:var(--card-bg,#fff);border-radius:24px;overflow:hidden;box-shadow:0 26px 54px -34px rgba(5,2,48,.6)">
+        <div style="height:180px;padding:20px 22px 0;overflow:hidden;background:radial-gradient(120% 120% at 72% 0%, #efeafe, #e6e0fb)">
+          <div class="efwin" style="background:#fff;border-radius:13px 13px 0 0;overflow:hidden;box-shadow:0 18px 34px -20px rgba(5,2,48,.4);border:1px solid #edecf6;border-bottom:none">
+            <div style="height:28px;background:#f6f6fa;border-bottom:1px solid #edecf3;display:flex;align-items:center;gap:5px;padding:0 11px"><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="margin-left:6px;font-size:10px;font-weight:700;color:#8681ab">Цели команды</span></div>
+            <div style="padding:11px 13px 15px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px">
+                <div style="display:flex;gap:4px;background:#f1eefe;border-radius:8px;padding:3px"><span style="font-size:10px;font-weight:700;color:#fff;background:var(--accent,#4a3bff);border-radius:6px;padding:3px 9px">Цели</span><span style="font-size:10px;font-weight:700;color:#8681ab;padding:3px 9px">KPI</span></div>
+                <div style="display:flex;gap:3px;font-size:10px;font-weight:700"><span style="color:#8681ab">Q1'26</span><span style="color:#141033;border-bottom:2px solid var(--accent,#4a3bff);padding-bottom:1px">Q2'26</span></div>
+              </div>
+              <div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;color:#403c68;margin-bottom:5px"><span>Запустить онбординг v2</span><span>63%</span></div><div style="height:8px;border-radius:5px;background:#edecf4"><div class="gbar gbar1" style="width:63%;height:100%;border-radius:5px;background:#5fce87"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;color:#403c68;margin-bottom:5px"><span>NPS клиентов ≥ 60</span><span>88%</span></div><div style="height:8px;border-radius:5px;background:#edecf4"><div class="gbar gbar2" style="width:88%;height:100%;border-radius:5px;background:#c6e94b"></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:19px 22px 22px;display:flex;flex-direction:column;flex:1">
+          <span style="display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--accent,#4a3bff);text-transform:uppercase;letter-spacing:.04em"><span style="width:15px;height:15px;border-radius:5px;background:var(--accent,#4a3bff);opacity:.85"></span>Цели и KPI</span>
+          <div style="font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.13;margin:11px 0 7px;color:#141033">Стратегия — до задачи недели</div>
+          <p style="font-size:14px;line-height:1.5;color:#5b567e;margin:0">OKR и KPI связаны со структурой компании. ИИ декомпозирует цели и планирует неделю.</p>
+          <span style="margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--accent,#4a3bff);font-weight:700;font-size:14px">Смотреть <svg class="efarw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+        </div>
+      </div>
+
+      <!-- 3 · Матрица потенциала 9-box -->
+      <div class="efcard" style="display:flex;flex-direction:column;background:var(--card-bg,#fff);border-radius:24px;overflow:hidden;box-shadow:0 26px 54px -34px rgba(5,2,48,.6)">
+        <div style="height:180px;padding:20px 22px 0;overflow:hidden;background:radial-gradient(120% 120% at 72% 0%, #fdeaf3, #f8dcec)">
+          <div class="efwin" style="background:#fff;border-radius:13px 13px 0 0;overflow:hidden;box-shadow:0 18px 34px -20px rgba(5,2,48,.4);border:1px solid #edecf6;border-bottom:none">
+            <div style="height:28px;background:#f6f6fa;border-bottom:1px solid #edecf3;display:flex;align-items:center;gap:5px;padding:0 11px"><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="margin-left:6px;font-size:10px;font-weight:700;color:#8681ab">9-Box по компании</span></div>
+            <div style="padding:12px 13px 13px">
+              <div style="display:flex;gap:6px">
+                <span style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:8.5px;font-weight:700;color:#8681ab;letter-spacing:.03em">Компетенции →</span>
+                <div style="flex:1">
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+                    <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9"></span><span style="aspect-ratio:1;border-radius:6px;background:#d6f0dd"></span>
+                    <span style="position:relative;aspect-ratio:1;border-radius:6px;background:#c6e94b;display:flex;align-items:flex-end;padding:4px"><span style="font-size:7.5px;font-weight:800;color:#3e5410;line-height:1">Звёзды</span></span>
+                    <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9"></span><span style="aspect-ratio:1;border-radius:6px;background:#eef0f7"></span><span style="aspect-ratio:1;border-radius:6px;background:#d6f0dd"></span>
+                    <span style="position:relative;aspect-ratio:1;border-radius:6px;background:#f6c9c9;display:flex;align-items:flex-end;padding:4px"><span style="font-size:7px;font-weight:800;color:#8a2b2b;line-height:1">Зона риска</span></span>
+                    <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9"></span><span style="aspect-ratio:1;border-radius:6px;background:#eef0f7"></span>
+                  </div>
+                  <div style="text-align:right;font-size:8.5px;font-weight:700;color:#8681ab;margin-top:4px">Цели / KPI →</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:6px;margin-top:8px;font-size:9px;font-weight:700"><span style="color:#3e7d4e">● Звёзды 8</span><span style="color:#b23b3b">● Риск 3</span><span style="color:#8681ab;margin-left:auto">Всего 42</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:19px 22px 22px;display:flex;flex-direction:column;flex:1">
+          <span style="display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--accent,#4a3bff);text-transform:uppercase;letter-spacing:.04em"><span style="width:15px;height:15px;border-radius:5px;background:var(--accent,#4a3bff);opacity:.85"></span>Матрица потенциала</span>
+          <div style="font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.13;margin:11px 0 7px;color:#141033">9-box строится автоматически</div>
+          <p style="font-size:14px;line-height:1.5;color:#5b567e;margin:0">Звёзды, ключевые игроки и зоны риска видно сразу. Кадровый резерв формируется сам.</p>
+          <span style="margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--accent,#4a3bff);font-weight:700;font-size:14px">Смотреть <svg class="efarw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+        </div>
+      </div>
+
+      <!-- 4 · Карьера и развитие · ИПР -->
+      <div class="efcard" style="display:flex;flex-direction:column;background:var(--card-bg,#fff);border-radius:24px;overflow:hidden;box-shadow:0 26px 54px -34px rgba(5,2,48,.6)">
+        <div style="height:180px;padding:20px 22px 0;overflow:hidden;background:radial-gradient(120% 120% at 72% 0%, #e6f7f1, #d5efe6)">
+          <div class="efwin" style="background:#fff;border-radius:13px 13px 0 0;overflow:hidden;box-shadow:0 18px 34px -20px rgba(5,2,48,.4);border:1px solid #edecf6;border-bottom:none">
+            <div style="height:28px;background:#f6f6fa;border-bottom:1px solid #edecf3;display:flex;align-items:center;gap:5px;padding:0 11px"><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="margin-left:6px;font-size:10px;font-weight:700;color:#8681ab">Карьерный трек · ИПР</span></div>
+            <div style="padding:14px 13px 15px">
+              <div style="display:flex;align-items:center;margin-bottom:6px">
+                <span style="width:13px;height:13px;border-radius:50%;background:#5fce87;flex:0 0 auto;z-index:2"></span><span style="height:3px;flex:1;background:#a9e2bd"></span>
+                <span style="width:13px;height:13px;border-radius:50%;background:#5fce87;flex:0 0 auto;z-index:2"></span>
+                <span style="height:3px;flex:1;background:linear-gradient(90deg,#a9e2bd,#e6e4f2)"></span>
+                <span style="position:relative;width:15px;height:15px;border-radius:50%;background:var(--accent,#4a3bff);flex:0 0 auto;z-index:2"><span style="position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--accent,#4a3bff);animation:efPulse 2.4s ease-out infinite;animation-play-state:var(--play,running)"></span></span>
+                <span style="height:3px;flex:1;background:#e6e4f2"></span>
+                <span style="width:13px;height:13px;border-radius:50%;background:#e6e4f2;flex:0 0 auto;z-index:2"></span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;color:#8681ab;margin-bottom:11px"><span>Junior</span><span>Middle</span><span style="color:var(--accent,#4a3bff)">сейчас</span><span>Senior</span></div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68"><span style="width:14px;height:14px;border-radius:4px;background:#5fce87;display:flex;align-items:center;justify-content:center"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg></span>Курс «Управление командой»</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68"><span style="width:14px;height:14px;border-radius:4px;border:2px solid var(--accent,#4a3bff)"></span>Менторинг junior-специалиста</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:19px 22px 22px;display:flex;flex-direction:column;flex:1">
+          <span style="display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--accent,#4a3bff);text-transform:uppercase;letter-spacing:.04em"><span style="width:15px;height:15px;border-radius:5px;background:var(--accent,#4a3bff);opacity:.85"></span>Карьера и развитие</span>
+          <div style="font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.13;margin:11px 0 7px;color:#141033">ИПР собирается сам</div>
+          <p style="font-size:14px;line-height:1.5;color:#5b567e;margin:0">ИИ строит план развития из материалов и ведёт сотрудника по карьерному треку.</p>
+          <span style="margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--accent,#4a3bff);font-weight:700;font-size:14px">Смотреть <svg class="efarw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+        </div>
+      </div>
+
+      <!-- 5 · Проекты и задачи -->
+      <div class="efcard" style="display:flex;flex-direction:column;background:var(--card-bg,#fff);border-radius:24px;overflow:hidden;box-shadow:0 26px 54px -34px rgba(5,2,48,.6)">
+        <div style="height:180px;padding:20px 22px 0;overflow:hidden;background:radial-gradient(120% 120% at 72% 0%, #eaf0ff, #dce6fb)">
+          <div class="efwin" style="background:#fff;border-radius:13px 13px 0 0;overflow:hidden;box-shadow:0 18px 34px -20px rgba(5,2,48,.4);border:1px solid #edecf6;border-bottom:none">
+            <div style="height:28px;background:#f6f6fa;border-bottom:1px solid #edecf3;display:flex;align-items:center;gap:5px;padding:0 11px"><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="margin-left:6px;font-size:10px;font-weight:700;color:#8681ab">Проект «Онбординг v2»</span></div>
+            <div style="padding:13px 13px 15px">
+              <div style="display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#b7b3d0;margin-bottom:8px;padding-left:78px"><span>июн</span><span>июл</span><span>авг</span></div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><span style="width:72px;font-size:9.5px;font-weight:700;color:#403c68;flex:0 0 auto;text-align:right">Дизайн-система</span><span style="flex:1;height:9px;border-radius:5px;background:#eef0f7;position:relative"><span style="position:absolute;left:2%;width:52%;height:100%;border-radius:5px;background:var(--accent,#4a3bff)"></span></span></div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><span style="width:72px;font-size:9.5px;font-weight:700;color:#403c68;flex:0 0 auto;text-align:right">Интеграция 1С</span><span style="flex:1;height:9px;border-radius:5px;background:#eef0f7;position:relative"><span style="position:absolute;left:26%;width:48%;height:100%;border-radius:5px;background:#5fce87"></span></span></div>
+              <div style="display:flex;align-items:center;gap:6px"><span style="width:72px;font-size:9.5px;font-weight:700;color:#403c68;flex:0 0 auto;text-align:right">QA релиза</span><span style="flex:1;height:9px;border-radius:5px;background:#eef0f7;position:relative"><span style="position:absolute;left:52%;width:40%;height:100%;border-radius:5px;background:#c6a4ff"></span><span style="position:absolute;right:-2px;top:-6px;display:flex"><span style="width:20px;height:20px;border-radius:50%;background:conic-gradient(from 120deg,#dff29a,#c6e94b);border:2px solid #fff"></span><span style="width:20px;height:20px;border-radius:50%;background:conic-gradient(from 40deg,#ffc9e6,#ffb8e2);border:2px solid #fff;margin-left:-8px"></span></span></span></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:19px 22px 22px;display:flex;flex-direction:column;flex:1">
+          <span style="display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--accent,#4a3bff);text-transform:uppercase;letter-spacing:.04em"><span style="width:15px;height:15px;border-radius:5px;background:var(--accent,#4a3bff);opacity:.85"></span>Проекты и задачи</span>
+          <div style="font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.13;margin:11px 0 7px;color:#141033">Команда — из своих же людей</div>
+          <p style="font-size:14px;line-height:1.5;color:#5b567e;margin:0">Публикуйте заявку, собирайте отклики и ведите проект на диаграмме Ганта.</p>
+          <span style="margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--accent,#4a3bff);font-weight:700;font-size:14px">Смотреть <svg class="efarw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+        </div>
+      </div>
+
+      <!-- 6 · Нематериальная мотивация -->
+      <div class="efcard" style="display:flex;flex-direction:column;background:var(--card-bg,#fff);border-radius:24px;overflow:hidden;box-shadow:0 26px 54px -34px rgba(5,2,48,.6)">
+        <div style="height:180px;padding:20px 22px 0;overflow:hidden;background:radial-gradient(120% 120% at 72% 0%, #fdeaf5, #fbd9ec)">
+          <div class="efwin" style="background:#fff;border-radius:13px 13px 0 0;overflow:hidden;box-shadow:0 18px 34px -20px rgba(5,2,48,.4);border:1px solid #edecf6;border-bottom:none">
+            <div style="height:28px;background:#f6f6fa;border-bottom:1px solid #edecf3;display:flex;align-items:center;gap:5px;padding:0 11px"><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="width:7px;height:7px;border-radius:50%;background:#e0e0ea"></span><span style="margin-left:6px;font-size:10px;font-weight:700;color:#8681ab">Лента признания</span></div>
+            <div style="padding:12px 13px 14px">
+              <div style="display:flex;align-items:center;gap:8px;background:#fdeef7;border:1px solid #fbdcee;border-radius:10px;padding:8px 10px;margin-bottom:8px">
+                <span style="width:22px;height:22px;border-radius:50%;background:conic-gradient(from 40deg,#ffc9e6,#ffb8e2);flex:0 0 auto"></span>
+                <div style="flex:1;min-width:0"><div style="font-size:10px;font-weight:700;color:#3a3568;line-height:1.2">Спасибо за помощь с релизом</div><div style="font-size:8.5px;color:#b06699">Игорь Д. → Анне К.</div></div>
+                <span style="font-size:11px;font-weight:800;color:#fff;background:#e35aa4;border-radius:999px;padding:3px 9px;flex:0 0 auto">+50</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;background:#fdeef7;border:1px solid #fbdcee;border-radius:10px;padding:8px 10px;margin-bottom:9px">
+                <span style="width:22px;height:22px;border-radius:50%;background:conic-gradient(from 120deg,#c9d4ff,#a9b8ff);flex:0 0 auto"></span>
+                <div style="flex:1;min-width:0"><div style="font-size:10px;font-weight:700;color:#3a3568;line-height:1.2">Выручила на демо клиенту</div><div style="font-size:8.5px;color:#b06699">Мария С. → Дмитрию О.</div></div>
+                <span style="font-size:11px;font-weight:800;color:#fff;background:#e35aa4;border-radius:999px;padding:3px 9px;flex:0 0 auto">+30</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:9px;font-weight:700;color:#8681ab"><span>Признаний за месяц</span><span style="color:#e35aa4;font-size:11px">128</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:19px 22px 22px;display:flex;flex-direction:column;flex:1">
+          <span style="display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--accent,#4a3bff);text-transform:uppercase;letter-spacing:.04em"><span style="width:15px;height:15px;border-radius:5px;background:var(--accent,#4a3bff);opacity:.85"></span>Нематериальная мотивация</span>
+          <div style="font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.13;margin:11px 0 7px;color:#141033">Спасибо, которое считается</div>
+          <p style="font-size:14px;line-height:1.5;color:#5b567e;margin:0">Благодарности, баллы и признание достижений — культура, которую видно в цифрах.</p>
+          <span style="margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--accent,#4a3bff);font-weight:700;font-size:14px">Смотреть <svg class="efarw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;theme&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;dark&quot;, &quot;light&quot;], &quot;default&quot;: &quot;dark&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Тема&quot;},
+  &quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#4a3bff&quot;, &quot;options&quot;: [&quot;#4a3bff&quot;, &quot;#6a5cff&quot;, &quot;#050230&quot;, &quot;#ffb8e2&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Тема&quot;},
+  &quot;reduceMotion&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Движение&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme || 'dark';
+    const light = theme === 'light';
+    return {
+      accent: this.props.accent || '#4a3bff',
+      pageBg: light ? '#f4f3fb' : '#050230',
+      cardBg: '#ffffff',
+      headFg: light ? '#141033' : '#ffffff',
+      headSub: light ? '#5b567e' : 'rgba(217,214,255,0.75)',
+      play: this.props.reduceMotion ? 'paused' : 'running',
+      bloom: light ? 'transparent' : 'radial-gradient(60% 55% at 14% -5%, rgba(74,59,255,0.4), transparent 66%)'
+    };
+  }
+}
+</script>
+</body>
+</html>

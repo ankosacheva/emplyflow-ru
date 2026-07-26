@@ -931,49 +931,308 @@ html, body {
     </div>
   </section>
 
-  <!-- ===================== MODULES ===================== -->
-  <section id="platform" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px);">
-    <div style="max-width:1360px;margin:0 auto;">
-      <h2 style="font-weight:800;font-size:clamp(30px,5.2vw,64px);line-height:1.06;letter-spacing:-0.03em;color:#fff;text-align:center;margin:0 auto clamp(36px,5vw,60px);max-width:1080px;"><span style="color:#ffb8e2;">Сократите время</span> на рутинные задачи и сосредоточьтесь на стратегии</h2>
+  <!-- ===================== MODULES (product cards) ===================== -->
+  <style>
+  @keyframes efModFeed{0%,100%{transform:translateX(0);opacity:.72}45%{transform:translateX(4px);opacity:1}}
+  @keyframes efModFlow{to{stroke-dashoffset:-36}}
+  @keyframes efModPulse{0%{transform:scale(.92);opacity:.55}70%{transform:scale(1.55);opacity:0}100%{opacity:0}}
+  @keyframes efModBar{0%,100%{width:var(--w0,40%)}55%{width:var(--w1,86%)}}
+  .ef-mods{position:relative;overflow:hidden;padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px);}
+  .ef-mods__bloom{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 12% -8%,rgba(74,59,255,.38),transparent 66%),radial-gradient(40% 40% at 92% 18%,rgba(255,184,226,.18),transparent 70%);}
+  .ef-mods__inner{position:relative;z-index:1;max-width:1360px;margin:0 auto;}
+  .ef-mods__head{max-width:860px;margin:0 0 clamp(28px,4vw,48px);}
+  .ef-mods__eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 14px;color:var(--c-fog);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+  .ef-mods__eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c-blue-ribbon);box-shadow:0 0 0 4px rgba(74,59,255,.22);}
+  .ef-mods__title{margin:0 0 14px;font-weight:800;font-size:clamp(28px,4vw,52px);line-height:1.04;letter-spacing:-.03em;color:#fff;text-wrap:balance;}
+  .ef-mods__title span{color:var(--c-cotton-candy);}
+  .ef-mods__lead{margin:0;max-width:640px;font-size:clamp(15px,1.4vw,18px);line-height:1.5;color:rgba(217,214,255,.78);}
+  .ef-mod{display:flex;flex-direction:column;background:#fff;border-radius:clamp(22px,2.4vw,28px);overflow:hidden;border:1px solid rgba(217,214,255,.14);box-shadow:0 30px 70px -40px rgba(5,2,48,.75);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;}
+  .ef-mod:hover{transform:translateY(-6px);box-shadow:0 40px 80px -36px rgba(5,2,48,.85);}
+  .ef-mod--flag{display:grid;grid-template-columns:1fr 1.05fr;margin-bottom:22px;}
+  .ef-mod__copy{padding:clamp(28px,3vw,44px);display:flex;flex-direction:column;}
+  .ef-mod__tag{display:inline-flex;align-self:flex-start;margin:0 0 14px;padding:7px 14px;border-radius:999px;border:1px solid rgba(74,59,255,.28);color:var(--c-blue-ribbon);font-size:12px;font-weight:700;letter-spacing:.02em;}
+  .ef-mod__h{margin:0 0 12px;font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;color:#141033;}
+  .ef-mod__h span{color:var(--c-blue-ribbon);}
+  .ef-mod__p{margin:0 0 20px;max-width:460px;font-size:15px;line-height:1.55;color:#5b567e;}
+  .ef-mod__chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
+  .ef-mod__chip{padding:7px 12px;border-radius:999px;background:#f1eefe;border:1px solid #e5e1fb;color:#3a3568;font-size:12.5px;font-weight:600;}
+  .ef-mod__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;}
+  .ef-mod__btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font-size:14.5px;font-weight:700;text-decoration:none;transition:filter .2s,transform .2s;}
+  .ef-mod__btn--primary{background:var(--c-blue-ribbon);color:#fff;}
+  .ef-mod__btn--primary:hover{color:#fff;filter:brightness(1.08);}
+  .ef-mod__btn--ghost{background:#fff;color:var(--c-blue-ribbon);border:1.5px solid #d9d5ff;}
+  .ef-mod__btn--ghost:hover{color:var(--c-blue-ribbon);filter:brightness(.98);}
+  .ef-mod__arw{transition:transform .2s ease;}
+  .ef-mod:hover .ef-mod__arw{transform:translate(3px,-3px);}
+  .ef-mod__panel{position:relative;display:flex;align-items:center;justify-content:center;padding:clamp(22px,2.6vw,34px);background:radial-gradient(120% 120% at 82% 0%,#efeafe,#e1daf8);}
+  .ef-mod__win{width:100%;max-width:490px;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #ececf6;box-shadow:0 28px 56px -26px rgba(5,2,48,.5);transition:transform .55s cubic-bezier(.2,.7,.2,1);}
+  .ef-mod:hover .ef-mod__win{transform:scale(1.03) translateY(-5px);}
+  .ef-mod__bar{height:36px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#f6f6fa;border-bottom:1px solid #edecf3;}
+  .ef-mod__dot{width:9px;height:9px;border-radius:50%;background:#e0e0ea;}
+  .ef-mod__bar-title{margin-left:8px;font-size:11px;font-weight:700;color:#8681ab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .ef-mod__body{padding:14px;}
+  .ef-mod__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .ef-mod--tile .ef-mod__panel{height:188px;padding:18px 18px 0;overflow:hidden;align-items:flex-start;}
+  .ef-mod--tile .ef-mod__win{max-width:none;border-radius:13px 13px 0 0;border-bottom:0;box-shadow:0 18px 34px -20px rgba(5,2,48,.35);}
+  .ef-mod--tile .ef-mod__bar{height:28px;}
+  .ef-mod--tile .ef-mod__dot{width:7px;height:7px;}
+  .ef-mod--tile .ef-mod__bar-title{font-size:10px;}
+  .ef-mod--tile .ef-mod__copy{padding:18px 22px 22px;flex:1;}
+  .ef-mod__lbl{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;color:var(--c-blue-ribbon);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .ef-mod__lbl i{width:14px;height:14px;border-radius:4px;background:var(--c-blue-ribbon);opacity:.9;}
+  .ef-mod__ttl{margin:0 0 8px;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:#141033;}
+  .ef-mod__desc{margin:0;font-size:14px;line-height:1.5;color:#5b567e;}
+  .ef-mod__go{margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--c-blue-ribbon);font-weight:700;font-size:14px;text-decoration:none;}
+  .ef-mod__go:hover{color:var(--c-blue-ribbon);}
+  .ef-mod--mint .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#eef7e4,#e2efd0);}
+  .ef-mod--peri .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#efeafe,#e4defb);}
+  .ef-mod--pink .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#fdeaf3,#f6d8ea);}
+  .ef-mod--fog .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#ecefff,#dde4fb);}
+  .ef-mod--mint2 .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#e6f7f1,#d4efe6);}
+  .ef-mod--pink2 .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#fdeaf5,#f8d6ea);}
+  .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
+  .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
+  .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}
+  .ef-ui-src em{margin-left:auto;font-style:normal;color:#8681ab;font-variant-numeric:tabular-nums;}
+  .ef-ui-score{width:78px;height:78px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(160deg,#141414,#242424);color:#c6e94b;font-size:42px;font-weight:800;box-shadow:0 14px 30px -12px rgba(0,0,0,.55);transition:transform .45s cubic-bezier(.2,.7,.2,1);}
+  .ef-mod:hover .ef-ui-score{transform:scale(1.06);}
+  .ef-ui-meter{height:7px;border-radius:999px;background:#edecf4;overflow:hidden;}
+  .ef-ui-meter > i{display:block;height:100%;border-radius:inherit;background:var(--c-blue-ribbon);}
+  .ef-ui-row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10.5px;font-weight:700;color:#403c68;margin-bottom:4px;}
+  .ef-ui-pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800;}
+  @media (max-width:980px){
+    .ef-mod--flag{grid-template-columns:1fr;}
+    .ef-mod--flag .ef-mod__panel{order:-1;min-height:280px;}
+    .ef-mod__grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){.ef-mod__grid{grid-template-columns:1fr;}}
+  @media (prefers-reduced-motion:reduce){
+    .ef-ui-src,.ef-mod__win,.ef-mod,.ef-mod__arw,.ef-ui-score{animation:none!important;transition:none!important;}
+  }
+  </style>
+  <section id="platform" class="ef-mods" aria-labelledby="ef-mods-title">
+    <div class="ef-mods__bloom" aria-hidden="true"></div>
+    <div class="ef-mods__inner">
+      <header class="ef-mods__head">
+        <p class="ef-mods__eyebrow">Модули платформы</p>
+        <h2 id="ef-mods-title" class="ef-mods__title">Оценка, которой можно верить — <span>потому что она собрана из всего сразу</span></h2>
+        <p class="ef-mods__lead">Цели, KPI, оценка 360° и компетенции по отдельности дают однобокую картину. EmplyFlow сводит их в один объективный результат — по сотруднику, команде и всей компании.</p>
+      </header>
 
-      <div style="background:#4a3bff;border-radius:clamp(24px,3vw,40px);padding:clamp(14px,1.5vw,20px);display:flex;flex-wrap:wrap;gap:clamp(14px,1.5vw,20px);">
-        <div style="flex:1 1 240px;max-width:340px;padding:14px 8px 14px 16px;">
-          <div style="display:flex;align-items:center;gap:10px;color:#fff;margin-bottom:26px;">
-            <span style="width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,0.18);display:grid;place-items:center;"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M3 9h18"></path></svg></span>
-            <span style="font-size:18px;font-weight:600;">Модули</span>
+      <article class="ef-mod ef-mod--flag">
+        <div class="ef-mod__copy">
+          <span class="ef-mod__tag">Флагман · Performance Review</span>
+          <h3 class="ef-mod__h">Вся результативность сотрудника — <span>в одном балле</span></h3>
+          <p class="ef-mod__p">Цели, KPI, оценка 360° и компетенции сходятся в итоговый Performance Review. Руководитель видит полную картину и принимает решение о повышении и премии на данных, а не на ощущениях.</p>
+          <div class="ef-mod__chips">
+            <span class="ef-mod__chip">Единый профиль</span>
+            <span class="ef-mod__chip">Матрица потенциала 9-box</span>
+            <span class="ef-mod__chip">Калибровка оценок</span>
+            <span class="ef-mod__chip">Сравнение команд</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:20px;">
-            <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="6">
-              <button sc-camel-on-click="{{ tab.onClick }}" style="background:transparent;border:0;padding:0;cursor:pointer;text-align:left;font-family:'Manrope',sans-serif;font-size:17px;line-height:1.3;color:{{ tab.color }};font-weight:{{ tab.weight }};">{{ tab.name }}</button>
-            </sc-for>
+          <div class="ef-mod__cta">
+            <a class="ef-mod__btn ef-mod__btn--primary" href="#contacts">Получить демодоступ</a>
+            <a class="ef-mod__btn ef-mod__btn--ghost" href="#aboutus">Как это работает <svg class="ef-mod__arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
         </div>
-
-        <div style="flex:3 1 360px;background:#f3f1ff;border-radius:clamp(20px,2.2vw,28px);padding:clamp(24px,3vw,40px);color:#151515;">
-          <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:22px;">
-            <div style="display:inline-block;padding:9px 18px;border:1px solid rgba(21,21,21,0.18);border-radius:999px;font-size:14px;color:#151515;">Модуль {{ active.name }}</div>
-            <button style="background:#ffb8e2;color:#151515;border:0;border-radius:999px;padding:11px 26px;font-size:15px;font-weight:600;cursor:pointer;">Смотреть</button>
-          </div>
-          <h3 style="font-size:clamp(26px,3.6vw,44px);font-weight:800;letter-spacing:-0.025em;line-height:1.06;color:#4a3bff;max-width:760px;margin:0 0 clamp(24px,3vw,34px);">{{ active.headline }}</h3>
-
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,2.4vw,32px);align-items:start;">
-            <div style="border:1.6px dashed #ffb8e2;border-radius:20px;padding:22px 24px;">
-              <div style="font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.25;">{{ active.feature.title }}</div>
-              <div style="font-size:14px;color:rgba(21,21,21,0.7);line-height:1.5;">{{ active.feature.body }}</div>
+        <div class="ef-mod__panel" aria-hidden="true">
+          <div class="ef-mod__win" role="img" aria-label="Сводка Performance Review: цели, KPI, 360 и компетенции сходятся в балл B">
+            <div class="ef-mod__bar">
+              <span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span>
+              <span class="ef-mod__bar-title">PR · Анна Ковалёва · Product · Q2’26</span>
             </div>
-            <div style="display:flex;flex-direction:column;gap:26px;">
-              <sc-for list="{{ active.side }}" as="f" hint-placeholder-count="2">
-                <div>
-                  <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;">
-                    <span style="flex:none;margin-top:2px;">{{ f.icon }}</span>
-                    <div style="font-size:17px;font-weight:700;line-height:1.2;">{{ f.title }}</div>
-                  </div>
-                  <div style="font-size:13.5px;color:rgba(21,21,21,0.66);line-height:1.5;">{{ f.body }}</div>
+            <div class="ef-mod__body" style="display:grid;grid-template-columns:1.15fr 72px 112px;gap:8px;align-items:center;min-height:250px;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+                  <span style="font-size:10px;font-weight:800;color:#8681ab;letter-spacing:.06em;text-transform:uppercase;">Источники оценки</span>
+                  <span class="ef-ui-pill" style="background:#eef2ff;color:#4a3bff;">4 сигнала</span>
                 </div>
-              </sc-for>
+                <div class="ef-ui-src"><b style="background:#4a3bff"></b>Цели OKR<em>54%</em></div>
+                <div class="ef-ui-src"><b style="background:#c6e94b"></b>KPI отдела<em>83%</em></div>
+                <div class="ef-ui-src"><b style="background:#5fce87"></b>Оценка 360°<em>4.1</em></div>
+                <div class="ef-ui-src"><b style="background:#ffb8e2"></b>Компетенции<em>A</em></div>
+              </div>
+              <svg viewBox="0 0 72 220" preserveAspectRatio="none" style="width:72px;height:220px;align-self:center;" aria-hidden="true">
+                <g fill="none" stroke="#c9c3f2" stroke-width="1.6" stroke-dasharray="5 6" style="animation:efModFlow 1.6s linear infinite;">
+                  <path d="M0,34 C40,34 36,110 72,110"></path>
+                  <path d="M0,82 C40,82 42,110 72,110"></path>
+                  <path d="M0,130 C40,130 42,110 72,110"></path>
+                  <path d="M0,178 C40,178 38,110 72,110"></path>
+                </g>
+                <circle cx="72" cy="110" r="5" fill="#4a3bff"></circle>
+              </svg>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;">
+                <div class="ef-ui-score">B</div>
+                <small style="font-size:11px;font-weight:700;color:#6c6790;line-height:1.25;">Прекрасный<br>результат</small>
+                <span class="ef-ui-pill" style="background:#e7f7ee;color:#2fa565;">Премия 60%</span>
+                <span style="font-size:10px;font-weight:700;color:#8681ab;">vs команда +12%</span>
+              </div>
             </div>
           </div>
         </div>
+      </article>
+
+      <div class="ef-mod__grid">
+        <article class="ef-mod ef-mod--tile ef-mod--mint">
+          <div class="ef-mod__panel" aria-hidden="true">
+            <div class="ef-mod__win">
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Компетенции · 360° · Product Manager</span></div>
+              <div class="ef-mod__body" style="display:grid;grid-template-columns:1fr 56px;gap:10px;align-items:center;">
+                <div style="display:flex;flex-direction:column;gap:9px;">
+                  <div><div class="ef-ui-row"><span>Лидерство</span><span>4.6</span></div><div class="ef-ui-meter"><i style="width:92%;background:#5fce87"></i></div></div>
+                  <div><div class="ef-ui-row"><span>Коммуникации</span><span>4.2</span></div><div class="ef-ui-meter"><i style="width:84%;background:#4a3bff"></i></div></div>
+                  <div><div class="ef-ui-row"><span>Системность</span><span>3.9</span></div><div class="ef-ui-meter"><i style="width:78%;background:#c6a4ff"></i></div></div>
+                </div>
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                  <span style="position:absolute;top:4px;width:42px;height:42px;border-radius:12px;border:2px solid #ffb8e2;animation:efModPulse 2.6s ease-out infinite;"></span>
+                  <div style="width:42px;height:42px;border-radius:12px;background:#141033;color:#ffb8e2;font-size:22px;font-weight:800;display:grid;place-items:center;">A</div>
+                  <small style="font-size:8px;font-weight:700;color:#8681ab;">итог</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ef-mod__copy">
+            <span class="ef-mod__lbl"><i></i>Оценка компетенций</span>
+            <h3 class="ef-mod__ttl">ИИ проводит кейс-интервью</h3>
+            <p class="ef-mod__desc">360° и практические кейсы под должность — с готовым отчётом по сильным сторонам и зонам роста.</p>
+            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+        </article>
+
+        <article class="ef-mod ef-mod--tile ef-mod--peri">
+          <div class="ef-mod__panel" aria-hidden="true">
+            <div class="ef-mod__win">
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Цели команды · Product · Q2’26</span></div>
+              <div class="ef-mod__body">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                  <div style="display:flex;gap:4px;background:#f1eefe;border-radius:8px;padding:3px;">
+                    <span style="font-size:10px;font-weight:700;color:#fff;background:#4a3bff;border-radius:6px;padding:3px 8px;">OKR</span>
+                    <span style="font-size:10px;font-weight:700;color:#8681ab;padding:3px 8px;">KPI</span>
+                  </div>
+                  <span style="font-size:10px;font-weight:800;color:#2fa565;">Прогресс 74%</span>
+                </div>
+                <div style="margin-bottom:10px;"><div class="ef-ui-row"><span>O1. Запуск онбординга v2</span><span>63%</span></div><div class="ef-ui-meter"><i class="gbar" style="width:63%;background:#5fce87;--w0:63%;--w1:72%;animation:efModBar 3.8s ease-in-out infinite;"></i></div></div>
+                <div><div class="ef-ui-row"><span>KR. NPS клиентов ≥ 60</span><span>88%</span></div><div class="ef-ui-meter"><i style="width:88%;background:#c6e94b;--w0:88%;--w1:94%;animation:efModBar 3.8s .4s ease-in-out infinite;"></i></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="ef-mod__copy">
+            <span class="ef-mod__lbl"><i></i>Цели и KPI</span>
+            <h3 class="ef-mod__ttl">Стратегия — до задачи недели</h3>
+            <p class="ef-mod__desc">OKR и KPI связаны со структурой компании. ИИ декомпозирует цели и помогает спланировать неделю.</p>
+            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+        </article>
+
+        <article class="ef-mod ef-mod--tile ef-mod--pink">
+          <div class="ef-mod__panel" aria-hidden="true">
+            <div class="ef-mod__win">
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">9-Box · Компания · 42 сотрудника</span></div>
+              <div class="ef-mod__body">
+                <div style="display:flex;gap:6px;">
+                  <span style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:8px;font-weight:700;color:#8681ab;">Потенциал →</span>
+                  <div style="flex:1;">
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+                      <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#8a6a1a;">4</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#d6f0dd;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#2f6b3c;">7</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#c6e94b;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#3e5410;">Звёзды 8</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#8a6a1a;">5</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#eef0f7;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#6c6790;">9</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#d6f0dd;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#2f6b3c;">6</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#f6c9c9;display:grid;place-items:end start;padding:4px;font-size:7.5px;font-weight:800;color:#8a2b2b;">Риск 3</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#8a6a1a;">4</span>
+                      <span style="aspect-ratio:1;border-radius:6px;background:#eef0f7;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#6c6790;">2</span>
+                    </div>
+                    <div style="text-align:right;font-size:8px;font-weight:700;color:#8681ab;margin-top:4px;">Результативность →</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ef-mod__copy">
+            <span class="ef-mod__lbl"><i></i>Матрица потенциала</span>
+            <h3 class="ef-mod__ttl">9-box строится автоматически</h3>
+            <p class="ef-mod__desc">Звёзды, ключевые игроки и зоны риска видны сразу. Кадровый резерв формируется на данных оценки.</p>
+            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+        </article>
+
+        <article class="ef-mod ef-mod--tile ef-mod--mint2">
+          <div class="ef-mod__panel" aria-hidden="true">
+            <div class="ef-mod__win">
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">ИПР · Middle → Senior Product</span></div>
+              <div class="ef-mod__body">
+                <div style="display:flex;align-items:center;margin-bottom:6px;">
+                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
+                  <span style="height:3px;flex:1;background:#a9e2bd;"></span>
+                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
+                  <span style="height:3px;flex:1;background:linear-gradient(90deg,#a9e2bd,#e6e4f2);"></span>
+                  <span style="position:relative;width:14px;height:14px;border-radius:50%;background:#4a3bff;flex:none;"><span style="position:absolute;inset:-4px;border-radius:50%;border:2px solid #4a3bff;animation:efModPulse 2.4s ease-out infinite;"></span></span>
+                  <span style="height:3px;flex:1;background:#e6e4f2;"></span>
+                  <span style="width:12px;height:12px;border-radius:50%;background:#e6e4f2;flex:none;"></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#8681ab;margin-bottom:10px;"><span>Junior</span><span>Middle</span><span style="color:#4a3bff;">сейчас</span><span>Senior</span></div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;background:#5fce87;display:grid;place-items:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg></span>Курс «Управление командой»</div>
+                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;border:2px solid #4a3bff;"></span>Менторинг junior · 40%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ef-mod__copy">
+            <span class="ef-mod__lbl"><i></i>Карьера и развитие</span>
+            <h3 class="ef-mod__ttl">ИПР собирается сам</h3>
+            <p class="ef-mod__desc">ИИ строит план развития из оценок и материалов и ведёт сотрудника по карьерному треку.</p>
+            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+        </article>
+
+        <article class="ef-mod ef-mod--tile ef-mod--fog">
+          <div class="ef-mod__panel" aria-hidden="true">
+            <div class="ef-mod__win">
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Проект «Онбординг v2» · Гант</span></div>
+              <div class="ef-mod__body">
+                <div style="display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#b7b3d0;margin-bottom:8px;padding-left:78px;"><span>июн</span><span>июл</span><span>авг</span></div>
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;"><span style="width:72px;font-size:9.5px;font-weight:700;color:#403c68;flex:none;text-align:right;">Дизайн-система</span><span style="flex:1;height:9px;border-radius:5px;background:#eef0f7;position:relative;"><span style="position:absolute;left:2%;width:52%;height:100%;border-radius:5px;background:#4a3bff;"></span></span></div>
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;"><span style="width:72px;font-size:9.5px;font-weight:700;color:#403c68;flex:none;text-align:right;">Интеграция 1С</span><span style="flex:1;height:9px;border-radius:5px;background:#eef0f7;position:relative;"><span style="position:absolute;left:26%;width:48%;height:100%;border-radius:5px;background:#5fce87;"></span></span></div>
+                <div style="display:flex;align-items:center;gap:6px;"><span style="width:72px;font-size:9.5px;font-weight:700;color:#403c68;flex:none;text-align:right;">QA релиза</span><span style="flex:1;height:9px;border-radius:5px;background:#eef0f7;position:relative;"><span style="position:absolute;left:52%;width:40%;height:100%;border-radius:5px;background:#c6a4ff;"></span><span style="position:absolute;right:-2px;top:-6px;display:flex;"><span style="width:18px;height:18px;border-radius:50%;background:conic-gradient(from 120deg,#dff29a,#c6e94b);border:2px solid #fff;"></span><span style="width:18px;height:18px;border-radius:50%;background:conic-gradient(from 40deg,#ffc9e6,#ffb8e2);border:2px solid #fff;margin-left:-7px;"></span></span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ef-mod__copy">
+            <span class="ef-mod__lbl"><i></i>Проекты и задачи</span>
+            <h3 class="ef-mod__ttl">Команда — из своих же людей</h3>
+            <p class="ef-mod__desc">Публикуйте внутреннюю заявку, собирайте отклики и ведите проект на диаграмме Ганта.</p>
+            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+        </article>
+
+        <article class="ef-mod ef-mod--tile ef-mod--pink2">
+          <div class="ef-mod__panel" aria-hidden="true">
+            <div class="ef-mod__win">
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Лента признания · май 2026</span></div>
+              <div class="ef-mod__body">
+                <div style="display:flex;align-items:center;gap:8px;background:#fdeef7;border:1px solid #fbdcee;border-radius:10px;padding:8px 10px;margin-bottom:8px;">
+                  <span style="width:22px;height:22px;border-radius:50%;background:conic-gradient(from 40deg,#ffc9e6,#ffb8e2);flex:none;"></span>
+                  <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#3a3568;line-height:1.2;">Спасибо за помощь с релизом</div><div style="font-size:8.5px;color:#b06699;">Игорь Д. → Анне К.</div></div>
+                  <span style="font-size:11px;font-weight:800;color:#fff;background:#e35aa4;border-radius:999px;padding:3px 8px;flex:none;">+50</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;background:#fdeef7;border:1px solid #fbdcee;border-radius:10px;padding:8px 10px;margin-bottom:8px;">
+                  <span style="width:22px;height:22px;border-radius:50%;background:conic-gradient(from 120deg,#c9d4ff,#a9b8ff);flex:none;"></span>
+                  <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#3a3568;line-height:1.2;">Выручила на демо клиенту</div><div style="font-size:8.5px;color:#b06699;">Мария С. → Дмитрию О.</div></div>
+                  <span style="font-size:11px;font-weight:800;color:#fff;background:#e35aa4;border-radius:999px;padding:3px 8px;flex:none;">+30</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:9px;font-weight:700;color:#8681ab;"><span>Признаний за месяц</span><span style="color:#e35aa4;font-size:11px;">128</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ef-mod__copy">
+            <span class="ef-mod__lbl"><i></i>Нематериальная мотивация</span>
+            <h3 class="ef-mod__ttl">Спасибо, которое считается</h3>
+            <p class="ef-mod__desc">Благодарности, баллы и признание достижений — культура, которую видно в цифрах.</p>
+            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1088,7 +1347,7 @@ html, body {
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900}}">
 class Component extends DCLogic {
-  state = { active: 'pr', compact: false, menuOpen: false };
+  state = { compact: false, menuOpen: false };
 
   componentDidMount() {
     this._mq = window.matchMedia('(max-width: 900px)');
@@ -1164,95 +1423,13 @@ class Component extends DCLogic {
     );
   }
 
-  icon(kind) {
-    const R = React.createElement;
-    const p = { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: '#4a3bff', strokeWidth: 1.75, strokeLinecap: 'round', strokeLinejoin: 'round' };
-    const paths = {
-      clock: [R('circle', { key: 'c', cx: 12, cy: 12, r: 9 }), R('polyline', { key: 'p', points: '12 7 12 12 16 14' })],
-      ai: [R('rect', { key: 'r', x: 3, y: 3, width: 18, height: 18, rx: 4 }), R('path', { key: 'p', d: 'M9 16V8M15 16V8M9 12h6' })],
-      star: [R('polygon', { key: 'p', points: '12 2 14.6 8.6 21.6 9.2 16.3 13.8 17.9 20.8 12 17 6.1 20.8 7.7 13.8 2.4 9.2 9.4 8.6' })],
-      chart: [R('path', { key: 'p', d: 'M4 20V10M10 20V4M16 20v-7M22 20H2' })],
-      users: [R('circle', { key: 'c', cx: 9, cy: 8, r: 3.2 }), R('path', { key: 'p', d: 'M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M17 14c2.2 0 4 1.8 4 4' })],
-      gift: [R('rect', { key: 'r', x: 3, y: 9, width: 18, height: 12, rx: 2 }), R('path', { key: 'p', d: 'M3 13h18M12 9v12M12 9S9 3 6.5 5 12 9 12 9zm0 0s3-6 5.5-4S12 9 12 9z' })],
-    };
-    return R('svg', p, paths[kind] || paths.star);
-  }
-
-  modules() {
-    const ic = (k) => this.icon(k);
-    return [
-      {
-        id: 'pr', name: 'Performance Review',
-        headline: 'Анализ эффективности сотрудников и команд',
-        feature: { title: 'Оценка результативности сотрудников (Performance Review)', body: 'Подсчёт суммарного балла как объективной оценки по различным показателям сотрудников: от достижения квартальных целей до результатов оценки 360 и обратной связи от коллег' },
-        side: [
-          { icon: ic('clock'), title: 'Автосоздание матрицы потенциала', body: 'Удобная визуализация сотрудников для наглядного восприятия и работы с разными группами (HiPo, низкоэффективные, будущие звёзды, ключевые игроки)' },
-          { icon: ic('ai'), title: 'Глубокий анализ и сравнение с помощью ИИ', body: 'Выявление причин слабых показателей, формирование рекомендаций и сравнительных характеристик как сотрудников, так и команд, отделов, департаментов' },
-          { icon: ic('star'), title: 'Формирование ТОП сотрудников', body: 'Выявление сильных сотрудников и их занесение в кадровый резерв' },
-        ],
-      },
-      {
-        id: 'comp', name: 'Оценка компетенций',
-        headline: 'Автоматизированная оценка компетенций',
-        feature: { title: 'Оценка 360 градусов', body: 'Показывает сильные стороны и зоны роста сотрудников. Руководители, коллеги и подчинённые оценивают друг друга по ключевым компетенциям' },
-        side: [
-          { icon: ic('ai'), title: 'ИИ-оценка компетенций', body: 'Генерация кейсов под профиль должности или описание компетенций, решение практических задач в формате диалога. Оценка ответов и формирование индивидуального отчёта' },
-        ],
-      },
-      {
-        id: 'goals', name: 'Постановка и управление целями',
-        headline: 'Создание измеримых целей на уровне компании (OKR и KPI)',
-        feature: { title: 'Единая структура целей и результатов', body: 'Платформа связывает стратегические цели компании с индивидуальными целями сотрудников, сохраняя полную оргструктуру' },
-        side: [
-          { icon: ic('clock'), title: 'Фиксация и планирование 1:1 встреч', body: 'Автоматическое формирование плана встреч с руководителем, синхронизация с календарём и фиксация договорённостей' },
-          { icon: ic('ai'), title: 'ИИ-декомпозиция целей и планировщик недели', body: 'Поможет декомпозировать стратегические цели до ежедневных задач и достичь поставленных результатов' },
-        ],
-      },
-      {
-        id: 'track', name: 'Карьерные треки и планы развития',
-        headline: 'Персональный путь роста для каждого сотрудника',
-        feature: { title: 'Подбор для каждого сотрудника позиции мечты в компании', body: 'ИИ-помощник для карьерных консультаций — предоставьте возможности для развития внутри, предотвратив отток кадров' },
-        side: [
-          { icon: ic('star'), title: 'Управление моделью компетенций', body: 'Если у вас есть собственная модель компетенций — поможем внести её на платформу. Или постройте модель с нуля, используя нашего ассистента' },
-          { icon: ic('ai'), title: 'ИИ-формирование ИПР', body: 'Искусственный интеллект проанализирует текущие оценки сотрудника и составит поэтапный план развития из обучающих материалов, оценит его сложность и длительность' },
-        ],
-      },
-      {
-        id: 'tasks', name: 'Проекты и задачи',
-        headline: 'Talent Marketplace: управление проектами и вакансиями',
-        feature: { title: 'Поддержка проектного управления', body: 'Можно создавать проекты, назначать участников и отслеживать их выполнение в реальном времени' },
-        side: [
-          { icon: ic('chart'), title: 'Управление сроками и визуализация прогресса', body: 'Доступна диаграмма Ганта и система статусов. Менеджеры по персоналу и руководители видят, как сотрудники распределяют нагрузку и где требуется поддержка' },
-          { icon: ic('users'), title: 'Публикация вакансий в проектах', body: 'Используйте внутренние ресурсы для подбора участников команд. Опубликуйте заявку и собирайте отклики от сотрудников' },
-        ],
-      },
-      {
-        id: 'moti', name: 'Нематериальная мотивация',
-        headline: 'Благодарности и признание достижений сотрудников: внутренние баллы и бонусы',
-        feature: { title: 'Формирование культуры признания внутри компании', body: 'Сотрудники могут отмечать успехи коллег, получать благодарности за реализованные проекты и делиться собственными достижениями' },
-        side: [
-          { icon: ic('gift'), title: 'Внутренние баллы и бонусы', body: 'Мотивируйте сотрудников через систему признания и нематериальных наград за вклад в общее дело' },
-        ],
-      },
-    ];
-  }
-
   renderVals() {
-    const mods = this.modules();
-    const active = mods.find((m) => m.id === this.state.active) || mods[0];
     const closeMenu = () => this.setState({ menuOpen: false });
     const navDefs = [
       ['Модули системы', '#platform'], ['О нас', '#aboutus'], ['Интеграции', '#stages'],
       ['Библиотека', 'https://emplyflow.ru/hub/'], ['Проекты', '#cases'], ['Контакты', '#contacts'],
     ];
     const navLinks = navDefs.map(([label, href]) => ({ label, href, onClick: closeMenu }));
-
-    const tabs = mods.map((m) => ({
-      id: m.id, name: m.name,
-      color: m.id === this.state.active ? '#ffffff' : 'rgba(255,255,255,0.55)',
-      weight: m.id === this.state.active ? 600 : 400,
-      onClick: () => this.setState({ active: m.id }),
-    }));
 
     const logos = [
       { src: 'images/partner-b1.png', alt: 'Б1 — Новые вызовы, новые решения' },
@@ -1291,7 +1468,7 @@ class Component extends DCLogic {
       showFullNav: !this.state.compact,
       showMenu: this.state.compact && this.state.menuOpen,
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
-      navLinks, tabs, active, logos, impl, cases,
+      navLinks, logos, impl, cases,
     };
   }
 }
