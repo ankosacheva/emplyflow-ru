@@ -760,7 +760,7 @@ html, body {
 
     <sc-if value="{{ showMenu }}" hint-placeholder-val="{{ false }}">
       <div style="padding:8px clamp(16px,4vw,40px) 26px;display:flex;flex-direction:column;gap:4px;background:rgba(5,2,48,0.96);border-top:1px solid rgba(217,214,255,0.08);">
-        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="7">
           <a href="{{ link.href }}" sc-camel-on-click="{{ link.onClick }}" style="color:#fff;font-size:19px;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(217,214,255,0.08);">{{ link.label }}</a>
         </sc-for>
         <button style="margin-top:16px;background:#ffb777;color:#151515;border:0;border-radius:999px;padding:15px 28px;font-size:15px;font-weight:600;cursor:pointer;">Получить доступ</button>
