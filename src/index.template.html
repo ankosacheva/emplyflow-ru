@@ -1629,7 +1629,6 @@ html, body {
   .ef-ai,.ef-ai *{box-sizing:border-box;}
   .ef-ai a{color:#4A3BFF;text-decoration:none;}
   .ef-ai a:hover{color:#3a2cf0;}
-  .ef-ai .mock:not(.ef-ai-stage--ready) *{animation-play-state:paused!important;}
   .ef-ai .mock.ef-ai-stage--ready:hover *{animation-play-state:paused!important;}
   .ef-ai .bento:hover{transform:translateY(-3px);box-shadow:0 30px 60px -28px rgba(5,2,48,.4);}
   .ef-ai-stage{--ai-dur:7s;contain:layout style paint;}
@@ -1644,7 +1643,7 @@ html, body {
   @keyframes ulK { 0%{opacity:1} 30%{opacity:1} 32%{opacity:0} 96%{opacity:0} 100%{opacity:1} }
   @keyframes ulP { 0%{opacity:0} 30%{opacity:0} 32%{opacity:1} 96%{opacity:1} 98%{opacity:0} 100%{opacity:0} }
 
-  @keyframes s1card { 0%,1%{opacity:0;transform:translateY(10px)} 3%{opacity:1;transform:none} 28%{opacity:1;transform:none} 31%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
+  @keyframes s1card { 0%,28%{opacity:1;transform:none} 31%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
   @keyframes s1c1 { 0%,2%{opacity:0;transform:translateX(-10px)} 4%{opacity:1;transform:none} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
   @keyframes s1c2 { 0%,3%{opacity:0;transform:translateX(-10px)} 5%{opacity:1;transform:none} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
   @keyframes s1c3 { 0%,4%{opacity:0;transform:translateX(-10px)} 6%{opacity:1;transform:none} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
@@ -1687,7 +1686,7 @@ html, body {
     <p style="margin:18px 0 0; font-size:clamp(16px,1.7vw,20px); font-weight:500; line-height:1.5; color:rgba(5,2,48,.66); max-width:64ch; text-wrap:pretty;">Соберите ИИ-тренажёр под любую должность. Ассистент сам генерирует кейсы из реальных рабочих ситуаций, ведёт живой диалог с сотрудником - текстом или голосом - оценивает ответы по индикаторам и формирует индивидуальный отчёт с зонами роста.</p>
 
     <!-- window mockup -->
-    <div class="mock" style="position:relative; width:min(760px,100%); margin:clamp(32px,4.5vw,52px) auto 0; background:#ffffff; border-radius:20px; box-shadow:0 2px 0 rgba(0,0,0,.03), 0 40px 90px -30px rgba(5,2,48,.5); overflow:hidden; border:1px solid rgba(5,2,48,.05);">
+    <div class="mock ef-ai-stage--ready" style="position:relative; width:min(760px,100%); margin:clamp(32px,4.5vw,52px) auto 0; background:#ffffff; border-radius:20px; box-shadow:0 2px 0 rgba(0,0,0,.03), 0 40px 90px -30px rgba(5,2,48,.5); overflow:hidden; border:1px solid rgba(5,2,48,.05);">
 
       <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid rgba(5,2,48,.07);">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#050230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -2002,37 +2001,11 @@ class Component extends DCLogic {
     this._upd();
     this._mq.addEventListener('change', this._upd);
     this._initScrollReveals();
-    this._initAiAssistantLoop();
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
     if (this._revealObs) this._revealObs.forEach((obs) => obs.disconnect());
     if (this._revealTimers) this._revealTimers.forEach((id) => clearTimeout(id));
-  }
-
-  _initAiAssistantLoop() {
-    const stage = document.querySelector('.ef-ai-stage');
-    const mock = document.querySelector('.ef-ai .mock');
-    if (!stage || !mock) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      mock.classList.add('ef-ai-stage--ready');
-      return;
-    }
-
-    const start = () => mock.classList.add('ef-ai-stage--ready');
-    if ('IntersectionObserver' in window) {
-      const obs = new IntersectionObserver((entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          start();
-          obs.disconnect();
-        }
-      }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
-      obs.observe(stage);
-      this._revealObs.push(obs);
-    } else {
-      start();
-    }
   }
 
   _initScrollReveals() {
