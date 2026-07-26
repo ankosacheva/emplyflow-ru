@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Arrow-Tile Grid" subtitle="Numbered tiles with up-right arrow — process steps" viewport="700x300" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+body { display: flex; align-items: stretch; gap: 14px; padding: 18px; }
+.tile { flex: 1; border-radius: 28px; padding: 20px; min-height: 240px; position: relative; display: flex; flex-direction: column; justify-content: space-between; color: #fff; }
+.tile.indigo { background: #4a3bff; }
+.tile.dark { background: #0a0540; box-shadow: inset 0 0 0 1px rgba(217,214,255,.10); }
+.tile.fog { background: #d9d6ff; color: #151515; }
+.arrow { width: 38px; height: 38px; align-self: flex-end; }
+.num { font-size: 12px; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.14); display: inline-block; font-weight: 600; width: fit-content; }
+.fog .num { background: rgba(21,21,21,.10); }
+.h { font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-top: 14px; }
+</style></head><body>
+<div class="tile indigo">
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+  <div><span class="num">01</span><div class="h">Определение задачи и диагностика</div></div>
+</div>
+<div class="tile fog">
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="#151515" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+  <div><span class="num">02</span><div class="h">Интеграции с привычными сервисами</div></div>
+</div>
+<div class="tile dark">
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+  <div><span class="num">03</span><div class="h">Внедрение и запуск</div></div>
+</div>
+</body></html>

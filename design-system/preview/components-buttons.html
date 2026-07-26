@@ -1,0 +1,20 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Buttons" subtitle="Two-tier CTA: orange (header) + indigo (body)" viewport="700x180" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+body { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 30px 24px; flex-wrap: wrap; }
+.btn { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 500; border: 0; padding: 16px 28px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: filter 150ms; }
+.btn:hover { filter: brightness(1.06); }
+.btn-orange { background: #ffb777; color: #151515; }
+.btn-indigo { background: #4a3bff; color: #fff; padding-left: 14px; }
+.btn-indigo .ic { width: 36px; height: 36px; border-radius: 999px; background: #fff; color: #4a3bff; display: grid; place-items: center; font-size: 18px; }
+.btn-ghost { background: transparent; color: #fff; padding: 14px 22px; box-shadow: inset 0 0 0 1px rgba(217,214,255,.32); }
+.btn-light { background: #fff; color: #050230; }
+</style></head><body>
+<button class="btn btn-orange">Получить доступ</button>
+<button class="btn btn-indigo"><span class="ic">→</span> Получить демодоступ</button>
+<button class="btn btn-ghost">Смотреть</button>
+<button class="btn btn-light">Модули системы</button>
+</body></html>
