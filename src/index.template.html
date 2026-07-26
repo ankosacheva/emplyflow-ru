@@ -1625,57 +1625,48 @@ html, body {
 
   <!-- ===================== AI ASSESSMENT ASSISTANT ===================== -->
 <style>
-@media (prefers-reduced-motion:reduce){.ef-ai *{animation:none!important;}}
+@media (prefers-reduced-motion:reduce){.ef-ai *{animation:none!important;}.ef-ai [style*="aiType"]{max-width:38ch!important;}}
   .ef-ai,.ef-ai *{box-sizing:border-box;}
   .ef-ai a{color:#4A3BFF;text-decoration:none;}
   .ef-ai a:hover{color:#3a2cf0;}
-  .ef-ai .mock:hover *{animation-play-state:paused!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) *{animation-play-state:paused!important;}
+  .ef-ai .mock.ef-ai-stage--ready:hover *{animation-play-state:paused!important;}
   .ef-ai .bento:hover{transform:translateY(-3px);box-shadow:0 30px 60px -28px rgba(5,2,48,.4);}
+  .ef-ai-stage{--ai-dur:7s;contain:layout style paint;}
 
-  /* ================= 19s loop (все проценты = сек/19*100) ================= */
-  /* S1 build 0-5s · S2 case 5-8.5s · flip · S3 chat 8.5-13.5s · S4 report 13.5-19s */
+  /* ================= 7s loop (проценты = сек/7*100) ================= */
+  /* S1 build 0-2.2s · S2 chat 2.2-4.8s · S3 report 4.8-7s */
 
-  @keyframes AfadeA { 0%{opacity:1} 24%{opacity:1} 26%{opacity:0} 97%{opacity:0} 100%{opacity:1} }
-  @keyframes Bfade  { 0%{opacity:0} 25%{opacity:0} 27%{opacity:1} 43%{opacity:1} 45%{opacity:0} 100%{opacity:0} }
-  @keyframes Cfade  { 0%{opacity:0} 44%{opacity:0} 46%{opacity:1} 69%{opacity:1} 71%{opacity:0} 100%{opacity:0} }
-  @keyframes Dfade  { 0%{opacity:0} 70%{opacity:0} 72%{opacity:1} 97%{opacity:1} 100%{opacity:0} }
+  @keyframes AfadeA { 0%{opacity:1;visibility:visible} 28%{opacity:1;visibility:visible} 31%{opacity:0;visibility:hidden} 96%{opacity:0;visibility:hidden} 100%{opacity:1;visibility:visible} }
+  @keyframes Cfade  { 0%{opacity:0;visibility:hidden} 30%{opacity:0;visibility:hidden} 32%{opacity:1;visibility:visible} 66%{opacity:1;visibility:visible} 69%{opacity:0;visibility:hidden} 100%{opacity:0;visibility:hidden} }
+  @keyframes Dfade  { 0%{opacity:0;visibility:hidden} 67%{opacity:0;visibility:hidden} 70%{opacity:1;visibility:visible} 96%{opacity:1;visibility:visible} 100%{opacity:0;visibility:hidden} }
 
-  @keyframes ulK { 0%{opacity:1} 44%{opacity:1} 46%{opacity:0} 96%{opacity:0} 100%{opacity:1} }
-  @keyframes ulP { 0%{opacity:0} 44%{opacity:0} 46%{opacity:1} 96%{opacity:1} 98%{opacity:0} 100%{opacity:0} }
+  @keyframes ulK { 0%{opacity:1} 30%{opacity:1} 32%{opacity:0} 96%{opacity:0} 100%{opacity:1} }
+  @keyframes ulP { 0%{opacity:0} 30%{opacity:0} 32%{opacity:1} 96%{opacity:1} 98%{opacity:0} 100%{opacity:0} }
 
-  /* --- S1 build: card 0-0.4s · chips 0.3/0.6/0.9s · gen 1.2s · bar 1.5-3.0s · hold-4.6s · out-5.0s --- */
-  @keyframes s1card { 0%,1%{opacity:0;transform:translateY(14px)} 2%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateY(14px)} 100%{opacity:0;transform:translateY(14px)} }
-  @keyframes s1c1 { 0%,1.6%{opacity:0;transform:translateX(-12px) scale(.92)} 3.2%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateX(-12px) scale(.92)} 100%{opacity:0;transform:translateX(-12px) scale(.92)} }
-  @keyframes s1c2 { 0%,3.2%{opacity:0;transform:translateX(-12px) scale(.92)} 4.8%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateX(-12px) scale(.92)} 100%{opacity:0;transform:translateX(-12px) scale(.92)} }
-  @keyframes s1c3 { 0%,4.8%{opacity:0;transform:translateX(-12px) scale(.92)} 6.4%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateX(-12px) scale(.92)} 100%{opacity:0;transform:translateX(-12px) scale(.92)} }
-  @keyframes s1gen { 0%,6.4%{opacity:0} 8%{opacity:1} 24%{opacity:1} 26%{opacity:0} 100%{opacity:0} }
-  @keyframes s1bar { 0%,7.9%{width:0} 15.8%{width:100%} 24%{width:100%} 26%{width:0} 100%{width:0} }
-  @keyframes s1cap { 0%,2.6%{opacity:0} 5.3%{opacity:1} 24%{opacity:1} 26%{opacity:0} 100%{opacity:0} }
+  @keyframes s1card { 0%,1%{opacity:0;transform:translateY(10px)} 3%{opacity:1;transform:none} 28%{opacity:1;transform:none} 31%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
+  @keyframes s1c1 { 0%,2%{opacity:0;transform:translateX(-10px)} 4%{opacity:1;transform:none} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
+  @keyframes s1c2 { 0%,3%{opacity:0;transform:translateX(-10px)} 5%{opacity:1;transform:none} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
+  @keyframes s1c3 { 0%,4%{opacity:0;transform:translateX(-10px)} 6%{opacity:1;transform:none} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
+  @keyframes s1gen { 0%,5%{opacity:0} 7%{opacity:1} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
+  @keyframes s1bar { 0%,7%{width:0} 14%{width:100%} 28%{width:100%} 31%{width:0} 100%{width:0} }
+  @keyframes s1cap { 0%,2%{opacity:0} 4%{opacity:1} 28%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
 
-  /* --- S2 case: in 5.0-5.4s · read · flip up 8.1-8.5s --- */
-  @keyframes s2peek { 0%,26%{opacity:0;transform:translateY(12px) scale(.97)} 28%{opacity:1;transform:translateY(0) scale(.955)} 43%{opacity:1;transform:translateY(0) scale(.955)} 45%{opacity:0;transform:translateY(-26px) scale(.94)} 100%{opacity:0;transform:translateY(-26px) scale(.94)} }
-  @keyframes s2case { 0%,27%{opacity:0;transform:translateY(14px) scale(.96)} 29%{opacity:1;transform:none} 43%{opacity:1;transform:none} 45%{opacity:0;transform:translateY(-34px) scale(.97)} 100%{opacity:0} }
-  @keyframes s2dots { 0%,29%{opacity:0} 31%{opacity:1} 43%{opacity:1} 45%{opacity:0} 100%{opacity:0} }
-
-  /* --- S3 chat: ui 8.7s · AI1 8.7s · emp bubble 9.3s (печать 9.8-11.0) · AI2 11.3s · out 13.5s --- */
-  @keyframes cUi  { 0%,45%{opacity:0} 48%{opacity:1} 69%{opacity:1} 71%{opacity:0} 100%{opacity:0} }
-  @keyframes cAi1 { 0%,46%{opacity:0;transform:translateY(10px)} 48%{opacity:1;transform:none} 69%{opacity:1;transform:none} 71%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
-  @keyframes cEmp { 0%,49%{opacity:0;transform:translateY(10px)} 51%{opacity:1;transform:none} 69%{opacity:1;transform:none} 71%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
-  @keyframes cAi2 { 0%,59%{opacity:0;transform:translateY(10px)} 61%{opacity:1;transform:none} 69%{opacity:1;transform:none} 71%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
+  @keyframes cUi  { 0%,31%{opacity:0} 33%{opacity:1} 66%{opacity:1} 69%{opacity:0} 100%{opacity:0} }
+  @keyframes cAi1 { 0%,31%{opacity:0;transform:translateY(8px)} 33%{opacity:1;transform:none} 66%{opacity:1} 69%{opacity:0;transform:translateY(8px)} 100%{opacity:0;transform:translateY(8px)} }
+  @keyframes cEmp { 0%,34%{opacity:0;transform:translateY(8px)} 36%{opacity:1;transform:none} 66%{opacity:1} 69%{opacity:0;transform:translateY(8px)} 100%{opacity:0;transform:translateY(8px)} }
+  @keyframes cAi2 { 0%,48%{opacity:0;transform:translateY(8px)} 50%{opacity:1;transform:none} 66%{opacity:1} 69%{opacity:0;transform:translateY(8px)} 100%{opacity:0;transform:translateY(8px)} }
+  @keyframes aiType { 0%,36%{max-width:0} 48%,66%{max-width:38ch} 69%,100%{max-width:0} }
+  @keyframes caretVis { 0%,36%{opacity:0} 37%,66%{opacity:1} 69%,100%{opacity:0} }
   @keyframes micblink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.9)} }
   @keyframes caret { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  /* --- S4 report: card 13.5s · bar 14.2-14.9s · rows 14.3-15.2s · blocks 15.5-16.1s · scroll 15.6-17.5s --- */
-  @keyframes dCard   { 0%,70%{opacity:0;transform:translateY(52px)} 72.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0;transform:translateY(52px)} }
-  @keyframes dScroll { 0%,80%{transform:translateY(0)} 92%{transform:translateY(-172px)} 97%{transform:translateY(-172px)} 100%{transform:translateY(0)} }
-  @keyframes dBar    { 0%,74%{width:0} 79%{width:75%} 97%{width:75%} 100%{width:0} }
-  @keyframes dR1 { 0%,75%{opacity:0;transform:translateY(8px)} 76.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dR2 { 0%,76.5%{opacity:0;transform:translateY(8px)} 78%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dR3 { 0%,78%{opacity:0;transform:translateY(8px)} 79.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dR4 { 0%,79.5%{opacity:0;transform:translateY(8px)} 81%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dStrong { 0%,81.5%{opacity:0;transform:translateY(8px)} 83%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dGrow   { 0%,83%{opacity:0;transform:translateY(8px)} 84.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dRec    { 0%,84.5%{opacity:0;transform:translateY(8px)} 86%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dCard   { 0%,68%{opacity:0;transform:translateY(40px)} 72%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0;transform:translateY(40px)} }
+  @keyframes dBar    { 0%,72%{width:0} 79%{width:75%} 96%{width:75%} 100%{width:0} }
+  @keyframes dR1 { 0%,73%{opacity:0;transform:translateY(6px)} 76%{opacity:1;transform:none} 96%{opacity:1} 100%{opacity:0} }
+  @keyframes dR2 { 0%,75%{opacity:0;transform:translateY(6px)} 78%{opacity:1;transform:none} 96%{opacity:1} 100%{opacity:0} }
+  @keyframes dStrong { 0%,79%{opacity:0;transform:translateY(6px)} 82%{opacity:1;transform:none} 96%{opacity:1} 100%{opacity:0} }
+  @keyframes dGrow   { 0%,82%{opacity:0;transform:translateY(6px)} 85%{opacity:1;transform:none} 96%{opacity:1} 100%{opacity:0} }
 
 </style>
 <section id="ai-assistant" class="ef-ai" aria-labelledby="ef-ai-title" style="position:relative; width:100%; overflow:hidden; font-family:var(--font-sans); color:#050230; background:linear-gradient(180deg,#efe9ff 0%,#f4ecfb 40%,#fdeef4 68%,#eaeefb 100%); padding:clamp(52px,7vw,104px) clamp(20px,5vw,48px);">
@@ -1710,85 +1701,59 @@ html, body {
       <div style="display:flex; gap:26px; padding:0 20px; border-bottom:1px solid rgba(5,2,48,.07);">
         <div style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:rgba(5,2,48,.5);">
           Конструктор
-          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulK 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulK var(--ai-dur,7s) ease infinite;"></div>
         </div>
         <div style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:#050230;">
           Практика
-          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulP 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulP var(--ai-dur,7s) ease infinite;"></div>
         </div>
       </div>
 
       <!-- stage -->
-      <div style="position:relative; height:clamp(410px,48vw,470px); background:linear-gradient(180deg,#fbfaff,#ffffff);">
+      <div class="ef-ai-stage" style="position:relative; height:clamp(410px,48vw,470px); background:linear-gradient(180deg,#fbfaff,#ffffff);">
 
         <!-- SCENE 1: Конструктор -->
-        <div id="ef-ai-clock" style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); will-change:opacity; transform:translateZ(0); animation:AfadeA 19s cubic-bezier(.7,0,.2,1) infinite;">
-          <div style="position:absolute; top:22px; right:clamp(18px,3vw,30px); font-weight:400; font-size:12px; color:rgba(5,2,48,.42); max-width:130px; text-align:right; line-height:1.4; animation:s1cap 19s cubic-bezier(.7,0,.2,1) infinite;">Настраивается<br>без разработки</div>
+        <div style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); animation:AfadeA var(--ai-dur,7s) ease infinite;">
+          <div style="position:absolute; top:22px; right:clamp(18px,3vw,30px); font-weight:400; font-size:12px; color:rgba(5,2,48,.42); max-width:130px; text-align:right; line-height:1.4; animation:s1cap var(--ai-dur,7s) ease infinite;">Настраивается<br>без разработки</div>
 
-          <div style="max-width:440px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); border-radius:16px; padding:16px 18px; animation:s1card 19s cubic-bezier(.7,0,.2,1) infinite;">
+          <div style="max-width:440px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); border-radius:16px; padding:16px 18px; animation:s1card var(--ai-dur,7s) ease infinite;">
             <div style="font-size:12px; font-weight:600; color:rgba(5,2,48,.5); text-transform:uppercase; letter-spacing:.08em;">Навык</div>
             <div style="font-size:19px; font-weight:800; margin-top:3px; letter-spacing:-0.01em;">Ведение переговоров</div>
           </div>
 
           <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; max-width:500px;">
-            <div style="animation:s1c1 19s cubic-bezier(.7,0,.2,1) infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Выявление потребностей</div>
-            <div style="animation:s1c2 19s cubic-bezier(.7,0,.2,1) infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Отработка возражений</div>
-            <div style="animation:s1c3 19s cubic-bezier(.7,0,.2,1) infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Завершение сделки</div>
+            <div style="animation:s1c1 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Выявление потребностей</div>
+            <div style="animation:s1c2 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Отработка возражений</div>
+            <div style="animation:s1c3 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Завершение сделки</div>
           </div>
 
-          <div style="margin-top:26px; max-width:460px; animation:s1gen 19s cubic-bezier(.7,0,.2,1) infinite;">
+          <div style="margin-top:26px; max-width:460px; animation:s1gen var(--ai-dur,7s) ease infinite;">
             <div style="display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#050230;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="#4A3BFF"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
               ИИ генерирует кейсы под должность…
             </div>
             <div style="margin-top:10px; height:8px; border-radius:999px; background:rgba(5,2,48,.07); overflow:hidden;">
-              <div style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:s1bar 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+              <div style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:s1bar var(--ai-dur,7s) ease infinite;"></div>
             </div>
           </div>
         </div>
 
-        <!-- SCENE 2: Пример задания (во вкладке Конструктор) -->
-        <div style="position:absolute; inset:0; padding:26px clamp(22px,3.5vw,34px); will-change:opacity; transform:translateZ(0); animation:Bfade 19s cubic-bezier(.7,0,.2,1) infinite; display:flex; flex-direction:column;">
-          <div style="position:relative; flex:1;">
-            <div style="position:absolute; top:14px; left:22px; right:22px; height:calc(100% - 46px); background:#ffffff; border:1px solid rgba(5,2,48,.08); border-radius:16px; box-shadow:0 14px 30px -18px rgba(5,2,48,.35); will-change:transform,opacity; animation:s2peek 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
-            <div style="position:absolute; inset:0 0 26px; background:#ffffff; border:1px solid rgba(74,59,255,.16); border-radius:16px; box-shadow:0 22px 46px -24px rgba(5,2,48,.45); padding:22px clamp(20px,3vw,28px); will-change:transform,opacity; animation:s2case 19s cubic-bezier(.7,0,.2,1) infinite; text-align:left;">
-              <div style="display:inline-flex; align-items:center; gap:7px; background:rgba(74,59,255,.08); color:#3a2cf0; font-weight:700; font-size:12px; padding:5px 11px; border-radius:999px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="#4A3BFF"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
-                Пример задания
-              </div>
-              <div style="font-size:clamp(17px,2.2vw,20px); font-weight:800; margin-top:12px; letter-spacing:-0.01em;">Кейс 1. Встреча с новым клиентом</div>
-              <p style="margin:10px 0 0; font-size:clamp(14px,1.7vw,15.5px); font-weight:500; line-height:1.6; color:rgba(5,2,48,.75); max-width:60ch;">Вы - менеджер по продажам ИТ-решений. Сегодня встреча с директором по закупкам компании, которая уже 3 года работает с другим провайдером и в целом им довольна. Ваша цель - выявить скрытые проблемы, показать ценность вашего решения и договориться о следующем шаге. Клиент настроен скептически и чувствителен к цене.</p>
-            </div>
-          </div>
-          <div style="display:flex; align-items:center; justify-content:center; gap:10px; animation:s2dots 19s cubic-bezier(.7,0,.2,1) infinite;">
-            <span style="font-size:12px; font-weight:600; color:rgba(5,2,48,.45);">Кейс 2 из 6</span>
-            <span style="display:inline-flex; gap:5px; align-items:center;">
-              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
-              <i style="width:7px;height:7px;border-radius:50%;background:#4A3BFF;display:inline-block;"></i>
-              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
-              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
-              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
-              <i style="width:6px;height:6px;border-radius:50%;background:rgba(5,2,48,.2);display:inline-block;"></i>
-            </span>
-          </div>
-        </div>
-
-        <!-- SCENE 4: Практика -->
-        <div style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; will-change:opacity; transform:translateZ(0); animation:Cfade 19s cubic-bezier(.7,0,.2,1) infinite;">
-          <div style="position:absolute; top:18px; right:clamp(16px,3vw,26px); display:inline-flex; align-items:center; gap:6px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); color:#3a2cf0; font-weight:700; font-size:13px; padding:6px 12px; border-radius:999px; font-variant-numeric:tabular-nums; animation:cUi 19s cubic-bezier(.7,0,.2,1) infinite;">
+        <!-- SCENE 2: Практика -->
+        <div style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; animation:Cfade var(--ai-dur,7s) ease infinite;">
+          <div style="position:absolute; top:18px; right:clamp(16px,3vw,26px); display:inline-flex; align-items:center; gap:6px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); color:#3a2cf0; font-weight:700; font-size:13px; padding:6px 12px; border-radius:999px; font-variant-numeric:tabular-nums; animation:cUi var(--ai-dur,7s) ease infinite;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
-            <span id="ef-ai-timer">02:00</span>
+            02:00
           </div>
 
           <div style="display:flex; flex-direction:column; gap:12px; padding-top:6px;">
-            <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi1 19s cubic-bezier(.7,0,.2,1) infinite;">Здравствуйте. У нас уже есть провайдер, чем вы лучше?</div>
+            <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi1 var(--ai-dur,7s) ease infinite;">Здравствуйте. У нас уже есть провайдер, чем вы лучше?</div>
 
-            <div style="align-self:flex-end; max-width:76%; background:rgba(74,59,255,.1); color:#2a1fb0; font-size:14px; font-weight:600; line-height:1.4; padding:11px 15px; border-radius:16px 16px 4px 16px; border:1px solid rgba(74,59,255,.18); animation:cEmp 19s cubic-bezier(.7,0,.2,1) infinite;"><span id="ef-ai-typed"></span><span style="display:inline-block; width:2px; height:1em; background:#4A3BFF; margin-left:1px; vertical-align:-2px; animation:caret 1s step-end infinite;"></span></div>
+            <div style="align-self:flex-end; max-width:76%; background:rgba(74,59,255,.1); color:#2a1fb0; font-size:14px; font-weight:600; line-height:1.4; padding:11px 15px; border-radius:16px 16px 4px 16px; border:1px solid rgba(74,59,255,.18); animation:cEmp var(--ai-dur,7s) ease infinite;"><span style="display:inline-block;overflow:hidden;white-space:nowrap;max-width:0;vertical-align:bottom;animation:aiType var(--ai-dur,7s) steps(24,end) infinite;">У нас гибкая настройка под ваши сделки и аналитика по каждому звонку.</span><span style="display:inline-block;width:2px;height:1em;background:#4A3BFF;margin-left:1px;vertical-align:-2px;animation:caretVis var(--ai-dur,7s) ease infinite,caret 1s step-end infinite;"></span></div>
 
-            <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi2 19s cubic-bezier(.7,0,.2,1) infinite;">Допустим. Но у текущего провайдера дешевле - зачем нам платить больше?</div>
+            <div style="align-self:flex-start; max-width:74%; background:#eff0f4; color:#050230; font-size:14px; font-weight:500; line-height:1.4; padding:11px 15px; border-radius:16px 16px 16px 4px; animation:cAi2 var(--ai-dur,7s) ease infinite;">Допустим. Но у текущего провайдера дешевле - зачем нам платить больше?</div>
           </div>
 
-          <div style="position:absolute; left:clamp(18px,3vw,28px); right:clamp(18px,3vw,28px); bottom:18px; display:flex; align-items:center; gap:10px; background:#f7f7fb; border:1px solid rgba(5,2,48,.08); border-radius:999px; padding:9px 10px 9px 16px; animation:cUi 19s cubic-bezier(.7,0,.2,1) infinite;">
+          <div style="position:absolute; left:clamp(18px,3vw,28px); right:clamp(18px,3vw,28px); bottom:18px; display:flex; align-items:center; gap:10px; background:#f7f7fb; border:1px solid rgba(5,2,48,.08); border-radius:999px; padding:9px 10px 9px 16px; animation:cUi var(--ai-dur,7s) ease infinite;">
             <span style="flex:1; font-size:13px; color:rgba(5,2,48,.4); font-weight:500; text-align:left;">Говорите или введите ответ…</span>
             <div style="width:34px; height:34px; border-radius:50%; background:#4A3BFF; display:flex; align-items:center; justify-content:center; animation:micblink 1.3s ease-in-out infinite;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
@@ -1796,54 +1761,39 @@ html, body {
           </div>
         </div>
 
-        <!-- SCENE 5: Детальный отчёт -->
-        <div style="position:absolute; inset:0; padding:18px clamp(18px,3vw,28px); will-change:opacity; transform:translateZ(0); animation:Dfade 19s cubic-bezier(.7,0,.2,1) infinite; display:flex; align-items:flex-end;">
-          <div style="width:100%; height:100%; background:#ffffff; border:1px solid rgba(255,184,226,.55); box-shadow:0 -10px 40px -18px rgba(255,184,226,.9), 0 20px 50px -24px rgba(5,2,48,.35); border-radius:18px; overflow:hidden; animation:dCard 19s cubic-bezier(.7,0,.2,1) infinite;">
-            <div style="padding:20px 22px; text-align:left; will-change:transform; animation:dScroll 19s cubic-bezier(.7,0,.2,1) infinite;">
+        <!-- SCENE 3: Отчёт -->
+        <div style="position:absolute; inset:0; padding:18px clamp(18px,3vw,28px); animation:Dfade var(--ai-dur,7s) ease infinite; display:flex; align-items:flex-end;">
+          <div style="width:100%; height:100%; background:#ffffff; border:1px solid rgba(255,184,226,.55); box-shadow:0 -10px 40px -18px rgba(255,184,226,.9), 0 20px 50px -24px rgba(5,2,48,.35); border-radius:18px; overflow:hidden; animation:dCard var(--ai-dur,7s) ease infinite;">
+            <div style="padding:20px 22px; text-align:left;">
               <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
                 <div style="font-size:19px; font-weight:800; letter-spacing:-0.01em;">Ваш результат</div>
                 <div style="font-size:13px; font-weight:700; color:#4A3BFF;">Навыки: 6 из 8</div>
               </div>
               <div style="margin-top:9px; height:9px; border-radius:999px; background:rgba(5,2,48,.07); overflow:hidden;">
-                <div style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:dBar 19s cubic-bezier(.7,0,.2,1) infinite;"></div>
+                <div style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:dBar var(--ai-dur,7s) ease infinite;"></div>
               </div>
 
               <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
-                <div style="display:flex; align-items:center; gap:10px; animation:dR1 19s cubic-bezier(.7,0,.2,1) infinite;">
+                <div style="display:flex; align-items:center; gap:10px; animation:dR1 var(--ai-dur,7s) ease infinite;">
                   <span style="width:20px;height:20px;flex:none;border-radius:50%;background:#4A3BFF;display:flex;align-items:center;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
                   <span style="flex:1;font-size:14px;font-weight:600;">Выявление потребностей</span>
                   <span style="font-size:12px;font-weight:700;color:#3a2cf0;">проявлен</span>
                 </div>
-                <div style="display:flex; align-items:center; gap:10px; animation:dR2 19s cubic-bezier(.7,0,.2,1) infinite;">
+                <div style="display:flex; align-items:center; gap:10px; animation:dR2 var(--ai-dur,7s) ease infinite;">
                   <span style="width:20px;height:20px;flex:none;border-radius:50%;background:#FFB8E2;display:flex;align-items:center;justify-content:center;"><i style="width:7px;height:7px;border-radius:50%;background:#c9407f;display:block;"></i></span>
                   <span style="flex:1;font-size:14px;font-weight:600;">Отработка возражений</span>
                   <span style="font-size:12px;font-weight:700;color:#c9407f;">частично</span>
                 </div>
-                <div style="display:flex; align-items:center; gap:10px; animation:dR3 19s cubic-bezier(.7,0,.2,1) infinite;">
-                  <span style="width:20px;height:20px;flex:none;border-radius:50%;background:rgba(5,2,48,.1);display:flex;align-items:center;justify-content:center;"><i style="width:9px;height:2px;border-radius:2px;background:rgba(5,2,48,.45);display:block;"></i></span>
-                  <span style="flex:1;font-size:14px;font-weight:600;color:rgba(5,2,48,.6);">Работа с ценой и отстаивание интересов</span>
-                  <span style="font-size:12px;font-weight:700;color:rgba(5,2,48,.4);">не проявлен</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:10px; animation:dR4 19s cubic-bezier(.7,0,.2,1) infinite;">
-                  <span style="width:20px;height:20px;flex:none;border-radius:50%;background:#4A3BFF;display:flex;align-items:center;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-                  <span style="flex:1;font-size:14px;font-weight:600;">Завершение сделки</span>
-                  <span style="font-size:12px;font-weight:700;color:#3a2cf0;">проявлен</span>
-                </div>
               </div>
 
-              <div style="margin-top:16px; background:rgba(74,59,255,.06); border:1px solid rgba(74,59,255,.16); border-radius:14px; padding:13px 15px; animation:dStrong 19s cubic-bezier(.7,0,.2,1) infinite;">
+              <div style="margin-top:16px; background:rgba(74,59,255,.06); border:1px solid rgba(74,59,255,.16); border-radius:14px; padding:13px 15px; animation:dStrong var(--ai-dur,7s) ease infinite;">
                 <div style="font-weight:700; font-size:13px; color:#3a2cf0;">Сильные стороны</div>
                 <div style="margin-top:5px; font-size:13.5px; font-weight:500; color:rgba(5,2,48,.72); line-height:1.5;">Уверенно выявили потребности и удержали инициативу в начале диалога.</div>
               </div>
 
-              <div style="margin-top:12px; background:rgba(255,184,226,.16); border:1px solid rgba(255,184,226,.6); border-radius:14px; padding:13px 15px; animation:dGrow 19s cubic-bezier(.7,0,.2,1) infinite;">
+              <div style="margin-top:12px; background:rgba(255,184,226,.16); border:1px solid rgba(255,184,226,.6); border-radius:14px; padding:13px 15px; animation:dGrow var(--ai-dur,7s) ease infinite;">
                 <div style="font-weight:700; font-size:13px; color:#c9407f;">Зоны роста</div>
                 <div style="margin-top:5px; font-size:13.5px; font-weight:500; color:rgba(5,2,48,.72); line-height:1.5;">Уступили по цене без попытки обосновать ценность - проработайте аргументацию стоимости.</div>
-              </div>
-
-              <div style="margin-top:12px; display:flex; align-items:center; gap:10px; background:#f6f5ff; border-radius:14px; padding:13px 15px; animation:dRec 19s cubic-bezier(.7,0,.2,1) infinite;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#4A3BFF" style="flex:none;"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
-                <span style="font-size:13.5px; font-weight:600; color:#050230;">Рекомендации: <a href="https://emplyflow.ru/hub/" target="_blank" rel="noopener" style="font-weight:700;">ещё тренажёры по этому навыку - в Библиотеке →</a></span>
               </div>
             </div>
           </div>
@@ -2058,51 +2008,31 @@ class Component extends DCLogic {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
     if (this._revealObs) this._revealObs.forEach((obs) => obs.disconnect());
     if (this._revealTimers) this._revealTimers.forEach((id) => clearTimeout(id));
-    if (this._aiRaf) cancelAnimationFrame(this._aiRaf);
   }
 
   _initAiAssistantLoop() {
-    const typedEl = document.getElementById('ef-ai-typed');
-    const timerEl = document.getElementById('ef-ai-timer');
-    const clockEl = document.getElementById('ef-ai-clock');
-    const msg = 'У нас гибкая настройка под ваши сделки и аналитика по каждому звонку.';
-    if (!typedEl || !timerEl) return;
+    const stage = document.querySelector('.ef-ai-stage');
+    const mock = document.querySelector('.ef-ai .mock');
+    if (!stage || !mock) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      typedEl.textContent = msg;
-      timerEl.textContent = '01:56';
+      mock.classList.add('ef-ai-stage--ready');
       return;
     }
 
-    const ts = 9.8, te = 11.0;      // окно печати ответа сотрудника
-    const cs = 9.3, ce = 13.5;      // окно видимости пузыря сотрудника
-    const ts0 = 8.7, ts1 = 13.5;    // окно тикающего таймера (сцена чата)
-    let lastTyped = null, lastTimer = null;
-    const loop = () => {
-      this._aiRaf = requestAnimationFrame(loop);
-      // Master clock = CSS timeline itself, so JS typing stays in sync with the
-      // scene keyframes (and freezes together with them on hover pause).
-      let t;
-      const anims = clockEl && clockEl.getAnimations ? clockEl.getAnimations() : [];
-      if (anims.length && anims[0].currentTime != null) {
-        t = (anims[0].currentTime / 1000) % 19;
-      } else {
-        if (this._aiStart == null) this._aiStart = performance.now();
-        t = ((performance.now() - this._aiStart) / 1000) % 19;
-      }
-      let n;
-      if (t < ts) n = 0;
-      else if (t > te) n = msg.length;
-      else n = Math.round(msg.length * (t - ts) / (te - ts));
-      const typed = t >= cs && t <= ce ? msg.slice(0, n) : '';
-      let secs = 120;
-      if (t >= ts0 && t <= ts1) secs = 120 - Math.floor(t - ts0);
-      else if (t > ts1) secs = 120 - Math.floor(ts1 - ts0);
-      const timer = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
-      if (typed !== lastTyped) { typedEl.textContent = typed; lastTyped = typed; }
-      if (timer !== lastTimer) { timerEl.textContent = timer; lastTimer = timer; }
-    };
-    this._aiRaf = requestAnimationFrame(loop);
+    const start = () => mock.classList.add('ef-ai-stage--ready');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          start();
+          obs.disconnect();
+        }
+      }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+      obs.observe(stage);
+      this._revealObs.push(obs);
+    } else {
+      start();
+    }
   }
 
   _initScrollReveals() {
