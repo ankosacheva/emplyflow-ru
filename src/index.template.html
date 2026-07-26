@@ -1714,11 +1714,11 @@ html, body {
       <div style="display:flex; gap:26px; padding:0 20px; border-bottom:1px solid rgba(5,2,48,.07);">
         <div class="ef-ai-tab ef-ai-tab--build" style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:#050230;">
           Конструктор
-          <div class="ef-ai-tab-underline ef-ai-tab-underline--build" style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulK var(--ai-dur,7s) ease infinite;"></div>
+          <div class="ef-ai-tab-underline ef-ai-tab-underline--build" style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; opacity:1; animation:ulK var(--ai-dur,7s) ease infinite;"></div>
         </div>
         <div class="ef-ai-tab ef-ai-tab--practice" style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:rgba(5,2,48,.5);">
           Практика
-          <div class="ef-ai-tab-underline ef-ai-tab-underline--practice" style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulP var(--ai-dur,7s) ease infinite;"></div>
+          <div class="ef-ai-tab-underline ef-ai-tab-underline--practice" style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; opacity:0; animation:ulP var(--ai-dur,7s) ease infinite;"></div>
         </div>
       </div>
 
@@ -1726,7 +1726,7 @@ html, body {
       <div class="ef-ai-stage" style="position:relative; height:clamp(410px,48vw,470px); background:linear-gradient(180deg,#fbfaff,#ffffff);">
 
         <!-- SCENE 1: Конструктор -->
-        <div class="ef-ai-scene--build" style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); animation:AfadeA var(--ai-dur,7s) ease infinite;">
+        <div class="ef-ai-scene--build" style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); opacity:1; visibility:visible; z-index:2; animation:AfadeA var(--ai-dur,7s) ease infinite;">
           <div class="ef-ai-s1-cap" style="position:absolute; top:22px; right:clamp(18px,3vw,30px); font-weight:400; font-size:12px; color:rgba(5,2,48,.42); max-width:130px; text-align:right; line-height:1.4; animation:s1cap var(--ai-dur,7s) ease infinite;">Настраивается<br>без разработки</div>
 
           <div class="ef-ai-s1-card" style="max-width:440px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); border-radius:16px; padding:16px 18px; animation:s1card var(--ai-dur,7s) ease infinite;">
@@ -1735,9 +1735,9 @@ html, body {
           </div>
 
           <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; max-width:500px;">
-            <div class="ef-ai-s1-chip" style="animation:s1c1 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Выявление потребностей</div>
-            <div class="ef-ai-s1-chip" style="animation:s1c2 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Отработка возражений</div>
-            <div class="ef-ai-s1-chip" style="animation:s1c3 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Завершение сделки</div>
+            <div class="ef-ai-s1-chip" style="opacity:1; animation:s1c1 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Выявление потребностей</div>
+            <div class="ef-ai-s1-chip" style="opacity:1; animation:s1c2 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Отработка возражений</div>
+            <div class="ef-ai-s1-chip" style="opacity:1; animation:s1c3 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Завершение сделки</div>
           </div>
 
           <div class="ef-ai-s1-gen" style="margin-top:26px; max-width:460px; animation:s1gen var(--ai-dur,7s) ease infinite;">
@@ -1752,7 +1752,7 @@ html, body {
         </div>
 
         <!-- SCENE 2: Практика -->
-        <div class="ef-ai-scene--chat" style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; animation:Cfade var(--ai-dur,7s) ease infinite;">
+        <div class="ef-ai-scene--chat" style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; opacity:0; visibility:hidden; z-index:1; pointer-events:none; animation:Cfade var(--ai-dur,7s) ease infinite;">
           <div style="position:absolute; top:18px; right:clamp(16px,3vw,26px); display:inline-flex; align-items:center; gap:6px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); color:#3a2cf0; font-weight:700; font-size:13px; padding:6px 12px; border-radius:999px; font-variant-numeric:tabular-nums; animation:cUi var(--ai-dur,7s) ease infinite;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
             02:00
@@ -1775,7 +1775,7 @@ html, body {
         </div>
 
         <!-- SCENE 3: Отчёт -->
-        <div class="ef-ai-scene--report" style="position:absolute; inset:0; padding:18px clamp(18px,3vw,28px); animation:Dfade var(--ai-dur,7s) ease infinite; display:flex; align-items:flex-end;">
+        <div class="ef-ai-scene--report" style="position:absolute; inset:0; padding:18px clamp(18px,3vw,28px); opacity:0; visibility:hidden; z-index:1; pointer-events:none; animation:Dfade var(--ai-dur,7s) ease infinite; display:flex; align-items:flex-end;">
           <div style="width:100%; height:100%; background:#ffffff; border:1px solid rgba(255,184,226,.55); box-shadow:0 -10px 40px -18px rgba(255,184,226,.9), 0 20px 50px -24px rgba(5,2,48,.35); border-radius:18px; overflow:hidden; animation:dCard var(--ai-dur,7s) ease infinite;">
             <div style="padding:20px 22px; text-align:left;">
               <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
@@ -1895,6 +1895,38 @@ html, body {
 
   </div>
 </section>
+<script>
+(function(){
+  if(window.__efAiBoot)return;
+  window.__efAiBoot=function(){
+    var mock=document.querySelector('.ef-ai .mock');
+    var stage=document.querySelector('.ef-ai-stage');
+    if(!mock||!stage||mock.classList.contains('ef-ai-stage--ready'))return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){mock.classList.add('ef-ai-stage--ready');return;}
+    var run=function(){
+      if(mock.classList.contains('ef-ai-stage--ready'))return;
+      mock.querySelectorAll('[style*="animation"]').forEach(function(el){
+        var a=el.style.animation;el.style.animation='none';void el.offsetWidth;el.style.animation=a;
+      });
+      mock.classList.add('ef-ai-stage--ready');
+    };
+    var r=stage.getBoundingClientRect();
+    if(r.top<window.innerHeight*1.2&&r.bottom>-80){run();return;}
+    if('IntersectionObserver'in window){
+      var obs=new IntersectionObserver(function(es){
+        es.forEach(function(e){if(e.isIntersecting){run();obs.disconnect();}});
+      },{threshold:0,rootMargin:'0px 0px 40% 0px'});
+      obs.observe(stage);
+    }else run();
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.__efAiBoot,{once:true});
+  else window.__efAiBoot();
+  var n=0,t=setInterval(function(){
+    window.__efAiBoot();
+    if(document.querySelector('.ef-ai .mock.ef-ai-stage--ready')||++n>120)clearInterval(t);
+  },50);
+})();
+</script>
 
 
   <!-- ===================== ABOUT / STATS ===================== -->
@@ -2015,48 +2047,12 @@ class Component extends DCLogic {
     this._upd();
     this._mq.addEventListener('change', this._upd);
     this._initScrollReveals();
-    this._initAiAssistantLoop();
+    if(window.__efAiBoot)window.__efAiBoot();
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
     if (this._revealObs) this._revealObs.forEach((obs) => obs.disconnect());
     if (this._revealTimers) this._revealTimers.forEach((id) => clearTimeout(id));
-  }
-
-  _initAiAssistantLoop() {
-    const stage = document.querySelector('.ef-ai-stage');
-    const mock = document.querySelector('.ef-ai .mock');
-    if (!stage || !mock || mock.classList.contains('ef-ai-stage--ready')) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      mock.classList.add('ef-ai-stage--ready');
-      return;
-    }
-
-    const start = () => {
-      if (mock.classList.contains('ef-ai-stage--ready')) return;
-      mock.querySelectorAll('[style*="animation"]').forEach((el) => {
-        const a = el.style.animation;
-        el.style.animation = 'none';
-        void el.offsetWidth;
-        el.style.animation = a;
-      });
-      mock.classList.add('ef-ai-stage--ready');
-    };
-
-    const rect = stage.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
-      requestAnimationFrame(start);
-      return;
-    }
-
-    const obs = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        start();
-        obs.disconnect();
-      }
-    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
-    obs.observe(stage);
-    this._revealObs.push(obs);
   }
 
   _initScrollReveals() {
