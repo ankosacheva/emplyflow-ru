@@ -1024,6 +1024,20 @@ html, body {
   .ef-mod--cheese{--tile-fill:var(--c-mac-cheese);}
   .ef-mod__goals-mock{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;align-items:stretch;}
   @media (max-width:720px){.ef-mod__goals-mock{grid-template-columns:1fr;}}
+  .ef-mod__succ-tree{display:flex;flex-direction:column;align-items:center;padding-top:6px;padding-bottom:4px;}
+  .ef-succ-root{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:#141033;color:#fff;box-shadow:0 10px 22px -14px rgba(20,16,51,.55);z-index:1;}
+  .ef-succ-root__mark{width:28px;height:28px;border-radius:9px;background:#4a3bff;color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;flex:none;}
+  .ef-succ-root__title{font-size:11px;font-weight:800;line-height:1.15;}
+  .ef-succ-root__sub{font-size:8.5px;font-weight:600;color:#a9b8ff;margin-top:2px;}
+  .ef-succ-trunk{width:2px;height:12px;background:#d9d6ff;}
+  .ef-succ-branch{width:calc(100% - 56px);max-width:280px;height:10px;border:2px solid #d9d6ff;border-bottom:0;border-radius:10px 10px 0 0;margin-bottom:-2px;}
+  .ef-succ-kids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;}
+  .ef-succ-node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;padding:10px 6px 8px;border-radius:12px;background:#f5f4fb;border:1px solid #ececf6;}
+  .ef-succ-node::before{content:"";position:absolute;top:-12px;left:50%;width:2px;height:12px;background:#d9d6ff;transform:translateX(-50%);}
+  .ef-succ-node__ava{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 0 0 1px #e6e4f2,0 6px 14px -8px rgba(20,16,51,.45);}
+  .ef-succ-node__name{font-size:10px;font-weight:800;color:#141033;line-height:1.2;}
+  .ef-succ-node__role{font-size:8px;font-weight:600;color:#8681ab;margin-bottom:2px;}
+  .ef-succ-node .ef-ui-pill{font-size:8.5px;padding:2px 6px;}
   .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
   .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
   .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}
@@ -1324,29 +1338,33 @@ html, body {
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Преемственность · Head of Product</span></div>
-              <div class="ef-mod__body">
-                <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;margin-bottom:8px;">
-                  <span style="width:28px;height:28px;border-radius:9px;background:#141033;color:#d9d6ff;font-size:10px;font-weight:800;display:grid;place-items:center;flex:none;">HP</span>
-                  <div style="flex:1;min-width:0;">
-                    <div style="font-size:10.5px;font-weight:800;color:#141033;line-height:1.2;">Роль: Head of Product</div>
-                    <div style="font-size:8.5px;color:#8681ab;font-weight:600;">Критичная · запуск через руководителей</div>
+              <div class="ef-mod__body ef-mod__succ-tree">
+                <div class="ef-succ-root">
+                  <span class="ef-succ-root__mark">HP</span>
+                  <div class="ef-succ-root__meta">
+                    <div class="ef-succ-root__title">Head of Product</div>
+                    <div class="ef-succ-root__sub">Критичная роль · 3 преемника</div>
                   </div>
-                  <span class="ef-ui-pill" style="background:#efeafe;color:#4a3bff;">3 кандидата</span>
                 </div>
-                <div style="display:flex;flex-direction:column;gap:5px;">
-                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;color:#403c68;">
-                    <span style="width:20px;height:20px;border-radius:50%;background:conic-gradient(from 40deg,#dff29a,#c6e94b);flex:none;border:1.5px solid #fff;box-shadow:0 0 0 1px #e6e4f2;"></span>
-                    <span style="flex:1;">Анна К. · Product Lead</span>
+                <div class="ef-succ-trunk" aria-hidden="true"></div>
+                <div class="ef-succ-branch" aria-hidden="true"></div>
+                <div class="ef-succ-kids">
+                  <div class="ef-succ-node">
+                    <img class="ef-succ-node__ava" src="images/avatar-successor-anna.jpg" alt="" width="36" height="36" loading="lazy">
+                    <div class="ef-succ-node__name">Анна К.</div>
+                    <div class="ef-succ-node__role">Product Lead</div>
                     <span class="ef-ui-pill" style="background:#e7f7ee;color:#2fa565;">Готов сейчас</span>
                   </div>
-                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;color:#403c68;">
-                    <span style="width:20px;height:20px;border-radius:50%;background:conic-gradient(from 120deg,#c9d4ff,#a9b8ff);flex:none;border:1.5px solid #fff;box-shadow:0 0 0 1px #e6e4f2;"></span>
-                    <span style="flex:1;">Дмитрий О. · Senior PM</span>
+                  <div class="ef-succ-node">
+                    <img class="ef-succ-node__ava" src="images/avatar-successor-dmitry.jpg" alt="" width="36" height="36" loading="lazy">
+                    <div class="ef-succ-node__name">Дмитрий О.</div>
+                    <div class="ef-succ-node__role">Senior PM</div>
                     <span class="ef-ui-pill" style="background:#f1eefe;color:#4a3bff;">6–12 мес.</span>
                   </div>
-                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;color:#403c68;">
-                    <span style="width:20px;height:20px;border-radius:50%;background:conic-gradient(from 200deg,#ffc9e6,#ffb8e2);flex:none;border:1.5px solid #fff;box-shadow:0 0 0 1px #e6e4f2;"></span>
-                    <span style="flex:1;">Мария С. · PM</span>
+                  <div class="ef-succ-node">
+                    <img class="ef-succ-node__ava" src="images/avatar-successor-maria.jpg" alt="" width="36" height="36" loading="lazy">
+                    <div class="ef-succ-node__name">Мария С.</div>
+                    <div class="ef-succ-node__role">PM</div>
                     <span class="ef-ui-pill" style="background:#fdeef7;color:#c23e8f;">1–2 года</span>
                   </div>
                 </div>
