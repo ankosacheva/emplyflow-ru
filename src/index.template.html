@@ -1066,6 +1066,23 @@ html, body {
   .ef-ipr-item i{width:12px;height:12px;border-radius:4px;background:#efeafe;color:#4a3bff;font-style:normal;font-size:7px;font-weight:800;display:grid;place-items:center;flex:none;}
   .ef-ipr-stage__kpi{padding-top:5px;border-top:1px solid #e6e4f2;font-size:8px;font-weight:700;color:#8681ab;}
   .ef-ipr-stage__kpi strong{color:#403c68;font-weight:800;text-align:right;}
+  .ef-9box{display:flex;gap:6px;}
+  .ef-9box__axis{writing-mode:vertical-rl;transform:rotate(180deg);font-size:8px;font-weight:700;color:#8681ab;align-self:center;}
+  .ef-9box__grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+  .ef-9box-cell{aspect-ratio:1;border-radius:8px;padding:5px;display:flex;flex-direction:column;justify-content:space-between;min-width:0;overflow:hidden;}
+  .ef-9box-cell--warm{background:#fbeec9;color:#8a6a1a;}
+  .ef-9box-cell--mint{background:#d6f0dd;color:#2f6b3c;}
+  .ef-9box-cell--star{background:#c6e94b;color:#3e5410;}
+  .ef-9box-cell--fog{background:#eef0f7;color:#6c6790;}
+  .ef-9box-cell--risk{background:#f6c9c9;color:#8a2b2b;}
+  .ef-9box-avas{display:flex;align-items:center;padding-left:2px;min-height:22px;}
+  .ef-9box-avas img{width:20px;height:20px;border-radius:50%;object-fit:cover;border:1.5px solid #fff;margin-left:-6px;box-shadow:0 2px 6px -3px rgba(20,16,51,.35);}
+  .ef-9box-avas img:first-child{margin-left:0;}
+  .ef-9box-avas em{margin-left:2px;font-style:normal;font-size:8px;font-weight:800;opacity:.85;}
+  .ef-9box-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:4px;}
+  .ef-9box-meta strong{font-size:8px;font-weight:800;line-height:1.15;}
+  .ef-9box-meta b{font-size:11px;font-weight:800;line-height:1;}
+  .ef-9box__x{text-align:right;font-size:8px;font-weight:700;color:#8681ab;margin-top:4px;}
   .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
   .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
   .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}
@@ -1300,21 +1317,86 @@ html, body {
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">9-Box · Компания · 42 сотрудника</span></div>
               <div class="ef-mod__body">
-                <div style="display:flex;gap:6px;">
-                  <span style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:8px;font-weight:700;color:#8681ab;">Потенциал →</span>
-                  <div style="flex:1;">
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
-                      <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#8a6a1a;">4</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#d6f0dd;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#2f6b3c;">7</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#c6e94b;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#3e5410;">Звёзды 8</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#8a6a1a;">5</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#eef0f7;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#6c6790;">9</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#d6f0dd;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#2f6b3c;">6</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#f6c9c9;display:grid;place-items:end start;padding:4px;font-size:7.5px;font-weight:800;color:#8a2b2b;">Риск 3</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#fbeec9;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#8a6a1a;">4</span>
-                      <span style="aspect-ratio:1;border-radius:6px;background:#eef0f7;display:grid;place-items:end start;padding:4px;font-size:8px;font-weight:800;color:#6c6790;">2</span>
+                <div class="ef-9box">
+                  <span class="ef-9box__axis">Потенциал →</span>
+                  <div style="flex:1;min-width:0;">
+                    <div class="ef-9box__grid">
+                      <div class="ef-9box-cell ef-9box-cell--warm">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-9box-01.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-successor-dmitry.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+2</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong></strong><b>4</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--mint">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-9box-02.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-05.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-successor-anna.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+4</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong></strong><b>7</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--star">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-9box-04.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-03.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-successor-maria.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+5</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong>Звёзды</strong><b>8</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--warm">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-9box-06.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-01.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+3</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong></strong><b>5</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--fog">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-successor-dmitry.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-02.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-05.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+6</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong></strong><b>9</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--mint">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-9box-03.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-successor-anna.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+4</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong></strong><b>6</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--risk">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-9box-05.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-06.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+1</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong>Риск</strong><b>3</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--warm">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-successor-maria.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-04.jpg" alt="" width="20" height="20" loading="lazy">
+                          <em>+2</em>
+                        </div>
+                        <div class="ef-9box-meta"><strong></strong><b>4</b></div>
+                      </div>
+                      <div class="ef-9box-cell ef-9box-cell--fog">
+                        <div class="ef-9box-avas">
+                          <img src="images/avatar-9box-01.jpg" alt="" width="20" height="20" loading="lazy">
+                          <img src="images/avatar-9box-02.jpg" alt="" width="20" height="20" loading="lazy">
+                        </div>
+                        <div class="ef-9box-meta"><strong></strong><b>2</b></div>
+                      </div>
                     </div>
-                    <div style="text-align:right;font-size:8px;font-weight:700;color:#8681ab;margin-top:4px;">Результативность →</div>
+                    <div class="ef-9box__x">Результативность →</div>
                   </div>
                 </div>
               </div>
