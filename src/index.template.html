@@ -538,7 +538,7 @@ html, body {
   a{color:#cec8ff;text-decoration:none;}
   a:hover{color:#ffffff;}
   @keyframes efFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-  @keyframes efFloat2{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(-8deg)}}
+  @keyframes efFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 </style>
 <style>
   /* ===== Первый экран: HRM-платформа ... на базе ИИ ===== */
@@ -548,7 +548,7 @@ html, body {
   .ef-hero__scribble{position:absolute;opacity:0.5;pointer-events:none;}
   .ef-hero__scribble--1{top:clamp(28px,5vw,74px);left:clamp(96px,17vw,270px);width:clamp(52px,6vw,90px);}
   .ef-hero__scribble--2{top:clamp(150px,20vw,270px);left:clamp(150px,26vw,400px);width:clamp(44px,5vw,74px);transform:rotate(168deg);}
-  .ef-hero__arrow3d{position:absolute;left:clamp(-24px,1.4vw,44px);top:clamp(200px,26vw,320px);width:clamp(112px,16vw,245px);animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 24px 50px rgba(74,59,255,.55));pointer-events:none;}
+  .ef-hero__arrow3d{position:absolute;left:clamp(-8px,2vw,56px);top:clamp(190px,24vw,300px);width:clamp(96px,13vw,200px);animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 22px 48px rgba(74,59,255,.55));pointer-events:none;}
   .ef-hero__star{position:absolute;right:clamp(6vw,14vw,200px);top:clamp(150px,20vw,260px);width:clamp(74px,10vw,150px);animation:efFloat 8s ease-in-out infinite;pointer-events:none;}
 
   .ef-hero__inner{position:relative;max-width:1200px;margin:0 auto;}
@@ -588,7 +588,7 @@ html, body {
   @media (max-width:900px){
     .ef-hero{padding-top:clamp(28px,6vw,48px);}
     .ef-hero__scribble,.ef-hero__star{display:none;}
-    .ef-hero__arrow3d{position:static;margin:clamp(18px,4vw,28px) auto 0;width:clamp(88px,22vw,130px);}
+    .ef-hero__arrow3d{position:static;margin:clamp(18px,4vw,28px) auto 0;width:clamp(78px,20vw,118px);}
     .ef-hero__callout-row{grid-template-columns:1fr;justify-items:center;}
     .ef-hero__callout{grid-column:1;justify-self:center;}
     .ef-hero__award{position:static;display:block;margin:clamp(24px,5vw,34px) auto 0;width:clamp(168px,46vw,210px);}
@@ -775,7 +775,29 @@ html, body {
     <svg class="ef-hero__scribble ef-hero__scribble--1" sc-camel-view-box="0 0 80 100" fill="none" aria-hidden="true"><path d="M65 8 C 60 15, 55 24, 48 30 C 40 36, 30 38, 18 42" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round"></path><path d="M14 38 L 18 42 L 16 48" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
     <svg class="ef-hero__scribble ef-hero__scribble--2" sc-camel-view-box="0 0 80 100" fill="none" aria-hidden="true"><path d="M65 8 C 60 15, 55 24, 48 30 C 40 36, 30 38, 18 42" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round"></path><path d="M14 38 L 18 42 L 16 48" stroke="rgba(217,214,255,0.28)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 
-    <img src="c079dd13-58fd-4669-938c-0f964cf738dd" alt="" aria-hidden="true" class="ef-hero__arrow3d">
+    <svg class="ef-hero__arrow3d" sc-camel-view-box="0 0 160 220" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="efFlowGrad" x1="30" y1="210" x2="130" y2="20" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#4a3bff"></stop>
+          <stop offset="40%" stop-color="#9b8cff"></stop>
+          <stop offset="72%" stop-color="#ffb8e2"></stop>
+          <stop offset="100%" stop-color="#d5fff3"></stop>
+        </linearGradient>
+        <linearGradient id="efFlowGloss" x1="50" y1="30" x2="110" y2="190" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65"></stop>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+        </linearGradient>
+      </defs>
+      <g transform="rotate(-18 80 110)">
+        <!-- arrow head -->
+        <path fill="url(#efFlowGrad)" d="M80 8 L138 78 L106 78 L106 78 L54 78 L22 78 Z"></path>
+        <!-- shaft -->
+        <rect x="58" y="74" width="44" height="128" rx="18" fill="url(#efFlowGrad)"></rect>
+        <!-- glass highlight -->
+        <rect x="66" y="86" width="14" height="100" rx="7" fill="url(#efFlowGloss)"></rect>
+        <path fill="url(#efFlowGloss)" d="M80 20 L118 70 L98 70 L80 44 L62 70 L42 70 Z" opacity="0.45"></path>
+      </g>
+    </svg>
 
     <svg class="ef-hero__star" sc-camel-view-box="0 0 100 100" aria-hidden="true">
       <defs>
