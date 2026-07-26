@@ -699,10 +699,8 @@ html, body {
   .ef-step-wrap:nth-child(5) .ef-step::before{animation-delay:-6s;}
   .ef-step-wrap:nth-child(6) .ef-step::before{animation-delay:-7.5s;}
 
-  .ef-step__top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .ef-step__top{display:flex;align-items:center;gap:12px;}
   .ef-step__num{display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:0.06em;color:var(--ef-accent);background:rgba(5,2,48,0.34);box-shadow:inset 0 0 0 1px var(--ef-glow),0 0 26px -12px var(--ef-glow);}
-  .ef-step__arrow{display:grid;place-items:center;width:clamp(32px,3.2vw,42px);height:clamp(32px,3.2vw,42px);border-radius:999px;border:1px solid rgba(217,214,255,0.18);background:rgba(217,214,255,0.07);color:var(--ef-accent);transition:transform 320ms cubic-bezier(.2,.7,.2,1),background 320ms;}
-  .ef-step:hover .ef-step__arrow{transform:translate(3px,-3px);background:rgba(217,214,255,0.15);}
   .ef-step__title{font-weight:800;font-size:clamp(18px,1.9vw,24px);line-height:1.14;letter-spacing:-0.02em;color:#fff;}
   .ef-step__body{margin-top:clamp(8px,0.9vw,12px);font-size:clamp(12.5px,1.05vw,14px);line-height:1.5;color:rgba(255,255,255,0.7);}
 
@@ -1026,7 +1024,6 @@ html, body {
               <span class="ef-step__sheen" aria-hidden="true"></span>
               <div class="ef-step__top">
                 <span class="ef-step__num">{{ card.num }}</span>
-                <span class="ef-step__arrow"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
               </div>
               <div>
                 <h3 class="ef-step__title">{{ card.title }}</h3>
