@@ -987,38 +987,41 @@ html, body {
   .ef-mod__dot{width:9px;height:9px;border-radius:50%;background:#e0e0ea;}
   .ef-mod__bar-title{margin-left:8px;font-size:11px;font-weight:700;color:#8681ab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .ef-mod__body{padding:14px;}
-  .ef-mod__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .ef-mod--tile{--tile-accent:var(--c-fog);--tile-glow:rgba(217,214,255,.14);background:radial-gradient(120% 90% at 18% 100%,var(--tile-glow),transparent 58%),var(--bg-elevated);border-color:rgba(217,214,255,.16);box-shadow:0 26px 58px -34px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.05);}
-  .ef-mod--tile:hover{border-color:color-mix(in srgb,var(--tile-accent) 42%,transparent);box-shadow:0 34px 70px -34px rgba(0,0,0,.9),0 0 46px -34px var(--tile-accent),inset 0 1px 0 rgba(255,255,255,.08);}
-  .ef-mod--tile .ef-mod__panel{height:180px;padding:16px 16px 0;overflow:hidden;align-items:flex-start;}
-  .ef-mod--tile .ef-mod__win{max-width:none;border-radius:13px 13px 0 0;border-bottom:0;box-shadow:0 18px 34px -20px rgba(5,2,48,.35);}
+  .ef-mod__grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;align-items:stretch;}
+  .ef-mod--tile{background:var(--tile-fill,#d9d6ff);border:none;box-shadow:0 22px 48px -36px rgba(5,2,48,.55);color:#151515;min-height:0;}
+  .ef-mod--tile:hover{box-shadow:0 30px 56px -32px rgba(5,2,48,.62);}
+  .ef-mod--wide{grid-column:span 4;}
+  .ef-mod--narrow{grid-column:span 2;}
+  .ef-mod--third{grid-column:span 2;}
+  .ef-mod--half{grid-column:span 3;}
+  .ef-mod--tile .ef-mod__copy{padding:22px 22px 12px;flex:0 0 auto;border:0;gap:0;}
+  .ef-mod__copy-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 10px;}
+  .ef-mod__copy-top .ef-mod__lbl{margin:0;}
+  .ef-mod__orb{flex:none;width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:rgba(21,21,21,.08);color:#151515;text-decoration:none;transition:background .2s,transform .2s,color .2s;}
+  .ef-mod__orb:hover{background:rgba(21,21,21,.14);color:#151515;}
+  .ef-mod--tile:hover .ef-mod__orb{transform:translate(2px,-2px);}
+  .ef-mod--tile .ef-mod__panel{flex:1;height:auto;min-height:168px;padding:4px 16px 18px;overflow:hidden;align-items:flex-start;background:transparent;}
+  .ef-mod--wide .ef-mod__panel,.ef-mod--half .ef-mod__panel{min-height:210px;}
+  .ef-mod--tile .ef-mod__win{max-width:none;border-radius:14px;border:1px solid rgba(21,21,21,.06);box-shadow:0 16px 32px -22px rgba(5,2,48,.28);background:#fff;}
   .ef-mod--tile .ef-mod__bar{height:28px;}
   .ef-mod--tile .ef-mod__dot{width:7px;height:7px;}
   .ef-mod--tile .ef-mod__bar-title{font-size:10px;}
-  .ef-mod--tile .ef-mod__copy{padding:20px 22px 24px;flex:1;border-top:1px solid rgba(255,255,255,.05);}
   .ef-mod__lbl{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;color:var(--c-blue-ribbon);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
   .ef-mod__lbl i{width:14px;height:14px;border-radius:4px;background:var(--c-blue-ribbon);opacity:.9;}
   .ef-mod__ttl{margin:0 0 8px;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:#141033;}
   .ef-mod__desc{margin:0;font-size:14px;line-height:1.5;color:#5b567e;}
   .ef-mod__go{margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--c-blue-ribbon);font-weight:700;font-size:14px;text-decoration:none;}
   .ef-mod__go:hover{color:var(--c-blue-ribbon);}
-  .ef-mod--tile .ef-mod__lbl,.ef-mod--tile .ef-mod__go{color:var(--tile-accent);}
-  .ef-mod--tile .ef-mod__lbl i{background:var(--tile-accent);box-shadow:0 0 18px -4px var(--tile-accent);}
-  .ef-mod--tile .ef-mod__ttl{color:var(--fg1);}
-  .ef-mod--tile .ef-mod__desc{color:var(--fg2);}
-  .ef-mod--tile .ef-mod__go:hover{color:#fff;}
-  .ef-mod--mint{--tile-accent:var(--c-frosted-mint);--tile-glow:rgba(213,255,243,.13);}
-  .ef-mod--mint .ef-mod__panel{background:var(--c-frosted-mint);}
-  .ef-mod--peri{--tile-accent:var(--c-periwinkle);--tile-glow:rgba(206,200,255,.15);}
-  .ef-mod--peri .ef-mod__panel{background:var(--c-periwinkle);}
-  .ef-mod--pink{--tile-accent:var(--c-cotton-candy);--tile-glow:rgba(255,184,226,.13);}
-  .ef-mod--pink .ef-mod__panel{background:var(--c-cotton-candy);}
-  .ef-mod--fog{--tile-accent:var(--c-fog);--tile-glow:rgba(217,214,255,.14);}
-  .ef-mod--fog .ef-mod__panel{background:var(--c-fog);}
-  .ef-mod--mint2{--tile-accent:var(--c-frosted-mint);--tile-glow:rgba(213,255,243,.13);}
-  .ef-mod--mint2 .ef-mod__panel{background:var(--c-frosted-mint);}
-  .ef-mod--pink2{--tile-accent:var(--c-cotton-candy);--tile-glow:rgba(255,184,226,.13);}
-  .ef-mod--pink2 .ef-mod__panel{background:var(--c-cotton-candy);}
+  .ef-mod--tile .ef-mod__lbl{color:rgba(21,21,21,.58);}
+  .ef-mod--tile .ef-mod__lbl i{background:#151515;box-shadow:none;opacity:.85;}
+  .ef-mod--tile .ef-mod__ttl{color:#151515;font-size:clamp(18px,1.6vw,22px);}
+  .ef-mod--tile .ef-mod__desc{color:rgba(21,21,21,.66);max-width:42ch;}
+  .ef-mod--narrow .ef-mod__desc,.ef-mod--third .ef-mod__desc{font-size:13px;}
+  .ef-mod--mint{--tile-fill:var(--c-frosted-mint);}
+  .ef-mod--peri{--tile-fill:var(--c-periwinkle);}
+  .ef-mod--pink{--tile-fill:var(--c-cotton-candy);}
+  .ef-mod--fog{--tile-fill:var(--c-fog);}
+  .ef-mod--cheese{--tile-fill:var(--c-mac-cheese);}
   .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
   .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
   .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}
@@ -1033,10 +1036,15 @@ html, body {
     .ef-mod--flag{grid-template-columns:1fr;}
     .ef-mod--flag .ef-mod__panel{order:-1;min-height:280px;}
     .ef-mod__grid{grid-template-columns:repeat(2,1fr);}
+    .ef-mod--wide,.ef-mod--half{grid-column:span 2;}
+    .ef-mod--narrow,.ef-mod--third{grid-column:span 1;}
   }
-  @media (max-width:640px){.ef-mod__grid{grid-template-columns:1fr;}}
+  @media (max-width:640px){
+    .ef-mod__grid{grid-template-columns:1fr;}
+    .ef-mod--wide,.ef-mod--narrow,.ef-mod--half,.ef-mod--third{grid-column:span 1;}
+  }
   @media (prefers-reduced-motion:reduce){
-    .ef-ui-src,.ef-mod__win,.ef-mod,.ef-mod__arw,.ef-ui-score{animation:none!important;transition:none!important;}
+    .ef-ui-src,.ef-mod__win,.ef-mod,.ef-mod__arw,.ef-mod__orb,.ef-ui-score{animation:none!important;transition:none!important;}
   }
   </style>
   <section id="platform" class="ef-mods" aria-labelledby="ef-mods-title">
@@ -1102,7 +1110,14 @@ html, body {
       </article>
 
       <div class="ef-mod__grid">
-        <article class="ef-mod ef-mod--tile ef-mod--mint">
+        <article class="ef-mod ef-mod--tile ef-mod--mint ef-mod--wide">
+          <div class="ef-mod__copy">
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Оценка 360°</span>
+            <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+            <h3 class="ef-mod__ttl">Взгляд со всех сторон</h3>
+            <p class="ef-mod__desc">Руководитель, коллеги, подчинённые и самооценка сходятся в один отчёт — с сильными сторонами, зонами роста и разрывами восприятия.</p>
+          </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Оценка 360° · Анна К. · 12 респондентов</span></div>
@@ -1145,15 +1160,16 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="ef-mod__copy">
-            <span class="ef-mod__lbl"><i></i>Оценка 360°</span>
-            <h3 class="ef-mod__ttl">Взгляд со всех сторон</h3>
-            <p class="ef-mod__desc">Руководитель, коллеги, подчинённые и самооценка сходятся в один отчёт — с сильными сторонами, зонами роста и разрывами восприятия.</p>
-            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-          </div>
         </article>
 
-        <article class="ef-mod ef-mod--tile ef-mod--peri">
+        <article class="ef-mod ef-mod--tile ef-mod--peri ef-mod--narrow">
+          <div class="ef-mod__copy">
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Целеполагание</span>
+            <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+            <h3 class="ef-mod__ttl">Цели каскадом по всей компании</h3>
+            <p class="ef-mod__desc">Стратегия компании раскладывается до департаментов, команд и сотрудников: маршруты согласования, ключевые результаты и прозрачный статус на каждом уровне.</p>
+          </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Каскад целей · Компания → Product · Q2’26</span></div>
@@ -1190,15 +1206,16 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="ef-mod__copy">
-            <span class="ef-mod__lbl"><i></i>Целеполагание</span>
-            <h3 class="ef-mod__ttl">Цели каскадом по всей компании</h3>
-            <p class="ef-mod__desc">Стратегия компании раскладывается до департаментов, команд и сотрудников: маршруты согласования, ключевые результаты и прозрачный статус на каждом уровне.</p>
-            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-          </div>
         </article>
 
-        <article class="ef-mod ef-mod--tile ef-mod--pink">
+        <article class="ef-mod ef-mod--tile ef-mod--pink ef-mod--third">
+          <div class="ef-mod__copy">
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Матрица потенциала</span>
+            <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+            <h3 class="ef-mod__ttl">9-box строится автоматически</h3>
+            <p class="ef-mod__desc">Звёзды, ключевые игроки и зоны риска видны сразу. Кадровый резерв формируется на данных оценки.</p>
+          </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">9-Box · Компания · 42 сотрудника</span></div>
@@ -1223,15 +1240,16 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="ef-mod__copy">
-            <span class="ef-mod__lbl"><i></i>Матрица потенциала</span>
-            <h3 class="ef-mod__ttl">9-box строится автоматически</h3>
-            <p class="ef-mod__desc">Звёзды, ключевые игроки и зоны риска видны сразу. Кадровый резерв формируется на данных оценки.</p>
-            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-          </div>
         </article>
 
-        <article class="ef-mod ef-mod--tile ef-mod--mint2">
+        <article class="ef-mod ef-mod--tile ef-mod--fog ef-mod--wide">
+          <div class="ef-mod__copy">
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Карьера и развитие</span>
+            <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+            <h3 class="ef-mod__ttl">ИПР собирается сам</h3>
+            <p class="ef-mod__desc">ИИ строит план развития из оценок и материалов и ведёт сотрудника по карьерному треку.</p>
+          </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">ИПР · Middle → Senior Product</span></div>
@@ -1253,15 +1271,16 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="ef-mod__copy">
-            <span class="ef-mod__lbl"><i></i>Карьера и развитие</span>
-            <h3 class="ef-mod__ttl">ИПР собирается сам</h3>
-            <p class="ef-mod__desc">ИИ строит план развития из оценок и материалов и ведёт сотрудника по карьерному треку.</p>
-            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-          </div>
         </article>
 
-        <article class="ef-mod ef-mod--tile ef-mod--fog">
+        <article class="ef-mod ef-mod--tile ef-mod--cheese ef-mod--half">
+          <div class="ef-mod__copy">
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Планирование преемственности</span>
+            <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+            <h3 class="ef-mod__ttl">Карта преемников по ролям</h3>
+            <p class="ef-mod__desc">Подбирайте людей на ключевые позиции, запускайте процесс через руководителей и видите карту преемников с уровнями готовности.</p>
+          </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Преемственность · Head of Product</span></div>
@@ -1294,15 +1313,16 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="ef-mod__copy">
-            <span class="ef-mod__lbl"><i></i>Планирование преемственности</span>
-            <h3 class="ef-mod__ttl">Карта преемников по ролям</h3>
-            <p class="ef-mod__desc">Подбирайте людей на ключевые позиции, запускайте процесс через руководителей и видите карту преемников с уровнями готовности.</p>
-            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-          </div>
         </article>
 
-        <article class="ef-mod ef-mod--tile ef-mod--pink2">
+        <article class="ef-mod ef-mod--tile ef-mod--mint ef-mod--half">
+          <div class="ef-mod__copy">
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Нематериальная мотивация</span>
+            <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+          </div>
+            <h3 class="ef-mod__ttl">Спасибо, которое считается</h3>
+            <p class="ef-mod__desc">Благодарности, баллы и признание достижений — культура, которую видно в цифрах.</p>
+          </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Лента признания · май 2026</span></div>
@@ -1320,12 +1340,6 @@ html, body {
                 <div style="display:flex;justify-content:space-between;font-size:9px;font-weight:700;color:#8681ab;"><span>Признаний за месяц</span><span style="color:#e35aa4;font-size:11px;">128</span></div>
               </div>
             </div>
-          </div>
-          <div class="ef-mod__copy">
-            <span class="ef-mod__lbl"><i></i>Нематериальная мотивация</span>
-            <h3 class="ef-mod__ttl">Спасибо, которое считается</h3>
-            <p class="ef-mod__desc">Благодарности, баллы и признание достижений — культура, которую видно в цифрах.</p>
-            <a class="ef-mod__go" href="#contacts">Смотреть <svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
         </article>
       </div>
