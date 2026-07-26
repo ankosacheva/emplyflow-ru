@@ -1022,6 +1022,8 @@ html, body {
   .ef-mod--pink{--tile-fill:var(--c-cotton-candy);}
   .ef-mod--fog{--tile-fill:var(--c-fog);}
   .ef-mod--cheese{--tile-fill:var(--c-mac-cheese);}
+  .ef-mod__goals-mock{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;align-items:stretch;}
+  @media (max-width:720px){.ef-mod__goals-mock{grid-template-columns:1fr;}}
   .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
   .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
   .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}
@@ -1164,44 +1166,29 @@ html, body {
 
         <article class="ef-mod ef-mod--tile ef-mod--peri ef-mod--narrow">
           <div class="ef-mod__copy">
-            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Целеполагание</span>
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Карьера и развитие</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">Цели каскадом по всей компании</h3>
-            <p class="ef-mod__desc">Стратегия компании раскладывается до департаментов, команд и сотрудников: маршруты согласования, ключевые результаты и прозрачный статус на каждом уровне.</p>
+            <h3 class="ef-mod__ttl">ИПР собирается сам</h3>
+            <p class="ef-mod__desc">ИИ строит план развития из оценок и материалов и ведёт сотрудника по карьерному треку.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
-              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Каскад целей · Компания → Product · Q2’26</span></div>
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">ИПР · Middle → Senior Product</span></div>
               <div class="ef-mod__body">
-                <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
-                  <span class="ef-ui-pill" style="background:#4a3bff;color:#fff;">Компания</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8681ab" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-                  <span class="ef-ui-pill" style="background:#efeafe;color:#4a3bff;">Департамент</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8681ab" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-                  <span class="ef-ui-pill" style="background:#f1eefe;color:#3a3568;">Команда</span>
+                <div style="display:flex;align-items:center;margin-bottom:6px;">
+                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
+                  <span style="height:3px;flex:1;background:#a9e2bd;"></span>
+                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
+                  <span style="height:3px;flex:1;background:linear-gradient(90deg,#a9e2bd,#e6e4f2);"></span>
+                  <span style="position:relative;width:14px;height:14px;border-radius:50%;background:#4a3bff;flex:none;"><span style="position:absolute;inset:-4px;border-radius:50%;border:2px solid #4a3bff;animation:efModPulse 2.4s ease-out infinite;"></span></span>
+                  <span style="height:3px;flex:1;background:#e6e4f2;"></span>
+                  <span style="width:12px;height:12px;border-radius:50%;background:#e6e4f2;flex:none;"></span>
                 </div>
-                <div style="padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;margin-bottom:7px;">
-                  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px;">
-                    <span style="font-size:10.5px;font-weight:800;color:#141033;">O1. Ускорить time-to-value клиентов</span>
-                    <span class="ef-ui-pill" style="background:#e7f7ee;color:#2fa565;">Согласовано</span>
-                  </div>
-                  <div style="display:flex;flex-direction:column;gap:4px;">
-                    <div style="display:flex;align-items:center;gap:6px;font-size:9.5px;font-weight:600;color:#403c68;">
-                      <span style="width:4px;height:4px;border-radius:50%;background:#4a3bff;flex:none;"></span>
-                      <span style="flex:1;">KR1. Онбординг v2 в проде</span>
-                      <span style="color:#8681ab;font-variant-numeric:tabular-nums;">63%</span>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:6px;font-size:9.5px;font-weight:600;color:#403c68;">
-                      <span style="width:4px;height:4px;border-radius:50%;background:#c6a4ff;flex:none;"></span>
-                      <span style="flex:1;">KR2. NPS ≥ 60</span>
-                      <span style="color:#8681ab;font-variant-numeric:tabular-nums;">88%</span>
-                    </div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:9px;font-weight:700;">
-                  <span style="color:#8681ab;">Маршрут: HR → руководитель → CEO</span>
-                  <span style="color:#4a3bff;">3 / 3 шага</span>
+                <div style="display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#8681ab;margin-bottom:10px;"><span>Junior</span><span>Middle</span><span style="color:#4a3bff;">сейчас</span><span>Senior</span></div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;background:#5fce87;display:grid;place-items:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg></span>Курс «Управление командой»</div>
+                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;border:2px solid #4a3bff;"></span>Менторинг junior · 40%</div>
                 </div>
               </div>
             </div>
@@ -1244,29 +1231,82 @@ html, body {
 
         <article class="ef-mod ef-mod--tile ef-mod--fog ef-mod--wide">
           <div class="ef-mod__copy">
-            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Карьера и развитие</span>
+            <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Целеполагание</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">ИПР собирается сам</h3>
-            <p class="ef-mod__desc">ИИ строит план развития из оценок и материалов и ведёт сотрудника по карьерному треку.</p>
+            <h3 class="ef-mod__ttl">Цели каскадом по всей компании</h3>
+            <p class="ef-mod__desc">Стратегия раскладывается до департаментов, команд и сотрудников: дерево целей, маршруты согласования и прозрачный статус на каждом уровне.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
-              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">ИПР · Middle → Senior Product</span></div>
-              <div class="ef-mod__body">
-                <div style="display:flex;align-items:center;margin-bottom:6px;">
-                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
-                  <span style="height:3px;flex:1;background:#a9e2bd;"></span>
-                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
-                  <span style="height:3px;flex:1;background:linear-gradient(90deg,#a9e2bd,#e6e4f2);"></span>
-                  <span style="position:relative;width:14px;height:14px;border-radius:50%;background:#4a3bff;flex:none;"><span style="position:absolute;inset:-4px;border-radius:50%;border:2px solid #4a3bff;animation:efModPulse 2.4s ease-out infinite;"></span></span>
-                  <span style="height:3px;flex:1;background:#e6e4f2;"></span>
-                  <span style="width:12px;height:12px;border-radius:50%;background:#e6e4f2;flex:none;"></span>
+              <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Дерево целей · Q2’26 · маршрут согласования</span></div>
+              <div class="ef-mod__body ef-mod__goals-mock">
+                <div style="display:flex;flex-direction:column;gap:0;min-width:0;">
+                  <div style="padding:8px 10px;border-radius:10px;background:#141033;color:#fff;margin-bottom:2px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                      <div style="min-width:0;">
+                        <div style="font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#a9b8ff;margin-bottom:2px;">Компания</div>
+                        <div style="font-size:11px;font-weight:800;line-height:1.2;">Ускорить time-to-value клиентов</div>
+                      </div>
+                      <span class="ef-ui-pill" style="background:#c6e94b;color:#2a3a08;flex:none;">71%</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;padding-left:14px;">
+                    <span style="width:14px;flex:none;border-left:2px solid #d9d6ff;border-bottom:2px solid #d9d6ff;border-radius:0 0 0 8px;height:12px;margin-right:6px;"></span>
+                  </div>
+                  <div style="margin-left:20px;padding:7px 9px;border-radius:10px;background:#efeafe;border:1px solid #ddd8fb;margin-bottom:2px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                      <div style="min-width:0;">
+                        <div style="font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6c6790;margin-bottom:2px;">Департамент · Product</div>
+                        <div style="font-size:10.5px;font-weight:800;color:#141033;line-height:1.2;">Снизить time-to-first-value</div>
+                      </div>
+                      <span class="ef-ui-pill" style="background:#fff;color:#4a3bff;border:1px solid #d9d5ff;flex:none;">68%</span>
+                    </div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-left:36px;position:relative;">
+                    <span style="position:absolute;left:-16px;top:-2px;bottom:50%;width:14px;border-left:2px solid #d9d6ff;border-bottom:2px solid #d9d6ff;border-radius:0 0 0 8px;"></span>
+                    <div style="padding:7px 8px;border-radius:9px;background:#f5f4fb;border:1px solid #ececf6;">
+                      <div style="font-size:8px;font-weight:700;color:#8681ab;margin-bottom:3px;">Команда · Growth</div>
+                      <div style="font-size:9.5px;font-weight:800;color:#141033;line-height:1.25;margin-bottom:5px;">KR1. Онбординг v2</div>
+                      <div style="height:4px;border-radius:999px;background:#e6e4f2;overflow:hidden;"><i style="display:block;width:63%;height:100%;background:#4a3bff;border-radius:inherit;"></i></div>
+                      <div style="margin-top:3px;font-size:8px;font-weight:700;color:#4a3bff;text-align:right;">63%</div>
+                    </div>
+                    <div style="padding:7px 8px;border-radius:9px;background:#f5f4fb;border:1px solid #ececf6;">
+                      <div style="font-size:8px;font-weight:700;color:#8681ab;margin-bottom:3px;">Команда · CX</div>
+                      <div style="font-size:9.5px;font-weight:800;color:#141033;line-height:1.25;margin-bottom:5px;">KR2. NPS ≥ 60</div>
+                      <div style="height:4px;border-radius:999px;background:#e6e4f2;overflow:hidden;"><i style="display:block;width:88%;height:100%;background:#5fce87;border-radius:inherit;"></i></div>
+                      <div style="margin-top:3px;font-size:8px;font-weight:700;color:#2fa565;text-align:right;">88%</div>
+                    </div>
+                  </div>
                 </div>
-                <div style="display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#8681ab;margin-bottom:10px;"><span>Junior</span><span>Middle</span><span style="color:#4a3bff;">сейчас</span><span>Senior</span></div>
-                <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;background:#5fce87;display:grid;place-items:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg></span>Курс «Управление командой»</div>
-                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;border:2px solid #4a3bff;"></span>Менторинг junior · 40%</div>
+                <div style="padding:10px;border-radius:12px;background:#f5f4fb;border:1px solid #ececf6;display:flex;flex-direction:column;gap:0;min-width:0;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                    <span style="font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8681ab;">Маршрут согласования</span>
+                    <span class="ef-ui-pill" style="background:#efeafe;color:#4a3bff;">2 / 3</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:flex-start;">
+                    <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px;flex:none;">
+                      <span style="width:16px;height:16px;border-radius:50%;background:#5fce87;display:grid;place-items:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg></span>
+                      <span style="width:2px;flex:1;min-height:18px;background:#a9e2bd;margin:3px 0;"></span>
+                      <span style="width:16px;height:16px;border-radius:50%;background:#5fce87;display:grid;place-items:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg></span>
+                      <span style="width:2px;flex:1;min-height:18px;background:linear-gradient(#a9e2bd,#d9d6ff);margin:3px 0;"></span>
+                      <span style="position:relative;width:16px;height:16px;border-radius:50%;background:#4a3bff;box-shadow:0 0 0 3px rgba(74,59,255,.18);"><span style="position:absolute;inset:-4px;border-radius:50%;border:2px solid #4a3bff;animation:efModPulse 2.4s ease-out infinite;"></span></span>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:10px;min-width:0;">
+                      <div>
+                        <div style="font-size:10.5px;font-weight:800;color:#141033;">HR BP</div>
+                        <div style="font-size:8.5px;font-weight:600;color:#2fa565;">Согласовано · 12 мая</div>
+                      </div>
+                      <div>
+                        <div style="font-size:10.5px;font-weight:800;color:#141033;">Руководитель Product</div>
+                        <div style="font-size:8.5px;font-weight:600;color:#2fa565;">Согласовано · 14 мая</div>
+                      </div>
+                      <div>
+                        <div style="font-size:10.5px;font-weight:800;color:#141033;">CEO</div>
+                        <div style="font-size:8.5px;font-weight:600;color:#4a3bff;">На проверке</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
