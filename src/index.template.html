@@ -1632,46 +1632,50 @@ html, body {
   .ef-ai .mock:hover *{animation-play-state:paused!important;}
   .ef-ai .bento:hover{transform:translateY(-3px);box-shadow:0 30px 60px -28px rgba(5,2,48,.4);}
 
-  /* ================= 19s loop ================= */
-  /* S1 0-3s · case in 3-4s · read 4-6.5s · flip 6.5-7.3s · chat 7.3-11.5s · report 11.5-16s · hold 16-19s */
+  /* ================= 19s loop (все проценты = сек/19*100) ================= */
+  /* S1 build 0-5s · S2 case 5-8.5s · flip · S3 chat 8.5-13.5s · S4 report 13.5-19s */
 
-  @keyframes AfadeA { 0%,13%{opacity:1} 15%{opacity:0} 94%{opacity:0} 98%,100%{opacity:1} }
-  @keyframes Bfade  { 0%,15%{opacity:0} 19%,36%{opacity:1} 39%,100%{opacity:0} }
-  @keyframes Cfade  { 0%,37%{opacity:0} 40%,58%{opacity:1} 61%,100%{opacity:0} }
-  @keyframes Dfade  { 0%,58%{opacity:0} 61%,97%{opacity:1} 100%{opacity:0} }
+  @keyframes AfadeA { 0%{opacity:1} 24%{opacity:1} 26%{opacity:0} 97%{opacity:0} 100%{opacity:1} }
+  @keyframes Bfade  { 0%{opacity:0} 25%{opacity:0} 27%{opacity:1} 43%{opacity:1} 45%{opacity:0} 100%{opacity:0} }
+  @keyframes Cfade  { 0%{opacity:0} 44%{opacity:0} 46%{opacity:1} 69%{opacity:1} 71%{opacity:0} 100%{opacity:0} }
+  @keyframes Dfade  { 0%{opacity:0} 70%{opacity:0} 72%{opacity:1} 97%{opacity:1} 100%{opacity:0} }
 
-  @keyframes ulK { 0%,36%{opacity:1} 39%{opacity:0} 95%{opacity:0} 98%,100%{opacity:1} }
-  @keyframes ulP { 0%,36%{opacity:0} 39%,95%{opacity:1} 98%,100%{opacity:0} }
+  @keyframes ulK { 0%{opacity:1} 44%{opacity:1} 46%{opacity:0} 96%{opacity:0} 100%{opacity:1} }
+  @keyframes ulP { 0%{opacity:0} 44%{opacity:0} 46%{opacity:1} 96%{opacity:1} 98%{opacity:0} 100%{opacity:0} }
 
-  @keyframes s1card { 0%,1%{opacity:0;transform:translateY(14px)} 6%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateY(14px)} }
-  @keyframes s1c1 { 0%,4%{opacity:0;transform:translateX(-12px) scale(.92)} 7%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateX(-12px) scale(.92)} }
-  @keyframes s1c2 { 0%,6%{opacity:0;transform:translateX(-12px) scale(.92)} 9%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateX(-12px) scale(.92)} }
-  @keyframes s1c3 { 0%,8%{opacity:0;transform:translateX(-12px) scale(.92)} 11%,88%{opacity:1;transform:none} 92%,100%{opacity:0;transform:translateX(-12px) scale(.92)} }
-  @keyframes s1gen { 0%,9%{opacity:0} 12%,88%{opacity:1} 92%,100%{opacity:0} }
-  @keyframes s1bar { 0%,10%{width:0} 14%{width:100%} 88%{width:100%} 92%,100%{width:0} }
-  @keyframes s1cap { 0%,3%{opacity:0} 7%,88%{opacity:1} 92%,100%{opacity:0} }
+  /* --- S1 build: card 0-0.4s · chips 0.3/0.6/0.9s · gen 1.2s · bar 1.5-3.0s · hold-4.6s · out-5.0s --- */
+  @keyframes s1card { 0%,1%{opacity:0;transform:translateY(14px)} 2%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateY(14px)} 100%{opacity:0;transform:translateY(14px)} }
+  @keyframes s1c1 { 0%,1.6%{opacity:0;transform:translateX(-12px) scale(.92)} 3.2%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateX(-12px) scale(.92)} 100%{opacity:0;transform:translateX(-12px) scale(.92)} }
+  @keyframes s1c2 { 0%,3.2%{opacity:0;transform:translateX(-12px) scale(.92)} 4.8%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateX(-12px) scale(.92)} 100%{opacity:0;transform:translateX(-12px) scale(.92)} }
+  @keyframes s1c3 { 0%,4.8%{opacity:0;transform:translateX(-12px) scale(.92)} 6.4%{opacity:1;transform:none} 24%{opacity:1;transform:none} 26%{opacity:0;transform:translateX(-12px) scale(.92)} 100%{opacity:0;transform:translateX(-12px) scale(.92)} }
+  @keyframes s1gen { 0%,6.4%{opacity:0} 8%{opacity:1} 24%{opacity:1} 26%{opacity:0} 100%{opacity:0} }
+  @keyframes s1bar { 0%,7.9%{width:0} 15.8%{width:100%} 24%{width:100%} 26%{width:0} 100%{width:0} }
+  @keyframes s1cap { 0%,2.6%{opacity:0} 5.3%{opacity:1} 24%{opacity:1} 26%{opacity:0} 100%{opacity:0} }
 
-  @keyframes s2peek { 0%,15%{opacity:0;transform:translateY(12px) scale(.97)} 19%,34%{opacity:1;transform:translateY(0) scale(.955)} 38%,100%{opacity:0;transform:translateY(-26px) scale(.94)} }
-  @keyframes s2case { 0%,17%{opacity:0;transform:translateY(14px) scale(.96)} 21%,34%{opacity:1;transform:none} 38%{opacity:0;transform:translateY(-34px) scale(.97)} 100%{opacity:0} }
-  @keyframes s2dots { 0%,20%{opacity:0} 22%,34%{opacity:1} 37%,100%{opacity:0} }
+  /* --- S2 case: in 5.0-5.4s · read · flip up 8.1-8.5s --- */
+  @keyframes s2peek { 0%,26%{opacity:0;transform:translateY(12px) scale(.97)} 28%{opacity:1;transform:translateY(0) scale(.955)} 43%{opacity:1;transform:translateY(0) scale(.955)} 45%{opacity:0;transform:translateY(-26px) scale(.94)} 100%{opacity:0;transform:translateY(-26px) scale(.94)} }
+  @keyframes s2case { 0%,27%{opacity:0;transform:translateY(14px) scale(.96)} 29%{opacity:1;transform:none} 43%{opacity:1;transform:none} 45%{opacity:0;transform:translateY(-34px) scale(.97)} 100%{opacity:0} }
+  @keyframes s2dots { 0%,29%{opacity:0} 31%{opacity:1} 43%{opacity:1} 45%{opacity:0} 100%{opacity:0} }
 
-  @keyframes cAi1 { 0%,40%{opacity:0;transform:translateY(10px)} 43%,58%{opacity:1;transform:none} 61%,100%{opacity:0;transform:translateY(10px)} }
-  @keyframes cEmp { 0%,45%{opacity:0;transform:translateY(10px)} 48%,58%{opacity:1;transform:none} 61%,100%{opacity:0;transform:translateY(10px)} }
-  @keyframes cAi2 { 0%,53%{opacity:0;transform:translateY(10px)} 56%,58%{opacity:1;transform:none} 61%,100%{opacity:0;transform:translateY(10px)} }
-  @keyframes cUi  { 0%,38%{opacity:0} 41%,58%{opacity:1} 61%,100%{opacity:0} }
+  /* --- S3 chat: ui 8.7s · AI1 8.7s · emp bubble 9.3s (печать 9.8-11.0) · AI2 11.3s · out 13.5s --- */
+  @keyframes cUi  { 0%,45%{opacity:0} 48%{opacity:1} 69%{opacity:1} 71%{opacity:0} 100%{opacity:0} }
+  @keyframes cAi1 { 0%,46%{opacity:0;transform:translateY(10px)} 48%{opacity:1;transform:none} 69%{opacity:1;transform:none} 71%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
+  @keyframes cEmp { 0%,49%{opacity:0;transform:translateY(10px)} 51%{opacity:1;transform:none} 69%{opacity:1;transform:none} 71%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
+  @keyframes cAi2 { 0%,59%{opacity:0;transform:translateY(10px)} 61%{opacity:1;transform:none} 69%{opacity:1;transform:none} 71%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
   @keyframes micblink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.9)} }
   @keyframes caret { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  @keyframes dCard   { 0%,58%{opacity:0;transform:translateY(52px)} 62%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0;transform:translateY(52px)} }
-  @keyframes dScroll { 0%,62%{transform:translateY(0)} 82%,97%{transform:translateY(-172px)} 100%{transform:translateY(0)} }
-  @keyframes dBar    { 0%,62%{width:0} 69%,97%{width:75%} 100%{width:0} }
-  @keyframes dR1 { 0%,62%{opacity:0;transform:translateY(8px)} 65%,96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dR2 { 0%,64%{opacity:0;transform:translateY(8px)} 67%,96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dR3 { 0%,66%{opacity:0;transform:translateY(8px)} 69%,96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dR4 { 0%,68%{opacity:0;transform:translateY(8px)} 71%,96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dStrong { 0%,71%{opacity:0;transform:translateY(8px)} 74%,96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dGrow   { 0%,74%{opacity:0;transform:translateY(8px)} 77%,96%{opacity:1;transform:none} 100%{opacity:0} }
-  @keyframes dRec    { 0%,77%{opacity:0;transform:translateY(8px)} 80%,96%{opacity:1;transform:none} 100%{opacity:0} }
+  /* --- S4 report: card 13.5s · bar 14.2-14.9s · rows 14.3-15.2s · blocks 15.5-16.1s · scroll 15.6-17.5s --- */
+  @keyframes dCard   { 0%,70%{opacity:0;transform:translateY(52px)} 72.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0;transform:translateY(52px)} }
+  @keyframes dScroll { 0%,80%{transform:translateY(0)} 92%{transform:translateY(-172px)} 97%{transform:translateY(-172px)} 100%{transform:translateY(0)} }
+  @keyframes dBar    { 0%,74%{width:0} 79%{width:75%} 97%{width:75%} 100%{width:0} }
+  @keyframes dR1 { 0%,75%{opacity:0;transform:translateY(8px)} 76.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dR2 { 0%,76.5%{opacity:0;transform:translateY(8px)} 78%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dR3 { 0%,78%{opacity:0;transform:translateY(8px)} 79.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dR4 { 0%,79.5%{opacity:0;transform:translateY(8px)} 81%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dStrong { 0%,81.5%{opacity:0;transform:translateY(8px)} 83%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dGrow   { 0%,83%{opacity:0;transform:translateY(8px)} 84.5%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
+  @keyframes dRec    { 0%,84.5%{opacity:0;transform:translateY(8px)} 86%{opacity:1;transform:none} 96%{opacity:1;transform:none} 100%{opacity:0} }
 
 </style>
 <section id="ai-assistant" class="ef-ai" aria-labelledby="ef-ai-title" style="position:relative; width:100%; overflow:hidden; font-family:var(--font-sans); color:#050230; background:linear-gradient(180deg,#efe9ff 0%,#f4ecfb 40%,#fdeef4 68%,#eaeefb 100%); padding:clamp(52px,7vw,104px) clamp(20px,5vw,48px);">
@@ -2070,7 +2074,9 @@ class Component extends DCLogic {
       return;
     }
 
-    const ts = 9.2, te = 10.6;
+    const ts = 9.8, te = 11.0;      // окно печати ответа сотрудника
+    const cs = 9.3, ce = 13.5;      // окно видимости пузыря сотрудника
+    const ts0 = 8.7, ts1 = 13.5;    // окно тикающего таймера (сцена чата)
     let lastTyped = null, lastTimer = null;
     const loop = () => {
       this._aiRaf = requestAnimationFrame(loop);
@@ -2088,10 +2094,10 @@ class Component extends DCLogic {
       if (t < ts) n = 0;
       else if (t > te) n = msg.length;
       else n = Math.round(msg.length * (t - ts) / (te - ts));
-      const typed = t >= 7.3 && t <= 11.5 ? msg.slice(0, n) : '';
+      const typed = t >= cs && t <= ce ? msg.slice(0, n) : '';
       let secs = 120;
-      if (t >= 7.3 && t <= 11.5) secs = 120 - Math.floor(t - 7.3);
-      else if (t > 11.5) secs = 116;
+      if (t >= ts0 && t <= ts1) secs = 120 - Math.floor(t - ts0);
+      else if (t > ts1) secs = 120 - Math.floor(ts1 - ts0);
       const timer = String(Math.floor(secs / 60)).padStart(2, '0') + ':' + String(secs % 60).padStart(2, '0');
       if (typed !== lastTyped) { typedEl.textContent = typed; lastTyped = typed; }
       if (timer !== lastTimer) { timerEl.textContent = timer; lastTimer = timer; }
