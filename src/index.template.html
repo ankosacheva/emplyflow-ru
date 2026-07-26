@@ -1046,6 +1046,26 @@ html, body {
   .ef-succ-node__name{font-size:10px;font-weight:800;color:#141033;line-height:1.2;}
   .ef-succ-node__role{font-size:8px;font-weight:600;color:#8681ab;margin-bottom:2px;}
   .ef-succ-node .ef-ui-pill{font-size:8.5px;padding:2px 6px;}
+  .ef-ipr{display:flex;flex-direction:column;gap:7px;}
+  .ef-ipr__progress{display:flex;align-items:center;margin:0 6px 3px;}
+  .ef-ipr__progress i{width:10px;height:10px;border-radius:50%;background:#5fce87;flex:none;box-shadow:0 0 0 2px #e7f7ee;}
+  .ef-ipr__progress i.is-current{background:#4a3bff;box-shadow:0 0 0 3px #cec8ff;}
+  .ef-ipr__progress i.is-future{background:#d9d6e8;box-shadow:none;}
+  .ef-ipr__progress b{height:2px;flex:1;background:#a9e2bd;}
+  .ef-ipr__progress b.is-future{background:#e6e4f2;}
+  .ef-ipr-stage{padding:8px 9px;border-radius:10px;background:#f7f6fb;border:1px solid #ececf6;}
+  .ef-ipr-stage.is-current{background:#f1eefe;border-color:#d8d1ff;}
+  .ef-ipr-stage__head,.ef-ipr-stage__kpi{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .ef-ipr-stage__head{margin-bottom:6px;}
+  .ef-ipr-stage__title{font-size:10px;font-weight:800;color:#141033;}
+  .ef-ipr-stage__status{padding:2px 6px;border-radius:999px;font-size:8px;font-weight:800;white-space:nowrap;}
+  .ef-ipr-stage__status.is-done{background:#e7f7ee;color:#2fa565;}
+  .ef-ipr-stage__status.is-open{background:#fff1e4;color:#a85c1d;}
+  .ef-ipr-stage__items{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;}
+  .ef-ipr-item{display:inline-flex;align-items:center;gap:4px;padding:3px 5px;border-radius:6px;background:#fff;color:#5b567e;font-size:8px;font-weight:700;border:1px solid #ececf6;}
+  .ef-ipr-item i{width:12px;height:12px;border-radius:4px;background:#efeafe;color:#4a3bff;font-style:normal;font-size:7px;font-weight:800;display:grid;place-items:center;flex:none;}
+  .ef-ipr-stage__kpi{padding-top:5px;border-top:1px solid #e6e4f2;font-size:8px;font-weight:700;color:#8681ab;}
+  .ef-ipr-stage__kpi strong{color:#403c68;font-weight:800;text-align:right;}
   .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
   .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
   .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}
@@ -1226,20 +1246,42 @@ html, body {
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">ИПР · Middle → Senior Product</span></div>
-              <div class="ef-mod__body">
-                <div style="display:flex;align-items:center;margin-bottom:6px;">
-                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
-                  <span style="height:3px;flex:1;background:#a9e2bd;"></span>
-                  <span style="width:12px;height:12px;border-radius:50%;background:#5fce87;flex:none;"></span>
-                  <span style="height:3px;flex:1;background:linear-gradient(90deg,#a9e2bd,#e6e4f2);"></span>
-                  <span style="position:relative;width:14px;height:14px;border-radius:50%;background:#4a3bff;flex:none;"><span style="position:absolute;inset:-4px;border-radius:50%;border:2px solid #4a3bff;animation:efModPulse 2.4s ease-out infinite;"></span></span>
-                  <span style="height:3px;flex:1;background:#e6e4f2;"></span>
-                  <span style="width:12px;height:12px;border-radius:50%;background:#e6e4f2;flex:none;"></span>
+              <div class="ef-mod__body ef-ipr">
+                <div class="ef-ipr__progress" aria-hidden="true">
+                  <i></i><b></b><i class="is-current"></i><b class="is-future"></b><i class="is-future"></i>
                 </div>
-                <div style="display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:#8681ab;margin-bottom:10px;"><span>Junior</span><span>Middle</span><span style="color:#4a3bff;">сейчас</span><span>Senior</span></div>
-                <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;background:#5fce87;display:grid;place-items:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg></span>Курс «Управление командой»</div>
-                  <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:600;color:#403c68;"><span style="width:14px;height:14px;border-radius:4px;border:2px solid #4a3bff;"></span>Менторинг junior · 40%</div>
+                <div class="ef-ipr-stage">
+                  <div class="ef-ipr-stage__head">
+                    <span class="ef-ipr-stage__title">01 · База руководителя</span>
+                    <span class="ef-ipr-stage__status is-done">Закрыто</span>
+                  </div>
+                  <div class="ef-ipr-stage__items">
+                    <span class="ef-ipr-item"><i>М</i>Гайд по 1:1</span>
+                    <span class="ef-ipr-item"><i>К</i>Управление командой</span>
+                  </div>
+                  <div class="ef-ipr-stage__kpi"><span>KPI этапа</span><strong>3 встречи 1:1 · 100%</strong></div>
+                </div>
+                <div class="ef-ipr-stage is-current">
+                  <div class="ef-ipr-stage__head">
+                    <span class="ef-ipr-stage__title">02 · Практика лидерства</span>
+                    <span class="ef-ipr-stage__status is-open">Не закрыто</span>
+                  </div>
+                  <div class="ef-ipr-stage__items">
+                    <span class="ef-ipr-item"><i>Т</i>Тренинг «Делегирование»</span>
+                    <span class="ef-ipr-item"><i>М</i>Кейс для разбора</span>
+                  </div>
+                  <div class="ef-ipr-stage__kpi"><span>KPI этапа</span><strong>Менторинг junior · 40%</strong></div>
+                </div>
+                <div class="ef-ipr-stage">
+                  <div class="ef-ipr-stage__head">
+                    <span class="ef-ipr-stage__title">03 · Готовность к Senior</span>
+                    <span class="ef-ipr-stage__status is-open">Не закрыто</span>
+                  </div>
+                  <div class="ef-ipr-stage__items">
+                    <span class="ef-ipr-item"><i>К</i>Стратегическое мышление</span>
+                    <span class="ef-ipr-item"><i>Т</i>Защита проекта</span>
+                  </div>
+                  <div class="ef-ipr-stage__kpi"><span>KPI этапа</span><strong>Оценка 360° ≥ 4,5</strong></div>
                 </div>
               </div>
             </div>
