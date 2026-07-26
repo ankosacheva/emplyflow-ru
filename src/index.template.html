@@ -988,24 +988,37 @@ html, body {
   .ef-mod__bar-title{margin-left:8px;font-size:11px;font-weight:700;color:#8681ab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .ef-mod__body{padding:14px;}
   .ef-mod__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .ef-mod--tile .ef-mod__panel{height:188px;padding:18px 18px 0;overflow:hidden;align-items:flex-start;}
+  .ef-mod--tile{--tile-accent:var(--c-fog);--tile-glow:rgba(217,214,255,.14);background:radial-gradient(120% 90% at 18% 100%,var(--tile-glow),transparent 58%),var(--bg-elevated);border-color:rgba(217,214,255,.16);box-shadow:0 26px 58px -34px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.05);}
+  .ef-mod--tile:hover{border-color:color-mix(in srgb,var(--tile-accent) 42%,transparent);box-shadow:0 34px 70px -34px rgba(0,0,0,.9),0 0 46px -34px var(--tile-accent),inset 0 1px 0 rgba(255,255,255,.08);}
+  .ef-mod--tile .ef-mod__panel{height:180px;padding:16px 16px 0;overflow:hidden;align-items:flex-start;}
   .ef-mod--tile .ef-mod__win{max-width:none;border-radius:13px 13px 0 0;border-bottom:0;box-shadow:0 18px 34px -20px rgba(5,2,48,.35);}
   .ef-mod--tile .ef-mod__bar{height:28px;}
   .ef-mod--tile .ef-mod__dot{width:7px;height:7px;}
   .ef-mod--tile .ef-mod__bar-title{font-size:10px;}
-  .ef-mod--tile .ef-mod__copy{padding:18px 22px 22px;flex:1;}
+  .ef-mod--tile .ef-mod__copy{padding:20px 22px 24px;flex:1;border-top:1px solid rgba(255,255,255,.05);}
   .ef-mod__lbl{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;color:var(--c-blue-ribbon);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
   .ef-mod__lbl i{width:14px;height:14px;border-radius:4px;background:var(--c-blue-ribbon);opacity:.9;}
   .ef-mod__ttl{margin:0 0 8px;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:#141033;}
   .ef-mod__desc{margin:0;font-size:14px;line-height:1.5;color:#5b567e;}
   .ef-mod__go{margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:6px;color:var(--c-blue-ribbon);font-weight:700;font-size:14px;text-decoration:none;}
   .ef-mod__go:hover{color:var(--c-blue-ribbon);}
-  .ef-mod--mint .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#eef7e4,#e2efd0);}
-  .ef-mod--peri .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#efeafe,#e4defb);}
-  .ef-mod--pink .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#fdeaf3,#f6d8ea);}
-  .ef-mod--fog .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#ecefff,#dde4fb);}
-  .ef-mod--mint2 .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#e6f7f1,#d4efe6);}
-  .ef-mod--pink2 .ef-mod__panel{background:radial-gradient(120% 120% at 72% 0%,#fdeaf5,#f8d6ea);}
+  .ef-mod--tile .ef-mod__lbl,.ef-mod--tile .ef-mod__go{color:var(--tile-accent);}
+  .ef-mod--tile .ef-mod__lbl i{background:var(--tile-accent);box-shadow:0 0 18px -4px var(--tile-accent);}
+  .ef-mod--tile .ef-mod__ttl{color:var(--fg1);}
+  .ef-mod--tile .ef-mod__desc{color:var(--fg2);}
+  .ef-mod--tile .ef-mod__go:hover{color:#fff;}
+  .ef-mod--mint{--tile-accent:var(--c-frosted-mint);--tile-glow:rgba(213,255,243,.13);}
+  .ef-mod--mint .ef-mod__panel{background:var(--c-frosted-mint);}
+  .ef-mod--peri{--tile-accent:var(--c-periwinkle);--tile-glow:rgba(206,200,255,.15);}
+  .ef-mod--peri .ef-mod__panel{background:var(--c-periwinkle);}
+  .ef-mod--pink{--tile-accent:var(--c-cotton-candy);--tile-glow:rgba(255,184,226,.13);}
+  .ef-mod--pink .ef-mod__panel{background:var(--c-cotton-candy);}
+  .ef-mod--fog{--tile-accent:var(--c-fog);--tile-glow:rgba(217,214,255,.14);}
+  .ef-mod--fog .ef-mod__panel{background:var(--c-fog);}
+  .ef-mod--mint2{--tile-accent:var(--c-frosted-mint);--tile-glow:rgba(213,255,243,.13);}
+  .ef-mod--mint2 .ef-mod__panel{background:var(--c-frosted-mint);}
+  .ef-mod--pink2{--tile-accent:var(--c-cotton-candy);--tile-glow:rgba(255,184,226,.13);}
+  .ef-mod--pink2 .ef-mod__panel{background:var(--c-cotton-candy);}
   .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
   .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
   .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}

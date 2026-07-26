@@ -25,6 +25,15 @@
   .gbar{transition:width .6s cubic-bezier(.2,.7,.2,1)}
   .efcard:hover .gbar1{width:66%}
   .efcard:hover .gbar2{width:91%}
+  /* Production tile pattern: pastel product preview over a calm navy body. */
+  .efgrid>.efcard{--tile-accent:#d9d6ff;--tile-glow:rgba(217,214,255,.14);background:radial-gradient(120% 90% at 18% 100%,var(--tile-glow),transparent 58%),#0d0848!important;border:1px solid rgba(217,214,255,.16)}
+  .efgrid>.efcard:nth-child(1),.efgrid>.efcard:nth-child(4){--tile-accent:#d5fff3;--tile-glow:rgba(213,255,243,.13)}
+  .efgrid>.efcard:nth-child(2){--tile-accent:#cec8ff;--tile-glow:rgba(206,200,255,.15)}
+  .efgrid>.efcard:nth-child(3),.efgrid>.efcard:nth-child(6){--tile-accent:#ffb8e2;--tile-glow:rgba(255,184,226,.13)}
+  .efgrid>.efcard>div:last-child{border-top:1px solid rgba(255,255,255,.05)}
+  .efgrid>.efcard>div:last-child>div[style*="font-size:20px"]{color:#fff!important}
+  .efgrid>.efcard>div:last-child>p{color:rgba(255,255,255,.72)!important}
+  .efgrid>.efcard>div:last-child>span{color:var(--tile-accent)!important}
   @media(max-width:980px){.efflag{grid-template-columns:1fr!important}.efpanel{order:-1;min-height:300px!important}.efgrid{grid-template-columns:repeat(2,1fr)!important}}
   @media(max-width:640px){.efgrid{grid-template-columns:1fr!important}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important}}
