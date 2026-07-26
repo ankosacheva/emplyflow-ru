@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="170" viewBox="0 0 640 170" role="img" aria-label="Rostelecom">
+  <rect width="640" height="170" fill="none"/>
+  <g transform="translate(34 24)">
+    <path d="M0 96V42c0-8 3-16 9-22L30 0l62 62-62 62c-12 12-30 4-30-12V96Z" fill="#7b00ff"/>
+    <path d="M28 125h70L58 85 9 134c5 6 12 9 19 9v-18Z" fill="#ff5b16"/>
+    <path d="M58 85 98 45 62 9 19 52c-10 10-12 18-12 32v39c0 10 4 17 11 21L58 85Z" fill="#7b00ff"/>
+  </g>
+  <text x="168" y="102" fill="#07142c" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800">&#1056;&#1086;&#1089;&#1090;&#1077;&#1083;&#1077;&#1082;&#1086;&#1084;</text>
+</svg>
