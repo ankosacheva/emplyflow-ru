@@ -1083,6 +1083,19 @@ html, body {
   .ef-9box-meta strong{font-size:8px;font-weight:800;line-height:1.15;}
   .ef-9box-meta b{font-size:11px;font-weight:800;line-height:1;}
   .ef-9box__x{text-align:right;font-size:8px;font-weight:700;color:#8681ab;margin-top:4px;}
+  .ef-recog{display:flex;flex-direction:column;gap:8px;}
+  .ef-recog-row{display:flex;align-items:center;gap:8px;background:#fdeef7;border:1px solid #fbdcee;border-radius:10px;padding:8px 10px;}
+  .ef-recog-avas{display:flex;align-items:center;flex:none;padding-left:2px;}
+  .ef-recog-avas img{width:22px;height:22px;border-radius:50%;object-fit:cover;border:1.5px solid #fff;margin-left:-8px;box-shadow:0 2px 6px -3px rgba(20,16,51,.35);}
+  .ef-recog-avas img:first-child{margin-left:0;}
+  .ef-recog-row__txt{flex:1;min-width:0;}
+  .ef-recog-row__msg{font-size:10px;font-weight:700;color:#3a3568;line-height:1.2;}
+  .ef-recog-row__who{font-size:8.5px;color:#b06699;margin-top:1px;}
+  .ef-flow{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#fff;background:#e35aa4;border-radius:999px;padding:3px 8px 3px 7px;flex:none;line-height:1;}
+  .ef-flow svg{flex:none;}
+  .ef-recog-foot{display:flex;justify-content:space-between;align-items:center;font-size:9px;font-weight:700;color:#8681ab;}
+  .ef-recog-foot .ef-flow{background:transparent;color:#e35aa4;padding:0;font-size:11px;}
+  .ef-recog-foot .ef-flow svg{fill:#e35aa4;}
   .ef-ui-src{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:#f5f4fb;border:1px solid #ececf6;font-size:11px;font-weight:700;color:#403c68;animation:efModFeed 4.4s ease-in-out infinite;}
   .ef-ui-src:nth-child(2){animation-delay:.25s}.ef-ui-src:nth-child(3){animation-delay:.5s}.ef-ui-src:nth-child(4){animation-delay:.75s}
   .ef-ui-src b{width:14px;height:14px;border-radius:4px;flex:none;}
@@ -1545,18 +1558,33 @@ html, body {
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
               <div class="ef-mod__bar"><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__bar-title">Лента признания · май 2026</span></div>
-              <div class="ef-mod__body">
-                <div style="display:flex;align-items:center;gap:8px;background:#fdeef7;border:1px solid #fbdcee;border-radius:10px;padding:8px 10px;margin-bottom:8px;">
-                  <span style="width:22px;height:22px;border-radius:50%;background:conic-gradient(from 40deg,#ffc9e6,#ffb8e2);flex:none;"></span>
-                  <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#3a3568;line-height:1.2;">Спасибо за помощь с релизом</div><div style="font-size:8.5px;color:#b06699;">Игорь Д. → Анне К.</div></div>
-                  <span style="font-size:11px;font-weight:800;color:#fff;background:#e35aa4;border-radius:999px;padding:3px 8px;flex:none;">+50</span>
+              <div class="ef-mod__body ef-recog">
+                <div class="ef-recog-row">
+                  <div class="ef-recog-avas">
+                    <img src="images/avatar-recog-igor.jpg" alt="" width="22" height="22" loading="lazy">
+                    <img src="images/avatar-successor-anna.jpg" alt="" width="22" height="22" loading="lazy">
+                  </div>
+                  <div class="ef-recog-row__txt">
+                    <div class="ef-recog-row__msg">Спасибо за помощь с релизом</div>
+                    <div class="ef-recog-row__who">Игорь Д. → Анне К.</div>
+                  </div>
+                  <span class="ef-flow" title="Флоу — внутренняя валюта признания">+50 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg></span>
                 </div>
-                <div style="display:flex;align-items:center;gap:8px;background:#fdeef7;border:1px solid #fbdcee;border-radius:10px;padding:8px 10px;margin-bottom:8px;">
-                  <span style="width:22px;height:22px;border-radius:50%;background:conic-gradient(from 120deg,#c9d4ff,#a9b8ff);flex:none;"></span>
-                  <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#3a3568;line-height:1.2;">Выручила на демо клиенту</div><div style="font-size:8.5px;color:#b06699;">Мария С. → Дмитрию О.</div></div>
-                  <span style="font-size:11px;font-weight:800;color:#fff;background:#e35aa4;border-radius:999px;padding:3px 8px;flex:none;">+30</span>
+                <div class="ef-recog-row">
+                  <div class="ef-recog-avas">
+                    <img src="images/avatar-successor-maria.jpg" alt="" width="22" height="22" loading="lazy">
+                    <img src="images/avatar-successor-dmitry.jpg" alt="" width="22" height="22" loading="lazy">
+                  </div>
+                  <div class="ef-recog-row__txt">
+                    <div class="ef-recog-row__msg">Выручила на демо клиенту</div>
+                    <div class="ef-recog-row__who">Мария С. → Дмитрию О.</div>
+                  </div>
+                  <span class="ef-flow" title="Флоу — внутренняя валюта признания">+30 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg></span>
                 </div>
-                <div style="display:flex;justify-content:space-between;font-size:9px;font-weight:700;color:#8681ab;"><span>Признаний за месяц</span><span style="color:#e35aa4;font-size:11px;">128</span></div>
+                <div class="ef-recog-foot">
+                  <span>Признаний за месяц</span>
+                  <span style="color:#e35aa4;font-size:11px;">128</span>
+                </div>
               </div>
             </div>
           </div>
