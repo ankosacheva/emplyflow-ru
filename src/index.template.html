@@ -1632,6 +1632,20 @@ html, body {
   .ef-ai .mock.ef-ai-stage--ready:hover *{animation-play-state:paused!important;}
   .ef-ai .bento:hover{transform:translateY(-3px);box-shadow:0 30px 60px -28px rgba(5,2,48,.4);}
   .ef-ai-stage{--ai-dur:7s;contain:layout style paint;}
+  /* До старта — статичный конструктор, без пустого экрана */
+  .ef-ai .mock:not(.ef-ai-stage--ready) [style*="animation:"]{animation:none!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-scene--chat,
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-scene--report{opacity:0!important;visibility:hidden!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-scene--build{opacity:1!important;visibility:visible!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-s1-card,
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-s1-chip,
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-s1-gen,
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-s1-cap{opacity:1!important;transform:none!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-s1-bar{width:100%!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-tab--build{color:#050230!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-tab--practice{color:rgba(5,2,48,.5)!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-tab-underline--build{opacity:1!important;}
+  .ef-ai .mock:not(.ef-ai-stage--ready) .ef-ai-tab-underline--practice{opacity:0!important;}
 
   /* ================= 7s loop (проценты = сек/7*100) ================= */
   /* S1 build 0-2.2s · S2 chat 2.2-4.8s · S3 report 4.8-7s */
@@ -1686,7 +1700,7 @@ html, body {
     <p style="margin:18px 0 0; font-size:clamp(16px,1.7vw,20px); font-weight:500; line-height:1.5; color:rgba(5,2,48,.66); max-width:64ch; text-wrap:pretty;">Соберите ИИ-тренажёр под любую должность. Ассистент сам генерирует кейсы из реальных рабочих ситуаций, ведёт живой диалог с сотрудником - текстом или голосом - оценивает ответы по индикаторам и формирует индивидуальный отчёт с зонами роста.</p>
 
     <!-- window mockup -->
-    <div class="mock ef-ai-stage--ready" style="position:relative; width:min(760px,100%); margin:clamp(32px,4.5vw,52px) auto 0; background:#ffffff; border-radius:20px; box-shadow:0 2px 0 rgba(0,0,0,.03), 0 40px 90px -30px rgba(5,2,48,.5); overflow:hidden; border:1px solid rgba(5,2,48,.05);">
+    <div class="mock" style="position:relative; width:min(760px,100%); margin:clamp(32px,4.5vw,52px) auto 0; background:#ffffff; border-radius:20px; box-shadow:0 2px 0 rgba(0,0,0,.03), 0 40px 90px -30px rgba(5,2,48,.5); overflow:hidden; border:1px solid rgba(5,2,48,.05);">
 
       <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid rgba(5,2,48,.07);">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#050230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -1698,13 +1712,13 @@ html, body {
       </div>
 
       <div style="display:flex; gap:26px; padding:0 20px; border-bottom:1px solid rgba(5,2,48,.07);">
-        <div style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:rgba(5,2,48,.5);">
+        <div class="ef-ai-tab ef-ai-tab--build" style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:#050230;">
           Конструктор
-          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulK var(--ai-dur,7s) ease infinite;"></div>
+          <div class="ef-ai-tab-underline ef-ai-tab-underline--build" style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulK var(--ai-dur,7s) ease infinite;"></div>
         </div>
-        <div style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:#050230;">
+        <div class="ef-ai-tab ef-ai-tab--practice" style="position:relative; padding:13px 2px; font-weight:700; font-size:14px; color:rgba(5,2,48,.5);">
           Практика
-          <div style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulP var(--ai-dur,7s) ease infinite;"></div>
+          <div class="ef-ai-tab-underline ef-ai-tab-underline--practice" style="position:absolute; left:0; right:0; bottom:-1px; height:2.5px; border-radius:3px; background:#4A3BFF; animation:ulP var(--ai-dur,7s) ease infinite;"></div>
         </div>
       </div>
 
@@ -1712,33 +1726,33 @@ html, body {
       <div class="ef-ai-stage" style="position:relative; height:clamp(410px,48vw,470px); background:linear-gradient(180deg,#fbfaff,#ffffff);">
 
         <!-- SCENE 1: Конструктор -->
-        <div style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); animation:AfadeA var(--ai-dur,7s) ease infinite;">
-          <div style="position:absolute; top:22px; right:clamp(18px,3vw,30px); font-weight:400; font-size:12px; color:rgba(5,2,48,.42); max-width:130px; text-align:right; line-height:1.4; animation:s1cap var(--ai-dur,7s) ease infinite;">Настраивается<br>без разработки</div>
+        <div class="ef-ai-scene--build" style="position:absolute; inset:0; padding:26px clamp(20px,3.5vw,34px); animation:AfadeA var(--ai-dur,7s) ease infinite;">
+          <div class="ef-ai-s1-cap" style="position:absolute; top:22px; right:clamp(18px,3vw,30px); font-weight:400; font-size:12px; color:rgba(5,2,48,.42); max-width:130px; text-align:right; line-height:1.4; animation:s1cap var(--ai-dur,7s) ease infinite;">Настраивается<br>без разработки</div>
 
-          <div style="max-width:440px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); border-radius:16px; padding:16px 18px; animation:s1card var(--ai-dur,7s) ease infinite;">
+          <div class="ef-ai-s1-card" style="max-width:440px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); border-radius:16px; padding:16px 18px; animation:s1card var(--ai-dur,7s) ease infinite;">
             <div style="font-size:12px; font-weight:600; color:rgba(5,2,48,.5); text-transform:uppercase; letter-spacing:.08em;">Навык</div>
             <div style="font-size:19px; font-weight:800; margin-top:3px; letter-spacing:-0.01em;">Ведение переговоров</div>
           </div>
 
           <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; max-width:500px;">
-            <div style="animation:s1c1 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Выявление потребностей</div>
-            <div style="animation:s1c2 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Отработка возражений</div>
-            <div style="animation:s1c3 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Завершение сделки</div>
+            <div class="ef-ai-s1-chip" style="animation:s1c1 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Выявление потребностей</div>
+            <div class="ef-ai-s1-chip" style="animation:s1c2 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Отработка возражений</div>
+            <div class="ef-ai-s1-chip" style="animation:s1c3 var(--ai-dur,7s) ease infinite; background:rgba(74,59,255,.09); color:#3a2cf0; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px;">Завершение сделки</div>
           </div>
 
-          <div style="margin-top:26px; max-width:460px; animation:s1gen var(--ai-dur,7s) ease infinite;">
+          <div class="ef-ai-s1-gen" style="margin-top:26px; max-width:460px; animation:s1gen var(--ai-dur,7s) ease infinite;">
             <div style="display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#050230;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="#4A3BFF"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"/></svg>
               ИИ генерирует кейсы под должность…
             </div>
             <div style="margin-top:10px; height:8px; border-radius:999px; background:rgba(5,2,48,.07); overflow:hidden;">
-              <div style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:s1bar var(--ai-dur,7s) ease infinite;"></div>
+              <div class="ef-ai-s1-bar" style="height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,#4A3BFF,#7a6cff); animation:s1bar var(--ai-dur,7s) ease infinite;"></div>
             </div>
           </div>
         </div>
 
         <!-- SCENE 2: Практика -->
-        <div style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; animation:Cfade var(--ai-dur,7s) ease infinite;">
+        <div class="ef-ai-scene--chat" style="position:absolute; inset:0; padding:22px clamp(18px,3vw,28px) 20px; animation:Cfade var(--ai-dur,7s) ease infinite;">
           <div style="position:absolute; top:18px; right:clamp(16px,3vw,26px); display:inline-flex; align-items:center; gap:6px; background:#f6f5ff; border:1px solid rgba(74,59,255,.14); color:#3a2cf0; font-weight:700; font-size:13px; padding:6px 12px; border-radius:999px; font-variant-numeric:tabular-nums; animation:cUi var(--ai-dur,7s) ease infinite;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A3BFF" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
             02:00
@@ -1761,7 +1775,7 @@ html, body {
         </div>
 
         <!-- SCENE 3: Отчёт -->
-        <div style="position:absolute; inset:0; padding:18px clamp(18px,3vw,28px); animation:Dfade var(--ai-dur,7s) ease infinite; display:flex; align-items:flex-end;">
+        <div class="ef-ai-scene--report" style="position:absolute; inset:0; padding:18px clamp(18px,3vw,28px); animation:Dfade var(--ai-dur,7s) ease infinite; display:flex; align-items:flex-end;">
           <div style="width:100%; height:100%; background:#ffffff; border:1px solid rgba(255,184,226,.55); box-shadow:0 -10px 40px -18px rgba(255,184,226,.9), 0 20px 50px -24px rgba(5,2,48,.35); border-radius:18px; overflow:hidden; animation:dCard var(--ai-dur,7s) ease infinite;">
             <div style="padding:20px 22px; text-align:left;">
               <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
@@ -2001,11 +2015,48 @@ class Component extends DCLogic {
     this._upd();
     this._mq.addEventListener('change', this._upd);
     this._initScrollReveals();
+    this._initAiAssistantLoop();
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
     if (this._revealObs) this._revealObs.forEach((obs) => obs.disconnect());
     if (this._revealTimers) this._revealTimers.forEach((id) => clearTimeout(id));
+  }
+
+  _initAiAssistantLoop() {
+    const stage = document.querySelector('.ef-ai-stage');
+    const mock = document.querySelector('.ef-ai .mock');
+    if (!stage || !mock || mock.classList.contains('ef-ai-stage--ready')) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      mock.classList.add('ef-ai-stage--ready');
+      return;
+    }
+
+    const start = () => {
+      if (mock.classList.contains('ef-ai-stage--ready')) return;
+      mock.querySelectorAll('[style*="animation"]').forEach((el) => {
+        const a = el.style.animation;
+        el.style.animation = 'none';
+        void el.offsetWidth;
+        el.style.animation = a;
+      });
+      mock.classList.add('ef-ai-stage--ready');
+    };
+
+    const rect = stage.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+      requestAnimationFrame(start);
+      return;
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        start();
+        obs.disconnect();
+      }
+    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+    obs.observe(stage);
+    this._revealObs.push(obs);
   }
 
   _initScrollReveals() {
