@@ -563,6 +563,18 @@ html, body {
   .ef-btn--indigo{background:#4a3bff;color:#fff;padding:9px 30px 9px 9px;}
   .ef-btn--indigo:hover{color:#fff;filter:brightness(1.09);}
   .ef-btn__ic{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;background:#fff;color:#4a3bff;}
+  .ef-swipe-cta{width:min(340px,calc(100vw - 48px));--offset:0px;--progress:0;user-select:none;-webkit-user-select:none;}
+  .ef-swipe-cta__track{position:relative;height:56px;border-radius:999px;background:#4a3bff;overflow:hidden;box-shadow:0 12px 26px -10px rgba(74,59,255,.7);}
+  .ef-swipe-cta__label{position:absolute;inset:0;display:grid;place-items:center;padding:0 52px 0 56px;font-size:15px;font-weight:600;color:#fff;pointer-events:none;opacity:calc(1 - var(--progress) * 1.15);transition:opacity .15s ease;}
+  .ef-swipe-cta__fill{position:absolute;left:0;top:0;bottom:0;width:calc(9px + 38px + var(--offset));background:rgba(255,255,255,.12);border-radius:999px;pointer-events:none;}
+  .ef-swipe-cta__hint{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:18px;line-height:1;color:rgba(255,255,255,.42);pointer-events:none;opacity:calc(.85 - var(--progress));transition:opacity .15s ease;}
+  .ef-swipe-cta__handle{position:absolute;left:9px;top:50%;width:38px;height:38px;margin-top:-19px;border:none;border-radius:999px;background:#fff;color:#4a3bff;display:grid;place-items:center;cursor:grab;z-index:2;touch-action:none;transform:translateX(var(--offset));transition:transform .24s cubic-bezier(.2,.7,.2,1);box-shadow:0 2px 8px rgba(5,2,48,.12);}
+  .ef-swipe-cta.is-dragging .ef-swipe-cta__handle{cursor:grabbing;transition:none;}
+  .ef-swipe-cta.is-complete .ef-swipe-cta__track{filter:brightness(1.06);}
+  @media (prefers-reduced-motion:reduce){
+    .ef-swipe-cta__handle{cursor:pointer;}
+    .ef-swipe-cta__hint{display:none;}
+  }
 
   .ef-hero__award{position:absolute;right:0;top:clamp(180px,22vw,280px);width:clamp(158px,16vw,215px);height:auto;}
 
@@ -812,10 +824,16 @@ html, body {
       <p class="ef-hero__lead">Используйте возможности платформы EmplyFlow, если устали контролировать все внутренние HR-процессы вручную</p>
 
       <div class="ef-hero__cta">
-        <a href="#platform" class="ef-btn ef-btn--indigo">
-          <span class="ef-btn__ic"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
-          Что входит в платформу
-        </a>
+        <div class="ef-swipe-cta" data-href="#platform" role="group" aria-label="Свайпните вправо, чтобы перейти к модулям платформы">
+          <div class="ef-swipe-cta__track">
+            <div class="ef-swipe-cta__fill" aria-hidden="true"></div>
+            <span class="ef-swipe-cta__label">Что входит в платформу</span>
+            <span class="ef-swipe-cta__hint" aria-hidden="true">→</span>
+            <button type="button" class="ef-swipe-cta__handle" aria-label="Потяните вправо к модулям">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+            </button>
+          </div>
+        </div>
       </div>
 
       <img src="3ac3d2a1-e6b6-47aa-a918-ef167e497d70" alt="Лучший проект в сфере HR по версии Rusbase в 2024 году" class="ef-hero__award">
@@ -847,6 +865,86 @@ html, body {
       </div>
     </div>
   </section>
+<script>
+(function(){
+  if(window.__efSwipeCtaInit)return;
+  window.__efSwipeCtaInit=function(){
+    document.querySelectorAll('.ef-swipe-cta:not([data-ef-swipe-ready])').forEach(function(root){
+      var track=root.querySelector('.ef-swipe-cta__track');
+      var handle=root.querySelector('.ef-swipe-cta__handle');
+      if(!track||!handle)return;
+      root.setAttribute('data-ef-swipe-ready','1');
+      var href=root.getAttribute('data-href')||'#platform';
+      var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var dragging=false,startX=0,startOffset=0,offset=0,max=0,timer=0;
+
+      function metrics(){
+        max=Math.max(0,track.clientWidth-handle.offsetWidth-18);
+      }
+      function setOffset(px,drag){
+        offset=Math.max(0,Math.min(max,px));
+        root.style.setProperty('--offset',offset+'px');
+        root.style.setProperty('--progress',max?String(offset/max):'0');
+        root.classList.toggle('is-dragging',!!drag);
+      }
+      function reset(){
+        root.classList.remove('is-complete','is-dragging');
+        offset=0;
+        setOffset(0,false);
+      }
+      function go(){
+        root.classList.add('is-complete');
+        setOffset(max,false);
+        var target=document.querySelector(href);
+        if(target){
+          target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+          if(history.replaceState)history.replaceState(null,'',href);
+          else location.hash=href.slice(1);
+        }else{
+          location.hash=href.slice(1);
+        }
+        clearTimeout(timer);
+        timer=setTimeout(reset,650);
+      }
+      function onDown(e){
+        if(root.classList.contains('is-complete'))return;
+        metrics();
+        dragging=true;
+        startX=e.clientX;
+        startOffset=offset;
+        root.classList.add('is-dragging');
+        if(handle.setPointerCapture&&e.pointerId!=null)handle.setPointerCapture(e.pointerId);
+      }
+      function onMove(e){
+        if(!dragging)return;
+        setOffset(startOffset+(e.clientX-startX),true);
+      }
+      function onUp(){
+        if(!dragging)return;
+        dragging=false;
+        root.classList.remove('is-dragging');
+        if(offset>=max*.82)go();
+        else setOffset(0,false);
+      }
+
+      handle.addEventListener('pointerdown',onDown);
+      window.addEventListener('pointermove',onMove);
+      window.addEventListener('pointerup',onUp);
+      window.addEventListener('pointercancel',onUp);
+      window.addEventListener('resize',metrics);
+      handle.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}
+      });
+      if(reduced){
+        handle.addEventListener('click',function(e){e.preventDefault();go();});
+      }
+      metrics();
+    });
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.__efSwipeCtaInit,{once:true});
+  else window.__efSwipeCtaInit();
+})();
+</script>
 
 
   <!-- ===================== CLIENTS & PARTNERS ===================== -->
@@ -2196,6 +2294,7 @@ class Component extends DCLogic {
     this._mq.addEventListener('change', this._upd);
     this._initScrollReveals();
     if(window.__efAiBoot)window.__efAiBoot();
+    if(window.__efSwipeCtaInit)window.__efSwipeCtaInit();
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
