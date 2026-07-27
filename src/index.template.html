@@ -1942,37 +1942,97 @@ html, body {
   .ef-about__copy{ display:flex; flex-direction:column; gap:clamp(14px,2vw,20px); margin:0 0 clamp(28px,4vw,44px); max-width:820px; }
   .ef-about__copy p{ margin:0; font-size:clamp(15px,1.45vw,17px); line-height:1.55; color:rgba(255,255,255,.78); }
   .ef-about__copy p:first-child{ font-size:clamp(16px,1.55vw,18px); line-height:1.5; color:rgba(255,255,255,.88); }
-  .ef-about__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .ef-about-stat{ border-radius:32px; padding:clamp(24px,3vw,34px); min-height:clamp(220px,22vw,280px); display:flex; flex-direction:column; justify-content:space-between; gap:16px; }
-  .ef-about-stat__top{ display:flex; flex-direction:column; gap:14px; }
-  .ef-about-stat__num{ font-weight:800; font-size:clamp(56px,7vw,96px); line-height:0.88; letter-spacing:-0.04em; }
+  .ef-about__grid{
+    display:grid;
+    grid-template-columns:repeat(12,minmax(0,1fr));
+    grid-auto-rows:minmax(132px,auto);
+    gap:clamp(14px,1.6vw,18px);
+    align-items:stretch;
+  }
+  .ef-about-stat{
+    position:relative;
+    overflow:hidden;
+    padding:clamp(22px,2.6vw,34px);
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:16px;
+    transition:transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s cubic-bezier(.2,.7,.2,1);
+  }
+  .ef-about-stat:hover{ transform:translateY(-3px); }
+  .ef-about-stat::after{
+    content:"";
+    position:absolute;
+    pointer-events:none;
+    border-radius:50%;
+    opacity:.42;
+    filter:blur(0);
+  }
+  .ef-about-stat--bento-a{ grid-column:span 4; grid-row:span 2; border-radius:52px 52px 20px 52px; min-height:clamp(260px,28vw,320px); }
+  .ef-about-stat--bento-a::after{ width:120px; height:120px; top:-34px; right:-28px; background:rgba(213,255,243,.12); }
+  .ef-about-stat--bento-b{ grid-column:span 5; grid-row:span 2; border-radius:34px 78px 34px 34px; min-height:clamp(260px,28vw,320px); }
+  .ef-about-stat--bento-b::after{ width:150px; height:150px; bottom:-48px; left:-36px; background:rgba(255,255,255,.22); }
+  .ef-about-stat--bento-c{ grid-column:span 3; border-radius:22px 22px 52px 22px; min-height:clamp(150px,16vw,190px); }
+  .ef-about-stat--bento-c::after{ width:88px; height:88px; top:-24px; left:-18px; background:rgba(255,255,255,.16); }
+  .ef-about-stat--bento-d{ grid-column:span 3; border-radius:22px 58px 22px 22px; min-height:clamp(150px,16vw,190px); }
+  .ef-about-stat--bento-d::after{ width:72px; height:72px; bottom:-20px; right:-16px; background:rgba(21,21,21,.06); }
+  .ef-about-stat--bento-e{ grid-column:span 4; border-radius:999px 42px 42px 999px; min-height:clamp(150px,16vw,190px); }
+  .ef-about-stat--bento-e::after{ width:96px; height:96px; top:50%; right:-28px; transform:translateY(-50%); background:rgba(255,255,255,.18); }
+  .ef-about-stat--bento-f{ grid-column:span 8; border-radius:42px 42px 42px 78px; min-height:clamp(150px,16vw,190px); }
+  .ef-about-stat--bento-f::before{
+    content:"";
+    position:absolute;
+    inset:auto -36px -36px auto;
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, rgba(255,184,226,.24), rgba(74,59,255,.08) 68%, transparent 100%);
+    pointer-events:none;
+  }
+  .ef-about-stat__top{ display:flex; flex-direction:column; gap:14px; position:relative; z-index:1; }
+  .ef-about-stat__num{ font-weight:800; font-size:clamp(52px,6.2vw,88px); line-height:0.88; letter-spacing:-0.04em; }
+  .ef-about-stat--bento-b .ef-about-stat__num{ font-size:clamp(58px,7vw,96px); }
   .ef-about-stat__unit{ font-size:11px; font-weight:700; padding:6px 12px; border-radius:999px; margin-left:8px; vertical-align:middle; text-transform:uppercase; letter-spacing:.06em; }
   .ef-about-stat__eyebrow{ align-self:flex-start; font-size:10px; font-weight:600; padding:6px 12px; border-radius:999px; text-transform:uppercase; letter-spacing:.1em; }
-  .ef-about-stat__cap{ font-size:13.5px; line-height:1.45; max-width:30ch; }
-  .ef-about-stat--stroke{ box-shadow:inset 0 0 0 1px rgba(217,214,255,.14); color:#fff; }
+  .ef-about-stat__cap{ font-size:13.5px; line-height:1.45; max-width:32ch; position:relative; z-index:1; }
+  .ef-about-stat--stroke{ box-shadow:inset 0 0 0 1px rgba(217,214,255,.14); color:#fff; background:linear-gradient(145deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.01) 100%); }
+  .ef-about-stat--stroke:hover{ box-shadow:inset 0 0 0 1px rgba(217,214,255,.22), 0 24px 48px -32px rgba(5,2,48,.55); }
   .ef-about-stat--stroke .ef-about-stat__num{ color:var(--c-frosted-mint,#d5fff3); }
   .ef-about-stat--stroke .ef-about-stat__eyebrow{ background:rgba(255,255,255,.06); color:rgba(255,255,255,.75); border:1px solid rgba(217,214,255,.22); }
   .ef-about-stat--stroke .ef-about-stat__cap{ color:rgba(255,255,255,.78); }
-  .ef-about-stat--pink{ background:var(--c-cotton-candy,#ffb8e2); color:#151515; }
+  .ef-about-stat--pink{ background:linear-gradient(135deg, #ffc8e8 0%, var(--c-cotton-candy,#ffb8e2) 52%, #ff9fd4 100%); color:#151515; box-shadow:0 22px 46px -28px rgba(255,184,226,.75); }
+  .ef-about-stat--pink:hover{ box-shadow:0 28px 54px -24px rgba(255,184,226,.85); }
   .ef-about-stat--pink .ef-about-stat__unit{ background:rgba(21,21,21,.08); color:#151515; }
   .ef-about-stat--pink .ef-about-stat__eyebrow{ background:rgba(21,21,21,.08); color:#151515; }
   .ef-about-stat--pink .ef-about-stat__cap{ color:rgba(21,21,21,.72); }
-  .ef-about-stat--indigo{ background:var(--c-blue-ribbon,#4a3bff); color:#fff; }
+  .ef-about-stat--indigo{ background:linear-gradient(145deg, #5b4dff 0%, var(--c-blue-ribbon,#4a3bff) 55%, #3828e6 100%); color:#fff; box-shadow:0 22px 46px -28px rgba(74,59,255,.72); }
+  .ef-about-stat--indigo:hover{ box-shadow:0 28px 54px -24px rgba(74,59,255,.82); }
   .ef-about-stat--indigo .ef-about-stat__unit{ background:rgba(255,255,255,.18); color:#fff; }
   .ef-about-stat--indigo .ef-about-stat__eyebrow{ background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.2); }
   .ef-about-stat--indigo .ef-about-stat__cap{ color:rgba(255,255,255,.82); }
-  .ef-about-stat--peri{ background:var(--c-periwinkle,#cec8ff); color:#151515; }
+  .ef-about-stat--peri{ background:linear-gradient(135deg, #ddd8ff 0%, var(--c-periwinkle,#cec8ff) 58%, #b8afff 100%); color:#151515; box-shadow:0 18px 40px -28px rgba(206,200,255,.72); }
   .ef-about-stat--peri .ef-about-stat__eyebrow{ background:rgba(21,21,21,.08); color:#151515; }
   .ef-about-stat--peri .ef-about-stat__cap{ color:rgba(21,21,21,.72); }
-  .ef-about-stat--orange{ background:var(--c-mac-cheese,#ffb777); color:#151515; }
+  .ef-about-stat--orange{ background:linear-gradient(135deg, #ffc98f 0%, var(--c-mac-cheese,#ffb777) 55%, #ffa552 100%); color:#151515; box-shadow:0 18px 40px -28px rgba(255,183,119,.72); }
   .ef-about-stat--orange .ef-about-stat__cap{ color:rgba(21,21,21,.72); }
-  .ef-about-stat--ai{ background:rgba(255,255,255,.04); color:#fff; border:1.5px dashed rgba(255,184,226,.75); box-shadow:0 0 0 1px rgba(255,184,226,.12) inset; }
+  .ef-about-stat--ai{ background:linear-gradient(135deg, rgba(74,59,255,.14) 0%, rgba(255,255,255,.04) 48%, rgba(255,184,226,.08) 100%); color:#fff; border:1.5px dashed rgba(255,184,226,.75); box-shadow:0 0 0 1px rgba(255,184,226,.12) inset, 0 18px 40px -30px rgba(74,59,255,.35); }
   .ef-about-stat--ai .ef-about-stat__tag{ font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--c-cotton-candy,#ffb8e2); }
   .ef-about-stat--ai .ef-about-stat__chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
   .ef-about-stat--ai .ef-about-stat__chips span{ font-size:13px; font-weight:700; padding:7px 12px; border-radius:999px; background:rgba(74,59,255,.18); color:#fff; border:1px solid rgba(217,214,255,.22); }
   .ef-about-stat--ai .ef-about-stat__cap{ color:rgba(255,255,255,.76); max-width:34ch; }
-  @media (max-width:960px){ .ef-about__grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .ef-about__grid{ grid-template-columns:1fr; } }
+  @media (max-width:960px){
+    .ef-about__grid{ grid-template-columns:repeat(6,minmax(0,1fr)); }
+    .ef-about-stat--bento-a{ grid-column:span 3; grid-row:span 2; }
+    .ef-about-stat--bento-b{ grid-column:span 3; grid-row:span 2; }
+    .ef-about-stat--bento-c,.ef-about-stat--bento-d{ grid-column:span 3; }
+    .ef-about-stat--bento-e,.ef-about-stat--bento-f{ grid-column:span 6; border-radius:36px; }
+  }
+  @media (max-width:560px){
+    .ef-about__grid{ grid-template-columns:1fr; grid-auto-rows:auto; }
+    .ef-about-stat--bento-a,.ef-about-stat--bento-b,.ef-about-stat--bento-c,.ef-about-stat--bento-d,.ef-about-stat--bento-e,.ef-about-stat--bento-f{ grid-column:span 1; grid-row:span 1; min-height:0; border-radius:28px; }
+    .ef-about-stat--bento-e{ border-radius:999px 28px 28px 999px; }
+  }
   </style>
   <section id="aboutus" class="ef-about">
     <div class="ef-about__inner">
@@ -1987,7 +2047,7 @@ html, body {
       </div>
 
       <div class="ef-about__grid">
-        <article class="ef-about-stat ef-about-stat--stroke">
+        <article class="ef-about-stat ef-about-stat--stroke ef-about-stat--bento-a">
           <div class="ef-about-stat__top">
             <div><span class="ef-about-stat__num">5+</span></div>
             <span class="ef-about-stat__eyebrow">Заказчиков</span>
@@ -1995,7 +2055,7 @@ html, body {
           <p class="ef-about-stat__cap">на государственном и корпоративном уровне</p>
         </article>
 
-        <article class="ef-about-stat ef-about-stat--pink">
+        <article class="ef-about-stat ef-about-stat--pink ef-about-stat--bento-b">
           <div class="ef-about-stat__top">
             <div><span class="ef-about-stat__num">500+</span><span class="ef-about-stat__unit">млн ₽</span></div>
             <span class="ef-about-stat__eyebrow">сэкономили клиентам</span>
@@ -2003,14 +2063,14 @@ html, body {
           <p class="ef-about-stat__cap">окупаемость от 35 млн ₽ в год на компанию</p>
         </article>
 
-        <article class="ef-about-stat ef-about-stat--indigo">
+        <article class="ef-about-stat ef-about-stat--indigo ef-about-stat--bento-c">
           <div class="ef-about-stat__top">
             <div><span class="ef-about-stat__num">1000+</span><span class="ef-about-stat__unit">часов</span></div>
           </div>
           <p class="ef-about-stat__cap">возвращаем HR-команде каждый год</p>
         </article>
 
-        <article class="ef-about-stat ef-about-stat--peri">
+        <article class="ef-about-stat ef-about-stat--peri ef-about-stat--bento-d">
           <div class="ef-about-stat__top">
             <div><span class="ef-about-stat__num">6</span></div>
             <span class="ef-about-stat__eyebrow">модулей</span>
@@ -2018,14 +2078,14 @@ html, body {
           <p class="ef-about-stat__cap">единая платформа вместо набора инструментов</p>
         </article>
 
-        <article class="ef-about-stat ef-about-stat--orange">
+        <article class="ef-about-stat ef-about-stat--orange ef-about-stat--bento-e">
           <div class="ef-about-stat__top">
             <div><span class="ef-about-stat__num">+10-15%</span></div>
           </div>
           <p class="ef-about-stat__cap">рост вовлечённости сотрудников</p>
         </article>
 
-        <article class="ef-about-stat ef-about-stat--ai">
+        <article class="ef-about-stat ef-about-stat--ai ef-about-stat--bento-f">
           <div class="ef-about-stat__top">
             <span class="ef-about-stat__tag">ИИ на российском стеке</span>
             <div class="ef-about-stat__chips">
