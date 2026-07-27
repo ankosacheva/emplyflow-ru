@@ -1905,19 +1905,26 @@ html, body {
     var stage=document.querySelector('.ef-ai-stage');
     if(!mock||!stage||mock.classList.contains('ef-ai-stage--ready'))return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){mock.classList.add('ef-ai-stage--ready');return;}
+    var reset=function(){
+      mock.querySelectorAll('[style*="animation"]').forEach(function(el){
+        var a=el.style.animation;
+        el.style.animation='none';
+        void el.offsetWidth;
+        el.style.animation=a;
+      });
+      void mock.offsetWidth;
+    };
     var run=function(){
       if(mock.classList.contains('ef-ai-stage--ready'))return;
-      mock.querySelectorAll('[style*="animation"]').forEach(function(el){
-        var a=el.style.animation;el.style.animation='none';void el.offsetWidth;el.style.animation=a;
-      });
+      reset();
       mock.classList.add('ef-ai-stage--ready');
     };
     var r=stage.getBoundingClientRect();
-    if(r.top<window.innerHeight*1.2&&r.bottom>-80){run();return;}
+    if(r.top<window.innerHeight*.9&&r.bottom>80){run();return;}
     if('IntersectionObserver'in window){
       var obs=new IntersectionObserver(function(es){
         es.forEach(function(e){if(e.isIntersecting){run();obs.disconnect();}});
-      },{threshold:0,rootMargin:'0px 0px 40% 0px'});
+      },{threshold:.25,rootMargin:'0px'});
       obs.observe(stage);
     }else run();
   };
