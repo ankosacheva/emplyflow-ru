@@ -572,6 +572,8 @@ html, body {
   .ef-swipe-cta.is-dragging .ef-swipe-cta__handle{cursor:grabbing;transition:none;}
   .ef-swipe-cta.is-dragging{touch-action:none;}
   .ef-swipe-cta.is-complete .ef-swipe-cta__track{filter:brightness(1.06);}
+  .ef-swipe-cta--wide{width:min(420px,calc(100vw - 48px));}
+  .ef-swipe-cta--wide .ef-swipe-cta__label{font-size:16px;font-weight:500;padding:0 52px 0 56px;}
   @media (prefers-reduced-motion:reduce){
     .ef-swipe-cta__handle{cursor:pointer;}
     .ef-swipe-cta__hint{display:none;}
@@ -896,13 +898,13 @@ html, body {
     p.root.classList.remove('is-complete','is-dragging','was-dragging');
     setOffset(p,0);
   }
-  function go(root){
-    var p=parts(root);
-    if(!p.track||!p.handle)return;
+  function runAction(root){
+    var action=root.getAttribute('data-action');
+    if(action==='demo-form'){
+      if(window.__efOpenDemoForm)window.__efOpenDemoForm();
+      return;
+    }
     var href=root.getAttribute('data-href')||'#platform';
-    var m=metrics(p);
-    root.classList.add('is-complete');
-    setOffset(p,m.max);
     var target=document.querySelector(href);
     if(target){
       target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
@@ -911,6 +913,14 @@ html, body {
     }else{
       location.hash=href.slice(1);
     }
+  }
+  function go(root){
+    var p=parts(root);
+    if(!p.track||!p.handle)return;
+    var m=metrics(p);
+    root.classList.add('is-complete');
+    setOffset(p,m.max);
+    runAction(root);
     clearTimeout(timer);
     timer=setTimeout(function(){reset(p);},650);
   }
@@ -2302,10 +2312,16 @@ html, body {
   <footer id="contacts" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px) 36px;background:linear-gradient(180deg,#050230 0%,#0a0540 100%);">
     <div style="max-width:1360px;margin:0 auto;">
       <h2 style="font-weight:800;font-size:clamp(34px,6.2vw,84px);line-height:1.04;letter-spacing:-0.03em;color:#fff;max-width:1000px;margin:0 0 clamp(28px,4vw,40px);">Сделайте процессы прозрачными и управляемыми</h2>
-      <button style="background:#4a3bff;color:#fff;border:0;border-radius:999px;padding:12px 34px 12px 14px;font-size:16px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:14px;">
-        <span style="width:36px;height:36px;border-radius:999px;background:#fff;color:#4a3bff;display:grid;place-items:center;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
-        Получить демодоступ к платформе
-      </button>
+      <div class="ef-swipe-cta ef-swipe-cta--wide" data-action="demo-form" role="group" aria-label="Свайпните вправо или нажмите, чтобы оставить заявку на демодоступ">
+        <div class="ef-swipe-cta__track">
+          <div class="ef-swipe-cta__fill" aria-hidden="true"></div>
+          <span class="ef-swipe-cta__label">Получить демодоступ к платформе</span>
+          <span class="ef-swipe-cta__hint" aria-hidden="true">→</span>
+          <span class="ef-swipe-cta__handle" role="button" tabindex="0" aria-label="Потяните вправо, чтобы открыть форму заявки">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+          </span>
+        </div>
+      </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;margin-top:clamp(56px,9vw,120px);align-items:flex-end;">
         <a href="mailto:headoffice@emplyflow.ru" style="font-size:clamp(19px,2.4vw,28px);color:#fff;letter-spacing:-0.01em;">headoffice@emplyflow.ru</a>
@@ -2320,6 +2336,99 @@ html, body {
       </div>
     </div>
   </footer>
+
+  <link rel="stylesheet" href="css/emplyflow-demo-form.css">
+  <style>
+  .ef-demo-modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;}
+  .ef-demo-modal[hidden]{display:none!important;}
+  body.ef-demo-open{overflow:hidden;}
+  .ef-demo-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+  .ef-demo-modal__panel{position:relative;z-index:1;width:min(480px,calc(100vw - 32px));max-height:min(92vh,760px);overflow:auto;border-radius:28px;padding:clamp(24px,4vw,34px);background:#fff;box-shadow:0 40px 90px -30px rgba(5,2,48,.65);}
+  .ef-demo-modal__close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:0;border-radius:999px;background:rgba(5,2,48,.06);color:#050230;font-size:22px;line-height:1;cursor:pointer;}
+  .ef-demo-modal__close:hover{background:rgba(5,2,48,.1);}
+  .ef-demo-modal__title{margin:0 28px 10px 0;font-size:clamp(20px,2.4vw,24px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:#050230;}
+  .ef-demo-modal__lead{margin:0 0 22px;font-size:14px;line-height:1.5;color:rgba(5,2,48,.68);}
+  .ef-demo-modal .ef-lead-form{max-width:none;}
+  </style>
+  <div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
+    <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
+    <div class="ef-demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-demo-modal-title">
+      <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
+      <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
+      <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+      <form id="ef-lead-form-demo" class="ef-lead-form" data-ef-lead-source="site_demo_popup" novalidate>
+        <div class="ef-lead-form__fields">
+          <div class="ef-lead-form__field">
+            <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required />
+          </div>
+          <div class="ef-lead-form__field">
+            <input class="ef-lead-form__input" type="text" name="Input" placeholder="Название компании" autocomplete="organization" required />
+          </div>
+          <div class="ef-lead-form__field">
+            <input class="ef-lead-form__input" type="tel" name="Phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required />
+          </div>
+          <div class="ef-lead-form__field">
+            <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required />
+          </div>
+          <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
+            <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
+            <div class="ef-lead-form__radios">
+              <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Telegram" required /> Telegram</label>
+              <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="WhatsApp" /> WhatsApp</label>
+              <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Звонок" /> Звонок</label>
+            </div>
+          </fieldset>
+          <div class="ef-lead-form__field">
+            <textarea class="ef-lead-form__textarea" name="Textarea" rows="2" placeholder="Коротко расскажите о своей задаче"></textarea>
+          </div>
+          <label class="ef-lead-form__check">
+            <input type="checkbox" name="Checkbox" value="yes" required />
+            <span>Я соглашаюсь с <a href="page92826026.html" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+          </label>
+          <div class="ef-lead-form__error" data-ef-error role="alert"></div>
+        </div>
+        <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+        <div class="ef-lead-form__success" data-ef-success>
+          <h3>Заявка отправлена</h3>
+          <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+  (function(){
+    window.__efOpenDemoForm=function(){
+      var modal=document.getElementById('ef-demo-modal');
+      if(!modal)return;
+      modal.hidden=false;
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('ef-demo-open');
+      var first=modal.querySelector('.ef-lead-form__input');
+      if(first)setTimeout(function(){first.focus();},60);
+    };
+    window.__efCloseDemoForm=function(){
+      var modal=document.getElementById('ef-demo-modal');
+      if(!modal)return;
+      modal.hidden=true;
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('ef-demo-open');
+    };
+    document.addEventListener('click',function(e){
+      if(e.target.closest('[data-ef-demo-close]'))window.__efCloseDemoForm();
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape')window.__efCloseDemoForm();
+    });
+    document.addEventListener('click',function(e){
+      var t=e.target.closest('[data-action="demo-form"],[data-ef-demo-open]');
+      if(!t||t.classList.contains('ef-swipe-cta'))return;
+      e.preventDefault();
+      window.__efOpenDemoForm();
+    });
+  })();
+  </script>
+  <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+  <script src="js/emplyflow-site-leads.js" charset="utf-8"></script>
 
 </div>
 </x-dc>
