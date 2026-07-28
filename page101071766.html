@@ -102,7 +102,11 @@
 
   <!-- ============ ГЛАВА 1 · HERO ============ -->
   <section class="hero" data-chapter data-flow-tint="#ffb8e2" aria-labelledby="hero-title">
-    <canvas class="hero__canvas" data-canvas="chaos" aria-hidden="true"></canvas>
+    <video class="hero__media" aria-hidden="true" muted playsinline loop preload="none"
+           poster="media/case-pr/posters/hero-chaos.jpg"
+           data-video="media/case-pr/hero-chaos"
+           data-video-mobile="media/case-pr/hero-chaos-mobile"
+           data-video-priority></video>
     <div class="hero__veil" aria-hidden="true"></div>
 
     <div class="shell hero__inner">
@@ -195,6 +199,10 @@
       <div class="stories">
 
         <article class="story story--wide" data-reveal style="--story-accent:#ffb8e2;--story-glow:rgba(255,184,226,.26)">
+          <video class="story__media" aria-hidden="true" muted playsinline loop preload="none"
+                 poster="media/case-pr/posters/before-scattered.jpg"
+                 data-video="media/case-pr/before-scattered"></video>
+          <div class="story__scrim" aria-hidden="true"></div>
           <div class="story__top">
             <span class="story__idx">Сцена 01</span>
             <p class="story__was"><b>45%</b><span>согласованность целей</span></p>
@@ -217,6 +225,10 @@
         </article>
 
         <article class="story" data-reveal style="--story-accent:#cec8ff;--story-glow:rgba(206,200,255,.22)">
+          <video class="story__media" aria-hidden="true" muted playsinline loop preload="none"
+                 poster="media/case-pr/posters/before-scales.jpg"
+                 data-video="media/case-pr/before-scales"></video>
+          <div class="story__scrim" aria-hidden="true"></div>
           <div class="story__top">
             <span class="story__idx">Сцена 02</span>
             <p class="story__was"><b>180°</b><span>половина картины</span></p>
@@ -232,6 +244,10 @@
         </article>
 
         <article class="story" data-reveal style="--story-accent:#ffb777;--story-glow:rgba(255,183,119,.22)">
+          <video class="story__media" aria-hidden="true" muted playsinline loop preload="none"
+                 poster="media/case-pr/posters/before-calendar.jpg"
+                 data-video="media/case-pr/before-calendar"></video>
+          <div class="story__scrim" aria-hidden="true"></div>
           <div class="story__top">
             <span class="story__idx">Сцена 03</span>
             <p class="story__was"><b>5–6</b><span>недель ручного сбора на цикл</span></p>
@@ -247,6 +263,10 @@
         </article>
 
         <article class="story story--wide" data-reveal style="--story-accent:#d5fff3;--story-glow:rgba(213,255,243,.2)">
+          <video class="story__media" aria-hidden="true" muted playsinline loop preload="none"
+                 poster="media/case-pr/posters/before-hidden.jpg"
+                 data-video="media/case-pr/before-hidden"></video>
+          <div class="story__scrim" aria-hidden="true"></div>
           <div class="story__top">
             <span class="story__idx">Сцена 04</span>
             <p class="story__was"><b>0</b><span>данных для Talent Matrix</span></p>
@@ -496,7 +516,7 @@
                 data-verdict-title="Профиль A: высокий результат, но узкая опора"
                 data-verdict-text="По выполнению целей это лучший кандидат. Но оценка 360° и вклад в проекты заметно ниже, а динамика — отрицательная. Решение только по проценту целей рискует закрепить краткосрочный результат и упустить снижение вовлечённости.">
           <span class="candidate__head">
-            <span class="candidate__avatar">A</span>
+            <span class="candidate__avatar"><img src="images/avatar-case-a.jpg" alt="" width="44" height="44" loading="lazy"></span>
             <span><b>Сотрудник A</b><span>Производство · линейный руководитель</span></span>
           </span>
           <span class="candidate__metrics">
@@ -513,7 +533,7 @@
                 data-verdict-title="Профиль B: сбалансированный кандидат"
                 data-verdict-text="Целей чуть меньше, чем у A, но 360° высокая, вклад в проекты значимый, динамика растёт. На сведённых данных это самый устойчивый кандидат в резерв — именно такую картину даёт объединение OKR, 360° и проектов вместо одной метрики.">
           <span class="candidate__head">
-            <span class="candidate__avatar">B</span>
+            <span class="candidate__avatar"><img src="images/avatar-case-b.jpg" alt="" width="44" height="44" loading="lazy"></span>
             <span><b>Сотрудник B</b><span>R&amp;D · ведущий специалист</span></span>
           </span>
           <span class="candidate__metrics">
@@ -530,7 +550,7 @@
                 data-verdict-title="Профиль C: потенциал под риском"
                 data-verdict-text="Средние цели, но очень высокая оценка коллег и растущая динамика. В комментариях 360° — повторяющиеся сигналы перегрузки. Это кандидат в резерв с параллельным планом снижения риска, а не отказ по формальному проценту целей.">
           <span class="candidate__head">
-            <span class="candidate__avatar">C</span>
+            <span class="candidate__avatar"><img src="images/avatar-case-c.jpg" alt="" width="44" height="44" loading="lazy"></span>
             <span><b>Сотрудник C</b><span>Продажи · региональный менеджер</span></span>
           </span>
           <span class="candidate__metrics">
@@ -567,7 +587,10 @@
 
   <!-- ============ ГЛАВА 7 · ПОСЛЕ ЗАПУСКА ============ -->
   <section class="chapter results" id="results" data-chapter data-flow-tint="#d5fff3" aria-labelledby="results-title">
-    <canvas class="results__canvas" data-canvas="order" aria-hidden="true"></canvas>
+    <video class="results__media" aria-hidden="true" muted playsinline loop preload="none"
+           poster="media/case-pr/posters/after-converge.jpg"
+           data-video="media/case-pr/after-converge"></video>
+    <div class="results__scrim" aria-hidden="true"></div>
     <div class="shell">
       <div class="chapter__head">
         <span class="chapter-tag"><b>07</b> После запуска</span>
@@ -684,6 +707,10 @@
       </div>
 
       <div class="final">
+        <video class="final__media" aria-hidden="true" muted playsinline loop preload="none"
+               poster="media/case-pr/posters/final-flow.jpg"
+               data-video="media/case-pr/final-flow"></video>
+        <div class="final__scrim" aria-hidden="true"></div>
         <p class="eyebrow">Итог</p>
         <h2 class="h-chapter" id="final-title">Не автоматизировали оценку, а собрали управляемую систему результативности</h2>
         <p class="lead">Покажем EmplyFlow на ваших процессах и соберём объективную картину результативности по всей компании.</p>
