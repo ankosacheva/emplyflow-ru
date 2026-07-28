@@ -2541,14 +2541,14 @@ class Component extends DCLogic {
     const casesRaw = [
       { title: 'Построение системы карьерных треков для инжиниринговой корпорации', body: 'Автоматизация карьерных треков и использование Big Data для формирования модели компетенций', href: 'https://emplyflow.ru/postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii', bg: '#4a3bff', t: 'dark', image: 'media/case-career-tracks.webp' },
       { title: 'Автоматизация оценки по компетенциям в крупнейшей российской телекоммуникационной компании', body: 'Ускорили оценку сотрудников по кейсам и сделали процесс прозрачным для HR и руководителей', href: 'https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome', bg: '#d5fff3', t: 'light', image: 'media/case-competency-assessment.webp' },
-      { title: 'Платформа Performance Review c AI для международного FMCG-производителя', body: 'На базе оценки 360 градусов и результатов выполнения целей (OKR+KPI). Лёгкое сравнение команд и сотрудников!', href: 'https://emplyflow.ru/perfomance_review_dlya_proizvoditelya', bg: '#ffb8e2', t: 'light', image: 'media/case-performance-review.webp' },
+      { title: 'Performance Review с AI для производителя детского питания', body: 'От Excel и оценки 180° к единому циклу OKR, 360° и Talent Matrix. Согласованность целей: 45% → 87%', href: 'perfomance_review_dlya_proizvoditelya', bg: '#ffb8e2', t: 'light', image: 'media/case-performance-review.webp' },
     ];
     const cases = casesRaw.map((c) => ({ ...c, color: tone(c.t), bodyColor: bodyTone(c.t), caseClass: `ef-case ef-case--${c.t}` }));
 
     const news = [
       { tag: 'Библиотека · 2025', title: 'Запустили библиотеку компетенций и кейсов EmplyFlow Hub', body: 'Открытая библиотека для HR: компетенции, кейсы оценки и материалы для построения системы развития сотрудников', href: 'https://emplyflow.ru/hub/' },
       { tag: 'Кейс · 2025', title: 'Автоматизация оценки по кейсам в крупнейшей телеком-компании', body: 'Как ускорили оценку сотрудников и сделали процесс прозрачным для HR и руководителей', href: 'https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome' },
-      { tag: 'Кейс · 2025', title: 'Внедрение Performance Review для производителя детского питания', body: 'Построили регулярный цикл оценки, целеполагания и обратной связи на базе EmplyFlow', href: 'https://emplyflow.ru/perfomance_review_dlya_proizvoditelya' },
+      { tag: 'Кейс · 2025', title: 'Performance Review с AI для производителя детского питания', body: 'От Excel к единому циклу OKR, 360° и Talent Matrix: согласованность целей 45% → 87%', href: 'perfomance_review_dlya_proizvoditelya' },
     ];
 
     return {
