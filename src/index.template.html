@@ -2565,7 +2565,11 @@ class Component extends DCLogic {
       let tries = 0;
       const go = () => {
         tries += 1;
-        if (window.__efScrollToHash && window.__efScrollToHash(wanted)) return;
+        if (window.__efScrollToHash && window.__efScrollToHash(wanted)) {
+          // Чистим хэш из URL, чтобы повторное открытие главной не мотало снова к секции
+          try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+          return;
+        }
         if (tries < 8) setTimeout(go, 150);
       };
       setTimeout(go, 200);
