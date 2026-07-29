@@ -139,7 +139,69 @@
   }
 
   /* ---------------------------------------------------------------
-     HERO CANVAS — один диалог превращается в сеть
+     HERO VIDEO — сигнал, который становится сетью.
+     Источник выбирается по ширине экрана, грузится только при
+     появлении в вьюпорте. Если видео не запустилось — Canvas-фолбэк.
+     --------------------------------------------------------------- */
+  function initHeroVideo(onFallback) {
+    var video = document.getElementById('hero-video');
+    if (!video) { onFallback(); return; }
+
+    // В reduced-motion остаётся только постер.
+    if (reduced) { video.classList.add('is-ready'); return; }
+
+    var mobile = window.matchMedia('(max-width: 760px)').matches;
+    var base = 'media/case-telecom/hero-signal' + (mobile ? '-mobile' : '');
+    if (mobile) video.setAttribute('poster', 'media/case-telecom/posters/hero-signal-mobile.jpg');
+
+    [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (pair) {
+      var s = document.createElement('source');
+      s.src = base + '.' + pair[0];
+      s.type = pair[1];
+      video.appendChild(s);
+    });
+
+    var failed = false;
+    function fallback() {
+      if (failed) return;
+      failed = true;
+      video.remove();
+      onFallback();
+    }
+
+    video.addEventListener('error', fallback);
+    video.addEventListener('loadeddata', function () { video.classList.add('is-ready'); });
+
+    function play() {
+      var p = video.play();
+      if (p && typeof p.catch === 'function') p.catch(function () { /* автоплей может быть запрещён — остаётся постер */ });
+    }
+
+    var started = false;
+    function start() {
+      if (started) return;
+      started = true;
+      video.load();
+      play();
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { start(); play(); }
+          else if (started) video.pause();
+        });
+      }, { threshold: 0.05 }).observe(video);
+    } else start();
+
+    // Если через 6 секунд не появилось ни одного кадра — включаем Canvas.
+    window.setTimeout(function () {
+      if (video.readyState < 2) fallback();
+    }, 6000);
+  }
+
+  /* ---------------------------------------------------------------
+     CANVAS-СЕТЬ — фолбэк hero и сцена финала
      --------------------------------------------------------------- */
   function initNetworkCanvas(canvas, opts) {
     if (!canvas || reduced) return null;
@@ -1157,7 +1219,13 @@
     initScroll();
     initCta();
 
-    initNetworkCanvas($('#hero-canvas'), { max: 58, palette: ['#8a7bff', '#cec8ff', '#7fe9cd'] });
+    initHeroVideo(function () {
+      var canvas = $('#hero-canvas');
+      if (!canvas) return;
+      canvas.removeAttribute('hidden');
+      initNetworkCanvas(canvas, { max: 58, palette: ['#8a7bff', '#cec8ff', '#7fe9cd'] });
+    });
+
     initNetworkCanvas($('#finale-canvas'), { max: 70, palette: ['#8a7bff', '#7fe9cd', '#ffb777'] });
   }
 

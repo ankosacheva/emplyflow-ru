@@ -56,29 +56,62 @@ oversaturated colours, lens flare spam, glitch artefacts
 
 ## Сцены
 
-### 1. `hero-signal` — Hero
+### 1. `hero-signal` — Hero ✅ подключено
 
 | Поле | Значение |
 |---|---|
-| Файлы | `media/case-telecom/hero-signal.mp4` / `.webm`, постер `media/case-telecom/posters/hero-signal.jpg` |
+| Файлы | `media/case-telecom/hero-signal.mp4` (739 КБ) / `.webm` (206 КБ), мобильные `hero-signal-mobile.mp4` (466 КБ) / `.webm` (120 КБ) |
+| Постеры | `media/case-telecom/posters/hero-signal.jpg`, `hero-signal-mobile.jpg` |
 | Глава | 01, Hero |
-| Назначение | Фон под заголовок: один сигнал превращается в сеть диалогов |
-| Desktop / mobile | 16:9 и отдельный 9:16 кроп через `reframe` |
-| Длительность | 8 с |
-| Тип | loop |
-| Статус | не сгенерировано |
+| Назначение | Фон под заголовок: один сигнал превращается в сеть |
+| Desktop / mobile | 1280×720 и вертикальный кроп 720×1280 |
+| Длительность | 10 с после сборки цикла (исходник 5 с) |
+| Тип | seamless loop |
+| Модель референса | `soul_2`, 2K, 16:9, job `b0d8d269-6a30-47fa-97ba-f8c6d9c74f66` |
+| Модель видео | `kling3_0_turbo`, 5 с, 16:9, `medias[{role: start_image}]` = job референса, job `cff799b1-ecc4-4540-97bd-d4ee573cdd47` |
+| Статус | Принято по чек-листу, подключено на страницу |
 
-Prompt:
+Промпт референс-кадра (важно: запрет текста пришлось прописать явным перечислением,
+с первой попытки модель нарисовала на фоне случайные буквы и цифры):
 
 ```
-A single luminous voice waveform travels through deep dark-purple space. The wave passes
-through a softly glowing spherical core and begins to split into three separate light
-lines: violet, mint and peach. Translucent speech fragments and small competency markers
-drift around the wave. The camera slowly pulls back and the single line is revealed to be
-one of hundreds of parallel light threads forming a calm network. Centre of the frame stays
-dark and uncluttered. Elegant slow camera motion, cinematic depth of field, volumetric
-lighting, editorial technology aesthetic.
+Completely textless abstract cinematic background. Deep dark navy-purple void (#050230).
+In the lower third of the frame, one luminous voice waveform travels from the left, passes
+through a soft glowing spherical core, and splits into exactly three smooth light ribbons
+that sweep toward the right edge: one deep violet, one frosted mint, one warm peach. Faint
+parallel light threads suggest a large calm network far in the background. The entire upper
+half of the image is empty dark space with nothing in it. Absolutely no text, no letters,
+no numbers, no digits, no glyphs, no symbols, no captions, no labels, no charts, no
+interface elements, no logos, no watermark, no human figures. Pure abstract light and
+gradient only. Editorial technology aesthetic, volumetric lighting, cinematic depth of
+field, elegant restraint.
 ```
+
+Промпт видео:
+
+```
+Slow cinematic camera pull-back. The single luminous signal continues to travel from the
+left into the glowing core, and the three coloured light ribbons — violet, mint and peach —
+flow smoothly outward to the right, gently undulating. Faint background light threads slowly
+multiply into a calm wide network. The upper half of the frame stays empty dark space
+throughout. Extremely slow, elegant, seamless looping motion. No text, no numbers, no logos,
+no people.
+```
+
+Пост-обработка (локально, ffmpeg):
+
+```bash
+# бесшовный цикл: прямой проход + реверс, без звука
+ffmpeg -i hero.mp4 -filter_complex "[0:v]reverse[r];[0:v][r]concat=n=2:v=1[v]" \
+  -map "[v]" -an -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p -movflags +faststart hero-signal.mp4
+ffmpeg -i hero-signal.mp4 -an -c:v libvpx-vp9 -crf 38 -b:v 0 -row-mt 1 hero-signal.webm
+# вертикальный кроп под мобильные
+ffmpeg -i hero-signal.mp4 -vf "crop=in_h*9/16:in_h:(in_w-in_h*9/16)/2:0,scale=720:1280" \
+  -an -c:v libx264 -crf 25 -preset slow -pix_fmt yuv420p -movflags +faststart hero-signal-mobile.mp4
+```
+
+Конец исходного клипа заметно ярче начала, поэтому обычный `loop` дал бы рывок —
+цикл собран как ping-pong из прямого прохода и реверса.
 
 ### 2. `scale-room` — Ограничения ручного процесса
 
@@ -214,11 +247,15 @@ composition, quiet resolution.
 
 ## Подключение к странице
 
+Реализовано для hero в `initHeroVideo()`, остальные сцены подключаются так же.
+
 1. Сложить файлы в `media/case-telecom/` и постеры в `media/case-telecom/posters/`.
-2. В hero и финале заменить `<canvas>` на `<video>` с `poster`, `muted`, `playsinline`,
-   `preload="none"` и парой источников WebM + MP4.
-3. Оставить Canvas как фолбэк, если видео не загрузилось.
-4. Останавливать воспроизведение вне вьюпорта через IntersectionObserver.
-5. В `prefers-reduced-motion` показывать только постер.
-6. Не заливать исходное разрешение: подготовить desktop и mobile версии,
-   мобильный кроп получать через `reframe`.
+2. Разметка — пустой `<video muted playsinline loop preload="none" poster="…">` без
+   `<source>`: источник подставляет скрипт по `matchMedia('(max-width: 760px)')`,
+   поэтому desktop и mobile ассеты никогда не грузятся одновременно.
+3. Загрузка и воспроизведение стартуют по IntersectionObserver, вне вьюпорта — пауза.
+4. Если видео не отдало ни одного кадра за 6 секунд или отдало `error`,
+   элемент удаляется и включается Canvas-фолбэк.
+5. В `prefers-reduced-motion` видео не грузится вообще, остаётся постер.
+6. Поверх видео лежит `.hero__scrim` — горизонтальный градиент, который держит
+   контраст текста левой колонки независимо от яркости кадра.

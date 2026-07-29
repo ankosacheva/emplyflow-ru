@@ -102,7 +102,13 @@
   <!-- ============ ГЛАВА 1 · HERO ============ -->
   <section class="hero" id="hero" data-theme="violet" data-chapter aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true"></div>
-    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+    <!-- Источники подставляются скриптом по ширине экрана, чтобы не тянуть
+         desktop и mobile одновременно. Canvas включается только как фолбэк. -->
+    <video class="hero__video" id="hero-video"
+           poster="media/case-telecom/posters/hero-signal.jpg"
+           muted playsinline loop preload="none" aria-hidden="true"></video>
+    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true" hidden></canvas>
+    <div class="hero__scrim" aria-hidden="true"></div>
 
     <div class="hero__grid">
       <div>
