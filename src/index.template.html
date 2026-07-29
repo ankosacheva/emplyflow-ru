@@ -2349,6 +2349,28 @@ html, body {
   .ef-demo-modal__title{margin:0 28px 10px 0;font-size:clamp(20px,2.4vw,24px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:#050230;}
   .ef-demo-modal__lead{margin:0 0 22px;font-size:14px;line-height:1.5;color:rgba(5,2,48,.68);}
   .ef-demo-modal .ef-lead-form{max-width:none;}
+  /* Первый визит: компактная карточка в углу, без оверлея на весь экран */
+  .ef-demo-modal--corner{display:block;padding:0;pointer-events:none;background:transparent;}
+  .ef-demo-modal--corner .ef-demo-modal__backdrop{display:none;}
+  .ef-demo-modal--corner .ef-demo-modal__panel{
+    pointer-events:auto;
+    position:fixed;
+    right:max(12px,env(safe-area-inset-right));
+    bottom:max(12px,env(safe-area-inset-bottom));
+    width:min(380px,calc(100vw - 24px));
+    max-height:min(72vh,620px);
+    border-radius:22px;
+    padding:22px 20px 18px;
+    box-shadow:0 28px 70px -24px rgba(5,2,48,.72),0 0 0 1px rgba(5,2,48,.06);
+    animation:efDemoCornerIn .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .ef-demo-modal--corner .ef-demo-modal__title{font-size:18px;margin-right:32px;}
+  .ef-demo-modal--corner .ef-demo-modal__lead{font-size:13px;margin-bottom:16px;}
+  @keyframes efDemoCornerIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+  @media (max-width:480px){
+    .ef-demo-modal--corner .ef-demo-modal__panel{right:10px;left:10px;width:auto;bottom:max(10px,env(safe-area-inset-bottom));}
+  }
+  #platform,#cases,#ai-assistant,#aboutus,#stages,#contacts{scroll-margin-top:88px;}
   </style>
   <div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
     <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
@@ -2397,21 +2419,33 @@ html, body {
   </div>
   <script>
   (function(){
-    window.__efOpenDemoForm=function(){
+    var SEEN_KEY='ef_demo_popup_seen_v1';
+    var cornerTimer=0;
+
+    window.__efOpenDemoForm=function(opts){
       var modal=document.getElementById('ef-demo-modal');
       if(!modal)return;
+      opts=opts||{};
+      var corner=opts.mode==='corner';
+      modal.classList.toggle('ef-demo-modal--corner',corner);
       modal.hidden=false;
       modal.setAttribute('aria-hidden','false');
-      document.body.classList.add('ef-demo-open');
-      var first=modal.querySelector('.ef-lead-form__input');
-      if(first)setTimeout(function(){first.focus();},60);
+      if(corner){
+        document.body.classList.remove('ef-demo-open');
+      }else{
+        document.body.classList.add('ef-demo-open');
+        var first=modal.querySelector('.ef-lead-form__input');
+        if(first)setTimeout(function(){first.focus();},60);
+      }
     };
     window.__efCloseDemoForm=function(){
       var modal=document.getElementById('ef-demo-modal');
       if(!modal)return;
       modal.hidden=true;
       modal.setAttribute('aria-hidden','true');
+      modal.classList.remove('ef-demo-modal--corner');
       document.body.classList.remove('ef-demo-open');
+      try{localStorage.setItem(SEEN_KEY,'1');}catch(err){}
     };
     document.addEventListener('click',function(e){
       if(e.target.closest('[data-ef-demo-close]'))window.__efCloseDemoForm();
@@ -2423,8 +2457,35 @@ html, body {
       var t=e.target.closest('[data-action="demo-form"],[data-ef-demo-open]');
       if(!t||t.classList.contains('ef-swipe-cta'))return;
       e.preventDefault();
-      window.__efOpenDemoForm();
+      window.__efOpenDemoForm({mode:'full'});
     });
+
+    // Первый визит: тихий corner-попап. По кнопкам CTA — полноэкранный modal.
+    function maybeShowFirstVisit(){
+      var seen=false;
+      try{seen=!!localStorage.getItem(SEEN_KEY);}catch(err){}
+      if(seen)return;
+      if(location.hash&&location.hash!=='#top')return;
+      cornerTimer=setTimeout(function(){
+        window.__efOpenDemoForm({mode:'corner'});
+        try{localStorage.setItem(SEEN_KEY,'1');}catch(err){}
+      },2800);
+    }
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',maybeShowFirstVisit,{once:true});
+    else maybeShowFirstVisit();
+
+    window.__efScrollToHash=function(hash){
+      hash=hash||location.hash;
+      if(!hash||hash==='#')return false;
+      var id=hash.replace(/^#/,'');
+      if(!id||id==='top')return false;
+      var target=document.getElementById(id);
+      if(!target)return false;
+      var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+      return true;
+    };
+    window.addEventListener('hashchange',function(){window.__efScrollToHash(location.hash);});
   })();
   </script>
   <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
@@ -2443,6 +2504,17 @@ class Component extends DCLogic {
     this._mq.addEventListener('change', this._upd);
     this._initScrollReveals();
     if(window.__efAiBoot)window.__efAiBoot();
+    // После гидрации бандла нативные якоря (#cases, #platform) ещё не в DOM —
+    // доскролливаем сами, когда секции уже смонтированы.
+    const scrollHash = () => {
+      if (window.__efScrollToHash) window.__efScrollToHash(location.hash);
+    };
+    requestAnimationFrame(() => {
+      scrollHash();
+      setTimeout(scrollHash, 120);
+      setTimeout(scrollHash, 500);
+      setTimeout(scrollHash, 1200);
+    });
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
