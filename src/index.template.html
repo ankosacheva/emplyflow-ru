@@ -2443,6 +2443,19 @@ html, body {
     var cornerTimer=0;
     var ALLOWED_HASH={platform:1,cases:1,'ai-assistant':1,aboutus:1,stages:1,contacts:1};
 
+    // Браузер восстанавливает прошлую позицию прокрутки при возврате/reload —
+    // это выглядит как «страница сама уезжает к модулям». Управляем скроллом сами.
+    try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(err){}
+    (function(){
+      var hashId=(initialHash||'').replace(/^#/,'');
+      var deepLink=hashId&&hashId!=='top'&&ALLOWED_HASH[hashId];
+      if(deepLink)return; // явный переход по якорю оставляем как есть
+      var toTop=function(){try{window.scrollTo(0,0);}catch(err){}};
+      toTop();
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',toTop,{once:true});
+      window.addEventListener('load',function(){toTop();setTimeout(toTop,60);},{once:true});
+    })();
+
     // Страховка: модалка закрыта, пока явно не откроем
     var bootModal=document.getElementById('ef-demo-modal');
     if(bootModal){
