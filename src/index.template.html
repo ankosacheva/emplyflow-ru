@@ -763,7 +763,7 @@ html, body {
             <a href="{{ link.href }}" style="color:rgba(255,255,255,0.82);font-size:15px;white-space:nowrap;">{{ link.label }}</a>
           </sc-for>
         </nav>
-        <button style="background:#ffb777;color:#151515;border:0;border-radius:999px;padding:14px 30px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap;">Получить доступ</button>
+        <button type="button" data-ef-demo-open style="background:#ffb777;color:#151515;border:0;border-radius:999px;padding:14px 30px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap;">Получить доступ</button>
       </sc-if>
 
       <sc-if value="{{ compact }}" hint-placeholder-val="{{ false }}">
@@ -778,7 +778,7 @@ html, body {
         <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="7">
           <a href="{{ link.href }}" sc-camel-on-click="{{ link.onClick }}" style="color:#fff;font-size:19px;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(217,214,255,0.08);">{{ link.label }}</a>
         </sc-for>
-        <button style="margin-top:16px;background:#ffb777;color:#151515;border:0;border-radius:999px;padding:15px 28px;font-size:15px;font-weight:600;cursor:pointer;">Получить доступ</button>
+        <button type="button" data-ef-demo-open style="margin-top:16px;background:#ffb777;color:#151515;border:0;border-radius:999px;padding:15px 28px;font-size:15px;font-weight:600;cursor:pointer;">Получить доступ</button>
       </div>
     </sc-if>
   </header>
@@ -874,6 +874,9 @@ html, body {
   window.__efSwipeCtaBound=true;
   var drag=null,timer=0;
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Не реагируем на клики во время гидрации бандла / прелоадера
+  var swipeReady=false;
+  setTimeout(function(){swipeReady=true;},1800);
 
   function rootFrom(el){return el&&el.closest?el.closest('.ef-swipe-cta'):null;}
   function parts(root){
@@ -901,7 +904,7 @@ html, body {
   function runAction(root){
     var action=root.getAttribute('data-action');
     if(action==='demo-form'){
-      if(window.__efOpenDemoForm)window.__efOpenDemoForm();
+      if(window.__efOpenDemoForm)window.__efOpenDemoForm({mode:'full'});
       return;
     }
     var href=root.getAttribute('data-href')||'#platform';
@@ -915,6 +918,7 @@ html, body {
     }
   }
   function go(root){
+    if(!swipeReady)return;
     var p=parts(root);
     if(!p.track||!p.handle)return;
     var m=metrics(p);
@@ -2339,8 +2343,9 @@ html, body {
 
   <link rel="stylesheet" href="css/emplyflow-demo-form.css">
   <style>
-  .ef-demo-modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;}
-  .ef-demo-modal[hidden]{display:none!important;}
+  /* Не опираемся на атрибут hidden — DC при гидрации может его сбросить */
+  .ef-demo-modal{position:fixed;inset:0;z-index:200;display:none;place-items:center;padding:20px;}
+  .ef-demo-modal.is-open{display:grid;}
   body.ef-demo-open{overflow:hidden;}
   .ef-demo-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
   .ef-demo-modal__panel{position:relative;z-index:1;width:min(480px,calc(100vw - 32px));max-height:min(92vh,760px);overflow:auto;border-radius:28px;padding:clamp(24px,4vw,34px);background:#fff;box-shadow:0 40px 90px -30px rgba(5,2,48,.65);}
@@ -2349,30 +2354,43 @@ html, body {
   .ef-demo-modal__title{margin:0 28px 10px 0;font-size:clamp(20px,2.4vw,24px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:#050230;}
   .ef-demo-modal__lead{margin:0 0 22px;font-size:14px;line-height:1.5;color:rgba(5,2,48,.68);}
   .ef-demo-modal .ef-lead-form{max-width:none;}
-  /* Первый визит: компактная карточка в углу, без оверлея на весь экран */
-  .ef-demo-modal--corner{display:block;padding:0;pointer-events:none;background:transparent;}
-  .ef-demo-modal--corner .ef-demo-modal__backdrop{display:none;}
-  .ef-demo-modal--corner .ef-demo-modal__panel{
-    pointer-events:auto;
-    position:fixed;
-    right:max(12px,env(safe-area-inset-right));
-    bottom:max(12px,env(safe-area-inset-bottom));
-    width:min(380px,calc(100vw - 24px));
-    max-height:min(72vh,620px);
-    border-radius:22px;
-    padding:22px 20px 18px;
-    box-shadow:0 28px 70px -24px rgba(5,2,48,.72),0 0 0 1px rgba(5,2,48,.06);
+  /* Первый визит: карточка в углу без оверлея */
+  .ef-demo-modal.is-open[data-ef-mode="corner"]{
+    display:block!important;
+    padding:0!important;
+    place-items:unset!important;
+    pointer-events:none!important;
+    background:transparent!important;
+  }
+  .ef-demo-modal[data-ef-mode="corner"] .ef-demo-modal__backdrop{display:none!important;}
+  .ef-demo-modal[data-ef-mode="corner"] .ef-demo-modal__panel{
+    pointer-events:auto!important;
+    position:fixed!important;
+    inset:auto!important;
+    right:max(12px,env(safe-area-inset-right))!important;
+    bottom:max(12px,env(safe-area-inset-bottom))!important;
+    left:auto!important;
+    top:auto!important;
+    width:min(380px,calc(100vw - 24px))!important;
+    max-height:min(72vh,620px)!important;
+    margin:0!important;
+    border-radius:22px!important;
+    padding:22px 20px 18px!important;
+    box-shadow:0 28px 70px -24px rgba(5,2,48,.72),0 0 0 1px rgba(5,2,48,.06)!important;
     animation:efDemoCornerIn .45s cubic-bezier(.2,.7,.2,1);
   }
-  .ef-demo-modal--corner .ef-demo-modal__title{font-size:18px;margin-right:32px;}
-  .ef-demo-modal--corner .ef-demo-modal__lead{font-size:13px;margin-bottom:16px;}
+  .ef-demo-modal[data-ef-mode="corner"] .ef-demo-modal__title{font-size:18px;margin-right:32px;}
+  .ef-demo-modal[data-ef-mode="corner"] .ef-demo-modal__lead{font-size:13px;margin-bottom:16px;}
   @keyframes efDemoCornerIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
   @media (max-width:480px){
-    .ef-demo-modal--corner .ef-demo-modal__panel{right:10px;left:10px;width:auto;bottom:max(10px,env(safe-area-inset-bottom));}
+    .ef-demo-modal[data-ef-mode="corner"] .ef-demo-modal__panel{
+      right:10px!important;left:10px!important;width:auto!important;
+      bottom:max(10px,env(safe-area-inset-bottom))!important;
+    }
   }
   #platform,#cases,#ai-assistant,#aboutus,#stages,#contacts{scroll-margin-top:88px;}
   </style>
-  <div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
+  <div id="ef-demo-modal" class="ef-demo-modal" aria-hidden="true">
     <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
     <div class="ef-demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-demo-modal-title">
       <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
@@ -2419,15 +2437,29 @@ html, body {
   </div>
   <script>
   (function(){
-    var SEEN_KEY='ef_demo_popup_seen_v1';
+    var SEEN_KEY='ef_demo_popup_seen_v3';
+    // Фиксируем hash до любых swipe/replaceState, чтобы не уехать на #platform случайно
+    var initialHash=String(location.hash||'');
     var cornerTimer=0;
+    var ALLOWED_HASH={platform:1,cases:1,'ai-assistant':1,aboutus:1,stages:1,contacts:1};
+
+    // Страховка: модалка закрыта, пока явно не откроем
+    var bootModal=document.getElementById('ef-demo-modal');
+    if(bootModal){
+      bootModal.classList.remove('is-open');
+      bootModal.setAttribute('aria-hidden','true');
+      bootModal.removeAttribute('data-ef-mode');
+    }
 
     window.__efOpenDemoForm=function(opts){
       var modal=document.getElementById('ef-demo-modal');
       if(!modal)return;
       opts=opts||{};
       var corner=opts.mode==='corner';
-      modal.classList.toggle('ef-demo-modal--corner',corner);
+      modal.classList.remove('ef-demo-modal--corner');
+      if(corner)modal.setAttribute('data-ef-mode','corner');
+      else modal.removeAttribute('data-ef-mode');
+      modal.classList.add('is-open');
       modal.hidden=false;
       modal.setAttribute('aria-hidden','false');
       if(corner){
@@ -2441,8 +2473,10 @@ html, body {
     window.__efCloseDemoForm=function(){
       var modal=document.getElementById('ef-demo-modal');
       if(!modal)return;
+      modal.classList.remove('is-open');
       modal.hidden=true;
       modal.setAttribute('aria-hidden','true');
+      modal.removeAttribute('data-ef-mode');
       modal.classList.remove('ef-demo-modal--corner');
       document.body.classList.remove('ef-demo-open');
       try{localStorage.setItem(SEEN_KEY,'1');}catch(err){}
@@ -2454,38 +2488,46 @@ html, body {
       if(e.key==='Escape')window.__efCloseDemoForm();
     });
     document.addEventListener('click',function(e){
-      var t=e.target.closest('[data-action="demo-form"],[data-ef-demo-open]');
-      if(!t||t.classList.contains('ef-swipe-cta'))return;
+      var t=e.target.closest('[data-ef-demo-open]');
+      if(!t)return;
       e.preventDefault();
       window.__efOpenDemoForm({mode:'full'});
     });
 
-    // Первый визит: тихий corner-попап. По кнопкам CTA — полноэкранный modal.
+    // Первый визит: только corner, без блокировки страницы.
     function maybeShowFirstVisit(){
       var seen=false;
       try{seen=!!localStorage.getItem(SEEN_KEY);}catch(err){}
       if(seen)return;
-      if(location.hash&&location.hash!=='#top')return;
+      // Не показываем вместе с deep-link на секцию — иначе кажется, что «въезд» сразу в модули + попап
+      var hashId=(initialHash||'').replace(/^#/,'');
+      if(hashId&&hashId!=='top'&&ALLOWED_HASH[hashId])return;
       cornerTimer=setTimeout(function(){
-        window.__efOpenDemoForm({mode:'corner'});
-        try{localStorage.setItem(SEEN_KEY,'1');}catch(err){}
-      },2800);
+        if(document.getElementById('ef-demo-modal')){
+          window.__efOpenDemoForm({mode:'corner'});
+          try{localStorage.setItem(SEEN_KEY,'1');}catch(err){}
+        }
+      },3200);
     }
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',maybeShowFirstVisit,{once:true});
     else maybeShowFirstVisit();
 
+    window.__efInitialHash=initialHash;
     window.__efScrollToHash=function(hash){
-      hash=hash||location.hash;
+      hash=(hash==null?location.hash:hash)||'';
       if(!hash||hash==='#')return false;
-      var id=hash.replace(/^#/,'');
-      if(!id||id==='top')return false;
+      var id=String(hash).replace(/^#/,'');
+      if(!id||id==='top'||!ALLOWED_HASH[id])return false;
       var target=document.getElementById(id);
       if(!target)return false;
       var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
       return true;
     };
-    window.addEventListener('hashchange',function(){window.__efScrollToHash(location.hash);});
+    window.addEventListener('hashchange',function(){
+      // Только явная смена hash пользователем/ссылкой, не polling
+      window.__efScrollToHash(location.hash);
+    });
   })();
   </script>
   <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
@@ -2504,17 +2546,17 @@ class Component extends DCLogic {
     this._mq.addEventListener('change', this._upd);
     this._initScrollReveals();
     if(window.__efAiBoot)window.__efAiBoot();
-    // После гидрации бандла нативные якоря (#cases, #platform) ещё не в DOM —
-    // доскролливаем сами, когда секции уже смонтированы.
-    const scrollHash = () => {
-      if (window.__efScrollToHash) window.__efScrollToHash(location.hash);
-    };
-    requestAnimationFrame(() => {
-      scrollHash();
-      setTimeout(scrollHash, 120);
-      setTimeout(scrollHash, 500);
-      setTimeout(scrollHash, 1200);
-    });
+    // Deep-link только из исходного URL (#cases / #platform), без повторных poll'ов
+    const wanted = window.__efInitialHash || '';
+    if (wanted && wanted !== '#' && wanted !== '#top') {
+      let tries = 0;
+      const go = () => {
+        tries += 1;
+        if (window.__efScrollToHash && window.__efScrollToHash(wanted)) return;
+        if (tries < 8) setTimeout(go, 150);
+      };
+      setTimeout(go, 200);
+    }
   }
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._upd);
