@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050230">
+<title>Как одно AI-интервью выросло в систему оценки и развития сотрудников — кейс EmplyFlow</title>
+<meta name="description" content="Кейс EmplyFlow в крупной телеком-компании: кейс-интервью сократилось с 3 часов до 15–20 минут, отчёт формируется за минуту, оценку прошли 1 000+ сотрудников. Один AI-ассистент работает в трёх сценариях: оценка руководителей, диагностика обучения и тренировка переговоров.">
+<link rel="canonical" href="https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome">
+<meta property="og:title" content="Как одно AI-интервью выросло в систему оценки и развития сотрудников">
+<meta property="og:description" content="Три сценария EmplyFlow в крупной телеком-компании: оценка руководителей, диагностика обучения и тренировка менеджеров по продажам.">
+<meta property="og:image" content="https://emplyflow.ru/media/case-competency-assessment.webp">
+<meta property="og:site_name" content="EmplyFlow">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Как одно AI-интервью выросло в систему оценки и развития сотрудников">
+<meta name="twitter:description" content="Кейс-интервью с 3 часов до 15–20 минут, отчёт за минуту, 1 000+ участников. Один AI-ассистент в трёх сценариях развития.">
+<meta name="twitter:image" content="https://emplyflow.ru/media/case-competency-assessment.webp">
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6239-3062-4538-a639-383666626538__32x32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6164-3236-4734-b139-376466343939__32x32.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="images/tild3766-3562-4732-a164-356632343966__180x180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/emplyflow-telecom-case.css">
+<link rel="stylesheet" href="css/emplyflow-demo-form.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Как одно AI-интервью выросло в систему оценки и развития сотрудников",
+  "description": "Кейс EmplyFlow в крупнейшей российской телеком-компании: AI-ассистент кейсовых интервью сократил оценку с 3 часов до 15–20 минут и вырос в три сценария развития — оценку руководителей, диагностику обучения и тренировку переговоров.",
+  "inLanguage": "ru-RU",
+  "url": "https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome",
+  "image": "https://emplyflow.ru/media/case-competency-assessment.webp",
+  "articleSection": "Кейсы",
+  "author": { "@type": "Organization", "name": "EmplyFlow" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EmplyFlow",
+    "url": "https://emplyflow.ru"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "EmplyFlow", "item": "https://emplyflow.ru/" },
+    { "@type": "ListItem", "position": 2, "name": "Кейсы", "item": "https://emplyflow.ru/#cases" },
+    { "@type": "ListItem", "position": 3, "name": "Как одно AI-интервью выросло в систему оценки и развития сотрудников", "item": "https://emplyflow.ru/avtomatizatsiya-otsenki-po-keysam-v-telekome" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#story">Перейти к содержанию кейса</a>
+
+<!-- ============ ГЛАВА 0 · PRELOADER ============ -->
+<div class="preloader" id="preloader" role="status" aria-live="polite">
+  <div class="preloader__inner">
+    <p class="preloader__brand">EmplyFlow · кейс</p>
+    <div class="preloader__track">
+      <span class="preloader__pulse" aria-hidden="true"></span>
+      <div class="preloader__nodes" aria-hidden="true">
+        <i class="preloader__node" data-node="0"></i>
+        <i class="preloader__node" data-node="1"></i>
+        <i class="preloader__node" data-node="2"></i>
+      </div>
+    </div>
+    <div class="preloader__labels">
+      <span class="preloader__label" data-label="0">Настраиваем сценарий</span>
+      <span class="preloader__label" data-label="1">Собираем индикаторы</span>
+      <span class="preloader__label" data-label="2">Запускаем AI-диалог</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ТОПБАР ============ -->
+<header class="topbar" id="topbar">
+  <div class="shell">
+    <a class="topbar__back" href="index.html#cases">
+      <span aria-hidden="true">←</span> Все кейсы
+    </a>
+    <div class="topbar__right">
+      <button type="button" class="btn btn--primary topbar__cta" data-ef-demo-open>Обсудить сценарий</button>
+    </div>
+  </div>
+  <span class="topbar__progress" id="topbar-progress" aria-hidden="true"></span>
+</header>
+
+<main id="story">
+
+  <!-- ============ ГЛАВА 1 · HERO ============ -->
+  <section class="hero" id="hero" data-theme="violet" data-chapter aria-labelledby="hero-title">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero__grid">
+      <div>
+        <p class="eyebrow"><b>Кейс · 2025—2026</b> Оценка и развитие персонала</p>
+
+        <h1 class="h-display hero__title" id="hero-title">
+          Как одно AI-интервью выросло в <em>систему оценки и развития</em> сотрудников
+        </h1>
+
+        <p class="lead hero__lead">
+          Три сценария EmplyFlow в крупной телеком-компании: оценка руководителей,
+          диагностика обучения и тренировка менеджеров по продажам.
+        </p>
+
+        <div class="hero__meta">
+          <span class="hero__chip"><i aria-hidden="true"></i> Корпоративный университет</span>
+          <span class="hero__chip"><i aria-hidden="true"></i> <span data-fact="firstWaveScale">1 000+</span> участников первого этапа</span>
+          <span class="hero__chip"><i aria-hidden="true"></i> Кейсовые интервью с AI</span>
+        </div>
+
+        <div class="hero__shift">
+          <div class="hero__shift-row">
+            <span class="hero__shift-from" data-fact="manualDuration">до 3 часов</span>
+            <span class="hero__shift-arrow" aria-hidden="true">→</span>
+            <span class="hero__shift-to" data-fact="aiDuration">15–20 минут</span>
+          </div>
+          <div class="hero__wave" aria-hidden="true">
+            <span class="hero__wave-fill" id="hero-wave"></span>
+          </div>
+          <p class="tiny">
+            Длительность одного кейс-интервью. Отчёт по компетенции формируется
+            <b data-fact="reportDuration">около 1 минуты</b>.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero__stage">
+        <div class="dialogue" id="hero-dialogue">
+          <div class="dialogue__head">
+            <span class="dialogue__who">
+              <span class="dialogue__avatar" aria-hidden="true">AI</span>
+              Кейси · диагностика компетенции
+            </span>
+            <span class="dialogue__timer" aria-hidden="true">07:00</span>
+          </div>
+
+          <div class="msg msg--ai" data-msg="0">
+            <span class="msg__tag">Ситуация</span>
+            В команде есть сильный сотрудник, готовый к росту, но избегающий ответственности
+            за результат. Как вы будете развивать его потенциал?
+          </div>
+
+          <div class="msg msg--user" data-msg="1">
+            <span class="msg__tag">Ответ голосом</span>
+            Дам ему больше самостоятельности и предложу вести отдельное направление.
+          </div>
+
+          <div class="msg msg--ai" data-msg="2">
+            <span class="msg__tag">Уточнение</span>
+            Что именно вы сделаете первым шагом и как поймёте, что он готов?
+          </div>
+        </div>
+
+        <div class="hero__indicators" id="hero-indicators" aria-hidden="true">
+          <span class="ind-chip" data-chip="0">Диагностика потенциала</span>
+          <span class="ind-chip" data-chip="1">Делегирование</span>
+          <span class="ind-chip" data-chip="2">Развитие сотрудника</span>
+          <span class="ind-chip" data-chip="3">Обратная связь</span>
+          <span class="ind-chip" data-chip="4">Критерии результата</span>
+        </div>
+
+        <p class="tiny" style="margin-top:14px">
+          <span class="badge badge--demo">Демонстрация интерфейса</span>
+          Формулировка кейса демонстрационная и не относится к банку кейсов заказчика.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      Листайте
+      <span></span>
+    </div>
+  </section>
+
+  <div class="section-line"></div>
+
+  <!-- ============ ГЛАВА 2 · МАСШТАБ ============ -->
+  <section class="chapter" id="scale" data-theme="violet" data-chapter aria-labelledby="scale-title">
+    <div class="shell">
+      <div class="chapter__head reveal">
+        <p class="eyebrow"><b>02</b> Точка старта</p>
+        <h2 class="h-chapter" id="scale-title">Качественный метод. Ограниченный масштаб.</h2>
+        <p class="lead">
+          Личное кейс-интервью давало глубокую картину: живой разговор, уточнения,
+          развёрнутый разбор решений руководителя. Проблема была не в качестве метода,
+          а в том, что он перестал совпадать с масштабом программ.
+        </p>
+      </div>
+
+      <div class="scale__grid">
+        <div class="room reveal" id="room">
+          <div class="room__label">
+            <span>Одна переговорная · один интервьюер</span>
+            <span class="room__count" id="room-count">10 участников</span>
+          </div>
+          <div class="room__queue" id="room-queue" aria-hidden="true"></div>
+          <div class="room__foot">
+            <span>Каждое интервью — <b data-fact="manualDuration">до 3 часов</b></span>
+            <span>Массовая программа — <b>месяцы ручной работы</b></span>
+          </div>
+          <p class="visually-hidden">
+            По мере роста программы количество участников растёт с 10 до 1 000 и более,
+            при этом количество интервьюеров и переговорных остаётся прежним, а очередь
+            ожидания увеличивается.
+          </p>
+        </div>
+
+        <div class="limits reveal">
+          <div class="limit"><span class="limit__n">01</span><span class="limit__text">Ограниченный пул интервьюеров: оценку могут проводить только подготовленные специалисты</span></div>
+          <div class="limit"><span class="limit__n">02</span><span class="limit__text">Календари участника и интервьюера нужно синхронизировать вручную</span></div>
+          <div class="limit"><span class="limit__n">03</span><span class="limit__text">Субъективность ручной оценки: разные интервьюеры по-разному трактуют один ответ</span></div>
+          <div class="limit"><span class="limit__n">04</span><span class="limit__text">Высокая нагрузка на команду оценки в пиковые периоды отбора и аттестации</span></div>
+          <div class="limit"><span class="limit__n">05</span><span class="limit__text">Повторить программу в следующем цикле — заново потратить тот же ресурс</span></div>
+          <div class="limit"><span class="limit__n">06</span><span class="limit__text">Дать каждому участнику достаточно практики физически невозможно</span></div>
+        </div>
+      </div>
+
+      <div class="scale__turn reveal">
+        <h3 class="h-scene">Интервью больше не зависит от свободного времени интервьюера</h3>
+        <p class="lead">
+          Переговорная распадается на множество независимых AI-диалогов: участник проходит
+          интервью в удобное время, а команда оценки перестаёт быть узким местом.
+          Настройка, аутентификация и интеграция с внутренними системами Корпоративного
+          университета заняли <b data-fact="setupPeriod">август – сентябрь 2025</b>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-line"></div>
+
+  <!-- ============ ГЛАВА 3 · МАРШРУТИЗАТОР ============ -->
+  <section class="chapter router" id="router" data-chapter aria-labelledby="router-title">
+    <div class="shell">
+      <div class="chapter__head reveal">
+        <p class="eyebrow"><b>03</b> Развилка</p>
+        <h2 class="h-chapter" id="router-title">Один сигнал. Три режима развития.</h2>
+        <p class="lead">
+          Механика, собранная под одну задачу, оказалась переиспользуемой. Тот же ассистент
+          получил другие роли, индикаторы и сценарии — и разошёлся по трём направлениям.
+        </p>
+      </div>
+
+      <div class="router__stage reveal">
+        <svg class="router__svg" id="router-svg" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+          <path class="router__path" data-branch="in" d="M0,150 L520,150" stroke="#8a7bff"></path>
+          <circle class="router__core-glow" cx="560" cy="150" r="34"></circle>
+          <circle class="router__core" cx="560" cy="150" r="18"></circle>
+          <path class="router__path" data-branch="leadership" d="M600,150 C760,150 800,40 1200,40" stroke="#8a7bff"></path>
+          <path class="router__path" data-branch="learning" d="M600,150 C820,150 900,150 1200,150" stroke="#7fe9cd"></path>
+          <path class="router__path" data-branch="sales" d="M600,150 C760,150 800,260 1200,260" stroke="#ffb777"></path>
+        </svg>
+
+        <div class="router__cards" id="router-cards" role="list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ВЕТКА 1 · ОЦЕНКА РУКОВОДИТЕЛЕЙ ============ -->
+  <section class="branch" id="leadership" data-theme="violet" data-chapter data-branch="leadership" aria-labelledby="leadership-title">
+    <div class="shell">
+      <div class="branch__rail reveal">
+        <span class="eyebrow"><b>Ветка 01</b></span>
+        <span class="branch__rail-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="branch__head reveal">
+        <h2 class="h-chapter" id="leadership-title">Оценка руководителей</h2>
+        <p class="lead">
+          Менеджер по оценке назначает руководителю кейсовое интервью по управленческой
+          компетенции. Ассистент задаёт ситуации, разбирает свободные ответы, уточняет
+          недосказанное, проверяет индикаторы и собирает отчёт с аргументацией.
+        </p>
+      </div>
+
+      <!-- Сцена 1 · Конструктор -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 1 · Конструктор компетенции</p>
+          <h3 class="h-scene">AI предлагает. Эксперт управляет.</h3>
+          <p class="lead">
+            Ни один сценарий не становится чёрным ящиком: логика интервью и оценки
+            остаётся под контролем заказчика.
+          </p>
+        </div>
+
+        <div class="ui">
+          <div class="ui__bar">
+            <span class="ui__tab is-on">Настройки компетенции</span>
+            <span class="ui__tab">Рассылка</span>
+            <span class="ui__tab">Напоминания</span>
+            <span class="ui__spacer"></span>
+            <span class="ui__ai"><i aria-hidden="true"></i> Редактировать с AI</span>
+          </div>
+
+          <div class="ui__body">
+            <div class="ui__block">
+              <p class="ui__block-title"><b>1</b> Описание компетенции</p>
+              <div class="field field--name" id="lead-competency">Управление потенциалом команды для руководителей</div>
+              <div class="field">
+                Промпт роли и стиля агента: профессиональный интервьюер по оценке управленческих
+                компетенций. Практические вопросы по кейсам, фиксация наблюдений по индикаторам,
+                деловой и уважительный тон.
+                <div class="field__hint">Отдельно настраивается промпт уточняющих вопросов и внутреннее описание компетенции, которое влияет на генерацию кейсов и индикаторов.</div>
+              </div>
+            </div>
+
+            <div class="ui__block">
+              <p class="ui__block-title"><b>2</b> Индикаторы и веса</p>
+              <div class="ind-list" id="lead-indicators"></div>
+            </div>
+
+            <div class="ui__block">
+              <p class="ui__block-title"><b>3</b> Настройки интервью</p>
+              <div class="settings" id="lead-settings"></div>
+            </div>
+
+            <div class="ui__block">
+              <p class="ui__block-title"><b>4</b> Шкала и правила округления</p>
+              <div class="scaleline">
+                <div class="scaleline__bar" id="lead-scale"></div>
+                <div class="scaleline__rules" id="lead-rules"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Сцена 2 · Корзины кейсов -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 2 · Библиотека ситуаций</p>
+          <h3 class="h-scene">Одна модель оценки. Своя комбинация ситуаций для каждого.</h3>
+          <p class="lead">
+            Кейсы генерируются под компетенцию, индикаторы и корпоративный контекст, затем
+            распределяются по корзинам. Для участника система берёт комбинацию из разных корзин,
+            поэтому задания не расходятся между коллегами одним списком.
+          </p>
+        </div>
+
+        <div class="baskets" id="lead-baskets"></div>
+
+        <div class="combo">
+          <span class="combo__text" id="combo-text">Комбинация для участника собирается заново</span>
+          <button type="button" class="btn btn--ghost" id="combo-btn">Собрать другую комбинацию</button>
+        </div>
+
+        <p class="tiny" style="margin-top:14px">
+          У каждого кейса два текста: для участника и отдельный текст для модели.
+          Кейсы можно переиспользовать между участниками — уникальна именно комбинация.
+        </p>
+      </div>
+
+      <!-- Сцена 3 · Уточнения -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 3 · Глубина диалога</p>
+          <h3 class="h-scene">AI проверяет не формулировку. Он исследует логику решения.</h3>
+        </div>
+
+        <div class="probe">
+          <div>
+            <div class="dialogue">
+              <div class="dialogue__head">
+                <span class="dialogue__who">
+                  <span class="dialogue__avatar" aria-hidden="true">AI</span>
+                  Кейс 2 из 3 · лимит уточнений 2
+                </span>
+                <span class="dialogue__timer" aria-hidden="true">04:57</span>
+              </div>
+              <div class="probe__thread" id="probe-thread"></div>
+            </div>
+            <div class="probe__controls">
+              <button type="button" class="btn btn--ghost" id="probe-next">Следующая реплика</button>
+              <button type="button" class="btn btn--ghost" id="probe-reset">Сначала</button>
+            </div>
+            <p class="tiny" style="margin-top:12px">
+              <span class="badge badge--demo">Демонстрация интерфейса</span>
+              Диалог вымышленный.
+            </p>
+          </div>
+
+          <div class="probe__depth" id="probe-depth">
+            <p class="ui__block-title">Что засчитывается</p>
+            <div class="depth-row" data-depth="0"><i aria-hidden="true"></i> Общие слова</div>
+            <div class="depth-row" data-depth="1"><i aria-hidden="true"></i> Конкретное управленческое решение</div>
+            <div class="depth-row" data-depth="2"><i aria-hidden="true"></i> Измеримый план действий</div>
+            <p class="tiny" style="margin-top:10px">
+              Индикаторы загораются по ходу ответа, а не все сразу: засчитывается то,
+              что участник действительно проявил.
+            </p>
+            <div class="ind-list" id="probe-inds" style="margin-top:12px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Сцена 4 · Отчёт -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 4 · Результат</p>
+          <h3 class="h-scene">Отчёт собирается примерно за минуту</h3>
+        </div>
+
+        <div class="report">
+          <div class="report__score">
+            <span class="ui__block-title">Общий итог</span>
+            <span class="report__score-value" id="report-score">4 балла из 5</span>
+            <span class="report__score-level" id="report-level">Уверенное владение</span>
+            <div class="report__timing">
+              <span>Интервью: <b data-fact="aiDuration">15–20 минут</b></span>
+              <span>Формирование отчёта: <b data-fact="reportDuration">около 1 минуты</b></span>
+              <span>Обратная связь построена по принципу <b>70-20-10</b></span>
+            </div>
+          </div>
+
+          <div class="report__body">
+            <div class="report__insight">
+              <h4>Сильная сторона</h4>
+              <p id="report-strength"></p>
+            </div>
+            <div class="report__insight">
+              <h4>Зона развития</h4>
+              <p id="report-growth"></p>
+            </div>
+
+            <div class="disclosure">
+              <button type="button" class="disclosure__btn" id="report-toggle" aria-expanded="false" aria-controls="report-full">
+                Раскрыть полный отчёт <i aria-hidden="true">▾</i>
+              </button>
+              <div class="disclosure__panel" id="report-full" hidden>
+                <div class="skills" id="report-skills"></div>
+                <p class="ui__block-title" style="margin-top:6px">Блоки отчёта</p>
+                <div class="report__blocks" id="report-blocks"></div>
+              </div>
+            </div>
+
+            <p class="tiny">
+              <span class="badge badge--demo">Демонстрация интерфейса</span>
+              Оценки в примере вымышленные. Структура блоков соответствует реальному
+              конструктору отчёта.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-line"></div>
+
+  <!-- ============ ВЕТКА 2 · ОБУЧЕНИЕ ============ -->
+  <section class="branch" id="learning" data-theme="mint" data-chapter data-branch="learning" aria-labelledby="learning-title">
+    <div class="shell">
+      <div class="branch__rail reveal">
+        <span class="eyebrow"><b>Ветка 02</b></span>
+        <span class="branch__rail-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="branch__head reveal">
+        <h2 class="h-chapter" id="learning-title">AI внутри обучения</h2>
+        <p class="lead">
+          Ассистент встроили не в отбор, а в саму образовательную программу — до старта,
+          по ходу и после. Пилот прошёл на программе
+          <b data-fact="pilotProgram">iMBA «Навыки лидера цифровой компании»</b> —
+          одной из крупнейших корпоративных программ обучения в сотрудничестве с
+          <b data-fact="pilotPartner">ВШЭ</b>. Участников пилота —
+          <b data-fact="pilotParticipants">≈300</b>.
+        </p>
+      </div>
+
+      <!-- Сцена 1 · Входная диагностика -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 1 · Вход</p>
+          <h3 class="h-scene">Сначала понимаем, как человек действует сейчас</h3>
+        </div>
+
+        <div class="track" id="learning-track"></div>
+
+        <p class="lead" style="max-width:64ch">
+          До начала курса участник отвечает на AI-кейс. Ответ раскладывается на компоненты,
+          и на выходе получается не общий балл, а профиль того, как человек сейчас думает
+          над рабочей ситуацией.
+        </p>
+      </div>
+
+      <!-- Сцены 2–3 · До / после -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцены 2–3 · Изменение</p>
+          <h3 class="h-scene">Измеряем не то, что человек запомнил. А то, как он действует.</h3>
+          <p class="lead">
+            Повторный кейс идёт по тем же индикаторам, но на новой ситуации. Видно, что
+            изменилась не заученная формулировка, а структура решения.
+          </p>
+        </div>
+
+        <div class="compare" id="learning-compare"></div>
+
+        <p class="tiny" style="margin-top:14px">
+          <span class="badge badge--demo">Демонстрация интерфейса</span>
+          Профиль участника вымышленный.
+        </p>
+      </div>
+
+      <!-- Сцена 4 · Групповая аналитика -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 4 · Группа</p>
+          <h3 class="h-scene">Что увидела программа на 300 участниках</h3>
+        </div>
+
+        <div class="pilot">
+          <div class="dist">
+            <p class="ui__block-title">Распределение итоговых оценок</p>
+            <svg class="dist__chart" id="dist-chart" viewBox="0 0 320 170" role="img" aria-labelledby="dist-desc">
+              <title id="dist-desc">Распределение итоговых оценок пилота по шкале от 1 до 5: основная масса участников сосредоточена между вторым и третьим баллом, к пятому баллу количество участников снижается</title>
+            </svg>
+            <p class="tiny">
+              Форма распределения по шкале 1–5. Числовые подписи по оси количества
+              в исходных материалах не приводятся, поэтому здесь показана только форма кривой.
+            </p>
+          </div>
+
+          <div class="bars">
+            <div class="barset">
+              <p class="barset__q" id="selfmatch-q"></p>
+              <div class="barset__rows" id="selfmatch-rows"></div>
+            </div>
+            <div class="barset">
+              <p class="barset__q" id="reportvalue-q"></p>
+              <div class="barset__rows" id="reportvalue-rows"></div>
+            </div>
+            <p class="tiny">
+              Опрос участников пилота на программе iMBA. Значения относятся к этому этапу
+              и не переносятся на другие сценарии.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-line"></div>
+
+  <!-- ============ ВЕТКА 3 · ПРОДАЖИ ============ -->
+  <section class="branch" id="sales" data-theme="peach" data-chapter data-branch="sales" aria-labelledby="sales-title">
+    <div class="shell">
+      <div class="branch__rail reveal">
+        <span class="eyebrow"><b>Ветка 03</b></span>
+        <span class="branch__rail-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="branch__head reveal">
+        <h2 class="h-chapter" id="sales-title">Продажи и переговоры</h2>
+        <p class="lead">
+          Здесь ассистент меняет сторону стола. Он перестаёт быть интервьюером и начинает
+          играть клиента: возражает, требует цифры, теряет и возвращает интерес.
+          Компетенция — «Ведение переговоров», восемь навыков.
+        </p>
+      </div>
+
+      <!-- Сцена 1 · Переключение роли -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 1 · Роль</p>
+          <h3 class="h-scene">Он может оценивать вас. Или разговаривать с вами как клиент.</h3>
+        </div>
+        <div class="modes" id="sales-modes" role="group" aria-label="Режимы работы ассистента"></div>
+      </div>
+
+      <!-- Сцена 2 · Настройка роли -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 2 · Настройка</p>
+          <h3 class="h-scene">Роль клиента собирается из параметров</h3>
+          <p class="lead">
+            AI предлагает первый вариант роли, дальше её правит методолог: отрасль, контекст,
+            запретные темы, тип возражений и критерий успешного диалога.
+          </p>
+        </div>
+
+        <div class="role">
+          <div class="role__grid" id="role-grid"></div>
+          <div class="role__preview">
+            <span class="role__preview-cap">Превью роли</span>
+            <p class="role__preview-text" id="role-preview"></p>
+            <p class="role__preview-meta">
+              Участник получает <b data-fact="salesPrep">8 минут на изучение вводных и 12 минут на беседу</b>.
+              Ответ можно давать голосом или текстом.
+            </p>
+          </div>
+        </div>
+
+        <p class="tiny" style="margin-top:14px">
+          <span class="badge badge--demo">Демонстрация интерфейса</span>
+          Конкретная роль вымышленная, механика настройки взята из рабочего сценария.
+        </p>
+      </div>
+
+      <!-- Сцена 3 · Живой диалог -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 3 · Диалог</p>
+          <h3 class="h-scene">AI оценивает не совпадение с шаблоном, а ход переговоров</h3>
+        </div>
+
+        <div class="nego">
+          <div>
+            <div class="nego__thread" id="nego-thread"></div>
+            <div class="nego__choices" id="nego-choices" role="group" aria-label="Варианты действий менеджера"></div>
+            <div class="nego__explain" id="nego-explain" hidden></div>
+            <div class="probe__controls">
+              <button type="button" class="btn btn--ghost" id="nego-reset">Пройти заново</button>
+            </div>
+            <p class="tiny" style="margin-top:12px">
+              <span class="badge badge--demo">Демонстрационный сценарий</span>
+              Диалог работает локально в браузере, ничего не отправляется во внешние сервисы.
+              Выбор варианта не говорит о ваших профессиональных качествах.
+            </p>
+          </div>
+
+          <div class="nego__side">
+            <div class="nego__skills" id="nego-skills">
+              <p class="ui__block-title">Индикаторы диалога</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Сцена 4 · Тренировка -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 4 · Тренировка</p>
+          <h3 class="h-scene">Две попытки, чтобы увидеть прогресс</h3>
+          <p class="lead">
+            После каждой попытки система показывает, что улучшилось, где ответ остался
+            поверхностным и какие этапы диалога участник пропускает.
+          </p>
+        </div>
+        <div class="attempts" id="sales-attempts"></div>
+      </div>
+
+      <!-- Сцена 5 · Карта -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 5 · Масштаб</p>
+          <h3 class="h-scene">Не просто рейтинг. Карта, кого и чему обучать.</h3>
+          <p class="lead">
+            Отдельные профили складываются в картину группы: видно не только кто сильнее,
+            но и чем именно отличаются переговорные стили.
+          </p>
+        </div>
+
+        <div class="map">
+          <canvas class="map__canvas" id="map-canvas" aria-hidden="true"></canvas>
+          <span class="map__axis map__axis--x" id="map-axis-x"></span>
+          <span class="map__axis map__axis--y" id="map-axis-y"></span>
+        </div>
+
+        <div class="map__legend" id="map-legend"></div>
+
+        <p class="tiny" style="margin-top:14px">
+          <span class="badge badge--client">Требует подтверждения</span>
+          Показатель <b data-fact="salesParticipants">1 000+</b> участников переговорного
+          сценария передан заказчиком текстом и пока не подтверждён отдельным отчётом.
+          Это другая группа и другой сценарий: не путать с подтверждёнными
+          1 000+ участниками первого этапа оценки.
+          <span class="badge badge--demo" style="margin-left:6px">Демонстрация интерфейса</span>
+          Названия сегментов демонстрационные.
+        </p>
+      </div>
+
+      <!-- Сцена 6 · Поединки -->
+      <div class="scene reveal">
+        <div class="scene__head">
+          <p class="scene__n">Сцена 6 · Практика</p>
+          <h3 class="h-scene">Чтобы поединок развивал обоих, а не превращался в одностороннюю победу</h3>
+        </div>
+
+        <div class="pairing" id="sales-pairing"></div>
+
+        <p class="lead" style="margin-top:20px;max-width:66ch">
+          AI-аналитика помогает сформировать более сопоставимые пары: близкий общий уровень
+          при разных переговорных стилях. Финальное решение остаётся за методологом.
+          Перед поединком каждый участник может потренироваться с AI-клиентом.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-line"></div>
+
+  <!-- ============ КОНСТРУКТОР AI-ИНТЕРВЬЮ ============ -->
+  <section class="chapter builder" id="builder" data-theme="violet" data-chapter aria-labelledby="builder-title">
+    <div class="shell">
+      <div class="chapter__head reveal">
+        <p class="eyebrow"><b>07</b> Платформа</p>
+        <h2 class="h-chapter" id="builder-title">Не бот с одним сценарием. Конструктор AI-интервью.</h2>
+        <p class="lead">
+          Все три ветки собраны на одном механизме. Меняются роль ассистента, индикаторы,
+          кейсы и структура отчёта — сам движок остаётся тем же.
+        </p>
+      </div>
+
+      <div class="builder__stage">
+        <div class="builder__steps" id="builder-steps"></div>
+
+        <div class="builder__panel">
+          <div class="bpanel">
+            <div class="bpanel__screen is-on" data-screen="brief">
+              <span class="bpanel__cap">Задача от заказчика</span>
+              <div class="bpanel__task" id="builder-task"></div>
+            </div>
+
+            <div class="bpanel__screen" data-screen="draft">
+              <span class="bpanel__cap">AI предложил структуру</span>
+              <div class="bpanel__chips" id="builder-draft"></div>
+              <span class="bpanel__cap" style="margin-top:8px">Настраиваемые параметры</span>
+              <div class="bpanel__controls" id="builder-controls"></div>
+            </div>
+
+            <div class="bpanel__screen" data-screen="dialogue">
+              <span class="bpanel__cap">Preview диалога</span>
+              <div class="msg msg--ai is-in">
+                <span class="msg__tag">Кейси</span>
+                Опишите ситуацию, в которой вам пришлось перераспределить задачи внутри
+                команды при сжатом сроке. С чего вы начали?
+              </div>
+              <div class="msg msg--ai is-in">
+                <span class="msg__tag">Уточнение</span>
+                По каким признакам вы поняли, что срок под угрозой?
+              </div>
+              <p class="bpanel__note">Preview обновляется сразу после правки строгости и глубины диалога.</p>
+            </div>
+
+            <div class="bpanel__screen" data-screen="assign">
+              <span class="bpanel__cap">Назначение группе</span>
+              <div class="bpanel__chips">
+                <span class="bchip is-in">Приглашение на почту</span>
+                <span class="bchip is-in">Окно прохождения</span>
+                <span class="bchip is-in">Напоминания</span>
+                <span class="bchip is-in">Доступ участнику к отчёту</span>
+                <span class="bchip is-in">Доступ администратору</span>
+              </div>
+              <p class="bpanel__note">Показ итогового балла участнику включается отдельным переключателем.</p>
+            </div>
+
+            <div class="bpanel__screen" data-screen="analytics">
+              <span class="bpanel__cap">Аналитика</span>
+              <div class="bpanel__chips">
+                <span class="bchip is-in">Профиль участника</span>
+                <span class="bchip is-in">Срез по группе</span>
+                <span class="bchip is-in">Динамика между замерами</span>
+              </div>
+              <p class="bpanel__note">Те же данные питают карту группы и подбор пар для практики.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scale__turn reveal" style="margin-top:clamp(30px,4vw,52px)">
+        <h3 class="h-scene">AI создаёт первый вариант. Заказчик контролирует каждое правило.</h3>
+        <p class="lead">Один механизм — десятки сценариев оценки, обучения и практики.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-line"></div>
+
+  <!-- ============ РЕЗУЛЬТАТЫ ============ -->
+  <section class="chapter" id="results" data-theme="mint" data-chapter aria-labelledby="results-title">
+    <div class="shell">
+      <div class="chapter__head reveal">
+        <p class="eyebrow"><b>08</b> Результаты</p>
+        <h2 class="h-chapter" id="results-title">Один AI-ассистент вырос в инфраструктуру развития</h2>
+      </div>
+
+      <div class="results__set">
+        <div class="rblock reveal" id="res-time">
+          <div class="rblock__top">
+            <h3 class="rblock__title">Время</h3>
+            <span class="badge badge--verified">Подтверждено кейсом</span>
+          </div>
+          <div class="timeline-bar">
+            <div class="tbar tbar--manual">
+              <div class="tbar__top"><span>Личное кейс-интервью</span><b data-fact="manualDuration">до 3 часов</b></div>
+              <div class="tbar__track"><span class="tbar__fill" style="--w:100"></span></div>
+            </div>
+            <div class="tbar tbar--ai">
+              <div class="tbar__top"><span>Кейс-интервью с ассистентом</span><b data-fact="aiDuration">15–20 минут</b></div>
+              <div class="tbar__track"><span class="tbar__fill" style="--w:11"></span></div>
+            </div>
+            <div class="tbar tbar--report">
+              <div class="tbar__top"><span>Структурированный отчёт</span><b data-fact="reportDuration">около 1 минуты</b></div>
+              <div class="tbar__track"><span class="tbar__fill" style="--w:1.5"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rblock reveal" id="res-scale">
+          <div class="rblock__top">
+            <h3 class="rblock__title">Масштаб</h3>
+            <span class="tiny">Показатели разных сценариев не суммируются</span>
+          </div>
+          <div class="scale-viz">
+            <div class="scale-card scale-card--verified">
+              <span class="scale-card__value" data-fact="firstWaveScale">1 000+</span>
+              <span class="scale-card__label">Сотрудников прошли оценку за первые месяцы работы ассистента</span>
+              <span class="badge badge--verified">Подтверждено кейсом</span>
+            </div>
+            <div class="scale-card scale-card--client">
+              <span class="scale-card__value" data-fact="salesParticipants">1 000+</span>
+              <span class="scale-card__label">Участников переговорного сценария</span>
+              <span class="badge badge--client">Требует подтверждения</span>
+            </div>
+          </div>
+          <p class="tiny">
+            Отдельно: <b data-fact="pilotParticipants">≈300</b> участников пилота
+            на программе iMBA в обучении.
+          </p>
+        </div>
+
+        <div class="rblock reveal" id="res-fan">
+          <div class="rblock__top">
+            <h3 class="rblock__title">Развитие сценариев</h3>
+          </div>
+          <div class="fanout">
+            <div class="fanout__from">Оценка компетенции</div>
+            <div class="fanout__to">
+              <div class="fanout__item"><span aria-hidden="true"></span> Оценка руководителей</div>
+              <div class="fanout__item"><span aria-hidden="true"></span> Диагностика обучения</div>
+              <div class="fanout__item"><span aria-hidden="true"></span> Тренировка переговоров</div>
+              <div class="fanout__item"><span aria-hidden="true"></span> Сегментация группы</div>
+              <div class="fanout__item"><span aria-hidden="true"></span> Подготовка практики</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-line"></div>
+
+  <!-- ============ ОБРАТНАЯ СВЯЗЬ ============ -->
+  <section class="chapter" id="feedback" data-theme="mint" data-chapter aria-labelledby="feedback-title">
+    <div class="shell">
+      <div class="chapter__head reveal">
+        <p class="eyebrow"><b>09</b> Как приняли формат</p>
+        <h2 class="h-chapter" id="feedback-title">Участники согласились на разговор с ассистентом</h2>
+      </div>
+
+      <div class="fb__flow">
+        <div class="fb-card reveal">
+          <span class="fb__node" aria-hidden="true"></span>
+          <p class="fb-card__quote">«Понятно, что от меня хотят, и понятно, почему такой вывод»</p>
+          <span class="fb-card__value" data-fact="surveyClear">92%</span>
+          <span class="fb-card__label">назвали интервью понятным и логичным</span>
+        </div>
+        <div class="fb-card reveal">
+          <span class="fb__node" aria-hidden="true"></span>
+          <p class="fb-card__quote">«Прошёл в своё время, без ожидания слота в календаре»</p>
+          <span class="fb-card__value" data-fact="surveyConvenient">87%</span>
+          <span class="fb-card__label">сочли чат-интервью удобнее классической встречи</span>
+        </div>
+        <div class="fb-card reveal">
+          <span class="fb__node" aria-hidden="true"></span>
+          <p class="fb-card__quote">«Увидел, где именно мой ответ был поверхностным»</p>
+          <span class="fb-card__value" data-fact="surveyInsight">78%</span>
+          <span class="fb-card__label">лучше поняли сильные стороны и зоны роста</span>
+        </div>
+      </div>
+
+      <p class="fb__note">
+        Значения относятся к внутреннему опросу участников первого этапа оценки
+        в Корпоративном университете. Обратная связь пилота в обучении собиралась отдельно
+        и приведена в ветке «AI внутри обучения».
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="finale" id="finale" data-theme="violet" data-chapter aria-labelledby="finale-title">
+    <div class="finale__bg" aria-hidden="true"></div>
+    <canvas class="finale__canvas" id="finale-canvas" aria-hidden="true"></canvas>
+
+    <div class="shell finale__inner">
+      <p class="eyebrow"><b>10</b> Итог</p>
+      <h2 class="h-chapter finale__title" id="finale-title">
+        Три линии возвращаются в одну платформу
+      </h2>
+
+      <div class="finale__lines">
+        <span>Один AI-ассистент.</span>
+        <span>Тысячи уникальных диалогов.</span>
+        <span>Три способа развивать людей на основе данных.</span>
+      </div>
+
+      <div class="finale__roles" id="finale-roles"></div>
+
+      <div class="finale__cta">
+        <button type="button" class="btn btn--primary" data-ef-demo-open data-track="cta-demo">Посмотреть AI-ассистента в действии</button>
+        <button type="button" class="btn btn--ghost" data-ef-demo-open data-track="cta-scenario">Обсудить сценарий для нашей компании</button>
+      </div>
+
+      <a class="topbar__back" href="index.html#platform">Изучить платформу EmplyFlow →</a>
+
+      <div class="finale__next">
+        <span class="finale__next-cap">Что дальше в проекте</span>
+        <ul id="finale-next"></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__inner">
+    <a href="/">EmplyFlow</a>
+    <span class="tiny">оценка, целеполагание и развитие персонала</span>
+    <div class="foot__links">
+      <a href="index.html#cases">Все кейсы</a>
+      <a href="index.html#platform">Модули платформы</a>
+      <a href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
+      <a href="/privacy">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ МОДАЛКА ЗАЯВКИ ============ -->
+<div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
+  <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
+  <div class="ef-demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-demo-modal-title">
+    <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
+    <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
+    <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+    <form id="ef-lead-form-case-telecom" class="ef-lead-form" data-ef-lead-source="site_demo" novalidate>
+      <div class="ef-lead-form__fields">
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Input" placeholder="Название компании" autocomplete="organization" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="tel" name="Phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
+        </div>
+        <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
+          <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
+          <div class="ef-lead-form__radios">
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Telegram" required> Telegram</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="WhatsApp"> WhatsApp</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Звонок"> Звонок</label>
+          </div>
+        </fieldset>
+        <div class="ef-lead-form__field">
+          <textarea class="ef-lead-form__textarea" name="Textarea" rows="2" placeholder="Коротко расскажите о своей задаче"></textarea>
+        </div>
+        <label class="ef-lead-form__check">
+          <input type="checkbox" name="Checkbox" value="yes" required>
+          <span>Я соглашаюсь с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+        </label>
+        <div class="ef-lead-form__error" data-ef-error role="alert"></div>
+      </div>
+      <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+      <div class="ef-lead-form__success" data-ef-success>
+        <h3>Заявка отправлена</h3>
+        <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/emplyflow-telecom-case-data.js" defer></script>
+<script src="js/emplyflow-telecom-case.js" defer></script>
+<script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
+
+<!-- Yandex.Metrika counter 105450350 -->
+<script type="text/javascript">setTimeout(function(){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");window.mainMetrikaId='105450350';ym(window.mainMetrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});},2000);</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105450350" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+</body>
+</html>
