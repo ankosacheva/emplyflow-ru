@@ -2341,7 +2341,59 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   color: var(--fg2);
 }
 
+.finale__lib-note {
+  margin: 0 auto 8px;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--fg2);
+}
+
 .finale__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.finale__cta .btn { text-decoration: none; }
+
+/* ======================== DEMO MODAL =========================== */
+
+.ef-demo-modal { position: fixed; inset: 0; z-index: 260; display: grid; place-items: center; padding: 20px; }
+.ef-demo-modal[hidden] { display: none !important; }
+.ef-demo-modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(5, 2, 48, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.ef-demo-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(480px, calc(100vw - 32px));
+  max-height: min(92vh, 780px);
+  overflow: auto;
+  border-radius: 28px;
+  padding: clamp(24px, 4vw, 34px);
+  background: #fff;
+  color: #151515;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.8);
+}
+.ef-demo-modal__close {
+  position: absolute; top: 14px; right: 14px;
+  width: 36px; height: 36px;
+  border: 0; border-radius: 999px;
+  background: rgba(5, 2, 48, 0.07);
+  color: #050230;
+  font-size: 22px; line-height: 1;
+  cursor: pointer;
+}
+.ef-demo-modal__close:hover { background: rgba(5, 2, 48, 0.12); }
+.ef-demo-modal__title {
+  margin: 0 30px 10px 0;
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #050230;
+}
+.ef-demo-modal__lead { margin: 0 0 22px; font-size: 14px; line-height: 1.5; color: rgba(5, 2, 48, 0.68); }
+.ef-demo-modal .ef-lead-form { max-width: none; }
 
 .finale__next {
   display: grid;

@@ -1185,6 +1185,63 @@
   }
 
   /* ---------------------------------------------------------------
+     Модалка заявки на демо
+     --------------------------------------------------------------- */
+  function initDemoModal() {
+    var modal = document.getElementById('ef-demo-modal');
+    if (!modal) return;
+    var lastFocused = null;
+
+    window.__efOpenDemoForm = function () {
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('is-locked');
+      var first = modal.querySelector('.ef-lead-form__input');
+      if (first) window.setTimeout(function () { first.focus(); }, 60);
+    };
+
+    window.__efCloseDemoForm = function () {
+      if (modal.hidden) return;
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-locked');
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    };
+
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-ef-demo-close]')) {
+        window.__efCloseDemoForm();
+        return;
+      }
+      var open = e.target.closest('[data-ef-demo-open]');
+      if (open) {
+        e.preventDefault();
+        window.__efOpenDemoForm();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') window.__efCloseDemoForm();
+      if (e.key !== 'Tab' || modal.hidden) return;
+
+      var focusables = modal.querySelectorAll(
+        'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------------
      CTA-аналитика
      --------------------------------------------------------------- */
   function initCta() {
@@ -1217,6 +1274,7 @@
     initReveal();
     initHero();
     initScroll();
+    initDemoModal();
     initCta();
 
     initHeroVideo(function () {
