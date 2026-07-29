@@ -2449,7 +2449,12 @@ html, body {
     (function(){
       var hashId=(initialHash||'').replace(/^#/,'');
       var deepLink=hashId&&hashId!=='top'&&ALLOWED_HASH[hashId];
-      if(deepLink)return; // явный переход по якорю оставляем как есть
+      if(deepLink){
+        // Убираем хэш из URL сразу (значение сохранено в initialHash/__efInitialHash),
+        // чтобы повторный вход на главную не мотал к секции. Плавный скролл сделает componentDidMount.
+        try{history.replaceState(null,'',location.pathname+location.search);}catch(err){}
+        return;
+      }
       var toTop=function(){try{window.scrollTo(0,0);}catch(err){}};
       toTop();
       if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',toTop,{once:true});
@@ -2565,12 +2570,8 @@ class Component extends DCLogic {
       let tries = 0;
       const go = () => {
         tries += 1;
-        if (window.__efScrollToHash && window.__efScrollToHash(wanted)) {
-          // Чистим хэш из URL, чтобы повторное открытие главной не мотало снова к секции
-          try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-          return;
-        }
-        if (tries < 8) setTimeout(go, 150);
+        if (window.__efScrollToHash && window.__efScrollToHash(wanted)) return;
+        if (tries < 40) setTimeout(go, 150);
       };
       setTimeout(go, 200);
     }
