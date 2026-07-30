@@ -593,7 +593,7 @@
     }
 
     renderBars('#selfmatch-q', '#selfmatch-rows', LN.selfMatch);
-    renderBars('#reportvalue-q', '#reportvalue-rows', LN.reportValue);
+    renderPie('#reportvalue-q', '#reportvalue-rows', LN.reportValue);
 
     function renderBars(qSel, rowsSel, set) {
       var q = $(qSel), rows = $(rowsSel);
@@ -604,6 +604,33 @@
           '</span><span class="brow__val">' + r.value + '%</span>' +
           '<span class="brow__bar"><span class="brow__fill" data-v="' + r.value + '"></span></span></div>';
       }).join('');
+    }
+
+    function renderPie(qSel, wrapSel, set) {
+      var q = $(qSel), wrap = $(wrapSel);
+      if (q) q.textContent = set.question;
+      if (!wrap) return;
+
+      var colors = ['#8a7bff', '#ffb777', '#7fe9cd', '#6a5cff'];
+      var stops = [];
+      var acc = 0;
+      set.rows.forEach(function (r, i) {
+        var next = acc + r.value;
+        stops.push(colors[i % colors.length] + ' ' + acc + '% ' + next + '%');
+        acc = next;
+      });
+
+      var legend = set.rows.map(function (r, i) {
+        return '<li class="pie__item">' +
+          '<span class="pie__swatch" style="background:' + colors[i % colors.length] + '"></span>' +
+          '<span class="pie__label">' + r.label + '</span>' +
+          '<span class="pie__val">' + r.value + '%</span>' +
+        '</li>';
+      }).join('');
+
+      wrap.innerHTML =
+        '<div class="pie__chart" style="background:conic-gradient(' + stops.join(', ') + ')"></div>' +
+        '<ul class="pie__legend">' + legend + '</ul>';
     }
 
     // заполняем полосы при появлении (через общий scroll-тик, см. flushReveals)
