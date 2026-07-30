@@ -2422,10 +2422,11 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
 .finale__lines {
   display: grid;
-  gap: 6px;
-  font-size: clamp(19px, 1.8vw, 26px);
-  font-weight: 700;
-  line-height: 1.35;
+  gap: 10px;
+  font-size: clamp(26px, 3.4vw, 44px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 
 .finale__lines span:nth-child(1) { color: var(--indigo-2); }
