@@ -940,18 +940,18 @@
   /* ---------------------------------------------------------------
      КОНСТРУКТОР AI-ИНТЕРВЬЮ
      --------------------------------------------------------------- */
-  var builderState = { active: -1 };
+  var builderState = { active: -1, pinned: false };
   function initBuilder() {
     var B = DATA.builder;
     var stepsWrap = $('#builder-steps');
     if (!stepsWrap) return;
 
     stepsWrap.innerHTML = B.steps.map(function (s) {
-      return '<div class="bstep" data-step="' + s.id + '">' +
+      return '<button type="button" class="bstep" data-step="' + s.id + '">' +
         '<span class="bstep__n">' + s.n + '</span>' +
         '<span><span class="bstep__title">' + s.title + '</span>' +
         '<span class="bstep__note">' + s.note + '</span></span>' +
-      '</div>';
+      '</button>';
     }).join('');
 
     var controls = $('#builder-controls');
@@ -981,8 +981,11 @@
       taskEl.innerHTML = taskText.slice(0, n) + '<span class="bpanel__caret" aria-hidden="true"></span>';
     }
 
-    function setActive(idx) {
-      if (builderState.active === idx) return;
+    function setActive(idx, opts) {
+      opts = opts || {};
+      if (opts.pin) builderState.pinned = true;
+      if (opts.unlock) builderState.pinned = false;
+      if (builderState.active === idx && !opts.force) return;
       builderState.active = idx;
       var step = B.steps[idx];
       if (!step) return;
@@ -1007,6 +1010,12 @@
       trackOnce('builder_step_' + step.id);
       if (idx > 0) trackOnce('builder_interact');
     }
+
+    steps.forEach(function (el, i) {
+      el.addEventListener('click', function () {
+        setActive(i, { pin: true });
+      });
+    });
 
     builderState.setActive = setActive;
     builderState.count = B.steps.length;
@@ -1104,12 +1113,19 @@
         roomState.render(sProg > 0.62 ? 2 : sProg > 0.3 ? 1 : 0);
       }
 
-      // шаги конструктора
+      // шаги конструктора: скролл ведёт, пока пользователь не зафиксировал этап кликом
       if (builderSection && builderState.setActive) {
-        var bTop = builderSection.offsetTop - vh * 0.35;
-        var bProg = clamp((y - bTop) / (builderSection.offsetHeight * 0.72), 0, 1);
-        var idx2 = Math.min(builderState.count - 1, Math.floor(bProg * builderState.count));
-        builderState.setActive(idx2);
+        var bRectTop = builderSection.offsetTop;
+        var bRectBottom = bRectTop + builderSection.offsetHeight;
+        var inBuilder = y + vh * 0.15 < bRectBottom && y + vh * 0.55 > bRectTop;
+        if (!inBuilder) {
+          builderState.pinned = false;
+        } else if (!builderState.pinned) {
+          var bTop = bRectTop - vh * 0.35;
+          var bProg = clamp((y - bTop) / (builderSection.offsetHeight * 0.72), 0, 1);
+          var idx2 = Math.min(builderState.count - 1, Math.floor(bProg * builderState.count));
+          builderState.setActive(idx2);
+        }
       }
 
     }

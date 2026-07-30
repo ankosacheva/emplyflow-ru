@@ -2095,7 +2095,19 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   border: 1px solid var(--stroke);
   background: var(--glass);
   align-items: start;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  cursor: pointer;
   transition: border-color 0.35s, background 0.35s, transform 0.35s var(--ease);
+}
+
+.bstep:hover { border-color: rgba(217, 214, 255, 0.28); }
+
+.bstep:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .bstep.is-on {
