@@ -1014,6 +1014,18 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
 .ui__block { display: grid; gap: 12px; }
 
+.ui__block--cta {
+  padding-top: 4px;
+  border-top: 1px solid var(--stroke);
+  margin-top: 4px;
+}
+
+.ui__block--cta .btn {
+  justify-self: start;
+  text-decoration: none;
+  text-align: center;
+}
+
 .ui__block-title {
   display: flex;
   align-items: center;

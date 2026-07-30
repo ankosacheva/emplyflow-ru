@@ -414,21 +414,6 @@
       }).join('');
     }
 
-    var scaleWrap = $('#lead-scale');
-    if (scaleWrap) {
-      scaleWrap.innerHTML = L.scale.levels.map(function (lv) {
-        return '<div class="scaleline__step"><span class="scaleline__score">' + lv.score +
-          '</span><span class="scaleline__name">' + lv.title + '</span></div>';
-      }).join('');
-    }
-
-    var rulesWrap = $('#lead-rules');
-    if (rulesWrap) {
-      rulesWrap.innerHTML = L.scale.rounding.map(function (r) {
-        return '<span class="rule-chip">' + r + '</span>';
-      }).join('');
-    }
-
     /* --- корзины кейсов --- */
     var basketsWrap = $('#lead-baskets');
     if (basketsWrap) {
