@@ -592,41 +592,6 @@
       '</div>';
     }
 
-    // график распределения
-    var chart = $('#dist-chart');
-    if (chart) {
-      var pts = LN.distribution;
-      var W = 320, H = 170, padL = 26, padR = 10, padT = 12, padB = 26;
-      var iw = W - padL - padR, ih = H - padT - padB;
-      var maxV = Math.max.apply(null, pts);
-      var coords = pts.map(function (v, i) {
-        return [padL + (i / (pts.length - 1)) * iw, padT + ih - (v / maxV) * ih];
-      });
-
-      var d = 'M' + coords[0][0].toFixed(1) + ',' + coords[0][1].toFixed(1);
-      for (var i = 1; i < coords.length; i++) {
-        var p0 = coords[i - 1], p1 = coords[i];
-        var cx = (p0[0] + p1[0]) / 2;
-        d += ' C' + cx.toFixed(1) + ',' + p0[1].toFixed(1) + ' ' + cx.toFixed(1) + ',' + p1[1].toFixed(1) +
-             ' ' + p1[0].toFixed(1) + ',' + p1[1].toFixed(1);
-      }
-      var area = d + ' L' + coords[coords.length - 1][0].toFixed(1) + ',' + (padT + ih) +
-                 ' L' + coords[0][0].toFixed(1) + ',' + (padT + ih) + ' Z';
-
-      var ticks = '';
-      for (var s = 1; s <= 5; s++) {
-        var x = padL + ((s - 1) / 4) * iw;
-        ticks += '<text class="dist__tick" x="' + x.toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle">' + s + '</text>';
-      }
-
-      chart.insertAdjacentHTML('beforeend',
-        '<path class="dist__area" d="' + area + '"></path>' +
-        '<path class="dist__line" d="' + d + '"></path>' +
-        '<line class="dist__axis" x1="' + padL + '" y1="' + (padT + ih) + '" x2="' + (W - padR) + '" y2="' + (padT + ih) + '"></line>' +
-        ticks
-      );
-    }
-
     renderBars('#selfmatch-q', '#selfmatch-rows', LN.selfMatch);
     renderBars('#reportvalue-q', '#reportvalue-rows', LN.reportValue);
 
