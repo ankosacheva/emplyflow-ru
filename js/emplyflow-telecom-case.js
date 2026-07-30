@@ -520,9 +520,18 @@
     var skillsWrap = $('#report-skills');
     if (skillsWrap) {
       skillsWrap.innerHTML = R.skills.map(function (s) {
-        return '<div class="skill"><span class="skill__n">' + s.n + '</span>' +
-          '<span>' + s.title + '</span>' +
-          '<span class="skill__res" data-res="' + s.result + '">' + resLabel[s.result] + '</span></div>';
+        var quotes = (s.quotes || []).map(function (q) {
+          return '<blockquote class="skill__quote">' + q + '</blockquote>';
+        }).join('');
+        return '<article class="skill">' +
+          '<div class="skill__head">' +
+            '<span class="skill__n">' + s.n + '</span>' +
+            '<span class="skill__title">' + s.title + '</span>' +
+            '<span class="skill__res" data-res="' + s.result + '">' + resLabel[s.result] + '</span>' +
+          '</div>' +
+          (s.analysis ? '<p class="skill__analysis">' + s.analysis + '</p>' : '') +
+          (quotes ? '<div class="skill__quotes">' + quotes + '</div>' : '') +
+        '</article>';
       }).join('');
     }
 

@@ -1339,21 +1339,32 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
 .report__more { display: grid; gap: 10px; }
 
-.skills { display: grid; gap: 6px; }
+.skills { display: grid; gap: 10px; }
 
 .skill {
   display: grid;
-  grid-template-columns: 24px minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: center;
-  padding: 11px 14px;
-  border-radius: 12px;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
   background: rgba(5, 2, 48, 0.36);
   border: 1px solid var(--stroke);
   font-size: 14px;
 }
 
-.skill__n { font-family: var(--mono); font-size: 12px; color: var(--fg4); }
+.skill__head {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.skill__n { font-family: var(--mono); font-size: 12px; color: var(--fg4); padding-top: 3px; }
+
+.skill__title {
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--fg1);
+}
 
 .skill__res {
   font-size: 12px;
@@ -1361,11 +1372,33 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   padding: 4px 10px;
   border-radius: 999px;
   white-space: nowrap;
+  justify-self: end;
 }
 
 .skill__res[data-res="positive"] { background: rgba(213, 255, 243, 0.16); color: var(--mint); }
 .skill__res[data-res="partial"]  { background: rgba(255, 183, 119, 0.16); color: var(--peach); }
 .skill__res[data-res="none"]     { background: rgba(217, 214, 255, 0.08); color: var(--fg3); }
+
+.skill__analysis {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--fg2);
+}
+
+.skill__quotes { display: grid; gap: 8px; }
+
+.skill__quote {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border-left: 3px solid var(--accent);
+  background: rgba(138, 123, 255, 0.08);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--fg1);
+  font-style: normal;
+}
 
 .report__blocks { display: flex; flex-wrap: wrap; gap: 7px; }
 
@@ -2507,7 +2540,7 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   .settings { grid-template-columns: minmax(0, 1fr); }
   .ind-row { grid-template-columns: 22px minmax(0, 1fr); }
   .ind-row__weight { grid-column: 2; }
-  .skill { grid-template-columns: 20px minmax(0, 1fr); }
+  .skill__head { grid-template-columns: 20px minmax(0, 1fr); }
   .skill__res { grid-column: 2; justify-self: start; }
 }
 
