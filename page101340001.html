@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-telecom-case.css">
+<link rel="stylesheet" href="css/emplyflow-telecom-case.css?v=20260730">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
 <script type="application/ld+json">
@@ -96,6 +96,14 @@
   </div>
   <span class="topbar__progress" id="topbar-progress" aria-hidden="true"></span>
 </header>
+
+<!-- ============ ПЕРЕКЛЮЧАТЕЛЬ ВЕТОК ============ -->
+<nav class="branchnav" id="branchnav" aria-label="Сценарии применения">
+  <div class="shell">
+    <p class="branchnav__label">Сценарий</p>
+    <div class="branchnav__list" id="branchnav-list"></div>
+  </div>
+</nav>
 
 <main id="story">
 
@@ -282,13 +290,18 @@
   <!-- ============ ВЕТКА 1 · ОЦЕНКА РУКОВОДИТЕЛЕЙ ============ -->
   <section class="branch" id="leadership" data-theme="violet" data-chapter data-branch="leadership" aria-labelledby="leadership-title">
     <div class="shell">
-      <div class="branch__rail reveal">
-        <span class="eyebrow"><b>Ветка 01</b></span>
-        <span class="branch__rail-line" aria-hidden="true"></span>
+      <div class="branch__cover reveal">
+        <span class="branch__cover-n" aria-hidden="true">01</span>
+        <div class="branch__cover-txt">
+          <p class="branch__cover-kicker">
+            <span class="branch__cover-step">Сценарий 01 из 03</span>
+            <span class="branch__cover-status">В промышленной эксплуатации</span>
+          </p>
+          <h2 class="h-chapter" id="leadership-title">Оценка руководителей</h2>
+        </div>
       </div>
 
       <div class="branch__head reveal">
-        <h2 class="h-chapter" id="leadership-title">Оценка руководителей</h2>
         <p class="lead">
           На платформе внутренние эксперты по оценке сформировали структуру интервью
           по ключевым управленческим компетенциям. ИИ ведёт себя в роли менеджера по оценке
@@ -446,13 +459,18 @@
   <!-- ============ ВЕТКА 2 · ОБУЧЕНИЕ ============ -->
   <section class="branch" id="learning" data-theme="mint" data-chapter data-branch="learning" aria-labelledby="learning-title">
     <div class="shell">
-      <div class="branch__rail reveal">
-        <span class="eyebrow"><b>Ветка 02</b></span>
-        <span class="branch__rail-line" aria-hidden="true"></span>
+      <div class="branch__cover reveal">
+        <span class="branch__cover-n" aria-hidden="true">02</span>
+        <div class="branch__cover-txt">
+          <p class="branch__cover-kicker">
+            <span class="branch__cover-step">Сценарий 02 из 03</span>
+            <span class="branch__cover-status">Пилот завершён, расширяем сценарии</span>
+          </p>
+          <h2 class="h-chapter" id="learning-title">AI внутри обучения</h2>
+        </div>
       </div>
 
       <div class="branch__head reveal">
-        <h2 class="h-chapter" id="learning-title">AI внутри обучения</h2>
         <p class="lead">
           Ассистент встроили не в отбор, а в саму образовательную программу — до старта,
           по ходу и после. Пилот прошёл на программе
@@ -530,13 +548,18 @@
   <!-- ============ ВЕТКА 3 · ПРОДАЖИ ============ -->
   <section class="branch" id="sales" data-theme="peach" data-chapter data-branch="sales" aria-labelledby="sales-title">
     <div class="shell">
-      <div class="branch__rail reveal">
-        <span class="eyebrow"><b>Ветка 03</b></span>
-        <span class="branch__rail-line" aria-hidden="true"></span>
+      <div class="branch__cover reveal">
+        <span class="branch__cover-n" aria-hidden="true">03</span>
+        <div class="branch__cover-txt">
+          <p class="branch__cover-kicker">
+            <span class="branch__cover-step">Сценарий 03 из 03</span>
+            <span class="branch__cover-status">В промышленной эксплуатации</span>
+          </p>
+          <h2 class="h-chapter" id="sales-title">Навык продаж и переговоров</h2>
+        </div>
       </div>
 
       <div class="branch__head reveal">
-        <h2 class="h-chapter" id="sales-title">Навык продаж и переговоров</h2>
         <p class="lead">
           Здесь ИИ полностью погружается в роль: он перестаёт быть просто интервьюером
           и начинает играть роль клиента — возражает, требует цифры, сомневается, раздражается.
@@ -951,8 +974,8 @@
   </div>
 </div>
 
-<script src="js/emplyflow-telecom-case-data.js" defer></script>
-<script src="js/emplyflow-telecom-case.js" defer></script>
+<script src="js/emplyflow-telecom-case-data.js?v=20260730" defer></script>
+<script src="js/emplyflow-telecom-case.js?v=20260730" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 

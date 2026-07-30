@@ -344,6 +344,49 @@
   }
 
   /* ---------------------------------------------------------------
+     ПЕРЕКЛЮЧАТЕЛЬ ВЕТОК
+     --------------------------------------------------------------- */
+  var branchNavState = { el: null, buttons: [], active: '' };
+
+  function initBranchNav() {
+    var nav = $('#branchnav');
+    var list = $('#branchnav-list');
+    if (!nav || !list) return;
+
+    DATA.branches.forEach(function (b) {
+      var btn = document.createElement('a');
+      btn.className = 'branchnav__btn';
+      btn.href = '#' + b.id;
+      btn.setAttribute('data-theme', b.theme);
+      btn.setAttribute('data-branch-nav', b.id);
+      btn.innerHTML =
+        '<span class="branchnav__btn-n">' + b.index + '</span>' +
+        '<span>' + b.title + '</span>';
+
+      btn.addEventListener('click', function () {
+        track('branch_switch', { branch: b.id });
+      });
+
+      list.appendChild(btn);
+    });
+
+    branchNavState.el = nav;
+    branchNavState.buttons = $$('[data-branch-nav]', list);
+  }
+
+  function setActiveBranchNav(id) {
+    if (!branchNavState.el || branchNavState.active === id) return;
+    branchNavState.active = id;
+    branchNavState.el.classList.toggle('is-on', !!id);
+    branchNavState.buttons.forEach(function (btn) {
+      var on = btn.getAttribute('data-branch-nav') === id;
+      btn.classList.toggle('is-active', on);
+      if (on) btn.setAttribute('aria-current', 'true');
+      else btn.removeAttribute('aria-current');
+    });
+  }
+
+  /* ---------------------------------------------------------------
      ГЛАВА 3 — маршрутизатор
      --------------------------------------------------------------- */
   function initRouter() {
@@ -1076,6 +1119,7 @@
 
       // активная тема — по секции в середине экрана
       var mid = y + vh * 0.42;
+      var activeBranch = '';
       for (var i = 0; i < chapters.length; i++) {
         var c = chapters[i];
         var top = c.offsetTop;
@@ -1086,6 +1130,7 @@
           }
           var branch = c.getAttribute('data-branch');
           if (branch) {
+            activeBranch = branch;
             trackOnce('branch_view_' + branch);
             $$('[data-branch-card]').forEach(function (card) {
               card.classList.toggle('is-active', card.getAttribute('data-branch-card') === branch);
@@ -1094,6 +1139,7 @@
           break;
         }
       }
+      setActiveBranchNav(activeBranch);
 
       // маршрутизатор: рисуем пути по мере прохождения секции
       if (routerSection && routerPaths.length && !reduced) {
@@ -1245,6 +1291,7 @@
      --------------------------------------------------------------- */
   function boot() {
     initPreloader();
+    initBranchNav();
     initRouter();
     initRoom();
     initLeadership();

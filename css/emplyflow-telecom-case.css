@@ -368,6 +368,87 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
 .topbar__cta { padding: 10px 18px; font-size: 14.5px; }
 
+/* ---------- переключатель веток ---------- */
+
+.branchnav {
+  position: fixed;
+  top: 72px;
+  left: 0; right: 0;
+  z-index: 55;
+  padding: 10px 0;
+  background: rgba(5, 2, 48, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--stroke);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.32s var(--ease), transform 0.32s var(--ease), visibility 0.32s;
+}
+
+.branchnav.is-on { opacity: 1; visibility: visible; transform: none; }
+
+.branchnav > .shell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.branchnav__label {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg4);
+  flex: none;
+}
+
+.branchnav__list {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.branchnav__list::-webkit-scrollbar { display: none; }
+
+.branchnav__btn {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+  flex: none;
+  padding: 8px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: var(--glass);
+  color: var(--fg2);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.24s var(--ease), background 0.24s var(--ease), color 0.24s var(--ease);
+}
+
+.branchnav__btn:hover { color: var(--fg1); border-color: var(--stroke-2); }
+
+.branchnav__btn-n {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg4);
+}
+
+.branchnav__btn.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--fg1);
+}
+
+.branchnav__btn.is-active .branchnav__btn-n { color: var(--accent); }
+
 /* =============================================================
    ГЛАВА 1. HERO
    ============================================================= */
@@ -906,14 +987,21 @@ img, svg, canvas, video { display: block; max-width: 100%; }
    ВЕТКИ — общая оболочка
    ============================================================= */
 
-.branch { position: relative; padding: clamp(78px, 9vw, 136px) 0; }
+.branch {
+  position: relative;
+  padding: clamp(78px, 9vw, 136px) 0 clamp(84px, 9vw, 140px);
+  scroll-margin-top: 148px;
+  border-top: 2px solid var(--accent);
+}
 
 .branch::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(1100px 560px at 50% 0%, var(--accent-soft), transparent 68%);
+  background:
+    radial-gradient(1100px 560px at 50% 0%, var(--accent-soft), transparent 68%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 42%);
   pointer-events: none;
 }
 
@@ -923,17 +1011,48 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   max-width: 68ch;
 }
 
-.branch__rail {
-  display: flex;
+.branch__cover {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(18px, 2.6vw, 34px);
   align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
+  margin-bottom: clamp(22px, 2.6vw, 34px);
+  padding: clamp(22px, 2.8vw, 38px) clamp(22px, 2.8vw, 38px);
+  border-radius: 26px;
+  border: 1px solid var(--accent);
+  background: linear-gradient(135deg, var(--accent-soft), rgba(5, 2, 48, 0.42) 62%);
 }
 
-.branch__rail-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+.branch__cover-n {
+  font-family: var(--mono);
+  font-size: clamp(46px, 6.4vw, 96px);
+  line-height: 0.9;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+}
+
+.branch__cover-txt { display: grid; gap: 12px; }
+
+.branch__cover-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg3);
+}
+
+.branch__cover-status {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  letter-spacing: 0.06em;
 }
 
 .scene { margin-top: clamp(44px, 5.6vw, 92px); }
@@ -2609,6 +2728,11 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
   .ui__bar { gap: 6px; }
   .ui__tab { font-size: 12px; padding: 6px 11px; }
+
+  .branchnav { top: 66px; padding: 8px 0; }
+  .branchnav__label { display: none; }
+  .branchnav__btn { font-size: 12.5px; padding: 7px 12px; }
+  .branch { scroll-margin-top: 128px; }
 }
 
 @media (max-width: 520px) {
@@ -2617,6 +2741,8 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   .ind-row__weight { grid-column: 2; }
   .skill__head { grid-template-columns: 20px minmax(0, 1fr); }
   .skill__res { grid-column: 2; justify-self: start; }
+
+  .branch__cover { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
 
 /* =============================================================
