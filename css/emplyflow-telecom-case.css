@@ -1228,9 +1228,10 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 /* диалог с уточнениями */
 .probe {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(18px, 2.4vw, 32px);
   align-items: start;
+  max-width: 720px;
 }
 
 .probe__thread { display: grid; gap: 10px; }

@@ -456,13 +456,9 @@
 
     /* --- диалог с уточнениями --- */
     var thread = $('#probe-thread');
-    var probeInds = $('#probe-inds');
     var nextBtn = $('#probe-next');
     var resetBtn = $('#probe-reset');
-    var depthRows = $$('#probe-depth .depth-row');
     var pos = 0;
-
-    if (probeInds) probeInds.innerHTML = L.indicators.map(indicatorRow).join('');
 
     function renderProbeStep() {
       if (!thread) return;
@@ -478,16 +474,6 @@
       el.offsetWidth;
       el.classList.add('is-in');
 
-      if (item.role === 'user') {
-        var depthIndex = ['Общий ответ', 'Конкретное управленческое решение', 'Измеримый план действий']
-          .indexOf(item.depth);
-        depthRows.forEach(function (r, i) { r.classList.toggle('is-on', i <= depthIndex && depthIndex >= 0); });
-        (item.lights || []).forEach(function (n) {
-          var row = probeInds && probeInds.querySelector('[data-ind="' + n + '"]');
-          if (row) row.classList.add('is-lit');
-        });
-      }
-
       pos += 1;
       if (nextBtn) {
         nextBtn.disabled = pos >= L.demoDialogue.length;
@@ -498,8 +484,6 @@
     function resetProbe(auto) {
       pos = 0;
       if (thread) thread.innerHTML = '';
-      depthRows.forEach(function (r) { r.classList.remove('is-on'); });
-      $$('.ind-row', probeInds).forEach(function (r) { r.classList.remove('is-lit'); });
       if (nextBtn) { nextBtn.disabled = false; nextBtn.textContent = 'Следующая реплика'; }
       renderProbeStep();
       if (!auto) track('probe_reset');
