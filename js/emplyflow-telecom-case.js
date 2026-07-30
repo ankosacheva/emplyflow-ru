@@ -359,10 +359,6 @@
       card.setAttribute('data-theme', b.theme);
       card.setAttribute('data-branch-card', b.id);
 
-      var statusBadge = fact.status === 'client_input'
-        ? '<span class="badge badge--client">Требует подтверждения</span>'
-        : '';
-
       card.innerHTML =
         '<span class="branch-card__top">' +
           '<span class="branch-card__n">' + b.index + '</span>' +
@@ -374,7 +370,6 @@
           '<span class="branch-card__value" data-fact="' + b.metricId + '">' + (fact.value || '—') + '</span>' +
           '<span class="branch-card__label">' + (fact.label || '') + '</span>' +
         '</span>' +
-        (statusBadge ? '<span>' + statusBadge + '</span>' : '') +
         '<p class="branch-card__preview">' + b.preview + '</p>';
 
       card.addEventListener('click', function () {
