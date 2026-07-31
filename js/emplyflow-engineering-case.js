@@ -128,6 +128,7 @@
         '</button>';
       var btn = li.firstChild;
       btn.setAttribute('aria-label', 'Перейти к разделу: ' + title);
+      btn.setAttribute('title', title);
       btn.addEventListener('click', function () {
         sec.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
         track('rail_jump', { chapter: sec.id });
@@ -164,16 +165,9 @@
     var wrap = $('#hero-nodes');
     if (!wrap) return;
 
-    var pos = [
-      { x: 60, y: 16 }, { x: 81, y: 34 }, { x: 66, y: 54 }, { x: 86, y: 71 }, { x: 57, y: 82 }
-    ];
-
     DATA.heroNodes.forEach(function (n, i) {
-      var p = pos[i] || { x: 70, y: 40 };
       var el = document.createElement('div');
       el.className = 'hero__node';
-      el.style.left = p.x + '%';
-      el.style.top = p.y + '%';
       el.setAttribute('data-node', n.id);
       el.innerHTML =
         '<span class="hero__node-title">' + esc(n.title) + '</span>' +

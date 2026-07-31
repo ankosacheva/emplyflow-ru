@@ -121,29 +121,36 @@
     <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero__grid-bg" aria-hidden="true"></div>
 
-    <div class="shell hero__inner">
-      <p class="eyebrow"><b>01</b> Проект без команды</p>
-      <h1 class="h-display" id="hero-title">
-        Как найти нужную экспертизу,<br>
-        если она уже работает внутри компании
-      </h1>
-      <p class="lead hero__lead">
-        EmplyFlow помог инжиниринговой компании связать требования проектов, подтверждённый
-        опыт сотрудников и карьерные возможности в единой системе.
-      </p>
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow"><b>Кейс · инжиниринг</b> Внутренняя мобильность и карьерные треки</p>
 
-      <div class="hero__accent">
-        <span class="hero__accent-value" data-fact="rolesDigitized">100+</span>
-        <span class="hero__accent-label">ролей — из документов в skill-based архитектуру</span>
+        <h1 class="h-display hero__title" id="hero-title">
+          Как найти нужную <em>экспертизу</em>, если она уже работает внутри компании
+        </h1>
+
+        <p class="lead hero__lead">
+          EmplyFlow помог инжиниринговой компании связать требования проектов, подтверждённый
+          опыт сотрудников и карьерные возможности в единой системе.
+        </p>
+
+        <div class="hero__accent">
+          <span class="hero__accent-value" data-fact="rolesDigitized">100+</span>
+          <span class="hero__accent-label">ролей — из документов в skill-based архитектуру</span>
+        </div>
+
+        <div class="hero__cta">
+          <button type="button" class="btn btn--primary" data-ef-demo-open data-track="cta-hero">Обсудить задачу</button>
+          <a class="btn btn--ghost" href="#builder" data-track="cta-builder">Собрать команду проекта</a>
+        </div>
       </div>
 
-      <div class="hero__cta">
-        <button type="button" class="btn btn--primary" data-ef-demo-open data-track="cta-hero">Обсудить задачу</button>
-        <a class="btn btn--ghost" href="#builder" data-track="cta-builder">Собрать команду проекта</a>
-      </div>
+      <aside class="hero__roles" aria-label="Роли демонстрационного проекта">
+        <p class="ui__block-title">Проект открыт. Роли не закрыты</p>
+        <div class="hero__nodes" id="hero-nodes"></div>
+      </aside>
     </div>
 
-    <div class="hero__nodes" id="hero-nodes" aria-hidden="true"></div>
     <p class="hero__scroll" aria-hidden="true">Листайте</p>
   </section>
 
