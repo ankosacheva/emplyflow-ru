@@ -28,12 +28,12 @@ cyberpunk, neon signs, sci-fi HUD, construction company advertisement, hard hats
 |---|---|---|---|---|---|---|
 | `hero-blueprint` | Глава 1 · Hero | desktop 16:9 | 5 с | loop | `posters/hero-blueprint.jpg` | **готово** |
 | `hero-blueprint-mobile` | Глава 1 · Hero | mobile 9:16 | 5 с | loop | `posters/hero-blueprint-mobile.jpg` | **готово**, кроп из десктопной версии |
-| `scattered-sources` | Глава 2 · До внедрения | desktop 16:9 | 6 с | loop | `posters/scattered-sources.jpg` | разметка подключена, видео ждёт генерации |
-| `skill-architecture` | Глава 3 · Оцифровка ролей | desktop 16:9 | 6 с | loop | `posters/skill-architecture.jpg` | разметка подключена, видео ждёт генерации |
-| `matching-signal` | Глава 5 · Двойной матчинг | desktop 16:9 | 6 с | loop | `posters/matching-signal.jpg` | разметка подключена, видео ждёт генерации |
-| `career-branching` | Глава 8 · Карьерная карта | desktop 16:9 | 7 с | one-shot | `posters/career-branching.jpg` | разметка подключена, видео ждёт генерации |
-| `experience-loop` | Глава 10 · Цикл развития | desktop 16:9 | 6 с | loop | `posters/experience-loop.jpg` | разметка подключена, видео ждёт генерации |
-| `finale-system` | Глава 12 · Финал | desktop 16:9 | 5 с | loop | `posters/finale-system.jpg` | разметка подключена, видео ждёт генерации |
+| `scattered-sources` | Глава 2 · До внедрения | desktop 16:9 | 6 с | loop | `posters/scattered-sources.jpg` | **готово**, job `0415f991-888d-432a-b262-f237e348958f` |
+| `skill-architecture` | Глава 3 · Оцифровка ролей | desktop 16:9 | 6 с | loop | `posters/skill-architecture.jpg` | **готово**, job `a6426908-a658-46f4-a0b1-863828277aac` |
+| `matching-signal` | Глава 5 · Двойной матчинг | desktop 16:9 | 6 с | loop | `posters/matching-signal.jpg` | **готово**, job `f24375a9-d058-4a9c-8f6e-0b5ed423c776` |
+| `career-branching` | Глава 8 · Карьерная карта | desktop 16:9 | 7 с | one-shot | `posters/career-branching.jpg` | **готово**, job `1a509fed-ee20-4ab0-8d8c-6c5aad242bf0` |
+| `experience-loop` | Глава 10 · Цикл развития | desktop 16:9 | 6 с | loop | `posters/experience-loop.jpg` | **готово**, job `461c440c-a053-45a4-aaff-2295fce4fb7a` |
+| `finale-system` | Глава 12 · Финал | desktop 16:9 | 5 с | loop | `posters/finale-system.jpg` | **готово**, job `9839139d-f8ee-4c4a-8ac9-87c7ef6470a7` |
 
 Модель: `kling3_0_turbo`, генерация через MCP `generate_video`.
 
@@ -106,4 +106,4 @@ A complete engineering blueprint fully populated with luminous connected role no
 
 ## Статус MCP (2026-07-31)
 
-Сессия Higgsfield в cloud-agent среде истекла: `balance`, `generate_image`, `job_status`, `show_generations` возвращают «session expired». `generate_video` отвечает на валидацию, но `models_explore` возвращает пустой список — генерация недоступна до повторной авторизации коннектора в Cursor (Settings → MCP → Higgsfield: удалить и добавить заново). Ошибка «localhost» при OAuth обычно означает, что callback не доходит до Cursor Desktop — авторизацию нужно делать локально, не в cloud agent.
+Все 8 сцен сгенерированы через `user-higgsfield` MCP, модель `kling3_0_turbo`. Файлы mp4/webm и постеры лежат в `media/case-engineering/`.
