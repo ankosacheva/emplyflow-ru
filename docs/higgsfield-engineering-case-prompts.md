@@ -28,12 +28,12 @@ cyberpunk, neon signs, sci-fi HUD, construction company advertisement, hard hats
 |---|---|---|---|---|---|---|
 | `hero-blueprint` | Глава 1 · Hero | desktop 16:9 | 5 с | loop | `posters/hero-blueprint.jpg` | **готово** |
 | `hero-blueprint-mobile` | Глава 1 · Hero | mobile 9:16 | 5 с | loop | `posters/hero-blueprint-mobile.jpg` | **готово**, кроп из десктопной версии |
-| `scattered-sources` | Глава 2 · До внедрения | desktop 16:9 | 6 с | loop | `posters/scattered-sources.jpg` |
-| `skill-architecture` | Глава 3 · Оцифровка ролей | desktop 16:9 | 6 с | loop | `posters/skill-architecture.jpg` |
-| `matching-signal` | Глава 5 · Двойной матчинг | desktop 16:9 | 6 с | loop | `posters/matching-signal.jpg` |
-| `career-branching` | Глава 8 · Карьерная карта | desktop 16:9 | 7 с | one-shot | `posters/career-branching.jpg` |
-| `experience-loop` | Глава 10 · Цикл развития | desktop 16:9 | 6 с | loop | `posters/experience-loop.jpg` |
-| `finale-system` | Глава 12 · Финал | desktop 16:9 | 5 с | loop | `posters/finale-system.jpg` | не сгенерировано |
+| `scattered-sources` | Глава 2 · До внедрения | desktop 16:9 | 6 с | loop | `posters/scattered-sources.jpg` | разметка подключена, видео ждёт генерации |
+| `skill-architecture` | Глава 3 · Оцифровка ролей | desktop 16:9 | 6 с | loop | `posters/skill-architecture.jpg` | разметка подключена, видео ждёт генерации |
+| `matching-signal` | Глава 5 · Двойной матчинг | desktop 16:9 | 6 с | loop | `posters/matching-signal.jpg` | разметка подключена, видео ждёт генерации |
+| `career-branching` | Глава 8 · Карьерная карта | desktop 16:9 | 7 с | one-shot | `posters/career-branching.jpg` | разметка подключена, видео ждёт генерации |
+| `experience-loop` | Глава 10 · Цикл развития | desktop 16:9 | 6 с | loop | `posters/experience-loop.jpg` | разметка подключена, видео ждёт генерации |
+| `finale-system` | Глава 12 · Финал | desktop 16:9 | 5 с | loop | `posters/finale-system.jpg` | разметка подключена, видео ждёт генерации |
 
 Модель: `kling3_0_turbo`, генерация через MCP `generate_video`.
 
@@ -99,3 +99,11 @@ A complete engineering blueprint fully populated with luminous connected role no
 2. Конвертация: `ffmpeg -i in.mp4 -c:v libvpx-vp9 -crf 34 -b:v 0 -an out.webm` и `ffmpeg -i in.mp4 -c:v libx264 -crf 24 -preset slow -an -movflags +faststart out.mp4`.
 3. Постер: `ffmpeg -i in.mp4 -ss 00:00:01 -frames:v 1 -q:v 3 posters/<name>.jpg`.
 4. Положить в `media/case-engineering/`, имя без расширения указать в `data-video` соответствующего блока.
+
+## Подключение на странице
+
+Разметка и `initVideoScenes()` в `js/emplyflow-engineering-case.js` уже подключены для всех сцен. Hero использует `data-video-priority` для немедленной загрузки; остальные главы — ленивая загрузка через `IntersectionObserver`. Пока mp4/webm отсутствуют, показывается poster.
+
+## Статус MCP (2026-07-31)
+
+Сессия Higgsfield в cloud-agent среде истекла: `balance`, `generate_image`, `job_status`, `show_generations` возвращают «session expired». `generate_video` отвечает на валидацию, но `models_explore` возвращает пустой список — генерация недоступна до повторной авторизации коннектора в Cursor (Settings → MCP → Higgsfield: удалить и добавить заново). Ошибка «localhost» при OAuth обычно означает, что callback не доходит до Cursor Desktop — авторизацию нужно делать локально, не в cloud agent.

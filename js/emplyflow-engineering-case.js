@@ -181,40 +181,66 @@
     });
   }
 
-  function initHeroVideo() {
-    var video = $('#hero-video');
-    var hero = $('#hero');
-    if (!video || reduced) return;
+  function initVideoScenes() {
+    var videos = $$('[data-video]');
+    if (!videos.length) return;
 
-    var base = window.matchMedia('(max-width: 700px)').matches
-      ? 'media/case-engineering/hero-blueprint-mobile'
-      : 'media/case-engineering/hero-blueprint';
+    var isMobile = window.matchMedia('(max-width: 700px)').matches;
 
-    ['webm', 'mp4'].forEach(function (ext) {
-      var s = document.createElement('source');
-      s.src = base + '.' + ext;
-      s.type = ext === 'webm' ? 'video/webm' : 'video/mp4';
-      video.appendChild(s);
-    });
-
-    video.addEventListener('loadeddata', function () {
-      video.classList.add('is-ready');
-      if (hero) hero.classList.add('has-video');
-    }, { once: true });
-
-    video.load();
-    var play = video.play();
-    if (play && play.catch) play.catch(function () { /* автоплей может быть запрещён */ });
-
-    if (!window.IntersectionObserver) return;
-    new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        var p = video.play();
-        if (p && p.catch) p.catch(function () {});
-      } else {
-        video.pause();
+    videos.forEach(function (video) {
+      if (reduced) {
+        video.removeAttribute('autoplay');
+        return;
       }
-    }, { threshold: 0.05 }).observe(video);
+
+      var base = video.getAttribute('data-video');
+      var mobileBase = video.getAttribute('data-video-mobile');
+      var src = isMobile && mobileBase ? mobileBase : base;
+      var priority = video.hasAttribute('data-video-priority');
+      var isHero = video.id === 'hero-video';
+      var hero = isHero ? $('#hero') : null;
+      var finale = video.classList.contains('finale__video') ? $('#finale') : null;
+
+      function attach() {
+        if (video.dataset.loaded === '1') return;
+        video.dataset.loaded = '1';
+
+        ['webm', 'mp4'].forEach(function (ext) {
+          var source = document.createElement('source');
+          source.src = src + '.' + ext;
+          source.type = ext === 'webm' ? 'video/webm' : 'video/mp4';
+          video.appendChild(source);
+        });
+
+        video.addEventListener('loadeddata', function () {
+          video.classList.add('is-ready');
+          if (hero) hero.classList.add('has-video');
+          if (finale) finale.classList.add('has-video');
+        }, { once: true });
+
+        video.load();
+        var p = video.play();
+        if (p && p.catch) p.catch(function () { /* автоплей может быть запрещён */ });
+      }
+
+      if (priority) attach();
+
+      if (!window.IntersectionObserver) {
+        if (!priority) attach();
+        return;
+      }
+
+      new IntersectionObserver(function (entries) {
+        var isIn = entries[0].isIntersecting;
+        if (isIn) {
+          attach();
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+        } else if (video.dataset.loaded === '1') {
+          video.pause();
+        }
+      }, { threshold: 0.05 }).observe(video);
+    });
   }
 
   function initHeroCanvas() {
@@ -1335,7 +1361,7 @@
     initPreloader();
     initRail();
     initHeroNodes();
-    initHeroVideo();
+    initVideoScenes();
     initHeroCanvas();
     initBefore();
     initRoles();
