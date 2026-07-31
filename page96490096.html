@@ -112,7 +112,7 @@
 <main id="story">
 
   <!-- ============ ГЛАВА 1 · HERO ============ -->
-  <section class="hero" id="hero" data-chapter data-chapter-title="Проект без команды" aria-labelledby="hero-title">
+  <section class="hero" id="hero" data-num="01" data-accent="violet" data-chapter data-chapter-title="Проект без команды" aria-labelledby="hero-title">
     <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero__grid-bg" aria-hidden="true"></div>
 
@@ -145,7 +145,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 2 · ДО ВНЕДРЕНИЯ ============ -->
-  <section class="chapter" id="before" data-chapter data-chapter-title="Опыт был, профиля не было" aria-labelledby="before-title">
+  <section class="chapter" id="before" data-num="02" data-accent="pink" data-chapter data-chapter-title="Опыт был, профиля не было" aria-labelledby="before-title">
     <div class="shell">
       <p class="eyebrow"><b>02</b> До внедрения</p>
       <h2 class="h-chapter" id="before-title">Опыт был. Единого профиля не было.</h2>
@@ -156,13 +156,7 @@
         а в том, что данные о них жили в шести разных местах.
       </p>
 
-      <div class="sources" id="before-sources"></div>
-
-      <div class="before__claims">
-        <p class="claim">Вакансия появлялась быстрее, чем находился внутренний кандидат.</p>
-        <p class="claim">Карьерные возможности зависели от того, кто о ком вспомнил.</p>
-        <p class="claim claim--soft">Сотрудникам было трудно видеть весь спектр доступных возможностей.</p>
-      </div>
+      <div class="bento" id="before-sources"></div>
 
       <div class="families">
         <p class="ui__block-title">Профессиональные семьи в штате</p>
@@ -171,10 +165,29 @@
     </div>
   </section>
 
+  <!-- Полноширинное заявление -->
+  <aside class="statement">
+    <div class="shell statement__grid">
+      <div class="statement__list">
+        <p class="claim">Вакансия появлялась быстрее, чем находился внутренний кандидат.</p>
+        <p class="claim claim--soft">Карьерные возможности зависели от того, кто о ком вспомнил.</p>
+      </div>
+      <div class="statement__aside">
+        <div class="tile tile--candy">
+          <span class="tile__eyebrow">Что это значило на практике</span>
+          <p class="tile__text">
+            Сотрудникам было трудно видеть весь спектр доступных возможностей,
+            а руководителям — вспомнить всех подходящих специалистов за пределами своего отдела.
+          </p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 3 · ИЗ ДОКУМЕНТОВ В АРХИТЕКТУРУ НАВЫКОВ ============ -->
-  <section class="chapter" id="roles" data-chapter data-chapter-title="Роли на языке навыков" aria-labelledby="roles-title">
+  <section class="chapter" id="roles" data-num="03" data-accent="violet" data-chapter data-chapter-title="Роли на языке навыков" aria-labelledby="roles-title">
     <div class="shell">
       <p class="eyebrow"><b>03</b> Оцифровка ролей · <span data-fact="stage1Duration">≈1 месяц</span></p>
       <h2 class="h-chapter" id="roles-title">
@@ -215,15 +228,15 @@
         </div>
       </div>
 
-      <div class="metric-row">
-        <div class="metric">
-          <span class="metric__value" data-fact="rolesDigitized">100+</span>
-          <span class="metric__label">профилей ролей линейного и руководящего звена</span>
+      <div class="bento metric-row">
+        <div class="tile tile--mint b-3">
+          <span class="tile__value" data-fact="rolesDigitized">100+</span>
+          <span class="tile__label">профилей ролей линейного и руководящего звена</span>
           <span class="badge badge--verified">Подтверждено кейсом</span>
         </div>
-        <div class="metric">
-          <span class="metric__value" data-fact="stage1Duration">≈1 месяц</span>
-          <span class="metric__label">на первый этап — перевод должностей в skill-based формат</span>
+        <div class="tile tile--peri b-3">
+          <span class="tile__value" data-fact="stage1Duration">≈1 месяц</span>
+          <span class="tile__label">на первый этап — перевод должностей в skill-based формат</span>
           <span class="badge badge--verified">Подтверждено кейсом</span>
         </div>
       </div>
@@ -233,7 +246,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 4 · ПРОФИЛЬ СОТРУДНИКА ============ -->
-  <section class="chapter" id="passport" data-chapter data-chapter-title="Профиль сотрудника" aria-labelledby="passport-title">
+  <section class="chapter" id="passport" data-num="04" data-accent="mint" data-chapter data-chapter-title="Профиль сотрудника" aria-labelledby="passport-title">
     <div class="shell">
       <p class="eyebrow"><b>04</b> Профиль сотрудника</p>
       <h2 class="h-chapter" id="passport-title">
@@ -267,9 +280,9 @@
             Нажмите на источник, чтобы подсветить его в профиле. Платформа интегрировалась
             с действующей HR-системой — менять ИТ-инфраструктуру компании не потребовалось.
           </p>
-          <div class="metric metric--inline">
-            <span class="metric__value" data-fact="profilesFilled">90%</span>
-            <span class="metric__label">сотрудников заполнили цифровые профили за первые три недели</span>
+          <div class="tile tile--mint metric--inline">
+            <span class="tile__value" data-fact="profilesFilled">90%</span>
+            <span class="tile__label">сотрудников заполнили цифровые профили за первые три недели</span>
             <span class="badge badge--verified">Подтверждено кейсом</span>
           </div>
         </aside>
@@ -280,7 +293,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 5 · ДВОЙНОЙ МАТЧИНГ ============ -->
-  <section class="chapter" id="matching" data-chapter data-chapter-title="Двойной матчинг" aria-labelledby="matching-title">
+  <section class="chapter" id="matching" data-num="05" data-accent="sky" data-chapter data-chapter-title="Двойной матчинг" aria-labelledby="matching-title">
     <div class="shell">
       <p class="eyebrow"><b>05</b> Двусторонний матчинг</p>
       <h2 class="h-chapter" id="matching-title">
@@ -294,7 +307,7 @@
       </p>
 
       <div class="duo">
-        <article class="duo__card duo__card--project" id="match-project"></article>
+        <article class="duo__card duo__card--project tile--ribbon" id="match-project"></article>
 
         <div class="duo__engine" aria-hidden="true">
           <div class="engine">
@@ -304,7 +317,7 @@
           </div>
         </div>
 
-        <article class="duo__card duo__card--person" id="match-person"></article>
+        <article class="duo__card duo__card--person tile--mac" id="match-person"></article>
       </div>
 
       <div class="breakdown">
@@ -325,7 +338,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 6 · КОНСТРУКТОР КОМАНДЫ ============ -->
-  <section class="chapter builder" id="builder" data-chapter data-chapter-title="Соберите команду" aria-labelledby="builder-title">
+  <section class="chapter builder" id="builder" data-num="06" data-accent="peach" data-chapter data-chapter-title="Соберите команду" aria-labelledby="builder-title">
     <div class="shell">
       <p class="eyebrow"><b>06</b> Интерактив</p>
       <h2 class="h-chapter" id="builder-title">Соберите команду проекта</h2>
@@ -361,6 +374,7 @@
       </div>
 
       <div class="takeaway">
+        <svg class="spark spark--tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 6.2 5.2 10.8 12 12-6.8 1.2-11.4 5.8-12 12-.6-6.2-5.2-10.8-12-12C6.8 10.8 11.4 6.2 12 0z" fill="currentColor"/></svg>
         <p class="takeaway__title">Лучший кандидат — не всегда человек с самым высоким процентом.</p>
         <p class="takeaway__text">
           Решение учитывает обязательные требования, доступность, риски проекта
@@ -373,7 +387,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 7 · ВНУТРЕННИЙ РЫНОК ПРОЕКТОВ ============ -->
-  <section class="chapter" id="marketplace" data-chapter data-chapter-title="Внутренний рынок проектов" aria-labelledby="marketplace-title">
+  <section class="chapter chapter--light" id="marketplace" data-num="07" data-accent="mint" data-chapter data-chapter-title="Внутренний рынок проектов" aria-labelledby="marketplace-title">
     <div class="shell">
       <p class="eyebrow"><b>07</b> Взгляд сотрудника · <span data-fact="jobBoardSetup">≈2 недели</span> на запуск</p>
       <h2 class="h-chapter" id="marketplace-title">Возможности перестали передаваться только через руководителей.</h2>
@@ -390,15 +404,15 @@
 
       <div class="offer" id="market-card"></div>
 
-      <div class="metric-row">
-        <div class="metric">
-          <span class="metric__value" data-fact="notificationsOptIn">≈75%</span>
-          <span class="metric__label">сотрудников подписались на уведомления о новых проектах</span>
+      <div class="bento metric-row">
+        <div class="tile tile--mac b-3">
+          <span class="tile__value" data-fact="notificationsOptIn">≈75%</span>
+          <span class="tile__label">сотрудников подписались на уведомления о новых проектах</span>
           <span class="badge badge--verified">Подтверждено кейсом</span>
         </div>
-        <div class="metric">
-          <span class="metric__value" data-fact="internalApplications">200+</span>
-          <span class="metric__label">внутренних заявок за первые шесть месяцев</span>
+        <div class="tile tile--candy b-3">
+          <span class="tile__value" data-fact="internalApplications">200+</span>
+          <span class="tile__label">внутренних заявок за первые шесть месяцев</span>
           <span class="badge badge--verified">Подтверждено кейсом</span>
         </div>
       </div>
@@ -408,7 +422,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 8 · КАРЬЕРНАЯ КАРТА ============ -->
-  <section class="chapter career" id="career" data-chapter data-chapter-title="Карьерная карта" aria-labelledby="career-title">
+  <section class="chapter career" id="career" data-num="08" data-accent="peach" data-chapter data-chapter-title="Карьерная карта" aria-labelledby="career-title">
     <div class="shell">
       <p class="eyebrow"><b>08</b> Карьерная архитектура · <span data-fact="careerSetup">≈2 недели</span> на настройку</p>
       <h2 class="h-chapter" id="career-title">Карьера перестала быть одной лестницей.</h2>
@@ -437,7 +451,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 9 · SKILL GAP ============ -->
-  <section class="chapter" id="gap" data-chapter data-chapter-title="План развития" aria-labelledby="gap-title">
+  <section class="chapter" id="gap" data-num="09" data-accent="pink" data-chapter data-chapter-title="План развития" aria-labelledby="gap-title">
     <div class="shell">
       <p class="eyebrow"><b>09</b> Skill gap</p>
       <h2 class="h-chapter" id="gap-title">Разрыв между ролями превратился в понятный план действий.</h2>
@@ -450,10 +464,10 @@
       <p class="gap__target">Целевая роль: <b id="gap-target"></b></p>
       <div class="gap" id="gap-states"></div>
 
-      <div class="metric-row">
-        <div class="metric">
-          <span class="metric__value" data-fact="learners">60+</span>
-          <span class="metric__label">сотрудников прошли дополнительное обучение под требования интересующих позиций</span>
+      <div class="bento metric-row">
+        <div class="tile tile--fog b-3">
+          <span class="tile__value" data-fact="learners">60+</span>
+          <span class="tile__label">сотрудников прошли дополнительное обучение под требования интересующих позиций</span>
           <span class="badge badge--verified">Подтверждено кейсом</span>
         </div>
       </div>
@@ -465,7 +479,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 10 · ЦИКЛ РАЗВИТИЯ ============ -->
-  <section class="chapter loop" id="loop" data-chapter data-chapter-title="Цикл развития" aria-labelledby="loop-title">
+  <section class="chapter loop" id="loop" data-num="10" data-accent="sky" data-chapter data-chapter-title="Цикл развития" aria-labelledby="loop-title">
     <div class="shell">
       <p class="eyebrow"><b>10</b> Цикл</p>
       <h2 class="h-chapter" id="loop-title">Проект становится единицей развития.</h2>
@@ -487,7 +501,7 @@
   <div class="section-line"></div>
 
   <!-- ============ ГЛАВА 11 · РЕЗУЛЬТАТЫ ============ -->
-  <section class="chapter results" id="results" data-chapter data-chapter-title="Результаты" aria-labelledby="results-title">
+  <section class="chapter results" id="results" data-num="11" data-accent="mint" data-chapter data-chapter-title="Результаты" aria-labelledby="results-title">
     <div class="shell">
       <p class="eyebrow"><b>11</b> Результаты · <span data-fact="resultsHorizon">6 месяцев</span></p>
       <h2 class="h-chapter" id="results-title">Что изменилось за шесть месяцев</h2>
@@ -504,7 +518,7 @@
   </section>
 
   <!-- ============ ГЛАВА 12 · ФИНАЛ ============ -->
-  <section class="finale" id="finale" data-chapter data-chapter-title="Итог" aria-label="Итог">
+  <section class="finale" id="finale" data-num="12" data-accent="violet" data-chapter data-chapter-title="Итог" aria-label="Итог">
     <canvas class="finale__canvas" id="finale-canvas" aria-hidden="true"></canvas>
     <div class="shell finale__inner">
       <div class="finale__lines" id="finale-lines"></div>

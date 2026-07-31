@@ -325,16 +325,23 @@
   /* ---------------------------------------------------------------
      ГЛАВА 2 — источники знаний до внедрения
      --------------------------------------------------------------- */
+  var SPARK = '<svg class="spark spark--tr" viewBox="0 0 24 24" aria-hidden="true">' +
+    '<path d="M12 0c.6 6.2 5.2 10.8 12 12-6.8 1.2-11.4 5.8-12 12-.6-6.2-5.2-10.8-12-12C6.8 10.8 11.4 6.2 12 0z" fill="currentColor"/></svg>';
+
   function initBefore() {
     var wrap = $('#before-sources');
     var kinds = { doc: 'документ', table: 'таблица', human: 'человек', system: 'система' };
+    // соседние плитки не повторяют цвет — правило фирменной системы
+    var tones = ['peri', 'fog', 'candy', 'mint', 'mac', 'ribbon'];
+    var spans = ['b-3', '', '', 'b-3', '', ''];
 
     if (wrap) {
-      wrap.innerHTML = DATA.sources.map(function (s) {
-        return '<article class="source" data-kind="' + s.kind + '">' +
-          '<span class="source__kind">' + esc(kinds[s.kind] || s.kind) + '</span>' +
-          '<span class="source__title">' + esc(s.title) + '</span>' +
-          '<span class="source__note">' + esc(s.note) + '</span>' +
+      wrap.innerHTML = DATA.sources.map(function (s, i) {
+        return '<article class="tile tile--' + tones[i % tones.length] + ' ' + spans[i] + '" data-kind="' + s.kind + '">' +
+          (i % 3 === 0 ? SPARK : '') +
+          '<span class="tile__eyebrow">' + esc(kinds[s.kind] || s.kind) + '</span>' +
+          '<h3 class="tile__title">' + esc(s.title) + '</h3>' +
+          '<p class="tile__text">' + esc(s.note) + '</p>' +
         '</article>';
       }).join('');
     }
@@ -988,8 +995,11 @@
     var wrap = $('#results-list');
     if (!wrap) return;
 
-    wrap.innerHTML = DATA.results.map(function (r) {
-      return '<article class="rcard" data-result="' + r.id + '">' +
+    var tones = ['peri', 'mint', 'candy', 'mac'];
+
+    wrap.innerHTML = DATA.results.map(function (r, i) {
+      return '<article class="rcard tile--' + tones[i % tones.length] + '" data-result="' + r.id + '">' +
+        (i % 2 === 0 ? SPARK : '') +
         '<div class="rcard__txt">' +
           '<p class="rcard__kind">' + esc(r.kind) + '</p>' +
           '<h3 class="rcard__title">' + esc(r.title) + '</h3>' +
@@ -1051,7 +1061,15 @@
     }
 
     var summary = $('#finale-summary');
-    if (summary) summary.innerHTML = F.summary.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('');
+    if (summary) {
+      var tones = ['mint', 'peri', 'candy', 'mac'];
+      summary.innerHTML = F.summary.map(function (s, i) {
+        return '<li class="tile tile--' + tones[i % tones.length] + '">' +
+          (i === 0 ? SPARK : '') +
+          '<span class="tile__text">' + esc(s) + '</span>' +
+        '</li>';
+      }).join('');
+    }
 
     var next = $('#finale-next');
     if (next) next.innerHTML = F.next.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('');
