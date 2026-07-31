@@ -113,6 +113,11 @@
 
   <!-- ============ ГЛАВА 1 · HERO ============ -->
   <section class="hero" id="hero" data-num="01" data-accent="violet" data-chapter data-chapter-title="Проект без команды" aria-labelledby="hero-title">
+    <!-- Источники подставляются скриптом: desktop и mobile не грузятся одновременно.
+         При prefers-reduced-motion остаётся только постер. -->
+    <video class="hero__video" id="hero-video"
+           poster="media/case-engineering/posters/hero-blueprint.jpg"
+           muted playsinline autoplay loop preload="none" aria-hidden="true"></video>
     <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero__grid-bg" aria-hidden="true"></div>
 

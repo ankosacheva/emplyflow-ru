@@ -24,26 +24,34 @@ cyberpunk, neon signs, sci-fi HUD, construction company advertisement, hard hats
 
 ## Сцены
 
-| Имя | Раздел | Формат | Длительность | Тип | Постер |
-|---|---|---|---|---|---|
-| `hero-blueprint` | Глава 1 · Hero | desktop 16:9 | 8 с | one-shot | `posters/hero-blueprint.jpg` |
-| `hero-blueprint-mobile` | Глава 1 · Hero | mobile 9:16 | 8 с | one-shot | `posters/hero-blueprint-mobile.jpg` |
+| Имя | Раздел | Формат | Длительность | Тип | Постер | Статус |
+|---|---|---|---|---|---|---|
+| `hero-blueprint` | Глава 1 · Hero | desktop 16:9 | 5 с | loop | `posters/hero-blueprint.jpg` | **готово** |
+| `hero-blueprint-mobile` | Глава 1 · Hero | mobile 9:16 | 5 с | loop | `posters/hero-blueprint-mobile.jpg` | **готово**, кроп из десктопной версии |
 | `scattered-sources` | Глава 2 · До внедрения | desktop 16:9 | 6 с | loop | `posters/scattered-sources.jpg` |
 | `skill-architecture` | Глава 3 · Оцифровка ролей | desktop 16:9 | 6 с | loop | `posters/skill-architecture.jpg` |
 | `matching-signal` | Глава 5 · Двойной матчинг | desktop 16:9 | 6 с | loop | `posters/matching-signal.jpg` |
 | `career-branching` | Глава 8 · Карьерная карта | desktop 16:9 | 7 с | one-shot | `posters/career-branching.jpg` |
 | `experience-loop` | Глава 10 · Цикл развития | desktop 16:9 | 6 с | loop | `posters/experience-loop.jpg` |
-| `finale-system` | Глава 12 · Финал | desktop 16:9 | 8 с | loop | `posters/finale-system.jpg` |
+| `finale-system` | Глава 12 · Финал | desktop 16:9 | 5 с | loop | `posters/finale-system.jpg` | не сгенерировано |
 
-Статус всех сцен: **не сгенерировано**. Модель по умолчанию `kling3_0_turbo`, seed фиксируется при первой удачной генерации и записывается в таблицу.
+Модель: `kling3_0_turbo`, генерация через MCP `generate_video`.
 
-### 1. `hero-blueprint`
+### Что выяснилось на практике
 
-Камера: медленный проход сквозь конструкцию, затем плавный поворот внутрь организации. Центр кадра остаётся пустым под заголовок.
+Первые формулировки промптов давали **непригодный результат**, и это стоит учитывать при генерации оставшихся сцен:
+
+1. Требование «wide empty center of frame reserved for typography» модель игнорирует — конструкция всё равно занимает центр и левую часть, где стоит заголовок. Работает только явное указание доли кадра: «filling the entire left two thirds of the frame as empty negative space. On the right third only: …».
+2. Формулировки про «volumetric light» и «cinematic» дают серо-фиолетовую дымку вместо фирменного `#050230`. Нужно прямо требовать «extremely dark near-black deep purple void, almost pure #050230» и добавлять в негатив «no fog, no grey haze, no bloom filling the frame».
+3. «Camera flying through» уводит в аттракцион и ломает читаемость. Для фонового слоя нужен «slow subtle parallax drift, no camera flythrough».
+
+### 1. `hero-blueprint` — использованный промпт
 
 ```
-Slow cinematic camera flying through a vast abstract engineering blueprint suspended in deep purple darkness, precise thin luminous construction lines forming a complex modular structure, several empty translucent role nodes glowing softly inside the structure waiting to be filled, faint requirement markers orbiting each empty node, camera passes through the blueprint and turns inward revealing a hidden network of luminous human expertise points already existing below, delicate connections beginning to form between the expertise network and the empty nodes, lavender and mint accents, soft volumetric light, wide empty center of frame reserved for typography, calm confident motion
+Extremely dark near-black deep purple void, almost pure #050230 background filling the entire left two thirds of the frame as empty negative space. On the right third only: a delicate abstract engineering blueprint made of very thin pale lavender construction lines, a few small translucent empty nodes glowing softly with mint highlights, and faint connection threads slowly drawing themselves upward into the structure. Extremely minimal, sparse, high contrast between the black emptiness and the fine luminous linework. Slow subtle parallax drift, no fast motion, no camera flythrough, no bright fog, no grey haze, no glow filling the frame. Premium restrained enterprise aesthetic, no cyberpunk, no readable text, no numbers, no logos, no people, no reflective floor
 ```
+
+Подключение: `<video id="hero-video">` в hero, источники подставляет `initHeroVideo()` по ширине экрана, слева кадр уходит в фон через `mask-image`, Canvas-слой связей приглушается до 0.4. При `prefers-reduced-motion` видео не грузится, остаётся постер.
 
 ### 2. `scattered-sources`
 

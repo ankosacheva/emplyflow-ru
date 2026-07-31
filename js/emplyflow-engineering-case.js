@@ -187,6 +187,42 @@
     });
   }
 
+  function initHeroVideo() {
+    var video = $('#hero-video');
+    var hero = $('#hero');
+    if (!video || reduced) return;
+
+    var base = window.matchMedia('(max-width: 700px)').matches
+      ? 'media/case-engineering/hero-blueprint-mobile'
+      : 'media/case-engineering/hero-blueprint';
+
+    ['webm', 'mp4'].forEach(function (ext) {
+      var s = document.createElement('source');
+      s.src = base + '.' + ext;
+      s.type = ext === 'webm' ? 'video/webm' : 'video/mp4';
+      video.appendChild(s);
+    });
+
+    video.addEventListener('loadeddata', function () {
+      video.classList.add('is-ready');
+      if (hero) hero.classList.add('has-video');
+    }, { once: true });
+
+    video.load();
+    var play = video.play();
+    if (play && play.catch) play.catch(function () { /* автоплей может быть запрещён */ });
+
+    if (!window.IntersectionObserver) return;
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      } else {
+        video.pause();
+      }
+    }, { threshold: 0.05 }).observe(video);
+  }
+
   function initHeroCanvas() {
     var canvas = $('#hero-canvas');
     if (!canvas || reduced) return;
@@ -1305,6 +1341,7 @@
     initPreloader();
     initRail();
     initHeroNodes();
+    initHeroVideo();
     initHeroCanvas();
     initBefore();
     initRoles();
