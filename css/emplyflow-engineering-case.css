@@ -2036,30 +2036,44 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
 .ef-demo-modal__panel {
   position: relative;
-  width: min(560px, 100%);
-  max-height: 90vh;
+  z-index: 1;
+  width: min(480px, calc(100vw - 32px));
+  max-height: min(92vh, 780px);
   overflow-y: auto;
-  padding: clamp(24px, 3vw, 40px);
-  border-radius: 26px;
-  border: 1px solid var(--stroke-2);
-  background: var(--navy-2);
+  padding: clamp(24px, 4vw, 34px);
+  border-radius: 28px;
+  background: #fff;
+  color: #151515;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.8);
 }
 
 .ef-demo-modal__close {
   position: absolute;
-  top: 14px; right: 16px;
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--stroke);
-  background: transparent;
-  color: var(--fg2);
-  font-size: 20px;
+  top: 14px; right: 14px;
+  width: 36px; height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(5, 2, 48, 0.07);
+  color: #050230;
+  font-size: 22px;
   line-height: 1;
   cursor: pointer;
 }
 
-.ef-demo-modal__title { margin: 0 0 10px; font-size: clamp(21px, 2.2vw, 28px); letter-spacing: -0.02em; }
-.ef-demo-modal__lead { margin: 0 0 20px; font-size: 15px; color: var(--fg2); }
+.ef-demo-modal__close:hover { background: rgba(5, 2, 48, 0.12); }
+
+.ef-demo-modal__title {
+  margin: 0 30px 10px 0;
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #050230;
+}
+
+.ef-demo-modal__lead { margin: 0 0 22px; font-size: 14px; line-height: 1.5; color: rgba(5, 2, 48, 0.68); }
+
+.ef-demo-modal .ef-lead-form { max-width: none; }
 
 /* =============================================================
    АДАПТИВ
