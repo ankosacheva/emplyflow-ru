@@ -1154,7 +1154,9 @@ html, body {
   .ef-mod__orb{flex:none;width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:rgba(21,21,21,.08);color:#151515;text-decoration:none;transition:background .2s,transform .2s,color .2s;}
   .ef-mod__orb:hover{background:rgba(21,21,21,.14);color:#151515;}
   .ef-mod--tile:hover .ef-mod__orb{transform:translate(2px,-2px);}
-  .ef-mod--tile .ef-mod__panel{flex:1;height:auto;min-height:168px;padding:4px 16px 18px;overflow:hidden;align-items:flex-start;background:transparent;}
+  /* строка сетки тянется по самой высокой плитке: мокап центрируем,
+     иначе весь запас высоты (до 235px) копится пустой плашкой под ним */
+  .ef-mod--tile .ef-mod__panel{flex:1;height:auto;min-height:168px;padding:4px 16px 18px;overflow:hidden;align-items:center;background:transparent;}
   .ef-mod--wide .ef-mod__panel,.ef-mod--half .ef-mod__panel{min-height:210px;}
   .ef-mod--tile .ef-mod__win{max-width:none;border-radius:14px;border:1px solid rgba(21,21,21,.06);box-shadow:0 16px 32px -22px rgba(5,2,48,.28);background:#fff;}
   .ef-mod--tile .ef-mod__bar{height:28px;}
@@ -1171,6 +1173,15 @@ html, body {
   .ef-mod--tile .ef-mod__ttl{color:#151515;font-size:clamp(18px,1.6vw,22px);}
   .ef-mod--tile .ef-mod__desc{color:rgba(21,21,21,.66);max-width:42ch;}
   .ef-mod--narrow .ef-mod__desc,.ef-mod--third .ef-mod__desc{font-size:13px;}
+  .ef-mod--half .ef-mod__desc{max-width:52ch;}
+  /* в широких плитках заголовок занимал всю строку, а описание обрывалось на 42ch:
+     справа оставалось полпустой шапки */
+  @media (min-width:1100px){
+    .ef-mod--wide .ef-mod__copy{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);column-gap:32px;align-items:start;}
+    .ef-mod--wide .ef-mod__copy-top{grid-column:1/-1;}
+    .ef-mod--wide .ef-mod__ttl{margin:0;font-size:24px;}
+    .ef-mod--wide .ef-mod__desc{max-width:48ch;}
+  }
   .ef-mod--mint{--tile-fill:var(--c-frosted-mint);}
   .ef-mod--peri{--tile-fill:var(--c-periwinkle);}
   .ef-mod--pink{--tile-fill:var(--c-cotton-candy);}
@@ -1192,7 +1203,8 @@ html, body {
   .ef-succ-root__title{font-size:11px;font-weight:800;line-height:1.15;}
   .ef-succ-root__sub{font-size:8.5px;font-weight:600;color:#a9b8ff;margin-top:2px;}
   .ef-succ-trunk{width:2px;height:12px;background:#d9d6ff;}
-  .ef-succ-branch{width:calc(100% - 56px);max-width:280px;height:10px;border:2px solid #d9d6ff;border-bottom:0;border-radius:10px 10px 0 0;margin-bottom:-2px;}
+  /* перекладина тянется ровно от центра первой карточки до центра последней: 3 колонки с гэпом 6px */
+  .ef-succ-branch{width:calc(66.667% + 4px);height:2px;background:#d9d6ff;flex:none;margin-bottom:12px;}
   .ef-succ-kids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;}
   .ef-succ-node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;padding:10px 6px 8px;border-radius:12px;background:#f5f4fb;border:1px solid #ececf6;}
   .ef-succ-node::before{content:"";position:absolute;top:-12px;left:50%;width:2px;height:12px;background:#d9d6ff;transform:translateX(-50%);}
@@ -1286,15 +1298,15 @@ html, body {
     <div class="ef-mods__inner">
       <header class="ef-mods__head">
         <p class="ef-mods__eyebrow">Модули платформы</p>
-        <h2 id="ef-mods-title" class="ef-mods__title">Оценка, которой можно верить — <span>потому что она собрана из всего сразу</span></h2>
-        <p class="ef-mods__lead">Цели, KPI, оценка 360° и компетенции по отдельности дают однобокую картину. EmplyFlow сводит их в один объективный результат — по сотруднику, команде и всей компании.</p>
+        <h2 id="ef-mods-title" class="ef-mods__title">Оценка, которой верит бизнес: <span>объективность вместо интуиции</span></h2>
+        <p class="ef-mods__lead">До 68% конфликтов в командах связаны с непрозрачностью решений о премиях и повышениях. EmplyFlow помогает аргументировать решение цифрами, а не ощущениями, а также обеспечить качественную организацию ведения целей и оценки компетенций.</p>
       </header>
 
       <article class="ef-mod ef-mod--flag">
         <div class="ef-mod__copy">
           <span class="ef-mod__tag">Флагман · Performance Review</span>
-          <h3 class="ef-mod__h">Вся результативность сотрудника — <span>в одном балле</span></h3>
-          <p class="ef-mod__p">Цели, KPI, оценка 360° и компетенции сходятся в итоговый Performance Review. Руководитель видит полную картину и принимает решение о повышении и премии на данных, а не на ощущениях.</p>
+          <h3 class="ef-mod__h">Единый балл Performance Review: <span>полная картина без искажений</span></h3>
+          <p class="ef-mod__p">Разрозненные данные (цели, KPI, 360°, компетенции) дают однобокую картину и провоцируют субъективность в оценке. Наш алгоритм сводит 4 компонента в единый балл с весовыми коэффициентами под вашу модель оценки.</p>
           <div class="ef-mod__chips">
             <span class="ef-mod__chip">Единый профиль</span>
             <span class="ef-mod__chip">Матрица потенциала 9-box</span>
@@ -1349,8 +1361,8 @@ html, body {
             <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Оценка 360°</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">Взгляд со всех сторон</h3>
-            <p class="ef-mod__desc">Руководитель, коллеги, подчинённые и самооценка сходятся в один отчёт — с сильными сторонами, зонами роста и разрывами восприятия.</p>
+            <h3 class="ef-mod__ttl">360° без «слепых зон»: обратная связь от коллег</h3>
+            <p class="ef-mod__desc">Отчёт по 360° визуализирует расхождения по компетенциям и даёт готовые формулировки для развивающих бесед. Это не просто «рейтинг», а инструмент для выравнивания ожиданий и построения ИПР.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
@@ -1430,8 +1442,8 @@ html, body {
             <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Карьера и развитие</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">ИПР собирается сам</h3>
-            <p class="ef-mod__desc">ИИ строит план развития из оценок и материалов и ведёт сотрудника по карьерному треку.</p>
+            <h3 class="ef-mod__ttl">ИПР для каждого сотрудника с помощью ИИ за пару секунд</h3>
+            <p class="ef-mod__desc">В ИПР уже заложена структура: конкретные шаги и KPI этапов, наполнение которых выбирается из вашего каталога обучающих материалов.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
@@ -1483,8 +1495,8 @@ html, body {
             <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Матрица потенциала</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">9-box строится автоматически</h3>
-            <p class="ef-mod__desc">Звёзды, ключевые игроки и зоны риска видны сразу. Кадровый резерв формируется на данных оценки.</p>
+            <h3 class="ef-mod__ttl">9‑box: удобная визуализация «звёзд», «ключевых игроков» и «зон риска» с настройками карты</h3>
+            <p class="ef-mod__desc">Вы сразу видите основных претендентов в кадровый резерв и можете оперативно скорректировать план удержаний и развития.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
@@ -1606,8 +1618,8 @@ html, body {
             <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Целеполагание</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">Цели каскадом по всей компании</h3>
-            <p class="ef-mod__desc">Стратегия раскладывается до департаментов, команд и сотрудников: дерево целей, маршруты согласования и прозрачный статус на каждом уровне.</p>
+            <h3 class="ef-mod__ttl">Каскадирование целей: от стратегии компании до вклада каждого сотрудника</h3>
+            <p class="ef-mod__desc">Дерево целей в EmplyFlow раскладывает стратегию до уровня каждого сотрудника, фиксирует маршруты согласования и статусы. Прозрачность целеполагания повышает вовлечённость и позволяет точно оценивать вклад команды в бизнес‑результаты.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
@@ -1690,8 +1702,8 @@ html, body {
             <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Планирование преемственности</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">Карта преемников по ролям</h3>
-            <p class="ef-mod__desc">Подбирайте людей на ключевые позиции, запускайте процесс через руководителей и видите карту преемников с уровнями готовности.</p>
+            <h3 class="ef-mod__ttl">Карта преемников: закрывать ключевые роли до того, как они станут вакантными</h3>
+            <p class="ef-mod__desc">Карта преемников в EmplyFlow позволяет заранее подобрать кандидатов на критические позиции, оценить их готовность по уровням и запустить процесс развития через руководителей.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
@@ -1736,8 +1748,8 @@ html, body {
             <div class="ef-mod__copy-top"><span class="ef-mod__lbl"><i></i>Нематериальная мотивация</span>
             <a class="ef-mod__orb" href="#contacts" aria-label="Смотреть модуль"><svg class="ef-mod__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
           </div>
-            <h3 class="ef-mod__ttl">Спасибо, которое считается</h3>
-            <p class="ef-mod__desc">Благодарности, баллы и признание достижений — культура, которую видно в цифрах.</p>
+            <h3 class="ef-mod__ttl">Культура благодарности, которую можно показать директору</h3>
+            <p class="ef-mod__desc">Лента признаний в EmplyFlow превращает эмоции в понятные метрики: кто чаще благодарит, кто чаще получает, какие ценности (помощь, скорость, качество) проявляются в команде.</p>
           </div>
           <div class="ef-mod__panel" aria-hidden="true">
             <div class="ef-mod__win">
@@ -2035,7 +2047,7 @@ html, body {
     <div style="width:min(720px,100%); margin:clamp(28px,3.5vw,44px) auto 0; text-align:center;">
       <p style="margin:0; font-size:clamp(15px,1.6vw,17px); font-weight:500; line-height:1.55; color:rgba(5,2,48,.7); text-wrap:pretty;">Мы собрали каталог материалов для оценки в открытую библиотеку. Вы можете скачать кейсы, шаблоны компетенций и ознакомиться с нашим подходом. А чтобы превратить их в интерактивный тренажёр с живым диалогом - оставьте заявку ниже.</p>
       <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:20px;">
-        <a href="#contacts" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#4A3BFF; color:#ffffff; font-weight:700; font-size:15px; padding:13px 22px; border-radius:999px; box-shadow:0 12px 26px -10px rgba(74,59,255,.7); transition:filter .15s, transform .12s;">Запросить тренажёр →</a>
+        <a href="#" data-ef-demo-open style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#4A3BFF; color:#ffffff; font-weight:700; font-size:15px; padding:13px 22px; border-radius:999px; box-shadow:0 12px 26px -10px rgba(74,59,255,.7); transition:filter .15s, transform .12s;">Запросить тренажёр →</a>
       </div>
     </div>
 
