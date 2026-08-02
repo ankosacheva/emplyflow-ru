@@ -17,14 +17,13 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from collections import deque
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
-LOGO = ROOT / "design-system" / "assets" / "logo.png"
+CAVEAT = ROOT / "design-system" / "fonts" / "Caveat-Variable.ttf"
 MEDIA = ROOT / "media"
 
 W, H = 1920, 1080
@@ -117,43 +116,37 @@ def sparkle_sprite(size: int, color: tuple[int, int, int]) -> np.ndarray:
 
 TILE_SIZE = 288          # финальный размер иконки на кадре 1920×1080
 TILE_SUPERSAMPLE = 8     # отрисовка в 8×, затем даунскейл — чёткие края
+CAVEAT_WEIGHT = 700      # wght оси variable-шрифта
 
 
-def extract_logo_e_alpha() -> Image.Image:
-    """Рукописная «E» с плавной альфой, без бинарной «лесенки»."""
-    src = np.asarray(Image.open(LOGO).convert("RGBA"), dtype=np.float32)
-    rgb = src[..., :3]
-    lo = rgb.min(axis=2)
-    hi = rgb.max(axis=2)
-    sat = (hi - lo) / np.maximum(hi, 1.0)
-    ink = (lo > 140) & (sat < 0.22)
+def _caveat_font(size_px: int) -> ImageFont.FreeTypeFont:
+    layout = getattr(ImageFont, "Layout", None)
+    kwargs = {"layout_engine": layout.RAQM} if layout else {}
+    font = ImageFont.truetype(str(CAVEAT), size_px, **kwargs)
+    if hasattr(font, "set_variation_by_axes"):
+        font.set_variation_by_axes([CAVEAT_WEIGHT])
+    return font
 
-    ys, xs = np.nonzero(ink)
-    seed = (int(ys[np.argmin(xs)]), int(xs[np.argmin(xs)]))
-    height, width = ink.shape
-    seen = np.zeros_like(ink, dtype=bool)
-    seen[seed] = True
-    queue = deque([seed])
-    while queue:
-        py, px = queue.popleft()
-        for dy in (-1, 0, 1):
-            for dx in (-1, 0, 1):
-                ny, nx = py + dy, px + dx
-                if 0 <= ny < height and 0 <= nx < width and ink[ny, nx] and not seen[ny, nx]:
-                    seen[ny, nx] = True
-                    queue.append((ny, nx))
 
-    # Мягкая альфа из яркости штриха — сохраняет сглаживание исходного PNG.
-    alpha = np.zeros((height, width), dtype=np.float32)
-    alpha[seen] = np.clip((lo[seen] - 115.0) / 95.0, 0.0, 1.0)
+def render_caveat_e_layer(canvas_px: int, target_h: int) -> Image.Image:
+    """Буква E шрифтом Caveat — векторная отрисовка в целевом размере."""
+    probe = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    size_px = max(32, target_h)
+    font = _caveat_font(size_px)
+    bbox = probe.textbbox((0, 0), "E", font=font)
+    height = bbox[3] - bbox[1] or 1
+    size_px = max(32, int(size_px * target_h / height))
+    font = _caveat_font(size_px)
+    bbox = probe.textbbox((0, 0), "E", font=font)
+    width = bbox[2] - bbox[0]
+    height = bbox[3] - bbox[1]
 
-    y0, y1 = np.nonzero(seen)[0].min(), np.nonzero(seen)[0].max() + 1
-    x0, x1 = np.nonzero(seen)[1].min(), np.nonzero(seen)[1].max() + 1
-    pad = 4
-    y0, x0 = max(0, y0 - pad), max(0, x0 - pad)
-    y1, x1 = min(height, y1 + pad), min(width, x1 + pad)
-    crop = (alpha[y0:y1, x0:x1] * 255.0 + 0.5).astype(np.uint8)
-    return Image.fromarray(crop, mode="L")
+    layer = Image.new("RGBA", (canvas_px, canvas_px), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
+    x = (canvas_px - width) // 2 - bbox[0]
+    y = int(canvas_px * 0.25) - bbox[1]
+    draw.text((x, y), "E", font=font, fill=(255, 255, 255, 255))
+    return layer.split()[3]
 
 
 def build_tile(size: int = TILE_SIZE) -> np.ndarray:
@@ -173,14 +166,8 @@ def build_tile(size: int = TILE_SIZE) -> np.ndarray:
     bottom = rgb((0x7C, 0x6B, 0xFF))
     face = top[None, None, :] * (1.0 - ramp) + bottom[None, None, :] * ramp
 
-    glyph = extract_logo_e_alpha()
-    target_h = int(big * 0.50)
-    target_w = max(1, int(glyph.width * target_h / glyph.height))
-    glyph = glyph.resize((target_w, target_h), Image.LANCZOS)
-
-    layer = Image.new("L", (big, big), 0)
-    layer.paste(glyph, ((big - target_w) // 2, int(big * 0.25)))
-    letter = np.asarray(layer, dtype=np.float32)[..., None] / 255.0
+    letter_layer = render_caveat_e_layer(big, int(big * 0.50))
+    letter = np.asarray(letter_layer, dtype=np.float32)[..., None] / 255.0
     face = face * (1.0 - letter) + rgb(WHITE)[None, None, :] * letter
 
     mask_arr = np.asarray(mask, dtype=np.float32) / 255.0
@@ -371,8 +358,8 @@ def preview(times: list[float], out_dir: Path) -> None:
 
 
 def main() -> None:
-    if not LOGO.exists():
-        sys.exit(f"нет {LOGO.relative_to(ROOT)}")
+    if not CAVEAT.exists():
+        sys.exit(f"нет {CAVEAT.relative_to(ROOT)} — скачайте Caveat из Google Fonts")
 
     if len(sys.argv) > 2 and sys.argv[1] == "preview":
         preview([float(v) for v in sys.argv[2].split(",")], Path(sys.argv[3] if len(sys.argv) > 3 else "."))
