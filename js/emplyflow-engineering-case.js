@@ -382,7 +382,7 @@
      ГЛАВА 2 — источники знаний до внедрения
      --------------------------------------------------------------- */
   var SPARK = '<svg class="spark spark--tr" viewBox="0 0 24 24" aria-hidden="true">' +
-    '<path d="M12 0c.6 6.2 5.2 10.8 12 12-6.8 1.2-11.4 5.8-12 12-.6-6.2-5.2-10.8-12-12C6.8 10.8 11.4 6.2 12 0z" fill="currentColor"/></svg>';
+    '<path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z" fill="currentColor"/></svg>';
 
   function initBefore() {
     var wrap = $('#before-sources');
@@ -493,19 +493,24 @@
     if (cap) cap.textContent = P.caption;
 
     if (wrap) {
-      wrap.innerHTML = P.layers.map(function (l) {
-        return '<section class="layer">' +
-          '<h3 class="layer__title">' + esc(l.title) + '</h3>' +
+      wrap.innerHTML = P.layers.map(function (l, i) {
+        return '<details class="layer"' + (i === 0 ? ' open' : '') + '>' +
+          '<summary class="layer__title">' +
+            '<span class="layer__name">' + esc(l.title) + '</span>' +
+            '<span class="layer__count">' + l.items.length + '</span>' +
+          '</summary>' +
           '<ul class="layer__items">' +
             l.items.map(function (it) {
               return '<li class="pitem" data-src="' + it.src + '">' +
-                '<span class="pitem__title">' + esc(it.title) + '</span>' +
-                '<span class="pitem__meta">' + esc(it.meta) + '</span>' +
+                '<div class="pitem__main">' +
+                  '<span class="pitem__title">' + esc(it.title) + '</span>' +
+                  '<span class="pitem__meta">' + esc(it.meta) + '</span>' +
+                '</div>' +
                 '<span class="pitem__src">' + esc((prov[it.src] || {}).short || it.src) + '</span>' +
               '</li>';
             }).join('') +
           '</ul>' +
-        '</section>';
+        '</details>';
       }).join('');
     }
 
@@ -556,23 +561,51 @@
   function initMatching() {
     var M = DATA.matching;
 
-    function side(el, data, kicker) {
+    function side(el, data, kicker, kind) {
       if (!el) return;
+
+      var tag = kind === 'project' ? 'Проект' : 'Сотрудник';
+      var icon = kind === 'project'
+        ? '<svg class="duo__icon" viewBox="0 0 56 56" role="presentation">' +
+            '<rect x="10" y="18" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/>' +
+            '<circle cx="19" cy="27" r="2.5" fill="currentColor"/>' +
+            '<path d="M28 27 H44 M39 22 L44 27 L39 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '<path d="M19 18 V12 M19 36 V42 M10 27 H4 M28 27 H34" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>' +
+          '</svg>'
+        : '<svg class="duo__icon" viewBox="0 0 56 56" role="presentation">' +
+            '<circle cx="34" cy="18" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>' +
+            '<path d="M22 40 C28 32 40 32 46 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<path d="M12 27 H24 M17 22 L12 27 L17 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '<path d="M34 40 V48 M28 44 H40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>' +
+          '</svg>';
+
+      var visual = kind === 'project'
+        ? '<span class="duo__tag duo__tag--' + kind + '">' + tag + '</span>' +
+          '<span class="duo__icon-wrap" aria-hidden="true">' + icon + '</span>' +
+          '<span class="duo__beam duo__beam--' + kind + '" aria-hidden="true"></span>'
+        : '<span class="duo__beam duo__beam--' + kind + '" aria-hidden="true"></span>' +
+          '<span class="duo__icon-wrap" aria-hidden="true">' + icon + '</span>' +
+          '<span class="duo__tag duo__tag--' + kind + '">' + tag + '</span>';
+
       el.innerHTML =
+        '<div class="duo__visual">' + visual + '</div>' +
         '<p class="duo__kicker">' + esc(kicker) + '</p>' +
         '<h3 class="duo__role">' + esc(data.role) + '</h3>' +
         '<ul class="duo__needs">' +
-          data.needs.map(function (n) {
-            return '<li class="duo__need">' +
-              '<span class="duo__need-title">' + esc(n.title) + '</span>' +
-              '<span class="duo__need-text">' + esc(n.text) + '</span>' +
+          data.needs.map(function (n, i) {
+            return '<li class="duo__need duo__need--' + kind + '">' +
+              '<span class="duo__need-mark" aria-hidden="true"></span>' +
+              '<span class="duo__need-body">' +
+                '<span class="duo__need-title">' + esc(n.title) + '</span>' +
+                '<span class="duo__need-text">' + esc(n.text) + '</span>' +
+              '</span>' +
             '</li>';
           }).join('') +
         '</ul>';
     }
 
-    side($('#match-project'), M.project, M.project.title);
-    side($('#match-person'), M.person, M.person.title);
+    side($('#match-project'), M.project, M.project.title, 'project');
+    side($('#match-person'), M.person, M.person.title, 'person');
 
     var total = $('#match-total');
     if (total) total.textContent = M.breakdown.total;
@@ -622,18 +655,48 @@
     var capEl = $('#builder-caption');
     if (capEl) capEl.textContent = B.caption;
 
+    var guideEl = $('#builder-guide');
+    var panelEl = $('.builder__panel');
+
     var state = { role: 0, picks: {} };
 
+    function updateGuide() {
+      if (!guideEl) return;
+      var r = B.roles[state.role];
+      var picked = state.picks[r.id];
+      if (picked) {
+        guideEl.textContent = 'Роль закрыта. Выберите следующую или нажмите «Собрать заново».';
+        guideEl.classList.remove('is-step-1');
+        guideEl.classList.add('is-step-2');
+      } else {
+        guideEl.textContent = 'Шаг 1 — нажмите роль ниже · Шаг 2 — выберите кандидата справа';
+        guideEl.classList.add('is-step-1');
+        guideEl.classList.remove('is-step-2');
+      }
+    }
+
     function renderSlots() {
+      var nextOpen = B.roles.findIndex(function (r) { return !state.picks[r.id]; });
+
       slotsEl.innerHTML = B.roles.map(function (r, i) {
         var pick = state.picks[r.id];
         var cand = pick ? findCand(r, pick) : null;
+        var isActive = i === state.role;
+        var isNext = i === nextOpen;
         return '<li>' +
-          '<button type="button" class="slot' + (i === state.role ? ' is-active' : '') + (cand ? ' is-done' : '') + '" data-slot="' + i + '">' +
-            '<span class="slot__n">' + (i + 1) + '</span>' +
-            '<span class="slot__title">' + esc(r.title) + '</span>' +
-            '<span class="slot__pick">' + (cand ? esc(cand.name) + ' · ' + esc(cand.role) : 'не выбран') + '</span>' +
-            '<span class="slot__state">' + (cand ? '✓' : '—') + '</span>' +
+          '<button type="button" class="slot' +
+            (isActive ? ' is-active' : '') +
+            (cand ? ' is-done' : '') +
+            (isNext && !cand ? ' is-next' : '') +
+          '" data-slot="' + i + '" aria-pressed="' + (isActive ? 'true' : 'false') + '">' +
+            '<span class="slot__main">' +
+              '<span class="slot__n">' + (i + 1) + '</span>' +
+              '<span class="slot__body">' +
+                '<span class="slot__title">' + esc(r.title) + '</span>' +
+                '<span class="slot__pick">' + (cand ? esc(cand.name) + ' · ' + esc(cand.role) : 'Кандидат не назначен') + '</span>' +
+              '</span>' +
+            '</span>' +
+            '<span class="slot__cta">' + (isActive ? 'Сейчас выбираем' : (cand ? 'Изменить' : 'Выбрать роль')) + '</span>' +
           '</button>' +
         '</li>';
       }).join('');
@@ -642,6 +705,9 @@
         btn.addEventListener('click', function () {
           state.role = parseInt(btn.getAttribute('data-slot'), 10);
           render();
+          if (panelEl && window.matchMedia('(max-width: 1080px)').matches) {
+            panelEl.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' });
+          }
           track('builder_role', { role: B.roles[state.role].id });
         });
       });
@@ -667,25 +733,27 @@
 
       var picked = state.picks[r.id];
 
-      candsEl.innerHTML = r.candidates.map(function (c) {
-        return '<button type="button" class="cand' + (picked === c.id ? ' is-picked' : '') + '" data-cand="' + c.id + '">' +
-          '<span class="cand__top">' +
-            '<span class="cand__name">' + esc(c.name) + '</span>' +
-            '<span class="cand__score">' + c.skillMatch + '%</span>' +
-          '</span>' +
-          '<span class="cand__role">' + esc(c.role) + '</span>' +
-          '<ul class="cand__facts">' +
-            '<li class="cfact" data-tone="' + (c.mandatoryMet ? 'good' : 'warn') + '">' +
-              (c.mandatoryMet ? 'Обязательные требования выполнены' : 'Не хватает: ' + esc(c.missing.join(', '))) +
-            '</li>' +
-            '<li class="cfact" data-tone="career">Карьерная релевантность: ' + relLabel[c.careerRelevance] + '</li>' +
-            '<li class="cfact" data-tone="' + (c.availability === 'available' ? 'good' : 'warn') + '">' +
-              'Доступность: ' + availLabel[c.availability] +
-            '</li>' +
-            '<li class="cfact">Релевантный опыт: ' + c.experienceMatch + '%</li>' +
-          '</ul>' +
-        '</button>';
-      }).join('');
+      candsEl.innerHTML =
+        '<p class="cands__prompt">Шаг 2 — кого назначите на эту роль?</p>' +
+        r.candidates.map(function (c) {
+          return '<button type="button" class="cand' + (picked === c.id ? ' is-picked' : '') + '" data-cand="' + c.id + '">' +
+            '<span class="cand__top">' +
+              '<span class="cand__name">' + esc(c.name) + '</span>' +
+              '<span class="cand__score">' + c.skillMatch + '%</span>' +
+            '</span>' +
+            '<span class="cand__role">' + esc(c.role) + '</span>' +
+            '<ul class="cand__facts">' +
+              '<li class="cfact" data-tone="' + (c.mandatoryMet ? 'good' : 'warn') + '">' +
+                (c.mandatoryMet ? 'Обязательные требования выполнены' : 'Не хватает: ' + esc(c.missing.join(', '))) +
+              '</li>' +
+              '<li class="cfact" data-tone="career">Карьерная релевантность: ' + relLabel[c.careerRelevance] + '</li>' +
+              '<li class="cfact" data-tone="' + (c.availability === 'available' ? 'good' : 'warn') + '">' +
+                'Доступность: ' + availLabel[c.availability] +
+              '</li>' +
+            '</ul>' +
+            '<span class="cand__cta">' + (picked === c.id ? 'Назначен на роль' : 'Назначить на роль') + '</span>' +
+          '</button>';
+        }).join('');
 
       $$('[data-cand]', candsEl).forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -710,6 +778,7 @@
       var cand = findCand(role, candId);
       renderSlots();
       renderRole();
+      updateGuide();
       trackOnce('builder_interact');
       track('builder_pick', { role: role.id, candidate: candId, tone: cand ? cand.verdict.tone : '' });
 
@@ -740,6 +809,8 @@
     function render() {
       renderSlots();
       renderRole();
+      updateGuide();
+      if (panelEl) panelEl.classList.toggle('is-ready', true);
     }
 
     var reset = $('#builder-reset');
@@ -761,41 +832,63 @@
   function initMarketplace() {
     var M = DATA.marketplace;
 
-    function col(el, data) {
+    function col(el, data, kind) {
       if (!el) return;
+      var mark = kind === 'smart' ? '✓' : '·';
       el.innerHTML =
+        '<span class="compare__tag">' + esc(data.tag) + '</span>' +
         '<h3 class="compare__title">' + esc(data.title) + '</h3>' +
+        (data.note ? '<p class="compare__note">' + esc(data.note) + '</p>' : '') +
         '<ul class="compare__list">' +
-          data.rows.map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') +
+          data.rows.map(function (r) {
+            return '<li class="compare__item">' +
+              '<span class="compare__mark" aria-hidden="true">' + mark + '</span>' +
+              '<span class="compare__text">' + esc(r) + '</span>' +
+            '</li>';
+          }).join('') +
         '</ul>';
     }
 
-    col($('#market-plain'), M.plain);
-    col($('#market-smart'), M.smart);
+    col($('#market-plain'), M.plain, 'plain');
+    col($('#market-smart'), M.smart, 'smart');
 
     var card = $('#market-card');
     if (!card) return;
 
+    var blockIcons = { fit: '✓', gap: '!', gain: '↗', next: '→' };
+
     card.innerHTML =
+      '<div class="offer__ribbon">' +
+        '<span class="offer__kind">Внутренняя вакансия</span>' +
+        '<span class="offer__hint">Карточка проекта, на которую сотрудник откликается</span>' +
+      '</div>' +
       '<div class="offer__head">' +
-        '<h3 class="offer__role">' + esc(M.card.role) + '</h3>' +
-        '<p class="offer__project">' + esc(M.card.project) + '</p>' +
+        '<div class="offer__titlebox">' +
+          '<h3 class="offer__role">' + esc(M.card.role) + '</h3>' +
+          '<p class="offer__project">' + esc(M.card.project) + '</p>' +
+        '</div>' +
+        '<button type="button" class="offer__apply" disabled>Заявить интерес</button>' +
       '</div>' +
       '<dl class="offer__meta">' +
         M.card.meta.map(function (m) {
           return '<div><dt>' + esc(m.label) + '</dt><dd>' + esc(m.value) + '</dd></div>';
         }).join('') +
       '</dl>' +
-      '<div class="offer__blocks">' +
-        M.card.blocks.map(function (b) {
-          return '<article class="oblock" data-b="' + b.id + '">' +
-            '<span class="oblock__title">' + esc(b.title) + '</span>' +
-            '<span class="oblock__text">' + esc(b.text) + '</span>' +
-          '</article>';
-        }).join('') +
+      '<div class="offer__section">' +
+        '<p class="offer__section-title">Что видит сотрудник при отклике</p>' +
+        '<div class="offer__blocks">' +
+          M.card.blocks.map(function (b) {
+            return '<article class="oblock" data-b="' + b.id + '">' +
+              '<div class="oblock__head">' +
+                '<span class="oblock__icon" aria-hidden="true">' + (blockIcons[b.id] || '•') + '</span>' +
+                '<span class="oblock__title">' + esc(b.title) + '</span>' +
+              '</div>' +
+              '<p class="oblock__text">' + esc(b.text) + '</p>' +
+            '</article>';
+          }).join('') +
+        '</div>' +
       '</div>' +
       '<div class="offer__foot">' +
-        '<span class="badge badge--demo">Демонстрация интерфейса</span>' +
         '<span class="tiny" style="margin:0">Сотрудник заявляет интерес сам — решение по назначению остаётся за руководителем и HR-командой</span>' +
       '</div>';
   }
@@ -947,17 +1040,31 @@
     if (!wrap) return;
 
     wrap.innerHTML = G.states.map(function (s) {
-      return '<section class="gstate" data-tone="' + s.tone + '">' +
+      if (s.layout === 'chips') {
+        return '<section class="gstate gstate--chips" data-tone="' + s.tone + '">' +
+          '<h3 class="gstate__label">' + esc(s.label) + '</h3>' +
+          '<div class="gstate__chips">' +
+            s.items.map(function (it) {
+              return '<span class="gchip">' +
+                '<span class="gchip__title">' + esc(it.title) + '</span>' +
+                '<span class="gchip__meta">' + esc(it.meta) + '</span>' +
+              '</span>';
+            }).join('') +
+          '</div>' +
+        '</section>';
+      }
+
+      return '<section class="gstate gstate--plan" data-tone="' + s.tone + '">' +
         '<h3 class="gstate__label">' + esc(s.label) + '</h3>' +
-        '<ul class="gstate__items">' +
+        '<ul class="gplan">' +
           s.items.map(function (it) {
-            var empty = it.action === '—' ? '1' : '0';
-            return '<li class="gitem">' +
-              '<span class="gitem__title">' + esc(it.title) + '</span>' +
-              '<span class="gitem__meta">' + esc(it.meta) + '</span>' +
-              '<span class="gitem__action" data-empty="' + empty + '">' +
-                (empty === '1' ? 'действий не требуется' : esc(it.action)) +
-              '</span>' +
+            var act = it.action || {};
+            return '<li class="gplan__item">' +
+              '<div class="gplan__head">' +
+                '<span class="gplan__title">' + esc(it.title) + '</span>' +
+                '<span class="gplan__meta">' + esc(it.meta) + '</span>' +
+              '</div>' +
+              '<span class="gaction gaction--' + esc(act.kind || 'course') + '">' + esc(act.label || '') + '</span>' +
             '</li>';
           }).join('') +
         '</ul>' +
@@ -1083,10 +1190,13 @@
 
   function viz(r) {
     if (r.viz === 'weeks' || r.viz === 'share') {
-      var max = r.viz === 'weeks' ? 4 : 100;
+      var max = r.viz === 'weeks' ? (r.fromNum || 4) : 100;
+      var fromCap = r.barFrom || (r.viz === 'weeks' ? r.fromNum + ' нед' : r.fromNum + '%');
+      var toCap = r.barTo || (r.viz === 'weeks' ? r.toNum + ' нед' : r.toNum + '%');
+      var fromVal = r.viz === 'weeks' ? 1 : r.fromNum / max;
       return '<div class="bars">' +
-        bar('from', r.viz === 'weeks' ? '4 нед' : '60%', r.fromNum / max) +
-        bar('to', r.viz === 'weeks' ? '2 нед' : '85%', r.toNum / max) +
+        bar('from', fromCap, fromVal) +
+        bar('to', toCap, r.toNum / max) +
       '</div>';
     }
     var count = r.viz === 'apps' ? 20 : 12;
@@ -1111,7 +1221,9 @@
     var lines = $('#finale-lines');
     if (lines) {
       lines.innerHTML = F.lines.map(function (l) {
-        return '<p class="finale__line">' + esc(l) + '</p>';
+        return '<p class="finale__line">' +
+          esc(l).replace(/\{([^}]+)\}/g, '<em>$1</em>') +
+        '</p>';
       }).join('');
       if (reduced) $$('.finale__line', lines).forEach(function (l) { l.classList.add('is-in'); });
     }
