@@ -21,7 +21,7 @@ from collections import deque
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "design-system" / "assets" / "logo.png"
@@ -115,24 +115,27 @@ def sparkle_sprite(size: int, color: tuple[int, int, int]) -> np.ndarray:
     return sprite
 
 
-def extract_logo_e() -> np.ndarray:
-    """Альфа-маска рукописной «E» из брендового логотипа."""
-    src = np.asarray(Image.open(LOGO).convert("RGB"), dtype=np.float32)
-    lo = src.min(axis=2)
-    hi = src.max(axis=2)
+TILE_SIZE = 288          # финальный размер иконки на кадре 1920×1080
+TILE_SUPERSAMPLE = 8     # отрисовка в 8×, затем даунскейл — чёткие края
+
+
+def extract_logo_e_alpha() -> Image.Image:
+    """Рукописная «E» с плавной альфой, без бинарной «лесенки»."""
+    src = np.asarray(Image.open(LOGO).convert("RGBA"), dtype=np.float32)
+    rgb = src[..., :3]
+    lo = rgb.min(axis=2)
+    hi = rgb.max(axis=2)
     sat = (hi - lo) / np.maximum(hi, 1.0)
-    ink = (lo > 150) & (sat < 0.2)
+    ink = (lo > 140) & (sat < 0.22)
 
     ys, xs = np.nonzero(ink)
     seed = (int(ys[np.argmin(xs)]), int(xs[np.argmin(xs)]))
     height, width = ink.shape
-    seen = np.zeros_like(ink)
+    seen = np.zeros_like(ink, dtype=bool)
     seen[seed] = True
     queue = deque([seed])
-    pixels: list[tuple[int, int]] = []
     while queue:
         py, px = queue.popleft()
-        pixels.append((py, px))
         for dy in (-1, 0, 1):
             for dx in (-1, 0, 1):
                 ny, nx = py + dy, px + dx
@@ -140,46 +143,55 @@ def extract_logo_e() -> np.ndarray:
                     seen[ny, nx] = True
                     queue.append((ny, nx))
 
-    ys = np.array([p[0] for p in pixels])
-    xs = np.array([p[1] for p in pixels])
-    glyph = np.zeros_like(ink)
-    glyph[ys, xs] = True
-    crop = glyph[ys.min() : ys.max() + 1, xs.min() : xs.max() + 1]
-    return (crop * 255).astype(np.uint8)
+    # Мягкая альфа из яркости штриха — сохраняет сглаживание исходного PNG.
+    alpha = np.zeros((height, width), dtype=np.float32)
+    alpha[seen] = np.clip((lo[seen] - 115.0) / 95.0, 0.0, 1.0)
+
+    y0, y1 = np.nonzero(seen)[0].min(), np.nonzero(seen)[0].max() + 1
+    x0, x1 = np.nonzero(seen)[1].min(), np.nonzero(seen)[1].max() + 1
+    pad = 4
+    y0, x0 = max(0, y0 - pad), max(0, x0 - pad)
+    y1, x1 = min(height, y1 + pad), min(width, x1 + pad)
+    crop = (alpha[y0:y1, x0:x1] * 255.0 + 0.5).astype(np.uint8)
+    return Image.fromarray(crop, mode="L")
 
 
-def build_tile(size: int) -> np.ndarray:
+def build_tile(size: int = TILE_SIZE) -> np.ndarray:
     """Иконка EmplyFlow: скруглённый квадрат с градиентом и белой «E»."""
-    ss = 4
+    ss = TILE_SUPERSAMPLE
     big = size * ss
+
     mask = Image.new("L", (big, big), 0)
     ImageDraw.Draw(mask).rounded_rectangle(
         (0, 0, big - 1, big - 1), radius=int(big * 0.27), fill=255
     )
-    mask = mask.resize((size, size), Image.LANCZOS)
 
-    axis = np.linspace(0.0, 1.0, size, dtype=np.float32)
+    axis = np.linspace(0.0, 1.0, big, dtype=np.float32)
     xx, yy = np.meshgrid(axis, axis)
     ramp = np.clip((xx + yy) / 2.0, 0.0, 1.0)[..., None]
     top = rgb((0xEC, 0xE8, 0xFF))
     bottom = rgb((0x7C, 0x6B, 0xFF))
     face = top[None, None, :] * (1.0 - ramp) + bottom[None, None, :] * ramp
 
-    glyph = Image.fromarray(extract_logo_e())
-    target_h = int(size * 0.50)
+    glyph = extract_logo_e_alpha()
+    target_h = int(big * 0.50)
     target_w = max(1, int(glyph.width * target_h / glyph.height))
     glyph = glyph.resize((target_w, target_h), Image.LANCZOS)
-    glyph = glyph.filter(ImageFilter.GaussianBlur(0.6))
 
-    layer = Image.new("L", (size, size), 0)
-    layer.paste(glyph, ((size - target_w) // 2, int(size * 0.25)))
+    layer = Image.new("L", (big, big), 0)
+    layer.paste(glyph, ((big - target_w) // 2, int(big * 0.25)))
     letter = np.asarray(layer, dtype=np.float32)[..., None] / 255.0
     face = face * (1.0 - letter) + rgb(WHITE)[None, None, :] * letter
 
-    sprite = np.zeros((size, size, 4), dtype=np.float32)
-    sprite[..., :3] = face
-    sprite[..., 3] = np.asarray(mask, dtype=np.float32) / 255.0
-    return sprite
+    mask_arr = np.asarray(mask, dtype=np.float32) / 255.0
+    rgba = np.zeros((big, big, 4), dtype=np.float32)
+    rgba[..., :3] = face
+    rgba[..., 3] = mask_arr
+
+    img = Image.fromarray((np.clip(rgba, 0.0, 1.0) * 255).astype(np.uint8), "RGBA")
+    img = img.resize((size, size), Image.LANCZOS)
+    out = np.asarray(img, dtype=np.float32) / 255.0
+    return out
 
 
 def ring_sprite(size: int, radius: float, thickness: float, color: tuple[int, int, int]) -> np.ndarray:
@@ -255,7 +267,7 @@ BAR = (360, 4, int(H * 0.70))
 def build_assets() -> dict:
     return {
         "background": build_background(),
-        "tile": build_tile(196),
+        "tile": build_tile(),
         "halo": radial_glow(900, BLUE_RIBBON, 0.42),
         "halo_soft": radial_glow(1300, PERIWINKLE, 0.55),
         "rings": [
@@ -299,7 +311,7 @@ def compose(t: float, assets: dict) -> np.ndarray:
             True,
         )
 
-    paste(canvas, scaled(assets["tile"], 0.95 + 0.05 * appear), cx, cy, appear, False)
+    paste(canvas, assets["tile"], cx, cy, appear, False)
 
     canvas[bar_y : bar_y + bar_h, bar_x : bar_x + bar_w] += rgb(WHITE) * 0.12
     progress = ease_out(min(1.0, (t + 0.15) / (DURATION * 0.8)), 2.0)
