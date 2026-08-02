@@ -11,6 +11,9 @@ RewriteRule ^(.*)$ robots_%{HTTP_HOST}.txt [NC,L]
 RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome$ page101340001.html [NC]
 RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome/$ page101340001.html [NC]
 
+RewriteRule ^modul-otsenka-360$ page102360001.html [NC]
+RewriteRule ^modul-otsenka-360/$ page102360001.html [NC]
+
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii$ page96490096.html [NC]
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii/$ page96490096.html [NC]
 

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050230">
+<title>Оценка 360° — модуль платформы EmplyFlow</title>
+<meta name="description" content="Модуль «Оценка 360°» в EmplyFlow: цикловая оценка по компетенциям, сравнение самооценки с оценкой руководителя, коллег и подчинённых, согласование списка оценщиков, аналитика для сотрудника, руководителя и HR, AI-разбор результатов и экспорт в PDF и XLSX.">
+<link rel="canonical" href="https://emplyflow.ru/modul-otsenka-360">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emplyflow.ru/modul-otsenka-360">
+<meta property="og:title" content="Оценка 360° — модуль платформы EmplyFlow">
+<meta property="og:description" content="Не опрос ради опроса: 360° по компетенциям, расхождения самооценки и внешней оценки, контроль качества выборки и AI-выводы для руководителя и HR.">
+<meta property="og:image" content="https://emplyflow.ru/media/case-career-tracks.webp">
+<meta property="og:site_name" content="EmplyFlow">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Оценка 360° — модуль платформы EmplyFlow">
+<meta name="twitter:description" content="Цикловая 360° по компетенциям: перспективы руководителя, коллег и подчинённых, согласование оценщиков, AI-анализ и экспорт результатов.">
+<meta name="twitter:image" content="https://emplyflow.ru/media/case-career-tracks.webp">
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6239-3062-4538-a639-383666626538__32x32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6164-3236-4734-b139-376466343939__32x32.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="images/tild3766-3562-4732-a164-356632343966__180x180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260802a">
+<link rel="stylesheet" href="css/emplyflow-demo-form.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Оценка 360° — модуль платформы EmplyFlow",
+  "description": "Цикловая оценка 360° по компетенциям: перспективы руководителя, коллег, подчинённых и самооценка, согласование списка оценщиков, аналитика трёх уровней, AI-разбор результатов и экспорты.",
+  "inLanguage": "ru-RU",
+  "url": "https://emplyflow.ru/modul-otsenka-360",
+  "isPartOf": { "@type": "WebSite", "name": "EmplyFlow", "url": "https://emplyflow.ru" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "EmplyFlow", "item": "https://emplyflow.ru/" },
+    { "@type": "ListItem", "position": 2, "name": "Модули платформы", "item": "https://emplyflow.ru/#platform" },
+    { "@type": "ListItem", "position": 3, "name": "Оценка 360°", "item": "https://emplyflow.ru/modul-otsenka-360" }
+  ]
+}
+</script>
+</head>
+<body data-module="assessment-360" data-accent="mint">
+
+<a class="skip-link" href="#details">Перейти к описанию модуля</a>
+
+<header class="mtop" id="mtop">
+  <div class="shell mtop__inner">
+    <a class="mtop__back" href="index.html#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
+    <span class="mtop__name">Оценка 360°</span>
+    <span class="mtop__spacer"></span>
+    <div class="mmode" role="group" aria-label="Режим просмотра страницы">
+      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Смотреть</button>
+      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Разобраться</button>
+    </div>
+    <button type="button" class="mtop__cta" data-ef-demo-open data-track="cta-topbar">Получить демодоступ</button>
+  </div>
+  <div class="mbars" id="mbars" aria-hidden="true"></div>
+</header>
+
+<main id="feed">
+
+  <!-- ============ ОБЛОЖКА ============ -->
+  <section class="mreel mcover" id="cover" data-reel data-accent="mint" aria-labelledby="cover-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="mcover__kicker">Модуль платформы</p>
+          <h1 class="mcover__title" id="cover-title">Оценка <em>360°</em></h1>
+          <p class="mcover__q">Собрать оценки — половина работы. Модуль превращает их в управленческие выводы: сильные стороны, зоны развития и расхождения восприятия.</p>
+          <div class="mcover__meta">
+            <span class="mtag">Цикловая оценка по компетенциям</span>
+            <span class="mtag">Три контура: сотрудник, руководитель, HR</span>
+            <span class="mtag">AI-разбор результатов</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Оценка 360° · Анна К. · Product · цикл Q2’26 · 12 респондентов</span></div>
+            <div class="mwin__body">
+              <p class="msub">Сравнение перспектив</p>
+              <div class="mpersp">
+                <div class="mpersp__row">
+                  <span class="mpersp__ava" style="background:#4a3bff;">Р</span>
+                  <span class="mpersp__name">Руководитель</span>
+                  <span class="mpersp__val">4.8</span>
+                  <span class="mpersp__bar"><i style="width:96%;background:#4a3bff;"></i></span>
+                </div>
+                <div class="mpersp__row">
+                  <span class="mpersp__ava" style="background:#5fce87;">К</span>
+                  <span class="mpersp__name">Коллеги · 5 человек</span>
+                  <span class="mpersp__val">4.3</span>
+                  <span class="mpersp__bar"><i style="width:86%;background:#5fce87;"></i></span>
+                </div>
+                <div class="mpersp__row">
+                  <span class="mpersp__ava" style="background:#c6a4ff;">П</span>
+                  <span class="mpersp__name">Подчинённые · 4 человека</span>
+                  <span class="mpersp__val">4.1</span>
+                  <span class="mpersp__bar"><i style="width:82%;background:#c6a4ff;"></i></span>
+                </div>
+                <div class="mpersp__row">
+                  <span class="mpersp__ava" style="background:#ffb8e2;color:#141033;">С</span>
+                  <span class="mpersp__name">Самооценка</span>
+                  <span class="mpersp__val">3.7</span>
+                  <span class="mpersp__bar"><i style="width:74%;background:#ffb8e2;"></i></span>
+                </div>
+              </div>
+              <div class="mgapchip"><span>Разрыв «самооценка / окружение»</span><b>−0.6</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="mscroll">Листайте <i aria-hidden="true"></i></span>
+  </section>
+
+  <!-- ============ 1 · КАМПАНИЯ ============ -->
+  <section class="mreel mreel--flip" id="r-campaign" data-reel data-accent="peach" aria-labelledby="r1-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Итоги 360° (HR) · цикл Q2’26 · шаблон «Менеджерские компетенции»</span></div>
+            <div class="mwin__body">
+              <p class="msub">Охват кампании</p>
+              <div class="mpersp">
+                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span><span class="mpersp__name">Запросов отправлено</span><span class="mpersp__val">248</span><span class="mpersp__bar"><i style="width:100%;background:#4a3bff;"></i></span></div>
+                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span><span class="mpersp__name">Оценок завершено</span><span class="mpersp__val">191</span><span class="mpersp__bar"><i style="width:77%;background:#5fce87;"></i></span></div>
+                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span><span class="mpersp__name">Ожидает ответа</span><span class="mpersp__val">44</span><span class="mpersp__bar"><i style="width:18%;background:#ffb777;"></i></span></div>
+                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#ffb8e2;"></span><span class="mpersp__name">Отклонено и истекло</span><span class="mpersp__val">13</span><span class="mpersp__bar"><i style="width:6%;background:#ffb8e2;"></i></span></div>
+              </div>
+              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Напоминание отправлено 44 респондентам</span><b style="font-size:12px;color:#4a3bff;">сегодня, 10:40</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>01</b> Процесс</p>
+          <h2 class="mclaim" id="r1-title">Оценку легко запустить <em>и легко потерять по дороге</em></h2>
+          <p class="mlead">HR ведёт 360° как кампанию, а не как рассылку писем: видно, кому отправлено, кто завершил, кто ждёт и где запрос отклонили. Напоминания уходят автоматически, но с ограничением по частоте, чтобы процесс не превращался в спам.</p>
+          <div class="mproof">
+            <span class="mproof__num">5</span>
+            <span class="mproof__txt">статусов у каждого запроса: завершён, отправлен, ожидает ответа, истёк, отклонён</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · РАЗРЫВ ВОСПРИЯТИЯ ============ -->
+  <section class="mreel" id="r-gap" data-reel data-accent="pink" aria-labelledby="r2-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>02</b> Главный инсайт</p>
+          <h2 class="mclaim" id="r2-title">Человек видит себя иначе, <em>чем его команда</em></h2>
+          <p class="mlead">Самооценка заполняется по тому же шаблону, что и внешняя оценка, поэтому перспективы можно положить рядом. Расхождение — не повод для спора, а материал для разговора: где ожидания сотрудника и команды не совпали и почему.</p>
+          <div class="mtags">
+            <span class="mtag">Многогранник компетенций</span>
+            <span class="mtag">Детальная расшифровка по вопросам</span>
+            <span class="mtag">Динамика между циклами</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Результаты оценки 360° · многогранник компетенций</span></div>
+            <div class="mwin__body">
+              <div class="mradar">
+                <svg viewBox="-22 -6 164 132" role="img" aria-label="Многогранник компетенций: внешняя оценка выше самооценки по четырём компетенциям из шести">
+                  <polygon class="grid-line" points="60.0,14.0 99.8,37.0 99.8,83.0 60.0,106.0 20.2,83.0 20.2,37.0"></polygon>
+                  <polygon class="grid-line" points="60.0,29.3 86.6,44.7 86.6,75.3 60.0,90.7 33.4,75.3 33.4,44.7"></polygon>
+                  <polygon class="grid-line" points="60.0,44.7 73.3,52.3 73.3,67.7 60.0,75.3 46.7,67.7 46.7,52.3"></polygon>
+                  <g class="grid-line">
+                    <line x1="60" y1="60" x2="60.0" y2="14.0"></line>
+                    <line x1="60" y1="60" x2="99.8" y2="37.0"></line>
+                    <line x1="60" y1="60" x2="99.8" y2="83.0"></line>
+                    <line x1="60" y1="60" x2="60.0" y2="106.0"></line>
+                    <line x1="60" y1="60" x2="20.2" y2="83.0"></line>
+                    <line x1="60" y1="60" x2="20.2" y2="37.0"></line>
+                  </g>
+                  <polygon class="poly-others" points="60.0,18.6 91.9,41.6 97.4,81.6 60.0,100.5 28.9,77.9 31.3,43.4"></polygon>
+                  <polygon class="poly-self" points="60.0,26.9 96.7,38.8 93.5,79.3 60.0,92.2 24.1,80.7 35.3,45.7"></polygon>
+                  <text x="60" y="8" text-anchor="middle">Коммуникация</text>
+                  <text x="103" y="35" text-anchor="start">Результат</text>
+                  <text x="103" y="89" text-anchor="start">Развитие</text>
+                  <text x="60" y="114" text-anchor="middle">Клиентфокус</text>
+                  <text x="17" y="89" text-anchor="end">Решения</text>
+                  <text x="17" y="35" text-anchor="end">Лидерство</text>
+                </svg>
+                <div class="mradar__legend">
+                  <span class="mradar__key"><i style="background:#3bb96f;"></i> Оценка окружения</span>
+                  <span class="mradar__key"><i style="background:#e35aa4;"></i> Самооценка</span>
+                  <div class="mradar__score"><b>4.3</b><span>средний балл 360°</span></div>
+                  <div class="mradar__score" style="background:#fdf4f9;color:#b06699;"><b style="color:#e35aa4;">−0.6</b><span style="color:#b06699;">разрыв с самооценкой</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · ИНТЕРАКТИВ ============ -->
+  <section class="mreel mreel--flip" id="r-try" data-reel data-accent="violet" aria-labelledby="r3-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Анкета респондента · Анна К. · шаблон «Менеджерские компетенции»</span></div>
+            <div class="mwin__body">
+              <div class="mquiz" data-quiz>
+                <div class="mquiz__stage">
+                  <p class="mquiz__block">Коммуникация</p>
+                  <p class="mquiz__q">Включите JavaScript, чтобы пройти демо-анкету: три вопроса по шкале от 1 до 5 со словесными подписями.</p>
+                </div>
+                <div class="mquiz__result" aria-live="polite"></div>
+                <script type="application/json" data-quiz-json>
+                {
+                  "scale": ["Почти никогда", "Редко", "Иногда", "Часто", "Всегда — пример для других"],
+                  "commentRule": "Комментарий обязателен при низкой оценке — так настроено правило шаблона",
+                  "others": 4.3,
+                  "self": 3.7,
+                  "ai": "В реальной оценке те же ответы уходят в AI-анализ: он собирает резюме, сильные стороны, зоны развития, расхождения самооценки с внешней оценкой и рекомендации, которые становятся входом для индивидуального плана развития.",
+                  "questions": [
+                    { "block": "Коммуникация", "text": "Даёт коллегам конкретную обратную связь вместо общих оценок" },
+                    { "block": "Ответственность за результат", "text": "Доводит задачи до результата и предупреждает о рисках заранее" },
+                    { "block": "Развитие команды", "text": "Делится экспертизой и помогает коллегам расти" }
+                  ]
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>03</b> Попробуйте сами</p>
+          <h2 class="mclaim" id="r3-title">Оцените коллегу <em>за три клика</em></h2>
+          <p class="mlead">Это анкета респондента как она есть: блоки компетенций, шкала 1–5 со словесными подписями и правила комментариев из шаблона. Поставьте низкую оценку — увидите, как система потребует пояснение.</p>
+          <div class="mproof">
+            <span class="mproof__num">4</span>
+            <span class="mproof__txt">правила комментариев в шаблоне: не нужны, обязательны при низкой оценке, по каждому блоку, по блоку и каждому индикатору</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · ДУЭТ ============ -->
+  <section class="mreel" id="r-duet" data-reel data-accent="mint" aria-labelledby="r4-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>04</b> В чём разница</p>
+          <h2 class="mclaim" id="r4-title">Таблица средних <em>или готовые выводы</em></h2>
+          <p class="mlead">Базовые платформы 360° заканчиваются выгрузкой средних значений: интерпретировать их приходится руками, а разговор с сотрудником всё равно строится на ощущениях. EmplyFlow отдаёт результат уже разобранным.</p>
+          <div class="mtags">
+            <span class="mtag">AI-резюме результата</span>
+            <span class="mtag">Рекомендации к действию</span>
+            <span class="mtag">PDF для разговора один на один</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mduet">
+            <div class="mduet__col mduet__col--old">
+              <span class="mduet__tag">Обычный опрос</span>
+              <ul class="mduet__list">
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Выгрузка ответов в таблицу</span></li>
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Средние баллы по компетенциям</span></li>
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Интерпретация на усмотрение руководителя</span></li>
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Разговор по ощущениям</span></li>
+              </ul>
+            </div>
+            <span class="mduet__vs" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+            <div class="mduet__col mduet__col--new">
+              <span class="mduet__tag">Оценка 360° в EmplyFlow</span>
+              <ul class="mduet__list">
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Резюме результата и сильные стороны</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Зоны развития по конкретным компетенциям</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Расхождения самооценки и внешней оценки</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Рекомендации и план развития</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Экспорт в PDF для встречи с сотрудником</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · КАЧЕСТВО ВЫБОРКИ ============ -->
+  <section class="mreel mreel--flip" id="r-assessors" data-reel data-accent="peach" aria-labelledby="r5-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mflow">
+            <div class="mflow__step">
+              <span class="mflow__n">1</span>
+              <div><p class="mflow__t">Сотрудник выбирает оценщиков</p><p class="mflow__d">Поиск по сотрудникам и структуре компании прямо из профиля</p></div>
+            </div>
+            <div class="mflow__step is-key">
+              <span class="mflow__n">2</span>
+              <div><p class="mflow__t">Список уходит на согласование HR</p><p class="mflow__d">HR видит строку согласования по сотруднику и каждому его запросу</p></div>
+            </div>
+            <div class="mflow__step is-key">
+              <span class="mflow__n">3</span>
+              <div><p class="mflow__t">HR одобряет или запрашивает правки</p><p class="mflow__d">Выборку можно расширить, если в списке только лояльные коллеги</p></div>
+            </div>
+            <div class="mflow__step">
+              <span class="mflow__n">4</span>
+              <div><p class="mflow__t">Запросы отправляются автоматически</p><p class="mflow__d">Руководителю запрос уходит без участия сотрудника</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>05</b> Доверие к результату</p>
+          <h2 class="mclaim" id="r5-title">Оценивают не только <em>удобные коллеги</em></h2>
+          <p class="mlead">Главная претензия к 360° звучит одинаково в любой компании: сотрудник позовёт тех, кто поставит высокие баллы. Согласование списка оценщиков закрывает этот разрыв — выборку утверждает HR, а не только сам оцениваемый.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Согласования выгружаются в XLSX: видно, кого добавили и по чьему решению</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · КОНТУРЫ ============ -->
+  <section class="mreel" id="r-access" data-reel data-accent="sky" aria-labelledby="r6-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>06</b> Роли и границы</p>
+          <h2 class="mclaim" id="r6-title">У каждого свой контур <em>и свои границы</em></h2>
+          <p class="mlead">Модуль разделяет тех, кто заполняет анкеты, тех, кто видит личные результаты, и тех, кто управляет процессом. Руководитель с признаком респондента не получает доступ к аналитике команды, а результаты могут быть скрыты до завершения цикла.</p>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mvis">
+            <div class="mvis__row">
+              <span class="mvis__who"><b>Сотрудник</b><span>профиль, вкладка 360°</span></span>
+              <span class="mvis__items">
+                <span class="mvis__i">Свои результаты</span>
+                <span class="mvis__i">Самооценка</span>
+                <span class="mvis__i">История запросов</span>
+                <span class="mvis__i">AI-анализ по себе</span>
+                <span class="mvis__i is-no">Оценки команды</span>
+              </span>
+            </div>
+            <div class="mvis__row">
+              <span class="mvis__who"><b>Руководитель</b><span>аналитика команды</span></span>
+              <span class="mvis__items">
+                <span class="mvis__i">Компетенции команды</span>
+                <span class="mvis__i">Детализация по сотруднику</span>
+                <span class="mvis__i">Динамика по циклам</span>
+                <span class="mvis__i">AI-анализ команды</span>
+                <span class="mvis__i is-no">HR-администрирование</span>
+              </span>
+            </div>
+            <div class="mvis__row">
+              <span class="mvis__who"><b>HR-менеджер</b><span>итоги 360° и шаблоны</span></span>
+              <span class="mvis__items">
+                <span class="mvis__i">Шаблоны и назначения</span>
+                <span class="mvis__i">Охват кампании</span>
+                <span class="mvis__i">Сравнение подразделений</span>
+                <span class="mvis__i">Рейтинг и распределение</span>
+                <span class="mvis__i">Экспорт в XLSX</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · ЭКОСИСТЕМА ============ -->
+  <section class="mreel mreel--flip" id="r-eco" data-reel data-accent="violet" aria-labelledby="r7-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="meco">
+            <div class="meco__card meco__card--peri">
+              <b>Performance Review</b>
+              <span>360° входит в сводный балл сотрудника и отображается в HR-отчётах цикла</span>
+              <i>Оценочный компонент</i>
+            </div>
+            <div class="meco__card meco__card--candy">
+              <b>Калибровка и 9-box</b>
+              <span>Результат 360° работает как одна из осей матрицы потенциала</span>
+              <i>Объективирующий сигнал</i>
+            </div>
+            <div class="meco__card meco__card--mint">
+              <b>Развитие и ИПР</b>
+              <span>Зоны развития и AI-рекомендации становятся входом для плана развития</span>
+              <i>Следующий шаг</i>
+            </div>
+            <div class="meco__card meco__card--mac">
+              <b>Преемственность</b>
+              <span>Компетенции и сигналы из 360° уточняют готовность кандидатов на ключевые роли</span>
+              <i>Оценка рисков</i>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>07</b> Зачем это компании</p>
+          <h2 class="mclaim" id="r7-title">Оценка, которая доходит <em>до кадрового решения</em></h2>
+          <p class="mlead">360° в EmplyFlow не живёт отдельным опросом. Она связана с профилем сотрудника и остальными процессами, поэтому между «мы провели оценку» и «мы приняли решение» не образуется разрыв в полгода.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Динамика по компетенциям между циклами показывает, сработали ли обучение и ИПР</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ПЕРЕХОД ============ -->
+  <section class="mswitch">
+    <div class="shell mswitch__inner">
+      <div>
+        <h2 class="mswitch__t">Дальше — детали</h2>
+        <p class="mswitch__d">Настройки шаблонов, назначения, три уровня аналитики, работа ИИ, экспорты и честные границы текущей реализации.</p>
+      </div>
+      <button type="button" class="mswitch__btn" data-mode="details">
+        Разобраться
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ РАЗОБРАТЬСЯ ============ -->
+  <section class="mdet" id="details" aria-labelledby="details-title">
+    <div class="shell">
+      <div class="mdet__head">
+        <p class="mdet__eyebrow">Разобраться</p>
+        <h2 class="mdet__title" id="details-title">Как модуль устроен внутри</h2>
+        <p class="mdet__lead">Оценка 360° в EmplyFlow — цикловой процесс на шаблонах компетенций. Ниже то, что обычно спрашивают на демонстрации: как настраивается, кому назначается, что видит каждая роль и что можно выгрузить.</p>
+      </div>
+
+      <div class="mdet__grid" data-reveal>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Полный цикл</p>
+          <h3 class="mcard__t">От шаблона до экспорта</h3>
+          <div class="mchips">
+            <span class="mchip">1 · HR создаёт шаблон</span>
+            <span class="mchip">2 · Назначает на роли и подразделения</span>
+            <span class="mchip">3 · Сотрудник проходит самооценку</span>
+            <span class="mchip">4 · Запрашивает оценку коллег</span>
+            <span class="mchip">5 · HR согласует список оценщиков</span>
+            <span class="mchip">6 · Респонденты заполняют анкеты</span>
+            <span class="mchip">7 · Результаты, аналитика и AI</span>
+            <span class="mchip">8 · Экспорт в PDF и XLSX</span>
+          </div>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Шаблон</p>
+          <h3 class="mcard__t">Конструктор модели оценки</h3>
+          <p class="mcard__d">Шаблон 360° — не список вопросов, а настраиваемая модель компетенций, привязанная к циклам планирования.</p>
+          <ul class="mlist">
+            <li><b>Блоки вопросов</b> работают как компетенции, внутри каждого — свои индикаторы</li>
+            <li><b>Шкала оценивания</b> с текстовыми описаниями пунктов и словесной подписью</li>
+            <li><b>Правила комментариев:</b> не требуются, обязательны при низкой оценке, по каждому блоку или по блоку и каждому индикатору</li>
+            <li><b>Анонимность</b> и показ многогранника включаются на уровне шаблона</li>
+            <li><b>Статус</b> «Черновик» или «Опубликован», связь с одним или несколькими циклами</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Назначение</p>
+          <h3 class="mcard__t">Разные 360° для разных аудиторий</h3>
+          <p class="mcard__d">Один шаблон не подходит всем: у руководителей, функциональных команд и кадрового резерва разные модели компетенций.</p>
+          <ul class="mlist">
+            <li>По ролям: сотрудник, руководитель, HR-менеджер</li>
+            <li>По подразделениям — одному или нескольким сразу</li>
+            <li>По отдельным сотрудникам и по смешанной аудитории</li>
+            <li>С дополнительным фильтром по роли в команде</li>
+            <li>После даты окончания цикла отправка новых анкет блокируется, чтобы зафиксировать результат периода</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Контуры</p>
+          <h3 class="mcard__t">Что доступно каждой роли</h3>
+          <div class="mcols">
+            <div>
+              <p class="mcols__h"><span style="background:#d5fff3;">С</span> Сотрудник</p>
+              <ul class="mlist">
+                <li>Самооценка по тому же шаблону</li>
+                <li>Запрос оценки коллег из профиля</li>
+                <li>История запросов и статусы</li>
+                <li>Напоминания респондентам</li>
+                <li>Детальная расшифровка и динамика</li>
+                <li>AI-анализ и экспорт в PDF</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#cec8ff;">Р</span> Руководитель</p>
+              <ul class="mlist">
+                <li>Аналитика команды без HR-админки</li>
+                <li>Прямые подчинённые или вся команда</li>
+                <li>Средние оценки и компетенции</li>
+                <li>Детализация по сотруднику</li>
+                <li>AI-анализ команды и экспорт в PDF</li>
+                <li>Подготовка к one-to-one и калибровке</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#ffb8e2;">H</span> HR-менеджер</p>
+              <ul class="mlist">
+                <li>Конструктор и назначение шаблонов</li>
+                <li>Массовая отправка запросов</li>
+                <li>Согласование списка оценщиков</li>
+                <li>Корзина удалённых запросов и ответов</li>
+                <li>Сравнение подразделений и групп</li>
+                <li>Рейтинг, распределение, выгрузки</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Аналитика</p>
+          <h3 class="mcard__t">По сотруднику</h3>
+          <ul class="mlist">
+            <li>Средний балл и многогранник компетенций</li>
+            <li>Сравнение оценок по ролям респондентов</li>
+            <li>Расшифровка по блокам и вопросам</li>
+            <li>Комментарии респондентов</li>
+            <li>Динамика по компетенциям</li>
+          </ul>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Аналитика</p>
+          <h3 class="mcard__t">По команде</h3>
+          <ul class="mlist">
+            <li>Список участников и средние результаты</li>
+            <li>Динамика компетенций команды</li>
+            <li>Drill-down в результат сотрудника</li>
+            <li>Сильные и слабые зоны по версии ИИ</li>
+            <li>Рекомендации руководителю</li>
+          </ul>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Аналитика</p>
+          <h3 class="mcard__t">По компании</h3>
+          <ul class="mlist">
+            <li>KPI охвата: отправлено, завершено, ожидает, отклонено</li>
+            <li>Фильтры по ФИО, циклу, шаблону, статусу и подразделению</li>
+            <li>Режим сравнения подразделений</li>
+            <li>Рейтинг сотрудников и распределение оценок</li>
+            <li>Ограничение видимости для регионального HR</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Искусственный интеллект</p>
+          <h3 class="mcard__t">ИИ объясняет результат, а не заполняет анкеты</h3>
+          <p class="mcard__d">На вход модель получает компетенции, оценки по источникам и средний балл. На выходе — то, что обычно приходится собирать руками.</p>
+          <ul class="mlist">
+            <li>Краткое резюме, сильные и слабые стороны</li>
+            <li>Расхождения между самооценкой и оценкой окружения</li>
+            <li>Конкретные рекомендации и черновик плана развития</li>
+            <li>Для команды: ключевые инсайты по вопросам, риски и паттерны динамики</li>
+            <li>Сравнительный анализ групп: кто сильнее, в чём именно и что делать каждой</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Выгрузки и уведомления</p>
+          <h3 class="mcard__t">Что выходит за пределы платформы</h3>
+          <ul class="mlist">
+            <li><b>PDF:</b> личный результат, детальная оценка, командный AI-анализ</li>
+            <li><b>XLSX:</b> текущая область HR-аналитики, рейтинг 360°, согласования оценщиков</li>
+            <li><b>Уведомления:</b> приглашение пройти оценку, напоминание о дедлайне, напоминание незаполнившим</li>
+            <li>Удалённые запросы и ответы сохраняются в корзине и восстанавливаются</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Границы</p>
+          <h3 class="mcard__t">Что модуль сейчас не делает</h3>
+          <div class="mnote">
+            Текущая реализация — <b>цикловая оценка 360° на шаблонах компетенций</b>: она привязана к циклам планирования и предполагает кампанию оценки. Это не постоянная кнопка «оставить отзыв о коллеге в любой момент»: внецикловая обратная связь описана как отдельная будущая задача, а не как работающая функция. Мы говорим об этом до внедрения, чтобы ожидания совпадали с продуктом.
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ СОСЕДНИЕ МОДУЛИ ============ -->
+  <section class="mnext" aria-labelledby="next-title">
+    <div class="shell">
+      <h2 class="mnext__h" id="next-title">Куда идут результаты 360°</h2>
+      <div class="mnext__row">
+        <a class="mnext__card" href="index.html#platform" style="background:var(--t-peri);">
+          <b>Performance Review</b>
+          <span>Единый балл из целей, KPI, 360° и компетенций с весами под вашу модель оценки</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="index.html#platform" style="background:var(--t-candy);">
+          <b>Матрица потенциала 9-box</b>
+          <span>Визуализация «звёзд», ключевых игроков и зон риска с настройками карты</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="index.html#platform" style="background:var(--t-mint);">
+          <b>Карьера и развитие</b>
+          <span>ИПР с конкретными шагами и KPI этапов на основе вашего каталога материалов</span>
+          <i>Смотреть модуль →</i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="mfin">
+    <div class="shell">
+      <div class="mfin__inner">
+        <div>
+          <h2 class="mfin__t">Посмотрите 360° на своих компетенциях</h2>
+          <p class="mfin__d">Покажем конструктор шаблонов, согласование оценщиков и AI-разбор результата на демодоступе в течение пяти рабочих дней.</p>
+        </div>
+        <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="mfoot">
+  <div class="shell mfoot__inner">
+    <a href="/">EmplyFlow</a>
+    <span>оценка, целеполагание и развитие персонала</span>
+    <div class="mfoot__links">
+      <a href="index.html#platform">Модули платформы</a>
+      <a href="index.html#cases">Проекты</a>
+      <a href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
+      <a href="/privacy">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ МОДАЛКА ЗАЯВКИ ============ -->
+<div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
+  <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
+  <div class="ef-demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-demo-modal-title">
+    <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
+    <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
+    <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+    <form id="ef-lead-form-module-360" class="ef-lead-form" data-ef-lead-source="site_demo" novalidate>
+      <div class="ef-lead-form__fields">
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Input" placeholder="Название компании" autocomplete="organization" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="tel" name="Phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
+        </div>
+        <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
+          <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
+          <div class="ef-lead-form__radios">
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Telegram" required> Telegram</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="WhatsApp"> WhatsApp</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Звонок"> Звонок</label>
+          </div>
+        </fieldset>
+        <div class="ef-lead-form__field">
+          <textarea class="ef-lead-form__textarea" name="Textarea" rows="2" placeholder="Коротко расскажите о своей задаче"></textarea>
+        </div>
+        <label class="ef-lead-form__check">
+          <input type="checkbox" name="Checkbox" value="yes" required>
+          <span>Я соглашаюсь с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+        </label>
+        <div class="ef-lead-form__error" data-ef-error role="alert"></div>
+      </div>
+      <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+      <div class="ef-lead-form__success" data-ef-success>
+        <h3>Заявка отправлена</h3>
+        <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/emplyflow-module.js?v=20260802a" defer></script>
+<script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
+
+<!-- Yandex.Metrika counter 105450350 -->
+<script type="text/javascript">setTimeout(function(){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");window.mainMetrikaId='105450350';ym(window.mainMetrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});},2000);</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105450350" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+</body>
+</html>
