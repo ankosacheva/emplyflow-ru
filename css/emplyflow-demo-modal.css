@@ -1,0 +1,71 @@
+/* Оболочка модалки заявки на демодоступ.
+   Те же правила, что инлайном на главной, вынесены для страниц модулей и кейсов.
+   Открытие поддерживается и через атрибут hidden, и через класс is-open. */
+
+.ef-demo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.ef-demo-modal[hidden] { display: none; }
+.ef-demo-modal.is-open { display: grid; }
+
+body.ef-demo-open,
+body.is-locked { overflow: hidden; }
+
+.ef-demo-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 2, 48, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ef-demo-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(480px, calc(100vw - 32px));
+  max-height: min(92vh, 760px);
+  overflow: auto;
+  border-radius: 28px;
+  padding: clamp(24px, 4vw, 34px);
+  background: #fff;
+  box-shadow: 0 40px 90px -30px rgba(5, 2, 48, 0.65);
+}
+
+.ef-demo-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(5, 2, 48, 0.06);
+  color: #050230;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ef-demo-modal__close:hover { background: rgba(5, 2, 48, 0.1); }
+
+.ef-demo-modal__title {
+  margin: 0 28px 10px 0;
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #050230;
+}
+
+.ef-demo-modal__lead {
+  margin: 0 0 22px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(5, 2, 48, 0.68);
+}
+
+.ef-demo-modal .ef-lead-form { max-width: none; }
