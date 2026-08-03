@@ -85,6 +85,140 @@
   }
 
   /* ---------------------------------------------------------------
+     ПЕРЕЛИСТЫВАНИЕ ЛЕНТЫ: один жест — один экран
+
+     Нативный scroll-snap на резком свайпе или инерции тачпада
+     пролистывает сразу несколько экранов. Поэтому в пределах ленты
+     прокрутку берёт на себя скрипт: любой жест вниз или вверх
+     переносит ровно на соседний экран, а всё, что прилетело следом
+     по инерции, гасится до конца анимации. Ниже ленты (справочная
+     часть) прокрутка остаётся обычной.
+     --------------------------------------------------------------- */
+  var snapStops = [];
+  var snapBusy = false;
+  var snapUntil = 0;
+  var snapRAF = 0;
+
+  function snapMedia() {
+    if (reduced || snapStops.length < 2) return false;
+    return window.matchMedia('(min-width: 861px) and (pointer: fine)').matches;
+  }
+
+  function snapEnabled() {
+    return snapMedia() && !document.body.classList.contains('is-locked');
+  }
+
+  function snapTop(el) { return Math.round(el.getBoundingClientRect().top + window.pageYOffset); }
+
+  function snapIndex() {
+    var y = window.pageYOffset;
+    var best = 0;
+    var bestD = Infinity;
+    for (var i = 0; i < snapStops.length; i++) {
+      var d = Math.abs(snapTop(snapStops[i]) - y);
+      if (d < bestD) { bestD = d; best = i; }
+    }
+    return best;
+  }
+
+  function snapGo(index) {
+    if (index < 0 || index >= snapStops.length) return false;
+    var from = window.pageYOffset;
+    var max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    var to = Math.min(snapTop(snapStops[index]), max);
+    if (Math.abs(to - from) < 2) return false;
+
+    snapBusy = true;
+    var start = 0;
+    var dur = clamp(320 + Math.abs(to - from) * 0.32, 380, 760);
+    // scroll-behavior: smooth в CSS иначе анимирует каждый кадр поверх нашей анимации.
+    var root = document.documentElement;
+    root.style.scrollBehavior = 'auto';
+
+    if (snapRAF) window.cancelAnimationFrame(snapRAF);
+    (function step(ts) {
+      if (!start) start = ts;
+      var p = clamp((ts - start) / dur, 0, 1);
+      var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, from + (to - from) * e);
+      if (p < 1) snapRAF = window.requestAnimationFrame(step);
+      else {
+        snapRAF = 0;
+        snapBusy = false;
+        root.style.scrollBehavior = '';
+        // Инерция тачпада продолжает сыпать событиями ещё долю секунды.
+        snapUntil = (window.performance ? performance.now() : Date.now()) + 220;
+      }
+    })(window.performance ? performance.now() : Date.now());
+
+    return true;
+  }
+
+  function initSnap() {
+    snapStops = $$('[data-reel]');
+    var sw = $('.mswitch');
+    if (sw) snapStops.push(sw);
+    if (snapStops.length < 2) return;
+
+    // Там, где листает скрипт, нативный снап только мешает: у него своя
+    // точка выравнивания из-за scroll-padding-top.
+    function syncNative() {
+      document.documentElement.classList.toggle('has-snap', !snapMedia());
+    }
+    syncNative();
+    window.addEventListener('resize', syncNative);
+
+    window.addEventListener('wheel', function (e) {
+      if (!snapEnabled()) return;
+      if (e.ctrlKey) return;
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+
+      var now = window.performance ? performance.now() : Date.now();
+      var last = snapStops[snapStops.length - 1];
+      var beyond = window.pageYOffset > snapTop(last) + 4;
+      var down = e.deltaY > 0;
+
+      // Ниже ленты — обычная прокрутка. Ленту подхватываем обратно,
+      // только когда до неё остался один экран.
+      if (beyond && down) return;
+      if (beyond) {
+        if (window.pageYOffset - snapTop(last) > window.innerHeight * 0.9) return;
+        e.preventDefault();
+        if (!snapBusy && now >= snapUntil) snapGo(snapStops.length - 1);
+        else snapUntil = now + 140;
+        return;
+      }
+
+      // Инерция тачпада: пока события идут сплошным потоком, гасим их
+      // и держим замок — один жест остаётся одним экраном.
+      if (snapBusy || now < snapUntil) {
+        e.preventDefault();
+        snapUntil = now + 140;
+        return;
+      }
+      if (Math.abs(e.deltaY) < 4) return;
+
+      var i = snapIndex();
+      var next = i + (down ? 1 : -1);
+      if (next < 0) return;
+      if (next >= snapStops.length) return;
+
+      e.preventDefault();
+      snapGo(next);
+    }, { passive: false });
+
+    // Тачпадный «отпустил палец» и клавиатура ленты.
+    window.addEventListener('keydown', function (e) {
+      if (!snapEnabled()) return;
+      if (e.key !== 'PageDown' && e.key !== 'PageUp') return;
+      var tag = (e.target && e.target.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      var i = snapIndex();
+      if (snapGo(i + (e.key === 'PageDown' ? 1 : -1))) e.preventDefault();
+    });
+  }
+
+  /* ---------------------------------------------------------------
      РЕЖИМЫ «СМОТРЕТЬ» / «РАЗОБРАТЬСЯ»
      --------------------------------------------------------------- */
   var modeButtons = [];
@@ -676,20 +810,6 @@
   }
 
   /* ---------------------------------------------------------------
-     КЛАВИАТУРА: перелистывание ленты
-     --------------------------------------------------------------- */
-  function initKeys() {
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'PageDown' && e.key !== 'PageUp') return;
-      if (!reels.length || activeReel < 0) return;
-      var next = activeReel + (e.key === 'PageDown' ? 1 : -1);
-      if (next < 0 || next >= reels.length) return;
-      e.preventDefault();
-      reels[next].scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-    });
-  }
-
-  /* ---------------------------------------------------------------
      ОБЩИЙ SCROLL-ТИК
      --------------------------------------------------------------- */
   var ticking = false;
@@ -718,7 +838,7 @@
     initRoute();
     initSuccession();
     initDemoModal();
-    initKeys();
+    initSnap();
     tick();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
