@@ -274,6 +274,123 @@
   }
 
   /* ---------------------------------------------------------------
+     ВЫБОР ЦЕЛЕВОЙ ПОЗИЦИИ → РАЗРЫВ КОМПЕТЕНЦИЙ → ИПР
+     --------------------------------------------------------------- */
+  function initFit() {
+    var root = $('[data-fit]');
+    if (!root) return;
+
+    var raw = $('[data-fit-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.positions || !cfg.positions.length) return;
+
+    var stage = $('.mfit__stage-host', root);
+    if (!stage) return;
+
+    function steps(n) {
+      return '<p class="mfit__step"><b>Шаг ' + n + ' из 3</b>' +
+        '<span><i style="width:' + (n / 3) * 100 + '%"></i></span></p>';
+    }
+
+    function dots(current, required) {
+      var out = '<span class="mfit__dots" aria-label="Уровень ' + current + ' из требуемых ' + required + '">';
+      for (var i = 1; i <= 5; i++) {
+        var cls = i <= current ? ' class="is-have"' : (i <= required ? ' class="is-need"' : '');
+        out += '<i' + cls + '></i>';
+      }
+      return out + '</span>';
+    }
+
+    function renderPick() {
+      var html = steps(1) + '<div class="mfit__cards">';
+      cfg.positions.forEach(function (p, i) {
+        html +=
+          '<button type="button" class="mfit__card" data-pos="' + i + '">' +
+            '<span class="mfit__ttl">' + p.title + '</span>' +
+            '<span class="mfit__match">' + p.match + '%</span>' +
+            '<span class="mfit__meta">' +
+              '<span>' + p.dept + '</span>' +
+              '<span>' + p.type + '</span>' +
+              '<span>Сложность: <b>' + p.difficulty + '</b></span>' +
+              '<span>Срок: <b>' + p.months + ' мес.</b></span>' +
+            '</span>' +
+          '</button>';
+      });
+      html += '</div><p class="mfit__note">Позиции приходят из базы должностей компании. В продукте доступен ещё и поиск по всем должностям, карта треков и AI-чат о карьере.</p>';
+      stage.innerHTML = html;
+
+      $$('[data-pos]', stage).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var p = cfg.positions[parseInt(btn.getAttribute('data-pos'), 10)];
+          track('fit_position', { title: p.title });
+          renderCompare(p);
+        });
+      });
+    }
+
+    function renderCompare(p) {
+      var rows = '';
+      p.competencies.forEach(function (c) {
+        var isGap = c.current < c.required;
+        var state = isGap ? 'нужно ' + c.required + ' из 5'
+          : (c.current > c.required ? 'выше на ' + (c.current - c.required) : 'закрыто');
+        rows +=
+          '<div class="mfit__row' + (isGap ? ' mfit__row--gap' : '') + '">' +
+            '<span>' + c.name + '</span>' +
+            dots(c.current, c.required) +
+            '<span class="mfit__state">' + state + '</span>' +
+          '</div>';
+      });
+
+      stage.innerHTML =
+        steps(2) +
+        '<div class="mfit__sum">' +
+          '<span class="mfit__ready">' + p.match + '%</span>' +
+          '<div><b>' + p.title + '</b>' + p.type.toLowerCase() + ', примерный срок перехода ' + p.months + ' мес.</div>' +
+        '</div>' +
+        '<div class="mfit__rows">' + rows + '</div>' +
+        '<button type="button" class="mfit__cta" data-plan>Создать план развития с ИИ</button>' +
+        '<button type="button" class="mfit__back" data-restart>Выбрать другую позицию</button>';
+
+      $('[data-plan]', stage).addEventListener('click', function () {
+        track('fit_plan', { title: p.title });
+        renderPlan(p);
+      });
+      $('[data-restart]', stage).addEventListener('click', renderPick);
+    }
+
+    function renderPlan(p) {
+      var stages = '';
+      p.plan.forEach(function (s, i) {
+        var chips = '';
+        (s.competencies || []).forEach(function (c) { chips += '<span>' + c + '</span>'; });
+        stages +=
+          '<div class="mfit__stage">' +
+            '<span class="mfit__n">' + (i + 1) + '</span>' +
+            '<div>' +
+              '<p class="mfit__sname">' + s.title + '<span>' + s.months + ' мес.</span></p>' +
+              '<p class="mfit__srow"><b>KPI этапа:</b> ' + s.kpi + '</p>' +
+              '<p class="mfit__srow"><b>Материалы:</b> ' + s.material + '</p>' +
+              '<span class="mfit__chips">' + chips + '</span>' +
+            '</div>' +
+          '</div>';
+      });
+
+      stage.innerHTML =
+        steps(3) +
+        '<div class="mfit__plan">' + stages + '</div>' +
+        '<p class="mfit__note"><b>Статус: черновик.</b> Дальше сотрудник отправляет план на согласование руководителю: тот утверждает, возвращает на правки или отклоняет. До согласования план остаётся черновиком, а не личной заметкой.</p>' +
+        '<button type="button" class="mfit__back" data-restart>Собрать план под другую позицию</button>';
+
+      $('[data-restart]', stage).addEventListener('click', renderPick);
+    }
+
+    renderPick();
+    root.addEventListener('click', function () { trackOnce('fit_start'); }, { once: true });
+  }
+
+  /* ---------------------------------------------------------------
      МОДАЛКА ЗАЯВКИ
      --------------------------------------------------------------- */
   function initDemoModal() {
@@ -359,6 +476,7 @@
     initMode();
     collectReveals();
     initQuiz();
+    initFit();
     initDemoModal();
     initKeys();
     tick();

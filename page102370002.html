@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050230">
+<title>Карьера и развитие — модуль платформы EmplyFlow</title>
+<meta name="description" content="Модуль «Карьера и развитие» в EmplyFlow: база должностей с грейдами и матрицами компетенций, карта карьерных треков, выбор целевой позиции, сравнение компетенций, ИПР на 6–12 месяцев от ИИ, согласование планов и контроль развития команды в треках сотрудников.">
+<link rel="canonical" href="https://emplyflow.ru/modul-karyera-i-razvitie">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emplyflow.ru/modul-karyera-i-razvitie">
+<meta property="og:title" content="Карьера и развитие — модуль платформы EmplyFlow">
+<meta property="og:description" content="Сотрудник выбирает целевую должность из базы компании, система считает разрыв компетенций, ИИ собирает ИПР с этапами и KPI, руководитель согласует и видит динамику команды.">
+<meta property="og:image" content="https://emplyflow.ru/media/case-career-tracks.webp">
+<meta property="og:site_name" content="EmplyFlow">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Карьера и развитие — модуль платформы EmplyFlow">
+<meta name="twitter:description" content="База должностей, карта карьерных треков, разрыв компетенций и ИПР на 6–12 месяцев с этапами, KPI и материалами.">
+<meta name="twitter:image" content="https://emplyflow.ru/media/case-career-tracks.webp">
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6239-3062-4538-a639-383666626538__32x32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6164-3236-4734-b139-376466343939__32x32.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="images/tild3766-3562-4732-a164-356632343966__180x180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803a">
+<link rel="stylesheet" href="css/emplyflow-demo-form.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Карьера и развитие — модуль платформы EmplyFlow",
+  "description": "База должностей с грейдами, карта карьерных треков, выбор целевой позиции и сравнение компетенций, ИПР от ИИ на 6–12 месяцев, согласование планов и контроль развития команды.",
+  "inLanguage": "ru-RU",
+  "url": "https://emplyflow.ru/modul-karyera-i-razvitie",
+  "isPartOf": { "@type": "WebSite", "name": "EmplyFlow", "url": "https://emplyflow.ru" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "EmplyFlow", "item": "https://emplyflow.ru/" },
+    { "@type": "ListItem", "position": 2, "name": "Модули платформы", "item": "https://emplyflow.ru/#platform" },
+    { "@type": "ListItem", "position": 3, "name": "Карьера и развитие", "item": "https://emplyflow.ru/modul-karyera-i-razvitie" }
+  ]
+}
+</script>
+</head>
+<body data-module="career-development" data-accent="peach">
+
+<a class="skip-link" href="#details">Перейти к описанию модуля</a>
+
+<header class="mtop" id="mtop">
+  <div class="shell mtop__inner">
+    <a class="mtop__back" href="index.html#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
+    <span class="mtop__name">Карьера и развитие</span>
+    <span class="mtop__spacer"></span>
+    <div class="mmode" role="group" aria-label="Режим просмотра страницы">
+      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Смотреть</button>
+      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Разобраться</button>
+    </div>
+    <button type="button" class="mtop__cta" data-ef-demo-open data-track="cta-topbar">Получить демодоступ</button>
+  </div>
+  <div class="mbars" id="mbars" aria-hidden="true"></div>
+</header>
+
+<main id="feed">
+
+  <!-- ============ ОБЛОЖКА ============ -->
+  <section class="mreel mcover" id="cover" data-reel data-accent="peach" aria-labelledby="cover-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="mcover__kicker">Модуль платформы</p>
+          <h1 class="mcover__title" id="cover-title">Карьера <em>и развитие</em></h1>
+          <p class="mcover__q">«Куда я могу расти?» — вопрос, на который у компании обычно нет ответа в системе. Модуль отвечает конкретной должностью, разрывом компетенций и планом на 6–12 месяцев.</p>
+          <div class="mcover__meta">
+            <span class="mtag">Целевая позиция из базы должностей</span>
+            <span class="mtag">ИПР с этапами и KPI</span>
+            <span class="mtag">Согласование и контроль динамики</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Мой план развития · Анна К. · Product · цикл 2026</span></div>
+            <div class="mwin__body">
+              <p class="msub">Карьерная траектория</p>
+              <div class="mpersp">
+                <div class="mpersp__row">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#8681ab;"></span>
+                  <span class="mpersp__name">Текущая: Product Manager · Middle</span>
+                  <span class="mpersp__val">—</span>
+                  <span class="mpersp__bar"><i style="width:100%;background:#e4e2ef;"></i></span>
+                </div>
+                <div class="mpersp__row">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span>
+                  <span class="mpersp__name">Целевая: Senior Product Manager</span>
+                  <span class="mpersp__val">78%</span>
+                  <span class="mpersp__bar"><i style="width:78%;background:#4a3bff;"></i></span>
+                </div>
+                <div class="mpersp__row">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span>
+                  <span class="mpersp__name">ИПР: 3 этапа, 9 месяцев</span>
+                  <span class="mpersp__val">42%</span>
+                  <span class="mpersp__bar"><i style="width:42%;background:#5fce87;"></i></span>
+                </div>
+                <div class="mpersp__row">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span>
+                  <span class="mpersp__name">Закрыто компетенций</span>
+                  <span class="mpersp__val">4 / 6</span>
+                  <span class="mpersp__bar"><i style="width:67%;background:#ffb777;"></i></span>
+                </div>
+              </div>
+              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Статус плана развития</span><b style="font-size:12px;color:#4a3bff;">утверждён руководителем</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="mscroll">Листайте <i aria-hidden="true"></i></span>
+  </section>
+
+  <!-- ============ 1 · БАЗА ДОЛЖНОСТЕЙ ============ -->
+  <section class="mreel mreel--flip" id="r-positions" data-reel data-accent="sky" aria-labelledby="r1-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Должности · Product Manager · матрица грейдов</span></div>
+            <div class="mwin__body">
+              <p class="msub">Требуемый уровень по грейдам</p>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(4,30px);gap:7px 8px;align-items:center;font-size:12.5px;font-weight:700;color:#403c68;">
+                <span></span>
+                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Jun</span>
+                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Mid</span>
+                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Sen</span>
+                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Lead</span>
+
+                <span>Управление продуктом</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#e2ddff;color:#4a3bff;">3</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#2c1fd6;color:#fff;">5</span>
+
+                <span>Работа с данными</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#e2ddff;color:#4a3bff;">3</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
+
+                <span>Стратегическое мышление</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f8f7fb;color:#8681ab;">1</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#2c1fd6;color:#fff;">5</span>
+
+                <span>Управление командой</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f8f7fb;color:#8681ab;">1</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#e2ddff;color:#4a3bff;">3</span>
+                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#2c1fd6;color:#fff;">5</span>
+              </div>
+              <div class="mgapchip"><span>Помощь ИИ: собрать матрицу для всех грейдов</span><b style="font-size:12px;">5–7 компетенций</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>01</b> Фундамент</p>
+          <h2 class="mclaim" id="r1-title">Рост начинается не с мечты, <em>а с реальной должности</em></h2>
+          <p class="mlead">HR ведёт базу должностей: грейды, компетенции с требуемыми уровнями, зоны ответственности и карьерные переходы. Сотрудник потом выбирает цель не текстом в свободном поле, а роль, которая действительно есть в компании.</p>
+          <div class="mproof">
+            <span class="mproof__num">1</span>
+            <span class="mproof__txt">карточка должности используется сразу в шести местах: выбор цели, сравнение компетенций, ИПР, карта треков, преемственность и карьерные переходы</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · КАРТА ТРЕКОВ ============ -->
+  <section class="mreel" id="r-map" data-reel data-accent="violet" aria-labelledby="r2-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>02</b> Карта возможностей</p>
+          <h2 class="mclaim" id="r2-title">Видно не только вверх, <em>но и в сторону</em></h2>
+          <p class="mlead">Карта карьерных треков не рисуется руками как отдельная схема: она строится из связей, которые HR задал в карточках должностей. Сотрудник видит роли за пределами своего отдела, включая горизонтальные переходы, и по клику на узел сравнивает себя с позицией.</p>
+          <div class="mtags">
+            <span class="mtag">Вертикальные и горизонтальные переходы</span>
+            <span class="mtag">Компетенции и обязанности роли</span>
+            <span class="mtag">Вся карта компании</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Карта карьерных треков · Product и Analytics</span></div>
+            <div class="mwin__body">
+              <svg viewBox="0 0 470 210" role="img" aria-label="Карта карьерных треков: от Product Manager вертикально к Senior Product Manager и Product Lead, горизонтально — к аналитику данных и руководителю аналитики">
+                <g font-family="Manrope, sans-serif" font-size="10.5" font-weight="700" fill="#8681ab" text-anchor="middle">
+                  <text x="74" y="12">Текущая роль</text>
+                  <text x="235" y="12">Следующий шаг</text>
+                  <text x="396" y="12">Дальше</text>
+                </g>
+                <g fill="none" stroke="#c9c3ff" stroke-width="1.6">
+                  <path d="M140 118 C 158 118 152 62 170 62"></path>
+                  <path d="M300 62 H 332"></path>
+                  <path d="M300 172 H 332"></path>
+                </g>
+                <path d="M140 122 C 158 122 152 172 170 172" fill="none" stroke="#e35aa4" stroke-width="1.6" stroke-dasharray="4 3"></path>
+                <g>
+                  <rect x="10" y="98" width="130" height="42" rx="12" fill="#4a3bff"></rect>
+                  <text x="75" y="118" font-family="Manrope, sans-serif" font-size="11.5" font-weight="800" fill="#fff" text-anchor="middle">Product Manager</text>
+                  <text x="75" y="131" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,.72)" text-anchor="middle">Middle · вы здесь</text>
+                </g>
+                <g>
+                  <rect x="170" y="41" width="130" height="42" rx="12" fill="#f1eefe" stroke="#d9d5ff"></rect>
+                  <text x="235" y="61" font-family="Manrope, sans-serif" font-size="11.5" font-weight="800" fill="#141033" text-anchor="middle">Senior PM</text>
+                  <text x="235" y="74" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="#8681ab" text-anchor="middle">вертикальный · 78%</text>
+                </g>
+                <g>
+                  <rect x="170" y="151" width="130" height="42" rx="12" fill="#fdf4f9" stroke="#ffd3ec"></rect>
+                  <text x="235" y="171" font-family="Manrope, sans-serif" font-size="11.5" font-weight="800" fill="#141033" text-anchor="middle">Аналитик данных</text>
+                  <text x="235" y="184" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="#b06699" text-anchor="middle">горизонтальный · 66%</text>
+                </g>
+                <g>
+                  <rect x="332" y="41" width="130" height="42" rx="12" fill="#fff" stroke="#e8e6f4"></rect>
+                  <text x="397" y="61" font-family="Manrope, sans-serif" font-size="11.5" font-weight="800" fill="#141033" text-anchor="middle">Product Lead</text>
+                  <text x="397" y="74" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="#8681ab" text-anchor="middle">кадровый резерв</text>
+                </g>
+                <g>
+                  <rect x="332" y="151" width="130" height="42" rx="12" fill="#fff" stroke="#e8e6f4"></rect>
+                  <text x="397" y="171" font-family="Manrope, sans-serif" font-size="11.5" font-weight="800" fill="#141033" text-anchor="middle">Head of Analytics</text>
+                  <text x="397" y="184" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="#8681ab" text-anchor="middle">другая функция</text>
+                </g>
+              </svg>
+              <div class="mgapchip" style="background:#f8f7fb;border-color:#e8e6f4;color:#403c68;"><span>Сплошная линия — вертикальный переход, пунктир — горизонтальный</span><b style="font-size:12px;color:#403c68;">из связей в базе</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · ИНТЕРАКТИВ ============ -->
+  <section class="mreel mreel--flip" id="r-try" data-reel data-accent="mint" aria-labelledby="r3-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Мой план развития · выбор целевой позиции</span></div>
+            <div class="mwin__body">
+              <div class="mfit" data-fit>
+                <div class="mfit__stage-host">
+                  <p class="msub">Включите JavaScript, чтобы пройти демо: выбрать целевую позицию, увидеть разрыв компетенций и собрать план развития.</p>
+                </div>
+                <script type="application/json" data-fit-json>
+                {
+                  "positions": [
+                    {
+                      "title": "Senior Product Manager",
+                      "dept": "Product",
+                      "match": 78,
+                      "type": "Вертикальный переход",
+                      "difficulty": "средняя",
+                      "months": 9,
+                      "competencies": [
+                        { "name": "Управление продуктом", "current": 4, "required": 4 },
+                        { "name": "Работа с данными", "current": 4, "required": 4 },
+                        { "name": "Коммуникация со стейкхолдерами", "current": 4, "required": 4 },
+                        { "name": "Юнит-экономика", "current": 3, "required": 3 },
+                        { "name": "Стратегическое мышление", "current": 2, "required": 4 },
+                        { "name": "Управление командой", "current": 1, "required": 3 }
+                      ],
+                      "plan": [
+                        { "title": "Освоить продуктовую стратегию", "months": 3, "kpi": "защищена стратегия направления на продуктовом комитете", "material": "курс «Продуктовая стратегия» из библиотеки компании", "competencies": ["Стратегическое мышление"] },
+                        { "title": "Применить в рабочих задачах", "months": 3, "kpi": "два квартальных плана собраны самостоятельно, отклонение по срокам до 10%", "material": "работа с наставником — Head of Product", "competencies": ["Стратегическое мышление", "Управление продуктом"] },
+                        { "title": "Взять на себя команду", "months": 3, "kpi": "проведены 6 встреч один на один и один цикл постановки целей", "material": "тренинг «Первая линия управления»", "competencies": ["Управление командой"] }
+                      ]
+                    },
+                    {
+                      "title": "Product Lead",
+                      "dept": "Product · кадровый резерв",
+                      "match": 54,
+                      "type": "Вертикальный переход",
+                      "difficulty": "высокая",
+                      "months": 18,
+                      "competencies": [
+                        { "name": "Управление продуктом", "current": 4, "required": 4 },
+                        { "name": "Работа с данными", "current": 4, "required": 4 },
+                        { "name": "Стратегическое мышление", "current": 2, "required": 5 },
+                        { "name": "Управление командой", "current": 1, "required": 5 },
+                        { "name": "Управление бюджетом", "current": 1, "required": 4 },
+                        { "name": "Развитие сотрудников", "current": 2, "required": 4 }
+                      ],
+                      "plan": [
+                        { "title": "Управленческая база", "months": 6, "kpi": "сформирована команда из 3 человек, закрыты все встречи один на один", "material": "программа «Руководитель продуктовой команды»", "competencies": ["Управление командой", "Развитие сотрудников"] },
+                        { "title": "Стратегия и деньги", "months": 6, "kpi": "защищён годовой бюджет направления, отклонение факта до 15%", "material": "курс «Юнит-экономика и бюджетирование»", "competencies": ["Управление бюджетом", "Стратегическое мышление"] },
+                        { "title": "Подготовка к роли", "months": 6, "kpi": "два квартала направление работает без эскалаций на руководителя", "material": "работа с наставником — CPO", "competencies": ["Стратегическое мышление", "Развитие сотрудников"] }
+                      ]
+                    },
+                    {
+                      "title": "Аналитик данных",
+                      "dept": "Analytics",
+                      "match": 66,
+                      "type": "Горизонтальный переход",
+                      "difficulty": "средняя",
+                      "months": 12,
+                      "competencies": [
+                        { "name": "Работа с данными", "current": 4, "required": 4 },
+                        { "name": "Юнит-экономика", "current": 3, "required": 3 },
+                        { "name": "SQL и модели данных", "current": 2, "required": 4 },
+                        { "name": "Статистика и эксперименты", "current": 1, "required": 4 },
+                        { "name": "Визуализация и отчётность", "current": 2, "required": 3 },
+                        { "name": "Коммуникация со стейкхолдерами", "current": 4, "required": 3 }
+                      ],
+                      "plan": [
+                        { "title": "Инструменты аналитика", "months": 4, "kpi": "самостоятельно собраны 5 витрин данных без правок ревьюера", "material": "курс «SQL для продуктовой аналитики»", "competencies": ["SQL и модели данных"] },
+                        { "title": "Эксперименты", "months": 4, "kpi": "спроектированы и посчитаны 3 A/B-теста с корректной оценкой значимости", "material": "внутренний тренинг «Статистика в продукте»", "competencies": ["Статистика и эксперименты"] },
+                        { "title": "Отчётность для бизнеса", "months": 4, "kpi": "дашборд направления принят заказчиком и используется на еженедельных встречах", "material": "материалы каталога по визуализации", "competencies": ["Визуализация и отчётность"] }
+                      ]
+                    }
+                  ]
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>03</b> Попробуйте сами</p>
+          <h2 class="mclaim" id="r3-title">Выберите цель — <em>получите план</em></h2>
+          <p class="mlead">Это центральный поток модуля в три шага: выбрать целевую позицию, увидеть разрыв компетенций по каждому требованию и собрать под него план развития. Обратите внимание на горизонтальный переход: там часть компетенций уже выше требуемого уровня.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Без выбранной целевой позиции ИПР не создаётся: план строится под конкретную роль, а не «прокачать soft skills»</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · ДУЭТ ============ -->
+  <section class="mreel" id="r-duet" data-reel data-accent="pink" aria-labelledby="r4-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>04</b> В чём разница</p>
+          <h2 class="mclaim" id="r4-title">Типовой ИПР <em>или план под роль</em></h2>
+          <p class="mlead">Типовые планы развития не работают, потому что не привязаны ни к компетенциям человека, ни к должности, к которой он идёт. ИИ собирает структуру от разрыва компетенций: этапы, целевые компетенции, KPI этапа и KPI активностей, материалы.</p>
+          <div class="mtags">
+            <span class="mtag">3–4 этапа на 6–12 месяцев</span>
+            <span class="mtag">Подтверждения текстом и файлами</span>
+            <span class="mtag">Материалы из вашей библиотеки</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mduet">
+            <div class="mduet__col mduet__col--old">
+              <span class="mduet__tag">Типовой ИПР</span>
+              <ul class="mduet__list">
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Один шаблон на всех сотрудников</span></li>
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Формулировки вроде «развивать лидерство»</span></li>
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Курсы без связи с карьерной целью</span></li>
+                <li class="mduet__item"><span class="mduet__mark">·</span><span>Личная заметка, которую никто не проверяет</span></li>
+              </ul>
+            </div>
+            <span class="mduet__vs" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+            <div class="mduet__col mduet__col--new">
+              <span class="mduet__tag">ИПР в EmplyFlow</span>
+              <ul class="mduet__list">
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>План под конкретную целевую должность</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Этапы с длительностью и целевыми компетенциями</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>KPI этапа и KPI каждой активности</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Материалы из библиотеки, каталога и от ИИ</span></li>
+                <li class="mduet__item"><span class="mduet__mark">✓</span><span>Согласование руководителем и контроль прогресса</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · СОГЛАСОВАНИЕ ============ -->
+  <section class="mreel mreel--flip" id="r-approval" data-reel data-accent="peach" aria-labelledby="r5-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mflow">
+            <div class="mflow__step">
+              <span class="mflow__n">1</span>
+              <div><p class="mflow__t">Сотрудник собирает план</p><p class="mflow__d">Черновик: ИИ, вручную или пересборка под изменившуюся цель</p></div>
+            </div>
+            <div class="mflow__step is-key">
+              <span class="mflow__n">2</span>
+              <div><p class="mflow__t">Отправляет на согласование</p><p class="mflow__d">Согласующим становится прямой руководитель, статус — «На согласовании»</p></div>
+            </div>
+            <div class="mflow__step is-key">
+              <span class="mflow__n">3</span>
+              <div><p class="mflow__t">Руководитель или HR решает</p><p class="mflow__d">Утвердить, отправить на доработку или отклонить</p></div>
+            </div>
+            <div class="mflow__step">
+              <span class="mflow__n">4</span>
+              <div><p class="mflow__t">Сотрудник выполняет этапы</p><p class="mflow__d">Отмечает KPI и прикладывает подтверждения — текст и файлы</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>05</b> Управляемость</p>
+          <h2 class="mclaim" id="r5-title">План развития — не заметка <em>в блокноте</em></h2>
+          <p class="mlead">ИПР проходит согласование, поэтому руководитель проверяет реалистичность цели, измеримость KPI и связь развития с задачами команды. У плана пять статусов, и по ним видно, где процесс встал.</p>
+          <div class="mtags">
+            <span class="mtag">Черновик</span>
+            <span class="mtag">На согласовании</span>
+            <span class="mtag">Утверждён</span>
+            <span class="mtag">Требуются правки</span>
+            <span class="mtag">Отклонён</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · ТРЕКИ СОТРУДНИКОВ ============ -->
+  <section class="mreel" id="r-tracks" data-reel data-accent="sky" aria-labelledby="r6-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>06</b> Взгляд руководителя</p>
+          <h2 class="mclaim" id="r6-title">Развитие команды <em>как управляемый процесс</em></h2>
+          <p class="mlead">В треках сотрудников видно, у кого выбран карьерный трек, у кого нет ИПР, какие планы застряли на согласовании и где не закрываются KPI. Здесь же можно назначить оценку 360° или AI-ассистента, чтобы обновить данные по компетенциям перед сборкой плана.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Командная статистика собирается по оргструктуре: можно проваливаться до отдельной команды и выгружать срез в Excel</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Треки сотрудников · Product · 14 человек</span></div>
+            <div class="mwin__body">
+              <p class="msub">Командная статистика по ИПР</p>
+              <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px;">
+                <div style="padding:10px;border-radius:11px;background:#f1eefe;">
+                  <div style="font-size:19px;font-weight:800;color:#4a3bff;letter-spacing:-.02em;">64%</div>
+                  <div style="font-size:10.5px;font-weight:700;color:#8681ab;line-height:1.25;">согласовано</div>
+                </div>
+                <div style="padding:10px;border-radius:11px;background:#fdf4f9;">
+                  <div style="font-size:19px;font-weight:800;color:#e35aa4;letter-spacing:-.02em;">3</div>
+                  <div style="font-size:10.5px;font-weight:700;color:#b06699;line-height:1.25;">на правках</div>
+                </div>
+                <div style="padding:10px;border-radius:11px;background:#fff5ea;">
+                  <div style="font-size:19px;font-weight:800;color:#c47a2c;letter-spacing:-.02em;">2</div>
+                  <div style="font-size:10.5px;font-weight:700;color:#c47a2c;line-height:1.25;">без ИПР</div>
+                </div>
+                <div style="padding:10px;border-radius:11px;background:#eafaf0;">
+                  <div style="font-size:19px;font-weight:800;color:#2f9d5b;letter-spacing:-.02em;">46%</div>
+                  <div style="font-size:10.5px;font-weight:700;color:#2f9d5b;line-height:1.25;">средний прогресс</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:700;color:#403c68;">
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 40px 116px;gap:8px;font-size:10.5px;color:#8681ab;">
+                  <span>Сотрудник и целевая позиция</span><span style="text-align:right;">Соотв.</span><span style="text-align:right;">Статус ИПР</span>
+                </div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 40px 116px;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:#f8f7fb;">
+                  <span>Анна К. → Senior PM</span>
+                  <span style="text-align:right;font-variant-numeric:tabular-nums;">78%</span>
+                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#eafaf0;color:#2f9d5b;font-size:10.5px;white-space:nowrap;">Утверждён</span></span>
+                </div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 40px 116px;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:#f8f7fb;">
+                  <span>Игорь Д. → Product Lead</span>
+                  <span style="text-align:right;font-variant-numeric:tabular-nums;">54%</span>
+                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:10.5px;white-space:nowrap;">На согласовании</span></span>
+                </div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 40px 116px;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:#f8f7fb;">
+                  <span>Мария С. → Аналитик данных</span>
+                  <span style="text-align:right;font-variant-numeric:tabular-nums;">66%</span>
+                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#fdf4f9;color:#e35aa4;font-size:10.5px;white-space:nowrap;">Требуются правки</span></span>
+                </div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 40px 116px;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:#fff5ea;">
+                  <span>Павел Н. → цель не выбрана</span>
+                  <span style="text-align:right;color:#8681ab;">—</span>
+                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#ffe8cd;color:#c47a2c;font-size:10.5px;white-space:nowrap;">Без ИПР</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · ЭКОСИСТЕМА ============ -->
+  <section class="mreel mreel--flip" id="r-eco" data-reel data-accent="violet" aria-labelledby="r7-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="meco">
+            <div class="meco__card meco__card--mint">
+              <b>Оценка 360°</b>
+              <span>Результаты оценки становятся источником уровня компетенций для сравнения с должностью</span>
+              <i>Вход данных</i>
+            </div>
+            <div class="meco__card meco__card--peri">
+              <b>Обучение и библиотека</b>
+              <span>Этапы ИПР наполняются курсами и материалами из вашего каталога</span>
+              <i>Наполнение плана</i>
+            </div>
+            <div class="meco__card meco__card--candy">
+              <b>Performance Review</b>
+              <span>Карьерная цель и ИПР дают контекст для review-разговора</span>
+              <i>Контекст оценки</i>
+            </div>
+            <div class="meco__card meco__card--mac">
+              <b>Преемственность</b>
+              <span>Должности из базы связываются с кадровым резервом, треки уточняют готовность кандидатов</span>
+              <i>Кадровый резерв</i>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>07</b> Зачем это компании</p>
+          <h2 class="mclaim" id="r7-title">Карьерная архитектура, <em>а не набор разговоров</em></h2>
+          <p class="mlead">Модуль опирается на общую модель компетенций и должностей, поэтому развитие связано с оценкой, обучением, review и кадровым резервом. Одна база должностей работает сразу на карту треков, ИПР и преемственность.</p>
+          <div class="mproof">
+            <span class="mproof__num">6</span>
+            <span class="mproof__txt">точек, где помогает ИИ: рекомендации позиций, чат о карьере, расчёт срока перехода, сборка ИПР, подбор материалов и генерация карточек должностей</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ПЕРЕХОД ============ -->
+  <section class="mswitch">
+    <div class="shell mswitch__inner">
+      <div>
+        <h2 class="mswitch__t">Дальше — детали</h2>
+        <p class="mswitch__d">Разделы модуля, карточка должности и матрицы грейдов, три контура доступа, как собирается ИПР, работа ИИ, аналитика и честные границы текущей реализации.</p>
+      </div>
+      <button type="button" class="mswitch__btn" data-mode="details">
+        Разобраться
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ РАЗОБРАТЬСЯ ============ -->
+  <section class="mdet" id="details" aria-labelledby="details-title">
+    <div class="shell">
+      <div class="mdet__head">
+        <p class="mdet__eyebrow">Разобраться</p>
+        <h2 class="mdet__title" id="details-title">Как модуль устроен внутри</h2>
+        <p class="mdet__lead">«Карьера и развитие» связывает карьерные ожидания сотрудника, требования должностей, компетенции, обучение и управленческий контроль в один процесс. Ниже то, что обычно спрашивают на демонстрации.</p>
+      </div>
+
+      <div class="mdet__grid" data-reveal>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Полная цепочка</p>
+          <h3 class="mcard__t">От базы должностей до контроля прогресса</h3>
+          <div class="mchips">
+            <span class="mchip">1 · HR ведёт базу должностей и связи</span>
+            <span class="mchip">2 · Сотрудник выбирает целевую позицию</span>
+            <span class="mchip">3 · Система сравнивает компетенции</span>
+            <span class="mchip">4 · ИИ собирает ИПР на 6–12 месяцев</span>
+            <span class="mchip">5 · План уходит на согласование</span>
+            <span class="mchip">6 · Руководитель утверждает или возвращает</span>
+            <span class="mchip">7 · Сотрудник закрывает этапы и KPI</span>
+            <span class="mchip">8 · Контроль в треках сотрудников</span>
+          </div>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Разделы</p>
+          <h3 class="mcard__t">Из чего состоит модуль</h3>
+          <ul class="mlist">
+            <li><b>Мой план развития</b> — траектория, целевая позиция, сравнение компетенций и ИПР</li>
+            <li><b>Согласование ИПР</b> — отдельные очереди утверждения для руководителя и для HR</li>
+            <li><b>База должностей</b> — справочник должностей, грейдов, компетенций и карьерных связей</li>
+            <li><b>Карта карьерных треков</b> — визуальный граф должностей и переходов компании</li>
+            <li><b>Треки сотрудников</b> — контроль прогресса, статусов ИПР, KPI и соответствия целям</li>
+            <li><b>Каталог компетенций и обучение</b> — источник материалов и единая модель компетенций</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Карточка должности</p>
+          <h3 class="mcard__t">Фундамент, без которого не работает остальное</h3>
+          <p class="mcard__d">Качество рекомендаций и сравнения напрямую зависит от того, насколько наполнена база должностей.</p>
+          <ul class="mlist">
+            <li>Название, подразделение, наличие грейдов и сами грейды</li>
+            <li>Компетенции по каждому грейду с требуемым уровнем от 1 до 5</li>
+            <li>Зоны ответственности и организационный слой уровня</li>
+            <li>Карьерные переходы: горизонтальные, вертикальные, входящие, исходящие</li>
+            <li>Признак кадрового резерва для связки с преемственностью</li>
+            <li>Дублирование карточки и отдельного грейда, импорт должностей из файлов</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Контуры</p>
+          <h3 class="mcard__t">Что доступно каждой роли</h3>
+          <div class="mcols">
+            <div>
+              <p class="mcols__h"><span style="background:#d5fff3;">С</span> Сотрудник</p>
+              <ul class="mlist">
+                <li>Рекомендованные позиции с процентом совпадения</li>
+                <li>Поиск по всем должностям базы</li>
+                <li>Сравнение компетенций и процент готовности</li>
+                <li>AI-чат «обсудить карьеру»</li>
+                <li>Создание, правка и пересборка ИПР</li>
+                <li>Отметка KPI и подтверждения файлами</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#cec8ff;">Р</span> Руководитель</p>
+              <ul class="mlist">
+                <li>Треки сотрудников своей зоны ответственности</li>
+                <li>Фильтры по подразделению, статусу, проценту и компетенциям</li>
+                <li>Просмотр и правка планов прямых подчинённых</li>
+                <li>Очередь согласования с четырьмя вкладками</li>
+                <li>Назначение оценки 360° или AI-ассистента</li>
+                <li>Выгрузка среза в Excel</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#ffb8e2;">H</span> HR-менеджер</p>
+              <ul class="mlist">
+                <li>База должностей, грейды и матрицы компетенций</li>
+                <li>Помощь ИИ при заполнении карточек</li>
+                <li>Карьерные связи, из которых строится карта</li>
+                <li>Согласование ИПР по всей компании</li>
+                <li>Фильтры по отделу, должности, руководителю и согласующему</li>
+                <li>Треки всех сотрудников в доступном scope</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Как создаётся ИПР</p>
+          <h3 class="mcard__t">Три способа</h3>
+          <ul class="mlist">
+            <li><b>С ИИ</b> — план собирается по gap-компетенциям под целевую роль</li>
+            <li><b>Вручную</b> — создаётся пустая структура для сотрудника или руководителя</li>
+            <li><b>Пересобрать</b> — если поменялась цель или обновились компетенции</li>
+          </ul>
+          <div class="mnote">Пока план в черновике, возвращён на правки или отклонён, сотрудник может его редактировать.</div>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Структура плана</p>
+          <h3 class="mcard__t">Что внутри этапа</h3>
+          <ul class="mlist">
+            <li>Название и описание цели этапа</li>
+            <li>Длительность в месяцах, обычно 3–4 этапа на 6–12 месяцев</li>
+            <li>Целевые компетенции этапа</li>
+            <li>KPI этапа и KPI каждой активности</li>
+            <li>Курсы и материалы, привязанные к активностям</li>
+            <li>Подтверждения выполнения: текст и файлы</li>
+          </ul>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Материалы</p>
+          <h3 class="mcard__t">Откуда берётся обучение</h3>
+          <ul class="mlist">
+            <li>Внутренняя библиотека обучения компании</li>
+            <li>Каталог материалов и курсов</li>
+            <li>Статьи и дистанционные программы</li>
+            <li>Подбор реальных курсов из интернета через ИИ</li>
+          </ul>
+          <div class="mnote">Ссылка подставляется только если система в ней уверена: придуманных URL в плане быть не должно.</div>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Искусственный интеллект</p>
+          <h3 class="mcard__t">Где именно помогает ИИ</h3>
+          <ul class="mlist">
+            <li><b>Рекомендации позиций</b> с процентом совпадения, типом и сложностью перехода</li>
+            <li><b>Чат о карьере</b> — можно начать с вопроса «куда мне развиваться», не зная точной должности</li>
+            <li><b>Расчёт срока перехода</b> в месяцах, исходя из разрыва компетенций</li>
+            <li><b>Сборка ИПР:</b> этапы, KPI, активности, целевые компетенции и материалы</li>
+            <li><b>Карточки должностей:</b> компетенции для грейда или единая матрица для всех грейдов, где набор компетенций один, а требуемый уровень растёт от junior к expert</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Аналитика</p>
+          <h3 class="mcard__t">Что видно на каждом уровне</h3>
+          <ul class="mlist">
+            <li><b>Сотрудник:</b> процент готовности, закрытые и gap-компетенции, прогресс ИПР и выполненные KPI</li>
+            <li><b>Руководитель:</b> кто с ИПР и без, статусы планов, прогресс по этапам и KPI, динамика по подразделениям</li>
+            <li><b>HR:</b> статус ИПР по компании, доля согласованных, сотрудники без планов, средний прогресс, проблемные компетенции</li>
+            <li><b>Выгрузка в Excel</b> для HRBP, руководителей функций и комитетов по развитию</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Границы</p>
+          <h3 class="mcard__t">Что важно учесть до внедрения</h3>
+          <div class="mnote">
+            Модуль <b>может быть выключен по умолчанию</b> и требует настройки доступов. Качество рекомендаций и сравнения <b>зависит от наполненности базы должностей</b>: без описанных компетенций и требуемых уровней карта треков и проценты готовности теряют смысл. Подбор материалов из интернета работает через отдельный web-search шлюз. Карта карьерных треков показывает общую карту компании, а персональный маршрут сотрудника живёт в «Моём плане развития». И главное: <b>без выбранной целевой позиции полноценный ИПР не создаётся</b> — это осознанное продуктовое решение, а не ограничение.
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ СОСЕДНИЕ МОДУЛИ ============ -->
+  <section class="mnext" aria-labelledby="next-title">
+    <div class="shell">
+      <h2 class="mnext__h" id="next-title">С чем работает вместе</h2>
+      <div class="mnext__row">
+        <a class="mnext__card" href="page102360001.html" style="background:var(--t-mint);">
+          <b>Оценка 360°</b>
+          <span>Источник уровня компетенций: перспективы руководителя, коллег и подчинённых</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="index.html#platform" style="background:var(--t-mac);">
+          <b>Планирование преемственности</b>
+          <span>Карта преемников на критические роли и оценка готовности кандидатов</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="index.html#platform" style="background:var(--t-peri);">
+          <b>Performance Review</b>
+          <span>Единый балл из целей, KPI, 360° и компетенций под вашу модель оценки</span>
+          <i>Смотреть модуль →</i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="mfin">
+    <div class="shell">
+      <div class="mfin__inner">
+        <div>
+          <h2 class="mfin__t">Соберите карьерные треки на своих должностях</h2>
+          <p class="mfin__d">Покажем базу должностей с помощью ИИ, карту треков, сравнение компетенций и сборку ИПР на демодоступе в течение пяти рабочих дней.</p>
+        </div>
+        <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="mfoot">
+  <div class="shell mfoot__inner">
+    <a href="/">EmplyFlow</a>
+    <span>оценка, целеполагание и развитие персонала</span>
+    <div class="mfoot__links">
+      <a href="index.html#platform">Модули платформы</a>
+      <a href="index.html#cases">Проекты</a>
+      <a href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
+      <a href="/privacy">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ МОДАЛКА ЗАЯВКИ ============ -->
+<div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
+  <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
+  <div class="ef-demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-demo-modal-title">
+    <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
+    <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
+    <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+    <form id="ef-lead-form-module-career" class="ef-lead-form" data-ef-lead-source="site_demo" novalidate>
+      <div class="ef-lead-form__fields">
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Input" placeholder="Название компании" autocomplete="organization" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="tel" name="Phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
+        </div>
+        <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
+          <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
+          <div class="ef-lead-form__radios">
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Telegram" required> Telegram</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="WhatsApp"> WhatsApp</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Звонок"> Звонок</label>
+          </div>
+        </fieldset>
+        <div class="ef-lead-form__field">
+          <textarea class="ef-lead-form__textarea" name="Textarea" rows="2" placeholder="Коротко расскажите о своей задаче"></textarea>
+        </div>
+        <label class="ef-lead-form__check">
+          <input type="checkbox" name="Checkbox" value="yes" required>
+          <span>Я соглашаюсь с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+        </label>
+        <div class="ef-lead-form__error" data-ef-error role="alert"></div>
+      </div>
+      <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+      <div class="ef-lead-form__success" data-ef-success>
+        <h3>Заявка отправлена</h3>
+        <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/emplyflow-module.js?v=20260803a" defer></script>
+<script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
+
+<!-- Yandex.Metrika counter 105450350 -->
+<script type="text/javascript">setTimeout(function(){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");window.mainMetrikaId='105450350';ym(window.mainMetrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});},2000);</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105450350" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+</body>
+</html>

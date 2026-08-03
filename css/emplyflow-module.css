@@ -813,6 +813,168 @@ button { font: inherit; }
 .mquiz__again:hover { text-decoration: underline; }
 
 /* -------------------------------------------------------------
+   ИНТЕРАКТИВ: ВЫБОР ЦЕЛЕВОЙ ПОЗИЦИИ И ИПР
+   ------------------------------------------------------------- */
+.mfit__step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mfit__step b { color: var(--indigo); font-weight: 800; }
+.mfit__step span { flex: 1; height: 4px; border-radius: 999px; background: #edecf4; overflow: hidden; }
+.mfit__step span i { display: block; height: 100%; background: var(--indigo); border-radius: inherit; transition: width 0.3s var(--ease); }
+
+.mfit__cards { display: flex; flex-direction: column; gap: 8px; }
+.mfit__card {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  padding: 13px 15px;
+  border-radius: 14px;
+  border: 1.5px solid #e8e6f4;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.18s var(--ease), background 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.mfit__card:hover { border-color: #c9c3ff; background: #f8f7ff; transform: translateX(2px); }
+.mfit__ttl { font-size: 14.5px; font-weight: 800; letter-spacing: -0.015em; color: var(--ink); }
+.mfit__match {
+  align-self: start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f1eefe;
+  color: var(--indigo);
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.mfit__meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 11.5px; font-weight: 700; color: var(--ink-3); }
+.mfit__meta b { color: var(--ink-2); font-weight: 700; }
+
+.mfit__sum {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 15px;
+  border-radius: 14px;
+  background: #f1eefe;
+  border: 1px solid #e0daff;
+  margin-bottom: 12px;
+}
+.mfit__ready { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.mfit__sum div { font-size: 12.5px; line-height: 1.35; color: var(--ink-2); }
+.mfit__sum div b { display: block; font-size: 13.5px; color: var(--ink); }
+
+.mfit__rows { display: flex; flex-direction: column; gap: 7px; }
+.mfit__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 92px;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 12px;
+  border-radius: 11px;
+  background: #f8f7fb;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+.mfit__row--gap { background: #fdf4f9; }
+.mfit__dots { display: flex; gap: 3px; }
+.mfit__dots i {
+  width: 10px; height: 10px;
+  border-radius: 3px;
+  background: #e4e2ef;
+}
+.mfit__dots i.is-have { background: var(--indigo); }
+.mfit__dots i.is-need { background: #ffd3ec; box-shadow: inset 0 0 0 1.5px #e35aa4; }
+.mfit__state { font-size: 11.5px; font-weight: 800; text-align: right; }
+.mfit__row .mfit__state { color: #3bb96f; }
+.mfit__row--gap .mfit__state { color: #e35aa4; }
+
+.mfit__cta {
+  appearance: none;
+  margin-top: 14px;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  padding: 13px 18px;
+  border-radius: 13px;
+  background: var(--indigo);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  transition: filter 0.2s var(--ease);
+}
+.mfit__cta:hover { filter: brightness(1.09); }
+
+.mfit__plan { display: flex; flex-direction: column; gap: 8px; }
+.mfit__stage {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 13px;
+  border: 1px solid #ebe9f6;
+  background: #fff;
+}
+.mfit__n {
+  width: 26px; height: 26px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: #f1eefe;
+  color: var(--indigo);
+  font-size: 12px;
+  font-weight: 800;
+}
+.mfit__sname { margin: 0 0 3px; font-size: 13.5px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+.mfit__sname span { float: right; font-size: 11px; font-weight: 700; color: var(--ink-3); }
+.mfit__srow { margin: 3px 0 0; font-size: 12px; line-height: 1.4; color: var(--ink-2); }
+.mfit__srow b { color: var(--ink-3); font-weight: 800; }
+.mfit__chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.mfit__chips span {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #f1eefe;
+  color: #4a3bff;
+  font-size: 11px;
+  font-weight: 700;
+}
+.mfit__note {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 13px;
+  border: 1px dashed #ffb8e2;
+  background: #fdf4f9;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.mfit__note b { color: #b06699; }
+.mfit__back {
+  appearance: none;
+  margin-top: 12px;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--indigo);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.mfit__back:hover { text-decoration: underline; }
+
+/* -------------------------------------------------------------
    ПЕРЕХОД К СПРАВОЧНОЙ ЧАСТИ
    ------------------------------------------------------------- */
 .mswitch {
