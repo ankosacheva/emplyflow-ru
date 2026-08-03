@@ -17,6 +17,9 @@ RewriteRule ^modul-otsenka-360/$ page102360001.html [NC]
 RewriteRule ^modul-karyera-i-razvitie$ page102370002.html [NC]
 RewriteRule ^modul-karyera-i-razvitie/$ page102370002.html [NC]
 
+RewriteRule ^modul-matritsa-9-box$ page102380003.html [NC]
+RewriteRule ^modul-matritsa-9-box/$ page102380003.html [NC]
+
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii$ page96490096.html [NC]
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii/$ page96490096.html [NC]
 

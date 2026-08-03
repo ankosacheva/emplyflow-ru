@@ -975,6 +975,110 @@ button { font: inherit; }
 .mfit__back:hover { text-decoration: underline; }
 
 /* -------------------------------------------------------------
+   МАТРИЦА 9 BOX
+   ------------------------------------------------------------- */
+.mnb { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; }
+.mnb__y {
+  grid-row: 1;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mnb__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.mnb__x {
+  grid-column: 2;
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mnb__cell {
+  position: relative;
+  min-height: 66px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: #f8f7fb;
+  border: 1.5px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.mnb__cell b { font-size: 11.5px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); overflow-wrap: anywhere; hyphens: auto; }
+.mnb__cell i { font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--ink-3); }
+.mnb__cell--star { background: #eafaf0; }
+.mnb__cell--good { background: #f1eefe; }
+.mnb__cell--core { background: #f4f2ff; }
+.mnb__cell--watch { background: #fff5ea; }
+.mnb__cell--risk { background: #fdf4f9; }
+.mnb__cell--crit { background: #ffeef0; }
+.mnb__cell.is-on {
+  border-color: var(--indigo);
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(74, 59, 255, 0.16);
+}
+.mnb__you {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+  .mnb__cell { min-height: 58px; padding: 8px; }
+  .mnb__cell b { font-size: 10.5px; }
+  .mnb__cell i { font-size: 10px; }
+}
+
+.mnbc__ctl { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 4px 10px; align-items: center; margin-bottom: 9px; }
+.mnbc__ctl label { font-size: 12.5px; font-weight: 700; color: var(--ink-2); }
+.mnbc__ctl output { font-size: 13px; font-weight: 800; color: var(--indigo); text-align: right; font-variant-numeric: tabular-nums; }
+.mnbc__ctl input[type="range"] {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 0;
+  accent-color: #4a3bff;
+  cursor: pointer;
+}
+.mnbc__calc {
+  margin: 12px 0 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f5f4fb;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.mnbc__calc b { color: var(--ink); }
+.mnbc__verdict {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 13px;
+  background: #f1eefe;
+  border: 1px solid #e0daff;
+}
+.mnbc__verdict b { display: block; font-size: 14.5px; font-weight: 800; letter-spacing: -0.015em; color: var(--indigo); margin-bottom: 3px; }
+.mnbc__verdict span { font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+
+/* -------------------------------------------------------------
    ПЕРЕХОД К СПРАВОЧНОЙ ЧАСТИ
    ------------------------------------------------------------- */
 .mswitch {

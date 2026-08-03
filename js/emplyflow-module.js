@@ -391,6 +391,74 @@
   }
 
   /* ---------------------------------------------------------------
+     ЖИВАЯ МАТРИЦА 9 BOX
+     --------------------------------------------------------------- */
+  function initNineBox() {
+    var root = $('[data-ninebox]');
+    if (!root) return;
+
+    var cells = $$('.mnb__cell', root);
+    var inputs = $$('input[type="range"]', root);
+    var calc = $('[data-nb-calc]', root);
+    var verdict = $('[data-nb-verdict]', root);
+    if (cells.length !== 9 || inputs.length !== 3 || !calc || !verdict) return;
+
+    var LEVELS = ['низкий', 'средний', 'высокий'];
+
+    function level(pct) {
+      if (pct <= 33) return 0;
+      if (pct <= 66) return 1;
+      return 2;
+    }
+
+    function paint() {
+      var goals = +inputs[0].value;
+      var kpi = +inputs[1].value;
+      var a360 = +inputs[2].value;
+      var x = Math.round((goals + kpi) / 2);
+
+      inputs.forEach(function (el) {
+        var out = el.parentNode.querySelector('output');
+        if (out) out.value = el.value + '%';
+      });
+
+      var lx = level(x);
+      var ly = level(a360);
+      // Строки матрицы идут сверху вниз от высокого Y к низкому.
+      var index = (2 - ly) * 3 + lx;
+
+      cells.forEach(function (cell, i) {
+        var on = i === index;
+        cell.classList.toggle('is-on', on);
+        var dot = cell.querySelector('.mnb__you');
+        if (on && !dot) {
+          dot = document.createElement('span');
+          dot.className = 'mnb__you';
+          dot.textContent = 'А.К.';
+          cell.appendChild(dot);
+        } else if (!on && dot) {
+          dot.remove();
+        }
+      });
+
+      calc.innerHTML =
+        'Ось X: (' + goals + '% цели + ' + kpi + '% KPI) / 2 = <b>' + x + '%</b> — ' + LEVELS[lx] + '<br>' +
+        'Ось Y: оценка 360° = <b>' + a360 + '%</b> — ' + LEVELS[ly];
+
+      var cell = cells[index];
+      verdict.innerHTML =
+        '<b>' + (cell.getAttribute('data-name') || '') + '</b>' +
+        '<span>' + (cell.getAttribute('data-hint') || '') + '</span>';
+    }
+
+    inputs.forEach(function (el) {
+      el.addEventListener('input', paint);
+      el.addEventListener('change', function () { trackOnce('ninebox_move'); });
+    });
+    paint();
+  }
+
+  /* ---------------------------------------------------------------
      МОДАЛКА ЗАЯВКИ
      --------------------------------------------------------------- */
   function initDemoModal() {
@@ -477,6 +545,7 @@
     collectReveals();
     initQuiz();
     initFit();
+    initNineBox();
     initDemoModal();
     initKeys();
     tick();

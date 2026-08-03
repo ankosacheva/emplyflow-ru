@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050230">
+<title>Матрица талантов 9 Box Grid — модуль платформы EmplyFlow</title>
+<meta name="description" content="Модуль «9 Box Grid» в EmplyFlow: матрица талантов 3×3 по осям «Достижение целей и KPI» и «Оценка компетенций по 360°», прозрачные пороги 0–33 / 34–66 / 67–100, фильтры по подразделениям, должности, руководителю и циклам, группировка сотрудников по командам внутри ячеек.">
+<link rel="canonical" href="https://emplyflow.ru/modul-matritsa-9-box">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emplyflow.ru/modul-matritsa-9-box">
+<meta property="og:title" content="Матрица талантов 9 Box Grid — модуль платформы EmplyFlow">
+<meta property="og:description" content="Кто звёзды, кто основа команды, а кто в зоне риска — по целям, KPI и 360°, а не по ощущениям. Расчёт прозрачный и воспроизводимый.">
+<meta property="og:image" content="https://emplyflow.ru/media/case-performance-review.webp">
+<meta property="og:site_name" content="EmplyFlow">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Матрица талантов 9 Box Grid — модуль платформы EmplyFlow">
+<meta name="twitter:description" content="Матрица 3×3 по целям, KPI и 360° с прозрачными порогами и глубокой фильтрацией.">
+<meta name="twitter:image" content="https://emplyflow.ru/media/case-performance-review.webp">
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6239-3062-4538-a639-383666626538__32x32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6164-3236-4734-b139-376466343939__32x32.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="images/tild3766-3562-4732-a164-356632343966__180x180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803b">
+<link rel="stylesheet" href="css/emplyflow-demo-form.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Матрица талантов 9 Box Grid — модуль платформы EmplyFlow",
+  "description": "Матрица талантов 3×3 по осям достижения целей и KPI и оценки компетенций по 360°, с прозрачными порогами, фильтрами по подразделениям, должности, руководителю и циклам.",
+  "inLanguage": "ru-RU",
+  "url": "https://emplyflow.ru/modul-matritsa-9-box",
+  "isPartOf": { "@type": "WebSite", "name": "EmplyFlow", "url": "https://emplyflow.ru" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "EmplyFlow", "item": "https://emplyflow.ru/" },
+    { "@type": "ListItem", "position": 2, "name": "Модули платформы", "item": "https://emplyflow.ru/#platform" },
+    { "@type": "ListItem", "position": 3, "name": "Матрица талантов 9 Box", "item": "https://emplyflow.ru/modul-matritsa-9-box" }
+  ]
+}
+</script>
+</head>
+<body data-module="nine-box" data-accent="pink">
+
+<a class="skip-link" href="#details">Перейти к описанию модуля</a>
+
+<header class="mtop" id="mtop">
+  <div class="shell mtop__inner">
+    <a class="mtop__back" href="index.html#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
+    <span class="mtop__name">Матрица талантов 9 Box</span>
+    <span class="mtop__spacer"></span>
+    <div class="mmode" role="group" aria-label="Режим просмотра страницы">
+      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Смотреть</button>
+      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Разобраться</button>
+    </div>
+    <button type="button" class="mtop__cta" data-ef-demo-open data-track="cta-topbar">Получить демодоступ</button>
+  </div>
+  <div class="mbars" id="mbars" aria-hidden="true"></div>
+</header>
+
+<main id="feed">
+
+  <!-- ============ ОБЛОЖКА ============ -->
+  <section class="mreel mcover" id="cover" data-reel data-accent="pink" aria-labelledby="cover-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="mcover__kicker">Модуль платформы</p>
+          <h1 class="mcover__title" id="cover-title">Матрица <em>талантов 9 Box</em></h1>
+          <p class="mcover__q">«Кто у нас звёзды, а кто в зоне риска?» — вопрос, на который обычно отвечают ощущениями руководителей. Матрица отвечает распределением по двум осям: результаты и компетенции.</p>
+          <div class="mcover__meta">
+            <span class="mtag">Ось X — цели и KPI</span>
+            <span class="mtag">Ось Y — оценка 360°</span>
+            <span class="mtag">Расчёт без ручной расстановки</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Performance Review · 9 Box Grid · 28 сотрудников</span></div>
+            <div class="mwin__body">
+              <div class="mnb">
+                <span class="mnb__y">Оценка компетенций</span>
+                <div class="mnb__grid">
+                  <div class="mnb__cell mnb__cell--good"><b>Высокий потенциал, низкие результаты</b><i>1 человек</i></div>
+                  <div class="mnb__cell mnb__cell--good"><b>Высокий потенциал</b><i>3 человека</i></div>
+                  <div class="mnb__cell mnb__cell--star"><b>Звёзды</b><i>6 человек</i></div>
+                  <div class="mnb__cell mnb__cell--core"><b>Зона развития</b><i>2 человека</i></div>
+                  <div class="mnb__cell mnb__cell--core"><b>Основа команды</b><i>9 человек</i></div>
+                  <div class="mnb__cell mnb__cell--star"><b>Высокая производительность</b><i>4 человека</i></div>
+                  <div class="mnb__cell mnb__cell--crit"><b>Критическая зона</b><i>1 человек</i></div>
+                  <div class="mnb__cell mnb__cell--risk"><b>Зона особого внимания</b><i>1 человек</i></div>
+                  <div class="mnb__cell mnb__cell--watch"><b>Ценные эксперты</b><i>1 человек</i></div>
+                </div>
+                <span class="mnb__x">Достижение целей и KPI →</span>
+              </div>
+              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Звёзды 6 · основа команды 9 · зона риска 3</span><b style="font-size:12px;color:#4a3bff;">28 в анализе</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="mscroll">Листайте <i aria-hidden="true"></i></span>
+  </section>
+
+  <!-- ============ 1 · ОСИ ============ -->
+  <section class="mreel mreel--flip" id="r-axes" data-reel data-accent="sky" aria-labelledby="r1-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Из чего собираются оси · Анна К.</span></div>
+            <div class="mwin__body">
+              <p class="msub">Ось X · достижение целей и KPI</p>
+              <div class="mpersp">
+                <div class="mpersp__row">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span>
+                  <span class="mpersp__name">Цели и OKR · цикл H1 2026</span>
+                  <span class="mpersp__val">72%</span>
+                  <span class="mpersp__bar"><i style="width:72%;background:#4a3bff;"></i></span>
+                </div>
+                <div class="mpersp__row">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#8681ab;"></span>
+                  <span class="mpersp__name">KPI · цикл Q2 2026 · факт / план</span>
+                  <span class="mpersp__val">48%</span>
+                  <span class="mpersp__bar"><i style="width:48%;background:#8681ab;"></i></span>
+                </div>
+              </div>
+              <div class="mgapchip" style="margin-bottom:16px;background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Итоговая ось X</span><b style="font-size:12px;color:#4a3bff;">60% · средний</b></div>
+              <p class="msub">Ось Y · оценка компетенций</p>
+              <div class="mpersp">
+                <div class="mpersp__row">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span>
+                  <span class="mpersp__name">Оценка 360° · цикл 2026</span>
+                  <span class="mpersp__val">81%</span>
+                  <span class="mpersp__bar"><i style="width:81%;background:#5fce87;"></i></span>
+                </div>
+              </div>
+              <div class="mgapchip"><span>Ячейка матрицы</span><b style="font-size:12px;">Высокий потенциал</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>01</b> Две оси</p>
+          <h2 class="mclaim" id="r1-title">Обе оси собираются <em>из данных платформы</em></h2>
+          <p class="mlead">По горизонтали — средневзвешенные цели и KPI, по вертикали — результаты оценки 360°. Никто не расставляет сотрудников по клеткам руками: положение считается из того, что уже накоплено в целеполагании и оценке.</p>
+          <div class="mproof">
+            <span class="mproof__num">3</span>
+            <span class="mproof__txt">независимых набора циклов: цели, KPI и 360° можно взять за разные периоды, если процессы в компании не синхронизированы</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · ПОРОГИ ============ -->
+  <section class="mreel" id="r-scale" data-reel data-accent="violet" aria-labelledby="r2-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>02</b> Прозрачность</p>
+          <h2 class="mclaim" id="r2-title">Ячейка вычисляется, <em>а не назначается</em></h2>
+          <p class="mlead">Оба процента переводятся в три уровня по одинаковым порогам, поэтому спор «почему он оказался в этой зоне» превращается в разговор о конкретных целях, KPI и оценках. Если у сотрудника нет ни целей, ни KPI, ось X считается как ноль.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Расчёт детерминированный и воспроизводимый: искусственный интеллект не решает, в какую ячейку попадёт сотрудник</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Пороги перевода процентов в уровни</span></div>
+            <div class="mwin__body">
+              <p class="msub">Одинаково для обеих осей</p>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px;">
+                <div style="padding:12px;border-radius:12px;background:#ffeef0;">
+                  <div style="font-size:12px;font-weight:800;color:#d1495b;">0–33%</div>
+                  <div style="font-size:13.5px;font-weight:800;color:#141033;margin-top:2px;">Низкий</div>
+                </div>
+                <div style="padding:12px;border-radius:12px;background:#fff5ea;">
+                  <div style="font-size:12px;font-weight:800;color:#c47a2c;">34–66%</div>
+                  <div style="font-size:13.5px;font-weight:800;color:#141033;margin-top:2px;">Средний</div>
+                </div>
+                <div style="padding:12px;border-radius:12px;background:#eafaf0;">
+                  <div style="font-size:12px;font-weight:800;color:#2f9d5b;">67–100%</div>
+                  <div style="font-size:13.5px;font-weight:800;color:#141033;margin-top:2px;">Высокий</div>
+                </div>
+              </div>
+              <p class="msub">Как считается</p>
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;font-weight:700;color:#403c68;">
+                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;">KPI % = факт / план × 100</div>
+                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;">Цели: прогресс по завершённым и согласованным целям, усреднение внутри цикла и между циклами</div>
+                <div style="padding:10px 12px;border-radius:11px;background:#f1eefe;color:#4a3bff;">X = среднее между целями и KPI с учётом количества доступных показателей</div>
+                <div style="padding:10px 12px;border-radius:11px;background:#f1eefe;color:#4a3bff;">Y = нормализованные результаты завершённых ответов 360°</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · ИНТЕРАКТИВ ============ -->
+  <section class="mreel mreel--flip" id="r-try" data-reel data-accent="mint" aria-labelledby="r3-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">9 Box Grid · показатели сотрудника</span></div>
+            <div class="mwin__body">
+              <div data-ninebox>
+                <div class="mnbc__ctl">
+                  <label for="nb-goals">Прогресс по целям</label>
+                  <output for="nb-goals">72%</output>
+                  <input type="range" id="nb-goals" min="0" max="100" step="1" value="72">
+                </div>
+                <div class="mnbc__ctl">
+                  <label for="nb-kpi">Выполнение KPI</label>
+                  <output for="nb-kpi">48%</output>
+                  <input type="range" id="nb-kpi" min="0" max="100" step="1" value="48">
+                </div>
+                <div class="mnbc__ctl">
+                  <label for="nb-360">Оценка компетенций по 360°</label>
+                  <output for="nb-360">81%</output>
+                  <input type="range" id="nb-360" min="0" max="100" step="1" value="81">
+                </div>
+                <p class="mnbc__calc" data-nb-calc>Ось X: (72% цели + 48% KPI) / 2 = 60% — средний<br>Ось Y: оценка 360° = 81% — высокий</p>
+                <div class="mnb">
+                  <span class="mnb__y">Компетенции</span>
+                  <div class="mnb__grid">
+                    <div class="mnb__cell mnb__cell--good" data-name="Высокий потенциал, низкие результаты" data-hint="Компетенции сильные, но бизнес-результат проседает: разбираем постановку целей, нагрузку и приоритеты."><b>Потенциал без результата</b></div>
+                    <div class="mnb__cell mnb__cell--good" data-name="Высокий потенциал" data-hint="Кандидат на рост: расширяем зону ответственности и обсуждаем на talent review."><b>Высокий потенциал</b></div>
+                    <div class="mnb__cell mnb__cell--star" data-name="Звёзды" data-hint="Высокие результаты и высокие компетенции: удерживаем, даём сложные задачи, рассматриваем в кадровый резерв."><b>Звёзды</b></div>
+                    <div class="mnb__cell mnb__cell--core" data-name="Зона развития" data-hint="Потенциал есть, результат средний: точечный план развития по слабым компетенциям."><b>Зона развития</b></div>
+                    <div class="mnb__cell mnb__cell--core" data-name="Основа команды" data-hint="Стабильные сотрудники, на которых держится текущий результат: поддерживаем и не теряем из виду."><b>Основа команды</b></div>
+                    <div class="mnb__cell mnb__cell--star" data-name="Высокая производительность" data-hint="Результат высокий, компетенции средние: развиваем до уровня следующей роли."><b>Высокая производительность</b></div>
+                    <div class="mnb__cell mnb__cell--crit" data-name="Критическая зона" data-hint="Низкие результаты и низкая оценка компетенций: разговор с руководителем и план коррекции."><b>Критическая зона</b></div>
+                    <div class="mnb__cell mnb__cell--risk" data-name="Зона особого внимания" data-hint="Средний результат при слабых компетенциях: проверяем соответствие роли и запускаем развитие."><b>Особое внимание</b></div>
+                    <div class="mnb__cell mnb__cell--watch" data-name="Ценные эксперты" data-hint="Цели и KPI выполняются, но 360° показывает низкую оценку компетенций: смотрим на командное взаимодействие."><b>Ценные эксперты</b></div>
+                  </div>
+                  <span class="mnb__x">Цели и KPI →</span>
+                </div>
+                <div class="mnbc__verdict" data-nb-verdict>
+                  <b>Высокий потенциал</b>
+                  <span>Кандидат на рост: расширяем зону ответственности и обсуждаем на talent review.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>03</b> Попробуйте сами</p>
+          <h2 class="mclaim" id="r3-title">Подвигайте показатели — <em>ячейка пересчитается</em></h2>
+          <p class="mlead">Три ползунка — это ровно те данные, из которых строится матрица в продукте. Обратите внимание, что произойдёт, если поднять KPI при неизменной оценке 360°: сотрудник уедет вправо, но останется в той же строке.</p>
+          <div class="mproof">
+            <span class="mproof__num">9</span>
+            <span class="mproof__txt">ячеек — девять разных управленческих решений: от кадрового резерва до плана коррекции</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · ФИЛЬТРЫ ============ -->
+  <section class="mreel" id="r-filters" data-reel data-accent="peach" aria-labelledby="r4-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>04</b> Срезы</p>
+          <h2 class="mclaim" id="r4-title">Матрица по одной роли <em>или по всей компании</em></h2>
+          <p class="mlead">Дерево подразделений с дочерними уровнями, выбор отдельных сотрудников, фильтр по должности с поиском и фильтр по руководителю. Если выбраны конкретные сотрудники, они имеют приоритет над подразделениями, а пустой выбор циклов означает, что учитываются все доступные.</p>
+          <div class="mtags">
+            <span class="mtag">Все руководители магазинов</span>
+            <span class="mtag">Все HRBP</span>
+            <span class="mtag">Команда конкретного менеджера</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">9 Box Grid · фильтры</span></div>
+            <div class="mwin__body">
+              <p class="msub">Подразделения и сотрудники</p>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:#403c68;margin-bottom:16px;">
+                <div style="padding:9px 12px;border-radius:11px;background:#f1eefe;color:#4a3bff;">☑ Коммерческий блок <span style="font-size:11px;font-weight:700;color:#8681ab;">· с дочерними</span></div>
+                <div style="padding:9px 12px 9px 28px;border-radius:11px;background:#f8f7fb;">☑ Отдел продаж <span style="font-size:11px;color:#8681ab;">· 18 человек</span></div>
+                <div style="padding:9px 12px 9px 28px;border-radius:11px;background:#f8f7fb;">☑ Отдел маркетинга <span style="font-size:11px;color:#8681ab;">· 10 человек</span></div>
+                <div style="padding:9px 12px 9px 28px;border-radius:11px;background:#fff;border:1px dashed #e0dcf0;color:#8681ab;">☐ Клиентский сервис</div>
+              </div>
+              <p class="msub">Дополнительно</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+                <span style="padding:6px 11px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:11.5px;font-weight:700;">Должность: руководитель магазина</span>
+                <span style="padding:6px 11px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:11.5px;font-weight:700;">Руководитель: Смирнов И.</span>
+              </div>
+              <p class="msub">Циклы по каждой компоненте</p>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:#403c68;">
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Циклы планирования целей</span><b style="color:#4a3bff;">H1 2026</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Циклы планирования KPI</span><b style="color:#4a3bff;">Q1, Q2 2026</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Циклы оценки 360°</span><b style="color:#4a3bff;">все доступные</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · ГРУППИРОВКА ============ -->
+  <section class="mreel mreel--flip" id="r-groups" data-reel data-accent="sky" aria-labelledby="r5-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Ячейка «Основа команды» · раскрыта</span></div>
+            <div class="mwin__body">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-radius:12px;background:#f4f2ff;font-size:13px;font-weight:800;color:#141033;">
+                  <span>Отдел продаж · 5 человек</span>
+                  <span style="font-size:11.5px;font-weight:700;color:#4a3bff;">X 54% · Y 58%</span>
+                </div>
+                <div style="display:grid;gap:6px;padding-left:14px;">
+                  <div style="display:grid;grid-template-columns:minmax(0,1fr) 54px 54px;gap:8px;align-items:center;padding:8px 11px;border-radius:10px;background:#f8f7fb;font-size:12.5px;font-weight:700;color:#403c68;"><span>Дмитрий В.</span><span style="text-align:right;">X 61%</span><span style="text-align:right;">Y 55%</span></div>
+                  <div style="display:grid;grid-template-columns:minmax(0,1fr) 54px 54px;gap:8px;align-items:center;padding:8px 11px;border-radius:10px;background:#f8f7fb;font-size:12.5px;font-weight:700;color:#403c68;"><span>Елена П.</span><span style="text-align:right;">X 49%</span><span style="text-align:right;">Y 63%</span></div>
+                  <div style="display:grid;grid-template-columns:minmax(0,1fr) 54px 54px;gap:8px;align-items:center;padding:8px 11px;border-radius:10px;background:#f8f7fb;font-size:12.5px;font-weight:700;color:#403c68;"><span>Артём К.</span><span style="text-align:right;">X 52%</span><span style="text-align:right;">Y 57%</span></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-radius:12px;background:#f8f7fb;font-size:13px;font-weight:800;color:#141033;">
+                  <span>Отдел маркетинга · 4 человека</span>
+                  <span style="font-size:11.5px;font-weight:700;color:#8681ab;">X 48% · Y 61%</span>
+                </div>
+              </div>
+              <div class="mgapchip"><span>По сотруднику можно перейти в его профиль</span><b style="font-size:12px;">9 в ячейке</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>05</b> Масштаб</p>
+          <h2 class="mclaim" id="r5-title">На сотне человек матрица <em>не превращается в кашу</em></h2>
+          <p class="mlead">На широкой выборке сотрудники группируются по командам: в ячейке видно название команды, количество людей и средние значения по обеим осям. Группу можно раскрыть и провалиться в конкретного человека.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Сравнение подразделений в одной матрице — рабочий инструмент подготовки к калибровочному комитету</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · КАЛИБРОВКА VS 9 BOX ============ -->
+  <section class="mreel" id="r-calib" data-reel data-accent="violet" aria-labelledby="r6-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>06</b> Не путать</p>
+          <h2 class="mclaim" id="r6-title">Калибровка и 9 Box отвечают <em>на разные вопросы</em></h2>
+          <p class="mlead">Калибровка показывает итоговые управленческие решения по Performance Review: оценку, комментарий, изменение должности и оклада. Матрица показывает распределение по объективным данным. Матрица не заменяет калибровку, а готовит её и подсвечивает расхождения между результатами и компетенциями.</p>
+          <div class="mtags">
+            <span class="mtag">Калибровка — решения руководителей</span>
+            <span class="mtag">9 Box — данные целей, KPI и 360°</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Калибровка · вкладки страницы</span></div>
+            <div class="mwin__body">
+              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
+                <div style="padding:13px;border-radius:13px;background:#f8f7fb;">
+                  <div style="font-size:13px;font-weight:800;color:#141033;margin-bottom:8px;">Калибровка</div>
+                  <div style="display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:700;color:#403c68;line-height:1.35;">
+                    <span>Распределение PR-оценок</span>
+                    <span>Таблица сотрудников и комментарии</span>
+                    <span>Изменение должности и оклада</span>
+                    <span>Колонки из PR-шаблонов</span>
+                    <span>Редактирование оценок и XLSX-экспорт</span>
+                  </div>
+                </div>
+                <div style="padding:13px;border-radius:13px;background:#f1eefe;">
+                  <div style="font-size:13px;font-weight:800;color:#4a3bff;margin-bottom:8px;">9 Box Grid</div>
+                  <div style="display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:700;color:#403c68;line-height:1.35;">
+                    <span>Ось X из целей и KPI</span>
+                    <span>Ось Y из оценки 360°</span>
+                    <span>Распределение по девяти зонам</span>
+                    <span>Группировка по командам</span>
+                    <span>Вход в talent review</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mgapchip" style="background:#fff5ea;border-color:#ffd9ab;color:#c47a2c;"><span>Финальная PR-оценка не является осью матрицы</span><b style="font-size:12px;color:#c47a2c;">разные контуры</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · ЭКОСИСТЕМА ============ -->
+  <section class="mreel mreel--flip" id="r-eco" data-reel data-accent="mint" aria-labelledby="r7-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="meco">
+            <div class="meco__card meco__card--peri">
+              <b>Цели и OKR</b>
+              <span>Прогресс по завершённым и согласованным целям идёт в ось X</span>
+              <i>Ось X</i>
+            </div>
+            <div class="meco__card meco__card--mac">
+              <b>KPI</b>
+              <span>Регулярные числовые показатели: выполнение считается как факт к плану</span>
+              <i>Ось X</i>
+            </div>
+            <div class="meco__card meco__card--mint">
+              <b>Оценка 360°</b>
+              <span>Нормализованные результаты завершённых ответов формируют ось Y</span>
+              <i>Ось Y</i>
+            </div>
+            <div class="meco__card meco__card--candy">
+              <b>Калибровка и Performance Review</b>
+              <span>Соседние вкладки: матрица готовит talent review, калибровка фиксирует решения</span>
+              <i>Соседний контур</i>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>07</b> Зачем это компании</p>
+          <h2 class="mclaim" id="r7-title">Разговор о людях <em>на общих данных</em></h2>
+          <p class="mlead">Матрица не требует отдельного сбора данных: она собирается из того, что уже живёт в целеполагании, KPI и оценке 360°. Поэтому её можно открыть на комитете и объяснить каждую позицию, не ссылаясь на чьё-то мнение.</p>
+          <div class="mproof">
+            <span class="mproof__num">0</span>
+            <span class="mproof__txt">ручных расстановок: сотрудник попадает в ячейку только по порогам 0–33, 34–66 и 67–100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ПЕРЕХОД ============ -->
+  <section class="mswitch">
+    <div class="shell mswitch__inner">
+      <div>
+        <h2 class="mswitch__t">Дальше — детали</h2>
+        <p class="mswitch__d">Где находится матрица, кто её видит, что входит и что не входит в оси, как считаются проценты, все девять зон, фильтры, аналитика и честные границы реализации.</p>
+      </div>
+      <button type="button" class="mswitch__btn" data-mode="details">
+        Разобраться
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ РАЗОБРАТЬСЯ ============ -->
+  <section class="mdet" id="details" aria-labelledby="details-title">
+    <div class="shell">
+      <div class="mdet__head">
+        <p class="mdet__eyebrow">Разобраться</p>
+        <h2 class="mdet__title" id="details-title">Как матрица устроена внутри</h2>
+        <p class="mdet__lead">9 Box Grid — управленческий инструмент для talent review и подготовки калибровки. Ниже то, что обычно спрашивают на демонстрации: источники данных, расчёт, доступы и границы.</p>
+      </div>
+
+      <div class="mdet__grid" data-reveal>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Полная цепочка</p>
+          <h3 class="mcard__t">От данных до ячейки</h3>
+          <div class="mchips">
+            <span class="mchip">1 · Прогресс по целям за выбранные циклы</span>
+            <span class="mchip">2 · Выполнение KPI: факт / план</span>
+            <span class="mchip">3 · Средневзвешенная ось X</span>
+            <span class="mchip">4 · Нормализованные результаты 360°</span>
+            <span class="mchip">5 · Ось Y</span>
+            <span class="mchip">6 · Перевод в уровни по порогам</span>
+            <span class="mchip">7 · Раскладка по девяти ячейкам</span>
+            <span class="mchip">8 · Группировка по командам и talent review</span>
+          </div>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Где находится</p>
+          <h3 class="mcard__t">Два входа в матрицу</h3>
+          <ul class="mlist">
+            <li><b>Калибровка</b> — вкладка 9 Box Grid рядом с калибровочной таблицей, доступна HR и super admin</li>
+            <li><b>Performance Review</b> — вкладка 9 Box Grid рядом с PR-аналитикой, доступна руководителю, HR и super admin</li>
+            <li>Руководитель на странице калибровки работает только с PR-контуром: вкладки 9 Box там нет</li>
+            <li>Матрица руководителя ограничена сотрудниками его зоны ответственности</li>
+          </ul>
+          <div class="mnote">Обычный сотрудник не видит матрицу и своё место в ней: это осознанное решение, инструмент управленческий, а не self-service.</div>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Оси</p>
+          <h3 class="mcard__t">Что входит и что не входит</h3>
+          <ul class="mlist">
+            <li><b>Ось X, достижение целей и KPI:</b> прогресс по целям и OKR плюс выполнение назначенных KPI</li>
+            <li><b>Ось Y, оценка компетенций:</b> результаты завершённых ответов оценки 360°</li>
+            <li>Для каждой компоненты выбираются свои циклы: целей, KPI и 360° независимо друг от друга</li>
+            <li><b>Не участвуют в расчёте:</b> Self Review, финальная оценка Performance Review, ручная PR-оценка руководителя, преемственность и карьерные треки</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Девять зон</p>
+          <h3 class="mcard__t">Что означает каждая ячейка</h3>
+          <div class="mcols">
+            <div>
+              <p class="mcols__h"><span style="background:#d5fff3;">В</span> Компетенции высокие</p>
+              <ul class="mlist">
+                <li><b>Звёзды</b> — высокие результаты и высокие компетенции</li>
+                <li><b>Высокий потенциал</b> — средние результаты при сильных компетенциях</li>
+                <li><b>Высокий потенциал, низкие результаты</b> — компетенции есть, бизнес-результат проседает</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#cec8ff;">С</span> Компетенции средние</p>
+              <ul class="mlist">
+                <li><b>Высокая производительность</b> — результат высокий, компетенции средние</li>
+                <li><b>Основа команды</b> — стабильные сотрудники, на которых держится результат</li>
+                <li><b>Зона развития</b> — низкие результаты при средних компетенциях</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#ffb8e2;">Н</span> Компетенции низкие</p>
+              <ul class="mlist">
+                <li><b>Ценные эксперты</b> — цели и KPI выполняются, 360° показывает низкую оценку</li>
+                <li><b>Зона особого внимания</b> — средний результат при слабых компетенциях</li>
+                <li><b>Критическая зона</b> — низкие результаты и низкая оценка компетенций</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Расчёт</p>
+          <h3 class="mcard__t">Как считаются проценты</h3>
+          <ul class="mlist">
+            <li>KPI: факт делится на план и умножается на сто</li>
+            <li>Цели: прогресс по завершённым и согласованным, усреднение внутри цикла и затем между циклами</li>
+            <li>X — среднее целей и KPI с учётом количества доступных показателей</li>
+            <li>Y — нормализованные в проценты результаты 360°, усреднённые по выбранным циклам</li>
+            <li>Пороги уровней: 0–33 низкий, 34–66 средний, 67–100 высокий</li>
+          </ul>
+          <div class="mnote">Если у сотрудника нет ни целей, ни KPI, ось X считается как ноль.</div>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Фильтры</p>
+          <h3 class="mcard__t">Как сузить выборку</h3>
+          <ul class="mlist">
+            <li>Дерево подразделений: одно, несколько или подразделение вместе с дочерними</li>
+            <li>Отдельные сотрудники — приоритетнее выбора подразделений</li>
+            <li>Должность с поиском по названию</li>
+            <li>Руководитель — сравнение управленческих контуров</li>
+            <li>Три независимых мультивыбора циклов: цели, KPI и 360°</li>
+          </ul>
+          <div class="mnote">Пустой выбор циклов означает, что учитываются все доступные. Если не выбрано ничего, анализ идёт по доступному scope.</div>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Аналитика</p>
+          <h3 class="mcard__t">Что показывает матрица</h3>
+          <ul class="mlist">
+            <li>Количество звёзд и сотрудников в основе команды</li>
+            <li>Количество сотрудников в зоне риска</li>
+            <li>Общее число людей в анализе</li>
+            <li>Средние X и Y по командам внутри ячеек</li>
+            <li>Цветовая легенда зон: развитие, стабильные исполнители, внимание, риск, критическая зона</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Искусственный интеллект</p>
+          <h3 class="mcard__t">Честно про роль ИИ</h3>
+          <p class="mcard__d">В интерфейсе есть кнопка «Провести анализ с ИИ», но матрица считается детерминированно.</p>
+          <ul class="mlist">
+            <li>Данные загружаются из целей, KPI и 360°, проценты переводятся в уровни, сотрудники раскладываются по ячейкам</li>
+            <li>Модель не решает, куда поставить человека: расчёт прозрачный и воспроизводимый</li>
+            <li>ИИ-анализ распределения — направление развития, а не базовая логика текущего расчёта</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Действия и экспорт</p>
+          <h3 class="mcard__t">Что можно сделать из матрицы</h3>
+          <ul class="mlist">
+            <li>Построить матрицу по выбранным фильтрам</li>
+            <li>Раскрыть команду внутри ячейки и открыть профиль сотрудника</li>
+            <li>Отдельного экспорта из 9 Box нет: XLSX-выгрузка живёт в калибровке и в таблице Performance Review</li>
+            <li>В калибровке можно редактировать PR-оценки, если период не заблокирован</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Границы</p>
+          <h3 class="mcard__t">Что важно учесть до внедрения</h3>
+          <div class="mnote">
+            Матрица <b>не видна обычному сотруднику</b>: своё место в ней он не увидит. На странице калибровки вкладка 9 Box доступна <b>только HR и super admin</b>, руководитель заходит в матрицу через Performance Review в границах своей команды. Финальная PR-оценка и Self Review <b>не участвуют в расчёте осей</b> — это отдельный контур. Отдельного экспорта из матрицы нет, выгрузка делается из калибровки или PR-таблицы. Прямой автоматической связи с модулем преемственности в текущей реализации тоже нет, хотя зоны «Звёзды» и «Высокий потенциал» — естественный источник кандидатов для обсуждения кадрового резерва.
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ СОСЕДНИЕ МОДУЛИ ============ -->
+  <section class="mnext" aria-labelledby="next-title">
+    <div class="shell">
+      <h2 class="mnext__h" id="next-title">Откуда берутся данные</h2>
+      <div class="mnext__row">
+        <a class="mnext__card" href="page102360001.html" style="background:var(--t-mint);">
+          <b>Оценка 360°</b>
+          <span>Ось Y: оценка компетенций глазами руководителя, коллег и подчинённых</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="index.html#platform" style="background:var(--t-peri);">
+          <b>Целеполагание и KPI</b>
+          <span>Ось X: каскад целей от стратегии компании до вклада каждого сотрудника</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="page102370002.html" style="background:var(--t-mac);">
+          <b>Карьера и развитие</b>
+          <span>Что делать с результатом: ИПР под целевую роль и контроль динамики</span>
+          <i>Смотреть модуль →</i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="mfin">
+    <div class="shell">
+      <div class="mfin__inner">
+        <div>
+          <h2 class="mfin__t">Посмотрите матрицу на своих данных</h2>
+          <p class="mfin__d">Покажем, как цели, KPI и 360° превращаются в распределение по девяти зонам, и как это готовит калибровочный комитет. Демодоступ на пять рабочих дней.</p>
+        </div>
+        <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="mfoot">
+  <div class="shell mfoot__inner">
+    <a href="/">EmplyFlow</a>
+    <span>оценка, целеполагание и развитие персонала</span>
+    <div class="mfoot__links">
+      <a href="index.html#platform">Модули платформы</a>
+      <a href="index.html#cases">Проекты</a>
+      <a href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
+      <a href="/privacy">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ МОДАЛКА ЗАЯВКИ ============ -->
+<div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
+  <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
+  <div class="ef-demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-demo-modal-title">
+    <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
+    <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
+    <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+    <form id="ef-lead-form-module-ninebox" class="ef-lead-form" data-ef-lead-source="site_demo" novalidate>
+      <div class="ef-lead-form__fields">
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Input" placeholder="Название компании" autocomplete="organization" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="tel" name="Phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
+        </div>
+        <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
+          <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
+          <div class="ef-lead-form__radios">
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Telegram" required> Telegram</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="WhatsApp"> WhatsApp</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Звонок"> Звонок</label>
+          </div>
+        </fieldset>
+        <div class="ef-lead-form__field">
+          <textarea class="ef-lead-form__textarea" name="Textarea" rows="2" placeholder="Коротко расскажите о своей задаче"></textarea>
+        </div>
+        <label class="ef-lead-form__check">
+          <input type="checkbox" name="Checkbox" value="yes" required>
+          <span>Я соглашаюсь с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+        </label>
+        <div class="ef-lead-form__error" data-ef-error role="alert"></div>
+      </div>
+      <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+      <div class="ef-lead-form__success" data-ef-success>
+        <h3>Заявка отправлена</h3>
+        <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/emplyflow-module.js?v=20260803b" defer></script>
+<script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
+
+<!-- Yandex.Metrika counter 105450350 -->
+<script type="text/javascript">setTimeout(function(){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");window.mainMetrikaId='105450350';ym(window.mainMetrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});},2000);</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105450350" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+</body>
+</html>
