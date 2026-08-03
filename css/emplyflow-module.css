@@ -1079,6 +1079,89 @@ button { font: inherit; }
 .mnbc__verdict span { font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
 
 /* -------------------------------------------------------------
+   ИНТЕРАКТИВ: МАРШРУТ СОГЛАСОВАНИЯ ЦЕЛИ
+   ------------------------------------------------------------- */
+.mrt__grp { margin-bottom: 11px; }
+.mrt__grp > span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mrt__opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.mrt__opt {
+  appearance: none;
+  cursor: pointer;
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1.5px solid #e8e6f4;
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+  transition: border-color 0.18s var(--ease), background 0.18s var(--ease), color 0.18s var(--ease);
+}
+.mrt__opt:hover { border-color: #c9c3ff; }
+.mrt__opt.is-on { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+
+.mrt__out { margin-top: 14px; }
+.mrt__node {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 11px;
+  align-items: center;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: #f8f7fb;
+}
+.mrt__node--key { background: #f1eefe; border: 1px solid #e0daff; }
+.mrt__ico {
+  width: 26px; height: 26px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--indigo);
+  font-size: 11px;
+  font-weight: 800;
+}
+.mrt__node p { margin: 0; font-size: 13.5px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+.mrt__node small { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); }
+.mrt__arrow { display: grid; place-items: center; height: 18px; color: #b9b4d6; }
+.mrt__rule {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px dashed #ffb8e2;
+  background: #fdf4f9;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.mrt__rule b { color: #b06699; }
+.mrt__warn {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid #ffd9ab;
+  background: #fff5ea;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #8a5a1c;
+}
+.mrt__warn b { color: #c47a2c; }
+.mrt__send {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.mrt__send b { color: var(--indigo); font-weight: 800; }
+
+/* -------------------------------------------------------------
    ПЕРЕХОД К СПРАВОЧНОЙ ЧАСТИ
    ------------------------------------------------------------- */
 .mswitch {

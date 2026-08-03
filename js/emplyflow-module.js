@@ -459,6 +459,86 @@
   }
 
   /* ---------------------------------------------------------------
+     МАРШРУТ СОГЛАСОВАНИЯ ЦЕЛИ
+     --------------------------------------------------------------- */
+  function initRoute() {
+    var root = $('[data-route]');
+    if (!root) return;
+
+    var out = $('[data-rt-out]', root);
+    if (!out) return;
+
+    var state = { type: 'ind', resp: 'self', mgr: 'yes' };
+
+    var AUTHOR = 'Мария К., аналитик';
+    var AUTHOR_MGR = 'Алексей П., руководитель отдела';
+    var RESP = 'Дмитрий В., продакт-аналитик';
+    var RESP_MGR = 'Ольга Н., руководитель продукта';
+
+    function node(role, name, key) {
+      return '<div class="mrt__node' + (key ? ' mrt__node--key' : '') + '">' +
+        '<span class="mrt__ico">' + (key ? '✓' : '·') + '</span>' +
+        '<span><small>' + role + '</small><p>' + name + '</p></span>' +
+        '</div>';
+    }
+
+    var ARROW = '<span class="mrt__arrow" aria-hidden="true">↓</span>';
+
+    function render() {
+      var team = state.type === 'team';
+      var other = state.resp === 'other';
+
+      if (state.mgr === 'no') {
+        out.innerHTML =
+          node('Цель', team ? 'Командная цель отдела аналитики' : 'Индивидуальная цель') + ARROW +
+          node('Ответственный', other ? RESP : AUTHOR) + ARROW +
+          node('Согласующий', 'не определён', false) +
+          '<div class="mrt__warn"><b>Маршрут не строится.</b> У сотрудника не указан линейный руководитель — платформа предупреждает об этом в карточке цели и предлагает обратиться в HR.</div>';
+        return;
+      }
+
+      var approver, rule;
+      if (!team) {
+        approver = other ? RESP_MGR : AUTHOR_MGR;
+        rule = other
+          ? 'Индивидуальная цель уходит руководителю того, кто за неё отвечает, а не автору. Ответственный — Дмитрий, поэтому согласует <b>его руководитель</b>.'
+          : 'Индивидуальная цель уходит линейному руководителю сотрудника из его профиля. Выбирать маршрут вручную не нужно.';
+      } else {
+        approver = AUTHOR_MGR;
+        rule = other
+          ? 'Командная цель осталась у руководителя владельца команды, хотя ответственным назначен сотрудник из другой команды. Так маршрут <b>не уезжает не тому руководителю</b> только из-за выбора исполнителя.'
+          : 'Для командной цели согласующим становится руководитель владельца команды: маршрут отражает управленческую логику, а не только исполнение.';
+      }
+
+      var sender = other ? RESP : AUTHOR;
+
+      out.innerHTML =
+        node('Цель', team ? 'Командная цель отдела аналитики' : 'Индивидуальная цель') + ARROW +
+        node(team ? 'Владелец команды' : 'Владелец', AUTHOR) + ARROW +
+        node('Ответственный', other ? RESP : AUTHOR + ' — он же владелец') + ARROW +
+        node('Согласующий определён автоматически', approver, true) +
+        '<p class="mrt__send">Отправить на согласование может <b>' + sender + '</b>: если ответственный отличается от владельца, отправителем считается ответственный.</p>' +
+        '<div class="mrt__rule">' + rule + '</div>';
+    }
+
+    $$('.mrt__opt', root).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var group = btn.getAttribute('data-rt-group');
+        state[group] = btn.getAttribute('data-rt-val');
+        $$('.mrt__opt[data-rt-group="' + group + '"]', root).forEach(function (sib) {
+          var on = sib === btn;
+          sib.classList.toggle('is-on', on);
+          sib.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        trackOnce('route_change');
+        render();
+      });
+    });
+
+    render();
+  }
+
+  /* ---------------------------------------------------------------
      МОДАЛКА ЗАЯВКИ
      --------------------------------------------------------------- */
   function initDemoModal() {
@@ -546,6 +626,7 @@
     initQuiz();
     initFit();
     initNineBox();
+    initRoute();
     initDemoModal();
     initKeys();
     tick();
