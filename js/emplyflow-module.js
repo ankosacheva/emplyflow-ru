@@ -539,6 +539,95 @@
   }
 
   /* ---------------------------------------------------------------
+     AI-ПОДБОР ПРЕЕМНИКОВ
+     --------------------------------------------------------------- */
+  function initSuccession() {
+    var root = $('[data-succ]');
+    if (!root) return;
+
+    var raw = $('[data-succ-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.candidates || !cfg.candidates.length) return;
+
+    var stage = $('.msc__stage', root);
+    if (!stage) return;
+
+    function kpi(covered) {
+      var total = cfg.totalPositions;
+      return '<div class="msc__kpi"><b>' + Math.round((covered / total) * 100) + '%</b>' +
+        '<span><i>Покрытие ключевых позиций</i>' + covered + ' из ' + total + ' позиций имеют хотя бы одного преемника</span></div>';
+    }
+
+    function position() {
+      return '<div class="msc__pos"><b>' + cfg.position + '</b>' +
+        '<span>Держатель: ' + cfg.holder + ' · источник: справочник должностей · кадровый резерв</span></div>';
+    }
+
+    function renderStart() {
+      stage.innerHTML =
+        kpi(cfg.covered) + position() +
+        '<button type="button" class="msc__go" data-succ-go>Подобрать резервистов с ИИ</button>' +
+        '<p class="msc__note" style="margin-top:12px;">ИИ сравнивает кандидатов из поддерева подразделения с требованиями роли: компетенции должности, данные 360°, Performance Review, Self Review и карьерный трек.</p>';
+      $('[data-succ-go]', stage).addEventListener('click', function () {
+        track('succ_ai');
+        renderList();
+      });
+    }
+
+    function renderList() {
+      var cards = '';
+      cfg.candidates.forEach(function (c, i) {
+        var tags = '';
+        (c.strengths || []).forEach(function (t) { tags += '<span>' + t + '</span>'; });
+        (c.gaps || []).forEach(function (t) { tags += '<span class="is-gap">' + t + '</span>'; });
+        cards +=
+          '<div class="msc__card">' +
+            '<div class="msc__top">' +
+              '<span class="msc__name">' + c.name + '<small>' + c.role + '</small></span>' +
+              '<span class="msc__match">' + c.match + '%</span>' +
+            '</div>' +
+            '<p class="msc__why"><b>Почему подходит:</b> ' + c.why + '</p>' +
+            '<span class="msc__tags">' + tags + '</span>' +
+            '<button type="button" class="msc__nom" data-nom="' + i + '">Номинировать</button>' +
+          '</div>';
+      });
+
+      stage.innerHTML =
+        kpi(cfg.covered) + position() +
+        '<p class="msc__why" style="margin:0 0 8px;"><b>ИИ предложил ' + cfg.candidates.length + ' кандидатов</b> из поддерева подразделения</p>' +
+        '<div class="msc__cands">' + cards + '</div>' +
+        '<button type="button" class="msc__back" data-succ-restart>Начать заново</button>';
+
+      $$('[data-nom]', stage).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var c = cfg.candidates[parseInt(btn.getAttribute('data-nom'), 10)];
+          track('succ_nominate', { name: c.name });
+          renderDone(c);
+        });
+      });
+      $('[data-succ-restart]', stage).addEventListener('click', renderStart);
+    }
+
+    function renderDone(c) {
+      stage.innerHTML =
+        kpi(cfg.covered + 1) + position() +
+        '<div class="msc__done"><b>Номинация сохранена: ' + c.name + '</b>' +
+        '<span>Позиция перестала быть непокрытой, KPI цикла пересчитан автоматически.</span></div>' +
+        '<div class="msc__meta">' +
+          '<div><i>Готовность</i><b>' + c.readiness + '</b></div>' +
+          '<div><i>Gap</i><b>' + c.gap + '</b></div>' +
+          '<div><i>Тип связи</i><b>' + c.link + '</b></div>' +
+        '</div>' +
+        '<p class="msc__note"><b>Дальше по процессу.</b> На эту же позицию можно назначить ещё преемников со своей готовностью и gap, а HR может скрыть чувствительную номинацию от нижестоящих руководителей. Разрыв компетенций уходит в план развития резервиста.</p>' +
+        '<button type="button" class="msc__back" data-succ-restart>Подобрать другого кандидата</button>';
+      $('[data-succ-restart]', stage).addEventListener('click', renderStart);
+    }
+
+    renderStart();
+  }
+
+  /* ---------------------------------------------------------------
      МОДАЛКА ЗАЯВКИ
      --------------------------------------------------------------- */
   function initDemoModal() {
@@ -627,6 +716,7 @@
     initFit();
     initNineBox();
     initRoute();
+    initSuccession();
     initDemoModal();
     initKeys();
     tick();

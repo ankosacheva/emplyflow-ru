@@ -1162,6 +1162,130 @@ button { font: inherit; }
 .mrt__send b { color: var(--indigo); font-weight: 800; }
 
 /* -------------------------------------------------------------
+   ИНТЕРАКТИВ: AI-ПОДБОР ПРЕЕМНИКОВ
+   ------------------------------------------------------------- */
+.msc__kpi {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 13px;
+  background: #f1eefe;
+  border: 1px solid #e0daff;
+  margin-bottom: 12px;
+}
+.msc__kpi b { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.msc__kpi span { font-size: 12px; line-height: 1.35; color: var(--ink-2); }
+.msc__kpi span i { display: block; font-style: normal; font-size: 13px; font-weight: 800; color: var(--ink); }
+
+.msc__pos {
+  padding: 12px 14px;
+  border-radius: 13px;
+  background: #f8f7fb;
+  margin-bottom: 12px;
+}
+.msc__pos b { display: block; font-size: 14px; font-weight: 800; letter-spacing: -0.015em; color: var(--ink); }
+.msc__pos span { font-size: 12px; font-weight: 700; color: var(--ink-3); }
+
+.msc__go {
+  appearance: none;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  padding: 13px 18px;
+  border-radius: 13px;
+  background: var(--indigo);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  transition: filter 0.2s var(--ease);
+}
+.msc__go:hover { filter: brightness(1.09); }
+
+.msc__cands { display: flex; flex-direction: column; gap: 8px; }
+.msc__card {
+  padding: 12px 14px;
+  border-radius: 13px;
+  border: 1.5px solid #e8e6f4;
+  background: #fff;
+}
+.msc__top { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+.msc__name { font-size: 13.5px; font-weight: 800; letter-spacing: -0.015em; color: var(--ink); }
+.msc__name small { display: block; font-size: 11px; font-weight: 700; color: var(--ink-3); }
+.msc__match {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f1eefe;
+  color: var(--indigo);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.msc__why { margin: 8px 0 0; font-size: 12px; line-height: 1.45; color: var(--ink-2); }
+.msc__why b { color: var(--ink-3); font-weight: 800; }
+.msc__tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.msc__tags span {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #f1eefe;
+  color: #4a3bff;
+  font-size: 11px;
+  font-weight: 700;
+}
+.msc__tags span.is-gap { background: #fdf4f9; color: #b06699; }
+.msc__nom {
+  appearance: none;
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 11px;
+  border: 0;
+  background: #141033;
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 800;
+  transition: filter 0.2s var(--ease);
+}
+.msc__nom:hover { filter: brightness(1.35); }
+
+.msc__done {
+  padding: 12px 14px;
+  border-radius: 13px;
+  background: #eafaf0;
+  border: 1px solid #bfe9cf;
+  margin-bottom: 10px;
+}
+.msc__done b { display: block; font-size: 13.5px; font-weight: 800; color: #2f9d5b; margin-bottom: 4px; }
+.msc__done span { font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+.msc__meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }
+.msc__meta div { padding: 10px; border-radius: 11px; background: #f8f7fb; }
+.msc__meta b { display: block; font-size: 13px; font-weight: 800; color: var(--ink); }
+.msc__meta i { font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--ink-3); }
+.msc__note {
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px dashed #ffb8e2;
+  background: #fdf4f9;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.msc__note b { color: #b06699; }
+.msc__back {
+  appearance: none;
+  margin-top: 11px;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--indigo);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.msc__back:hover { text-decoration: underline; }
+
+/* -------------------------------------------------------------
    ПЕРЕХОД К СПРАВОЧНОЙ ЧАСТИ
    ------------------------------------------------------------- */
 .mswitch {

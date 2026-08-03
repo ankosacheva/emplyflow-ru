@@ -23,6 +23,9 @@ RewriteRule ^modul-matritsa-9-box/$ page102380003.html [NC]
 RewriteRule ^modul-tselepolaganie$ page102390004.html [NC]
 RewriteRule ^modul-tselepolaganie/$ page102390004.html [NC]
 
+RewriteRule ^modul-preemstvennost$ page102400005.html [NC]
+RewriteRule ^modul-preemstvennost/$ page102400005.html [NC]
+
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii$ page96490096.html [NC]
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii/$ page96490096.html [NC]
 
