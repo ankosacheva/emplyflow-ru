@@ -628,6 +628,127 @@
   }
 
   /* ---------------------------------------------------------------
+     БЛАГОДАРНОСТЬ КОЛЛЕГЕ
+     --------------------------------------------------------------- */
+  function initThanks() {
+    var root = $('[data-thanks]');
+    if (!root) return;
+
+    var raw = $('[data-thanks-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.items || !cfg.items.length) return;
+
+    var stage = $('.mth__stage', root);
+    if (!stage) return;
+
+    var tab = 'projects';
+    var count = cfg.count;
+    var open = null;
+    var flash = '';
+    var warn = '';
+    var bump = false;
+    var log = [];
+
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (ch) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch];
+      });
+    }
+
+    function render() {
+      var html =
+        '<div class="mth__head"><span class="mth__ava"></span>' +
+        '<span class="mth__who"><b>' + cfg.person + '</b><span>' + cfg.role + '</span></span>' +
+        '<span class="mth__count' + (bump ? ' is-up' : '') + '">' + count + ' благодарностей</span></div>';
+      bump = false;
+
+      if (flash) html += '<div class="mth__toast">' + flash + '</div>';
+      if (warn) html += '<div class="mth__warn">' + warn + '</div>';
+
+      if (open) {
+        html +=
+          '<div class="mth__dialog">' +
+            '<p><b>Отправить благодарность</b><br>За ' + (open.tab === 'projects' ? 'проект' : 'достижение') + ' «' + open.title + '»</p>' +
+            '<textarea class="mth__field" rows="3" data-thanks-msg placeholder="Сообщение (необязательно)"></textarea>' +
+            '<div class="mth__row"><button type="button" class="mth__send" data-thanks-confirm>Отправить</button>' +
+            '<button type="button" class="mth__cancel" data-thanks-cancel>Отмена</button></div>' +
+          '</div>';
+      } else {
+        html +=
+          '<div class="mth__tabs">' +
+            '<button type="button" class="mth__tab' + (tab === 'projects' ? ' is-on' : '') + '" data-thanks-tab="projects">Проекты</button>' +
+            '<button type="button" class="mth__tab' + (tab === 'achievements' ? ' is-on' : '') + '" data-thanks-tab="achievements">Достижения</button>' +
+          '</div><div class="mth__items">';
+
+        cfg.items.forEach(function (it, i) {
+          if (it.tab !== tab) return;
+          html +=
+            '<div class="mth__item' + (it.sent ? ' is-done' : '') + '">' +
+              '<span><b>' + it.title + '</b><span>' + it.sub + '</span></span>' +
+              '<button type="button" class="mth__send' + (it.sent ? ' is-sent' : '') + '" data-thanks-pick="' + i + '">' +
+              (it.sent ? 'Отправлено' : 'Благодарность') + '</button>' +
+            '</div>';
+        });
+        html += '</div>';
+      }
+
+      if (log.length) {
+        html += '<div class="mth__log"><p>История благодарностей</p>';
+        log.forEach(function (l) { html += '<div>' + l + '</div>'; });
+        html += '</div>';
+      }
+
+      stage.innerHTML = html;
+
+      $$('[data-thanks-tab]', stage).forEach(function (b) {
+        b.addEventListener('click', function () {
+          tab = b.getAttribute('data-thanks-tab');
+          flash = ''; warn = '';
+          render();
+        });
+      });
+
+      $$('[data-thanks-pick]', stage).forEach(function (b) {
+        b.addEventListener('click', function () {
+          var it = cfg.items[parseInt(b.getAttribute('data-thanks-pick'), 10)];
+          flash = ''; warn = '';
+          if (it.sent) {
+            warn = 'Вы уже благодарили за ' + (it.tab === 'projects' ? 'этот проект' : 'это достижение') + '. Повторная благодарность за тот же объект не отправляется.';
+            render();
+            return;
+          }
+          open = it;
+          track('thanks_open', { title: it.title });
+          render();
+          var f = $('[data-thanks-msg]', stage);
+          if (f) f.focus();
+        });
+      });
+
+      var cancel = $('[data-thanks-cancel]', stage);
+      if (cancel) cancel.addEventListener('click', function () { open = null; render(); });
+
+      var confirm = $('[data-thanks-confirm]', stage);
+      if (confirm) confirm.addEventListener('click', function () {
+        var field = $('[data-thanks-msg]', stage);
+        var msg = field ? field.value.trim() : '';
+        open.sent = true;
+        count += 1;
+        bump = true;
+        flash = 'Благодарность отправлена. Счётчик в профиле обновился.';
+        log.unshift('<b>Вы</b> — за ' + (open.tab === 'projects' ? 'проект' : 'достижение') + ' «' + open.title + '»' +
+          (msg ? '<br>«' + esc(msg) + '»' : '') + '<i>сегодня</i>');
+        track('thanks_send', { title: open.title, with_message: msg ? 1 : 0 });
+        open = null;
+        render();
+      });
+    }
+
+    render();
+  }
+
+  /* ---------------------------------------------------------------
      МОДАЛКА ЗАЯВКИ
      --------------------------------------------------------------- */
   function initDemoModal() {
@@ -717,6 +838,7 @@
     initNineBox();
     initRoute();
     initSuccession();
+    initThanks();
     initDemoModal();
     initKeys();
     tick();

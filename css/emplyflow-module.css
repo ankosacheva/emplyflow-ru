@@ -1289,6 +1289,157 @@ body[data-module="succession"] .mcover__title { font-size: clamp(34px, 4.4vw, 60
 .msc__back:hover { text-decoration: underline; }
 
 /* -------------------------------------------------------------
+   ИНТЕРАКТИВ: БЛАГОДАРНОСТЬ КОЛЛЕГЕ
+   ------------------------------------------------------------- */
+.mth__head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 13px;
+  border-radius: 13px;
+  background: #f8f7fb;
+  margin-bottom: 12px;
+}
+.mth__ava {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 999px;
+  background: linear-gradient(140deg, #d5fff3, #cec8ff);
+}
+.mth__who { flex: 1; min-width: 0; }
+.mth__who b { display: block; font-size: 13.5px; font-weight: 800; letter-spacing: -0.015em; color: var(--ink); }
+.mth__who span { font-size: 11.5px; font-weight: 700; color: var(--ink-3); }
+.mth__count {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #eafaf0;
+  color: #2f9d5b;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.mth__count.is-up { animation: mthPop 0.45s var(--ease); }
+@keyframes mthPop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.16); }
+  100% { transform: scale(1); }
+}
+
+.mth__tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+.mth__tab {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: #f1f0f7;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 800;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.mth__tab.is-on { background: var(--indigo); color: #fff; }
+
+.mth__items { display: flex; flex-direction: column; gap: 8px; }
+.mth__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1.5px solid #ece9f6;
+  background: #fff;
+}
+.mth__item.is-done { border-color: #bfe9cf; background: #f5fcf8; }
+.mth__item b { display: block; font-size: 13px; font-weight: 800; letter-spacing: -0.015em; color: var(--ink); }
+.mth__item span { font-size: 11.5px; font-weight: 700; color: var(--ink-3); }
+.mth__send {
+  appearance: none;
+  flex: none;
+  border: 0;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 11px;
+  background: var(--indigo);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  transition: filter 0.2s var(--ease);
+}
+.mth__send:hover { filter: brightness(1.1); }
+.mth__send.is-sent { background: #eafaf0; color: #2f9d5b; filter: none; }
+.mth__send.is-sent:hover { filter: none; background: #ddf5e6; }
+
+.mth__dialog { padding: 13px 14px; border-radius: 13px; background: #f8f7fb; }
+.mth__dialog p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+.mth__dialog p b { color: var(--ink); }
+.mth__field {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 11px;
+  border: 1.5px solid #e2dff0;
+  background: #fff;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--ink);
+  resize: none;
+}
+.mth__field:focus { outline: none; border-color: var(--indigo); }
+.mth__row { display: flex; gap: 8px; margin-top: 10px; }
+.mth__row .mth__send { flex: 1; padding: 10px 14px; }
+.mth__cancel {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 11px;
+  background: #ece9f6;
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.mth__toast {
+  margin-bottom: 10px;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: #eafaf0;
+  border: 1px solid #bfe9cf;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #2f9d5b;
+}
+.mth__warn {
+  margin-bottom: 10px;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: #fff5ea;
+  border: 1px dashed #f0c48a;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #c47a2c;
+}
+.mth__log { margin-top: 12px; }
+.mth__log p { margin: 0 0 7px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+.mth__log div {
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: #f8f7fb;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.mth__log div b { color: var(--ink); }
+.mth__log div i { display: block; font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--ink-3); margin-top: 3px; }
+
+/* -------------------------------------------------------------
    ПЕРЕХОД К СПРАВОЧНОЙ ЧАСТИ
    ------------------------------------------------------------- */
 .mswitch {
