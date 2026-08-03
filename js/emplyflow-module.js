@@ -749,6 +749,125 @@
   }
 
   /* ---------------------------------------------------------------
+     ФАЗЫ ЦИКЛА PERFORMANCE REVIEW
+     --------------------------------------------------------------- */
+  function initPhases() {
+    var root = $('[data-phases]');
+    if (!root) return;
+
+    var raw = $('[data-phases-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.phases || !cfg.phases.length) return;
+
+    var line = $('.mph__line', root);
+    var panel = $('.mph__panel', root);
+    if (!line || !panel) return;
+
+    var current = 0;
+
+    function draw() {
+      var p = cfg.phases[current];
+      var roles = '';
+      p.roles.forEach(function (r) {
+        roles += '<div class="mph__role' + (r.idle ? ' is-idle' : '') + '"><b>' + r.role + '</b><span>' + r.text + '</span></div>';
+      });
+      panel.innerHTML =
+        '<h4>' + p.title + '</h4>' +
+        '<p class="mph__when">' + p.when + '</p>' +
+        '<div class="mph__roles">' + roles + '</div>' +
+        (p.lock ? '<div class="mph__lock">' + p.lock + '</div>' : '');
+
+      $$('.mph__step', line).forEach(function (b, i) {
+        b.classList.toggle('is-on', i === current);
+        b.setAttribute('aria-pressed', i === current ? 'true' : 'false');
+      });
+    }
+
+    line.innerHTML = '';
+    cfg.phases.forEach(function (p, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'mph__step';
+      b.innerHTML = '<b>' + p.short + '</b><i>' + p.dates + '</i>';
+      b.addEventListener('click', function () {
+        current = i;
+        track('phase_open', { phase: p.short });
+        draw();
+      });
+      line.appendChild(b);
+    });
+
+    draw();
+  }
+
+  /* ---------------------------------------------------------------
+     ВЕСА КОМПОНЕНТОВ И ИТОГОВЫЙ БАЛЛ
+     --------------------------------------------------------------- */
+  function initWeights() {
+    var root = $('[data-weights]');
+    if (!root) return;
+
+    var raw = $('[data-weights-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.components || !cfg.components.length) return;
+
+    var rows = $('.mwt__rows', root);
+    var out = $('.mwt__out', root);
+    var hint = $('.mwt__hint', root);
+    if (!rows || !out) return;
+
+    var inputs = [];
+
+    function grade(score) {
+      for (var i = 0; i < cfg.scale.length; i++) {
+        if (score >= cfg.scale[i].from) return cfg.scale[i];
+      }
+      return cfg.scale[cfg.scale.length - 1];
+    }
+
+    function draw() {
+      var sum = 0;
+      inputs.forEach(function (inp) { sum += parseInt(inp.value, 10); });
+      if (sum <= 0) sum = 1;
+
+      var score = 0;
+      cfg.components.forEach(function (c, i) {
+        var w = parseInt(inputs[i].value, 10) / sum;
+        score += c.result * w;
+        var label = $('[data-weight-label="' + i + '"]', rows);
+        if (label) label.textContent = Math.round(w * 100) + '%';
+      });
+
+      score = Math.round(score);
+      var g = grade(score);
+      out.innerHTML =
+        '<span class="mwt__score">' + score + '</span>' +
+        '<span class="mwt__grade"><b>' + g.title + '</b><span>' + g.note + '</span></span>' +
+        '<span class="mwt__badge">' + g.code + '</span>';
+      if (hint) hint.innerHTML = '<b>Решение руководителя:</b> ' + g.decision;
+    }
+
+    rows.innerHTML = '';
+    cfg.components.forEach(function (c, i) {
+      var row = document.createElement('div');
+      row.className = 'mwt__row';
+      row.innerHTML =
+        '<span class="mwt__top"><b>' + c.name + '</b><span data-weight-label="' + i + '">0%</span></span>' +
+        '<p class="mwt__fact">' + c.fact + '</p>' +
+        '<input class="mwt__range" type="range" min="0" max="100" step="5" value="' + c.weight + '" aria-label="Вес компонента «' + c.name + '»">';
+      rows.appendChild(row);
+      var inp = row.querySelector('input');
+      inputs.push(inp);
+      inp.addEventListener('input', draw);
+      inp.addEventListener('change', function () { track('weights_change', { component: c.name }); });
+    });
+
+    draw();
+  }
+
+  /* ---------------------------------------------------------------
      МОДАЛКА ЗАЯВКИ
      --------------------------------------------------------------- */
   function initDemoModal() {
@@ -839,6 +958,8 @@
     initRoute();
     initSuccession();
     initThanks();
+    initPhases();
+    initWeights();
     initDemoModal();
     initKeys();
     tick();

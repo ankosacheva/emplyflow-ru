@@ -29,6 +29,9 @@ RewriteRule ^modul-preemstvennost/$ page102400005.html [NC]
 RewriteRule ^modul-nematerialnaya-motivatsiya$ page102410006.html [NC]
 RewriteRule ^modul-nematerialnaya-motivatsiya/$ page102410006.html [NC]
 
+RewriteRule ^performance-review-kak-eto-rabotaet$ page102420007.html [NC]
+RewriteRule ^performance-review-kak-eto-rabotaet/$ page102420007.html [NC]
+
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii$ page96490096.html [NC]
 RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii/$ page96490096.html [NC]
 

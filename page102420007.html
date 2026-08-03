@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050230">
+<title>Performance Review: как это работает — платформа EmplyFlow</title>
+<meta name="description" content="Как проходит Performance Review в EmplyFlow: цикл планирования с датами фаз, цели и KPI, Self Review, оценка 360°, анкета руководителя на фактических данных, веса компонентов, калибровка оценок и публикация результата сотруднику.">
+<link rel="canonical" href="https://emplyflow.ru/performance-review-kak-eto-rabotaet">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emplyflow.ru/performance-review-kak-eto-rabotaet">
+<meta property="og:title" content="Performance Review: как это работает — платформа EmplyFlow">
+<meta property="og:description" content="Один цикл, пять шагов, понятные даты. Цели, KPI, Self Review и 360° сами собираются в решение о повышении.">
+<meta property="og:image" content="https://emplyflow.ru/media/case-performance-review.webp">
+<meta property="og:site_name" content="EmplyFlow">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Performance Review: как это работает — платформа EmplyFlow">
+<meta name="twitter:description" content="Цикл, фазы по датам, оценка руководителя на фактах, калибровка и публикация результата.">
+<meta name="twitter:image" content="https://emplyflow.ru/media/case-performance-review.webp">
+
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6239-3062-4538-a639-383666626538__32x32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="images/tild6164-3236-4734-b139-376466343939__32x32.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="images/tild3766-3562-4732-a164-356632343966__180x180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803h">
+<link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
+<link rel="stylesheet" href="css/emplyflow-demo-form.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Performance Review: как это работает — платформа EmplyFlow",
+  "description": "Сквозной процесс Performance Review: цикл планирования, даты фаз, цели и KPI, Self Review, 360°, анкета руководителя, калибровка и публикация результата.",
+  "inLanguage": "ru-RU",
+  "url": "https://emplyflow.ru/performance-review-kak-eto-rabotaet",
+  "isPartOf": { "@type": "WebSite", "name": "EmplyFlow", "url": "https://emplyflow.ru" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как проходит Performance Review в EmplyFlow",
+  "inLanguage": "ru-RU",
+  "step": [
+    { "@type": "HowToStep", "name": "Цикл планирования", "text": "HR создаёт цикл, задаёт даты фаз и назначает шаблоны на команды и роли." },
+    { "@type": "HowToStep", "name": "Цели и KPI", "text": "Сотрудники работают по целям и KPI, привязанным к циклу." },
+    { "@type": "HowToStep", "name": "Self Review", "text": "Сотрудник заполняет самооценку в заданное окно дат." },
+    { "@type": "HowToStep", "name": "Оценка 360°", "text": "Коллеги оценивают компетенции сотрудника по шаблону цикла." },
+    { "@type": "HowToStep", "name": "Анкета руководителя", "text": "Руководитель видит цели, KPI, 360°, Self Review и достижения и заполняет опрос по результатам." },
+    { "@type": "HowToStep", "name": "Калибровка", "text": "HR и вышестоящие руководители выравнивают оценки между командами и согласуют решения." },
+    { "@type": "HowToStep", "name": "Публикация", "text": "После закрытия фазы сотрудник видит итоговую оценку, смысл шкалы и решения по развитию." }
+  ]
+}
+</script>
+</head>
+<body data-module="performance-review" data-accent="violet">
+
+<a class="skip-link" href="#details">Перейти к описанию процесса</a>
+
+<header class="mtop" id="mtop">
+  <div class="shell mtop__inner">
+    <a class="mtop__back" href="index.html#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
+    <span class="mtop__name">Performance Review</span>
+    <span class="mtop__spacer"></span>
+    <div class="mmode" role="group" aria-label="Режим просмотра страницы">
+      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Смотреть</button>
+      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Разобраться</button>
+    </div>
+    <button type="button" class="mtop__cta" data-ef-demo-open data-track="cta-topbar">Получить демодоступ</button>
+  </div>
+  <div class="mbars" id="mbars" aria-hidden="true"></div>
+</header>
+
+<main id="feed">
+
+  <!-- ============ ОБЛОЖКА ============ -->
+  <section class="mreel mcover" id="cover" data-reel data-accent="violet" aria-labelledby="cover-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="mcover__kicker">Performance Review</p>
+          <h1 class="mcover__title" id="cover-title">Пять шагов <em>вместо аврала</em></h1>
+          <p class="mcover__q">Обычно ревью — это две недели сбора таблиц, напоминаний в чатах и спорных оценок «по последнему впечатлению». В EmplyFlow это один цикл с датами: система сама показывает нужную форму нужному человеку, а к моменту решения о повышении все данные уже собраны.</p>
+          <div class="mcover__meta">
+            <span class="mtag">Один цикл вместо пяти таблиц</span>
+            <span class="mtag">Фазы по датам</span>
+            <span class="mtag">Решение на фактах, а не на памяти</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Цикл «1 полугодие 2026» · фаза калибровки</span></div>
+            <div class="mwin__body">
+              <p class="msub">Компоненты результата</p>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;margin-bottom:12px;">
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Цели и OKR</span><span style="text-align:right;color:#141033;">92%</span><span style="text-align:right;font-size:10.5px;color:#8681ab;">вес 50</span></div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Оценка 360°</span><span style="text-align:right;color:#141033;">4,3 из 5</span><span style="text-align:right;font-size:10.5px;color:#8681ab;">вес 30</span></div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>KPI</span><span style="text-align:right;color:#141033;">78%</span><span style="text-align:right;font-size:10.5px;color:#8681ab;">вес 20</span></div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#eafaf0;"><span>Self Review</span><span style="text-align:right;color:#2f9d5b;">заполнен</span><span style="text-align:right;font-size:10.5px;color:#5c7a67;">контекст</span></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:13px;background:#f1eefe;border:1px solid #e0daff;">
+                <span style="font-size:28px;font-weight:800;letter-spacing:-.04em;color:#4a3bff;">87</span>
+                <span style="flex:1;min-width:0;font-size:11.5px;line-height:1.4;font-weight:700;color:#8681ab;"><b style="display:block;font-size:13.5px;color:#141033;">Превышает ожидания</b>взвешенный результат по циклу</span>
+                <span style="padding:5px 11px;border-radius:999px;background:#fff;color:#4a3bff;font-size:12px;font-weight:800;">грейд +1</span>
+              </div>
+              <div class="mgapchip"><span>Решение подкреплено четырьмя источниками данных</span><b style="font-size:12px;">без «мне кажется»</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="mscroll">Листайте <i aria-hidden="true"></i></span>
+  </section>
+
+  <!-- ============ 1 · ЦИКЛ ============ -->
+  <section class="mreel mreel--flip" id="r-cycle" data-reel data-accent="sky" aria-labelledby="r1-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Управленческая панель · цикл планирования</span></div>
+            <div class="mwin__body">
+              <div style="padding:11px 13px;border-radius:12px;background:#f1eefe;margin-bottom:12px;">
+                <div style="font-size:13.5px;font-weight:800;color:#141033;">1 полугодие 2026</div>
+                <div style="font-size:11.5px;font-weight:700;color:#4a3bff;margin-top:2px;">Применён к 4 подразделениям · 168 сотрудников</div>
+              </div>
+              <p class="msub">К циклу привязано</p>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;">
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Цели и Key Results</span><b style="color:#4a3bff;">312</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>KPI</span><b style="color:#4a3bff;">24 метрики</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Шаблон Self Review</span><b style="color:#4a3bff;">2 варианта</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Шаблон оценки 360°</span><b style="color:#4a3bff;">2 варианта</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Анкета руководителя</span><b style="color:#4a3bff;">3 варианта</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Веса компонентов</span><b style="color:#4a3bff;">50 / 30 / 20</b></div>
+              </div>
+              <div class="mgapchip"><span>HR настраивает правила один раз, дальше платформа ведёт процесс сама</span><b style="font-size:12px;">1 экран</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>01</b> Одна точка настройки</p>
+          <h2 class="mclaim" id="r1-title">Всё держится <em>на цикле планирования</em></h2>
+          <p class="mlead">Цели, KPI, шаблоны Self Review и 360°, анкета руководителя, веса и даты этапов привязаны к одному циклу. HR не запускает каждый модуль вручную: он задаёт правила и даты, а платформа показывает нужные формы нужным людям в нужное время.</p>
+          <div class="mproof">
+            <span class="mproof__num">6</span>
+            <span class="mproof__txt">процессов живут в единой временной логике: цели, KPI, Self Review, 360°, оценка руководителя и калибровка</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · ИНТЕРАКТИВ ФАЗЫ ============ -->
+  <section class="mreel" id="r-phases" data-reel data-accent="mint" aria-labelledby="r2-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>02</b> Попробуйте сами</p>
+          <h2 class="mclaim" id="r2-title">Каждый знает, <em>что делать и когда</em></h2>
+          <p class="mlead">Нажмите на любой этап цикла и посмотрите, что в этот момент делает сотрудник, что руководитель, а что HR. Ни одна роль не ждёт письма с инструкцией: форма появляется сама, а после закрытия окна правки блокируются.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Даты фаз задаёт HR: окна могут пересекаться, как Self Review и 360° в примере ниже</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Цикл «1 полугодие 2026» · этапы</span></div>
+            <div class="mwin__body">
+              <div data-phases>
+                <div class="mph__line"></div>
+                <div class="mph__panel">
+                  <p class="msub">Включите JavaScript, чтобы посмотреть роли на каждом этапе цикла.</p>
+                </div>
+                <script type="application/json" data-phases-json>
+                {
+                  "phases": [
+                    {
+                      "short": "Цели и KPI",
+                      "dates": "янв — март",
+                      "title": "Работа по целям и KPI",
+                      "when": "Январь — март",
+                      "roles": [
+                        { "role": "Сотрудник", "text": "Работает по своим целям и Key Results, обновляет прогресс, видит вклад в цели команды" },
+                        { "role": "Руководитель", "text": "Согласует цели, следит за KPI и корректирует приоритеты по ходу периода" },
+                        { "role": "HR", "text": "Контролирует, что у всех сотрудников цикла есть согласованные цели" }
+                      ]
+                    },
+                    {
+                      "short": "Self Review",
+                      "dates": "1—10 апр",
+                      "title": "Самооценка сотрудника",
+                      "when": "1 — 10 апреля",
+                      "roles": [
+                        { "role": "Сотрудник", "text": "Заполняет форму Self Review по шаблону своего цикла: результаты, достижения, сложности" },
+                        { "role": "Руководитель", "text": "Видит статусы прохождения по команде, готовится к разговору", "idle": true },
+                        { "role": "HR", "text": "Отслеживает прохождение и напоминает отстающим командам" }
+                      ],
+                      "lock": "<b>Форма появляется сама</b> в первый день окна и исчезает после его закрытия — искать ссылку в переписке не нужно."
+                    },
+                    {
+                      "short": "Оценка 360°",
+                      "dates": "5—15 апр",
+                      "title": "Обратная связь коллег",
+                      "when": "5 — 15 апреля",
+                      "roles": [
+                        { "role": "Сотрудник", "text": "Запрашивает оценку коллег и сам отвечает на анкеты, где выбран респондентом" },
+                        { "role": "Руководитель", "text": "Согласует список оценщиков и заполняет анкеты по своим сотрудникам" },
+                        { "role": "HR", "text": "Видит покрытие: у кого не хватает респондентов, где анкеты не заполнены" }
+                      ],
+                      "lock": "Окна фаз могут <b>пересекаться</b>: 360° стартует, пока часть команды ещё дописывает Self Review."
+                    },
+                    {
+                      "short": "Анкета PR",
+                      "dates": "16—25 апр",
+                      "title": "Оценка руководителя",
+                      "when": "16 — 25 апреля",
+                      "roles": [
+                        { "role": "Сотрудник", "text": "Ничего не делает и результат пока не видит", "idle": true },
+                        { "role": "Руководитель", "text": "Открывает карточку сотрудника с целями, KPI, 360°, Self Review и достижениями и заполняет анкету: оценка, комментарий, решения по грейду и окладу" },
+                        { "role": "HR", "text": "Следит за заполнением по компании и качеством комментариев" }
+                      ],
+                      "lock": "После 25 апреля <b>руководитель уже не изменит анкету</b> без прав HR или администратора — это защищает процесс от правок задним числом."
+                    },
+                    {
+                      "short": "Калибровка",
+                      "dates": "26—30 апр",
+                      "title": "Выравнивание оценок",
+                      "when": "26 — 30 апреля",
+                      "roles": [
+                        { "role": "Сотрудник", "text": "Результат ещё закрыт: публикация только после калибровки", "idle": true },
+                        { "role": "Руководитель", "text": "Обсуждает свои оценки в сравнении с другими командами" },
+                        { "role": "HR", "text": "Смотрит распределение оценок, снимает перекосы строгих и мягких руководителей, согласует решения по грейдам и окладам" }
+                      ]
+                    },
+                    {
+                      "short": "Публикация",
+                      "dates": "1 мая",
+                      "title": "Результат сотруднику",
+                      "when": "1 мая",
+                      "roles": [
+                        { "role": "Сотрудник", "text": "Видит в профиле итоговую оценку, что она означает по шкале, зоны роста и решения на следующий период" },
+                        { "role": "Руководитель", "text": "Проводит разговор по результатам, опираясь на данные, а не на воспоминания" },
+                        { "role": "HR", "text": "Анализирует итоги по компании и передаёт данные в 9-box, ИПР и кадровый резерв" }
+                      ],
+                      "lock": "<b>Пока фаза не закрыта, сотрудник оценку не видит.</b> Это снимает риск преждевременной публикации до калибровки."
+                    }
+                  ]
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · РАЗНЫЕ КОМАНДЫ ============ -->
+  <section class="mreel mreel--flip" id="r-teams" data-reel data-accent="peach" aria-labelledby="r3-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Активные циклы компании</span></div>
+            <div class="mwin__body">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="padding:11px 13px;border-radius:12px;background:#f8f7fb;">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><span style="font-size:13px;font-weight:800;color:#141033;">Команда продаж</span><span style="padding:3px 9px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:10.5px;font-weight:800;">квартал</span></div>
+                  <div style="margin-top:4px;font-size:11.5px;font-weight:700;color:#8681ab;">Анкета с акцентом на KPI · веса 20 / 20 / 60</div>
+                </div>
+                <div style="padding:11px 13px;border-radius:12px;background:#f8f7fb;">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><span style="font-size:13px;font-weight:800;color:#141033;">Разработка</span><span style="padding:3px 9px;border-radius:999px;background:#eafaf0;color:#2f9d5b;font-size:10.5px;font-weight:800;">полугодие</span></div>
+                  <div style="margin-top:4px;font-size:11.5px;font-weight:700;color:#8681ab;">Анкета с акцентом на OKR · веса 60 / 30 / 10</div>
+                </div>
+                <div style="padding:11px 13px;border-radius:12px;background:#f8f7fb;">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><span style="font-size:13px;font-weight:800;color:#141033;">Руководители</span><span style="padding:3px 9px;border-radius:999px;background:#fff5ea;color:#c47a2c;font-size:10.5px;font-weight:800;">год</span></div>
+                  <div style="margin-top:4px;font-size:11.5px;font-weight:700;color:#8681ab;">Отдельный шаблон и повышенный вес 360°</div>
+                </div>
+                <div style="padding:11px 13px;border-radius:12px;background:#fdf4f9;">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><span style="font-size:13px;font-weight:800;color:#141033;">Пилотная команда внедрения</span><span style="padding:3px 9px;border-radius:999px;background:#ffd3ec;color:#b06699;font-size:10.5px;font-weight:800;">проектный</span></div>
+                  <div style="margin-top:4px;font-size:11.5px;font-weight:700;color:#b06699;">Отдельный цикл, чтобы попробовать процесс на 20 людях</div>
+                </div>
+              </div>
+              <div class="mgapchip"><span>Циклы идут параллельно и не мешают друг другу</span><b style="font-size:12px;">без общего календаря</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>03</b> Гибкость без хаоса</p>
+          <h2 class="mclaim" id="r3-title">Не обязательно <em>гонять всю компанию одним календарём</em></h2>
+          <p class="mlead">Продажи живут в квартальном цикле, разработка в полугодовом, топ-менеджмент в годовом, а пилотная команда в отдельном проектном. Шаблоны и веса тоже назначаются на подразделение, роль или конкретного человека, поэтому у каждой команды свой уместный вопросник.</p>
+          <div class="mproof">
+            <span class="mproof__num">4</span>
+            <span class="mproof__txt">уровня применимости цикла и шаблона: вся компания, подразделение, роль, конкретный сотрудник или их комбинация</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · КОНТЕКСТ РУКОВОДИТЕЛЯ ============ -->
+  <section class="mreel" id="r-context" data-reel data-accent="peri" aria-labelledby="r4-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>04</b> Решение на фактах</p>
+          <h2 class="mclaim" id="r4-title">Руководитель открывает анкету <em>уже подготовленным</em></h2>
+          <p class="mlead">Перед тем как поставить оценку, руководитель видит на одном экране цели и вклад в OKR, KPI, результаты 360°, Self Review, достижения сотрудника и результаты предыдущих периодов. Оценка перестаёт зависеть от того, что запомнилось за последний месяц.</p>
+          <div class="mproof">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">В анкете фиксируются не только оценка и комментарий, но и решения: изменение должности или грейда, изменение оклада, зоны развития</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Анкета руководителя · Дмитрий К., аналитик</span></div>
+            <div class="mwin__body">
+              <p class="msub">Контекст периода</p>
+              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px;">
+                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8681ab;">Цели и OKR</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">92%</div><div style="font-size:10.5px;font-weight:700;color:#8681ab;">4 цели, 11 Key Results</div></div>
+                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8681ab;">KPI</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">78%</div><div style="font-size:10.5px;font-weight:700;color:#8681ab;">факт / план по 3 метрикам</div></div>
+                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8681ab;">Оценка 360°</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">4,3 из 5</div><div style="font-size:10.5px;font-weight:700;color:#8681ab;">7 респондентов</div></div>
+                <div style="padding:10px 12px;border-radius:11px;background:#eafaf0;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2f9d5b;">Self Review</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">заполнен</div><div style="font-size:10.5px;font-weight:700;color:#5c7a67;">самооценка 4,0</div></div>
+              </div>
+              <p class="msub">Решения в анкете</p>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;">
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f1eefe;"><span>Итоговая оценка</span><b style="color:#4a3bff;">Превышает ожидания</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Изменение грейда</span><b style="color:#141033;">да, +1</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Изменение оклада</span><b style="color:#141033;">на рассмотрении</b></div>
+                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Зона развития</span><b style="color:#141033;">публичные презентации</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · ИНТЕРАКТИВ ВЕСА ============ -->
+  <section class="mreel mreel--flip" id="r-weights" data-reel data-accent="candy" aria-labelledby="r5-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Веса компонентов · Дмитрий К., аналитик</span></div>
+            <div class="mwin__body">
+              <div data-weights>
+                <div class="mwt__rows">
+                  <p class="msub">Включите JavaScript, чтобы собрать модель оценки ползунками.</p>
+                </div>
+                <div class="mwt__out"></div>
+                <div class="mwt__hint"></div>
+                <script type="application/json" data-weights-json>
+                {
+                  "components": [
+                    { "name": "Цели и OKR", "fact": "Факт сотрудника: 92% выполнения", "result": 92, "weight": 50 },
+                    { "name": "Оценка 360°", "fact": "Факт сотрудника: 4,3 из 5 — это 86%", "result": 86, "weight": 30 },
+                    { "name": "KPI", "fact": "Факт сотрудника: 78% плана", "result": 78, "weight": 20 }
+                  ],
+                  "scale": [
+                    { "from": 90, "code": "A", "title": "Значительно превышает ожидания", "note": "кандидат в кадровый резерв, зона «звёзды» в 9-box", "decision": "повышение грейда и включение в резерв на ключевую позицию." },
+                    { "from": 80, "code": "B", "title": "Превышает ожидания", "note": "стабильно сильный результат по всем компонентам", "decision": "грейд +1, пересмотр оклада по итогам калибровки." },
+                    { "from": 65, "code": "C", "title": "Соответствует ожиданиям", "note": "результат в норме, точки роста понятны", "decision": "сохранить роль, сфокусировать ИПР на слабом компоненте." },
+                    { "from": 0, "code": "D", "title": "Ниже ожиданий", "note": "нужен разбор причин и план на следующий период", "decision": "план развития с контрольными точками через квартал." }
+                  ]
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>05</b> Попробуйте сами</p>
+          <h2 class="mclaim" id="r5-title">Модель оценки <em>подстраивается под компанию</em></h2>
+          <p class="mlead">Подвигайте ползунки весов: результаты сотрудника не меняются, а итоговый балл и рекомендация — да. В продажах логично усилить KPI, в продуктовой команде — OKR, у руководителей — командную оценку 360°. Веса задаёт HR один раз в управленческой панели.</p>
+          <div class="mproof">
+            <span class="mproof__num">4</span>
+            <span class="mproof__txt">компонента сходятся в один балл: цели и OKR, KPI, оценка 360° и оценка руководителя, где Self Review и достижения дают контекст</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · КАЛИБРОВКА ============ -->
+  <section class="mreel" id="r-calibration" data-reel data-accent="pink" aria-labelledby="r6-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>06</b> Справедливость</p>
+          <h2 class="mclaim" id="r6-title">Строгий и мягкий руководитель <em>приводятся к одной шкале</em></h2>
+          <p class="mlead">Перед публикацией HR и вышестоящие руководители видят распределение оценок по командам. Если у одного руководителя все «превышают ожидания», а у другого никто, это видно сразу — и обсуждается до того, как решения о повышении уйдут людям.</p>
+          <div class="mproof">
+            <span class="mproof__num">1</span>
+            <span class="mproof__txt">таблица на всю компанию: цикл, команда, должность, оценка, решения по грейду и окладу, комментарий и reviewer с фильтрами и выгрузкой</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="mwin">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Калибровка · распределение оценок по циклу</span></div>
+            <div class="mwin__body">
+              <p class="msub">До калибровки</p>
+              <div style="display:flex;align-items:flex-end;gap:8px;height:78px;margin-bottom:12px;">
+                <span style="flex:1;height:26%;border-radius:8px 8px 0 0;background:#ede9f6;"></span>
+                <span style="flex:1;height:38%;border-radius:8px 8px 0 0;background:#ede9f6;"></span>
+                <span style="flex:1;height:100%;border-radius:8px 8px 0 0;background:#ffd3ec;"></span>
+                <span style="flex:1;height:82%;border-radius:8px 8px 0 0;background:#ffd3ec;"></span>
+              </div>
+              <div style="padding:10px 12px;border-radius:11px;background:#fdf4f9;font-size:12px;line-height:1.45;color:#b06699;font-weight:700;margin-bottom:12px;">У двух руководителей 84% сотрудников получили две верхние оценки — шкала «съехала» вверх.</div>
+              <p class="msub">После калибровки</p>
+              <div style="display:flex;align-items:flex-end;gap:8px;height:78px;margin-bottom:12px;">
+                <span style="flex:1;height:34%;border-radius:8px 8px 0 0;background:#d5fff3;"></span>
+                <span style="flex:1;height:76%;border-radius:8px 8px 0 0;background:#d5fff3;"></span>
+                <span style="flex:1;height:100%;border-radius:8px 8px 0 0;background:#cec8ff;"></span>
+                <span style="flex:1;height:46%;border-radius:8px 8px 0 0;background:#cec8ff;"></span>
+              </div>
+              <div class="mgapchip"><span>Оценка скорректирована, комментарий и автор изменения сохранены</span><b style="font-size:12px;">решения согласованы</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · ПУБЛИКАЦИЯ ============ -->
+  <section class="mreel mreel--flip" id="r-publish" data-reel data-accent="mint" aria-labelledby="r7-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__mock" data-reveal>
+          <div class="mduet">
+            <div class="mduet__col mduet__col--bad">
+              <p class="mduet__h">Пока фаза не закрыта</p>
+              <ul class="mduet__list">
+                <li>Сотрудник не видит оценку</li>
+                <li>Решения по грейду и окладу не опубликованы</li>
+                <li>Слухи «кому что поставили» не опережают калибровку</li>
+              </ul>
+            </div>
+            <span class="mduet__arrow" aria-hidden="true">→</span>
+            <div class="mduet__col mduet__col--good">
+              <p class="mduet__h">После завершения</p>
+              <ul class="mduet__list">
+                <li>Итоговая оценка в профиле</li>
+                <li>Описание шкалы: что означает эта оценка</li>
+                <li>Зоны развития на следующий период</li>
+                <li>Решения по должности и окладу</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>07</b> Разговор, а не приговор</p>
+          <h2 class="mclaim" id="r7-title">Сотрудник получает результат <em>и понимает, что он значит</em></h2>
+          <p class="mlead">Оценка открывается только после закрытия фазы Performance Review — уже откалиброванная. Вместе с ней сотрудник видит описание шкалы, что нужно улучшить и какие зоны развития важны дальше. Ревью перестаёт быть односторонним: человек сам работал по целям, заполнял Self Review и участвовал в 360°.</p>
+          <div class="mtags">
+            <span class="mtag">Итоговая оценка</span>
+            <span class="mtag">Смысл шкалы</span>
+            <span class="mtag">Что улучшить</span>
+            <span class="mtag">Решения по роли</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8 · ЭКОСИСТЕМА ============ -->
+  <section class="mreel" id="r-eco" data-reel data-accent="violet" aria-labelledby="r8-title">
+    <div class="shell">
+      <div class="mreel__grid">
+        <div class="mreel__copy" data-reveal>
+          <p class="meyebrow"><b>08</b> Что дальше с данными</p>
+          <h2 class="mclaim" id="r8-title">Итоги ревью <em>не остаются в архиве</em></h2>
+          <p class="mlead">Собранные данные сразу работают дальше: строят матрицу 9-box по осям результата и компетенций, задают фокус индивидуальных планов развития и подсказывают кандидатов в кадровый резерв. Один цикл питает весь HR-контур, а не один отчёт.</p>
+          <div class="mproof">
+            <span class="mproof__num">0</span>
+            <span class="mproof__txt">выгрузок нужно, чтобы передать итоги в 9-box, ИПР и преемственность: модули читают данные цикла напрямую</span>
+          </div>
+        </div>
+        <div class="mreel__mock" data-reveal>
+          <div class="meco">
+            <div class="meco__card meco__card--candy">
+              <b>Матрица 9-box</b>
+              <span>Результат по целям и KPI на одной оси, компетенции 360° на другой</span>
+              <i>Аналитический взгляд</i>
+            </div>
+            <div class="meco__card meco__card--mac">
+              <b>Карьера и ИПР</b>
+              <span>Зоны развития из анкеты становятся фокусом плана развития</span>
+              <i>Что делать дальше</i>
+            </div>
+            <div class="meco__card meco__card--peach">
+              <b>Преемственность</b>
+              <span>Сильные результаты — сигнал для кадрового резерва по ключевым ролям</span>
+              <i>Кто следующий</i>
+            </div>
+            <div class="meco__card meco__card--peri">
+              <b>Целеполагание</b>
+              <span>Новый цикл стартует с целей, связанных со стратегией компании</span>
+              <i>Следующий круг</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ПЕРЕХОД ============ -->
+  <section class="mswitch">
+    <div class="shell mswitch__inner">
+      <div>
+        <h2 class="mswitch__t">Дальше — детали</h2>
+        <p class="mswitch__d">Управленческая панель и настройка циклов, применимость и шаблоны, блокировки по датам, состав анкеты руководителя, веса и расчёт, аналитика и колонки таблицы, калибровка по ролям, правила публикации.</p>
+      </div>
+      <button type="button" class="mswitch__btn" data-mode="details">
+        Разобраться
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ РАЗОБРАТЬСЯ ============ -->
+  <section class="mdet" id="details" aria-labelledby="details-title">
+    <div class="shell">
+      <div class="mdet__head">
+        <p class="mdet__eyebrow">Разобраться</p>
+        <h2 class="mdet__title" id="details-title">Как процесс устроен внутри</h2>
+        <p class="mdet__lead">Performance Review в EmplyFlow — не анкета в конце периода, а сквозной процесс поверх целей, KPI и оценок. Ниже точный состав настроек и того, что происходит на каждом шаге.</p>
+      </div>
+
+      <div class="mdet__grid" data-reveal>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Полная цепочка</p>
+          <h3 class="mcard__t">Цикл целиком, шаг за шагом</h3>
+          <div class="mchips">
+            <span class="mchip">1 · Цикл планирования и даты фаз</span>
+            <span class="mchip">2 · Цели, OKR и KPI</span>
+            <span class="mchip">3 · Self Review</span>
+            <span class="mchip">4 · Оценка 360°</span>
+            <span class="mchip">5 · Анкета руководителя</span>
+            <span class="mchip">6 · Калибровка</span>
+            <span class="mchip">7 · Публикация результата</span>
+            <span class="mchip">8 · Аналитика и 9-box</span>
+          </div>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Управленческая панель</p>
+          <h3 class="mcard__t">Что настраивает HR один раз</h3>
+          <ul class="mlist">
+            <li>Циклы планирования любой длительности: квартал, полугодие, год, проектный период</li>
+            <li>Шаблоны Self Review, оценки 360° и анкеты Performance Review для руководителя</li>
+            <li>Веса компонентов для итоговой оценки</li>
+            <li>Правила применимости циклов и шаблонов: компания, подразделение, роль, сотрудник или комбинация подразделения и роли</li>
+            <li>Даты каждой фазы внутри цикла</li>
+          </ul>
+          <div class="mnote">HR задаёт правила и даты, а платформа сама показывает нужные формы нужным людям в нужное время — отдельно запускать модули не нужно.</div>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Фазы и блокировки</p>
+          <h3 class="mcard__t">Как работают окна дат</h3>
+          <ul class="mlist">
+            <li><b>Self Review:</b> сотрудник заполняет самооценку в своё окно</li>
+            <li><b>Оценка 360°:</b> сотрудник запрашивает оценку коллег, респонденты заполняют анкеты</li>
+            <li><b>Performance Review:</b> руководитель заполняет анкету по каждому сотруднику</li>
+            <li>Окна фаз могут пересекаться, если так удобно процессу</li>
+            <li>После завершения фазы заполнение блокируется для соответствующей роли: руководитель не изменит анкету без прав HR или администратора</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Роли</p>
+          <h3 class="mcard__t">Кто что делает в цикле</h3>
+          <div class="mcols">
+            <div>
+              <p class="mcols__h"><span style="background:#d5fff3;">С</span> Сотрудник</p>
+              <ul class="mlist">
+                <li>Работает по целям и KPI цикла</li>
+                <li>Заполняет Self Review</li>
+                <li>Участвует в 360° как оцениваемый и как респондент</li>
+                <li>Фиксирует достижения в профиле</li>
+                <li>После закрытия фазы видит итог и ориентиры по развитию</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#cec8ff;">Р</span> Руководитель</p>
+              <ul class="mlist">
+                <li>Ставит и согласует цели, контролирует KPI</li>
+                <li>Видит Self Review и результаты 360°</li>
+                <li>Заполняет опрос по результатам работы</li>
+                <li>Предлагает изменение должности или оклада</li>
+                <li>Участвует в калибровке и обсуждает итоги с сотрудником</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span style="background:#ffb8e2;">H</span> HR</p>
+              <ul class="mlist">
+                <li>Создаёт циклы, задаёт даты фаз и веса</li>
+                <li>Готовит шаблоны и назначает их на команды</li>
+                <li>Контролирует прохождение Self Review, 360° и анкет</li>
+                <li>Проводит калибровку и следит за распределением оценок</li>
+                <li>Готовит финальные результаты и анализирует итоги по компании</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Анкета руководителя</p>
+          <h3 class="mcard__t">Что в ней фиксируется</h3>
+          <ul class="mlist">
+            <li>Итоговая оценка и комментарий</li>
+            <li>Решение по изменению должности или грейда</li>
+            <li>Решение по изменению оклада</li>
+            <li>Что сотруднику нужно улучшить и зоны развития на следующий период</li>
+            <li>Дополнительные вопросы, если они заданы в шаблоне</li>
+          </ul>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Контекст перед оценкой</p>
+          <h3 class="mcard__t">Что видит руководитель</h3>
+          <ul class="mlist">
+            <li>Цели и вклад в OKR за цикл</li>
+            <li>KPI: факт против плана</li>
+            <li>Результаты 360° и Self Review</li>
+            <li>Достижения сотрудника из профиля</li>
+            <li>Итоговые проценты по компонентам</li>
+            <li>Результаты предыдущих периодов, если они есть</li>
+          </ul>
+        </article>
+
+        <article class="mcard">
+          <p class="mcard__lbl"><i></i>Расчёт</p>
+          <h3 class="mcard__t">Веса и итоговый процент</h3>
+          <ul class="mlist">
+            <li>Итог считается как взвешенная сумма компонентов</li>
+            <li>Пример модели: OKR 50%, 360° 30%, KPI 20%</li>
+            <li>KPI считается как факт делённый на план</li>
+            <li>Модель настраивается под компанию: в продажах вес KPI выше, у руководителей выше 360°</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Аналитика</p>
+          <h3 class="mcard__t">Таблица Performance Review</h3>
+          <ul class="mlist">
+            <li>Вклад в цели, оценка 360°, KPI и средний взвешенный результат по каждому сотруднику</li>
+            <li>Оценка руководителя, комментарий и reviewer</li>
+            <li>Решения по должности и по окладу</li>
+            <li>Фильтры по циклам, командам, сотрудникам и компонентам</li>
+            <li>HR использует таблицу для контроля качества процесса, руководитель — для работы со своей командой</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--wide">
+          <p class="mcard__lbl"><i></i>Калибровка</p>
+          <h3 class="mcard__t">Как выравниваются оценки</h3>
+          <ul class="mlist">
+            <li>Распределение оценок по компании, командам и руководителям</li>
+            <li>Фильтры по циклу, команде, должности и оценке</li>
+            <li>Корректировка оценки с комментарием, видно изменение должности и оклада</li>
+            <li><b>Руководитель</b> работает с оценками команды в пределах окна Performance Review</li>
+            <li><b>Вышестоящий руководитель</b> сравнивает оценки внутри своего управленческого контура</li>
+            <li><b>HR</b> видит весь контур и может корректировать оценки после дедлайна для финальной калибровки</li>
+          </ul>
+        </article>
+
+        <article class="mcard mcard--full">
+          <p class="mcard__lbl"><i></i>Публикация</p>
+          <h3 class="mcard__t">Что и когда видит сотрудник</h3>
+          <div class="mnote">
+            Пока фаза Performance Review не завершена, <b>результат сотруднику не показывается</b> — это защищает процесс от преждевременной публикации оценок до калибровки. После закрытия окна сотрудник видит в профиле итоговую оценку, описание шкалы, результат по циклу и ту информацию, которая разрешена к показу. Вместе с оценкой он получает ответ на главный вопрос: что это значит для его развития и карьерного движения.
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ СОСЕДНИЕ МОДУЛИ ============ -->
+  <section class="mnext" aria-labelledby="next-title">
+    <div class="shell">
+      <h2 class="mnext__h" id="next-title">Модули внутри процесса</h2>
+      <div class="mnext__row">
+        <a class="mnext__card" href="page102390004.html" style="background:var(--t-peri);">
+          <b>Целеполагание</b>
+          <span>Цели и Key Results, привязанные к циклу, с маршрутами согласования</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="page102360001.html" style="background:var(--t-mint);">
+          <b>Оценка 360°</b>
+          <span>Компетенции сотрудника глазами команды как компонент итогового балла</span>
+          <i>Смотреть модуль →</i>
+        </a>
+        <a class="mnext__card" href="page102380003.html" style="background:var(--t-candy);">
+          <b>Матрица талантов 9 Box</b>
+          <span>Результат и компетенции на двух осях по данным цикла</span>
+          <i>Смотреть модуль →</i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="mfin">
+    <div class="shell">
+      <div class="mfin__inner">
+        <div>
+          <h2 class="mfin__t">Проведите ревью без авралов и спорных решений</h2>
+          <p class="mfin__d">Покажем настройку цикла и дат фаз, шаблоны для разных команд, анкету руководителя с фактическими данными, калибровку и публикацию результата. Демодоступ на пять рабочих дней.</p>
+        </div>
+        <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="mfoot">
+  <div class="shell mfoot__inner">
+    <a href="/">EmplyFlow</a>
+    <span>оценка, целеполагание и развитие персонала</span>
+    <div class="mfoot__links">
+      <a href="index.html#platform">Модули платформы</a>
+      <a href="index.html#cases">Проекты</a>
+      <a href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
+      <a href="/privacy">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ МОДАЛКА ЗАЯВКИ ============ -->
+<div id="ef-demo-modal" class="ef-demo-modal" hidden aria-hidden="true">
+  <div class="ef-demo-modal__backdrop" data-ef-demo-close></div>
+  <div class="ef-demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-demo-modal-title">
+    <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
+    <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
+    <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+    <form id="ef-lead-form-module-pr" class="ef-lead-form" data-ef-lead-source="site_demo" novalidate>
+      <div class="ef-lead-form__fields">
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="text" name="Input" placeholder="Название компании" autocomplete="organization" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="tel" name="Phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="ef-lead-form__field">
+          <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
+        </div>
+        <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
+          <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
+          <div class="ef-lead-form__radios">
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Telegram" required> Telegram</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="WhatsApp"> WhatsApp</label>
+            <label class="ef-lead-form__radio"><input type="radio" name="Как с вами удобнее связаться?" value="Звонок"> Звонок</label>
+          </div>
+        </fieldset>
+        <div class="ef-lead-form__field">
+          <textarea class="ef-lead-form__textarea" name="Textarea" rows="2" placeholder="Коротко расскажите о своей задаче"></textarea>
+        </div>
+        <label class="ef-lead-form__check">
+          <input type="checkbox" name="Checkbox" value="yes" required>
+          <span>Я соглашаюсь с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+        </label>
+        <div class="ef-lead-form__error" data-ef-error role="alert"></div>
+      </div>
+      <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+      <div class="ef-lead-form__success" data-ef-success>
+        <h3>Заявка отправлена</h3>
+        <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/emplyflow-module.js?v=20260803h" defer></script>
+<script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
+
+<!-- Yandex.Metrika counter 105450350 -->
+<script type="text/javascript">setTimeout(function(){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");window.mainMetrikaId='105450350';ym(window.mainMetrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});},2000);</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105450350" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+</body>
+</html>

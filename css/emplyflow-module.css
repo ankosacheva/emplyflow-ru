@@ -1440,6 +1440,148 @@ body[data-module="succession"] .mcover__title { font-size: clamp(34px, 4.4vw, 60
 .mth__log div i { display: block; font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--ink-3); margin-top: 3px; }
 
 /* -------------------------------------------------------------
+   ИНТЕРАКТИВ: ФАЗЫ ЦИКЛА PERFORMANCE REVIEW
+   ------------------------------------------------------------- */
+.mph__line { display: flex; gap: 5px; margin-bottom: 12px; }
+.mph__step {
+  appearance: none;
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  cursor: pointer;
+  padding: 9px 8px;
+  border-radius: 11px;
+  background: #f1f0f7;
+  color: var(--ink-3);
+  text-align: left;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.mph__step b { display: block; font-size: 11.5px; font-weight: 800; letter-spacing: -0.01em; }
+.mph__step i { font-style: normal; font-size: 10px; font-weight: 700; opacity: 0.75; }
+.mph__step.is-on { background: var(--indigo); color: #fff; }
+.mph__step.is-on i { opacity: 0.85; }
+
+.mph__panel { padding: 13px 14px; border-radius: 13px; background: #f8f7fb; }
+.mph__panel h4 {
+  margin: 0 0 3px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.mph__when { margin: 0 0 11px; font-size: 11.5px; font-weight: 800; color: var(--indigo); }
+.mph__roles { display: flex; flex-direction: column; gap: 7px; }
+.mph__role {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 9px 11px;
+  border-radius: 11px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.mph__role b { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
+.mph__role.is-idle { background: #f4f3f9; color: var(--ink-3); }
+.mph__lock {
+  margin-top: 11px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  border: 1px dashed #cec8ff;
+  background: #f5f4fb;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.mph__lock b { color: var(--indigo); }
+
+/* -------------------------------------------------------------
+   ИНТЕРАКТИВ: ВЕСА КОМПОНЕНТОВ И ИТОГОВЫЙ БАЛЛ
+   ------------------------------------------------------------- */
+.mwt__rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.mwt__row { padding: 10px 12px; border-radius: 12px; background: #f8f7fb; }
+.mwt__top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.mwt__top b { font-size: 12.5px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+.mwt__top span { font-size: 11.5px; font-weight: 800; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.mwt__fact { margin: 2px 0 7px; font-size: 11px; font-weight: 700; color: var(--indigo); }
+.mwt__range {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #e4e1f0;
+  outline: none;
+  cursor: pointer;
+}
+.mwt__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--indigo);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(74, 59, 255, 0.4);
+  cursor: pointer;
+}
+.mwt__range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-radius: 999px;
+  background: var(--indigo);
+  cursor: pointer;
+}
+
+.mwt__out {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 15px;
+  border-radius: 13px;
+  background: #f1eefe;
+  border: 1px solid #e0daff;
+  margin-bottom: 10px;
+}
+.mwt__score {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--indigo);
+  font-variant-numeric: tabular-nums;
+}
+.mwt__grade { flex: 1; min-width: 0; }
+.mwt__grade b { display: block; font-size: 13.5px; font-weight: 800; letter-spacing: -0.015em; color: var(--ink); }
+.mwt__grade span { font-size: 11.5px; line-height: 1.4; font-weight: 700; color: var(--ink-3); }
+.mwt__badge {
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--indigo);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.mwt__hint {
+  padding: 11px 13px;
+  border-radius: 12px;
+  background: #f8f7fb;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.mwt__hint b { color: var(--ink); }
+
+@media (max-width: 620px) {
+  .mph__line { flex-wrap: wrap; }
+  .mph__step { flex: 1 1 44%; }
+  .mph__role { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+}
+
+/* -------------------------------------------------------------
    ПЕРЕХОД К СПРАВОЧНОЙ ЧАСТИ
    ------------------------------------------------------------- */
 .mswitch {
