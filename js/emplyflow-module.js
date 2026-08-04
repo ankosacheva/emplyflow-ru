@@ -563,8 +563,32 @@
     function sceneCompany() {
       return '<div class="mgd__scene">' +
         '<span class="mgd__lvl">Уровень компании</span>' +
-        '<div class="mgd__card is-key">Вырасти выручку коммерческого блока на 18% · H1 2026</div>' +
-        '<div class="mgd__chip">HR задаёт период и правила каскада — дальше цели спускаются по оргструктуре</div>' +
+        '<div class="mgd__tree" aria-label="Дерево целей компании">' +
+        '<div class="mgd__tree-root">' +
+        '<span class="mgd__tree-kicker">Компания</span>' +
+        '<span class="mgd__tree-title">Вырасти выручку бизнеса на 18% · H1 2026</span>' +
+        '<span class="mgd__tree-meta">Стратегия периода · владелец: CEO</span>' +
+        '</div>' +
+        '<div class="mgd__tree-lines" aria-hidden="true"></div>' +
+        '<div class="mgd__branches">' +
+        '<button type="button" class="mgd__tree-node is-live" data-goal-jump="1">' +
+        '<span class="mgd__tree-kicker">Коммерческий блок</span>' +
+        '<span class="mgd__tree-title">Увеличить конверсию воронки</span>' +
+        '<span class="mgd__tree-meta">родитель для команд продаж и маркетинга</span>' +
+        '</button>' +
+        '<button type="button" class="mgd__tree-node" data-goal-jump="1">' +
+        '<span class="mgd__tree-kicker">Продукт</span>' +
+        '<span class="mgd__tree-title">Сократить time-to-value</span>' +
+        '<span class="mgd__tree-meta">связано с retention и NPS</span>' +
+        '</button>' +
+        '<button type="button" class="mgd__tree-node" data-goal-jump="1">' +
+        '<span class="mgd__tree-kicker">Customer Success</span>' +
+        '<span class="mgd__tree-title">Удержать ключевых клиентов</span>' +
+        '<span class="mgd__tree-meta">кросс-командная цель</span>' +
+        '</button>' +
+        '</div>' +
+        '</div>' +
+        '<div class="mgd__chip">Ветки дерева не рисуются вручную: они строятся из целей, владельцев и правил каскадирования</div>' +
         '</div>';
     }
 
@@ -618,6 +642,11 @@
       var step = cfg.steps[current];
       if (barTitle && step.bar) barTitle.textContent = step.bar;
       stage.innerHTML = scenes[current]();
+      $$('[data-goal-jump]', stage).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          goTo(parseInt(btn.getAttribute('data-goal-jump'), 10), true);
+        });
+      });
       $$('.mgd__step', rail).forEach(function (btn, i) {
         var on = i === current;
         btn.classList.toggle('is-on', on);
