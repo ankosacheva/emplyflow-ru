@@ -638,6 +638,14 @@ button { font: inherit; }
   border: 1px solid #e0daff;
   color: #141033;
 }
+.mgd__node img {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px #fff;
+}
 .mgd__node small {
   display: block;
   font-size: 10px;

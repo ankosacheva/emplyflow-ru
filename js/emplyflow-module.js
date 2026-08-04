@@ -678,11 +678,11 @@
       return '<div class="mgd__scene">' +
         '<span class="mgd__lvl">Маршрут согласования</span>' +
         '<div class="mgd__route">' +
-        '<div class="mgd__node"><span><small>Автор</small><p>Мария К., аналитик</p></span></div>' +
+        '<div class="mgd__node"><img src="images/avatar-goal-employee.jpg" alt="Мария К."><span><small>Автор</small><p>Мария К., аналитик</p></span></div>' +
         '<div class="mgd__arrow" aria-hidden="true">↓</div>' +
-        '<div class="mgd__node"><span><small>Ответственный</small><p>Мария К., аналитик</p></span></div>' +
+        '<div class="mgd__node"><img src="images/avatar-goal-employee.jpg" alt="Мария К."><span><small>Ответственный</small><p>Мария К., аналитик</p></span></div>' +
         '<div class="mgd__arrow" aria-hidden="true">↓</div>' +
-        '<div class="mgd__node is-key"><span><small>Согласующий · определён автоматически</small><p>Алексей П., руководитель отдела</p></span></div>' +
+        '<div class="mgd__node is-key"><img src="images/avatar-goal-approver.jpg" alt="Алексей П."><span><small>Согласующий · определён автоматически</small><p>Алексей П., руководитель отдела</p></span></div>' +
         '</div>' +
         '<div class="mgd__send"><span>Отправить на согласование</span><span style="opacity:.85;font-size:11px;">платформа построила маршрут по оргструктуре</span></div>' +
         '</div>';
