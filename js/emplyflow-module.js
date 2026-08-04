@@ -559,6 +559,46 @@
     var timer = null;
     var paused = false;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var selectedBranch = 'commerce';
+
+    var branches = {
+      commerce: {
+        area: 'Коммерческий блок',
+        title: 'Увеличить конверсию воронки',
+        meta: 'родитель для команд продаж и маркетинга',
+        parent: 'Вырасти выручку бизнеса на 18%',
+        owner: 'Владелец: директор по продажам',
+        bar: 'Каскад · коммерческий блок',
+        kr1: 'Конверсия в заявку 2,4% → 3,2%',
+        kr2: 'Время ответа менеджера до 15 минут',
+        kr3: 'Доля повторных обращений не выше 18%',
+        note: 'Эта командная цель станет родительской для целей маркетинга и продаж'
+      },
+      product: {
+        area: 'Продукт',
+        title: 'Сократить time-to-value',
+        meta: 'связано с retention и NPS',
+        parent: 'Вырасти выручку бизнеса на 18%',
+        owner: 'Владелец: директор продукта',
+        bar: 'Каскад · продуктовая команда',
+        kr1: 'Активация нового клиента до 7 дней',
+        kr2: 'Доля завершённых onboarding-сценариев 85%',
+        kr3: 'NPS после первого месяца не ниже 45',
+        note: 'Цель связывает продукт, внедрение и клиентский успех в одном каскаде'
+      },
+      success: {
+        area: 'Customer Success',
+        title: 'Удержать ключевых клиентов',
+        meta: 'кросс-командная цель',
+        parent: 'Вырасти выручку бизнеса на 18%',
+        owner: 'Владелец: руководитель Customer Success',
+        bar: 'Каскад · Customer Success',
+        kr1: 'Churn ключевых клиентов не выше 4%',
+        kr2: '90% рисковых аккаунтов с планом удержания',
+        kr3: 'Расширения в базе +12% к H1',
+        note: 'Кросс-командная цель может быть передана в работу продукту или аккаунт-команде'
+      }
+    };
 
     function sceneCompany() {
       return '<div class="mgd__scene">' +
@@ -571,34 +611,42 @@
         '</div>' +
         '<div class="mgd__tree-lines" aria-hidden="true"></div>' +
         '<div class="mgd__branches">' +
-        '<button type="button" class="mgd__tree-node is-live" data-goal-jump="1">' +
+        '<button type="button" class="mgd__tree-node' + (selectedBranch === 'commerce' ? ' is-live' : '') + '" data-goal-jump="1" data-goal-branch="commerce">' +
         '<span class="mgd__tree-kicker">Коммерческий блок</span>' +
         '<span class="mgd__tree-title">Увеличить конверсию воронки</span>' +
         '<span class="mgd__tree-meta">родитель для команд продаж и маркетинга</span>' +
         '</button>' +
-        '<button type="button" class="mgd__tree-node" data-goal-jump="1">' +
+        '<button type="button" class="mgd__tree-node' + (selectedBranch === 'product' ? ' is-live' : '') + '" data-goal-jump="1" data-goal-branch="product">' +
         '<span class="mgd__tree-kicker">Продукт</span>' +
         '<span class="mgd__tree-title">Сократить time-to-value</span>' +
         '<span class="mgd__tree-meta">связано с retention и NPS</span>' +
         '</button>' +
-        '<button type="button" class="mgd__tree-node" data-goal-jump="1">' +
+        '<button type="button" class="mgd__tree-node' + (selectedBranch === 'success' ? ' is-live' : '') + '" data-goal-jump="1" data-goal-branch="success">' +
         '<span class="mgd__tree-kicker">Customer Success</span>' +
         '<span class="mgd__tree-title">Удержать ключевых клиентов</span>' +
         '<span class="mgd__tree-meta">кросс-командная цель</span>' +
         '</button>' +
         '</div>' +
         '</div>' +
-        '<div class="mgd__chip">Ветки дерева не рисуются вручную: они строятся из целей, владельцев и правил каскадирования</div>' +
+        '<div class="mgd__chip">Ветки дерева строятся на основе привязки дочерних целей к родительским.</div>' +
         '</div>';
     }
 
     function sceneTeam() {
+      var goal = branches[selectedBranch] || branches.commerce;
       return '<div class="mgd__scene">' +
         '<span class="mgd__lvl">Каскад на команду</span>' +
-        '<div class="mgd__card is-parent">Вырасти выручку коммерческого блока на 18%</div>' +
+        '<div class="mgd__card is-parent">' + goal.parent + '</div>' +
         '<div class="mgd__link"><i aria-hidden="true"></i> привязка к родительской цели</div>' +
-        '<div class="mgd__card is-key">Увеличить конверсию воронки · H1 2026</div>' +
-        '<div class="mgd__chip">Командная цель может каскадироваться только от цели вышестоящей команды</div>' +
+        '<div class="mgd__card is-key">' + goal.title + ' · H1 2026' +
+        '<span style="display:block;margin-top:5px;font-size:11px;font-weight:700;color:#8681ab;">' + goal.area + ' · ' + goal.owner + '</span>' +
+        '</div>' +
+        '<div class="mpersp" style="margin-top:12px;">' +
+        '<div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span><span class="mpersp__name">' + goal.kr1 + ' · вес 40%</span><span class="mpersp__val">40%</span></div>' +
+        '<div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span><span class="mpersp__name">' + goal.kr2 + ' · вес 35%</span><span class="mpersp__val">35%</span></div>' +
+        '<div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span><span class="mpersp__name">' + goal.kr3 + ' · вес 25%</span><span class="mpersp__val">25%</span></div>' +
+        '</div>' +
+        '<div class="mgd__chip">' + goal.note + '</div>' +
         '</div>';
     }
 
@@ -640,10 +688,14 @@
 
     function draw() {
       var step = cfg.steps[current];
-      if (barTitle && step.bar) barTitle.textContent = step.bar;
+      if (barTitle && step.bar) {
+        barTitle.textContent = current === 1 && branches[selectedBranch] ? branches[selectedBranch].bar : step.bar;
+      }
       stage.innerHTML = scenes[current]();
       $$('[data-goal-jump]', stage).forEach(function (btn) {
         btn.addEventListener('click', function () {
+          var branch = btn.getAttribute('data-goal-branch');
+          if (branch && branches[branch]) selectedBranch = branch;
           goTo(parseInt(btn.getAttribute('data-goal-jump'), 10), true);
         });
       });
