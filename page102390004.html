@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803h">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260804a">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -80,50 +80,32 @@
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
           <p class="mcover__kicker">Модуль платформы</p>
-          <h1 class="mcover__title" id="cover-title">Целеполагание <em>и каскад целей</em></h1>
-          <p class="mcover__q">Цели поставлены — и начинается самое сложное: кто их утверждает, кто отправляет на согласование и к какой цели верхнего уровня они вообще относятся. Платформа отвечает на это правилами, а не перепиской.</p>
+          <h1 class="mcover__title" id="cover-title">Постановка <em>и контроль целей</em></h1>
+          <p class="mcover__q">Весь необходимый функционал для каскадирования целей. Настроенные механизмы для удобного управления: маршруты согласований, этапы выполнения, системные настройки для привязки целей друг к другу. Подходит как для вертикально-ориентированных, так и для горизонтальных команд.</p>
           <div class="mcover__meta">
-            <span class="mtag">Маршрут согласования строится сам</span>
-            <span class="mtag">Каскад защищён правилами</span>
-            <span class="mtag">Передача целей между командами</span>
+            <span class="mtag">Авто-построение маршрутов согласований</span>
+            <span class="mtag">Системные правила для каскадирования</span>
+            <span class="mtag">Кросс-командная передача</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
-          <div class="mwin">
-            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Цель · Увеличить конверсию воронки · H1 2026</span></div>
+          <div class="mwin mwin--goal" data-goal-demo>
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title" data-goal-title>Стратегическая цель · H1 2026</span></div>
             <div class="mwin__body">
-              <p class="msub">Key Results и прогресс</p>
-              <div class="mpersp">
-                <div class="mpersp__row">
-                  <span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span>
-                  <span class="mpersp__name">Конверсия в заявку 2,4% → 3,2% · вес 40%</span>
-                  <span class="mpersp__val">75%</span>
-                  <span class="mpersp__bar"><i style="width:75%;background:#4a3bff;"></i></span>
-                </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span>
-                  <span class="mpersp__name">Время ответа менеджера до 15 минут · вес 35%</span>
-                  <span class="mpersp__val">90%</span>
-                  <span class="mpersp__bar"><i style="width:90%;background:#5fce87;"></i></span>
-                </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span>
-                  <span class="mpersp__name">Доля повторных обращений 18% · вес 25%</span>
-                  <span class="mpersp__val">40%</span>
-                  <span class="mpersp__bar"><i style="width:40%;background:#ffb777;"></i></span>
-                </div>
-              </div>
-              <div class="mgapchip" style="margin-bottom:12px;background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Прогресс цели по весам KR</span><b style="font-size:12px;color:#4a3bff;">71% · в норме</b></div>
-              <p class="msub">Маршрут</p>
-              <div style="display:flex;flex-wrap:wrap;gap:6px;">
-                <span style="padding:5px 10px;border-radius:999px;background:#eafaf0;color:#2f9d5b;font-size:11px;font-weight:800;">Черновик</span>
-                <span style="padding:5px 10px;border-radius:999px;background:#eafaf0;color:#2f9d5b;font-size:11px;font-weight:800;">На согласовании</span>
-                <span style="padding:5px 10px;border-radius:999px;background:#4a3bff;color:#fff;font-size:11px;font-weight:800;">В работе</span>
-                <span style="padding:5px 10px;border-radius:999px;background:#f8f7fb;color:#8681ab;font-size:11px;font-weight:800;">Подведение итогов</span>
-                <span style="padding:5px 10px;border-radius:999px;background:#f8f7fb;color:#8681ab;font-size:11px;font-weight:800;">Согласование результатов</span>
-                <span style="padding:5px 10px;border-radius:999px;background:#f8f7fb;color:#8681ab;font-size:11px;font-weight:800;">Завершена</span>
-              </div>
+              <div class="mgd__rail" data-goal-rail role="tablist" aria-label="Этапы постановки цели"></div>
+              <div class="mgd__stage" data-goal-stage aria-live="polite"></div>
             </div>
+            <script type="application/json" data-goal-json>
+            {
+              "interval": 4800,
+              "steps": [
+                { "short": "Компания", "bar": "Стратегическая цель · H1 2026" },
+                { "short": "Команда", "bar": "Каскад · отдел маркетинга" },
+                { "short": "Сотрудник", "bar": "Цель · Увеличить конверсию воронки · H1 2026" },
+                { "short": "Согласование", "bar": "Маршрут построен автоматически" }
+              ]
+            }
+            </script>
           </div>
         </div>
       </div>
@@ -744,7 +726,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260803h" defer></script>
+<script src="js/emplyflow-module.js?v=20260804a" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 

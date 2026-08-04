@@ -539,6 +539,145 @@
   }
 
   /* ---------------------------------------------------------------
+     ДЕМО КАСКАДА ЦЕЛЕЙ · ОБЛОЖКА
+     --------------------------------------------------------------- */
+  function initGoalDemo() {
+    var root = $('[data-goal-demo]');
+    if (!root) return;
+
+    var raw = $('[data-goal-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.steps || !cfg.steps.length) return;
+
+    var rail = $('[data-goal-rail]', root);
+    var stage = $('[data-goal-stage]', root);
+    var barTitle = $('[data-goal-title]', root);
+    if (!rail || !stage) return;
+
+    var current = 0;
+    var timer = null;
+    var paused = false;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function sceneCompany() {
+      return '<div class="mgd__scene">' +
+        '<span class="mgd__lvl">Уровень компании</span>' +
+        '<div class="mgd__card is-key">Вырасти выручку коммерческого блока на 18% · H1 2026</div>' +
+        '<div class="mgd__chip">HR задаёт период и правила каскада — дальше цели спускаются по оргструктуре</div>' +
+        '</div>';
+    }
+
+    function sceneTeam() {
+      return '<div class="mgd__scene">' +
+        '<span class="mgd__lvl">Каскад на команду</span>' +
+        '<div class="mgd__card is-parent">Вырасти выручку коммерческого блока на 18%</div>' +
+        '<div class="mgd__link"><i aria-hidden="true"></i> привязка к родительской цели</div>' +
+        '<div class="mgd__card is-key">Увеличить конверсию воронки · H1 2026</div>' +
+        '<div class="mgd__chip">Командная цель может каскадироваться только от цели вышестоящей команды</div>' +
+        '</div>';
+    }
+
+    function sceneIndividual() {
+      return '<div class="mgd__scene">' +
+        '<span class="mgd__lvl">Индивидуальная цель</span>' +
+        '<div class="mgd__card is-parent" style="margin-bottom:10px;">Увеличить конверсию воронки · отдел маркетинга</div>' +
+        '<p class="msub" style="margin-top:0;">Key Results и веса</p>' +
+        '<div class="mpersp">' +
+        '<div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span>' +
+        '<span class="mpersp__name">Конверсия в заявку 2,4% → 3,2% · вес 40%</span>' +
+        '<span class="mpersp__val">75%</span><span class="mpersp__bar"><i style="width:75%;background:#4a3bff;"></i></span></div>' +
+        '<div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span>' +
+        '<span class="mpersp__name">Время ответа менеджера до 15 минут · вес 35%</span>' +
+        '<span class="mpersp__val">90%</span><span class="mpersp__bar"><i style="width:90%;background:#5fce87;"></i></span></div>' +
+        '<div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span>' +
+        '<span class="mpersp__name">Доля повторных обращений 18% · вес 25%</span>' +
+        '<span class="mpersp__val">40%</span><span class="mpersp__bar"><i style="width:40%;background:#ffb777;"></i></span></div>' +
+        '</div>' +
+        '<div class="mgd__progress"><span>Прогресс по весам KR</span><b>71% · в норме</b></div>' +
+        '</div>';
+    }
+
+    function sceneRoute() {
+      return '<div class="mgd__scene">' +
+        '<span class="mgd__lvl">Маршрут согласования</span>' +
+        '<div class="mgd__route">' +
+        '<div class="mgd__node"><span><small>Автор</small><p>Мария К., аналитик</p></span></div>' +
+        '<div class="mgd__arrow" aria-hidden="true">↓</div>' +
+        '<div class="mgd__node"><span><small>Ответственный</small><p>Мария К., аналитик</p></span></div>' +
+        '<div class="mgd__arrow" aria-hidden="true">↓</div>' +
+        '<div class="mgd__node is-key"><span><small>Согласующий · определён автоматически</small><p>Алексей П., руководитель отдела</p></span></div>' +
+        '</div>' +
+        '<div class="mgd__send"><span>Отправить на согласование</span><span style="opacity:.85;font-size:11px;">платформа построила маршрут по оргструктуре</span></div>' +
+        '</div>';
+    }
+
+    var scenes = [sceneCompany, sceneTeam, sceneIndividual, sceneRoute];
+
+    function draw() {
+      var step = cfg.steps[current];
+      if (barTitle && step.bar) barTitle.textContent = step.bar;
+      stage.innerHTML = scenes[current]();
+      $$('.mgd__step', rail).forEach(function (btn, i) {
+        var on = i === current;
+        btn.classList.toggle('is-on', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        btn.setAttribute('tabindex', on ? '0' : '-1');
+      });
+    }
+
+    function goTo(i, user) {
+      current = (i + cfg.steps.length) % cfg.steps.length;
+      if (user) {
+        track('goal_demo_step', { step: cfg.steps[current].short });
+        stopAuto();
+      }
+      draw();
+    }
+
+    function stopAuto() {
+      paused = true;
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    function startAuto() {
+      if (paused || reduced) return;
+      if (timer) clearInterval(timer);
+      timer = setInterval(function () {
+        goTo(current + 1, false);
+      }, cfg.interval || 4800);
+    }
+
+    rail.innerHTML = '';
+    cfg.steps.forEach(function (step, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mgd__step';
+      btn.setAttribute('role', 'tab');
+      btn.textContent = step.short;
+      btn.addEventListener('click', function () { goTo(i, true); });
+      rail.appendChild(btn);
+    });
+
+    root.addEventListener('mouseenter', stopAuto);
+    root.addEventListener('focusin', stopAuto);
+
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !paused) startAuto();
+          else if (timer) { clearInterval(timer); timer = null; }
+        });
+      }, { threshold: 0.35 });
+      obs.observe(root);
+    } else {
+      startAuto();
+    }
+
+    draw();
+  }
+
+  /* ---------------------------------------------------------------
      AI-ПОДБОР ПРЕЕМНИКОВ
      --------------------------------------------------------------- */
   function initSuccession() {
@@ -956,6 +1095,7 @@
     initFit();
     initNineBox();
     initRoute();
+    initGoalDemo();
     initSuccession();
     initThanks();
     initPhases();
