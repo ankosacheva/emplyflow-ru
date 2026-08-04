@@ -212,18 +212,26 @@
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Карта карьерных треков · Product и Analytics</span></div>
             <div class="mwin__body">
-              <svg viewBox="0 0 470 210" role="img" aria-label="Карта карьерных треков: от Product Manager вертикально к Senior Product Manager и Product Lead, горизонтально — к аналитику данных и руководителю аналитики">
+              <svg viewBox="0 0 470 210" role="img" aria-label="Карта карьерных треков: от текущей роли Product Manager к возможному следующему шагу и дальше по треку">
+                <defs>
+                  <marker id="mroute-arrow-solid" markerWidth="8" markerHeight="8" refX="6.8" refY="4" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0 0 L8 4 L0 8 Z" fill="#8d83ff"></path>
+                  </marker>
+                  <marker id="mroute-arrow-dashed" markerWidth="8" markerHeight="8" refX="6.8" refY="4" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0 0 L8 4 L0 8 Z" fill="#e35aa4"></path>
+                  </marker>
+                </defs>
                 <g font-family="Manrope, sans-serif" font-size="10.5" font-weight="700" fill="#8681ab" text-anchor="middle">
-                  <text x="74" y="12">Текущая роль</text>
-                  <text x="235" y="12">Следующий шаг</text>
-                  <text x="396" y="12">Дальше</text>
+                  <text x="74" y="12">1 · текущая роль</text>
+                  <text x="235" y="12">2 · возможный шаг</text>
+                  <text x="396" y="12">3 · дальше по треку</text>
                 </g>
-                <g fill="none" stroke="#c9c3ff" stroke-width="1.6">
+                <g fill="none" stroke="#8d83ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mroute-arrow-solid)">
                   <path d="M140 118 C 158 118 152 62 170 62"></path>
                   <path d="M300 62 H 332"></path>
                   <path d="M300 172 H 332"></path>
                 </g>
-                <path d="M140 122 C 158 122 152 172 170 172" fill="none" stroke="#e35aa4" stroke-width="1.6" stroke-dasharray="4 3"></path>
+                <path d="M140 122 C 158 122 152 172 170 172" fill="none" stroke="#e35aa4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4" marker-end="url(#mroute-arrow-dashed)"></path>
                 <g>
                   <rect x="10" y="98" width="130" height="42" rx="12" fill="#4a3bff"></rect>
                   <text x="75" y="118" font-family="Manrope, sans-serif" font-size="11.5" font-weight="800" fill="#fff" text-anchor="middle">Product Manager</text>
@@ -250,7 +258,7 @@
                   <text x="397" y="184" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="#8681ab" text-anchor="middle">другая функция</text>
                 </g>
               </svg>
-              <div class="mgapchip" style="background:#f8f7fb;border-color:#e8e6f4;color:#403c68;"><span>Сплошная линия — вертикальный переход, пунктир — горизонтальный</span><b style="font-size:12px;color:#403c68;">из связей в базе</b></div>
+              <div class="mgapchip" style="background:#f8f7fb;border-color:#e8e6f4;color:#403c68;"><span>Маршрут читается слева направо: текущая роль → следующий шаг → дальше</span><b style="font-size:12px;color:#403c68;">из связей в базе</b></div>
             </div>
           </div>
         </div>
