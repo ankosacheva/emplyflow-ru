@@ -64,8 +64,8 @@
     <span class="mtop__name">Карьера и развитие</span>
     <span class="mtop__spacer"></span>
     <div class="mmode" role="group" aria-label="Режим просмотра страницы">
-      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Смотреть</button>
-      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Разобраться</button>
+      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Обзор</button>
+      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Детали</button>
     </div>
     <button type="button" class="mtop__cta" data-ef-demo-open data-track="cta-topbar">Получить демодоступ</button>
   </div>
@@ -81,45 +81,51 @@
         <div class="mreel__copy" data-reveal>
           <p class="mcover__kicker">Модуль платформы</p>
           <h1 class="mcover__title" id="cover-title">Карьера <em>и развитие</em></h1>
-          <p class="mcover__q">«Куда я могу расти?» — вопрос, на который у компании обычно нет ответа в системе. Модуль отвечает конкретной должностью, разрывом компетенций и планом на 6–12 месяцев.</p>
+          <p class="mcover__q">Возможность развиваться и расти по карьерной лестнице отличает сильных работодателей. Настройте модуль EmplyFlow, чтобы уделить отдельное внимание каждому сотруднику и показать понятный путь роста.</p>
           <div class="mcover__meta">
-            <span class="mtag">Целевая позиция из базы должностей</span>
+            <span class="mtag">Подбор целевой позиции из карты должностей компании</span>
             <span class="mtag">ИПР с этапами и KPI</span>
             <span class="mtag">Согласование и контроль динамики</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
-          <div class="mwin">
-            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Мой план развития · Анна К. · Product · цикл 2026</span></div>
+          <div class="mwin mwin--career">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Карьерный трек · Анна К. · Product · цикл 2026</span></div>
             <div class="mwin__body">
-              <p class="msub">Карьерная траектория</p>
-              <div class="mpersp">
-                <div class="mpersp__row">
-                  <span class="mpersp__ava mpersp__ava--dot" style="background:#8681ab;"></span>
-                  <span class="mpersp__name">Текущая: Product Manager · Middle</span>
-                  <span class="mpersp__val">—</span>
-                  <span class="mpersp__bar"><i style="width:100%;background:#e4e2ef;"></i></span>
+              <div class="mcareer">
+                <div class="mcareer__person">
+                  <img src="images/avatar-successor-anna.jpg" alt="Анна К." class="mcareer__ava">
+                  <div>
+                    <p class="msub">Карьерный трек сотрудника</p>
+                    <b>Анна К. · Product</b>
+                    <span>цель на цикл 2026</span>
+                  </div>
+                  <strong>ИПР утверждён</strong>
                 </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span>
-                  <span class="mpersp__name">Целевая: Senior Product Manager</span>
-                  <span class="mpersp__val">78%</span>
-                  <span class="mpersp__bar"><i style="width:78%;background:#4a3bff;"></i></span>
+                <div class="mcareer__flow" aria-label="Переход от текущей должности к целевой">
+                  <div class="mcareer__role">
+                    <small>сейчас</small>
+                    <b>Product Manager</b>
+                    <span>Middle</span>
+                  </div>
+                  <div class="mcareer__arrow" aria-hidden="true">→</div>
+                  <div class="mcareer__role mcareer__role--target">
+                    <small>цель</small>
+                    <b>Senior Product Manager</b>
+                    <span>готовность 78%</span>
+                  </div>
                 </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span>
-                  <span class="mpersp__name">ИПР: 3 этапа, 9 месяцев</span>
-                  <span class="mpersp__val">42%</span>
-                  <span class="mpersp__bar"><i style="width:42%;background:#5fce87;"></i></span>
+                <div class="mcareer__road">
+                  <div class="mcareer__step is-done"><i></i><span>Разрыв<br>6 компетенций</span></div>
+                  <div class="mcareer__step is-active"><i></i><span>ИПР<br>3 этапа</span></div>
+                  <div class="mcareer__step"><i></i><span>Переход<br>9 месяцев</span></div>
                 </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span>
-                  <span class="mpersp__name">Закрыто компетенций</span>
-                  <span class="mpersp__val">4 / 6</span>
-                  <span class="mpersp__bar"><i style="width:67%;background:#ffb777;"></i></span>
+                <div class="mcareer__gap">
+                  <span>Закрыто компетенций</span>
+                  <b>4 / 6</b>
+                  <i><em style="width:67%;"></em></i>
                 </div>
               </div>
-              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Статус плана развития</span><b style="font-size:12px;color:#4a3bff;">утверждён руководителем</b></div>
             </div>
           </div>
         </div>
@@ -137,45 +143,48 @@
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Должности · Product Manager · матрица грейдов</span></div>
             <div class="mwin__body">
               <p class="msub">Требуемый уровень по грейдам</p>
-              <div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(4,30px);gap:7px 8px;align-items:center;font-size:12.5px;font-weight:700;color:#403c68;">
+              <div class="mgrade">
                 <span></span>
-                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Jun</span>
-                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Mid</span>
-                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Sen</span>
-                <span style="text-align:center;font-size:10.5px;color:#8681ab;">Lead</span>
+                <span class="mgrade__head">Jun</span>
+                <span class="mgrade__head">Mid</span>
+                <span class="mgrade__head">Sen</span>
+                <span class="mgrade__head">Lead</span>
 
-                <span>Управление продуктом</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#e2ddff;color:#4a3bff;">3</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#2c1fd6;color:#fff;">5</span>
+                <span class="mgrade__comp"><b>Управление продуктом</b><small>приоритизация, discovery и roadmap</small></span>
+                <span class="mgrade__lvl mgrade__lvl--2">2</span>
+                <span class="mgrade__lvl mgrade__lvl--3">3</span>
+                <span class="mgrade__lvl mgrade__lvl--4">4</span>
+                <span class="mgrade__lvl mgrade__lvl--5">5</span>
 
-                <span>Работа с данными</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#e2ddff;color:#4a3bff;">3</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
+                <span class="mgrade__comp"><b>Работа с данными</b><small>метрики, гипотезы и выводы</small></span>
+                <span class="mgrade__lvl mgrade__lvl--2">2</span>
+                <span class="mgrade__lvl mgrade__lvl--3">3</span>
+                <span class="mgrade__lvl mgrade__lvl--4">4</span>
+                <span class="mgrade__lvl mgrade__lvl--4">4</span>
 
-                <span>Стратегическое мышление</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f8f7fb;color:#8681ab;">1</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#4a3bff;color:#fff;">4</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#2c1fd6;color:#fff;">5</span>
+                <span class="mgrade__comp"><b>Стратегическое мышление</b><small>связь целей продукта и бизнеса</small></span>
+                <span class="mgrade__lvl mgrade__lvl--1">1</span>
+                <span class="mgrade__lvl mgrade__lvl--2">2</span>
+                <span class="mgrade__lvl mgrade__lvl--4">4</span>
+                <span class="mgrade__lvl mgrade__lvl--5">5</span>
 
-                <span>Управление командой</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f8f7fb;color:#8681ab;">1</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#f1eefe;color:#4a3bff;">2</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#e2ddff;color:#4a3bff;">3</span>
-                <span style="text-align:center;border-radius:7px;padding:4px 0;background:#2c1fd6;color:#fff;">5</span>
+                <span class="mgrade__comp"><b>Управление командой</b><small>делегирование, найм и развитие</small></span>
+                <span class="mgrade__lvl mgrade__lvl--1">1</span>
+                <span class="mgrade__lvl mgrade__lvl--2">2</span>
+                <span class="mgrade__lvl mgrade__lvl--3">3</span>
+                <span class="mgrade__lvl mgrade__lvl--5">5</span>
               </div>
-              <div class="mgapchip"><span>Помощь ИИ: собрать матрицу для всех грейдов</span><b style="font-size:12px;">5–7 компетенций</b></div>
+              <button type="button" class="mai-btn">
+                <i aria-hidden="true"></i>
+                <span>ИИ соберёт матрицу за минуту</span>
+              </button>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>01</b> Фундамент</p>
-          <h2 class="mclaim" id="r1-title">Рост начинается не с мечты, <em>а с реальной должности</em></h2>
-          <p class="mlead">HR ведёт базу должностей: грейды, компетенции с требуемыми уровнями, зоны ответственности и карьерные переходы. Сотрудник потом выбирает цель не текстом в свободном поле, а роль, которая действительно есть в компании.</p>
+          <h2 class="mclaim" id="r1-title">Рост начинается с подбора <em>целевой позиции</em></h2>
+          <p class="mlead">Для работы модуля необходимо настроить базу должностей: каталог позиций с матрицами компетенций, которые будут использоваться в карьерных треках.</p>
           <div class="mproof">
             <span class="mproof__num">1</span>
             <span class="mproof__txt">карточка должности используется сразу в шести местах: выбор цели, сравнение компетенций, ИПР, карта треков, преемственность и карьерные переходы</span>

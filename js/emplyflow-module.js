@@ -466,59 +466,92 @@
     if (!root) return;
 
     var out = $('[data-rt-out]', root);
+    var live = $('.mrt__live', root);
+    var status = $('[data-rt-status]', root);
     if (!out) return;
 
     var state = { type: 'ind', resp: 'self', mgr: 'yes' };
+
+    var AVA = {
+      maria: 'images/avatar-route-maria.jpg?v=20260804p',
+      alexey: 'images/avatar-route-alexey.jpg?v=20260804p',
+      dmitry: 'images/avatar-route-dmitry.jpg?v=20260804p',
+      olga: 'images/avatar-route-olga.jpg?v=20260804p'
+    };
 
     var AUTHOR = 'Мария К., аналитик';
     var AUTHOR_MGR = 'Алексей П., руководитель отдела';
     var RESP = 'Дмитрий В., продакт-аналитик';
     var RESP_MGR = 'Ольга Н., руководитель продукта';
 
-    function node(role, name, key) {
-      return '<div class="mrt__node' + (key ? ' mrt__node--key' : '') + '">' +
-        '<span class="mrt__ico">' + (key ? '✓' : '·') + '</span>' +
-        '<span><small>' + role + '</small><p>' + name + '</p></span>' +
-        '</div>';
+    function node(role, name, opts) {
+      opts = opts || {};
+      var icon = opts.avatar
+        ? '<img class="mrt__ava" src="' + opts.avatar + '" alt="" width="36" height="36" loading="lazy" decoding="async">'
+        : '<span class="mrt__ico" aria-hidden="true">' + (opts.icon || '·') + '</span>';
+      var cls = 'mrt__node' +
+        (opts.key ? ' mrt__node--key' : '') +
+        (opts.warn ? ' mrt__node--warn' : '');
+      return '<div class="' + cls + '">' + icon +
+        '<span><small>' + role + '</small><p>' + name + '</p></span></div>';
     }
 
     var ARROW = '<span class="mrt__arrow" aria-hidden="true">↓</span>';
 
+    function flash() {
+      out.classList.remove('is-rebuild');
+      void out.offsetWidth;
+      out.classList.add('is-rebuild');
+    }
+
     function render() {
       var team = state.type === 'team';
       var other = state.resp === 'other';
+      var flow = '';
+
+      if (live) live.classList.toggle('is-warn', state.mgr === 'no');
+      if (status) {
+        status.textContent = state.mgr === 'no'
+          ? 'маршрут не построен'
+          : 'построен по оргструктуре';
+      }
 
       if (state.mgr === 'no') {
-        out.innerHTML =
-          node('Цель', team ? 'Командная цель отдела аналитики' : 'Индивидуальная цель') + ARROW +
-          node('Ответственный', other ? RESP : AUTHOR) + ARROW +
-          node('Согласующий', 'не определён', false) +
+        flow =
+          node('Цель', team ? 'Командная цель отдела аналитики' : 'Индивидуальная цель', { icon: '◎' }) + ARROW +
+          node('Ответственный', other ? RESP : AUTHOR, { avatar: other ? AVA.dmitry : AVA.maria }) + ARROW +
+          node('Согласующий', 'не определён', { icon: '!', warn: true }) +
           '<div class="mrt__warn"><b>Маршрут не строится.</b> У сотрудника не указан линейный руководитель — платформа предупреждает об этом в карточке цели и предлагает обратиться в HR.</div>';
-        return;
-      }
-
-      var approver, rule;
-      if (!team) {
-        approver = other ? RESP_MGR : AUTHOR_MGR;
-        rule = other
-          ? 'Индивидуальная цель уходит руководителю того, кто за неё отвечает, а не автору. Ответственный — Дмитрий, поэтому согласует <b>его руководитель</b>.'
-          : 'Индивидуальная цель уходит линейному руководителю сотрудника из его профиля. Выбирать маршрут вручную не нужно.';
       } else {
-        approver = AUTHOR_MGR;
-        rule = other
-          ? 'Командная цель осталась у руководителя владельца команды, хотя ответственным назначен сотрудник из другой команды. Так маршрут <b>не уезжает не тому руководителю</b> только из-за выбора исполнителя.'
-          : 'Для командной цели согласующим становится руководитель владельца команды: маршрут отражает управленческую логику, а не только исполнение.';
+        var approver, approverAva, rule;
+        if (!team) {
+          approver = other ? RESP_MGR : AUTHOR_MGR;
+          approverAva = other ? AVA.olga : AVA.alexey;
+          rule = other
+            ? 'Индивидуальная цель уходит руководителю того, кто за неё отвечает, а не автору. Ответственный — Дмитрий, поэтому согласует <b>его руководитель</b>.'
+            : 'Индивидуальная цель уходит линейному руководителю сотрудника из его профиля. Выбирать маршрут вручную не нужно.';
+        } else {
+          approver = other ? RESP_MGR : AUTHOR_MGR;
+          approverAva = other ? AVA.olga : AVA.alexey;
+          rule = other
+            ? 'Командная цель с ответственным из другой команды: согласующим становится <b>руководитель ответственного</b>, а не владельца команды. При смене исполнителя маршрут пересобирается автоматически.'
+            : 'Для командной цели согласующим становится руководитель владельца команды: маршрут отражает управленческую логику, а не только исполнение.';
+        }
+
+        var sender = other ? RESP : AUTHOR;
+
+        flow =
+          node('Цель', team ? 'Командная цель отдела аналитики' : 'Индивидуальная цель', { icon: '◎' }) + ARROW +
+          node(team ? 'Владелец команды' : 'Владелец', AUTHOR, { avatar: AVA.maria }) + ARROW +
+          node('Ответственный', other ? RESP : AUTHOR + ' — он же владелец', { avatar: other ? AVA.dmitry : AVA.maria }) + ARROW +
+          node('Согласующий определён автоматически', approver, { avatar: approverAva, key: true }) +
+          '<p class="mrt__send">Отправить на согласование может <b>' + sender + '</b>: если ответственный отличается от владельца, отправителем считается ответственный.</p>' +
+          '<span class="mrt__cta">Отправить на согласование</span>' +
+          '<div class="mrt__rule">' + rule + '</div>';
       }
 
-      var sender = other ? RESP : AUTHOR;
-
-      out.innerHTML =
-        node('Цель', team ? 'Командная цель отдела аналитики' : 'Индивидуальная цель') + ARROW +
-        node(team ? 'Владелец команды' : 'Владелец', AUTHOR) + ARROW +
-        node('Ответственный', other ? RESP : AUTHOR + ' — он же владелец') + ARROW +
-        node('Согласующий определён автоматически', approver, true) +
-        '<p class="mrt__send">Отправить на согласование может <b>' + sender + '</b>: если ответственный отличается от владельца, отправителем считается ответственный.</p>' +
-        '<div class="mrt__rule">' + rule + '</div>';
+      out.innerHTML = '<div class="mrt__flow">' + flow + '</div>';
+      flash();
     }
 
     $$('.mrt__opt', root).forEach(function (btn) {
@@ -536,6 +569,25 @@
     });
 
     render();
+  }
+
+  /* ---------------------------------------------------------------
+     ВЫБОР РОДИТЕЛЬСКОЙ ЦЕЛИ · ПРАВИЛА КАСКАДА
+     --------------------------------------------------------------- */
+  function initParentPick() {
+    var root = $('[data-parent-pick]');
+    if (!root) return;
+
+    root.addEventListener('click', function (event) {
+      var btn = event.target.closest('[data-parent-opt]');
+      if (!btn || !root.contains(btn)) return;
+
+      root.querySelectorAll('[data-parent-opt]').forEach(function (opt) {
+        var live = opt === btn;
+        opt.classList.toggle('is-selected', live);
+        opt.setAttribute('aria-pressed', live ? 'true' : 'false');
+      });
+    });
   }
 
   /* ---------------------------------------------------------------
@@ -654,7 +706,7 @@
       return '<div class="mgd__scene">' +
         '<span class="mgd__lvl">Индивидуальная цель</span>' +
         '<div class="mgd__person">' +
-        '<img src="images/avatar-goal-employee.jpg" alt="Мария К.">' +
+        '<img src="images/avatar-route-maria.jpg?v=20260804p" alt="Мария К.">' +
         '<div><b>Мария К.</b><span>аналитик · индивидуальная цель</span></div>' +
         '</div>' +
         '<div class="mgd__card is-parent" style="margin-bottom:10px;">Увеличить конверсию воронки</div>' +
@@ -678,11 +730,11 @@
       return '<div class="mgd__scene">' +
         '<span class="mgd__lvl">Маршрут согласования</span>' +
         '<div class="mgd__route">' +
-        '<div class="mgd__node"><img src="images/avatar-goal-employee.jpg" alt="Мария К."><span><small>Автор</small><p>Мария К., аналитик</p></span></div>' +
+        '<div class="mgd__node"><img src="images/avatar-route-maria.jpg?v=20260804p" alt="Мария К."><span><small>Автор</small><p>Мария К., аналитик</p></span></div>' +
         '<div class="mgd__arrow" aria-hidden="true">↓</div>' +
-        '<div class="mgd__node"><img src="images/avatar-goal-employee.jpg" alt="Мария К."><span><small>Ответственный</small><p>Мария К., аналитик</p></span></div>' +
+        '<div class="mgd__node"><img src="images/avatar-route-maria.jpg?v=20260804p" alt="Мария К."><span><small>Ответственный</small><p>Мария К., аналитик</p></span></div>' +
         '<div class="mgd__arrow" aria-hidden="true">↓</div>' +
-        '<div class="mgd__node is-key"><img src="images/avatar-goal-approver.jpg" alt="Алексей П."><span><small>Согласующий · определён автоматически</small><p>Алексей П., руководитель отдела</p></span></div>' +
+        '<div class="mgd__node is-key"><img src="images/avatar-route-alexey.jpg?v=20260804p" alt="Алексей П."><span><small>Согласующий · определён автоматически</small><p>Алексей П., руководитель отдела</p></span></div>' +
         '</div>' +
         '<div class="mgd__send"><span>Отправить на согласование</span><span style="opacity:.85;font-size:11px;">платформа построила маршрут по оргструктуре</span></div>' +
         '</div>';
@@ -1181,6 +1233,7 @@
     initNineBox();
     initRoute();
     initGoalDemo();
+    initParentPick();
     initSuccession();
     initThanks();
     initPhases();

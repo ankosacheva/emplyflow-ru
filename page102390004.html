@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260804e">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260804v">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -64,8 +64,8 @@
     <span class="mtop__name">Целеполагание</span>
     <span class="mtop__spacer"></span>
     <div class="mmode" role="group" aria-label="Режим просмотра страницы">
-      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Смотреть</button>
-      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Разобраться</button>
+      <button type="button" class="mmode__btn is-on" data-mode="feed" aria-pressed="true">Обзор</button>
+      <button type="button" class="mmode__btn" data-mode="details" aria-pressed="false">Детали</button>
     </div>
     <button type="button" class="mtop__cta" data-ef-demo-open data-track="cta-topbar">Получить демодоступ</button>
   </div>
@@ -122,30 +122,38 @@
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Новая цель отдела маркетинга · выбор родительской цели</span></div>
             <div class="mwin__body">
-              <p class="msub">Доступно для привязки</p>
-              <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-radius:12px;background:#f1eefe;border:1.5px solid #4a3bff;font-size:13px;font-weight:800;color:#141033;">
-                  <span>Вырасти в выручке коммерческого блока на 18%</span>
-                  <span style="font-size:10.5px;font-weight:800;color:#4a3bff;white-space:nowrap;">вышестоящая</span>
+              <div class="mparent" data-parent-pick>
+                <div class="mparent__draft">
+                  <span class="mparent__draft-kicker">Создаётся</span>
+                  <span class="mparent__draft-title">Командная цель · отдел маркетинга</span>
                 </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-radius:12px;background:#f8f7fb;font-size:13px;font-weight:700;color:#403c68;">
-                  <span>Удержать стоимость привлечения клиента</span>
-                  <span style="font-size:10.5px;font-weight:800;color:#8681ab;white-space:nowrap;">вышестоящая</span>
+                <div class="mparent__rules">
+                  <span class="mparent__rules-icon" aria-hidden="true">!</span>
+                  <span>Система автоматически предлагает привязать цели, отбирая возможные родительские цели в организационной структуре</span>
                 </div>
-              </div>
-              <p class="msub">Недоступно</p>
-              <div style="display:flex;flex-direction:column;gap:7px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-radius:12px;background:#fff;border:1px dashed #e0dcf0;font-size:13px;font-weight:700;color:#8681ab;">
-                  <span>Индивидуальная цель дизайнера</span>
-                  <span style="font-size:10.5px;font-weight:800;color:#b06699;white-space:nowrap;">не может быть родителем</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-radius:12px;background:#fff;border:1px dashed #e0dcf0;font-size:13px;font-weight:700;color:#8681ab;">
-                  <span>Цель службы логистики</span>
-                  <span style="font-size:10.5px;font-weight:800;color:#b06699;white-space:nowrap;">чужое подразделение</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-radius:12px;background:#fff;border:1px dashed #e0dcf0;font-size:13px;font-weight:700;color:#8681ab;">
-                  <span>Сама эта цель</span>
-                  <span style="font-size:10.5px;font-weight:800;color:#b06699;white-space:nowrap;">цикл в иерархии</span>
+                <div class="mparent__zone mparent__zone--ok">
+                  <div class="mparent__zone-head">
+                    <span class="mparent__zone-badge mparent__zone-badge--ok">Доступно</span>
+                    <span class="mparent__zone-note">2 варианта · можно выбрать</span>
+                  </div>
+                  <div class="mparent__opts" role="radiogroup" aria-label="Доступные родительские цели">
+                    <button type="button" class="mparent__opt is-selected" data-parent-opt aria-pressed="true">
+                      <span class="mparent__radio" aria-hidden="true"></span>
+                      <span class="mparent__opt-main">
+                        <span class="mparent__opt-title">Вырасти в выручке коммерческого блока на 18%</span>
+                        <span class="mparent__opt-meta">Коммерческий блок · вышестоящая команда</span>
+                      </span>
+                      <span class="mparent__opt-tag mparent__opt-tag--ok">можно</span>
+                    </button>
+                    <button type="button" class="mparent__opt" data-parent-opt aria-pressed="false">
+                      <span class="mparent__radio" aria-hidden="true"></span>
+                      <span class="mparent__opt-main">
+                        <span class="mparent__opt-title">Удержать стоимость привлечения клиента</span>
+                        <span class="mparent__opt-meta">Коммерческий блок · вышестоящая команда</span>
+                      </span>
+                      <span class="mparent__opt-tag mparent__opt-tag--ok">можно</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -153,11 +161,11 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>01</b> Иерархия</p>
-          <h2 class="mclaim" id="r1-title">Привязать цель к чему угодно <em>система не даст</em></h2>
-          <p class="mlead">Командная цель может каскадироваться только от цели вышестоящей команды, индивидуальная — только от командных целей своего scope. Индивидуальная цель родителем быть не может вообще. Именно это удерживает дерево целей от превращения в набор случайных связей.</p>
+          <h2 class="mclaim" id="r1-title">Удобные правила каскадирования помогут выстроить <em>дерево целей</em></h2>
+          <p class="mlead">При создании цели можно выбрать родительскую цель из допустимых вариантов, привязать к ней дочернюю и сразу посмотреть получившуюся структуру дерева.</p>
           <div class="mproof">
-            <span class="mproof__num">4</span>
-            <span class="mproof__txt">уровня иерархии: компания, блок или направление, команда, сотрудник — и на каждом переходе действуют свои правила привязки</span>
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Количество уровней иерархии не ограничено: дерево целей повторяет глубину вашей оргструктуры</span>
           </div>
         </div>
       </div>
@@ -169,9 +177,9 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>02</b> Два согласования</p>
-          <h2 class="mclaim" id="r2-title">Согласуется не только цель, <em>но и её результат</em></h2>
-          <p class="mlead">В большинстве систем руководитель утверждает формулировку и забывает о цели до конца квартала. Здесь разведены два процесса: согласование постановки и согласование результатов. Компания получает управляемое закрытие периода, а не самоотчёт исполнителя.</p>
+          <p class="meyebrow"><b>02</b> Этапы согласований</p>
+          <h2 class="mclaim" id="r2-title">Утверждается не только цель, <em>но и её результат</em></h2>
+          <p class="mlead">Часто случается, что после согласования целей о них забывают до конца квартала. В нашей системе цель проходит через несколько ключевых этапов, чтобы к концу периода исполнитель успешно её достиг.</p>
           <div class="mtags">
             <span class="mtag">Черновик</span>
             <span class="mtag">На согласовании</span>
@@ -186,7 +194,7 @@
           <div class="mflow">
             <div class="mflow__step">
               <span class="mflow__n">1</span>
-              <div><p class="mflow__t">Постановка</p><p class="mflow__d">Автор описывает цель и Key Results, сумма весов должна быть 100%</p></div>
+              <div><p class="mflow__t">Постановка</p><p class="mflow__d">Автор описывает цель и Key Results</p></div>
             </div>
             <div class="mflow__step is-key">
               <span class="mflow__n">2</span>
@@ -194,11 +202,11 @@
             </div>
             <div class="mflow__step">
               <span class="mflow__n">3</span>
-              <div><p class="mflow__t">Работа и прогресс</p><p class="mflow__d">Прогресс считается по весам KR: в норме, в риске или отстаёт</p></div>
+              <div><p class="mflow__t">Работа и прогресс</p><p class="mflow__d">Исполнитель обновляет метрики Key Results, считается средний прогресс. Сотрудник может воспользоваться встроенным ИИ-ассистентом для получения подсказок.</p></div>
             </div>
             <div class="mflow__step is-key">
               <span class="mflow__n">4</span>
-              <div><p class="mflow__t">Согласование результатов</p><p class="mflow__d">Руководитель подтверждает факт достижения или возвращает итоги</p></div>
+              <div><p class="mflow__t">Согласование итогов</p><p class="mflow__d">Руководитель подтверждает факт достижения или возвращает результаты на доработку</p></div>
             </div>
           </div>
         </div>
@@ -214,30 +222,39 @@
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Маршрут согласования · строится автоматически</span></div>
             <div class="mwin__body">
-              <div data-route>
+              <div class="mrt" data-route>
+                <p class="mrt__clickhint">Переключите параметры — маршрут пересоберётся автоматически</p>
+                <div class="mrt__controls">
                 <div class="mrt__grp">
                   <span>Тип цели</span>
-                  <div class="mrt__opts">
+                  <div class="mrt__opts" role="group" aria-label="Тип цели">
                     <button type="button" class="mrt__opt is-on" data-rt-group="type" data-rt-val="ind" aria-pressed="true">Индивидуальная</button>
                     <button type="button" class="mrt__opt" data-rt-group="type" data-rt-val="team" aria-pressed="false">Командная</button>
                   </div>
                 </div>
                 <div class="mrt__grp">
                   <span>Кто отвечает за цель</span>
-                  <div class="mrt__opts">
+                  <div class="mrt__opts" role="group" aria-label="Ответственный за цель">
                     <button type="button" class="mrt__opt is-on" data-rt-group="resp" data-rt-val="self" aria-pressed="true">Сам автор</button>
                     <button type="button" class="mrt__opt" data-rt-group="resp" data-rt-val="other" aria-pressed="false">Другой сотрудник</button>
                   </div>
                 </div>
                 <div class="mrt__grp">
                   <span>Оргструктура заполнена</span>
-                  <div class="mrt__opts">
+                  <div class="mrt__opts" role="group" aria-label="Оргструктура">
                     <button type="button" class="mrt__opt is-on" data-rt-group="mgr" data-rt-val="yes" aria-pressed="true">Руководитель назначен</button>
                     <button type="button" class="mrt__opt" data-rt-group="mgr" data-rt-val="no" aria-pressed="false">Руководителя нет</button>
                   </div>
                 </div>
-                <div class="mrt__out" data-rt-out>
-                  <p class="msub">Включите JavaScript, чтобы посмотреть, как меняется маршрут согласования при разных типах целей и ответственных.</p>
+                </div>
+                <div class="mrt__live">
+                  <div class="mrt__live-head">
+                    <span class="mrt__live-badge">Маршрут</span>
+                    <span class="mrt__live-note" data-rt-status>построен по оргструктуре</span>
+                  </div>
+                  <div class="mrt__out" data-rt-out>
+                    <p class="msub">Включите JavaScript, чтобы посмотреть, как меняется маршрут согласования при разных типах целей и ответственных.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -245,8 +262,8 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>03</b> Попробуйте сами</p>
-          <h2 class="mclaim" id="r3-title">Согласующего <em>не выбирают руками</em></h2>
-          <p class="mlead">Переключите тип цели и ответственного: маршрут пересобирается по оргструктуре. Самый показательный случай — командная цель с ответственным из другой команды: согласующим остаётся руководитель владельца команды, а не руководитель исполнителя.</p>
+          <h2 class="mclaim" id="r3-title">Наглядно покажем, <em>как это работает</em></h2>
+          <p class="mlead">Переключите тип цели и ответственного: маршрут пересобирается по оргструктуре. При смене ответственного меняется и согласующий.</p>
           <div class="mproof">
             <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
             <span class="mproof__txt">Если у сотрудника не заполнен руководитель, платформа не молчит: в карточке цели появляется предупреждение о том, что маршрут не построить</span>
@@ -261,24 +278,34 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>04</b> Горизонталь</p>
-          <h2 class="mclaim" id="r4-title">Цель можно не только спустить, <em>но и предложить</em></h2>
-          <p class="mlead">Продуктовые, проектные и сервисные команды живут не по линейной оргструктуре. Команда может предложить цель другой команде или сотруднику: получатель принимает, запрашивает уточнения или отклоняет. Пока цель не принята, она не попадает в общие списки и не портит отчётность.</p>
+          <p class="meyebrow"><b>04</b> Подходит для горизонтальных команд</p>
+          <h2 class="mclaim" id="r4-title">Цель можно не только каскадировать, <em>но и предложить</em></h2>
+          <p class="mlead">Продуктовые команды часто живут в матричной структуре, где не всегда применимо линейное подчинение. Для этого мы проработали механизм горизонтальной передачи целей: вы можете сформировать цель и предложить её коллегам или соседним командам.</p>
           <div class="mproof">
             <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
             <span class="mproof__txt">Передача не заменяет утверждение: после принятия цель становится черновиком получателя и идёт по обычному маршруту согласования</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
-          <div class="mwin">
+          <div class="mwin mwin--transfer">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Входящие передачи · отдел аналитики</span></div>
             <div class="mwin__body">
               <div style="padding:14px;border-radius:14px;background:#f8f7fb;margin-bottom:12px;">
-                <div style="display:flex;justify-content:space-between;gap:10px;align-items:start;margin-bottom:8px;">
-                  <div style="font-size:14px;font-weight:800;letter-spacing:-.015em;color:#141033;">Собрать сквозную аналитику воронки</div>
-                  <span style="padding:4px 9px;border-radius:999px;background:#fdf4f9;color:#e35aa4;font-size:10.5px;font-weight:800;white-space:nowrap;">ожидает</span>
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px;">
+                  <div style="flex:1 1 auto;min-width:0;font-size:14px;font-weight:800;letter-spacing:-.015em;color:#141033;line-height:1.25;">Собрать сквозную аналитику воронки</div>
+                  <span style="flex:none;padding:4px 9px;border-radius:999px;background:#fdf4f9;color:#e35aa4;font-size:10.5px;font-weight:800;">ожидает</span>
                 </div>
-                <div style="font-size:12px;font-weight:700;color:#8681ab;line-height:1.4;margin-bottom:10px;">От команды продукта · ответственный за принятие: Дмитрий В. · 2 Key Results</div>
+                <div class="mtrf__meta">
+                  <span class="mtrf__chip">От команды продукта</span>
+                  <div class="mtrf__who">
+                    <img src="images/avatar-route-dmitry.jpg?v=20260804v" alt="Дмитрий В." width="28" height="28" loading="lazy" decoding="async">
+                    <span>
+                      <small>Ответственный за принятие</small>
+                      <b>Дмитрий В.</b>
+                    </span>
+                  </div>
+                  <span class="mtrf__chip mtrf__chip--kr">2 Key Results</span>
+                </div>
                 <div style="font-size:12.5px;line-height:1.45;color:#403c68;padding:10px 12px;border-radius:11px;background:#fff;">«Нужны единые данные по конверсии, чтобы обе команды считали воронку одинаково»</div>
               </div>
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -302,61 +329,98 @@
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Цели команды · вкладка «Каскадирование целей» · H1 2026</span></div>
             <div class="mwin__body">
-              <svg viewBox="0 0 470 224" role="img" aria-label="Карта каскадирования: цель компании раскладывается на цели коммерческого блока и отделов, ниже — индивидуальные цели, одна цель не привязана">
-                <g fill="none" stroke="#c9c3ff" stroke-width="1.6">
-                  <path d="M235 46 V 62 H 120 V 78"></path>
-                  <path d="M235 46 V 62 H 350 V 78"></path>
-                  <path d="M120 118 V 134 H 62 V 150"></path>
-                  <path d="M120 118 V 134 H 178 V 150"></path>
-                  <path d="M350 118 V 134 H 350 V 150"></path>
-                </g>
-                <g>
-                  <rect x="145" y="8" width="180" height="38" rx="12" fill="#4a3bff"></rect>
-                  <text x="235" y="26" font-family="Manrope, sans-serif" font-size="11.5" font-weight="800" fill="#fff" text-anchor="middle">Цель компании</text>
-                  <text x="235" y="39" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,.72)" text-anchor="middle">организационный уровень</text>
-                </g>
-                <g>
-                  <rect x="40" y="78" width="160" height="40" rx="12" fill="#f1eefe" stroke="#d9d5ff"></rect>
-                  <text x="120" y="96" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#141033" text-anchor="middle">Коммерческий блок</text>
-                  <text x="120" y="109" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="#8681ab" text-anchor="middle">командная · 3 связи вниз</text>
-                </g>
-                <g>
-                  <rect x="270" y="78" width="160" height="40" rx="12" fill="#f1eefe" stroke="#d9d5ff"></rect>
-                  <text x="350" y="96" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#141033" text-anchor="middle">Операционный блок</text>
-                  <text x="350" y="109" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="#8681ab" text-anchor="middle">командная · 1 связь вниз</text>
-                </g>
-                <g>
-                  <rect x="8" y="150" width="108" height="38" rx="11" fill="#fff" stroke="#e8e6f4"></rect>
-                  <text x="62" y="167" font-family="Manrope, sans-serif" font-size="10" font-weight="800" fill="#141033" text-anchor="middle">Отдел продаж</text>
-                  <text x="62" y="179" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#8681ab" text-anchor="middle">индивидуальные: 6</text>
-                </g>
-                <g>
-                  <rect x="124" y="150" width="108" height="38" rx="11" fill="#fff" stroke="#e8e6f4"></rect>
-                  <text x="178" y="167" font-family="Manrope, sans-serif" font-size="10" font-weight="800" fill="#141033" text-anchor="middle">Маркетинг</text>
-                  <text x="178" y="179" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#8681ab" text-anchor="middle">индивидуальные: 4</text>
-                </g>
-                <g>
-                  <rect x="296" y="150" width="108" height="38" rx="11" fill="#fff" stroke="#e8e6f4"></rect>
-                  <text x="350" y="167" font-family="Manrope, sans-serif" font-size="10" font-weight="800" fill="#141033" text-anchor="middle">Логистика</text>
-                  <text x="350" y="179" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#8681ab" text-anchor="middle">индивидуальные: 3</text>
-                </g>
-                <g>
-                  <rect x="8" y="198" width="150" height="22" rx="9" fill="#fdf4f9" stroke="#ffd3ec" stroke-dasharray="4 3"></rect>
-                  <text x="83" y="213" font-family="Manrope, sans-serif" font-size="9.5" font-weight="800" fill="#b06699" text-anchor="middle">2 цели без привязки</text>
-                </g>
-              </svg>
-              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Всего 26 · связано 24 · не привязано 2</span><b style="font-size:12px;color:#4a3bff;">92% корректных связей</b></div>
+              <div class="mtree" role="img" aria-label="Карта каскадирования: цель компании раскладывается на коммерческий и операционный блоки, ниже — цели отделов с сотрудниками; 2 цели без привязки, связано 24 из 26">
+                <div class="mtree__lvl mtree__lvl--root">
+                  <div class="mtree__node mtree__node--root">
+                    <span class="mtree__ico" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="1"></circle></svg>
+                    </span>
+                    <span class="mtree__body"><b>Цель компании</b><small>организационный уровень</small></span>
+                  </div>
+                </div>
+                <div class="mtree__link mtree__link--split" aria-hidden="true"></div>
+                <div class="mtree__lvl mtree__lvl--blocks">
+                  <div class="mtree__node mtree__node--block">
+                    <span class="mtree__ico mtree__ico--team" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9.5" cy="7" r="3.5"></circle><path d="M22 20v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </span>
+                    <span class="mtree__body"><b>Коммерческий блок</b><small>командная · 3 связи вниз</small></span>
+                    <span class="mtree__stack" aria-hidden="true">
+                      <img src="images/avatar-route-maria.jpg?v=20260804v" alt="" width="24" height="24" loading="lazy" decoding="async">
+                      <img src="images/avatar-route-dmitry.jpg?v=20260804v" alt="" width="24" height="24" loading="lazy" decoding="async">
+                      <span class="mtree__more">+8</span>
+                    </span>
+                  </div>
+                  <div class="mtree__node mtree__node--block">
+                    <span class="mtree__ico mtree__ico--team" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9.5" cy="7" r="3.5"></circle><path d="M22 20v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </span>
+                    <span class="mtree__body"><b>Операционный блок</b><small>командная · 1 связь вниз</small></span>
+                    <span class="mtree__stack" aria-hidden="true">
+                      <img src="images/avatar-route-olga.jpg?v=20260804v" alt="" width="24" height="24" loading="lazy" decoding="async">
+                      <span class="mtree__more">+2</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="mtree__link mtree__link--fan" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="mtree__lvl mtree__lvl--depts">
+                  <div class="mtree__node mtree__node--dept">
+                    <span class="mtree__dot" style="--dot:#4a3bff;" aria-hidden="true"></span>
+                    <span class="mtree__body"><b>Отдел продаж</b><small>6 индивидуальных целей</small></span>
+                    <span class="mtree__stack" aria-hidden="true">
+                      <img src="images/avatar-9box-01.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      <img src="images/avatar-9box-02.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      <img src="images/avatar-9box-03.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      <span class="mtree__more">+3</span>
+                    </span>
+                  </div>
+                  <div class="mtree__node mtree__node--dept">
+                    <span class="mtree__dot" style="--dot:#5fce87;" aria-hidden="true"></span>
+                    <span class="mtree__body"><b>Маркетинг</b><small>4 индивидуальных цели</small></span>
+                    <span class="mtree__stack" aria-hidden="true">
+                      <img src="images/avatar-route-maria.jpg?v=20260804v" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      <img src="images/avatar-9box-04.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      <span class="mtree__more">+2</span>
+                    </span>
+                  </div>
+                  <div class="mtree__node mtree__node--dept">
+                    <span class="mtree__dot" style="--dot:#ffb777;" aria-hidden="true"></span>
+                    <span class="mtree__body"><b>Логистика</b><small>3 индивидуальных цели</small></span>
+                    <span class="mtree__stack" aria-hidden="true">
+                      <img src="images/avatar-9box-05.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      <img src="images/avatar-9box-06.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      <span class="mtree__more">+1</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="mtree__orphan">
+                  <span class="mtree__orphan-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5"></path><path d="M12 16.5v.5"></path><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path></svg>
+                  </span>
+                  <span><b>2 цели без привязки</b> — выпали из каскада и не попадают в отчётность</span>
+                </div>
+              </div>
+              <div class="mtstat">
+                <div class="mtstat__gauge" style="--pct:92;" aria-hidden="true">
+                  <b>92%</b><small>связей</small>
+                </div>
+                <div class="mtstat__nums">
+                  <div class="mtstat__num"><b>26</b><small>всего целей</small></div>
+                  <div class="mtstat__num mtstat__num--ok"><b>24</b><small>связано</small></div>
+                  <div class="mtstat__num mtstat__num--warn"><b>2</b><small>не привязано</small></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>05</b> Карта</p>
-          <h2 class="mclaim" id="r5-title">Видно, где каскад <em>оборвался</em></h2>
-          <p class="mlead">Карта каскадирования показывает цели по слоям и линии связей вверх и вниз. Непривязанные цели можно затемнить и увидеть счётчики: всего, связано, не привязано. Это ровно тот разговор, который HR обычно ведёт по переписке в конце периода.</p>
+          <p class="meyebrow"><b>05</b> Полный обзор</p>
+          <h2 class="mclaim" id="r5-title"><em>Дерево целей</em> компании</h2>
+          <p class="mlead">Карта каскадирования показывает взаимосвязь всех целей компании и помогает синхронизироваться всем командам для достижения стратегических целей. Непривязанные цели можно затемнить, а также выбрать визуализацию в рамках любой команды, уровня (слоя) или конкретного статуса целей.</p>
           <div class="mtags">
-            <span class="mtag">Фильтры по типу и статусу</span>
-            <span class="mtag">Связи вверх и вниз в карточке цели</span>
-            <span class="mtag">Переход в цель из карты</span>
+            <span class="mtag">Фильтры по командам и статусам</span>
+            <span class="mtag">Связи дочерних и родительских целей</span>
+            <span class="mtag">Быстрая информация о цели по клику</span>
           </div>
         </div>
       </div>
@@ -368,8 +432,8 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>06</b> Взгляд HR</p>
-          <h2 class="mclaim" id="r6-title">Постановка целей <em>как управляемый процесс</em></h2>
+          <p class="meyebrow"><b>06</b> Администрирование</p>
+          <h2 class="mclaim" id="r6-title">Целеполагание — это <em>управляемый процесс</em></h2>
           <p class="mlead">В разделе «Все цели» видно, какие команды уже поставили цели, какие ещё не начали, что зависло в черновиках и что ждёт согласования. Ползунок прогресса позволяет за секунду вытащить цели в нужном диапазоне выполнения, а данные выгружаются в Excel для отчёта руководству.</p>
           <div class="mproof">
             <span class="mproof__num">12</span>
@@ -448,13 +512,9 @@
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>07</b> Зачем это компании</p>
-          <h2 class="mclaim" id="r7-title">Цели, которые <em>работают дальше</em></h2>
+          <p class="meyebrow"><b>07</b> Что получает компания</p>
+          <h2 class="mclaim" id="r7-title">Цели, которые <em>объединяют</em> работу всей компании</h2>
           <p class="mlead">Целеполагание не живёт отдельным островом: достижение целей идёт в Performance Review и в ось результативности матрицы талантов, а корректность маршрутов и каскада держится на оргструктуре компании.</p>
-          <div class="mproof">
-            <span class="mproof__num">2</span>
-            <span class="mproof__txt">направления роста цели: вертикальное каскадирование по иерархии и горизонтальная передача между командами</span>
-          </div>
         </div>
       </div>
     </div>
@@ -465,7 +525,7 @@
     <div class="shell mswitch__inner">
       <div>
         <h2 class="mswitch__t">Дальше — детали</h2>
-        <p class="mswitch__d">Разделы модуля, типы целей и Key Results, правила определения согласующего, статусы обоих процессов, каскад, передача целей, аналитика и границы реализации.</p>
+        <p class="mswitch__d">Если вы хотите узнать о модуле подробнее, изучите информацию ниже или оставьте заявку на демонстрацию решения.</p>
       </div>
       <button type="button" class="mswitch__btn" data-mode="details">
         Разобраться
@@ -478,16 +538,16 @@
   <section class="mdet" id="details" aria-labelledby="details-title">
     <div class="shell">
       <div class="mdet__head">
-        <p class="mdet__eyebrow">Разобраться</p>
+        <p class="mdet__eyebrow">Изучить детали</p>
         <h2 class="mdet__title" id="details-title">Как модуль устроен внутри</h2>
-        <p class="mdet__lead">Целеполагание связывает постановку целей, управленческое согласование, иерархию компании и контроль процесса. Ниже то, что обычно спрашивают на демонстрации.</p>
+        <p class="mdet__lead">Мы выделили несколько основных разделов вопросов, которые обычно интересуют заказчиков перед внедрением. Остановитесь ниже, чтобы прочитать детали.</p>
       </div>
 
-      <div class="mdet__grid" data-reveal>
+      <div class="mdet__grid mdet__grid--bento" data-reveal>
 
-        <article class="mcard mcard--full">
-          <p class="mcard__lbl"><i></i>Полная цепочка</p>
-          <h3 class="mcard__t">От формулировки до закрытия периода</h3>
+        <article class="mcard mcard--bento-principles">
+          <p class="mcard__lbl"><i></i>Общие принципы</p>
+          <h3 class="mcard__t">Этапы, через которые проходит цель</h3>
           <div class="mchips">
             <span class="mchip">1 · Цель создаётся в контексте команды и цикла</span>
             <span class="mchip">2 · Выбирается родительская цель по правилам</span>
@@ -500,9 +560,9 @@
           </div>
         </article>
 
-        <article class="mcard mcard--wide">
+        <article class="mcard mcard--bento-pages">
           <p class="mcard__lbl"><i></i>Разделы</p>
-          <h3 class="mcard__t">Из чего состоит контур</h3>
+          <h3 class="mcard__t">Какие страницы доступны пользователям</h3>
           <ul class="mlist">
             <li><b>Мои цели</b> — личные цели, Key Results, прогресс и статусы согласования</li>
             <li><b>Цели команды</b> — командные и индивидуальные цели подчинённых, создание и каскад</li>
@@ -514,9 +574,9 @@
           </ul>
         </article>
 
-        <article class="mcard mcard--wide">
-          <p class="mcard__lbl"><i></i>Цели и Key Results</p>
-          <h3 class="mcard__t">Что описывается в карточке</h3>
+        <article class="mcard mcard--bento-goal">
+          <p class="mcard__lbl"><i></i>Объект цели</p>
+          <h3 class="mcard__t">Что входит в карточку цели</h3>
           <ul class="mlist">
             <li><b>Типы целей:</b> индивидуальная, командная, организационная, проектная</li>
             <li>Название, описание, цикл, владелец, ответственное лицо, уровень и подразделение</li>
@@ -527,53 +587,9 @@
           </ul>
         </article>
 
-        <article class="mcard mcard--full">
-          <p class="mcard__lbl"><i></i>Маршрут</p>
-          <h3 class="mcard__t">Как определяется согласующий</h3>
-          <div class="mcols">
-            <div>
-              <p class="mcols__h"><span style="background:#d5fff3;">И</span> Индивидуальная цель</p>
-              <ul class="mlist">
-                <li>Согласующий — линейный руководитель сотрудника из профиля</li>
-                <li>Если назначен отдельный ответственный, маршрут идёт к его руководителю</li>
-                <li>Отвечает за цель один человек — к его руководителю она и попадает</li>
-              </ul>
-            </div>
-            <div>
-              <p class="mcols__h"><span style="background:#cec8ff;">К</span> Командная цель</p>
-              <ul class="mlist">
-                <li>Учитываются владелец команды, ответственный, создатель и уровень цели</li>
-                <li>Согласующим становится руководитель владельца командной цели</li>
-                <li>Назначение исполнителя из другой команды не уводит маршрут в сторону</li>
-              </ul>
-            </div>
-            <div>
-              <p class="mcols__h"><span style="background:#ffb8e2;">О</span> Отправка</p>
-              <ul class="mlist">
-                <li>Если ответственный отличается от владельца, отправитель — ответственный</li>
-                <li>Если отдельного ответственного нет, отправляет владелец</li>
-                <li>Согласующий видит, кто фактически отвечает за постановку</li>
-              </ul>
-            </div>
-          </div>
-          <div class="mnote">Если у сотрудника не назначен руководитель, система показывает предупреждение: маршрут корректно не строится, нужно обратиться в HR.</div>
-        </article>
-
-        <article class="mcard">
-          <p class="mcard__lbl"><i></i>Каскад</p>
-          <h3 class="mcard__t">Правила привязки</h3>
-          <ul class="mlist">
-            <li>Командная цель — только к цели вышестоящей команды</li>
-            <li>Индивидуальная цель — только к командным целям своего scope</li>
-            <li>Родителем не может быть индивидуальная или личная цель</li>
-            <li>Нельзя привязать цель к самой себе или к цели чужого подразделения</li>
-          </ul>
-          <div class="mnote">Корректность связей зависит от заполненности оргструктуры и подразделений в профилях.</div>
-        </article>
-
-        <article class="mcard">
+        <article class="mcard mcard--bento-transfer">
           <p class="mcard__lbl"><i></i>Передача целей</p>
-          <h3 class="mcard__t">Как работает горизонталь</h3>
+          <h3 class="mcard__t">Как работает горизонтальная передача целей</h3>
           <ul class="mlist">
             <li>Индивидуальную цель можно передать конкретному сотруднику</li>
             <li>Командную — другой доступной команде с выбором ответственного за принятие</li>
@@ -583,44 +599,37 @@
           </ul>
         </article>
 
-        <article class="mcard">
-          <p class="mcard__lbl"><i></i>Статусы</p>
-          <h3 class="mcard__t">Два процесса подряд</h3>
-          <ul class="mlist">
-            <li><b>Постановка:</b> черновик, на согласовании, правки, в работе</li>
-            <li><b>Результаты:</b> подведение итогов, на согласовании результатов, правки по результатам, результаты подтверждены, завершена</li>
-            <li>Руководитель видит, что ещё не отправлено, что зависло и что вернулось на доработку</li>
-          </ul>
-        </article>
-
-        <article class="mcard mcard--wide">
-          <p class="mcard__lbl"><i></i>Аналитика</p>
-          <h3 class="mcard__t">Что видно на каждом уровне</h3>
-          <ul class="mlist">
-            <li><b>Цели команды:</b> количество целей, прогресс, статусы, срезы по циклам и сотрудникам</li>
-            <li><b>Каскадирование:</b> всего целей, сколько связано, сколько не привязано, доля корректных связей</li>
-            <li><b>Согласования:</b> не отправлены, на согласовании, запрошены правки, утверждены, результаты в работе</li>
-            <li><b>Все цели:</b> срез по компании, департаментам и уровням с экспортом в Excel</li>
-          </ul>
-        </article>
-
-        <article class="mcard mcard--wide">
-          <p class="mcard__lbl"><i></i>Фильтры и выгрузка</p>
-          <h3 class="mcard__t">Инструменты HR в период постановки</h3>
-          <ul class="mlist">
-            <li>Цикл, создатель, ответственное лицо, проект и его приоритет</li>
-            <li>Тип индивидуальной цели, уровень цели и статус согласования</li>
-            <li>Ползунок прогресса: быстро вытащить цели в диапазоне 0–20% или 90–100%</li>
-            <li>Поиск по названию цели и департаменту, выбор подразделения в оргструктуре</li>
-            <li>Экспорт в Excel со статусами, ответственными, уровнями, прогрессом, KR и родительскими связями</li>
-          </ul>
-        </article>
-
-        <article class="mcard mcard--full">
-          <p class="mcard__lbl"><i></i>Границы</p>
-          <h3 class="mcard__t">Что важно учесть до внедрения</h3>
-          <div class="mnote">
-            Согласование <b>одноуровневое</b>: автоматический согласующий — линейный руководитель, многоступенчатой цепочки утверждений нет. HR видит процесс и может им управлять, но <b>не добавляется отдельным шагом маршрута</b>. Часть целей, созданных руководителем для своей зоны ответственности, может сразу переходить в работу без отдельного согласования. Индивидуальные цели <b>не могут быть родителями</b> в каскаде. Корректность родительских связей зависит от заполненности оргструктуры и подразделений. Доступная сегодня визуализация — карта каскадирования в «Целях команды», а полноценное дерево всех целей компании с масштабированием и перемещением по карте выходит отдельным модулем.
+        <article class="mcard mcard--bento-analytics">
+          <p class="mcard__lbl"><i></i>Аналитика и выгрузки</p>
+          <h3 class="mcard__t">Что видит администратор, в каких разрезах и что можно выгрузить</h3>
+          <div class="mcols">
+            <div>
+              <p class="mcols__h"><span>01</span> Какую аналитику видит</p>
+              <ul class="mlist">
+                <li><b>Цели команды:</b> количество целей, прогресс, статусы постановки и выполнения</li>
+                <li><b>Каскадирование:</b> всего целей, связано, не привязано, доля корректных связей</li>
+                <li><b>Согласования:</b> не отправлены, на согласовании, запрошены правки, утверждены, результаты в работе</li>
+                <li><b>Все цели:</b> сводка по компании с контролем покрытия постановки и прогресса</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span>02</span> Разрезы и фильтры</p>
+              <ul class="mlist">
+                <li>Цикл, создатель, ответственное лицо, проект и его приоритет</li>
+                <li>Тип цели, уровень, статус согласования и статус результатов</li>
+                <li>Компания, департамент, подразделение в оргструктуре, команда и сотрудник</li>
+                <li>Ползунок прогресса: быстро вытащить цели в диапазоне 0–20% или 90–100%</li>
+                <li>Поиск по названию цели и департаменту</li>
+              </ul>
+            </div>
+            <div>
+              <p class="mcols__h"><span>03</span> Выгрузки</p>
+              <ul class="mlist">
+                <li>Excel по разделу «Все цели» — для отчёта руководству и контроля периода</li>
+                <li>В файле: статусы, ответственные, уровни, прогресс, Key Results и родительские связи</li>
+                <li>Можно выгрузить отфильтрованный срез, а не только полный список</li>
+              </ul>
+            </div>
           </div>
         </article>
 
@@ -657,8 +666,8 @@
     <div class="shell">
       <div class="mfin__inner">
         <div>
-          <h2 class="mfin__t">Разложите стратегию до уровня сотрудника</h2>
-          <p class="mfin__d">Покажем постановку целей с KR, автоматический маршрут согласования, карту каскада и передачу целей между командами. Демодоступ на пять рабочих дней.</p>
+          <h2 class="mfin__t"><span class="t-mint">Декомпозируйте стратегию</span> до уровня сотрудников</h2>
+          <p class="mfin__d">Покажем и объясним, как работает модуль. После встречи вы получите бесплатный демо-доступ на 5 рабочих дней.</p>
         </div>
         <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
       </div>
@@ -727,7 +736,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260804e" defer></script>
+<script src="js/emplyflow-module.js?v=20260804v" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 
