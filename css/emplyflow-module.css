@@ -327,6 +327,7 @@ button { font: inherit; }
   color: var(--fg2);
   max-width: 30ch;
 }
+.mproof--wide .mproof__txt { max-width: 42ch; }
 
 /* вариант без цифры: вместо числа фирменная звезда */
 .mproof__spark { flex: none; color: var(--pink); }
