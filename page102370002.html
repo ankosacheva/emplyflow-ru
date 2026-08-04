@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803h">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260804w">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -92,7 +92,7 @@
           <div class="mwin mwin--career">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Карьерный трек · Анна К. · Product · цикл 2026</span></div>
             <div class="mwin__body">
-              <div class="mcareer">
+              <div class="mcareer" data-career>
                 <div class="mcareer__person">
                   <img src="images/avatar-successor-anna.jpg" alt="Анна К." class="mcareer__ava">
                   <div>
@@ -106,25 +106,116 @@
                   <div class="mcareer__role">
                     <small>сейчас</small>
                     <b>Product Manager</b>
-                    <span>Middle</span>
+                    <span>Middle · грейд 3</span>
                   </div>
                   <div class="mcareer__arrow" aria-hidden="true">→</div>
                   <div class="mcareer__role mcareer__role--target">
                     <small>цель</small>
                     <b>Senior Product Manager</b>
-                    <span>готовность 78%</span>
+                    <span>готовность <em data-career-ready>78%</em></span>
                   </div>
                 </div>
-                <div class="mcareer__road">
-                  <div class="mcareer__step is-done"><i></i><span>Разрыв<br>6 компетенций</span></div>
-                  <div class="mcareer__step is-active"><i></i><span>ИПР<br>3 этапа</span></div>
-                  <div class="mcareer__step"><i></i><span>Переход<br>9 месяцев</span></div>
-                </div>
+                <div class="mcareer__road" role="tablist" aria-label="Этапы карьерного трека" data-career-rail></div>
+                <div class="mcareer__panel" data-career-panel></div>
                 <div class="mcareer__gap">
-                  <span>Закрыто компетенций</span>
-                  <b>4 / 6</b>
-                  <i><em style="width:67%;"></em></i>
+                  <span data-career-gap-label>Закрыто компетенций</span>
+                  <b data-career-gap-num>4 / 6</b>
+                  <i><em data-career-gap-bar style="width:67%;"></em></i>
                 </div>
+                <script type="application/json" data-career-json>
+                {
+                  "stages": [
+                    {
+                      "id": "gap",
+                      "short": "Разрыв",
+                      "sub": "6 компетенций",
+                      "state": "done",
+                      "bar": "Карьерный трек · Анна К. · разрыв компетенций",
+                      "ready": 78,
+                      "closed": 4,
+                      "total": 6,
+                      "gapLabel": "Закрыто компетенций",
+                      "title": "Разрыв до Senior Product Manager",
+                      "note": "Уровни берутся из матрицы компетенций целевой должности: платформа сравнивает требования грейда Senior с текущими оценками сотрудника.",
+                      "rows": [
+                        { "name": "Управление продуктом", "current": 4, "required": 4 },
+                        { "name": "Работа с данными", "current": 4, "required": 4 },
+                        { "name": "Коммуникация со стейкхолдерами", "current": 4, "required": 4 },
+                        { "name": "Юнит-экономика", "current": 3, "required": 3 },
+                        { "name": "Стратегическое мышление", "current": 2, "required": 4 },
+                        { "name": "Управление командой", "current": 1, "required": 3 }
+                      ]
+                    },
+                    {
+                      "id": "ipr",
+                      "short": "ИПР",
+                      "sub": "3 этапа",
+                      "state": "active",
+                      "bar": "Карьерный трек · Анна К. · ИПР на 9 месяцев",
+                      "ready": 78,
+                      "closed": 4,
+                      "total": 6,
+                      "gapLabel": "Закрыто компетенций по ИПР",
+                      "title": "Индивидуальный план развития",
+                      "note": "Этапы закрывают только те компетенции, где есть разрыв. Нажмите на этап, чтобы раскрыть KPI, материалы и статус.",
+                      "steps": [
+                        {
+                          "title": "Освоить продуктовую стратегию",
+                          "months": "3 мес. · сентябрь — ноябрь",
+                          "status": "выполнен",
+                          "state": "done",
+                          "progress": 100,
+                          "kpi": "защищена стратегия направления на продуктовом комитете",
+                          "material": "курс «Продуктовая стратегия» из библиотеки компании",
+                          "check": "оценку этапа подтвердил руководитель 28 ноября",
+                          "comps": ["Стратегическое мышление 2 → 3"]
+                        },
+                        {
+                          "title": "Применить в рабочих задачах",
+                          "months": "3 мес. · декабрь — февраль",
+                          "status": "в работе",
+                          "state": "active",
+                          "progress": 60,
+                          "kpi": "два квартальных плана собраны самостоятельно, отклонение по срокам до 10%",
+                          "material": "работа с наставником — Head of Product",
+                          "check": "контрольная точка 15 февраля, ближайшая встреча один на один 5 февраля",
+                          "comps": ["Стратегическое мышление 3 → 4", "Управление продуктом 4 → 4"]
+                        },
+                        {
+                          "title": "Взять на себя команду",
+                          "months": "3 мес. · март — май",
+                          "status": "запланирован",
+                          "state": "plan",
+                          "progress": 0,
+                          "kpi": "проведены 6 встреч один на один и один цикл постановки целей",
+                          "material": "тренинг «Первая линия управления»",
+                          "check": "старт после закрытия предыдущего этапа",
+                          "comps": ["Управление командой 1 → 3"]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "move",
+                      "short": "Переход",
+                      "sub": "9 месяцев",
+                      "state": "plan",
+                      "bar": "Карьерный трек · Анна К. · переход на Senior",
+                      "ready": 94,
+                      "closed": 6,
+                      "total": 6,
+                      "gapLabel": "Прогноз к дате перехода",
+                      "title": "Переход на целевую позицию",
+                      "note": "Прогноз готовности пересчитывается после каждой закрытой компетенции: к завершению ИПР разрыв закрывается полностью.",
+                      "timeline": [
+                        { "when": "ноябрь", "what": "ИПР согласован руководителем", "state": "done" },
+                        { "when": "февраль", "what": "промежуточный пересмотр готовности: 78% → 88%", "state": "active" },
+                        { "when": "май", "what": "финальная оценка компетенций по матрице Senior", "state": "plan" },
+                        { "when": "июнь", "what": "решение о переходе на цикле Performance Review", "state": "plan" }
+                      ]
+                    }
+                  ]
+                }
+                </script>
               </div>
             </div>
           </div>
@@ -834,7 +925,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260803h" defer></script>
+<script src="js/emplyflow-module.js?v=20260804w" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 

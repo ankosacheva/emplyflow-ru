@@ -815,6 +815,156 @@
   }
 
   /* ---------------------------------------------------------------
+     КАРЬЕРНЫЙ ТРЕК · ОБЛОЖКА
+     --------------------------------------------------------------- */
+  function initCareerDemo() {
+    var root = $('[data-career]');
+    if (!root) return;
+
+    var raw = $('[data-career-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.stages || !cfg.stages.length) return;
+
+    var rail = $('[data-career-rail]', root);
+    var panel = $('[data-career-panel]', root);
+    if (!rail || !panel) return;
+
+    var readyOut = $('[data-career-ready]', root);
+    var gapLabel = $('[data-career-gap-label]', root);
+    var gapNum = $('[data-career-gap-num]', root);
+    var gapBar = $('[data-career-gap-bar]', root);
+    var barTitle = $('.mwin__title', root.closest('.mwin') || root);
+
+    var current = 1;
+    var openStage = 1;
+
+    function dots(current_, required) {
+      var out = '<span class="mcareer__dots" aria-label="Уровень ' + current_ + ' из требуемых ' + required + '">';
+      for (var i = 1; i <= 5; i++) {
+        var cls = i <= current_ ? ' class="is-have"' : (i <= required ? ' class="is-need"' : '');
+        out += '<i' + cls + '></i>';
+      }
+      return out + '</span>';
+    }
+
+    function gapView(stage) {
+      var rows = '';
+      (stage.rows || []).forEach(function (c) {
+        var isGap = c.current < c.required;
+        rows +=
+          '<div class="mcareer__row' + (isGap ? ' mcareer__row--gap' : '') + '">' +
+            '<span>' + c.name + '</span>' +
+            dots(c.current, c.required) +
+            '<span class="mcareer__state">' + (isGap ? 'нужно ' + c.required : 'закрыто') + '</span>' +
+          '</div>';
+      });
+      return '<div class="mcareer__rows">' + rows + '</div>';
+    }
+
+    function iprView(stage) {
+      var out = '';
+      (stage.steps || []).forEach(function (s, i) {
+        var open = i === openStage;
+        var chips = '';
+        (s.comps || []).forEach(function (c) { chips += '<span>' + c + '</span>'; });
+        out +=
+          '<div class="mcareer__stage' + (open ? ' is-open' : '') + '" data-state="' + s.state + '">' +
+            '<button type="button" class="mcareer__head" data-career-stage="' + i + '" aria-expanded="' + (open ? 'true' : 'false') + '">' +
+              '<span class="mcareer__n">' + (i + 1) + '</span>' +
+              '<span class="mcareer__sname">' + s.title + '<span>' + s.months + '</span></span>' +
+              '<span class="mcareer__badge">' + s.status + '</span>' +
+            '</button>' +
+            (open
+              ? '<div class="mcareer__body">' +
+                  '<p class="mcareer__srow"><b>KPI этапа:</b> ' + s.kpi + '</p>' +
+                  '<p class="mcareer__srow"><b>Материалы:</b> ' + s.material + '</p>' +
+                  '<p class="mcareer__srow"><b>Контроль:</b> ' + s.check + '</p>' +
+                  '<span class="mcareer__chips">' + chips + '</span>' +
+                  '<span class="mcareer__pbar"><i style="width:' + s.progress + '%"></i></span>' +
+                '</div>'
+              : '') +
+          '</div>';
+      });
+      return '<div class="mcareer__ipr">' + out + '</div>';
+    }
+
+    function moveView(stage) {
+      var out = '';
+      (stage.timeline || []).forEach(function (t) {
+        out += '<div class="mcareer__tlrow" data-state="' + t.state + '"><b>' + t.when + '</b><span>' + t.what + '</span></div>';
+      });
+      return '<div class="mcareer__tl">' + out + '</div>';
+    }
+
+    function paintRail() {
+      $$('.mcareer__step', rail).forEach(function (btn, i) {
+        var on = i === current;
+        btn.classList.toggle('is-on', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        btn.setAttribute('tabindex', on ? '0' : '-1');
+      });
+    }
+
+    function paintSummary(stage) {
+      if (readyOut) readyOut.textContent = stage.ready + '%';
+      if (gapLabel) gapLabel.textContent = stage.gapLabel;
+      if (gapNum) gapNum.textContent = stage.closed + ' / ' + stage.total;
+      if (gapBar) gapBar.style.width = Math.round((stage.closed / stage.total) * 100) + '%';
+      if (barTitle && stage.bar) barTitle.textContent = stage.bar;
+    }
+
+    function bindStages() {
+      $$('[data-career-stage]', panel).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var i = parseInt(btn.getAttribute('data-career-stage'), 10);
+          openStage = openStage === i ? -1 : i;
+          track('career_ipr_stage', { stage: i + 1 });
+          draw(false);
+        });
+      });
+    }
+
+    function draw(swap) {
+      var stage = cfg.stages[current];
+      var view = stage.id === 'gap' ? gapView(stage) : stage.id === 'ipr' ? iprView(stage) : moveView(stage);
+
+      panel.innerHTML =
+        '<p class="mcareer__ttl">' + stage.title + '</p>' + view +
+        '<p class="mcareer__note">' + stage.note + '</p>';
+
+      if (swap && !reduced) {
+        panel.classList.remove('is-swap');
+        void panel.offsetWidth;
+        panel.classList.add('is-swap');
+      }
+
+      paintRail();
+      paintSummary(stage);
+      bindStages();
+    }
+
+    rail.innerHTML = '';
+    cfg.stages.forEach(function (stage, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mcareer__step' + (stage.state === 'done' ? ' is-done' : stage.state === 'active' ? ' is-active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.innerHTML = '<i></i><span>' + stage.short + '<br>' + stage.sub + '</span>';
+      btn.addEventListener('click', function () {
+        current = i;
+        openStage = stage.id === 'ipr' ? 1 : -1;
+        track('career_stage', { stage: stage.short });
+        draw(true);
+      });
+      rail.appendChild(btn);
+    });
+
+    draw(false);
+    root.addEventListener('click', function () { trackOnce('career_start'); }, { once: true });
+  }
+
+  /* ---------------------------------------------------------------
      AI-ПОДБОР ПРЕЕМНИКОВ
      --------------------------------------------------------------- */
   function initSuccession() {
@@ -1233,6 +1383,7 @@
     initNineBox();
     initRoute();
     initGoalDemo();
+    initCareerDemo();
     initParentPick();
     initSuccession();
     initThanks();
