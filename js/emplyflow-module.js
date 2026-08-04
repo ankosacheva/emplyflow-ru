@@ -653,7 +653,11 @@
     function sceneIndividual() {
       return '<div class="mgd__scene">' +
         '<span class="mgd__lvl">Индивидуальная цель</span>' +
-        '<div class="mgd__card is-parent" style="margin-bottom:10px;">Увеличить конверсию воронки · отдел маркетинга</div>' +
+        '<div class="mgd__person">' +
+        '<img src="images/avatar-goal-employee.jpg" alt="Мария К.">' +
+        '<div><b>Мария К.</b><span>аналитик · индивидуальная цель</span></div>' +
+        '</div>' +
+        '<div class="mgd__card is-parent" style="margin-bottom:10px;">Увеличить конверсию воронки</div>' +
         '<p class="msub" style="margin-top:0;">Key Results и веса</p>' +
         '<div class="mpersp">' +
         '<div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span>' +

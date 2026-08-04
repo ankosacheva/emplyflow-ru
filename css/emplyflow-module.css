@@ -687,6 +687,38 @@ button { font: inherit; }
   font-weight: 800;
   color: #4a3bff;
 }
+.mgd__person {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 13px;
+  border-radius: 13px;
+  background: #f8f7fb;
+  border: 1px solid #edecf3;
+  margin-bottom: 10px;
+}
+.mgd__person img {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px #fff;
+}
+.mgd__person b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #141033;
+}
+.mgd__person span {
+  display: block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #8681ab;
+}
 @media (prefers-reduced-motion: reduce) {
   .mgd__scene { animation: none; }
   .mgd__send { animation: none; }
