@@ -3899,6 +3899,42 @@ body[data-module="succession"] .mcover__title { font-size: clamp(34px, 4.4vw, 60
 .mcard--wide { grid-column: span 3; }
 .mcard--full { grid-column: 1 / -1; }
 
+/* выделенная карточка ИИ: градиент, бейдж под наклоном */
+.mcard--ai {
+  position: relative;
+  overflow: visible;
+  border-color: rgba(74, 59, 255, 0.28);
+  background: linear-gradient(135deg, rgba(74, 59, 255, 0.06) 0%, rgba(255, 184, 226, 0.08) 100%), var(--glass);
+  box-shadow: 0 20px 44px -28px rgba(74, 59, 255, 0.35);
+}
+.mcard__ai-badge {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4a3bff 0%, #7a5cff 100%);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transform: rotate(-6deg);
+  box-shadow: 0 12px 24px -12px rgba(74, 59, 255, 0.6);
+}
+.mcard__ai-badge svg { width: 14px; height: 14px; }
+.mcard__ai-badge::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1.5px dashed rgba(255, 184, 226, 0.55);
+  pointer-events: none;
+}
+
 .mcard__lbl {
   display: inline-flex;
   align-items: center;
