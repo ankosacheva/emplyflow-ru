@@ -10,13 +10,89 @@ body { overflow:hidden; }
   display:grid; place-items:center;
   background:#050230;
 }
-.ef-loader-video {
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  background:#050230;
+
+/* -------------------------------------------------------------
+   ПРЕЛОАДЕР · EmplyFlow — современная анимация в фирменном стиле
+   ------------------------------------------------------------- */
+.ef-loader {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(58% 48% at 78% 8%, rgba(74, 59, 255, 0.22), transparent 68%),
+    radial-gradient(42% 38% at 6% 92%, rgba(255, 184, 226, 0.08), transparent 72%),
+    #050230;
 }
+.ef-loader__inner {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  padding: 40px;
+}
+.ef-loader__mark {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4a3bff 0%, #7a5cff 100%);
+  color: #fff;
+  box-shadow:
+    0 0 0 1px rgba(255, 184, 226, 0.22),
+    0 24px 48px -20px rgba(74, 59, 255, 0.65),
+    0 0 80px -10px rgba(74, 59, 255, 0.45);
+  animation: ef-loader-pulse 2.2s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+.ef-loader__mark svg {
+  width: 34px;
+  height: 34px;
+  animation: ef-loader-spin 3.2s linear infinite;
+}
+.ef-loader__word {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  opacity: 0;
+  animation: ef-loader-fade 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s forwards;
+}
+.ef-loader__bar {
+  width: 148px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(217, 214, 255, 0.14);
+  overflow: hidden;
+  opacity: 0;
+  animation: ef-loader-fade 0.6s ease 0.55s forwards;
+}
+.ef-loader__bar i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4a3bff, #ffb8e2);
+  transform: translateX(-100%);
+  animation: ef-loader-slide 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s infinite;
+}
+
+@keyframes ef-loader-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 1px rgba(255, 184, 226, 0.22), 0 24px 48px -20px rgba(74, 59, 255, 0.65), 0 0 80px -10px rgba(74, 59, 255, 0.45); }
+  50% { transform: scale(1.04); box-shadow: 0 0 0 1px rgba(255, 184, 226, 0.35), 0 28px 56px -20px rgba(74, 59, 255, 0.75), 0 0 100px -8px rgba(74, 59, 255, 0.55); }
+}
+@keyframes ef-loader-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes ef-loader-fade {
+  to { opacity: 1; }
+}
+@keyframes ef-loader-slide {
+  0% { transform: translateX(-100%); }
+  55% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
 /* Persistent overlay during head/body swap (also styled inline in runtime JS). */
 #ef-enter-veil {
   position:fixed;
@@ -25,6 +101,14 @@ body { overflow:hidden; }
   background:#050230;
   pointer-events:auto;
 }
-@media (prefers-reduced-motion:reduce) {
-  .ef-loader-video { object-fit:contain; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ef-loader__mark,
+  .ef-loader__mark svg,
+  .ef-loader__word,
+  .ef-loader__bar,
+  .ef-loader__bar i { animation: none; }
+  .ef-loader__word,
+  .ef-loader__bar { opacity: 1; }
+  .ef-loader__bar i { transform: none; width: 40%; }
 }

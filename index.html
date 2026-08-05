@@ -21,13 +21,89 @@
       display:grid; place-items:center;
       background:#050230;
     }
-    .ef-loader-video {
-      display:block;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      background:#050230;
+    
+    /* -------------------------------------------------------------
+       ПРЕЛОАДЕР · EmplyFlow — современная анимация в фирменном стиле
+       ------------------------------------------------------------- */
+    .ef-loader {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(58% 48% at 78% 8%, rgba(74, 59, 255, 0.22), transparent 68%),
+        radial-gradient(42% 38% at 6% 92%, rgba(255, 184, 226, 0.08), transparent 72%),
+        #050230;
     }
+    .ef-loader__inner {
+      display: grid;
+      justify-items: center;
+      gap: 20px;
+      padding: 40px;
+    }
+    .ef-loader__mark {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #4a3bff 0%, #7a5cff 100%);
+      color: #fff;
+      box-shadow:
+        0 0 0 1px rgba(255, 184, 226, 0.22),
+        0 24px 48px -20px rgba(74, 59, 255, 0.65),
+        0 0 80px -10px rgba(74, 59, 255, 0.45);
+      animation: ef-loader-pulse 2.2s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+    }
+    .ef-loader__mark svg {
+      width: 34px;
+      height: 34px;
+      animation: ef-loader-spin 3.2s linear infinite;
+    }
+    .ef-loader__word {
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      opacity: 0;
+      animation: ef-loader-fade 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s forwards;
+    }
+    .ef-loader__bar {
+      width: 148px;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(217, 214, 255, 0.14);
+      overflow: hidden;
+      opacity: 0;
+      animation: ef-loader-fade 0.6s ease 0.55s forwards;
+    }
+    .ef-loader__bar i {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #4a3bff, #ffb8e2);
+      transform: translateX(-100%);
+      animation: ef-loader-slide 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s infinite;
+    }
+    
+    @keyframes ef-loader-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 1px rgba(255, 184, 226, 0.22), 0 24px 48px -20px rgba(74, 59, 255, 0.65), 0 0 80px -10px rgba(74, 59, 255, 0.45); }
+      50% { transform: scale(1.04); box-shadow: 0 0 0 1px rgba(255, 184, 226, 0.35), 0 28px 56px -20px rgba(74, 59, 255, 0.75), 0 0 100px -8px rgba(74, 59, 255, 0.55); }
+    }
+    @keyframes ef-loader-spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes ef-loader-fade {
+      to { opacity: 1; }
+    }
+    @keyframes ef-loader-slide {
+      0% { transform: translateX(-100%); }
+      55% { transform: translateX(0); }
+      100% { transform: translateX(100%); }
+    }
+    
     /* Persistent overlay during head/body swap (also styled inline in runtime JS). */
     #ef-enter-veil {
       position:fixed;
@@ -36,8 +112,16 @@
       background:#050230;
       pointer-events:auto;
     }
-    @media (prefers-reduced-motion:reduce) {
-      .ef-loader-video { object-fit:contain; }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .ef-loader__mark,
+      .ef-loader__mark svg,
+      .ef-loader__word,
+      .ef-loader__bar,
+      .ef-loader__bar i { animation: none; }
+      .ef-loader__word,
+      .ef-loader__bar { opacity: 1; }
+      .ef-loader__bar i { transform: none; width: 40%; }
     }
     /* EF_LOADER_CSS_END */
   </style>
@@ -51,10 +135,15 @@
 <body>
   <!-- EF_LOADER_HTML_BEGIN -->
   <div id="__bundler_thumbnail">
-  <video id="__bundler_loader_video" class="ef-loader-video" autoplay muted playsinline preload="auto" poster="media/preloader-poster.jpg?v=5" aria-label="Загрузка EmplyFlow" data-loader-version="gradient-v5">
-    <source src="media/preloader.webm?v=5" type="video/webm">
-    <source src="media/preloader.mp4?v=5" type="video/mp4">
-  </video>
+  <div class="ef-loader" role="status" aria-label="Загрузка EmplyFlow">
+    <div class="ef-loader__inner">
+      <span class="ef-loader__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+      </span>
+      <span class="ef-loader__word">EmplyFlow</span>
+      <span class="ef-loader__bar" aria-hidden="true"><i></i></span>
+    </div>
+  </div>
 </div>
   <!-- EF_LOADER_HTML_END -->
 
@@ -65,18 +154,11 @@ document.addEventListener('DOMContentLoaded', async function() {
   function setStatus(msg) { if (loading) loading.textContent = msg; }
   function wait(ms) { return new Promise(function(resolve) { setTimeout(resolve, ms); }); }
 
-  function initLoaderVideo() {
-    const video = document.getElementById('__bundler_loader_video');
-    if (!video) return wait(600);
-    video.muted = true;
-    video.setAttribute('playsinline', '');
-    var play = video.play();
-    if (play && play.catch) play.catch(function() {});
-    // Ролик низкодинамичный: показываем коротко и уходим на сайт,
-    // не дожидаясь статичного хвоста видео (было ~3с стоп-кадра).
-    return wait(1050);
+  function initLoader() {
+    // Новый прелоадер — CSS-анимация, без видео. Короткая пауза для восприятия.
+    return wait(1400);
   }
-  var loaderPlayback = Promise.race([initLoaderVideo(), wait(2200)]);
+  var loaderPlayback = Promise.race([initLoader(), wait(2200)]);
 
   const FONT_MIME = /^(font[/]|application[/](x-)?font-|application[/]vnd\.ms-fontobject)/i;
   const MIME_TOKEN = /^[\w.+-]+[/][\w.+-]+$/;
@@ -377,7 +459,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       });
     }
 
-    console.log('[bundle] loader swap video-v3');
+    console.log('[bundle] loader swap css-v1');
     var htmlEl = document.documentElement;
     paintDark(htmlEl);
     paintDark(document.body);
@@ -393,33 +475,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     var thumb = document.getElementById('__bundler_thumbnail');
-    var vid = document.getElementById('__bundler_loader_video');
-    // Freeze последнего кадра как фон оверлея — если видео мигнёт при
-    // переносе узлов, кадр всё равно перекрывает экран.
-    var freezeUrl = '';
-    try {
-      if (vid) {
-        try { vid.pause(); } catch (e1) {}
-        if (vid.videoWidth) {
-          var c = document.createElement('canvas');
-          c.width = vid.videoWidth; c.height = vid.videoHeight;
-          c.getContext('2d').drawImage(vid, 0, 0);
-          freezeUrl = c.toDataURL('image/jpeg', 0.85);
-        }
-      }
-    } catch (e) { /* tainted / no frame */ }
-    if (vid) {
-      vid.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover;background:#050230;';
-    }
     if (!thumb) {
       thumb = document.createElement('div');
       thumb.id = '__bundler_thumbnail';
       document.body.appendChild(thumb);
     }
     thumb.setAttribute('aria-hidden', 'true');
-    thumb.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:block;margin:0;padding:0;border:0;background:#050230'
-      + (freezeUrl ? ' center/cover no-repeat url("' + freezeUrl + '")' : '')
-      + ';opacity:1;pointer-events:auto;transition:opacity .45s cubic-bezier(.16,1,.3,1);';
+    thumb.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;margin:0;padding:0;border:0;background:#050230;opacity:1;pointer-events:auto;transition:opacity .45s cubic-bezier(.16,1,.3,1);';
     // Оверлей обязан жить в body: children <html> вне head/body браузеры
     // часто не рисуют / переносят — отсюда был белый кадр.
     document.body.appendChild(thumb);
