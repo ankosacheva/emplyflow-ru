@@ -1231,11 +1231,12 @@ button.mparent__opt { cursor: pointer; }
 }
 .mcareer__start span {
   position: absolute;
-  top: calc(100% + 5px);
-  left: -6px;
-  display: inline-flex;
-  gap: 5px;
-  align-items: baseline;
+  bottom: calc(100% + 6px);
+  top: auto;
+  left: 0;
+  display: grid;
+  gap: 1px;
+  align-items: start;
   padding: 4px 9px;
   border-radius: 9px;
   background: rgba(255, 255, 255, 0.94);
@@ -1246,6 +1247,7 @@ button.mparent__opt { cursor: pointer; }
   font-weight: 800;
   color: var(--c-ink);
 }
+.mcareer__start span b { display: block; }
 .mcareer__start small { font-size: 8px; font-weight: 700; color: var(--c-mute); }
 
 /* вершина: целевая роль с флагом */
@@ -1315,6 +1317,19 @@ button.mparent__opt { cursor: pointer; }
   transition: border-color 200ms linear, color 200ms linear;
 }
 .mcareer__step span small { font-size: 8px; font-weight: 700; color: var(--c-mute); }
+/* подписи первой и последней вех — над точкой, чтобы не пересекаться со стартом и вершиной */
+.mcareer__step:first-child span,
+.mcareer__step:last-child span {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+/* средняя веха — подпись справа от точки */
+.mcareer__step:nth-child(2) span {
+  top: 50%;
+  left: calc(100% + 8px);
+  bottom: auto;
+  transform: translateY(-50%);
+}
 .mcareer__step.is-done i {
   border-color: var(--c-mint);
   background: var(--c-mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E") center / 10px no-repeat;
@@ -1846,11 +1861,21 @@ button.mcareer__step.is-on i {
   .mcareer__route-done { transition: none; }
 }
 
+@media (min-width: 900px) {
+  .mcareer__climb { aspect-ratio: 560 / 230; }
+}
+
 @media (max-width: 640px) {
   .mcareer__climb { aspect-ratio: 560 / 300; }
   .mcareer__token { width: 30px; height: 30px; }
   .mcareer__step span { font-size: 8.5px; padding: 3px 7px; }
   .mcareer__step span small { display: none; }
+  .mcareer__step:nth-child(2) span {
+    top: calc(100% + 3px);
+    left: 50%;
+    bottom: auto;
+    transform: translateX(-50%);
+  }
   .mcareer__summit { top: 12% !important; }
   .mcareer__summit b { display: none; }
   .mcareer__summit small { font-size: 8px; }
@@ -2673,6 +2698,12 @@ button.mcareer__step.is-on i {
 .mcover { text-align: left; }
 /* левая колонка не должна перецентрироваться при смене высоты мокапа справа */
 .mcover .mreel__grid { align-items: start; }
+/* hero с высоким мокапом: контент сверху, «Листайте» — в зарезервированной нижней полосе */
+#cover.mcover {
+  align-items: flex-start;
+  padding-bottom: clamp(96px, 12vh, 128px);
+}
+#cover.mcover .mscroll { bottom: clamp(24px, 4vh, 44px); }
 .mcover__kicker {
   display: inline-flex;
   align-items: center;
