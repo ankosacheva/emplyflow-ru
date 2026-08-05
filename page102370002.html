@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260805e">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260805g">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -102,20 +102,32 @@
                   </div>
                   <strong>ИПР утверждён</strong>
                 </div>
-                <div class="mcareer__flow" aria-label="Переход от текущей должности к целевой">
-                  <div class="mcareer__role">
-                    <small>сейчас</small>
-                    <b>Product Manager</b>
-                    <span>Middle · грейд 3</span>
+                <div class="mcareer__climb">
+                  <svg class="mcareer__climb-svg" viewBox="0 0 560 200" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="mclimb-grad" x1="0" y1="1" x2="1" y2="0">
+                        <stop offset="0" stop-color="#34c07d"></stop>
+                        <stop offset="1" stop-color="#4a3bff"></stop>
+                      </linearGradient>
+                    </defs>
+                    <line class="mcareer__lvl" x1="0" y1="168" x2="560" y2="168"></line>
+                    <line class="mcareer__lvl" x1="0" y1="30" x2="560" y2="30"></line>
+                    <path class="mcareer__route" d="M36 168 C 130 166 170 128 252 112 C 340 95 400 55 524 32"></path>
+                    <path class="mcareer__route-done" data-career-route d="M36 168 C 130 166 170 128 252 112 C 340 95 400 55 524 32"></path>
+                  </svg>
+                  <span class="mcareer__lvltag mcareer__lvltag--top">Senior · грейд 4</span>
+                  <span class="mcareer__lvltag mcareer__lvltag--base">Middle · грейд 3</span>
+                  <div class="mcareer__start" style="left:6.4%;top:84%">
+                    <i></i>
+                    <span><b>Product Manager</b><small>сейчас · вы здесь</small></span>
                   </div>
-                  <div class="mcareer__arrow" aria-hidden="true">→</div>
-                  <div class="mcareer__role mcareer__role--target">
-                    <small>цель</small>
-                    <b>Senior Product Manager</b>
-                    <span>готовность <em data-career-ready>78%</em></span>
+                  <div class="mcareer__summit" style="left:93.6%;top:15%">
+                    <span><b>Senior Product Manager</b><small>цель · готовность <em data-career-ready>78%</em></small></span>
+                    <svg class="mcareer__flag" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.5v19" fill="none" stroke="#141033" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 3.5h12.5l-3.2 4.2 3.2 4.2H5z" fill="#4a3bff"></path></svg>
                   </div>
+                  <div class="mcareer__rail" role="tablist" aria-label="Этапы карьерного трека" data-career-rail></div>
+                  <img class="mcareer__token" data-career-token src="images/avatar-career-anna.jpg?v=20260805" alt="Анна К. на карьерном треке">
                 </div>
-                <div class="mcareer__road" role="tablist" aria-label="Этапы карьерного трека" data-career-rail></div>
                 <div class="mcareer__panel" data-career-panel></div>
                 <div class="mcareer__gap">
                   <span data-career-gap-label>Закрыто компетенций</span>
@@ -130,6 +142,8 @@
                       "short": "Разрыв",
                       "sub": "6 компетенций",
                       "state": "done",
+                      "point": { "x": 29.5, "y": 69 },
+                      "route": 0.32,
                       "bar": "Карьерный трек · Анна К. · разрыв компетенций",
                       "ready": 78,
                       "closed": 4,
@@ -151,6 +165,8 @@
                       "short": "ИПР",
                       "sub": "3 этапа",
                       "state": "active",
+                      "point": { "x": 51.8, "y": 50 },
+                      "route": 0.56,
                       "bar": "Карьерный трек · Анна К. · ИПР на 9 месяцев",
                       "ready": 78,
                       "closed": 4,
@@ -199,6 +215,8 @@
                       "short": "Переход",
                       "sub": "9 месяцев",
                       "state": "plan",
+                      "point": { "x": 74.1, "y": 29 },
+                      "route": 0.84,
                       "bar": "Карьерный трек · Анна К. · переход на Senior",
                       "ready": 94,
                       "closed": 6,
@@ -1042,7 +1060,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260805a" defer></script>
+<script src="js/emplyflow-module.js?v=20260805b" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 

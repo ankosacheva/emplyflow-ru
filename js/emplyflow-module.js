@@ -835,9 +835,21 @@
     var gapNum = $('[data-career-gap-num]', root);
     var gapBar = $('[data-career-gap-bar]', root);
     var barTitle = $('.mwin__title', root.closest('.mwin') || root);
+    var token = $('[data-career-token]', root);
+    var route = $('[data-career-route]', root);
+
+    var routeLen = 0;
+    if (route && route.getTotalLength) {
+      try {
+        routeLen = route.getTotalLength();
+        route.style.strokeDasharray = String(routeLen);
+        route.style.strokeDashoffset = String(routeLen);
+      } catch (e) { routeLen = 0; }
+    }
 
     var current = 1;
     var openStage = 1;
+    var booted = false;
 
     function dots(current_, required) {
       var out = '<span class="mcareer__dots" aria-label="Уровень ' + current_ + ' из требуемых ' + required + '">';
@@ -939,6 +951,16 @@
         panel.classList.add('is-swap');
       }
 
+      if (booted || swap) {
+        if (token && stage.point) {
+          token.style.left = stage.point.x + '%';
+          token.style.top = stage.point.y + '%';
+        }
+        if (routeLen) {
+          route.style.strokeDashoffset = String(routeLen * (1 - (stage.route || 0)));
+        }
+      }
+
       paintRail();
       paintSummary(stage);
       bindStages();
@@ -950,7 +972,11 @@
       btn.type = 'button';
       btn.className = 'mcareer__step' + (stage.state === 'done' ? ' is-done' : stage.state === 'active' ? ' is-active' : '');
       btn.setAttribute('role', 'tab');
-      btn.innerHTML = '<i></i><span>' + stage.short + '<br>' + stage.sub + '</span>';
+      if (stage.point) {
+        btn.style.left = stage.point.x + '%';
+        btn.style.top = stage.point.y + '%';
+      }
+      btn.innerHTML = '<i></i><span><b>' + stage.short + '</b><small>' + stage.sub + '</small></span>';
       btn.addEventListener('click', function () {
         current = i;
         openStage = stage.id === 'ipr' ? 1 : -1;
@@ -961,6 +987,14 @@
     });
 
     draw(false);
+    /* стартовое восхождение: после первого кадра аватар и маршрут
+       плавно едут к активному этапу */
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        booted = true;
+        draw(false);
+      });
+    });
     root.addEventListener('click', function () { trackOnce('career_start'); }, { once: true });
   }
 
