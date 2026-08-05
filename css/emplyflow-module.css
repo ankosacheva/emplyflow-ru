@@ -1323,6 +1323,14 @@ button.mparent__opt { cursor: pointer; }
   top: auto;
   bottom: calc(100% + 4px);
 }
+/* последняя веха — подпись справа, чтобы не наезжать на вершину */
+.mcareer__step:last-child span {
+  left: auto;
+  right: calc(100% + 8px);
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
 /* средняя веха — подпись справа от точки */
 .mcareer__step:nth-child(2) span {
   top: 50%;
