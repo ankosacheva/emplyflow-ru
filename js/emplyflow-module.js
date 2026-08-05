@@ -965,6 +965,98 @@
   }
 
   /* ---------------------------------------------------------------
+     КАРТА ВОЗМОЖНОСТЕЙ · клик по роли сравнивает сотрудника с позицией
+     --------------------------------------------------------------- */
+  function initCareerMap() {
+    var root = $('[data-map]');
+    if (!root) return;
+
+    var raw = $('[data-map-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg || !cfg.nodes) return;
+
+    var panel = $('[data-map-panel]', root);
+    var nodes = $$('[data-map-node]', root);
+    var chips = $$('[data-map-filter]', root);
+    if (!panel || !nodes.length) return;
+
+    function dots(cur, req) {
+      var out = '<span class="mcareer__dots" aria-label="Уровень ' + cur + ' из требуемых ' + req + '">';
+      for (var i = 1; i <= 5; i++) {
+        out += '<i' + (i <= cur ? ' class="is-have"' : (i <= req ? ' class="is-need"' : '')) + '></i>';
+      }
+      return out + '</span>';
+    }
+
+    function ring(pct, horizontal) {
+      var c = 87.96;
+      var off = (c * (1 - pct / 100)).toFixed(1);
+      return '<span class="mmap__pring' + (horizontal ? ' mmap__pring--h' : '') + '">' +
+        '<svg viewBox="0 0 34 34" aria-hidden="true">' +
+          '<circle class="mmap__ring-bg" cx="17" cy="17" r="14"></circle>' +
+          '<circle class="mmap__ring-val' + (horizontal ? ' mmap__ring-val--h' : '') + '" cx="17" cy="17" r="14" style="stroke-dasharray:' + c + ';stroke-dashoffset:' + off + '"></circle>' +
+        '</svg><b>' + pct + '%</b></span>';
+    }
+
+    function render(id, swap) {
+      var n = cfg.nodes[id];
+      if (!n) return;
+
+      var rows = '';
+      (n.gaps || []).forEach(function (g) {
+        rows += '<div class="mmap__pgap"><span>' + g.name + '</span>' + dots(g.current, g.required) + '<em>нужно ' + g.required + '</em></div>';
+      });
+
+      var horizontal = /горизонтальный|другая функция/.test(n.meta || '');
+      panel.innerHTML =
+        '<div class="mmap__phead">' +
+          ring(n.match, horizontal) +
+          '<span class="mmap__ptitle"><b>' + n.title + '</b><span>' + n.meta + '</span></span>' +
+          '<span class="mmap__pmonths">' + n.months + '</span>' +
+        '</div>' + rows +
+        '<p class="mmap__pnote">' + n.note + '</p>';
+
+      nodes.forEach(function (btn) {
+        var on = btn.getAttribute('data-map-node') === id;
+        btn.classList.toggle('is-sel', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+
+      if (swap && !reduced) {
+        panel.classList.remove('is-swap');
+        void panel.offsetWidth;
+        panel.classList.add('is-swap');
+      }
+    }
+
+    nodes.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-map-node');
+        track('career_map_node', { node: id });
+        render(id, true);
+      });
+    });
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var f = chip.getAttribute('data-map-filter');
+        chips.forEach(function (c) {
+          var on = c === chip;
+          c.classList.toggle('is-on', on);
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        $$('[data-dept]', root).forEach(function (el) {
+          el.classList.toggle('is-dim', f !== 'all' && el.getAttribute('data-dept') !== f);
+        });
+        track('career_map_filter', { filter: f });
+      });
+    });
+
+    render(cfg.initial || nodes[0].getAttribute('data-map-node'), false);
+  }
+
+  /* ---------------------------------------------------------------
      AI-ПОДБОР ПРЕЕМНИКОВ
      --------------------------------------------------------------- */
   function initSuccession() {
@@ -1384,6 +1476,7 @@
     initRoute();
     initGoalDemo();
     initCareerDemo();
+    initCareerMap();
     initParentPick();
     initSuccession();
     initThanks();
