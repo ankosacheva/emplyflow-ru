@@ -1702,13 +1702,10 @@
       window.setTimeout(function () {
         from.hidden = true;
         to.hidden = false;
-        // двойной rAF, чтобы отработала transition входа
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            to.classList.add('is-active');
-            busy = false;
-          });
-        });
+        // форс-рефлоу вместо rAF: transition входа отрабатывает даже во вкладке без фокуса
+        void to.offsetWidth;
+        to.classList.add('is-active');
+        busy = false;
       }, 260);
     }
 
