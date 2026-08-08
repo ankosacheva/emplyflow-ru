@@ -1969,7 +1969,7 @@ html, body {
       <span>ИИ-ассистент оценки →</span>
     </div>
 
-    <h1 id="ef-ai-title" style="margin:22px 0 0; font-size:clamp(30px,4.6vw,58px); font-weight:800; line-height:1.05; letter-spacing:-0.03em; max-width:16ch; text-wrap:balance;">Проверяйте навыки на практике с помощью AI</h1>
+    <h1 id="ef-ai-title" style="margin:22px 0 0; font-size:clamp(30px,4.6vw,58px); font-weight:800; line-height:1.05; letter-spacing:-0.03em; max-width:16ch; text-wrap:balance;">Проверяйте компетенции на практике с помощью AI</h1>
 
     <p style="margin:18px 0 0; font-size:clamp(16px,1.7vw,20px); font-weight:500; line-height:1.5; color:rgba(5,2,48,.66); max-width:64ch; text-wrap:pretty;">Соберите ИИ-тренажёр под любую должность. Ассистент сам генерирует кейсы из реальных рабочих ситуаций, ведёт живой диалог с сотрудником - текстом или голосом - оценивает ответы по индикаторам и формирует индивидуальный отчёт с зонами роста.</p>
 
@@ -2568,8 +2568,13 @@ html, body {
   <script>
   (function(){
     var SEEN_KEY='ef_demo_popup_seen_v3';
-    // Фиксируем hash до любых swipe/replaceState, чтобы не уехать на #platform случайно
+    // Фиксируем hash до любых swipe/replaceState. Возврат с модульных страниц
+    // без явного hash тоже должен открывать блок модулей, а не верх главной.
     var initialHash=String(location.hash||'');
+    var fromModule;
+    try{fromModule=new URLSearchParams(location.search).get('from')==='module';}
+    catch(err){fromModule=String(location.search||'').indexOf('from=module')!==-1;}
+    if(fromModule&&!initialHash)initialHash='#platform';
     var cornerTimer=0;
     var ALLOWED_HASH={platform:1,cases:1,'ai-assistant':1,aboutus:1,stages:1,contacts:1};
 

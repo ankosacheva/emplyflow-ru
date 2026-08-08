@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803h">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260805s">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -60,7 +60,7 @@
 
 <header class="mtop" id="mtop">
   <div class="shell mtop__inner">
-    <a class="mtop__back" href="index.html#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
+    <a class="mtop__back" href="index.html?from=module#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
     <span class="mtop__name">Матрица талантов 9 Box</span>
     <span class="mtop__spacer"></span>
     <div class="mmode" role="group" aria-label="Режим просмотра страницы">
@@ -81,33 +81,126 @@
         <div class="mreel__copy" data-reveal>
           <p class="mcover__kicker">Модуль платформы</p>
           <h1 class="mcover__title" id="cover-title">Матрица <em>талантов 9 Box</em></h1>
-          <p class="mcover__q">«Кто у нас звёзды, а кто в зоне риска?» — вопрос, на который обычно отвечают ощущениями руководителей. Матрица отвечает распределением по двум осям: результаты и компетенции.</p>
-          <div class="mcover__meta">
-            <span class="mtag">Ось X — цели и KPI</span>
-            <span class="mtag">Ось Y — оценка 360°</span>
-            <span class="mtag">Расчёт без ручной расстановки</span>
+          <p class="mcover__q">Выявите ключевые таланты и уделите особое внимание сотрудникам с низкой эффективностью, изучив удобное представление данных в формате 9 Box Grid матрицы. Данные поступают в неё автоматически, что гарантирует объективное распределение по зонам.</p>
+          <div class="mcover__meta mcover__meta--bento">
+            <span class="mcover__tile mcover__tile--x">Ось X — цели и KPI</span>
+            <span class="mcover__tile mcover__tile--y">
+              <span class="mcover__tile__lead">Ось Y — оценка компетенций</span>
+              <span class="mcover__tile__note">360° и другие методы</span>
+            </span>
+            <span class="mcover__tile mcover__tile--auto">Расчёт без ручной расстановки</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
-          <div class="mwin">
-            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Performance Review · 9 Box Grid · 28 сотрудников</span></div>
+          <div class="mwin mwin--9box">
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">9-Box · Компания · 42 сотрудника</span></div>
             <div class="mwin__body">
-              <div class="mnb">
-                <span class="mnb__y">Оценка компетенций</span>
-                <div class="mnb__grid">
-                  <div class="mnb__cell mnb__cell--good"><b>Высокий потенциал, низкие результаты</b><i>1 человек</i></div>
-                  <div class="mnb__cell mnb__cell--good"><b>Высокий потенциал</b><i>3 человека</i></div>
-                  <div class="mnb__cell mnb__cell--star"><b>Звёзды</b><i>6 человек</i></div>
-                  <div class="mnb__cell mnb__cell--core"><b>Зона развития</b><i>2 человека</i></div>
-                  <div class="mnb__cell mnb__cell--core"><b>Основа команды</b><i>9 человек</i></div>
-                  <div class="mnb__cell mnb__cell--star"><b>Высокая производительность</b><i>4 человека</i></div>
-                  <div class="mnb__cell mnb__cell--crit"><b>Критическая зона</b><i>1 человек</i></div>
-                  <div class="mnb__cell mnb__cell--risk"><b>Зона особого внимания</b><i>1 человек</i></div>
-                  <div class="mnb__cell mnb__cell--watch"><b>Ценные эксперты</b><i>1 человек</i></div>
+              <div class="ef-9box">
+                <span class="ef-9box__axis">Потенциал →</span>
+                <div class="ef-9box__wrap">
+                  <div class="ef-9box__grid">
+                    <div class="ef-9box-cell ef-9box-cell--warm" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Нераскрывшийся потенциал»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-9box-01.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-successor-dmitry.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+2</em>
+                      </div>
+                      <div class="ef-9box-note">
+                        <span class="ef-9box-note__who">Д.С. · рост</span>
+                        <span class="ef-9box-note__m">цели <b>64%</b> · 360 <b>4.2</b></span>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Нераскрывшийся потенциал</strong><b>4</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--mint" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Таланты»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-9box-02.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-05.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-successor-anna.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+4</em>
+                      </div>
+                      <div class="ef-9box-note">
+                        <span class="ef-9box-note__who">А.В. · потенциал</span>
+                        <span class="ef-9box-note__m">цели <b>91%</b> · 360 <b>4.5</b></span>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Таланты</strong><b>7</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--star" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Звёзды»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-9box-04.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-03.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-successor-maria.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+5</em>
+                      </div>
+                      <div class="ef-9box-note">
+                        <span class="ef-9box-note__who">М.К. · лидер</span>
+                        <span class="ef-9box-note__m">цели <b>118%</b> · 360 <b>4.8</b></span>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Звёзды</strong><b>8</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--warm" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Непостоянные игроки»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-9box-06.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-01.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+3</em>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Непостоянные игроки</strong><b>5</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--fog" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Ядро»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-successor-dmitry.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-02.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-05.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+6</em>
+                      </div>
+                      <div class="ef-9box-note">
+                        <span class="ef-9box-note__who">И.П. · ядро</span>
+                        <span class="ef-9box-note__m">цели <b>97%</b> · 360 <b>4.1</b></span>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Ядро</strong><b>9</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--mint" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Ключевые»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-9box-03.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-successor-anna.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+4</em>
+                      </div>
+                      <div class="ef-9box-note">
+                        <span class="ef-9box-note__who">Е.Н. · ключ</span>
+                        <span class="ef-9box-note__m">цели <b>104%</b> · 360 <b>4.4</b></span>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Ключевые</strong><b>6</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--risk" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Риск»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-9box-05.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-06.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+1</em>
+                      </div>
+                      <div class="ef-9box-note">
+                        <span class="ef-9box-note__who">А.Р. · риск</span>
+                        <span class="ef-9box-note__m">цели <b>48%</b> · 360 <b>2.9</b></span>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Риск</strong><b>3</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--warm" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Надёжные»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-successor-maria.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-04.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <em>+2</em>
+                      </div>
+                      <div class="ef-9box-meta"><strong>Надёжные</strong><b>4</b></div>
+                    </div>
+                    <div class="ef-9box-cell ef-9box-cell--fog" data-zoom tabindex="0" role="button" aria-label="Приблизить ячейку «Спецы»">
+                      <div class="ef-9box-avas">
+                        <img src="images/avatar-9box-01.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                        <img src="images/avatar-9box-02.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                      </div>
+                      <div class="ef-9box-meta"><strong>Спецы</strong><b>2</b></div>
+                    </div>
+                  </div>
+                  <div class="ef-9box__x">Результативность →</div>
                 </div>
-                <span class="mnb__x">Достижение целей и KPI →</span>
               </div>
-              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Звёзды 6 · основа команды 9 · зона риска 3</span><b style="font-size:12px;color:#4a3bff;">28 в анализе</b></div>
             </div>
           </div>
         </div>
@@ -156,10 +249,10 @@
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>01</b> Две оси</p>
           <h2 class="mclaim" id="r1-title">Обе оси собираются <em>из данных платформы</em></h2>
-          <p class="mlead">По горизонтали — средневзвешенные цели и KPI, по вертикали — результаты оценки 360°. Никто не расставляет сотрудников по клеткам руками: положение считается из того, что уже накоплено в целеполагании и оценке.</p>
-          <div class="mproof">
-            <span class="mproof__num">3</span>
-            <span class="mproof__txt">независимых набора циклов: цели, KPI и 360° можно взять за разные периоды, если процессы в компании не синхронизированы</span>
+          <p class="mlead">По горизонтали — средневзвешенные цели и KPI, по вертикали — результаты оценки 360°. Никто не расставляет сотрудников по ячейкам руками: положение считается из того, что уже накоплено в целеполагании и оценке.</p>
+          <div class="mproof mproof--wide">
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Можно комбинировать разные периоды KPI, целей и 360°, если процессы в компании не синхронизированы в рамках одного цикла.</span>
           </div>
         </div>
       </div>
@@ -172,14 +265,15 @@
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>02</b> Прозрачность</p>
-          <h2 class="mclaim" id="r2-title">Ячейка вычисляется, <em>а не назначается</em></h2>
-          <p class="mlead">Оба процента переводятся в три уровня по одинаковым порогам, поэтому спор «почему он оказался в этой зоне» превращается в разговор о конкретных целях, KPI и оценках. Если у сотрудника нет ни целей, ни KPI, ось X считается как ноль.</p>
-          <div class="mproof">
+          <h2 class="mclaim" id="r2-title">Все значения строго <em>вычисляются</em></h2>
+          <p class="mlead">Поэтому спор «почему пользователь оказался в этой зоне» превращается в разговор о конкретных целях, KPI и оценках. Если у сотрудника нет ни целей, ни KPI, ось X считается как ноль.</p>
+          <div class="mproof mproof--wide">
             <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
-            <span class="mproof__txt">Расчёт детерминированный и воспроизводимый: искусственный интеллект не решает, в какую ячейку попадёт сотрудник</span>
+            <span class="mproof__txt">Расчёт детерминированный и воспроизводимый: искусственный интеллект не решает самопроизвольно, в какую ячейку попадёт сотрудник, так как расчёт идёт по указанным весам и формулам.</span>
           </div>
         </div>
-        <div class="mreel__mock" data-reveal>
+        <div class="mreel__mock mreel__mock--sticker" data-reveal>
+          <span class="mmock__sticker"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>Пример правила расчёта</span>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Пороги перевода процентов в уровни</span></div>
             <div class="mwin__body">
@@ -217,7 +311,8 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__mock" data-reveal>
-          <div class="mwin">
+          <div class="mwin mwin--try">
+            <span class="mtry__tag">Поперемещайте метрики</span>
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">9 Box Grid · показатели сотрудника</span></div>
             <div class="mwin__body">
               <div data-ninebox>
@@ -240,7 +335,7 @@
                 <div class="mnb">
                   <span class="mnb__y">Компетенции</span>
                   <div class="mnb__grid">
-                    <div class="mnb__cell mnb__cell--good" data-name="Высокий потенциал, низкие результаты" data-hint="Компетенции сильные, но бизнес-результат проседает: разбираем постановку целей, нагрузку и приоритеты."><b>Потенциал без результата</b></div>
+                    <div class="mnb__cell mnb__cell--good" data-name="Высокий потенциал, низкие результаты" data-hint="Компетенции сильные, но бизнес-результат проседает: разбираем постановку целей, нагрузку и приоритеты."><b>Нераскрывшийся потенциал</b></div>
                     <div class="mnb__cell mnb__cell--good" data-name="Высокий потенциал" data-hint="Кандидат на рост: расширяем зону ответственности и обсуждаем на talent review."><b>Высокий потенциал</b></div>
                     <div class="mnb__cell mnb__cell--star" data-name="Звёзды" data-hint="Высокие результаты и высокие компетенции: удерживаем, даём сложные задачи, рассматриваем в кадровый резерв."><b>Звёзды</b></div>
                     <div class="mnb__cell mnb__cell--core" data-name="Зона развития" data-hint="Потенциал есть, результат средний: точечный план развития по слабым компетенциям."><b>Зона развития</b></div>
@@ -252,9 +347,14 @@
                   </div>
                   <span class="mnb__x">Цели и KPI →</span>
                 </div>
+                <div class="mnbc__levels" data-nb-levels aria-hidden="true">
+                  <span class="mnbc__lvl mnbc__lvl--good"><i>↑</i><span class="mnbc__lvl-l">Результат и KPI</span><b>высокий</b></span>
+                  <span class="mnbc__lvl mnbc__lvl--good"><i>↑</i><span class="mnbc__lvl-l">Компетенции 360°</span><b>высокий</b></span>
+                </div>
                 <div class="mnbc__verdict" data-nb-verdict>
+                  <span class="mnbc__verdict-eye"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>Рекомендация</span>
                   <b>Высокий потенциал</b>
-                  <span>Кандидат на рост: расширяем зону ответственности и обсуждаем на talent review.</span>
+                  <p class="mnbc__verdict-desc">Кандидат на рост: расширяем зону ответственности и обсуждаем на talent review.</p>
                 </div>
               </div>
             </div>
@@ -262,7 +362,7 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>03</b> Попробуйте сами</p>
-          <h2 class="mclaim" id="r3-title">Подвигайте показатели — <em>ячейка пересчитается</em></h2>
+          <h2 class="mclaim" id="r3-title">Измените показатели — <em>наглядно проследите перемещение сотрудника</em></h2>
           <p class="mlead">Три ползунка — это ровно те данные, из которых строится матрица в продукте. Обратите внимание, что произойдёт, если поднять KPI при неизменной оценке 360°: сотрудник уедет вправо, но останется в той же строке.</p>
           <div class="mproof">
             <span class="mproof__num">9</span>
@@ -280,34 +380,87 @@
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>04</b> Срезы</p>
           <h2 class="mclaim" id="r4-title">Матрица по одной роли <em>или по всей компании</em></h2>
-          <p class="mlead">Дерево подразделений с дочерними уровнями, выбор отдельных сотрудников, фильтр по должности с поиском и фильтр по руководителю. Если выбраны конкретные сотрудники, они имеют приоритет над подразделениями, а пустой выбор циклов означает, что учитываются все доступные.</p>
-          <div class="mtags">
-            <span class="mtag">Все руководители магазинов</span>
-            <span class="mtag">Все HRBP</span>
-            <span class="mtag">Команда конкретного менеджера</span>
-          </div>
+          <p class="mlead">Дерево подразделений с дочерними уровнями, выбор отдельных сотрудников, фильтр по должности с поиском и фильтр по руководителю.</p>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">9 Box Grid · фильтры</span></div>
-            <div class="mwin__body">
-              <p class="msub">Подразделения и сотрудники</p>
-              <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:#403c68;margin-bottom:16px;">
-                <div style="padding:9px 12px;border-radius:11px;background:#f1eefe;color:#4a3bff;">☑ Коммерческий блок <span style="font-size:11px;font-weight:700;color:#8681ab;">· с дочерними</span></div>
-                <div style="padding:9px 12px 9px 28px;border-radius:11px;background:#f8f7fb;">☑ Отдел продаж <span style="font-size:11px;color:#8681ab;">· 18 человек</span></div>
-                <div style="padding:9px 12px 9px 28px;border-radius:11px;background:#f8f7fb;">☑ Отдел маркетинга <span style="font-size:11px;color:#8681ab;">· 10 человек</span></div>
-                <div style="padding:9px 12px 9px 28px;border-radius:11px;background:#fff;border:1px dashed #e0dcf0;color:#8681ab;">☐ Клиентский сервис</div>
+            <div class="mwin__body mflt">
+              <div class="mflt__group">
+                <div class="mflt__ghead">
+                  <span class="mflt__gi mflt__gi--org">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8.5" y="2.5" width="7" height="5" rx="1.2"/><rect x="2.5" y="16" width="7" height="5" rx="1.2"/><rect x="14.5" y="16" width="7" height="5" rx="1.2"/><path d="M12 7.5v4M6 16v-2.5h12V16"/></svg>
+                  </span>
+                  <span class="mflt__gt">Оргструктура и команды</span>
+                  <span class="mflt__gcount">28 сотрудников</span>
+                </div>
+                <div class="mflt__tree">
+                  <div class="mflt__node mflt__node--root is-on">
+                    <span class="mflt__chk"></span>
+                    <span class="mflt__nname">Коммерческий блок</span>
+                    <span class="mflt__ntag">с дочерними</span>
+                  </div>
+                  <div class="mflt__node mflt__node--child is-on">
+                    <span class="mflt__chk"></span>
+                    <span class="mflt__nname">Отдел продаж</span>
+                    <span class="mflt__ncount">18</span>
+                  </div>
+                  <div class="mflt__node mflt__node--child is-on">
+                    <span class="mflt__chk"></span>
+                    <span class="mflt__nname">Отдел маркетинга</span>
+                    <span class="mflt__ncount">10</span>
+                  </div>
+                  <div class="mflt__node mflt__node--child is-off">
+                    <span class="mflt__chk"></span>
+                    <span class="mflt__nname">Клиентский сервис</span>
+                  </div>
+                </div>
+                <div class="mflt__chips">
+                  <span class="mflt__chip">Должность · руководитель магазина</span>
+                  <span class="mflt__chip">Руководитель · Смирнов И.</span>
+                </div>
               </div>
-              <p class="msub">Дополнительно</p>
-              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
-                <span style="padding:6px 11px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:11.5px;font-weight:700;">Должность: руководитель магазина</span>
-                <span style="padding:6px 11px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:11.5px;font-weight:700;">Руководитель: Смирнов И.</span>
-              </div>
-              <p class="msub">Циклы по каждой компоненте</p>
-              <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:#403c68;">
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Циклы планирования целей</span><b style="color:#4a3bff;">H1 2026</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Циклы планирования KPI</span><b style="color:#4a3bff;">Q1, Q2 2026</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Циклы оценки 360°</span><b style="color:#4a3bff;">все доступные</b></div>
+
+              <div class="mflt__group">
+                <div class="mflt__ghead">
+                  <span class="mflt__gi mflt__gi--cyc">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>
+                  </span>
+                  <span class="mflt__gt">Циклы по каждой компоненте</span>
+                </div>
+                <div class="mflt__cyc">
+                  <div class="mflt__row">
+                    <span class="mflt__ri mflt__ri--goal">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
+                    </span>
+                    <span class="mflt__rl">Цели</span>
+                    <div class="mflt__pills">
+                      <span class="mflt__pill is-on">H1 2026</span>
+                      <span class="mflt__pill">H2 2026</span>
+                    </div>
+                  </div>
+                  <div class="mflt__row">
+                    <span class="mflt__ri mflt__ri--kpi">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>
+                    </span>
+                    <span class="mflt__rl">KPI</span>
+                    <div class="mflt__pills">
+                      <span class="mflt__pill is-on">Q1</span>
+                      <span class="mflt__pill is-on">Q2</span>
+                      <span class="mflt__pill">Q3</span>
+                      <span class="mflt__pill">Q4</span>
+                    </div>
+                  </div>
+                  <div class="mflt__row">
+                    <span class="mflt__ri mflt__ri--360">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 3v4h-4"/></svg>
+                    </span>
+                    <span class="mflt__rl">360°</span>
+                    <div class="mflt__pills">
+                      <span class="mflt__pill mflt__pill--all is-on">все доступные</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -345,58 +498,11 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>05</b> Масштаб</p>
-          <h2 class="mclaim" id="r5-title">На сотне человек матрица <em>не превращается в кашу</em></h2>
+          <h2 class="mclaim" id="r5-title">На объёме в тысячи человек матрица <em>не превращается в кашу</em></h2>
           <p class="mlead">На широкой выборке сотрудники группируются по командам: в ячейке видно название команды, количество людей и средние значения по обеим осям. Группу можно раскрыть и провалиться в конкретного человека.</p>
           <div class="mproof">
             <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
             <span class="mproof__txt">Сравнение подразделений в одной матрице — рабочий инструмент подготовки к калибровочному комитету</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 6 · КАЛИБРОВКА VS 9 BOX ============ -->
-  <section class="mreel" id="r-calib" data-reel data-accent="violet" aria-labelledby="r6-title">
-    <div class="shell">
-      <div class="mreel__grid">
-        <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>06</b> Не путать</p>
-          <h2 class="mclaim" id="r6-title">Калибровка и 9 Box отвечают <em>на разные вопросы</em></h2>
-          <p class="mlead">Калибровка показывает итоговые управленческие решения по Performance Review: оценку, комментарий, изменение должности и оклада. Матрица показывает распределение по объективным данным. Матрица не заменяет калибровку, а готовит её и подсвечивает расхождения между результатами и компетенциями.</p>
-          <div class="mtags">
-            <span class="mtag">Калибровка — решения руководителей</span>
-            <span class="mtag">9 Box — данные целей, KPI и 360°</span>
-          </div>
-        </div>
-        <div class="mreel__mock" data-reveal>
-          <div class="mwin">
-            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Калибровка · вкладки страницы</span></div>
-            <div class="mwin__body">
-              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
-                <div style="padding:13px;border-radius:13px;background:#f8f7fb;">
-                  <div style="font-size:13px;font-weight:800;color:#141033;margin-bottom:8px;">Калибровка</div>
-                  <div style="display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:700;color:#403c68;line-height:1.35;">
-                    <span>Распределение PR-оценок</span>
-                    <span>Таблица сотрудников и комментарии</span>
-                    <span>Изменение должности и оклада</span>
-                    <span>Колонки из PR-шаблонов</span>
-                    <span>Редактирование оценок и XLSX-экспорт</span>
-                  </div>
-                </div>
-                <div style="padding:13px;border-radius:13px;background:#f1eefe;">
-                  <div style="font-size:13px;font-weight:800;color:#4a3bff;margin-bottom:8px;">9 Box Grid</div>
-                  <div style="display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:700;color:#403c68;line-height:1.35;">
-                    <span>Ось X из целей и KPI</span>
-                    <span>Ось Y из оценки 360°</span>
-                    <span>Распределение по девяти зонам</span>
-                    <span>Группировка по командам</span>
-                    <span>Вход в talent review</span>
-                  </div>
-                </div>
-              </div>
-              <div class="mgapchip" style="background:#fff5ea;border-color:#ffd9ab;color:#c47a2c;"><span>Финальная PR-оценка не является осью матрицы</span><b style="font-size:12px;color:#c47a2c;">разные контуры</b></div>
-            </div>
           </div>
         </div>
       </div>
@@ -432,12 +538,15 @@
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>07</b> Зачем это компании</p>
-          <h2 class="mclaim" id="r7-title">Разговор о людях <em>на общих данных</em></h2>
+          <p class="meyebrow"><b>06</b> Что получает компания</p>
+          <h2 class="mclaim" id="r7-title">Объективное и наглядное <em>распределение сотрудников</em> по группам</h2>
+          <p class="mlead">9 Box Grid — управленческий инструмент для talent review и подготовки калибровки.</p>
           <p class="mlead">Матрица не требует отдельного сбора данных: она собирается из того, что уже живёт в целеполагании, KPI и оценке 360°. Поэтому её можно открыть на комитете и объяснить каждую позицию, не ссылаясь на чьё-то мнение.</p>
-          <div class="mproof">
-            <span class="mproof__num">0</span>
-            <span class="mproof__txt">ручных расстановок: сотрудник попадает в ячейку только по порогам 0–33, 34–66 и 67–100</span>
+          <div class="mproof mproof--auto">
+            <span class="mproof__spark">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            </span>
+            <span class="mproof__txt"><b>Ноль ручных расстановок</b> — сотрудник попадает в свою ячейку автоматически, строго по расчёту.</span>
           </div>
         </div>
       </div>
@@ -449,7 +558,7 @@
     <div class="shell mswitch__inner">
       <div>
         <h2 class="mswitch__t">Дальше — детали</h2>
-        <p class="mswitch__d">Где находится матрица, кто её видит, что входит и что не входит в оси, как считаются проценты, все девять зон, фильтры, аналитика и честные границы реализации.</p>
+          <p class="mswitch__d">Если вы хотите узнать о модуле подробнее, изучите информацию ниже или оставьте заявку на демонстрацию решения.</p>
       </div>
       <button type="button" class="mswitch__btn" data-mode="details">
         Разобраться
@@ -463,15 +572,15 @@
     <div class="shell">
       <div class="mdet__head">
         <p class="mdet__eyebrow">Разобраться</p>
-        <h2 class="mdet__title" id="details-title">Как матрица устроена внутри</h2>
-        <p class="mdet__lead">9 Box Grid — управленческий инструмент для talent review и подготовки калибровки. Ниже то, что обычно спрашивают на демонстрации: источники данных, расчёт, доступы и границы.</p>
+        <h2 class="mdet__title" id="details-title">Как модуль устроен внутри</h2>
+        <p class="mdet__lead">Мы выделили несколько основных разделов вопросов, которые обычно интересуют заказчиков перед внедрением. Остановитесь ниже, чтобы прочитать детали.</p>
       </div>
 
-      <div class="mdet__grid" data-reveal>
+      <div class="mdet__grid mdet__grid--bento" data-reveal>
 
-        <article class="mcard mcard--full">
+        <article class="mcard mcard--bento-nb-chain">
           <p class="mcard__lbl"><i></i>Полная цепочка</p>
-          <h3 class="mcard__t">От данных до ячейки</h3>
+          <h3 class="mcard__t">От сырых данных к матрице</h3>
           <div class="mchips">
             <span class="mchip">1 · Прогресс по целям за выбранные циклы</span>
             <span class="mchip">2 · Выполнение KPI: факт / план</span>
@@ -484,30 +593,29 @@
           </div>
         </article>
 
-        <article class="mcard mcard--wide">
-          <p class="mcard__lbl"><i></i>Где находится</p>
-          <h3 class="mcard__t">Два входа в матрицу</h3>
+        <article class="mcard mcard--bento-nb-where">
+          <p class="mcard__lbl"><i></i>Где находится 9 Box матрица</p>
+          <h3 class="mcard__t">Открыть её можно из нескольких страниц</h3>
           <ul class="mlist">
             <li><b>Калибровка</b> — вкладка 9 Box Grid рядом с калибровочной таблицей, доступна HR и super admin</li>
             <li><b>Performance Review</b> — вкладка 9 Box Grid рядом с PR-аналитикой, доступна руководителю, HR и super admin</li>
-            <li>Руководитель на странице калибровки работает только с PR-контуром: вкладки 9 Box там нет</li>
             <li>Матрица руководителя ограничена сотрудниками его зоны ответственности</li>
           </ul>
-          <div class="mnote">Обычный сотрудник не видит матрицу и своё место в ней: это осознанное решение, инструмент управленческий, а не self-service.</div>
+          <div class="mnote">Обычный сотрудник не видит матрицу и своё место в ней.</div>
         </article>
 
-        <article class="mcard mcard--wide">
+        <article class="mcard mcard--bento-nb-axes">
           <p class="mcard__lbl"><i></i>Оси</p>
           <h3 class="mcard__t">Что входит и что не входит</h3>
           <ul class="mlist">
             <li><b>Ось X, достижение целей и KPI:</b> прогресс по целям и OKR плюс выполнение назначенных KPI</li>
             <li><b>Ось Y, оценка компетенций:</b> результаты завершённых ответов оценки 360°</li>
             <li>Для каждой компоненты выбираются свои циклы: целей, KPI и 360° независимо друг от друга</li>
-            <li><b>Не участвуют в расчёте:</b> Self Review, финальная оценка Performance Review, ручная PR-оценка руководителя, преемственность и карьерные треки</li>
+            <li><b>Не участвуют в расчёте:</b> Self Review, финальная оценка Performance Review, ручная PR-оценка руководителя</li>
           </ul>
         </article>
 
-        <article class="mcard mcard--full">
+        <article class="mcard mcard--bento-nb-zones">
           <p class="mcard__lbl"><i></i>Девять зон</p>
           <h3 class="mcard__t">Что означает каждая ячейка</h3>
           <div class="mcols">
@@ -538,7 +646,7 @@
           </div>
         </article>
 
-        <article class="mcard">
+        <article class="mcard mcard--bento-nb-calc">
           <p class="mcard__lbl"><i></i>Расчёт</p>
           <h3 class="mcard__t">Как считаются проценты</h3>
           <ul class="mlist">
@@ -551,7 +659,7 @@
           <div class="mnote">Если у сотрудника нет ни целей, ни KPI, ось X считается как ноль.</div>
         </article>
 
-        <article class="mcard">
+        <article class="mcard mcard--bento-nb-filters">
           <p class="mcard__lbl"><i></i>Фильтры</p>
           <h3 class="mcard__t">Как сузить выборку</h3>
           <ul class="mlist">
@@ -561,33 +669,10 @@
             <li>Руководитель — сравнение управленческих контуров</li>
             <li>Три независимых мультивыбора циклов: цели, KPI и 360°</li>
           </ul>
-          <div class="mnote">Пустой выбор циклов означает, что учитываются все доступные. Если не выбрано ничего, анализ идёт по доступному scope.</div>
+          <div class="mnote">Пустой выбор циклов означает, что учитываются все доступные. Если не выбрано ничего, анализ идёт по всем доступным циклам.</div>
         </article>
 
-        <article class="mcard">
-          <p class="mcard__lbl"><i></i>Аналитика</p>
-          <h3 class="mcard__t">Что показывает матрица</h3>
-          <ul class="mlist">
-            <li>Количество звёзд и сотрудников в основе команды</li>
-            <li>Количество сотрудников в зоне риска</li>
-            <li>Общее число людей в анализе</li>
-            <li>Средние X и Y по командам внутри ячеек</li>
-            <li>Цветовая легенда зон: развитие, стабильные исполнители, внимание, риск, критическая зона</li>
-          </ul>
-        </article>
-
-        <article class="mcard mcard--wide">
-          <p class="mcard__lbl"><i></i>Искусственный интеллект</p>
-          <h3 class="mcard__t">Честно про роль ИИ</h3>
-          <p class="mcard__d">В интерфейсе есть кнопка «Провести анализ с ИИ», но матрица считается детерминированно.</p>
-          <ul class="mlist">
-            <li>Данные загружаются из целей, KPI и 360°, проценты переводятся в уровни, сотрудники раскладываются по ячейкам</li>
-            <li>Модель не решает, куда поставить человека: расчёт прозрачный и воспроизводимый</li>
-            <li>ИИ-анализ распределения — направление развития, а не базовая логика текущего расчёта</li>
-          </ul>
-        </article>
-
-        <article class="mcard mcard--wide">
+        <article class="mcard mcard--bento-nb-actions">
           <p class="mcard__lbl"><i></i>Действия и экспорт</p>
           <h3 class="mcard__t">Что можно сделать из матрицы</h3>
           <ul class="mlist">
@@ -596,14 +681,6 @@
             <li>Отдельного экспорта из 9 Box нет: XLSX-выгрузка живёт в калибровке и в таблице Performance Review</li>
             <li>В калибровке можно редактировать PR-оценки, если период не заблокирован</li>
           </ul>
-        </article>
-
-        <article class="mcard mcard--full">
-          <p class="mcard__lbl"><i></i>Границы</p>
-          <h3 class="mcard__t">Что важно учесть до внедрения</h3>
-          <div class="mnote">
-            Матрица <b>не видна обычному сотруднику</b>: своё место в ней он не увидит. На странице калибровки вкладка 9 Box доступна <b>только HR и super admin</b>, руководитель заходит в матрицу через Performance Review в границах своей команды. Финальная PR-оценка и Self Review <b>не участвуют в расчёте осей</b> — это отдельный контур. Отдельного экспорта из матрицы нет, выгрузка делается из калибровки или PR-таблицы. Прямой автоматической связи с модулем преемственности в текущей реализации тоже нет, хотя зоны «Звёзды» и «Высокий потенциал» — естественный источник кандидатов для обсуждения кадрового резерва.
-          </div>
         </article>
 
       </div>
@@ -620,7 +697,7 @@
           <span>Ось Y: оценка компетенций глазами руководителя, коллег и подчинённых</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="index.html#platform" style="background:var(--t-peri);">
+        <a class="mnext__card" href="index.html?from=module#platform" style="background:var(--t-peri);">
           <b>Целеполагание и KPI</b>
           <span>Ось X: каскад целей от стратегии компании до вклада каждого сотрудника</span>
           <i>Смотреть модуль →</i>
@@ -639,8 +716,8 @@
     <div class="shell">
       <div class="mfin__inner">
         <div>
-          <h2 class="mfin__t">Посмотрите матрицу на своих данных</h2>
-          <p class="mfin__d">Покажем, как цели, KPI и 360° превращаются в распределение по девяти зонам, и как это готовит калибровочный комитет. Демодоступ на пять рабочих дней.</p>
+          <h2 class="mfin__t">Постройте матрицу 9 Box <em>для своей компании</em></h2>
+          <p class="mfin__d">Покажем, как цели, KPI и 360° превращаются в распределение по зонам потенциала и результатов. После встречи вы получите бесплатный демо-доступ на 5 рабочих дней.</p>
         </div>
         <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
       </div>
@@ -654,7 +731,7 @@
     <a href="/">EmplyFlow</a>
     <span>оценка, целеполагание и развитие персонала</span>
     <div class="mfoot__links">
-      <a href="index.html#platform">Модули платформы</a>
+      <a href="index.html?from=module#platform">Модули платформы</a>
       <a href="index.html#cases">Проекты</a>
       <a href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
       <a href="/privacy">Политика конфиденциальности</a>
@@ -709,7 +786,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260803h" defer></script>
+<script src="js/emplyflow-module.js?v=20260805q" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 

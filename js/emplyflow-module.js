@@ -154,67 +154,140 @@
 
     function scaleLabel(v) { return cfg.scale[v - 1] || String(v); }
 
+    function renderGuide() {
+      var guide = cfg.scaleGuide || [];
+      if (!guide.length) return '';
+      var rows = guide.map(function (row) {
+        return '<li><b>' + row.n + '</b><span>' + row.label + '</span><i>' + row.hint + '</i></li>';
+      }).join('');
+      return '<div class="mquiz__guide"><p class="mquiz__guide-h">Пояснение к шкале</p><ol class="mquiz__guide-list">' + rows + '</ol></div>';
+    }
+
+    function renderScale(q) {
+      var fmt = q.format || 'mixed';
+      var html = '';
+      var aria = 'Шкала оценки от 1 до 5';
+
+      if (fmt === 'numeric') {
+        html += renderGuide();
+        html += '<div class="mquiz__nums" role="group" aria-label="' + aria + '">';
+        for (var n = 1; n <= 5; n++) {
+          html += '<button type="button" class="mquiz__num" data-val="' + n + '" title="' + scaleLabel(n) + '">' + n + '</button>';
+        }
+        html += '</div>';
+        return html;
+      }
+
+      html += '<div class="mquiz__scale mquiz__scale--verbal" role="group" aria-label="' + aria + '">';
+      for (var v = 5; v >= 1; v--) {
+        html +=
+          '<button type="button" class="mquiz__opt mquiz__opt--verbal" data-val="' + v + '">' +
+            '<span>' + scaleLabel(v) + '</span>' +
+          '</button>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function renderComment(q, hidden) {
+      var optional = q.commentOptional;
+      var label = optional ? (q.commentLabel || 'Комментарий (необязательно)') : cfg.commentRule;
+      var cls = 'mquiz__comment' + (optional ? ' mquiz__comment--opt' : '');
+      var attrs = hidden && !optional ? ' hidden' : '';
+      return (
+        '<div class="' + cls + '"' + attrs + '>' +
+          '<label for="mquiz-comment">' + label + '</label>' +
+          '<textarea id="mquiz-comment" placeholder="' + (optional ? 'Например: на воркшопе в мае помогла двум джунам закрыть задачи' : 'Например: на прошлом релизе задача встала без предупреждения команды') + '"></textarea>' +
+          '<button type="button" class="mquiz__again" data-next>' + (optional ? 'Продолжить' : 'Отправить и продолжить') + '</button>' +
+        '</div>'
+      );
+    }
+
     function renderStep() {
       var q = cfg.questions[step];
       var pct = (step / cfg.questions.length) * 100;
+      var fmt = q.format || 'mixed';
       var html =
         '<div class="mquiz__progress">' +
           '<span>Вопрос ' + (step + 1) + ' из ' + cfg.questions.length + '</span>' +
           '<span class="mquiz__track"><i style="width:' + pct + '%"></i></span>' +
         '</div>' +
+        '<p class="mquiz__format">' + (fmt === 'numeric' ? 'Числовая шкала' : 'Словесная шкала') + '</p>' +
         '<p class="mquiz__block">' + q.block + '</p>' +
-        '<p class="mquiz__q">' + q.text + '</p>' +
-        '<div class="mquiz__scale" role="group" aria-label="Шкала оценки от 1 до 5">';
+        '<p class="mquiz__q">' + q.text + '</p>';
 
-      for (var v = 5; v >= 1; v--) {
-        html +=
-          '<button type="button" class="mquiz__opt" data-val="' + v + '">' +
-            '<span class="mquiz__n">' + v + '</span>' +
-            '<span>' + scaleLabel(v) + '</span>' +
-          '</button>';
+      if (fmt === 'mixed') {
+        html += '<div class="mquiz__scale" role="group" aria-label="Шкала оценки от 1 до 5">';
+        for (var v = 5; v >= 1; v--) {
+          html +=
+            '<button type="button" class="mquiz__opt" data-val="' + v + '">' +
+              '<span class="mquiz__n">' + v + '</span>' +
+              '<span>' + scaleLabel(v) + '</span>' +
+            '</button>';
+        }
+        html += '</div>';
+      } else {
+        html += renderScale(q);
       }
 
-      html +=
-        '</div>' +
-        '<div class="mquiz__comment" hidden>' +
-          '<label for="mquiz-comment">' + cfg.commentRule + '</label>' +
-          '<textarea id="mquiz-comment" placeholder="Например: на прошлом релизе задача встала без предупреждения команды"></textarea>' +
-          '<button type="button" class="mquiz__again" data-next>Отправить и продолжить</button>' +
-        '</div>';
+      html += renderComment(q, true);
 
       stage.innerHTML = html;
-      bindStep();
+      bindStep(q);
     }
 
-    function bindStep() {
+    function bindStep(q) {
       var comment = $('.mquiz__comment', stage);
+      var optional = q.commentOptional;
       var chosen = null;
 
-      $$('.mquiz__opt', stage).forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          chosen = parseInt(btn.getAttribute('data-val'), 10);
-          $$('.mquiz__opt', stage).forEach(function (b) { b.classList.toggle('is-on', b === btn); });
+      function pick(val, btn) {
+        chosen = val;
+        $$('[data-val]', stage).forEach(function (b) { b.classList.toggle('is-on', b === btn); });
 
-          // Правило шаблона: при низкой оценке комментарий обязателен.
-          if (chosen <= 2) {
-            comment.hidden = false;
-            var ta = $('textarea', comment);
-            if (ta) ta.focus();
-          } else {
-            comment.hidden = true;
-            window.setTimeout(function () { commit(chosen); }, reduced ? 0 : 260);
-          }
+        if (optional) {
+          comment.hidden = false;
+          var nextBtn = $('[data-next]', stage);
+          if (nextBtn) nextBtn.hidden = false;
+          return;
+        }
+
+        if (val <= 2) {
+          comment.hidden = false;
+          var ta = $('textarea', comment);
+          if (ta) ta.focus();
+        } else {
+          comment.hidden = true;
+          window.setTimeout(function () { commit(chosen); }, reduced ? 0 : 260);
+        }
+      }
+
+      $$('.mquiz__opt, .mquiz__num', stage).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          pick(parseInt(btn.getAttribute('data-val'), 10), btn);
         });
       });
+
+      if (optional && comment) {
+        comment.hidden = false;
+        var optNext = $('[data-next]', comment);
+        if (optNext) optNext.hidden = true;
+      }
 
       var nextBtn = $('[data-next]', stage);
       if (nextBtn) {
         nextBtn.addEventListener('click', function () {
-          var ta = $('textarea', comment);
-          if (!ta || !ta.value.trim()) {
-            if (ta) ta.focus();
-            nextBtn.textContent = 'Без комментария оценка не уйдёт';
+          if (!chosen) {
+            nextBtn.textContent = 'Сначала выберите оценку';
             return;
+          }
+          if (!optional) {
+            var ta = $('textarea', comment);
+            if (!ta || !ta.value.trim()) {
+              if (ta) ta.focus();
+              nextBtn.textContent = 'Без комментария оценка не уйдёт';
+              return;
+            }
           }
           commit(chosen);
         });
@@ -1668,12 +1741,29 @@
     var btns = $$('.m360seg__btn', root);
     var panels = $$('[data-360panel]', root);
     var title = $('[data-360title]', root);
+    var pdf = $('[data-360pdf]', root);
+    var hint = $('[data-360hint]', root);
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var current = 'person';
     var busy = false;
+    var hintDone = false;
+
+    function dismissHint() {
+      if (hintDone || !hint) return;
+      hintDone = true;
+      hint.classList.add('is-done');
+      if (seg) seg.classList.remove('is-tease');
+    }
+
+    function teaseSeg() {
+      if (!seg || reduced || hintDone || seg.getAttribute('data-active') !== 'person') return;
+      seg.classList.add('is-tease');
+      window.setTimeout(function () { seg.classList.remove('is-tease'); }, 3800);
+    }
 
     function showPanel(view) {
       if (view === current || busy) return;
+      dismissHint();
       var from = panels.filter(function (p) { return p.getAttribute('data-360panel') === current; })[0];
       var to = panels.filter(function (p) { return p.getAttribute('data-360panel') === view; })[0];
       if (!from || !to) return;
@@ -1686,10 +1776,16 @@
         b.setAttribute('aria-selected', on ? 'true' : 'false');
       });
       if (seg) seg.setAttribute('data-active', view);
+      if (hint && !hintDone) {
+        hint.textContent = view === 'person'
+          ? 'Переключите на «Команда» — откроется командная аналитика'
+          : 'Вернитесь на «Сотрудник» — личная карточка сотрудника';
+      }
       if (title) {
         var t = title.getAttribute('data-title-' + view);
         if (t) title.textContent = t;
       }
+      if (pdf) pdf.hidden = view === 'team';
 
       if (reduced) {
         from.hidden = true; from.classList.remove('is-active');
@@ -1713,7 +1809,8 @@
       b.addEventListener('click', function () { showPanel(b.getAttribute('data-360view')); });
     });
 
-    var pdf = $('[data-360pdf]', root);
+    window.setTimeout(teaseSeg, 1400);
+
     if (pdf) {
       pdf.addEventListener('click', function () {
         pdf.classList.add('is-busy');
@@ -1725,9 +1822,148 @@
     }
   }
 
+  /* ---------------------------------------------------------------
+     ОХВАТ КАМПАНИИ 360° · СТАТУСЫ И СВЯЗКИ
+     --------------------------------------------------------------- */
+  function initCampaignCover() {
+    var root = $('[data-campaign-cover]');
+    if (!root) return;
+
+    var listEl = $('[data-cv-list]', root);
+    var titleEl = $('[data-cv-title]', root);
+    var chipEl = $('[data-cv-chip]', root);
+    if (!listEl || !titleEl) return;
+
+    var AVA = 'images/';
+    var v = '?v=20260808m';
+
+    var DATA = {
+      sent: {
+        label: 'Запросов отправлено',
+        count: 248,
+        pairs: [
+          { from: { name: 'Мария К.', role: 'коллега', img: AVA + 'avatar-route-maria.jpg' + v }, to: { name: 'Анна Ковалёва', role: 'оцениваемый · Product', img: AVA + 'avatar-successor-anna.jpg' + v } },
+          { from: { name: 'Алексей П.', role: 'руководитель', img: AVA + 'avatar-route-alexey.jpg' + v }, to: { name: 'Анна Ковалёва', role: 'оцениваемый · Product', img: AVA + 'avatar-successor-anna.jpg' + v } },
+          { from: { name: 'Игорь Т.', role: 'подчинённый', img: AVA + 'avatar-recog-igor.jpg' + v }, to: { name: 'Дмитрий Р.', role: 'оцениваемый · Analytics', img: AVA + 'avatar-successor-dmitry.jpg' + v } },
+          { from: { name: 'Ольга Н.', role: 'коллега', img: AVA + 'avatar-route-olga.jpg' + v }, to: { name: 'Пётр С.', role: 'оцениваемый · Sales', img: AVA + 'avatar-9box-02.jpg' + v } }
+        ]
+      },
+      done: {
+        label: 'Оценок завершено',
+        count: 191,
+        pairs: [
+          { from: { name: 'Алексей П.', role: 'руководитель', img: AVA + 'avatar-route-alexey.jpg' + v }, to: { name: 'Анна Ковалёва', role: 'оцениваемый · Product', img: AVA + 'avatar-successor-anna.jpg' + v } },
+          { from: { name: 'Мария К.', role: 'коллега', img: AVA + 'avatar-route-maria.jpg' + v }, to: { name: 'Дмитрий Р.', role: 'оцениваемый · Analytics', img: AVA + 'avatar-successor-dmitry.jpg' + v } },
+          { from: { name: 'Ольга М.', role: 'HR BP', img: AVA + 'avatar-9box-05.jpg' + v }, to: { name: 'Пётр С.', role: 'оцениваемый · Sales', img: AVA + 'avatar-9box-02.jpg' + v } },
+          { from: { name: 'Дмитрий В.', role: 'коллега', img: AVA + 'avatar-route-dmitry.jpg' + v }, to: { name: 'Анна Ковалёва', role: 'оцениваемый · Product', img: AVA + 'avatar-successor-anna.jpg' + v } }
+        ]
+      },
+      pending: {
+        label: 'Ожидает ответа',
+        count: 44,
+        pairs: [
+          { from: { name: 'Мария К.', role: 'коллега', img: AVA + 'avatar-route-maria.jpg' + v }, to: { name: 'Анна Ковалёва', role: 'оцениваемый · Product', img: AVA + 'avatar-successor-anna.jpg' + v } },
+          { from: { name: 'Игорь Т.', role: 'подчинённый', img: AVA + 'avatar-recog-igor.jpg' + v }, to: { name: 'Анна Ковалёва', role: 'оцениваемый · Product', img: AVA + 'avatar-successor-anna.jpg' + v } },
+          { from: { name: 'Пётр С.', role: 'руководитель', img: AVA + 'avatar-9box-02.jpg' + v }, to: { name: 'Дмитрий Р.', role: 'оцениваемый · Analytics', img: AVA + 'avatar-successor-dmitry.jpg' + v } },
+          { from: { name: 'Ольга Н.', role: 'коллега', img: AVA + 'avatar-route-olga.jpg' + v }, to: { name: 'Пётр С.', role: 'оцениваемый · Sales', img: AVA + 'avatar-9box-02.jpg' + v } }
+        ]
+      },
+      rejected: {
+        label: 'Отклонено и истекло',
+        count: 13,
+        pairs: [
+          { from: { name: 'Наталья В.', role: 'коллега · отклонила', img: AVA + 'avatar-9box-03.jpg' + v }, to: { name: 'Дмитрий Р.', role: 'оцениваемый · Analytics', img: AVA + 'avatar-successor-dmitry.jpg' + v }, reason: 'отклонено' },
+          { from: { name: 'Сергей Л.', role: 'подчинённый · истекло', img: AVA + 'avatar-9box-04.jpg' + v }, to: { name: 'Анна Ковалёва', role: 'оцениваемый · Product', img: AVA + 'avatar-successor-anna.jpg' + v }, reason: 'истекло' },
+          { from: { name: 'Елена Г.', role: 'коллега · отклонила', img: AVA + 'avatar-career-anna.jpg' + v }, to: { name: 'Пётр С.', role: 'оцениваемый · Sales', img: AVA + 'avatar-9box-02.jpg' + v }, reason: 'отклонено' }
+        ]
+      }
+    };
+
+    var active = 'pending';
+
+    function person(p) {
+      return '<div class="mcover__person">' +
+        '<img src="' + p.img + '" alt="" width="30" height="30" loading="lazy" decoding="async">' +
+        '<span><b>' + p.name + '</b><small>' + p.role + '</small></span></div>';
+    }
+
+    function actions(status, pair, idx) {
+      var html = '';
+      if (status === 'done') {
+        html += '<button type="button" class="mcover__btn mcover__btn--primary" data-cv-act="view">Просмотреть</button>';
+      } else if (status === 'pending' || status === 'sent') {
+        html += '<button type="button" class="mcover__btn mcover__btn--primary" data-cv-act="remind" data-cv-idx="' + idx + '">Напомнить</button>';
+        html += '<button type="button" class="mcover__btn mcover__btn--danger" data-cv-act="reject">Отклонить</button>';
+        html += '<button type="button" class="mcover__btn mcover__btn--muted" data-cv-act="cancel">Отменить</button>';
+      } else {
+        html += '<button type="button" class="mcover__btn mcover__btn--muted" data-cv-act="cancel">Отменить</button>';
+      }
+      return '<div class="mcover__pair-acts">' + html + '</div>';
+    }
+
+    function render(status) {
+      var block = DATA[status];
+      if (!block) return;
+      active = status;
+
+      titleEl.textContent = block.label + ' · ' + block.pairs.length + ' из ' + block.count;
+
+      listEl.innerHTML = block.pairs.map(function (pair, i) {
+        return '<article class="mcover__pair">' +
+          '<div class="mcover__pair-main">' +
+          person(pair.from) +
+          '<span class="mcover__arrow" aria-hidden="true">→</span>' +
+          person(pair.to) +
+          '</div>' +
+          actions(status, pair, i) +
+          '</article>';
+      }).join('');
+
+      $$('.mcover__stat', root).forEach(function (btn) {
+        var on = btn.getAttribute('data-cv-status') === status;
+        btn.classList.toggle('is-active', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+
+    $$('.mcover__stat', root).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        render(btn.getAttribute('data-cv-status'));
+      });
+    });
+
+    listEl.addEventListener('click', function (event) {
+      var btn = event.target.closest('[data-cv-act]');
+      if (!btn || !listEl.contains(btn)) return;
+      var act = btn.getAttribute('data-cv-act');
+      var pairEl = btn.closest('.mcover__pair');
+      var fromEl = pairEl && $('.mcover__person', pairEl);
+      var fromName = fromEl && $('b', fromEl) ? $('b', fromEl).textContent : '';
+      if (act === 'remind') {
+        btn.classList.add('is-sent');
+        btn.textContent = 'Отправлено';
+        if (chipEl && fromName) {
+          chipEl.innerHTML = '<span>Напоминание отправлено <b>' + fromName + '</b></span><b>только что</b>';
+        }
+      } else if (act === 'view') {
+        var url = new URL('report-360-demo.html', location.href);
+        url.searchParams.set('print', '1');
+        window.open(url.pathname + url.search, '_blank', 'noopener');
+      } else if (act === 'reject' || act === 'cancel') {
+        if (pairEl) {
+          pairEl.style.opacity = '0.45';
+          pairEl.style.pointerEvents = 'none';
+        }
+      }
+    });
+
+    render(active);
+  }
+
   function boot() {
     initPlatformBackLinks();
     init360Hero();
+    initCampaignCover();
     initFeed();
     initMode();
     collectReveals();

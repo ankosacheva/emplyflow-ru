@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260808g">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260808v">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -92,20 +92,24 @@
           <div class="mwin mwin--360hero" data-360hero>
             <div class="mwin__bar">
               <span class="mwin__dot"></span><span class="mwin__dot"></span>
-              <span class="mwin__title" data-360title data-title-person="Оценка 360° · Анна Ковалёва · Product · цикл Q2’26 · 12 респондентов" data-title-team="Аналитика команды · Product · цикл Q2’26 · 8 сотрудников">Оценка 360° · Анна Ковалёва · Product · цикл Q2’26 · 12 респондентов</span>
+              <span class="mwin__title" data-360title data-title-person="Оценка 360° · Анна Ковалёва · Product Manager · цикл Q2’26 · 12 респондентов" data-title-team="Аналитика команды · Product · цикл Q2’26 · 8 сотрудников">Оценка 360° · Анна Ковалёва · Product Manager · цикл Q2’26 · 12 респондентов</span>
             </div>
             <div class="mwin__body m360hero">
               <div class="m360hero__top">
-                <div class="m360seg" role="tablist" aria-label="Уровень аналитики 360°">
-                  <span class="m360seg__glow" aria-hidden="true"></span>
-                  <button type="button" class="m360seg__btn is-active" data-360view="person" role="tab" aria-selected="true">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-                    Сотрудник
-                  </button>
-                  <button type="button" class="m360seg__btn" data-360view="team" role="tab" aria-selected="false">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.4 2.7-5 6-5s6 1.6 6 5"/><path d="M15.5 15.5c2.6.3 4.5 1.9 4.5 4.5"/></svg>
-                    Команда
-                  </button>
+                <div class="m360seg-wrap">
+                  <p class="m360seg__hint" id="m360seg-hint" data-360hint>Переключите на «Команда» — откроется командная аналитика</p>
+                  <div class="m360seg" role="tablist" aria-label="Уровень аналитики 360°" aria-describedby="m360seg-hint" data-active="person">
+                    <span class="m360seg__glow" aria-hidden="true"></span>
+                    <button type="button" class="m360seg__btn is-active" data-360view="person" role="tab" aria-selected="true">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                      Сотрудник
+                    </button>
+                    <button type="button" class="m360seg__btn" data-360view="team" role="tab" aria-selected="false">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.4 2.7-5 6-5s6 1.6 6 5"/><path d="M15.5 15.5c2.6.3 4.5 1.9 4.5 4.5"/></svg>
+                      Команда
+                      <span class="m360seg__nudge" aria-hidden="true">→</span>
+                    </button>
+                  </div>
                 </div>
                 <button type="button" class="m360hero__pdf" data-360pdf aria-label="Выгрузить анонимный отчёт в PDF">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
@@ -140,7 +144,7 @@
                     <text x="60" y="8" text-anchor="middle">Коммуникация</text>
                     <text x="103" y="35" text-anchor="start">Результат</text>
                     <text x="103" y="89" text-anchor="start">Развитие</text>
-                    <text x="60" y="114" text-anchor="middle">Клиентфокус</text>
+                    <text x="60" y="114" text-anchor="middle">Ориентация на клиента</text>
                     <text x="17" y="89" text-anchor="end">Решения</text>
                     <text x="17" y="35" text-anchor="end">Лидерство</text>
                   </svg>
@@ -157,7 +161,7 @@
                     <div class="m360hero__tr"><span>Коммуникация</span><b>4.8</b><b>4.3</b><b>4.1</b><b>3.7</b><b class="m360hero__tot">4.3</b></div>
                     <div class="m360hero__tr"><span>Результат</span><b>4.6</b><b>4.4</b><b>4.2</b><b>4.0</b><b class="m360hero__tot">4.3</b></div>
                     <div class="m360hero__tr"><span>Развитие</span><b>4.2</b><b>4.0</b><b>3.9</b><b>3.6</b><b class="m360hero__tot">3.9</b></div>
-                    <div class="m360hero__tr"><span>Клиентфокус</span><b>4.0</b><b>3.8</b><b>3.7</b><b>3.4</b><b class="m360hero__tot">3.7</b></div>
+                    <div class="m360hero__tr"><span>Ориентация на клиента</span><b>4.0</b><b>3.8</b><b>3.7</b><b>3.4</b><b class="m360hero__tot">3.7</b></div>
                     <div class="m360hero__tr"><span>Решения</span><b>4.4</b><b>4.1</b><b>3.8</b><b>3.2</b><b class="m360hero__tot">3.9</b></div>
                     <div class="m360hero__tr"><span>Лидерство</span><b>4.5</b><b>4.2</b><b>4.0</b><b>3.9</b><b class="m360hero__tot">4.2</b></div>
                   </div>
@@ -197,7 +201,7 @@
                         <i style="width:74%;background:#e35aa4;"></i>
                       </div>
                     </div>
-                    <div class="m360hero__quote"><span class="m360hero__quote-tag">Сводка по компетенции</span>«Анна чётко формулирует ожидания и держит команду в курсе статусов» — коллега, Product</div>
+                    <div class="m360hero__quote"><span class="m360hero__quote-tag">Сводка по компетенции</span>«Анна чётко формулирует ожидания и держит команду в курсе статусов» — коллега</div>
                   </div>
                   <div class="m360hero__ai">
                     <p class="m360hero__ai-h"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.1 6.4L21 10l-6.9 1.6L12 18l-2.1-6.4L3 10l6.9-1.6L12 2z"/></svg> AI-анализ результатов</p>
@@ -241,7 +245,7 @@
                     <span class="m360hero__dyn-d is-up">+0.4</span>
                   </div>
                   <div class="m360hero__dyn-row">
-                    <span class="m360hero__dyn-name">Клиентфокус</span>
+                    <span class="m360hero__dyn-name">Ориентация на клиента</span>
                     <svg class="m360hero__spark" viewBox="0 0 60 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="4,8.9 30,13.4 56,12.3" style="stroke:#ffb777"/><circle cx="56" cy="12.3" r="2.2" style="fill:#ffb777"/></svg>
                     <span class="m360hero__dyn-d is-down">−0.3</span>
                   </div>
@@ -280,7 +284,7 @@
                     <div class="m360team__bar"><span class="m360team__bn">Результат</span><span class="m360team__track"><i class="m360team__range" style="left:45%;right:10%;"></i><i class="m360team__dot" style="left:65%;background:#5fce87;"></i></span><b>4.3</b></div>
                     <div class="m360team__bar"><span class="m360team__bn">Коммуникация</span><span class="m360team__track"><i class="m360team__range" style="left:30%;right:15%;"></i><i class="m360team__dot" style="left:60%;background:#4a3bff;"></i></span><b>4.2</b></div>
                     <div class="m360team__bar"><span class="m360team__bn">Лидерство</span><span class="m360team__track"><i class="m360team__range" style="left:20%;right:20%;"></i><i class="m360team__dot" style="left:50%;background:#7fb3ff;"></i></span><b>4.0</b></div>
-                    <div class="m360team__bar"><span class="m360team__bn">Клиентфокус</span><span class="m360team__track"><i class="m360team__range" style="left:15%;right:25%;"></i><i class="m360team__dot" style="left:45%;background:#ffb777;"></i></span><b>3.9</b></div>
+                    <div class="m360team__bar"><span class="m360team__bn">Ориентация на клиента</span><span class="m360team__track"><i class="m360team__range" style="left:15%;right:25%;"></i><i class="m360team__dot" style="left:45%;background:#ffb777;"></i></span><b>3.9</b></div>
                     <div class="m360team__bar m360team__bar--risk"><span class="m360team__bn">Развитие</span><span class="m360team__track"><i class="m360team__range" style="left:5%;right:30%;"></i><i class="m360team__dot" style="left:40%;background:#c6a4ff;"></i></span><b>3.8</b></div>
                     <div class="m360team__bar m360team__bar--risk"><span class="m360team__bn">Решения</span><span class="m360team__track"><i class="m360team__range" style="left:0%;right:35%;"></i><i class="m360team__dot" style="left:35%;background:#e35aa4;"></i></span><b>3.7</b></div>
                     <p class="m360team__scale"><span>3.0</span><span>4.0</span><span>5.0</span></p>
@@ -319,25 +323,80 @@
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Итоги 360° (HR) · цикл Q2’26 · шаблон «Менеджерские компетенции»</span></div>
-            <div class="mwin__body">
+            <div class="mwin__body mcover" data-campaign-cover>
               <p class="msub">Охват кампании</p>
-              <div class="mpersp">
-                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span><span class="mpersp__name">Запросов отправлено</span><span class="mpersp__val">248</span><span class="mpersp__bar"><i style="width:100%;background:#4a3bff;"></i></span></div>
-                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span><span class="mpersp__name">Оценок завершено</span><span class="mpersp__val">191</span><span class="mpersp__bar"><i style="width:77%;background:#5fce87;"></i></span></div>
-                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span><span class="mpersp__name">Ожидает ответа</span><span class="mpersp__val">44</span><span class="mpersp__bar"><i style="width:18%;background:#ffb777;"></i></span></div>
-                <div class="mpersp__row"><span class="mpersp__ava mpersp__ava--dot" style="background:#ffb8e2;"></span><span class="mpersp__name">Отклонено и истекло</span><span class="mpersp__val">13</span><span class="mpersp__bar"><i style="width:6%;background:#ffb8e2;"></i></span></div>
+              <div class="mcover__stats" role="tablist" aria-label="Статусы запросов оценки 360°">
+                <button type="button" class="mcover__stat" data-cv-status="sent" role="tab" aria-selected="false">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#4a3bff;"></span>
+                  <span class="mcover__stat-name">Запросов отправлено</span>
+                  <span class="mcover__stat-val">248</span>
+                  <span class="mpersp__bar"><i style="width:100%;background:#4a3bff;"></i></span>
+                </button>
+                <button type="button" class="mcover__stat" data-cv-status="done" role="tab" aria-selected="false">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#5fce87;"></span>
+                  <span class="mcover__stat-name">Оценок завершено</span>
+                  <span class="mcover__stat-val">191</span>
+                  <span class="mpersp__bar"><i style="width:77%;background:#5fce87;"></i></span>
+                </button>
+                <button type="button" class="mcover__stat is-active" data-cv-status="pending" role="tab" aria-selected="true">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#ffb777;"></span>
+                  <span class="mcover__stat-name">Ожидает ответа</span>
+                  <span class="mcover__stat-val">44</span>
+                  <span class="mpersp__bar"><i style="width:18%;background:#ffb777;"></i></span>
+                </button>
+                <button type="button" class="mcover__stat" data-cv-status="rejected" role="tab" aria-selected="false">
+                  <span class="mpersp__ava mpersp__ava--dot" style="background:#ffb8e2;"></span>
+                  <span class="mcover__stat-name">Отклонено и истекло</span>
+                  <span class="mcover__stat-val">13</span>
+                  <span class="mpersp__bar"><i style="width:6%;background:#ffb8e2;"></i></span>
+                </button>
               </div>
-              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Напоминание отправлено 44 респондентам</span><b style="font-size:12px;color:#4a3bff;">сегодня, 10:40</b></div>
+              <div class="mcover__panel">
+                <p class="mcover__panel-h" data-cv-title>Ожидает ответа · 4 из 44</p>
+                <div class="mcover__list" data-cv-list></div>
+              </div>
+              <div class="mgapchip mcover__chip" data-cv-chip><span>Напоминание отправлено 44 респондентам</span><b>сегодня, 10:40</b></div>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>01</b> Процесс</p>
-          <h2 class="mclaim" id="r1-title">Оценку легко запустить <em>и легко потерять по дороге</em></h2>
-          <p class="mlead">HR ведёт 360° как кампанию, а не как рассылку писем: видно, кому отправлено, кто завершил, кто ждёт и где запрос отклонили. Напоминания уходят автоматически, но с ограничением по частоте, чтобы процесс не превращался в спам.</p>
-          <div class="mproof">
-            <span class="mproof__num">5</span>
-            <span class="mproof__txt">статусов у каждого запроса: завершён, отправлен, ожидает ответа, истёк, отклонён</span>
+          <h2 class="mclaim" id="r1-title">Баланс проактивности пользователей <em>и контроля процесса HR-менеджером</em></h2>
+          <p class="mlead">Вам не нужно назначать запросы на оценку по каждому сотруднику: пользователи уже имеют <strong>сформированные группы респондентов</strong> (руководитель, коллеги, подчинённые), а также могут <strong>самостоятельно отправлять запросы</strong> другим участникам. Тем не менее, вы имеете <strong>полное управление</strong>: можете назначить принудительный запрос на оценку или отменить текущие по выбранному шаблону.</p>
+          <div class="mproof mproof--notify">
+            <span class="mproof__obj" aria-hidden="true">
+              <svg width="54" height="50" viewBox="0 0 88 80" fill="none">
+                <defs>
+                  <linearGradient id="notify-body" x1="8" y1="18" x2="78" y2="68" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb8e2"/>
+                    <stop offset=".42" stop-color="#cec8ff"/>
+                    <stop offset=".78" stop-color="#4a3bff"/>
+                    <stop offset="1" stop-color="#050230"/>
+                  </linearGradient>
+                  <linearGradient id="notify-flap" x1="12" y1="8" x2="72" y2="42" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#fff" stop-opacity=".82"/>
+                    <stop offset=".55" stop-color="#d5fff3"/>
+                    <stop offset="1" stop-color="#4a3bff"/>
+                  </linearGradient>
+                  <linearGradient id="notify-bell" x1="58" y1="8" x2="80" y2="34" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb777"/>
+                    <stop offset="1" stop-color="#ff8f3d"/>
+                  </linearGradient>
+                  <filter id="notify-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#4a3bff" flood-opacity=".35"/>
+                  </filter>
+                </defs>
+                <g filter="url(#notify-shadow)" transform="rotate(-7 44 40)">
+                  <path d="M10 28 L44 50 L78 28 V62 C78 66 74 70 70 70 H18 C14 70 10 66 10 62 Z" fill="url(#notify-body)"/>
+                  <path d="M10 28 L44 50 L78 28 L44 18 Z" fill="url(#notify-flap)"/>
+                  <path d="M10 28 L44 50 L78 28" stroke="rgba(255,255,255,.45)" stroke-width="1.2" stroke-linejoin="round"/>
+                  <circle cx="68" cy="20" r="13" fill="url(#notify-bell)"/>
+                  <path d="M68 14.5c-2.6 0-4.7 2-4.7 4.5v1.1c-1.4.8-2.3 2.3-2.3 4 0 .8.6 1.4 1.4 1.4h11.2c.8 0 1.4-.6 1.4-1.4 0-1.7-.9-3.2-2.3-4v-1.1c0-2.5-2.1-4.5-4.7-4.5z" fill="#fff" fill-opacity=".95"/>
+                  <circle cx="68" cy="27.5" r="1.6" fill="#ffb777"/>
+                </g>
+              </svg>
+            </span>
+            <span class="mproof__txt"><strong>Легкая настройка уведомлений и напоминаний:</strong> автоматическое уведомление при новом запросе на email, возможность напомнить из личного кабинета, а также рассылка писем из кабинета администратора при старте оценочной кампании.</span>
           </div>
         </div>
       </div>
@@ -349,13 +408,55 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>02</b> Главный инсайт</p>
-          <h2 class="mclaim" id="r2-title">Человек видит себя иначе, <em>чем его команда</em></h2>
-          <p class="mlead">Самооценка заполняется по тому же шаблону, что и внешняя оценка, поэтому перспективы можно положить рядом. Расхождение — не повод для спора, а материал для разговора: где ожидания сотрудника и команды не совпали и почему.</p>
-          <div class="mtags">
-            <span class="mtag">Многогранник компетенций</span>
-            <span class="mtag">Детальная расшифровка по вопросам</span>
-            <span class="mtag">Динамика между циклами</span>
+          <p class="meyebrow"><b>02</b> Развивающая оценка</p>
+          <h2 class="mclaim" id="r2-title">Зачастую сотрудники не видят свои <em>слепые зоны</em></h2>
+          <p class="mlead">Сравнение собственной оценки с отзывами руководителя, коллег и подчинённых помогает выстроить более объективную картину реальности. Расхождение — не повод для спора, а материал для разговора и формирования ИПР: где ожидания сотрудника и команды не совпали и почему.</p>
+          <div class="mproof mproof--notify mproof--assess">
+            <span class="mproof__obj" aria-hidden="true">
+              <svg width="56" height="52" viewBox="0 0 88 80" fill="none">
+                <defs>
+                  <linearGradient id="assess-card" x1="10" y1="14" x2="76" y2="68" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#cec8ff"/>
+                    <stop offset=".45" stop-color="#4a3bff"/>
+                    <stop offset="1" stop-color="#050230"/>
+                  </linearGradient>
+                  <linearGradient id="assess-radar" x1="28" y1="24" x2="58" y2="54" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#d5fff3"/>
+                    <stop offset=".5" stop-color="#5fce87"/>
+                    <stop offset="1" stop-color="#3bb96f"/>
+                  </linearGradient>
+                  <linearGradient id="assess-self" x1="34" y1="30" x2="52" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb8e2"/>
+                    <stop offset="1" stop-color="#e35aa4"/>
+                  </linearGradient>
+                  <linearGradient id="assess-ring" x1="58" y1="10" x2="80" y2="32" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb777"/>
+                    <stop offset="1" stop-color="#ff8f3d"/>
+                  </linearGradient>
+                  <filter id="assess-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#4a3bff" flood-opacity=".32"/>
+                  </filter>
+                </defs>
+                <g filter="url(#assess-shadow)" transform="rotate(-8 44 40)">
+                  <rect x="12" y="18" width="56" height="48" rx="10" fill="url(#assess-card)"/>
+                  <rect x="12" y="18" width="56" height="14" rx="10" fill="rgba(255,255,255,.14)"/>
+                  <polygon points="44,30 52,34 52,42 44,46 36,42 36,34" fill="url(#assess-radar)" fill-opacity=".85" stroke="#fff" stroke-width=".8" stroke-linejoin="round"/>
+                  <polygon points="44,33 49.5,35.5 49.5,40.5 44,43 38.5,40.5 38.5,35.5" fill="none" stroke="url(#assess-self)" stroke-width="1.2" stroke-dasharray="1.6 1.2" stroke-linejoin="round"/>
+                  <line x1="44" y1="38" x2="44" y2="30" stroke="rgba(255,255,255,.35)" stroke-width=".7"/>
+                  <line x1="44" y1="38" x2="52" y2="34" stroke="rgba(255,255,255,.35)" stroke-width=".7"/>
+                  <line x1="44" y1="38" x2="52" y2="42" stroke="rgba(255,255,255,.35)" stroke-width=".7"/>
+                  <line x1="44" y1="38" x2="44" y2="46" stroke="rgba(255,255,255,.35)" stroke-width=".7"/>
+                  <line x1="44" y1="38" x2="36" y2="42" stroke="rgba(255,255,255,.35)" stroke-width=".7"/>
+                  <line x1="44" y1="38" x2="36" y2="34" stroke="rgba(255,255,255,.35)" stroke-width=".7"/>
+                  <circle cx="22" cy="52" r="3.2" fill="#d5fff3" stroke="#fff" stroke-width=".8"/>
+                  <circle cx="44" cy="58" r="3.2" fill="#cec8ff" stroke="#fff" stroke-width=".8"/>
+                  <circle cx="66" cy="52" r="3.2" fill="#ffb8e2" stroke="#fff" stroke-width=".8"/>
+                  <circle cx="66" cy="16" r="12" fill="url(#assess-ring)"/>
+                  <text x="66" y="19.5" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="800" font-family="Manrope, sans-serif">360°</text>
+                </g>
+              </svg>
+            </span>
+            <span class="mproof__txt"><strong>360° — один из самых распространённых методов развивающей оценки в мире:</strong> многоисточниковая обратная связь даёт более полную картину, чем оценка только линейным руководителем, и работает эффективнее, когда результаты сразу переводятся в конкретные шаги развития.</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
@@ -377,11 +478,16 @@
                   </g>
                   <polygon class="poly-others" points="60.0,18.6 91.9,41.6 97.4,81.6 60.0,100.5 28.9,77.9 31.3,43.4"></polygon>
                   <polygon class="poly-self" points="60.0,26.9 96.7,38.8 93.5,79.3 60.0,92.2 24.1,80.7 35.3,45.7"></polygon>
+                  <g class="mradar__hot" aria-hidden="true">
+                    <circle cx="26.5" cy="79.3" r="5.2" class="mradar__hot-ring"></circle>
+                    <line x1="26.5" y1="79.3" x2="10" y2="68" class="mradar__hot-line"></line>
+                    <text x="4" y="66" text-anchor="end" class="mradar__hot-label">−0.9</text>
+                  </g>
                   <text x="60" y="8" text-anchor="middle">Коммуникация</text>
                   <text x="103" y="35" text-anchor="start">Результат</text>
                   <text x="103" y="89" text-anchor="start">Развитие</text>
-                  <text x="60" y="114" text-anchor="middle">Клиентфокус</text>
-                  <text x="17" y="89" text-anchor="end">Решения</text>
+                  <text x="60" y="114" text-anchor="middle">Ориентация на клиента</text>
+                  <text x="17" y="89" text-anchor="end" class="mradar__axis-hot">Решения</text>
                   <text x="17" y="35" text-anchor="end">Лидерство</text>
                 </svg>
                 <div class="mradar__legend">
@@ -389,6 +495,38 @@
                   <span class="mradar__key"><i style="background:#e35aa4;"></i> Самооценка</span>
                   <div class="mradar__score"><b>4.3</b><span>средний балл 360°</span></div>
                   <div class="mradar__score" style="background:#fdf4f9;color:#b06699;"><b style="color:#e35aa4;">−0.6</b><span style="color:#b06699;">разрыв с самооценкой</span></div>
+                </div>
+              </div>
+              <div class="mradar__focus">
+                <span class="mradar__focus-tag">Максимальный разрыв</span>
+                <div class="mradar__focus-row">
+                  <b>Решения</b>
+                  <span class="mradar__focus-bars" aria-hidden="true">
+                    <i class="mradar__focus-self" style="width:64%;" title="Самооценка 3.2"></i>
+                    <i class="mradar__focus-oth" style="width:82%;" title="Окружение 4.1"></i>
+                  </span>
+                  <span class="mradar__focus-vals"><s>3.2</s><b>4.1</b></span>
+                </div>
+                <p class="mradar__focus-note">Коллеги оценивают вас выше в этой компетенции, чем вы сами! Это ваша сильная сторона — и вы смело можете ею гордиться.</p>
+              </div>
+              <div class="mgapins">
+                <p class="mgapins__lead">Многогранник показывает не только баллы, но и <strong>где восприятие расходится</strong> — отсюда берутся инсайты о себе и конкретные шаги в ИПР.</p>
+                <div class="mgapins__grid">
+                  <article class="mgapins__card mgapins__card--gap">
+                    <span class="mgapins__tag">Инсайт о себе</span>
+                    <b>Слепая зона в «Решениях»</b>
+                    <p>Вы оцениваете себя на 3.2, команда — на 4.1. Окружение видит вашу решительность выше, чем вы сами.</p>
+                  </article>
+                  <article class="mgapins__card mgapins__card--strong">
+                    <span class="mgapins__tag">Опора</span>
+                    <b>Коммуникация совпадает</b>
+                    <p>4.3 по всем источникам — перспективы совпали. Можно опереться на эту компетенцию при развитии других.</p>
+                  </article>
+                  <article class="mgapins__card mgapins__card--ipr">
+                    <span class="mgapins__tag">Точка в ИПР</span>
+                    <b>Ориентация на клиента</b>
+                    <p>Итоговый балл 3.7 — ниже остальных компетенций · 4 встречи с ключевым клиентом в Q2 · курс «Customer Discovery» · повторная мини-оценка по блоку — цель 3.9+.</p>
+                  </article>
                 </div>
               </div>
             </div>
@@ -415,14 +553,21 @@
                 <script type="application/json" data-quiz-json>
                 {
                   "scale": ["Почти никогда", "Редко", "Иногда", "Часто", "Всегда — пример для других"],
+                  "scaleGuide": [
+                    { "n": 1, "label": "Почти никогда", "hint": "Компетенция не проявляется в работе" },
+                    { "n": 2, "label": "Редко", "hint": "Проявляется эпизодически, без системности" },
+                    { "n": 3, "label": "Иногда", "hint": "На уровне большинства коллег" },
+                    { "n": 4, "label": "Часто", "hint": "Стабильно и предсказуемо" },
+                    { "n": 5, "label": "Всегда — пример для других", "hint": "Эталон для команды" }
+                  ],
                   "commentRule": "Комментарий обязателен при низкой оценке — так настроено правило шаблона",
                   "others": 4.3,
                   "self": 3.7,
                   "ai": "В реальной оценке те же ответы уходят в AI-анализ: он собирает резюме, сильные стороны, зоны развития, расхождения самооценки с внешней оценкой и рекомендации, которые становятся входом для индивидуального плана развития.",
                   "questions": [
-                    { "block": "Коммуникация", "text": "Даёт коллегам конкретную обратную связь вместо общих оценок" },
-                    { "block": "Ответственность за результат", "text": "Доводит задачи до результата и предупреждает о рисках заранее" },
-                    { "block": "Развитие команды", "text": "Делится экспертизой и помогает коллегам расти" }
+                    { "format": "numeric", "block": "Коммуникация", "text": "Даёт коллегам конкретную обратную связь вместо общих оценок" },
+                    { "format": "verbal", "block": "Ответственность за результат", "text": "Доводит задачи до результата и предупреждает о рисках заранее" },
+                    { "format": "verbal", "block": "Развитие команды", "text": "Делится экспертизой и помогает коллегам расти", "commentOptional": true, "commentLabel": "Комментарий (необязательно) — примеры и контекст усиливают оценку" }
                   ]
                 }
                 </script>
@@ -432,11 +577,15 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>03</b> Попробуйте сами</p>
-          <h2 class="mclaim" id="r3-title">Оцените коллегу <em>за три клика</em></h2>
-          <p class="mlead">Это анкета респондента как она есть: блоки компетенций, шкала 1–5 со словесными подписями и правила комментариев из шаблона. Поставьте низкую оценку — увидите, как система потребует пояснение.</p>
-          <div class="mproof">
-            <span class="mproof__num">4</span>
-            <span class="mproof__txt">правила комментариев в шаблоне: не нужны, обязательны при низкой оценке, по каждому блоку, по блоку и каждому индикатору</span>
+          <h2 class="mclaim" id="r3-title"><em>Простое</em> прохождение</h2>
+          <p class="mlead">Широкий формат настройки анкеты: <strong>словесная и числовая шкала</strong>, обязательные комментарии — при низкой оценке или всегда, пояснения к пунктам шкалы. Поставьте низкую оценку в демо — увидите, как система потребует пояснение.</p>
+          <div class="mproof mproof--auto mproof--ai">
+            <span class="mproof__sparks" aria-hidden="true">
+              <svg class="mproof__spark mproof__spark--lg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+              <svg class="mproof__spark mproof__spark--sm" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+              <svg class="mproof__spark mproof__spark--xs" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>
+            </span>
+            <span class="mproof__txt"><strong>Комментарии из анкеты тоже анализирует LLM:</strong> текст респондентов помогает расшифровать результаты — выявить паттерны, уточнить выводы по компетенциям и собрать рекомендации для ИПР.</span>
           </div>
         </div>
       </div>
@@ -449,12 +598,12 @@
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>04</b> В чём разница</p>
-          <h2 class="mclaim" id="r4-title">Таблица средних <em>или готовые выводы</em></h2>
-          <p class="mlead">Базовые платформы 360° заканчиваются выгрузкой средних значений: интерпретировать их приходится руками, а разговор с сотрудником всё равно строится на ощущениях. EmplyFlow отдаёт результат уже разобранным.</p>
+          <h2 class="mclaim" id="r4-title">Оценка 360° от EmplyFlow vs <em>другие платформы</em></h2>
+          <p class="mlead">Платформа предоставляет <strong>полностью интерпретированный результат</strong>: вы получаете и <strong>базовый отчёт</strong>, и <strong>динамику компетенций</strong>, и <strong>сравнение команд и отдельных сотрудников</strong> между собой.</p>
           <div class="mtags">
             <span class="mtag">AI-резюме результата</span>
             <span class="mtag">Рекомендации к действию</span>
-            <span class="mtag">PDF для разговора один на один</span>
+            <span class="mtag">PDF для 1:1 встреч</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
@@ -469,7 +618,7 @@
               </ul>
             </div>
             <span class="mduet__vs" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              <i>VS</i>
             </span>
             <div class="mduet__col mduet__col--new">
               <span class="mduet__tag">Оценка 360° в EmplyFlow</span>
@@ -495,29 +644,29 @@
           <div class="mflow">
             <div class="mflow__step">
               <span class="mflow__n">1</span>
-              <div><p class="mflow__t">Сотрудник выбирает оценщиков</p><p class="mflow__d">Поиск по сотрудникам и структуре компании прямо из профиля</p></div>
+              <div><p class="mflow__t">Сотрудник выбирает коллег-респондентов</p><p class="mflow__d">Поиск по сотрудникам и структуре компании прямо из профиля. Руководителю и подчинённым анкета уходит автоматически.</p></div>
             </div>
             <div class="mflow__step is-key">
               <span class="mflow__n">2</span>
-              <div><p class="mflow__t">Список уходит на согласование HR</p><p class="mflow__d">HR видит строку согласования по сотруднику и каждому его запросу</p></div>
+              <div><p class="mflow__t">Список видит HR и руководитель</p><p class="mflow__d">HR видит строку согласования по сотруднику и каждому его запросу</p></div>
             </div>
             <div class="mflow__step is-key">
               <span class="mflow__n">3</span>
-              <div><p class="mflow__t">HR одобряет или запрашивает правки</p><p class="mflow__d">Выборку можно расширить, если в списке только лояльные коллеги</p></div>
+              <div><p class="mflow__t">HR или руководитель могут внести корректировки</p><p class="mflow__d">Выборку можно расширить, если в списке только лояльные коллеги</p></div>
             </div>
             <div class="mflow__step">
               <span class="mflow__n">4</span>
-              <div><p class="mflow__t">Запросы отправляются автоматически</p><p class="mflow__d">Руководителю запрос уходит без участия сотрудника</p></div>
+              <div><p class="mflow__t">Запросы отправляются автоматически</p><p class="mflow__d">Все уведомления отправляются на email-почты участникам</p></div>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>05</b> Доверие к результату</p>
-          <h2 class="mclaim" id="r5-title">Оценивают не только <em>удобные коллеги</em></h2>
-          <p class="mlead">Главная претензия к 360° звучит одинаково в любой компании: сотрудник позовёт тех, кто поставит высокие баллы. Согласование списка оценщиков закрывает этот разрыв — выборку утверждает HR, а не только сам оцениваемый.</p>
+          <h2 class="mclaim" id="r5-title">Оценивают не только <em>«удобные» коллеги</em></h2>
+          <p class="mlead">Главная претензия к 360° звучит одинаково в любой компании: сотрудник попросит оценку от тех, кто ожидаемо поставит высокие баллы. Возможность просматривать и редактировать список оценщиков по каждому участнику закрывает данную проблему.</p>
           <div class="mproof">
             <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
-            <span class="mproof__txt">Согласования выгружаются в XLSX: видно, кого добавили и по чьему решению</span>
+            <span class="mproof__txt">Таблица прохождения выгружается в Excel-формат</span>
           </div>
         </div>
       </div>
@@ -530,8 +679,8 @@
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>06</b> Роли и границы</p>
-          <h2 class="mclaim" id="r6-title">У каждого свой контур <em>и свои границы</em></h2>
-          <p class="mlead">Модуль разделяет тех, кто заполняет анкеты, тех, кто видит личные результаты, и тех, кто управляет процессом. Руководитель с признаком респондента не получает доступ к аналитике команды, а результаты могут быть скрыты до завершения цикла.</p>
+          <h2 class="mclaim" id="r6-title">Разграничение <em>доступов</em></h2>
+          <p class="mlead">Модуль представлен разными функциями и страницами для разных ролей. Пользователю, в зависимости от его роли, доступен определённый функционал.</p>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mvis">
@@ -552,7 +701,7 @@
                 <span class="mvis__i">Детализация по сотруднику</span>
                 <span class="mvis__i">Динамика по циклам</span>
                 <span class="mvis__i">AI-анализ команды</span>
-                <span class="mvis__i is-no">HR-администрирование</span>
+                <span class="mvis__i is-no">Администрирование компании</span>
               </span>
             </div>
             <div class="mvis__row">
@@ -584,27 +733,69 @@
             </div>
             <div class="meco__card meco__card--candy">
               <b>Калибровка и 9-box</b>
-              <span>Результат 360° работает как одна из осей матрицы потенциала</span>
+              <span>Результат 360° является одной из осей матрицы потенциала</span>
               <i>Объективирующий сигнал</i>
             </div>
             <div class="meco__card meco__card--mint">
               <b>Развитие и ИПР</b>
-              <span>Зоны развития и AI-рекомендации становятся входом для плана развития</span>
+              <span>Зоны развития и AI-рекомендации дают отправную точку для формирования ИПР</span>
               <i>Следующий шаг</i>
             </div>
             <div class="meco__card meco__card--mac">
               <b>Преемственность</b>
-              <span>Компетенции и сигналы из 360° уточняют готовность кандидатов на ключевые роли</span>
+              <span>Компетенции и сигналы из 360° помогают оценить готовность кандидатов на ключевые роли</span>
               <i>Оценка рисков</i>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>07</b> Зачем это компании</p>
-          <h2 class="mclaim" id="r7-title">Оценка, которая доходит <em>до кадрового решения</em></h2>
-          <p class="mlead">360° в EmplyFlow не живёт отдельным опросом. Она связана с профилем сотрудника и остальными процессами, поэтому между «мы провели оценку» и «мы приняли решение» не образуется разрыв в полгода.</p>
-          <div class="mproof">
-            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+          <p class="meyebrow"><b>07</b> Что приобретает компания</p>
+          <h2 class="mclaim" id="r7-title">Оценка в комплексе с другими индикаторами <em>Performance Review и ИПР</em></h2>
+          <p class="mlead">360° в EmplyFlow не живёт отдельным опросом. Она связана с профилем сотрудника и рейтингом Performance Review, что позволяет создать внутри компании замкнутый непрерывный цикл развития сотрудников.</p>
+          <div class="mproof mproof--notify mproof--trend">
+            <span class="mproof__obj" aria-hidden="true">
+              <svg width="56" height="52" viewBox="0 0 88 80" fill="none">
+                <defs>
+                  <linearGradient id="trend-base" x1="10" y1="58" x2="78" y2="72" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#cec8ff"/>
+                    <stop offset=".55" stop-color="#4a3bff"/>
+                    <stop offset="1" stop-color="#050230"/>
+                  </linearGradient>
+                  <linearGradient id="trend-bar-a" x1="18" y1="48" x2="30" y2="58" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#d5fff3"/>
+                    <stop offset="1" stop-color="#5fce87"/>
+                  </linearGradient>
+                  <linearGradient id="trend-bar-b" x1="34" y1="36" x2="46" y2="58" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#cec8ff"/>
+                    <stop offset="1" stop-color="#4a3bff"/>
+                  </linearGradient>
+                  <linearGradient id="trend-bar-c" x1="50" y1="22" x2="62" y2="58" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb8e2"/>
+                    <stop offset=".45" stop-color="#4a3bff"/>
+                    <stop offset="1" stop-color="#050230"/>
+                  </linearGradient>
+                  <linearGradient id="trend-arrow" x1="58" y1="10" x2="80" y2="30" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb777"/>
+                    <stop offset="1" stop-color="#ff8f3d"/>
+                  </linearGradient>
+                  <filter id="trend-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#4a3bff" flood-opacity=".32"/>
+                  </filter>
+                </defs>
+                <g filter="url(#trend-shadow)" transform="rotate(-8 44 40)">
+                  <path d="M12 58 H76 V64 C76 67 73 70 70 70 H18 C15 70 12 67 12 64 Z" fill="url(#trend-base)"/>
+                  <rect x="18" y="48" width="12" height="10" rx="3" fill="url(#trend-bar-a)"/>
+                  <rect x="34" y="36" width="12" height="22" rx="3" fill="url(#trend-bar-b)"/>
+                  <rect x="50" y="22" width="12" height="36" rx="3" fill="url(#trend-bar-c)"/>
+                  <path d="M58 34 L72 18 L72 28 H80 V34 H58 Z" fill="url(#trend-arrow)"/>
+                  <path d="M20 48 H68" stroke="rgba(255,255,255,.28)" stroke-width="1.1" stroke-linecap="round"/>
+                  <circle cx="24" cy="46" r="2.2" fill="#d5fff3"/>
+                  <circle cx="40" cy="34" r="2.2" fill="#cec8ff"/>
+                  <circle cx="56" cy="20" r="2.4" fill="#ffb8e2"/>
+                  <path d="M24 46 L40 34 L56 20" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </g>
+              </svg>
+            </span>
             <span class="mproof__txt">Динамика по компетенциям между циклами показывает, сработали ли обучение и ИПР</span>
           </div>
         </div>
@@ -617,7 +808,7 @@
     <div class="shell mswitch__inner">
       <div>
         <h2 class="mswitch__t">Дальше — детали</h2>
-        <p class="mswitch__d">Настройки шаблонов, назначения, три уровня аналитики, работа ИИ, экспорты и честные границы текущей реализации.</p>
+        <p class="mswitch__d">Если вы хотите узнать о модуле подробнее, изучите информацию ниже или оставьте заявку на демонстрацию решения.</p>
       </div>
       <button type="button" class="mswitch__btn" data-mode="details">
         Разобраться
@@ -632,7 +823,7 @@
       <div class="mdet__head">
         <p class="mdet__eyebrow">Разобраться</p>
         <h2 class="mdet__title" id="details-title">Как модуль устроен внутри</h2>
-        <p class="mdet__lead">Оценка 360° в EmplyFlow — цикловой процесс на шаблонах компетенций. Ниже то, что обычно спрашивают на демонстрации: как настраивается, кому назначается, что видит каждая роль и что можно выгрузить.</p>
+        <p class="mdet__lead">Оценка 360° в EmplyFlow входит в цикл Performance Review и может проводиться в любые его интервалы времени, индивидуально для каждой команды. Мы выделили несколько основных разделов вопросов, которые обычно интересуют заказчиков перед внедрением. Остановитесь ниже, чтобы прочитать детали.</p>
       </div>
 
       <div class="mdet__grid" data-reveal>
@@ -645,7 +836,7 @@
             <span class="mchip">2 · Назначает на роли и подразделения</span>
             <span class="mchip">3 · Сотрудник проходит самооценку</span>
             <span class="mchip">4 · Запрашивает оценку коллег</span>
-            <span class="mchip">5 · HR согласует список оценщиков</span>
+            <span class="mchip">5 · HR и руководитель могут скорректировать список респондентов</span>
             <span class="mchip">6 · Респонденты заполняют анкеты</span>
             <span class="mchip">7 · Результаты, аналитика и AI</span>
             <span class="mchip">8 · Экспорт в PDF и XLSX</span>
@@ -754,7 +945,11 @@
           </ul>
         </article>
 
-        <article class="mcard mcard--wide">
+        <article class="mcard mcard--wide mcard--ai">
+          <span class="mcard__ai-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            ИИ
+          </span>
           <p class="mcard__lbl"><i></i>Искусственный интеллект</p>
           <h3 class="mcard__t">ИИ объясняет результат, а не заполняет анкеты</h3>
           <p class="mcard__d">На вход модель получает компетенции, оценки по источникам и средний балл. На выходе — то, что обычно приходится собирать руками.</p>
@@ -776,14 +971,6 @@
             <li><b>Уведомления:</b> приглашение пройти оценку, напоминание о дедлайне, напоминание незаполнившим</li>
             <li>Удалённые запросы и ответы сохраняются в корзине и восстанавливаются</li>
           </ul>
-        </article>
-
-        <article class="mcard mcard--full">
-          <p class="mcard__lbl"><i></i>Границы</p>
-          <h3 class="mcard__t">Что модуль сейчас не делает</h3>
-          <div class="mnote">
-            Текущая реализация — <b>цикловая оценка 360° на шаблонах компетенций</b>: она привязана к циклам планирования и предполагает кампанию оценки. Это не постоянная кнопка «оставить отзыв о коллеге в любой момент»: внецикловая обратная связь описана как отдельная будущая задача, а не как работающая функция. Мы говорим об этом до внедрения, чтобы ожидания совпадали с продуктом.
-          </div>
         </article>
 
       </div>
@@ -819,8 +1006,8 @@
     <div class="shell">
       <div class="mfin__inner">
         <div>
-          <h2 class="mfin__t">Посмотрите 360° на своих компетенциях</h2>
-          <p class="mfin__d">Покажем конструктор шаблонов, согласование оценщиков и AI-разбор результата на демодоступе в течение пяти рабочих дней.</p>
+          <h2 class="mfin__t">Проведите <em>оценку 360°</em> и получите <em>готовые планы развития</em></h2>
+          <p class="mfin__d">Покажем и объясним, как работает модуль. После встречи вы получите бесплатный демо-доступ на 5 рабочих дней.</p>
         </div>
         <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
       </div>
@@ -889,7 +1076,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260808h" defer></script>
+<script src="js/emplyflow-module.js?v=20260808r" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 
