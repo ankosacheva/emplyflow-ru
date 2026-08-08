@@ -401,14 +401,30 @@
     var inputs = $$('input[type="range"]', root);
     var calc = $('[data-nb-calc]', root);
     var verdict = $('[data-nb-verdict]', root);
+    var levelsBox = $('[data-nb-levels]', root);
     if (cells.length !== 9 || inputs.length !== 3 || !calc || !verdict) return;
 
     var LEVELS = ['низкий', 'средний', 'высокий'];
+    // 0 — плохо, 1 — нейтрально, 2 — хорошо
+    var LEVEL_META = [
+      { tone: 'bad', arrow: '↓' },
+      { tone: 'mid', arrow: '→' },
+      { tone: 'good', arrow: '↑' }
+    ];
 
     function level(pct) {
       if (pct <= 33) return 0;
       if (pct <= 66) return 1;
       return 2;
+    }
+
+    function levelChip(label, lvl) {
+      var m = LEVEL_META[lvl];
+      return '<span class="mnbc__lvl mnbc__lvl--' + m.tone + '">' +
+        '<i>' + m.arrow + '</i>' +
+        '<span class="mnbc__lvl-l">' + label + '</span>' +
+        '<b>' + LEVELS[lvl] + '</b>' +
+        '</span>';
     }
 
     function paint() {
@@ -434,7 +450,9 @@
         if (on && !dot) {
           dot = document.createElement('span');
           dot.className = 'mnb__you';
-          dot.textContent = 'А.К.';
+          dot.innerHTML =
+            '<img class="mnb__you-ava" src="images/avatar-successor-anna.jpg" alt="" width="18" height="18" loading="lazy" decoding="async">' +
+            '<span>А.К.</span>';
           cell.appendChild(dot);
         } else if (!on && dot) {
           dot.remove();
@@ -445,10 +463,20 @@
         'Ось X: (' + goals + '% цели + ' + kpi + '% KPI) / 2 = <b>' + x + '%</b> — ' + LEVELS[lx] + '<br>' +
         'Ось Y: оценка 360° = <b>' + a360 + '%</b> — ' + LEVELS[ly];
 
+      if (levelsBox) {
+        levelsBox.innerHTML =
+          levelChip('Результат и KPI', lx) +
+          levelChip('Компетенции 360°', ly);
+      }
+
       var cell = cells[index];
       verdict.innerHTML =
+        '<span class="mnbc__verdict-eye">' +
+          '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"/></svg>' +
+          'Рекомендация' +
+        '</span>' +
         '<b>' + (cell.getAttribute('data-name') || '') + '</b>' +
-        '<span>' + (cell.getAttribute('data-hint') || '') + '</span>';
+        '<p class="mnbc__verdict-desc">' + (cell.getAttribute('data-hint') || '') + '</p>';
     }
 
     inputs.forEach(function (el) {
@@ -456,6 +484,126 @@
       el.addEventListener('change', function () { trackOnce('ninebox_move'); });
     });
     paint();
+  }
+
+  /* ---------------------------------------------------------------
+     ПРИБЛИЖЕНИЕ ЯЧЕЕК 9 BOX В HERO
+     --------------------------------------------------------------- */
+  function initNineBoxZoom() {
+    var wrap = $('.mwin--9box .ef-9box__grid');
+    if (!wrap) return;
+
+    var cells = $$('.ef-9box-cell', wrap);
+    if (!cells.length) return;
+
+    var overlay = null;
+    var lastFocus = null;
+
+    function toneOf(cell) {
+      var m = cell.className.match(/ef-9box-cell--(\w+)/);
+      return m ? m[1] : 'fog';
+    }
+
+    function plural(n) {
+      var mod10 = n % 10;
+      var mod100 = n % 100;
+      if (mod10 === 1 && mod100 !== 11) return 'человек';
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'человека';
+      return 'человек';
+    }
+
+    function build() {
+      overlay = document.createElement('div');
+      overlay.className = 'mnbzoom';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.innerHTML =
+        '<div class="mnbzoom__backdrop" data-zoom-close></div>' +
+        '<div class="mnbzoom__card">' +
+          '<button type="button" class="mnbzoom__close" data-zoom-close aria-label="Закрыть">✕</button>' +
+          '<div class="mnbzoom__avas"></div>' +
+          '<h3 class="mnbzoom__title"></h3>' +
+          '<p class="mnbzoom__count"></p>' +
+          '<div class="mnbzoom__note"></div>' +
+          '<p class="mnbzoom__hint">Нажмите Esc или кликните вне карточки, чтобы закрыть</p>' +
+        '</div>';
+      document.body.appendChild(overlay);
+
+      $$('[data-zoom-close]', overlay).forEach(function (el) {
+        el.addEventListener('click', close);
+      });
+    }
+
+    function open(cell) {
+      if (!overlay) build();
+      lastFocus = document.activeElement;
+
+      var tone = toneOf(cell);
+      var titleEl = cell.querySelector('.ef-9box-meta strong');
+      var countEl = cell.querySelector('.ef-9box-meta b');
+      var whoEl = cell.querySelector('.ef-9box-note__who');
+      var mEl = cell.querySelector('.ef-9box-note__m');
+      var avas = cell.querySelectorAll('.ef-9box-avas img');
+      var moreEl = cell.querySelector('.ef-9box-avas em');
+
+      var card = overlay.querySelector('.mnbzoom__card');
+      card.className = 'mnbzoom__card mnbzoom__card--' + tone;
+
+      var avasBox = overlay.querySelector('.mnbzoom__avas');
+      avasBox.innerHTML = '';
+      avas.forEach(function (img) {
+        var clone = img.cloneNode(true);
+        clone.removeAttribute('width');
+        clone.removeAttribute('height');
+        avasBox.appendChild(clone);
+      });
+      if (moreEl) {
+        var em = document.createElement('em');
+        em.textContent = moreEl.textContent;
+        avasBox.appendChild(em);
+      }
+
+      overlay.querySelector('.mnbzoom__title').textContent = titleEl ? titleEl.textContent : '';
+      var n = countEl ? parseInt(countEl.textContent, 10) : 0;
+      overlay.querySelector('.mnbzoom__count').textContent = n + ' ' + plural(n);
+
+      var note = overlay.querySelector('.mnbzoom__note');
+      if (whoEl && mEl) {
+        note.style.display = '';
+        note.innerHTML =
+          '<span class="mnbzoom__note-who">' + whoEl.textContent + '</span>' +
+          '<span class="mnbzoom__note-m">' + mEl.innerHTML + '</span>';
+      } else {
+        note.style.display = 'none';
+      }
+
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      var closeBtn = overlay.querySelector('.mnbzoom__close');
+      if (closeBtn) closeBtn.focus();
+      trackOnce('ninebox_zoom');
+    }
+
+    function close() {
+      if (!overlay) return;
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    cells.forEach(function (cell) {
+      cell.addEventListener('click', function () { open(cell); });
+      cell.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open(cell);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay && overlay.classList.contains('is-open')) close();
+    });
   }
 
   /* ---------------------------------------------------------------
@@ -1500,13 +1648,96 @@
     window.requestAnimationFrame(tick);
   }
 
+  function initPlatformBackLinks() {
+    document.querySelectorAll('a[href*="index.html"]').forEach(function (link) {
+      var raw = link.getAttribute('href') || '';
+      if (!/#platform$/.test(raw) && raw.indexOf('#platform') === -1) return;
+      if (raw.indexOf('from=module') !== -1) return;
+      var url = new URL('index.html', location.href);
+      url.searchParams.set('from', 'module');
+      url.hash = 'platform';
+      link.href = url.pathname + url.search + url.hash;
+    });
+  }
+
+  function init360Hero() {
+    var root = $('[data-360hero]');
+    if (!root) return;
+
+    var seg = $('.m360seg', root);
+    var btns = $$('.m360seg__btn', root);
+    var panels = $$('[data-360panel]', root);
+    var title = $('[data-360title]', root);
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var current = 'person';
+    var busy = false;
+
+    function showPanel(view) {
+      if (view === current || busy) return;
+      var from = panels.filter(function (p) { return p.getAttribute('data-360panel') === current; })[0];
+      var to = panels.filter(function (p) { return p.getAttribute('data-360panel') === view; })[0];
+      if (!from || !to) return;
+      busy = true;
+      current = view;
+
+      btns.forEach(function (b) {
+        var on = b.getAttribute('data-360view') === view;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      if (seg) seg.setAttribute('data-active', view);
+      if (title) {
+        var t = title.getAttribute('data-title-' + view);
+        if (t) title.textContent = t;
+      }
+
+      if (reduced) {
+        from.hidden = true; from.classList.remove('is-active');
+        to.hidden = false; to.classList.add('is-active');
+        busy = false;
+        return;
+      }
+
+      from.classList.remove('is-active');
+      window.setTimeout(function () {
+        from.hidden = true;
+        to.hidden = false;
+        // двойной rAF, чтобы отработала transition входа
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            to.classList.add('is-active');
+            busy = false;
+          });
+        });
+      }, 260);
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { showPanel(b.getAttribute('data-360view')); });
+    });
+
+    var pdf = $('[data-360pdf]', root);
+    if (pdf) {
+      pdf.addEventListener('click', function () {
+        pdf.classList.add('is-busy');
+        window.setTimeout(function () { pdf.classList.remove('is-busy'); }, 1600);
+        var url = new URL('report-360-demo.html', location.href);
+        url.searchParams.set('print', '1');
+        window.open(url.pathname + url.search, '_blank', 'noopener');
+      });
+    }
+  }
+
   function boot() {
+    initPlatformBackLinks();
+    init360Hero();
     initFeed();
     initMode();
     collectReveals();
     initQuiz();
     initFit();
     initNineBox();
+    initNineBoxZoom();
     initRoute();
     initGoalDemo();
     initCareerDemo();

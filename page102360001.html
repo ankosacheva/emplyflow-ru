@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803h">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260808g">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -60,7 +60,7 @@
 
 <header class="mtop" id="mtop">
   <div class="shell mtop__inner">
-    <a class="mtop__back" href="index.html#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
+    <a class="mtop__back" href="index.html?from=module#platform"><span aria-hidden="true">←</span> <span>Модули платформы</span></a>
     <span class="mtop__name">Оценка 360°</span>
     <span class="mtop__spacer"></span>
     <div class="mmode" role="group" aria-label="Режим просмотра страницы">
@@ -81,45 +81,229 @@
         <div class="mreel__copy" data-reveal>
           <p class="mcover__kicker">Модуль платформы</p>
           <h1 class="mcover__title" id="cover-title">Оценка <em>360°</em></h1>
-          <p class="mcover__q">Собрать оценки — половина работы. Модуль превращает их в управленческие выводы: сильные стороны, зоны развития и расхождения восприятия.</p>
-          <div class="mcover__meta">
-            <span class="mtag">Цикловая оценка по компетенциям</span>
-            <span class="mtag">Три контура: сотрудник, руководитель, HR</span>
-            <span class="mtag">AI-разбор результатов</span>
+          <p class="mcover__q">В отличие от большинства стандартных решений, модуль позволяет не только провести оценку 360, но и превратить данные в управленческие выводы: собрать аналитику по командам, выявить сильные стороны и динамику развития компетенций.</p>
+          <div class="mcover__meta mcover__meta--tiles">
+            <span class="mtag mtag--tile mtag--mint">Разные шаблоны под команды и циклы</span>
+            <span class="mtag mtag--tile mtag--peri">4 измерения: руководитель, коллеги, подчинённые, самооценка</span>
+            <span class="mtag mtag--tile mtag--mac">AI-анализ и сравнение результатов между циклами или командами</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
-          <div class="mwin">
-            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Оценка 360° · Анна К. · Product · цикл Q2’26 · 12 респондентов</span></div>
-            <div class="mwin__body">
-              <p class="msub">Сравнение перспектив</p>
-              <div class="mpersp">
-                <div class="mpersp__row">
-                  <span class="mpersp__ava" style="background:#4a3bff;">Р</span>
-                  <span class="mpersp__name">Руководитель</span>
-                  <span class="mpersp__val">4.8</span>
-                  <span class="mpersp__bar"><i style="width:96%;background:#4a3bff;"></i></span>
+          <div class="mwin mwin--360hero" data-360hero>
+            <div class="mwin__bar">
+              <span class="mwin__dot"></span><span class="mwin__dot"></span>
+              <span class="mwin__title" data-360title data-title-person="Оценка 360° · Анна Ковалёва · Product · цикл Q2’26 · 12 респондентов" data-title-team="Аналитика команды · Product · цикл Q2’26 · 8 сотрудников">Оценка 360° · Анна Ковалёва · Product · цикл Q2’26 · 12 респондентов</span>
+            </div>
+            <div class="mwin__body m360hero">
+              <div class="m360hero__top">
+                <div class="m360seg" role="tablist" aria-label="Уровень аналитики 360°">
+                  <span class="m360seg__glow" aria-hidden="true"></span>
+                  <button type="button" class="m360seg__btn is-active" data-360view="person" role="tab" aria-selected="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                    Сотрудник
+                  </button>
+                  <button type="button" class="m360seg__btn" data-360view="team" role="tab" aria-selected="false">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.4 2.7-5 6-5s6 1.6 6 5"/><path d="M15.5 15.5c2.6.3 4.5 1.9 4.5 4.5"/></svg>
+                    Команда
+                  </button>
                 </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava" style="background:#5fce87;">К</span>
-                  <span class="mpersp__name">Коллеги · 5 человек</span>
-                  <span class="mpersp__val">4.3</span>
-                  <span class="mpersp__bar"><i style="width:86%;background:#5fce87;"></i></span>
+                <button type="button" class="m360hero__pdf" data-360pdf aria-label="Выгрузить анонимный отчёт в PDF">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+                  <span>PDF</span>
+                </button>
+              </div>
+
+              <div class="m360hero__views">
+              <div class="m360view is-active" data-360panel="person">
+              <div class="m360hero__grid">
+                <div class="m360hero__radar">
+                  <div class="m360hero__radar-top">
+                    <p class="m360hero__radar-t">Многогранник компетенций</p>
+                    <span class="m360hero__badge">Q2’26</span>
+                  </div>
+                  <svg viewBox="-30 -12 180 150" role="img" aria-label="Многогранник оценки 360°: четыре контура по шести компетенциям">
+                    <polygon class="grid-line" points="60.0,14.0 99.8,37.0 99.8,83.0 60.0,106.0 20.2,83.0 20.2,37.0"></polygon>
+                    <polygon class="grid-line" points="60.0,29.3 86.6,44.7 86.6,75.3 60.0,90.7 33.4,75.3 33.4,44.7"></polygon>
+                    <polygon class="grid-line" points="60.0,44.7 73.3,52.3 73.3,67.7 60.0,75.3 46.7,67.7 46.7,52.3"></polygon>
+                    <g class="grid-line">
+                      <line x1="60" y1="60" x2="60.0" y2="14.0"></line>
+                      <line x1="60" y1="60" x2="99.8" y2="37.0"></line>
+                      <line x1="60" y1="60" x2="99.8" y2="83.0"></line>
+                      <line x1="60" y1="60" x2="60.0" y2="106.0"></line>
+                      <line x1="60" y1="60" x2="20.2" y2="83.0"></line>
+                      <line x1="60" y1="60" x2="20.2" y2="37.0"></line>
+                    </g>
+                    <polygon class="poly-mgr" points="60.0,17.4 92.9,40.4 96.3,80.5 60.0,99.3 30.1,78.9 32.5,44.6"></polygon>
+                    <polygon class="poly-peer" points="60.0,20.2 90.8,42.7 94.1,79.4 60.0,97.0 32.5,77.8 34.9,46.9"></polygon>
+                    <polygon class="poly-sub" points="60.0,23.0 88.7,45.0 91.9,78.3 60.0,94.7 34.9,76.7 37.3,49.2"></polygon>
+                    <polygon class="poly-self" points="60.0,26.9 96.7,38.8 93.5,79.3 60.0,92.2 24.1,80.7 35.3,45.7"></polygon>
+                    <text x="60" y="8" text-anchor="middle">Коммуникация</text>
+                    <text x="103" y="35" text-anchor="start">Результат</text>
+                    <text x="103" y="89" text-anchor="start">Развитие</text>
+                    <text x="60" y="114" text-anchor="middle">Клиентфокус</text>
+                    <text x="17" y="89" text-anchor="end">Решения</text>
+                    <text x="17" y="35" text-anchor="end">Лидерство</text>
+                  </svg>
+                  <div class="m360hero__legend">
+                    <span class="m360hero__key"><i style="background:#4a3bff;"></i> Руководитель</span>
+                    <span class="m360hero__key"><i style="background:#5fce87;"></i> Коллеги</span>
+                    <span class="m360hero__key"><i style="background:#c6a4ff;"></i> Подчинённые</span>
+                    <span class="m360hero__key"><i style="background:#e35aa4;"></i> Самооценка</span>
+                  </div>
+                  <div class="m360hero__table">
+                    <div class="m360hero__tr m360hero__tr--h">
+                      <span>Компетенция</span><b>Рук.</b><b>Кол.</b><b>Под.</b><b>Сам.</b><b>Итог</b>
+                    </div>
+                    <div class="m360hero__tr"><span>Коммуникация</span><b>4.8</b><b>4.3</b><b>4.1</b><b>3.7</b><b class="m360hero__tot">4.3</b></div>
+                    <div class="m360hero__tr"><span>Результат</span><b>4.6</b><b>4.4</b><b>4.2</b><b>4.0</b><b class="m360hero__tot">4.3</b></div>
+                    <div class="m360hero__tr"><span>Развитие</span><b>4.2</b><b>4.0</b><b>3.9</b><b>3.6</b><b class="m360hero__tot">3.9</b></div>
+                    <div class="m360hero__tr"><span>Клиентфокус</span><b>4.0</b><b>3.8</b><b>3.7</b><b>3.4</b><b class="m360hero__tot">3.7</b></div>
+                    <div class="m360hero__tr"><span>Решения</span><b>4.4</b><b>4.1</b><b>3.8</b><b>3.2</b><b class="m360hero__tot">3.9</b></div>
+                    <div class="m360hero__tr"><span>Лидерство</span><b>4.5</b><b>4.2</b><b>4.0</b><b>3.9</b><b class="m360hero__tot">4.2</b></div>
+                  </div>
                 </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava" style="background:#c6a4ff;">П</span>
-                  <span class="mpersp__name">Подчинённые · 4 человека</span>
-                  <span class="mpersp__val">4.1</span>
-                  <span class="mpersp__bar"><i style="width:82%;background:#c6a4ff;"></i></span>
-                </div>
-                <div class="mpersp__row">
-                  <span class="mpersp__ava" style="background:#ffb8e2;color:#141033;">С</span>
-                  <span class="mpersp__name">Самооценка</span>
-                  <span class="mpersp__val">3.7</span>
-                  <span class="mpersp__bar"><i style="width:74%;background:#ffb8e2;"></i></span>
+                <div class="m360hero__side">
+                  <div class="m360hero__comp">
+                    <p class="m360hero__h">Коммуникация <b>4.3</b></p>
+                    <div class="m360hero__rows">
+                      <div class="m360hero__row">
+                        <img src="images/avatar-route-maria.jpg" alt="" width="20" height="20" loading="lazy" decoding="async">
+                        <span class="m360hero__who">Руководитель</span>
+                        <b>4.8</b>
+                        <i style="width:96%;background:#4a3bff;"></i>
+                      </div>
+                      <div class="m360hero__row">
+                        <span class="m360hero__avas">
+                          <img src="images/avatar-9box-02.jpg" alt="" width="20" height="20" loading="lazy" decoding="async">
+                          <img src="images/avatar-9box-05.jpg" alt="" width="20" height="20" loading="lazy" decoding="async">
+                        </span>
+                        <span class="m360hero__who">Коллеги · 5</span>
+                        <b>4.3</b>
+                        <i style="width:86%;background:#5fce87;"></i>
+                      </div>
+                      <div class="m360hero__row">
+                        <span class="m360hero__avas">
+                          <img src="images/avatar-successor-dmitry.jpg" alt="" width="20" height="20" loading="lazy" decoding="async">
+                          <img src="images/avatar-9box-01.jpg" alt="" width="20" height="20" loading="lazy" decoding="async">
+                        </span>
+                        <span class="m360hero__who">Подчинённые · 4</span>
+                        <b>4.1</b>
+                        <i style="width:82%;background:#c6a4ff;"></i>
+                      </div>
+                      <div class="m360hero__row">
+                        <img src="images/avatar-successor-anna.jpg" alt="" width="20" height="20" loading="lazy" decoding="async">
+                        <span class="m360hero__who">Самооценка</span>
+                        <b>3.7</b>
+                        <i style="width:74%;background:#e35aa4;"></i>
+                      </div>
+                    </div>
+                    <div class="m360hero__quote"><span class="m360hero__quote-tag">Сводка по компетенции</span>«Анна чётко формулирует ожидания и держит команду в курсе статусов» — коллега, Product</div>
+                  </div>
+                  <div class="m360hero__ai">
+                    <p class="m360hero__ai-h"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.1 6.4L21 10l-6.9 1.6L12 18l-2.1-6.4L3 10l6.9-1.6L12 2z"/></svg> AI-анализ результатов</p>
+                    <div class="m360hero__ai-grid">
+                      <div class="m360hero__ai-block">
+                        <span class="m360hero__ai-tag m360hero__ai-tag--up">Сильные стороны</span>
+                        <p>Коммуникация и результат устойчиво выше среднего по команде. Руководитель отмечает умение доносить сложные решения без лишних встреч.</p>
+                      </div>
+                      <div class="m360hero__ai-block">
+                        <span class="m360hero__ai-tag m360hero__ai-tag--gap">Расхождение восприятия</span>
+                        <p>Самооценка ниже внешней на 0.6. В «Решениях» разрыв максимальный: Анна оценивает себя на 3.2, окружение — на 4.1. Это слепая зона, а не слабость.</p>
+                      </div>
+                      <div class="m360hero__ai-block m360hero__ai-block--ipr">
+                        <span class="m360hero__ai-tag m360hero__ai-tag--ipr">Мини-ИПР</span>
+                        <ol>
+                          <li><b>Неделя 1–2:</b> две встречи с наставником по принятию решений — разобрать 3 реальных кейса из Q2.</li>
+                          <li><b>Неделя 3–6:</b> курс «Системное мышление» + вести журнал решений с критериями выбора.</li>
+                          <li><b>Неделя 8:</b> повторная мини-оценка 360° по блоку «Решения» — цель 3.8+.</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="mgapchip"><span>Разрыв «самооценка / окружение»</span><b>−0.6</b></div>
+              <div class="m360hero__dyn">
+                <p class="m360hero__dyn-h">Динамика по компетенциям <span>Q4’25 → Q1’26 → Q2’26</span></p>
+                <div class="m360hero__dyn-grid">
+                  <div class="m360hero__dyn-row">
+                    <span class="m360hero__dyn-name">Коммуникация</span>
+                    <svg class="m360hero__spark" viewBox="0 0 60 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="4,11.1 30,4.3 56,5.4" style="stroke:#4a3bff"/><circle cx="56" cy="5.4" r="2.2" style="fill:#4a3bff"/></svg>
+                    <span class="m360hero__dyn-d is-up">+0.5</span>
+                  </div>
+                  <div class="m360hero__dyn-row">
+                    <span class="m360hero__dyn-name">Результат</span>
+                    <svg class="m360hero__spark" viewBox="0 0 60 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="4,8.9 30,10.0 56,5.4" style="stroke:#5fce87"/><circle cx="56" cy="5.4" r="2.2" style="fill:#5fce87"/></svg>
+                    <span class="m360hero__dyn-d is-up">+0.3</span>
+                  </div>
+                  <div class="m360hero__dyn-row">
+                    <span class="m360hero__dyn-name">Развитие</span>
+                    <svg class="m360hero__spark" viewBox="0 0 60 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="4,14.6 30,12.3 56,10.0" style="stroke:#c6a4ff"/><circle cx="56" cy="10.0" r="2.2" style="fill:#c6a4ff"/></svg>
+                    <span class="m360hero__dyn-d is-up">+0.4</span>
+                  </div>
+                  <div class="m360hero__dyn-row">
+                    <span class="m360hero__dyn-name">Клиентфокус</span>
+                    <svg class="m360hero__spark" viewBox="0 0 60 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="4,8.9 30,13.4 56,12.3" style="stroke:#ffb777"/><circle cx="56" cy="12.3" r="2.2" style="fill:#ffb777"/></svg>
+                    <span class="m360hero__dyn-d is-down">−0.3</span>
+                  </div>
+                  <div class="m360hero__dyn-row">
+                    <span class="m360hero__dyn-name">Решения</span>
+                    <svg class="m360hero__spark" viewBox="0 0 60 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="4,15.7 30,13.4 56,10.0" style="stroke:#e35aa4"/><circle cx="56" cy="10.0" r="2.2" style="fill:#e35aa4"/></svg>
+                    <span class="m360hero__dyn-d is-up">+0.5</span>
+                  </div>
+                  <div class="m360hero__dyn-row">
+                    <span class="m360hero__dyn-name">Лидерство</span>
+                    <svg class="m360hero__spark" viewBox="0 0 60 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="4,4.3 30,7.7 56,6.6" style="stroke:#7fb3ff"/><circle cx="56" cy="6.6" r="2.2" style="fill:#7fb3ff"/></svg>
+                    <span class="m360hero__dyn-d is-down">−0.2</span>
+                  </div>
+                </div>
+              </div>
+              </div><!-- /person panel -->
+
+              <div class="m360view" data-360panel="team" hidden>
+                <div class="m360team__kpis">
+                  <div class="m360team__kpi">
+                    <b>4.1</b><span>средний балл команды</span>
+                    <i class="m360team__kpi-d is-up">+0.2 за цикл</i>
+                  </div>
+                  <div class="m360team__kpi">
+                    <b>−0.4</b><span>средний разрыв самооценки</span>
+                    <i class="m360team__kpi-d is-down">сузился на 0.1</i>
+                  </div>
+                  <div class="m360team__kpi">
+                    <b>92%</b><span>вовлечённость в цикл</span>
+                    <i class="m360team__kpi-d is-up">191 из 208 оценок</i>
+                  </div>
+                </div>
+                <div class="m360team__grid">
+                  <div class="m360team__bars">
+                    <p class="m360team__h">Компетенции команды <span>средний балл и разброс по 8 сотрудникам</span></p>
+                    <div class="m360team__bar"><span class="m360team__bn">Результат</span><span class="m360team__track"><i class="m360team__range" style="left:45%;right:10%;"></i><i class="m360team__dot" style="left:65%;background:#5fce87;"></i></span><b>4.3</b></div>
+                    <div class="m360team__bar"><span class="m360team__bn">Коммуникация</span><span class="m360team__track"><i class="m360team__range" style="left:30%;right:15%;"></i><i class="m360team__dot" style="left:60%;background:#4a3bff;"></i></span><b>4.2</b></div>
+                    <div class="m360team__bar"><span class="m360team__bn">Лидерство</span><span class="m360team__track"><i class="m360team__range" style="left:20%;right:20%;"></i><i class="m360team__dot" style="left:50%;background:#7fb3ff;"></i></span><b>4.0</b></div>
+                    <div class="m360team__bar"><span class="m360team__bn">Клиентфокус</span><span class="m360team__track"><i class="m360team__range" style="left:15%;right:25%;"></i><i class="m360team__dot" style="left:45%;background:#ffb777;"></i></span><b>3.9</b></div>
+                    <div class="m360team__bar m360team__bar--risk"><span class="m360team__bn">Развитие</span><span class="m360team__track"><i class="m360team__range" style="left:5%;right:30%;"></i><i class="m360team__dot" style="left:40%;background:#c6a4ff;"></i></span><b>3.8</b></div>
+                    <div class="m360team__bar m360team__bar--risk"><span class="m360team__bn">Решения</span><span class="m360team__track"><i class="m360team__range" style="left:0%;right:35%;"></i><i class="m360team__dot" style="left:35%;background:#e35aa4;"></i></span><b>3.7</b></div>
+                    <p class="m360team__scale"><span>3.0</span><span>4.0</span><span>5.0</span></p>
+                  </div>
+                  <div class="m360team__people">
+                    <div class="m360team__pcard m360team__pcard--up">
+                      <p class="m360team__ph">Сильные драйверы</p>
+                      <div class="m360team__prow"><img src="images/avatar-9box-02.jpg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Пётр С. · Senior</span><b>4.6</b></div>
+                      <div class="m360team__prow"><img src="images/avatar-successor-dmitry.jpg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Дмитрий Р. · Lead</span><b>4.5</b></div>
+                    </div>
+                    <div class="m360team__pcard m360team__pcard--risk">
+                      <p class="m360team__ph">Зона внимания</p>
+                      <div class="m360team__prow"><img src="images/avatar-9box-05.jpg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Ольга М. · Middle</span><b>3.4</b></div>
+                      <div class="m360team__prow"><img src="images/avatar-9box-01.jpg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Игорь Т. · Junior</span><b>3.5</b></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m360team__ai">
+                  <p class="m360team__ai-h"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.1 6.4L21 10l-6.9 1.6L12 18l-2.1-6.4L3 10l6.9-1.6L12 2z"/></svg> AI-вывод по команде</p>
+                  <p>Команда сильна в блоках «Результат» и «Коммуникация». Общая зона роста — «Решения» и «Развитие»: у 3 из 8 сотрудников балл ниже 3.6, а разброс здесь максимальный. Рекомендуем групповой воркшоп по принятию решений и парное наставничество Пётр С. → Игорь Т.</p>
+                </div>
+              </div><!-- /team panel -->
+              </div><!-- /views -->
             </div>
           </div>
         </div>
@@ -611,17 +795,17 @@
     <div class="shell">
       <h2 class="mnext__h" id="next-title">Куда идут результаты 360°</h2>
       <div class="mnext__row">
-        <a class="mnext__card" href="index.html#platform" style="background:var(--t-peri);">
+        <a class="mnext__card" href="index.html?from=module#platform" style="background:var(--t-peri);">
           <b>Performance Review</b>
           <span>Единый балл из целей, KPI, 360° и компетенций с весами под вашу модель оценки</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="index.html#platform" style="background:var(--t-candy);">
+        <a class="mnext__card" href="index.html?from=module#platform" style="background:var(--t-candy);">
           <b>Матрица потенциала 9-box</b>
           <span>Визуализация «звёзд», ключевых игроков и зон риска с настройками карты</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="index.html#platform" style="background:var(--t-mint);">
+        <a class="mnext__card" href="index.html?from=module#platform" style="background:var(--t-mint);">
           <b>Карьера и развитие</b>
           <span>ИПР с конкретными шагами и KPI этапов на основе вашего каталога материалов</span>
           <i>Смотреть модуль →</i>
@@ -650,7 +834,7 @@
     <a href="/">EmplyFlow</a>
     <span>оценка, целеполагание и развитие персонала</span>
     <div class="mfoot__links">
-      <a href="index.html#platform">Модули платформы</a>
+      <a href="index.html?from=module#platform">Модули платформы</a>
       <a href="index.html#cases">Проекты</a>
       <a href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
       <a href="/privacy">Политика конфиденциальности</a>
@@ -705,7 +889,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260803h" defer></script>
+<script src="js/emplyflow-module.js?v=20260808g" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 

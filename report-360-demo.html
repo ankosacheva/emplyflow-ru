@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оценка 360° — анонимный отчёт (демо)</title>
+<style>
+  @font-face { font-family:'Manrope'; src:url('design-system/fonts/Manrope-Regular.ttf') format('truetype'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Manrope'; src:url('design-system/fonts/Manrope-Medium.ttf') format('truetype'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Manrope'; src:url('design-system/fonts/Manrope-SemiBold.ttf') format('truetype'); font-weight:600; font-display:swap; }
+  @font-face { font-family:'Manrope'; src:url('design-system/fonts/Manrope-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
+  @font-face { font-family:'Manrope'; src:url('design-system/fonts/Manrope-ExtraBold.ttf') format('truetype'); font-weight:800; font-display:swap; }
+
+  :root{
+    --ink:#141033; --fg2:#4c4869; --fg3:#6f6b92; --mut:#8681ab;
+    --brand:#4a3bff; --mint:#5fce87; --peri:#c6a4ff; --pink:#e35aa4;
+    --line:#e9e7f2; --soft:#f6f5fb; --up:#1f7a4d; --upbg:#e8f9f0; --risk:#b03a7a; --riskbg:#fdf0f6;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; }
+  body{
+    font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    color:var(--ink); background:#eef0f6; line-height:1.45;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .sheet{
+    width:210mm; min-height:297mm; margin:16px auto; background:#fff; padding:18mm 16mm;
+    box-shadow:0 24px 60px -24px rgba(5,2,48,.4);
+  }
+  .sheet + .sheet{ margin-top:0; }
+
+  .hd{ border-bottom:2px solid var(--ink); padding-bottom:12px; margin-bottom:16px; }
+  .hd__t{ margin:0; font-size:26px; font-weight:800; letter-spacing:-.02em; }
+  .hd__s{ margin:4px 0 0; font-size:13px; font-weight:600; color:var(--fg3); }
+  .hd__meta{ margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
+  .chip{ font-size:11px; font-weight:700; color:var(--fg2); background:var(--soft); border:1px solid var(--line); border-radius:999px; padding:4px 10px; }
+  .chip b{ color:var(--ink); }
+
+  h2.sec{ font-size:16px; font-weight:800; margin:22px 0 12px; letter-spacing:-.01em; }
+  h2.sec:first-of-type{ margin-top:6px; }
+
+  .radar-wrap{ border:1px solid var(--line); border-radius:16px; padding:14px 14px 10px; background:linear-gradient(160deg,#fafafe,#f5f4fc); }
+  .radar-wrap svg{ width:100%; height:auto; max-height:300px; display:block; }
+  .radar-wrap .gl{ stroke:#e0ddee; stroke-width:.5; fill:none; }
+  .radar-wrap text{ font-size:4px; font-weight:700; fill:var(--mut); }
+  .p-mgr{ fill:rgba(74,59,255,.08); stroke:#4a3bff; stroke-width:1; stroke-linejoin:round; }
+  .p-peer{ fill:rgba(95,206,135,.08); stroke:#5fce87; stroke-width:.9; stroke-linejoin:round; }
+  .p-sub{ fill:rgba(198,164,255,.08); stroke:#c6a4ff; stroke-width:.9; stroke-linejoin:round; }
+  .p-self{ fill:none; stroke:#e35aa4; stroke-width:.9; stroke-dasharray:2 1.6; stroke-linejoin:round; }
+  .legend{ display:flex; flex-wrap:wrap; gap:8px 16px; justify-content:center; margin-top:8px; padding-top:10px; border-top:1px dashed var(--line); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--fg3); }
+  .legend i{ width:12px; height:4px; border-radius:999px; }
+  .note{ font-size:10.5px; color:var(--mut); margin:8px 0 0; }
+
+  table{ width:100%; border-collapse:collapse; font-size:12px; }
+  thead th{ background:var(--brand); color:#fff; font-weight:700; font-size:11px; text-align:center; padding:8px 6px; }
+  thead th:first-child{ text-align:left; border-radius:8px 0 0 0; }
+  thead th:last-child{ border-radius:0 8px 0 0; }
+  tbody td{ border-bottom:1px solid var(--line); padding:8px 6px; text-align:center; font-weight:700; color:var(--fg2); }
+  tbody td:first-child{ text-align:left; font-weight:600; color:var(--ink); }
+  tbody tr.head td{ background:#eef0fb; font-weight:800; color:var(--ink); }
+  td.cell-hi{ background:#e8f9f0; color:var(--up); }
+  td.cell-lo{ background:#fff6e6; color:#b9791b; }
+  td.avg{ background:#eef0fb; color:var(--brand); font-weight:800; }
+  .ind td:first-child{ font-weight:500; color:var(--fg2); font-size:11.5px; line-height:1.4; }
+
+  .cmts{ margin-top:14px; }
+  .cmts h3{ font-size:12px; font-weight:800; color:var(--mut); text-transform:uppercase; letter-spacing:.05em; margin:0 0 8px; }
+  .cmts ul{ margin:0; padding:0; list-style:none; display:grid; gap:7px; }
+  .cmts li{ position:relative; padding:8px 12px 8px 14px; background:var(--soft); border-left:2px solid var(--peri); border-radius:0 10px 10px 0; font-size:12px; color:var(--fg2); line-height:1.5; }
+  .cmts li .who{ display:block; font-size:10px; font-weight:800; color:var(--mut); text-transform:uppercase; letter-spacing:.04em; margin-bottom:2px; }
+
+  .ft{ margin-top:26px; padding-top:12px; border-top:1px solid var(--line); font-size:11px; color:var(--mut); display:flex; justify-content:space-between; gap:10px; }
+
+  .dlbar{ position:fixed; top:16px; right:16px; z-index:50; display:flex; gap:8px; }
+  .dlbar button{ font-family:inherit; font-size:13px; font-weight:800; border:0; border-radius:999px; padding:11px 18px; cursor:pointer; box-shadow:0 12px 28px -12px rgba(74,59,255,.7); }
+  .dlbar .b-pdf{ background:var(--brand); color:#fff; }
+  .dlbar .b-close{ background:#fff; color:var(--fg2); box-shadow:0 12px 28px -16px rgba(5,2,48,.5); }
+
+  @media print{
+    body{ background:#fff; }
+    .sheet{ width:auto; min-height:auto; margin:0; padding:14mm 12mm; box-shadow:none; }
+    .sheet{ page-break-after:always; }
+    .sheet:last-child{ page-break-after:auto; }
+    .dlbar{ display:none !important; }
+    .avoid{ page-break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="dlbar">
+  <button type="button" class="b-pdf" onclick="window.print()">Скачать PDF</button>
+  <button type="button" class="b-close" onclick="window.close()">Закрыть</button>
+</div>
+
+<!-- СТРАНИЦА 1 -->
+<section class="sheet">
+  <div class="hd">
+    <h1 class="hd__t">Оценка 360°</h1>
+    <p class="hd__s">Анна Ковалёва · Product · руководитель продукта</p>
+    <div class="hd__meta">
+      <span class="chip">Шаблон: <b>Менеджерские компетенции</b></span>
+      <span class="chip">Цикл: <b>Q2’26</b></span>
+      <span class="chip">Респондентов: <b>12</b></span>
+      <span class="chip">Сформировано: <b>08.08.2026</b></span>
+    </div>
+  </div>
+
+  <h2 class="sec">Многогранник оценки</h2>
+  <div class="radar-wrap avoid">
+    <svg viewBox="-34 -14 188 154" role="img" aria-label="Многогранник оценки 360° по шести компетенциям">
+      <polygon class="gl" points="60.0,14.0 99.8,37.0 99.8,83.0 60.0,106.0 20.2,83.0 20.2,37.0"/>
+      <polygon class="gl" points="60.0,29.3 86.6,44.7 86.6,75.3 60.0,90.7 33.4,75.3 33.4,44.7"/>
+      <polygon class="gl" points="60.0,44.7 73.3,52.3 73.3,67.7 60.0,75.3 46.7,67.7 46.7,52.3"/>
+      <g class="gl">
+        <line x1="60" y1="60" x2="60.0" y2="14.0"/><line x1="60" y1="60" x2="99.8" y2="37.0"/>
+        <line x1="60" y1="60" x2="99.8" y2="83.0"/><line x1="60" y1="60" x2="60.0" y2="106.0"/>
+        <line x1="60" y1="60" x2="20.2" y2="83.0"/><line x1="60" y1="60" x2="20.2" y2="37.0"/>
+      </g>
+      <polygon class="p-mgr" points="60.0,17.4 92.9,40.4 96.3,80.5 60.0,99.3 30.1,78.9 32.5,44.6"/>
+      <polygon class="p-peer" points="60.0,20.2 90.8,42.7 94.1,79.4 60.0,97.0 32.5,77.8 34.9,46.9"/>
+      <polygon class="p-sub" points="60.0,23.0 88.7,45.0 91.9,78.3 60.0,94.7 34.9,76.7 37.3,49.2"/>
+      <polygon class="p-self" points="60.0,26.9 96.7,38.8 93.5,79.3 60.0,92.2 24.1,80.7 35.3,45.7"/>
+      <text x="60" y="9" text-anchor="middle">Коммуникация</text>
+      <text x="104" y="35" text-anchor="start">Результат</text>
+      <text x="104" y="89" text-anchor="start">Развитие</text>
+      <text x="60" y="115" text-anchor="middle">Клиентфокус</text>
+      <text x="16" y="89" text-anchor="end">Решения</text>
+      <text x="16" y="35" text-anchor="end">Лидерство</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:#4a3bff"></i>Руководитель</span>
+      <span><i style="background:#5fce87"></i>Коллеги</span>
+      <span><i style="background:#c6a4ff"></i>Подчинённые</span>
+      <span><i style="background:#e35aa4"></i>Самооценка</span>
+    </div>
+    <p class="note">Шкала многогранника: от 1 до 5. Оси соответствуют блокам и компетенциям шаблона 360°.</p>
+  </div>
+
+  <h2 class="sec">Усреднённые результаты по блокам</h2>
+  <table class="avoid">
+    <thead><tr><th>Компетенция</th><th>Самооценка</th><th>Руководитель</th><th>Коллеги (5)</th><th>Подчинённые (4)</th><th>Средняя</th></tr></thead>
+    <tbody>
+      <tr><td>Коммуникация</td><td>3,7</td><td>4,8</td><td>4,3</td><td class="cell-hi">4,1</td><td class="avg">4,3</td></tr>
+      <tr><td>Результат</td><td>4,0</td><td>4,6</td><td>4,4</td><td>4,2</td><td class="avg">4,3</td></tr>
+      <tr><td>Развитие</td><td class="cell-lo">3,6</td><td>4,2</td><td>4,0</td><td>3,9</td><td class="avg">3,9</td></tr>
+      <tr><td>Клиентфокус</td><td class="cell-lo">3,4</td><td>4,0</td><td>3,8</td><td>3,7</td><td class="avg">3,7</td></tr>
+      <tr><td>Решения</td><td class="cell-lo">3,2</td><td>4,4</td><td>4,1</td><td>3,8</td><td class="avg">3,9</td></tr>
+      <tr><td>Лидерство</td><td>3,9</td><td>4,5</td><td>4,2</td><td>4,0</td><td class="avg">4,2</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Ячейки подсвечены там, где перспектива заметно выше или ниже средней. Имена респондентов скрыты.</p>
+</section>
+
+<!-- СТРАНИЦА 2 · Коммуникация -->
+<section class="sheet">
+  <h2 class="sec">Детализация · Коммуникация</h2>
+  <table class="avoid">
+    <thead><tr><th>Индикатор поведения</th><th>Сам.</th><th>Рук.</th><th>Кол.</th><th>Под.</th><th>Средняя</th></tr></thead>
+    <tbody>
+      <tr class="head"><td>Коммуникация — общий балл</td><td>3,7</td><td>4,8</td><td>4,3</td><td>4,1</td><td class="avg">4,3</td></tr>
+      <tr class="ind"><td>Свободно контактирует с коллегами, формулирует мысли чётко и понятно.</td><td>4</td><td>5</td><td>4,4</td><td>4,2</td><td>4,4</td></tr>
+      <tr class="ind"><td>Своевременно информирует команду об изменениях в договорённостях.</td><td>4</td><td>5</td><td>4,3</td><td>4,1</td><td>4,3</td></tr>
+      <tr class="ind"><td>Гибок и готов договариваться, идёт на компромисс в сложных ситуациях.</td><td>3</td><td>4</td><td>4,2</td><td>4,0</td><td>4,0</td></tr>
+    </tbody>
+  </table>
+  <div class="cmts">
+    <h3>Комментарии · Коммуникация</h3>
+    <ul>
+      <li><span class="who">Руководитель</span>Чётко доносит сложные решения без лишних встреч — по статусам всегда понятно, где мы находимся.</li>
+      <li><span class="who">Коллега</span>Анна открыта и доброжелательна, помогает синхронизировать смежные команды. Иногда стоит чуть раньше подключать нас к обсуждению.</li>
+      <li><span class="who">Подчинённый</span>Обратную связь даёт конкретно и по делу. Комфортно задавать вопросы.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- СТРАНИЦА 3 · Результат -->
+<section class="sheet">
+  <h2 class="sec">Детализация · Ответственность за результат</h2>
+  <table class="avoid">
+    <thead><tr><th>Индикатор поведения</th><th>Сам.</th><th>Рук.</th><th>Кол.</th><th>Под.</th><th>Средняя</th></tr></thead>
+    <tbody>
+      <tr class="head"><td>Результат — общий балл</td><td>4,0</td><td>4,6</td><td>4,4</td><td>4,2</td><td class="avg">4,3</td></tr>
+      <tr class="ind"><td>Берёт на себя личную ответственность за результат, признаёт свои ошибки.</td><td>4</td><td>5</td><td>4,5</td><td>4,3</td><td>4,4</td></tr>
+      <tr class="ind"><td>Доводит задачи до результата и заранее предупреждает о рисках.</td><td>4</td><td>4</td><td>4,4</td><td>4,2</td><td>4,2</td></tr>
+      <tr class="ind"><td>Сохраняет конструктивный настрой под давлением сроков.</td><td>4</td><td>5</td><td>4,3</td><td>4,1</td><td>4,3</td></tr>
+    </tbody>
+  </table>
+  <div class="cmts">
+    <h3>Комментарии · Результат</h3>
+    <ul>
+      <li><span class="who">Руководитель</span>Когда задача попадает в зону ответственности Анны — виден высокий уровень вовлечённости и конструктивного рабочего настроя.</li>
+      <li><span class="who">Коллега</span>Личным примером вдохновляет: берёт сложные задачи и того же ждёт от команды.</li>
+      <li><span class="who">Подчинённый</span>Ошибку команды воспринимает как свою, разбирает причины без поиска виноватых.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- СТРАНИЦА 4 · Развитие -->
+<section class="sheet">
+  <h2 class="sec">Детализация · Развитие команды</h2>
+  <table class="avoid">
+    <thead><tr><th>Индикатор поведения</th><th>Сам.</th><th>Рук.</th><th>Кол.</th><th>Под.</th><th>Средняя</th></tr></thead>
+    <tbody>
+      <tr class="head"><td>Развитие — общий балл</td><td>3,6</td><td>4,2</td><td>4,0</td><td>3,9</td><td class="avg">3,9</td></tr>
+      <tr class="ind"><td>Делится экспертизой и помогает коллегам расти.</td><td>4</td><td>4</td><td>4,1</td><td>4,0</td><td>4,0</td></tr>
+      <tr class="ind"><td>Даёт развивающую обратную связь, а не только оценку факта.</td><td>3</td><td>4</td><td>3,9</td><td>3,8</td><td>3,8</td></tr>
+      <tr class="ind"><td>Поддерживает инициативу и право команды на ошибку.</td><td>4</td><td>4</td><td>4,0</td><td>3,9</td><td>3,9</td></tr>
+    </tbody>
+  </table>
+  <div class="cmts">
+    <h3>Комментарии · Развитие</h3>
+    <ul>
+      <li><span class="who">Подчинённый</span>Хочется чаще получать развивающую обратную связь, а не только по итогу спринта.</li>
+      <li><span class="who">Коллега</span>Готова делиться знаниями, но из-за загрузки на это не всегда хватает времени.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- СТРАНИЦА 5 · Клиентфокус -->
+<section class="sheet">
+  <h2 class="sec">Детализация · Клиентоориентированность</h2>
+  <table class="avoid">
+    <thead><tr><th>Индикатор поведения</th><th>Сам.</th><th>Рук.</th><th>Кол.</th><th>Под.</th><th>Средняя</th></tr></thead>
+    <tbody>
+      <tr class="head"><td>Клиентфокус — общий балл</td><td>3,4</td><td>4,0</td><td>3,8</td><td>3,7</td><td class="avg">3,7</td></tr>
+      <tr class="ind"><td>Держит в фокусе ценность для клиента при принятии продуктовых решений.</td><td>3</td><td>4</td><td>3,9</td><td>3,8</td><td>3,8</td></tr>
+      <tr class="ind"><td>Опирается на данные и обратную связь пользователей.</td><td>4</td><td>4</td><td>3,8</td><td>3,7</td><td>3,8</td></tr>
+      <tr class="ind"><td>Балансирует интересы клиента и бизнеса при спорных приоритетах.</td><td>3</td><td>4</td><td>3,7</td><td>3,6</td><td>3,6</td></tr>
+    </tbody>
+  </table>
+  <div class="cmts">
+    <h3>Комментарии · Клиентфокус</h3>
+    <ul>
+      <li><span class="who">Руководитель</span>Решения обоснованы данными. Стоит чаще проговаривать клиентский эффект команде — сейчас это остаётся «в голове».</li>
+      <li><span class="who">Коллега</span>Анна недооценивает себя в этом блоке: на практике клиентскую ценность держит устойчиво.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- СТРАНИЦА 6 · Решения -->
+<section class="sheet">
+  <h2 class="sec">Детализация · Принятие решений</h2>
+  <table class="avoid">
+    <thead><tr><th>Индикатор поведения</th><th>Сам.</th><th>Рук.</th><th>Кол.</th><th>Под.</th><th>Средняя</th></tr></thead>
+    <tbody>
+      <tr class="head"><td>Решения — общий балл</td><td>3,2</td><td>4,4</td><td>4,1</td><td>3,8</td><td class="avg">3,9</td></tr>
+      <tr class="ind"><td>Принимает решения в условиях неопределённости и берёт за них ответственность.</td><td>3</td><td>5</td><td>4,2</td><td>3,9</td><td>4,0</td></tr>
+      <tr class="ind"><td>Опирается на критерии выбора, а не только на интуицию.</td><td>3</td><td>4</td><td>4,0</td><td>3,7</td><td>3,8</td></tr>
+      <tr class="ind"><td>Своевременно эскалирует, когда решение выходит за зону полномочий.</td><td>4</td><td>4</td><td>4,1</td><td>3,8</td><td>3,9</td></tr>
+    </tbody>
+  </table>
+  <div class="cmts">
+    <h3>Комментарии · Решения</h3>
+    <ul>
+      <li><span class="who">Руководитель</span>Решения взвешенные и своевременные. Максимальный разрыв с самооценкой (3,2 против 4,1) — это скорее слепая зона, чем слабость.</li>
+      <li><span class="who">Коллега</span>Твёрдо отстаивает подход, при этом готова услышать аргументы и скорректировать курс.</li>
+      <li><span class="who">Подчинённый</span>Иногда решение принимается быстро — хочется чуть больше контекста «почему так».</li>
+    </ul>
+  </div>
+</section>
+
+<!-- СТРАНИЦА 7 · Лидерство + общие -->
+<section class="sheet">
+  <h2 class="sec">Детализация · Лидерство</h2>
+  <table class="avoid">
+    <thead><tr><th>Индикатор поведения</th><th>Сам.</th><th>Рук.</th><th>Кол.</th><th>Под.</th><th>Средняя</th></tr></thead>
+    <tbody>
+      <tr class="head"><td>Лидерство — общий балл</td><td>3,9</td><td>4,5</td><td>4,2</td><td>4,0</td><td class="avg">4,2</td></tr>
+      <tr class="ind"><td>Задаёт направление и мотивирует команду на общий результат.</td><td>4</td><td>5</td><td>4,3</td><td>4,1</td><td>4,3</td></tr>
+      <tr class="ind"><td>Делегирует с учётом сильных сторон и зон роста сотрудников.</td><td>4</td><td>4</td><td>4,1</td><td>3,9</td><td>4,0</td></tr>
+      <tr class="ind"><td>Сохраняет спокойствие и поддерживает команду в стрессовых ситуациях.</td><td>4</td><td>5</td><td>4,2</td><td>4,0</td><td>4,3</td></tr>
+    </tbody>
+  </table>
+  <div class="cmts">
+    <h3>Общие комментарии</h3>
+    <ul>
+      <li><span class="who">Руководитель</span>Сильный руководитель с высоким уровнем экспертизы. Точка роста — принятие решений в условиях неопределённости и делегирование.</li>
+      <li><span class="who">Коллега</span>Коммуникабельна, ищет пути решения, ведёт команду за собой. Иногда стоит раньше подключать смежные команды.</li>
+      <li><span class="who">Подчинённый</span>С Анной понятно, куда движется продукт. Хотелось бы больше развивающих разговоров один на один.</li>
+    </ul>
+  </div>
+
+  <div class="ft">
+    <span>Документ сформирован автоматически из раздела «Оценка 360°». Имена респондентов скрыты.</span>
+    <span>EmplyFlow · демо-отчёт</span>
+  </div>
+</section>
+
+<script>
+  // Автозапуск печати, если открыто по кнопке «Выгрузить в PDF»
+  if (new URLSearchParams(location.search).get('print') === '1') {
+    window.addEventListener('load', function () { setTimeout(function () { window.print(); }, 400); });
+  }
+</script>
+</body>
+</html>
