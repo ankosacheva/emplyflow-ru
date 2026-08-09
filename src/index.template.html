@@ -749,6 +749,7 @@ html, body {
   }
 </style>
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
+<link rel="stylesheet" href="css/emplyflow-site-footer.css">
 </helmet>
 
 <div style="background:#050230;overflow-x:hidden;">
@@ -767,11 +768,26 @@ html, body {
   .ef-nav-modules-mobile__sub{display:flex;flex-direction:column;gap:2px;padding:4px 0 8px 12px;border-bottom:1px solid rgba(217,214,255,.08);}
   .ef-nav-modules-mobile__sub a{color:rgba(255,255,255,.78);font-size:17px;font-weight:500;padding:10px 0;text-decoration:none;}
   .ef-nav-modules-mobile__sub a:hover{color:#fff;}
+  .ef-nav-logo{display:inline-flex;align-items:center;flex-shrink:0;text-decoration:none;line-height:0;}
+  .ef-nav-logo__wordmark{display:block;width:clamp(118px,14vw,140px);height:auto;filter:drop-shadow(0 2px 10px rgba(74,59,255,.22));}
   [id^="module-"]{scroll-margin-top:88px;}
   </style>
   <header style="position:sticky;top:0;z-index:60;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(5,2,48,0.6);border-bottom:1px solid rgba(217,214,255,0.08);">
     <div style="max-width:1360px;margin:0 auto;padding:16px clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;gap:20px;">
-      <a href="#top" style="font-weight:800;font-size:clamp(20px,2.4vw,26px);letter-spacing:-0.02em;color:#fff;">EmplyFlow</a>
+      <a href="#top" class="ef-nav-logo" aria-label="emplyflow — на главную">
+        <svg class="ef-nav-logo__wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 24" role="img" aria-label="emplyflow">
+          <defs>
+            <linearGradient id="efNavSparkleGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#d5fff3"></stop>
+              <stop offset="34%" stop-color="#ffb8e2"></stop>
+              <stop offset="68%" stop-color="#cec8ff"></stop>
+              <stop offset="100%" stop-color="#ffffff"></stop>
+            </linearGradient>
+          </defs>
+          <path fill="url(#efNavSparkleGrad)" d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path>
+          <text x="32" y="17" fill="#FFFFFF" font-family="Manrope, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="800" letter-spacing="-0.01em">emplyflow</text>
+        </svg>
+      </a>
 
       <sc-if value="{{ showFullNav }}" hint-placeholder-val="{{ true }}">
         <nav style="display:flex;align-items:center;gap:clamp(14px,1.8vw,30px);">
@@ -910,14 +926,10 @@ html, body {
   </section>
 <script>
 (function(){
+  // Перепривязка при ремаунте DC/бандлера: слушатели на document, делегирование.
   if(window.__efSwipeCtaBound)return;
   window.__efSwipeCtaBound=true;
   var drag=null,timer=0;
-  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var swipeReady=true;
-  function markSwipeReady(){swipeReady=true;}
-  window.__efMarkSwipeReady=markSwipeReady;
-  markSwipeReady();
 
   function rootFrom(el){return el&&el.closest?el.closest('.ef-swipe-cta'):null;}
   function parts(root){
@@ -925,7 +937,7 @@ html, body {
   }
   function metrics(p){
     var max=Math.max(0,p.track.clientWidth-p.handle.offsetWidth-18);
-    return {max:max,threshold:max*.82};
+    return {max:max,threshold:max*.55};
   }
   function setOffset(p,px){
     var m=metrics(p);
@@ -935,9 +947,7 @@ html, body {
     p.root.style.setProperty('--progress',m.max?String(offset/m.max):'0');
     return offset;
   }
-  function getOffset(p){
-    return Number(p.root.dataset.swipeOffset||0);
-  }
+  function getOffset(p){return Number(p.root.dataset.swipeOffset||0);}
   function reset(p){
     p.root.classList.remove('is-complete','is-dragging','was-dragging');
     setOffset(p,0);
@@ -945,30 +955,43 @@ html, body {
   function scrollToTarget(target,instant){
     if(!target)return false;
     if(window.__efScrollToElement)return window.__efScrollToElement(target,{instant:!!instant});
-    target.scrollIntoView({behavior:'auto',block:'start'});
+    try{
+      var top=target.getBoundingClientRect().top+window.pageYOffset-88;
+      window.scrollTo({top:Math.max(0,top),behavior:instant?'auto':'smooth'});
+    }catch(err){target.scrollIntoView({behavior:'auto',block:'start'});}
     return true;
   }
   function runAction(root){
     var action=root.getAttribute('data-action');
     if(action==='demo-form'){
-      if(window.__efOpenDemoForm)window.__efOpenDemoForm({mode:'full'});
+      var tries=0;
+      (function open(){
+        if(typeof window.__efOpenDemoForm==='function'){
+          window.__efOpenDemoForm({mode:'full'});
+          return;
+        }
+        if(tries++<60)setTimeout(open,40);
+      })();
       return;
     }
     var href=root.getAttribute('data-href')||'#platform';
     var target=document.querySelector(href);
     if(target){
       scrollToTarget(target,true);
-      var nextUrl=location.pathname+location.search+href;
-      if(history.replaceState)history.replaceState(null,'',nextUrl);
-      else location.hash=href.slice(1);
+      try{
+        var nextUrl=location.pathname+location.search+href;
+        if(history.replaceState)history.replaceState(null,'',nextUrl);
+        else location.hash=href.slice(1);
+      }catch(err){}
     }else{
       location.hash=href.slice(1);
     }
   }
   function go(root){
-    if(!swipeReady)return;
+    if(!root)return;
     var p=parts(root);
     if(!p.track||!p.handle)return;
+    if(root.classList.contains('is-complete'))return;
     var m=metrics(p);
     root.classList.add('is-complete');
     setOffset(p,m.max);
@@ -976,52 +999,66 @@ html, body {
     clearTimeout(timer);
     timer=setTimeout(function(){reset(p);},650);
   }
+  window.__efSwipeGo=go;
+  window.__efMarkSwipeReady=function(){};
 
-  document.addEventListener('pointerdown',function(e){
+  function onDown(e){
     var root=rootFrom(e.target);
     if(!root||root.classList.contains('is-complete'))return;
     var p=parts(root);
-    if(!p.track||!p.handle)return;
-    if(!p.track.contains(e.target))return;
-    e.preventDefault();
+    if(!p.track||!p.handle||!p.track.contains(e.target))return;
+    var point=e.touches&&e.touches[0]?e.touches[0]:e;
     var m=metrics(p);
     drag={
       p:p,
       id:e.pointerId,
-      startX:e.clientX,
+      startX:point.clientX,
       startOffset:getOffset(p),
       moved:0,
-      max:m.max,
-      threshold:m.threshold
+      threshold:m.threshold,
+      armed:true
     };
     p.root.classList.add('is-dragging');
-    if(p.handle.setPointerCapture)p.handle.setPointerCapture(e.pointerId);
-  },{passive:false});
-
-  document.addEventListener('pointermove',function(e){
-    if(!drag||e.pointerId!==drag.id)return;
-    e.preventDefault();
-    var dx=e.clientX-drag.startX;
-    drag.moved=Math.max(drag.moved,Math.abs(dx));
-    setOffset(drag.p,drag.startOffset+dx);
-  },{passive:false});
-
-  function endDrag(e){
-    if(!drag||e.pointerId!==drag.id)return;
-    var p=drag.p;
-    p.root.classList.remove('is-dragging');
-    if(drag.moved>8)p.root.classList.add('was-dragging');
-    if(getOffset(p)>=drag.threshold)go(p.root);
-    else setOffset(p,0);
-    try{if(p.handle.releasePointerCapture)p.handle.releasePointerCapture(e.pointerId);}catch(_){}
-    drag=null;
   }
-  document.addEventListener('pointerup',endDrag);
-  document.addEventListener('pointercancel',endDrag);
+  function onMove(e){
+    if(!drag||!drag.armed)return;
+    if(e.pointerId!=null&&drag.id!=null&&e.pointerId!==drag.id)return;
+    var point=e.touches&&e.touches[0]?e.touches[0]:e;
+    var dx=point.clientX-drag.startX;
+    drag.moved=Math.max(drag.moved,Math.abs(dx));
+    if(drag.moved>3&&e.cancelable)e.preventDefault();
+    setOffset(drag.p,drag.startOffset+dx);
+  }
+  function onUp(e){
+    if(!drag||!drag.armed)return;
+    if(e.pointerId!=null&&drag.id!=null&&e.pointerId!==drag.id)return;
+    var p=drag.p;
+    var root=p.root;
+    var moved=drag.moved;
+    var passed=getOffset(p)>=drag.threshold;
+    root.classList.remove('is-dragging');
+    if(moved>8)root.classList.add('was-dragging');
+    drag.armed=false;
+    drag=null;
+    if(passed||moved<=8)go(root);
+    else setOffset(p,0);
+  }
+
+  document.addEventListener('pointerdown',onDown,{passive:true});
+  document.addEventListener('pointermove',onMove,{passive:false});
+  document.addEventListener('pointerup',onUp,{passive:true});
+  document.addEventListener('pointercancel',onUp,{passive:true});
+  document.addEventListener('touchstart',onDown,{passive:true});
+  document.addEventListener('touchmove',onMove,{passive:false});
+  document.addEventListener('touchend',onUp,{passive:true});
+  document.addEventListener('mousedown',onDown);
+  document.addEventListener('mousemove',onMove);
+  document.addEventListener('mouseup',onUp);
 
   document.addEventListener('click',function(e){
     var root=rootFrom(e.target);
     if(!root||!e.target.closest('.ef-swipe-cta__track'))return;
+    if(root.classList.contains('is-complete'))return;
     if(root.classList.contains('was-dragging')){
       root.classList.remove('was-dragging');
       return;
@@ -2519,8 +2556,8 @@ html, body {
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer id="contacts" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px) 36px;background:linear-gradient(180deg,#050230 0%,#0a0540 100%);">
+  <!-- ===================== CONTACTS CTA ===================== -->
+  <section id="contacts" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px) clamp(40px,6vw,56px);background:linear-gradient(180deg,#050230 0%,#0a0540 100%);">
     <div style="max-width:1360px;margin:0 auto;">
       <h2 style="font-weight:800;font-size:clamp(34px,6.2vw,84px);line-height:1.04;letter-spacing:-0.03em;color:#fff;max-width:1000px;margin:0 0 clamp(28px,4vw,40px);">Сделайте процессы прозрачными и управляемыми</h2>
       <div class="ef-swipe-cta ef-swipe-cta--wide" data-action="demo-form" role="group" aria-label="Свайпните вправо или нажмите, чтобы оставить заявку на демодоступ">
@@ -2533,18 +2570,20 @@ html, body {
           </span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;margin-top:clamp(56px,9vw,120px);align-items:flex-end;">
-        <a href="mailto:headoffice@emplyflow.ru" style="font-size:clamp(19px,2.4vw,28px);color:#fff;letter-spacing:-0.01em;">headoffice@emplyflow.ru</a>
-        <div style="font-size:12.5px;color:rgba(255,255,255,0.55);line-height:1.6;text-align:right;">Общество с ограниченной ответственностью «ЭМПЛИФЛОУ»<br>ОГРН: 1237700492479<br>ИНН: 7743422816<br>КПП: 773301001</div>
-      </div>
-
-      <div style="font-weight:800;font-size:clamp(56px,13vw,150px);line-height:0.9;letter-spacing:-0.04em;color:#fff;text-align:right;margin-top:clamp(24px,3vw,40px);">EmplyFlow</div>
-
-      <div style="margin-top:36px;padding-top:22px;border-top:1px solid rgba(217,214,255,0.1);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,0.55);">
-        <a href="page92826026.html" style="color:rgba(255,255,255,0.55);">Политика конфиденциальности</a>
-        <span>© 2026. Все права защищены</span>
-      </div>
+  <footer class="ef-site-foot">
+    <div class="ef-site-foot__inner">
+      <span class="ef-site-foot__brand">EmplyFlow: TMS-платформа</span>
+      <span class="ef-site-foot__sep" aria-hidden="true">·</span>
+      <a class="ef-site-foot__link" href="mailto:headoffice@emplyflow.ru">headoffice@emplyflow.ru</a>
+      <span class="ef-site-foot__sep" aria-hidden="true">·</span>
+      <span class="ef-site-foot__item">ООО ЭМПЛИФЛОУ</span>
+      <span class="ef-site-foot__sep" aria-hidden="true">·</span>
+      <span class="ef-site-foot__item">ИНН 7743422816</span>
+      <span class="ef-site-foot__sep" aria-hidden="true">·</span>
+      <a class="ef-site-foot__link" href="/privacy">Политика конфиденциальности</a>
     </div>
   </footer>
 
@@ -2736,8 +2775,9 @@ html, body {
       var t=e.target.closest('[data-ef-demo-open]');
       if(!t)return;
       e.preventDefault();
+      e.stopPropagation();
       window.__efOpenDemoForm({mode:'full',trigger:t});
-    });
+    },true);
 
     // Первый визит: только corner, без блокировки страницы.
     function maybeShowFirstVisit(){
@@ -2947,16 +2987,16 @@ class Component extends DCLogic {
     ];
 
     const casesRaw = [
-      { title: 'Как производитель детского питания перестроил Performance Review', body: 'Компания с 7 000+ сотрудников за один цикл ушла от Excel-марафона к единой системе результативности на базе OKR, 360° и AI', href: 'page101071766.html', bg: '#ffb8e2', t: 'light', image: 'media/case-performance-review.webp' },
       { title: 'Как одно AI-интервью выросло в систему оценки и развития сотрудников', body: 'Кейс-интервью сократилось с 3 часов до 15–20 минут, а один AI-ассистент вырос в три сценария: оценка руководителей, диагностика обучения и тренировка переговоров', href: 'page101340001.html', bg: '#d5fff3', t: 'light', image: 'media/case-competency-assessment.webp' },
+      { title: 'Как производитель детского питания перестроил Performance Review', body: 'Компания с 7 000+ сотрудников за один цикл ушла от Excel-марафона к единой системе результативности на базе OKR, 360° и AI', href: 'page101071766.html', bg: '#ffb8e2', t: 'light', image: 'media/case-performance-review.webp' },
       { title: 'Как найти специалиста с узкой экспертизой внутри большой компании', body: 'Инжиниринговая компания перевела 100+ должностей в skill-based профили и сократила срок комплектации проекта с семи недель до пяти дней', href: 'page96490096.html', bg: '#4a3bff', t: 'dark', image: 'media/case-career-tracks.webp' },
     ];
     const cases = casesRaw.map((c) => ({ ...c, color: tone(c.t), bodyColor: bodyTone(c.t), caseClass: `ef-case ef-case--${c.t}` }));
 
     const news = [
       { tag: 'Библиотека · 2025', title: 'Запустили библиотеку компетенций и кейсов EmplyFlow Hub', body: 'Открытая библиотека для HR: компетенции, кейсы оценки и материалы для построения системы развития сотрудников', href: 'https://emplyflow.ru/hub/' },
-      { tag: 'Кейс · 2025', title: 'Как одно AI-интервью выросло в систему оценки и развития сотрудников', body: 'Три сценария EmplyFlow в крупной телеком-компании: оценка руководителей, диагностика обучения и тренировка переговоров', href: 'page101340001.html' },
       { tag: 'Кейс · 2025', title: 'Как производитель детского питания перестроил Performance Review', body: 'Компания с 7 000+ сотрудников за один цикл ушла от Excel-марафона к единой системе результативности', href: 'page101071766.html' },
+      { tag: 'Кейс · 2025', title: 'Как одно AI-интервью выросло в систему оценки и развития сотрудников', body: 'Три сценария EmplyFlow в крупной телеком-компании: оценка руководителей, диагностика обучения и тренировка переговоров', href: 'page101340001.html' },
     ];
 
     return {

@@ -8,6 +8,12 @@ html.ef-booting body { overflow:hidden; }
 #__bundler_thumbnail {
   position:fixed; inset:0; z-index:9999;
   background:#050230;
+  pointer-events:none;
+  visibility:hidden;
+}
+#__bundler_thumbnail.ef-thumb-active {
+  pointer-events:auto;
+  visibility:visible;
 }
 /* Persistent overlay during head/body swap (also styled inline in runtime JS). */
 #ef-enter-veil {
@@ -15,5 +21,5 @@ html.ef-booting body { overflow:hidden; }
   inset:0;
   z-index:2147483647;
   background:#050230;
-  pointer-events:auto;
+  pointer-events:none;
 }

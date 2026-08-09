@@ -1189,6 +1189,54 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   text-decoration-color: rgba(255, 184, 226, 0.6);
 }
 
+.result__num--growth {
+  align-items: center;
+  min-height: clamp(84px, 16vw, 124px);
+  font-size: inherit;
+  color: inherit;
+}
+.growth-stack {
+  display: block;
+  width: clamp(148px, 34vw, 228px);
+  filter: drop-shadow(0 20px 44px rgba(74, 59, 255, 0.34));
+}
+.growth-stack svg { width: 100%; height: auto; overflow: visible; }
+.growth-stack__step {
+  transform-origin: 50% 100%;
+  opacity: 0;
+  transform: translateY(18px) scale(0.92);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.growth-stack__sparkle {
+  transform-origin: 50% 50%;
+  opacity: 0;
+  transform: scale(0.7) rotate(-12deg);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.result.is-in .growth-stack__step--1 { opacity: 1; transform: none; transition-delay: 0.05s; }
+.result.is-in .growth-stack__step--2 { opacity: 1; transform: none; transition-delay: 0.16s; }
+.result.is-in .growth-stack__step--3 { opacity: 1; transform: none; transition-delay: 0.27s; }
+.result.is-in .growth-stack__step--4 { opacity: 1; transform: none; transition-delay: 0.38s; }
+.result.is-in .growth-stack__sparkle {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.52s;
+  animation: growthSparkle 5.5s ease-in-out infinite;
+  animation-delay: 0.9s;
+}
+.result.is-in .growth-stack {
+  animation: growthFloat 6.5s ease-in-out infinite;
+  animation-delay: 0.7s;
+}
+@keyframes growthFloat {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-7px) rotate(1.5deg); }
+}
+@keyframes growthSparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.06) rotate(8deg); }
+}
+
 .result__copy { display: grid; gap: 10px; }
 .result__copy h3 { margin: 0; font-size: clamp(17px, 1.9vw, 22px); font-weight: 800; letter-spacing: -0.02em; }
 .result__copy p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--fg2); max-width: 46ch; }
@@ -1215,7 +1263,17 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 .timeline-compress { display: grid; gap: 10px; }
 .timeline-compress div { display: flex; align-items: center; gap: 12px; }
 .timeline-compress span { width: 52px; flex: none; font-size: 12px; font-weight: 800; color: var(--fg3); }
-.timeline-compress i { height: 12px; border-radius: 6px; display: block; transition: width 1.1s var(--ease); }
+.timeline-compress i { flex: 1; min-width: 0; height: 12px; border-radius: 6px; display: block; transition: width 1.1s var(--ease); }
+.timeline-compress__axis {
+  flex: none;
+  width: 62px;
+  font-size: 11px;
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: -0.01em;
+  color: var(--fg3);
+  text-align: right;
+}
 .timeline-compress .was-bar { width: 100%; background: rgba(217, 214, 255, 0.22); }
 .timeline-compress .now-bar { width: 0; background: linear-gradient(90deg, var(--indigo-2), var(--mint)); }
 .result.is-in .timeline-compress .now-bar { width: 22%; }
@@ -1238,6 +1296,9 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 .talent__nums span { font-size: 12.5px; color: var(--fg3); }
 
 /* =========================== QUOTE ============================= */
+
+/* Временно: раздел цитаты клиента до согласования отзыва (NDA) */
+#quote.chapter--quote-hidden { display: none !important; }
 
 .quote { text-align: center; display: grid; gap: 26px; justify-items: center; }
 .quote__mark { font-size: clamp(46px, 7vw, 90px); line-height: 0.6; color: var(--indigo-2); font-weight: 800; }
@@ -1444,6 +1505,7 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   .result__rail i { width: var(--to, 0%) !important; }
   .timeline-compress .now-bar { width: 22% !important; }
   .talent__grid span { opacity: 1 !important; transform: none !important; }
+  .growth-stack__step, .growth-stack__sparkle { opacity: 1 !important; transform: none !important; }
   .sequence__step { opacity: 1 !important; }
   .sequence__stage { position: static; height: auto; }
   .scene {
