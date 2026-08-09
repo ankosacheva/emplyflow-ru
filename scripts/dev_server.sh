@@ -7,8 +7,6 @@ PORT="${PORT:-8080}"
 die() { echo "ERROR: $*" >&2; exit 1; }
 
 test -f index.html || die "нет index.html — запустите из корня репозитория"
-test -f media/preloader.mp4 || die "нет media/preloader.mp4 — выполните: git pull origin cursor/homepage-data-to-decision-f43b"
-
 if command -v python3 >/dev/null 2>&1; then
   python3 scripts/bundle_index.py build >/dev/null
 else
