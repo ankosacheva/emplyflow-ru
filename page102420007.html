@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<base href="/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050230">
@@ -27,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803h">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260809x">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -81,36 +82,292 @@
 <main id="feed">
 
   <!-- ============ ОБЛОЖКА ============ -->
-  <section class="mreel mcover" id="cover" data-reel data-accent="violet" aria-labelledby="cover-title">
+  <section class="mreel mcover" id="cover" data-reel data-accent="mint" aria-labelledby="cover-title">
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
           <p class="mcover__kicker">Performance Review</p>
-          <h1 class="mcover__title" id="cover-title">Пять шагов <em>вместо аврала</em></h1>
-          <p class="mcover__q">Обычно ревью — это две недели сбора таблиц, напоминаний в чатах и спорных оценок «по последнему впечатлению». В EmplyFlow это один цикл с датами: система сама показывает нужную форму нужному человеку, а к моменту решения о повышении все данные уже собраны.</p>
-          <div class="mcover__meta">
-            <span class="mtag">Один цикл вместо пяти таблиц</span>
-            <span class="mtag">Фазы по датам</span>
-            <span class="mtag">Решение на фактах, а не на памяти</span>
+          <h1 class="mcover__title" id="cover-title">Провести <em>Performance Review</em> — <em>просто!</em></h1>
+          <p class="mcover__q">Теперь весь процесс структурирован на платформе: вместо сбора таблиц сотрудники заполняют формы, а вместо напоминаний в чатах запускается централизованная кампания с прозрачными датами каждого этапа.</p>
+          <div class="mcover__meta mcover__meta--bento">
+            <span class="mcover__tile mcover__tile--pr-phases">
+              <span class="mcover__tile__lead">Кампания по фазам</span>
+              <span class="mcover__tile__note">6 этапов с датами и шаблонами анкет</span>
+            </span>
+            <span class="mcover__tile mcover__tile--pr-scope">
+              <span class="mcover__tile__lead">Запуск на команду</span>
+              <span class="mcover__tile__note">независимые даты и процессы</span>
+            </span>
+            <span class="mcover__tile mcover__tile--pr-data">
+              <span class="mcover__tile__lead">Централизованный сбор данных</span>
+              <span class="mcover__tile__note">вместо таблиц и напоминаний в чатах</span>
+            </span>
           </div>
         </div>
-        <div class="mreel__mock" data-reveal>
-          <div class="mwin">
+        <div class="mreel__mock mreel__mock--prstack" data-reveal>
+          <div class="prdeck" data-pr-deck data-active="team">
+            <div class="prdeck__stack">
+              <button type="button" class="prdeck__peek prdeck__peek--left" data-pr-flip="phases" aria-label="Показать этапы цикла">
+                <span>Этапы</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button type="button" class="prdeck__peek prdeck__peek--right" data-pr-flip="team" aria-label="Показать результат команды">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                <span>Команда</span>
+              </button>
+              <div class="prdeck__sheet prdeck__sheet--phases" data-pr-sheet="phases">
+                <div class="mwin mwin--prphases">
+                  <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Этапы цикла · H1 2026</span></div>
+                  <div class="mwin__body" data-pr-phases>
+                    <p class="mprstack__k">Этапы цикла</p>
+                  </div>
+                </div>
+              </div>
+              <div class="prdeck__sheet prdeck__sheet--team is-front" data-pr-sheet="team">
+          <div class="mwin mwin--prhero">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Цикл «1 полугодие 2026» · фаза калибровки</span></div>
-            <div class="mwin__body">
-              <p class="msub">Компоненты результата</p>
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;margin-bottom:12px;">
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Цели и OKR</span><span style="text-align:right;color:#141033;">92%</span><span style="text-align:right;font-size:10.5px;color:#8681ab;">вес 50</span></div>
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Оценка 360°</span><span style="text-align:right;color:#141033;">4,3 из 5</span><span style="text-align:right;font-size:10.5px;color:#8681ab;">вес 30</span></div>
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>KPI</span><span style="text-align:right;color:#141033;">78%</span><span style="text-align:right;font-size:10.5px;color:#8681ab;">вес 20</span></div>
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 62px 44px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#eafaf0;"><span>Self Review</span><span style="text-align:right;color:#2f9d5b;">заполнен</span><span style="text-align:right;font-size:10.5px;color:#5c7a67;">контекст</span></div>
+            <div class="mwin__body" data-pr-hero>
+              <p class="msub">Загрузите страницу с JavaScript, чтобы посмотреть результат команды.</p>
+              <script type="application/json" data-pr-hero-json>
+              {
+                "unit": "EmplyFlow · Продуктовое направление",
+                "team": "Команда Product Analytics",
+                "cycle": "H1 2026 · калибровка",
+                "phases": [
+                  { "name": "Цели и KPI", "dates": "янв — март", "status": "done" },
+                  { "name": "Self Review", "dates": "1—10 апр", "status": "done" },
+                  { "name": "Оценка 360°", "dates": "5—15 апр", "status": "done" },
+                  { "name": "Анкета PR", "dates": "16—25 апр", "status": "done" },
+                  { "name": "Калибровка", "dates": "26—30 апр", "status": "active" },
+                  { "name": "Публикация", "dates": "1 мая", "status": "pending" }
+                ],
+                "grades": [
+                  { "code": "A", "label": "Превосходит", "count": 2, "color": "#4a3bff" },
+                  { "code": "B", "label": "Соответствует", "count": 2, "color": "#5fce87" },
+                  { "code": "C", "label": "Частично", "count": 1, "color": "#f0b429" },
+                  { "code": "D", "label": "Ниже", "count": 1, "color": "#e35aa4" },
+                  { "code": "E", "label": "Не соответствует", "count": 0, "color": "#c4c0dc" }
+                ],
+                "manager": {
+                  "name": "Елена Морозова",
+                  "role": "руководитель направления",
+                  "avatar": "images/avatar-goal-approver.jpg",
+                  "quote": "Команда закрыла 94% KR по продуктовой аналитике. Мария и Анна ведут инициативы без эскалаций, Дмитрий стабилизировал дашборды для топ-менеджмента. Рекомендую +1 грейд двум сотрудникам после калибровки."
+                },
+                "team360": {
+                  "competencies": [
+                    { "label": "Коммуникация", "team": 4.2, "bench": 4.0 },
+                    { "label": "Результат", "team": 4.3, "bench": 4.1 },
+                    { "label": "Развитие", "team": 3.8, "bench": 4.0 },
+                    { "label": "Клиент", "team": 3.9, "bench": 3.8 },
+                    { "label": "Решения", "team": 3.7, "bench": 3.9 },
+                    { "label": "Лидерство", "team": 4.0, "bench": 3.8 }
+                  ],
+                  "ai": [
+                    { "tag": "Сильные стороны", "type": "up", "text": "Команда уверенно держит «Результат» и «Коммуникацию»: средний балл 4.2+, разброс минимальный. Мария и Анна тянут команду вверх по внешней оценке." },
+                    { "tag": "Зона роста", "type": "gap", "text": "«Решения» и «Развитие» ниже бенчмарка компании. У Игоря и Алексея разрыв самооценки и внешней оценки — до 0.5 п." },
+                    { "tag": "Рекомендация", "type": "ipr", "text": "Групповой воркшоп по принятию решений на данных + парное наставничество Дмитрий → Игорь. Повторная мини-360° по блоку «Решения» через 8 недель." }
+                  ]
+                },
+                "teamSelf": {
+                  "filled": 6,
+                  "total": 6,
+                  "ai": [
+                    { "tag": "Команда отмечает", "type": "ipr", "text": "В 5 из 6 анкет — вклад в витрины и аналитику: C-level панель, словарь метрик, стабильность ETL и библиотека инсайтов. Ольга и Анна системно закрывают цикл «гипотеза → решение»." },
+                    { "tag": "Нравится", "type": "up", "text": "Автоматизация отчётов и меньше ручных правок; прозрачная фиксация выводов экспериментов; честная коммуникация рисков; быстрое внедрение рекомендаций в продукт — у Анны 9 из плана 6." },
+                    { "tag": "Хотят улучшить", "type": "gap", "text": "Data storytelling и масштабирование практик; делегирование и приоритизация; оценка объёма и тестовое покрытие; презентации инсайтов для стейкхолдеров." },
+                    { "tag": "Не устраивает", "type": "down", "text": "Узкое место в инцидентах и дежурствах; незакрытая автоматизация третьего отчёта; сдвиги миграции без раннего эскалирования — Игорь и Алексей явно запрашивают помощь с приоритизацией." }
+                  ]
+                },
+                "components": [
+                  { "id": "okr", "label": "Цели и OKR", "weight": 50 },
+                  { "id": "360", "label": "Оценка 360°", "weight": 30 },
+                  { "id": "kpi", "label": "KPI", "weight": 20 },
+                  { "id": "self", "label": "Self Review", "weight": 0 }
+                ],
+                "employees": [
+                  {
+                    "id": "maria",
+                    "name": "Мария К.",
+                    "role": "Product Manager",
+                    "avatar": "images/avatar-route-maria.jpg",
+                    "grade": "A",
+                    "score": 87,
+                    "gradeLabel": "Превышает ожидания",
+                    "promo": "грейд +1",
+                    "okr": { "value": "92%", "items": [
+                      { "title": "Запуск витрины метрик для C-level", "progress": 100, "note": "в срок, NPS панели +12 п.п." },
+                      { "title": "Сократить time-to-insight до 2 дней", "progress": 88, "note": "автоматизация отчётов" },
+                      { "title": "Внедрить единый словарь метрик", "progress": 90, "note": "согласовано с 3 командами" }
+                    ]},
+                    "360": { "value": "4,3 из 5", "items": [
+                      { "group": "Руководитель", "score": "4,5" },
+                      { "group": "Коллеги", "score": "4,2" },
+                      { "group": "Подчинённые", "score": "4,1" },
+                      { "group": "Самооценка", "score": "4,4" }
+                    ]},
+                    "kpi": { "value": "78%", "items": [
+                      { "metric": "Adoption дашбордов", "fact": "82%", "plan": "75%" },
+                      { "metric": "SLA обновления данных", "fact": "96%", "plan": "95%" },
+                      { "metric": "Ошибки в отчётах", "fact": "3", "plan": "≤ 5" }
+                    ]},
+                    "self": { "value": "заполнен", "text": "Сфокусировалась на едином словаре метрик и запуске C-level витрины.", "answers": [
+                      { "q": "Главные достижения", "a": "Запустила C-level витрину метрик и согласовала единый словарь с тремя командами." },
+                      { "q": "Что получилось лучше всего", "a": "Сократила time-to-insight: отчёты обновляются автоматически, ручных правок стало меньше." },
+                      { "q": "Зоны развития", "a": "Хочу усилить data storytelling и масштабировать практику в соседние команды." }
+                    ]}
+                  },
+                  {
+                    "id": "dmitry",
+                    "name": "Дмитрий Р.",
+                    "role": "Lead Analyst",
+                    "avatar": "images/avatar-route-dmitry.jpg",
+                    "grade": "B",
+                    "score": 79,
+                    "gradeLabel": "Соответствует ожиданиям",
+                    "promo": "в грейде",
+                    "okr": { "value": "84%", "items": [
+                      { "title": "Стабилизировать пайплайн витрин", "progress": 92, "note": "инциденты −40%" },
+                      { "title": "Обучить 2 аналитиков SQL-стандартам", "progress": 75, "note": "чек-листы в Confluence" }
+                    ]},
+                    "360": { "value": "4,0 из 5", "items": [
+                      { "group": "Руководитель", "score": "4,1" },
+                      { "group": "Коллеги", "score": "3,9" },
+                      { "group": "Подчинённые", "score": "4,0" },
+                      { "group": "Самооценка", "score": "4,2" }
+                    ]},
+                    "kpi": { "value": "81%", "items": [
+                      { "metric": "Uptime ETL", "fact": "99,1%", "plan": "99%" },
+                      { "metric": "Время реакции на инцидент", "fact": "38 мин", "plan": "≤ 45 мин" }
+                    ]},
+                    "self": { "value": "заполнен", "text": "Укрепил надёжность пайплайнов и снизил количество ручных правок.", "answers": [
+                      { "q": "Главные достижения", "a": "Стабилизировал ETL: инциденты сократились на 40%, uptime выше плана." },
+                      { "q": "Что получилось лучше всего", "a": "Передал часть мониторинга дежурству, оформил SQL-стандарты для команды." },
+                      { "q": "Зоны развития", "a": "Делегирование и приоритизация — хочу меньше быть узким местом в инцидентах." }
+                    ]}
+                  },
+                  {
+                    "id": "olga",
+                    "name": "Ольга В.",
+                    "role": "Product Analyst",
+                    "avatar": "images/avatar-route-olga.jpg",
+                    "grade": "B",
+                    "score": 74,
+                    "gradeLabel": "Соответствует ожиданиям",
+                    "promo": "в грейде",
+                    "okr": { "value": "76%", "items": [
+                      { "title": "A/B-рамка для онбординга", "progress": 80, "note": "+6% конверсии" },
+                      { "title": "Когортный отчёт retention", "progress": 72, "note": "MVP в проде" }
+                    ]},
+                    "360": { "value": "3,9 из 5", "items": [
+                      { "group": "Руководитель", "score": "4,0" },
+                      { "group": "Коллеги", "score": "3,8" },
+                      { "group": "Самооценка", "score": "3,9" }
+                    ]},
+                    "kpi": { "value": "70%", "items": [
+                      { "metric": "Эксперименты в квартал", "fact": "5", "plan": "6" },
+                      { "metric": "Доля гипотез с выводом", "fact": "88%", "plan": "85%" }
+                    ]},
+                    "self": { "value": "заполнен", "text": "Провела серию A/B по онбордингу и оформила методичку для продуктовых команд.", "answers": [
+                      { "q": "Главные достижения", "a": "A/B-рамка для онбординга дала +6% конверсии, retention-отчёт вышел в прод." },
+                      { "q": "Что получилось лучше всего", "a": "Системно фиксирую выводы экспериментов — 88% гипотез закрыты с решением." },
+                      { "q": "Зоны развития", "a": "Презентация инсайтов для стейкхолдеров — прошу больше ревью от Марии." }
+                    ]}
+                  },
+                  {
+                    "id": "igor",
+                    "name": "Игорь С.",
+                    "role": "Junior Analyst",
+                    "avatar": "images/avatar-recog-igor.jpg",
+                    "grade": "C",
+                    "score": 68,
+                    "gradeLabel": "Частично соответствует",
+                    "promo": "план развития",
+                    "okr": { "value": "65%", "items": [
+                      { "title": "Автоматизировать 3 еженедельных отчёта", "progress": 60, "note": "2 из 3 готовы" },
+                      { "title": "Пройти курс по dbt", "progress": 100, "note": "сертификат получен" }
+                    ]},
+                    "360": { "value": "3,5 из 5", "items": [
+                      { "group": "Руководитель", "score": "3,6" },
+                      { "group": "Коллеги", "score": "3,4" },
+                      { "group": "Самооценка", "score": "3,7" }
+                    ]},
+                    "kpi": { "value": "62%", "items": [
+                      { "metric": "Задачи в спринте", "fact": "11", "plan": "14" },
+                      { "metric": "Ошибки в выгрузках", "fact": "7", "plan": "≤ 4" }
+                    ]},
+                    "self": { "value": "заполнен", "text": "Закрыл обучение по dbt, но не успел довести автоматизацию всех отчётов.", "answers": [
+                      { "q": "Главные достижения", "a": "Получил сертификат dbt, автоматизировал 2 из 3 еженедельных отчётов." },
+                      { "q": "Что получилось лучше всего", "a": "Быстро освоил стандарты команды и снизил число ошибок в выгрузках." },
+                      { "q": "Зоны развития", "a": "Нужна помощь с приоритизацией — не успел закрыть третий отчёт в срок." }
+                    ]}
+                  },
+                  {
+                    "id": "alexey",
+                    "name": "Алексей Н.",
+                    "role": "Data Engineer",
+                    "avatar": "images/avatar-route-alexey.jpg",
+                    "grade": "D",
+                    "score": 61,
+                    "gradeLabel": "Ниже ожиданий",
+                    "promo": "PIP",
+                    "okr": { "value": "58%", "items": [
+                      { "title": "Миграция витрин на новый кластер", "progress": 55, "note": "сдвиг на 3 недели" },
+                      { "title": "Документация пайплайнов", "progress": 62, "note": "частично" }
+                    ]},
+                    "360": { "value": "3,2 из 5", "items": [
+                      { "group": "Руководитель", "score": "3,1" },
+                      { "group": "Коллеги", "score": "3,2" },
+                      { "group": "Самооценка", "score": "3,4" }
+                    ]},
+                    "kpi": { "value": "54%", "items": [
+                      { "metric": "Сроки миграции", "fact": "+18 дн.", "plan": "0" },
+                      { "metric": "Покрытие тестами", "fact": "41%", "plan": "70%" }
+                    ]},
+                    "self": { "value": "заполнен", "text": "Недооценил объём миграции. Согласен с планом улучшений.", "answers": [
+                      { "q": "Главные достижения", "a": "Частично перенёс витрины, начал документировать пайплайны." },
+                      { "q": "Что получилось лучше всего", "a": "Честно зафиксировал риски и не скрывал сдвиги сроков." },
+                      { "q": "Зоны развития", "a": "Оценка объёма и тестовое покрытие — работаю по PIP с еженедельными чек-поинтами." }
+                    ]}
+                  },
+                  {
+                    "id": "anna",
+                    "name": "Анна Л.",
+                    "role": "UX Researcher",
+                    "avatar": "images/avatar-successor-anna.jpg",
+                    "grade": "A",
+                    "score": 91,
+                    "gradeLabel": "Превышает ожидания",
+                    "promo": "грейд +1",
+                    "okr": { "value": "95%", "items": [
+                      { "title": "Исследование болей B2B-сегмента", "progress": 100, "note": "12 глубинных интервью" },
+                      { "title": "Библиотека инсайтов в Notion", "progress": 92, "note": "используют 4 команды" }
+                    ]},
+                    "360": { "value": "4,6 из 5", "items": [
+                      { "group": "Руководитель", "score": "4,7" },
+                      { "group": "Коллеги", "score": "4,5" },
+                      { "group": "Самооценка", "score": "4,6" }
+                    ]},
+                    "kpi": { "value": "86%", "items": [
+                      { "metric": "Исследования в квартал", "fact": "4", "plan": "3" },
+                      { "metric": "Внедрённые рекомендации", "fact": "9", "plan": "6" }
+                    ]},
+                    "self": { "value": "заполнен", "text": "Систематизировала инсайты и сократила цикл от гипотезы до решения.", "answers": [
+                      { "q": "Главные достижения", "a": "4 исследования за квартал, библиотека инсайтов — пользуются 4 команды." },
+                      { "q": "Что получилось лучше всего", "a": "9 рекомендаций внедрены в продукт, цикл гипотеза → решение короче на 2 недели." },
+                      { "q": "Зоны развития", "a": "Готова вести кросс-функциональную инициативу как lead researcher." }
+                    ]}
+                  }
+                ]
+              }
+              </script>
+            </div>
+          </div>
               </div>
-              <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:13px;background:#f1eefe;border:1px solid #e0daff;">
-                <span style="font-size:28px;font-weight:800;letter-spacing:-.04em;color:#4a3bff;">87</span>
-                <span style="flex:1;min-width:0;font-size:11.5px;line-height:1.4;font-weight:700;color:#8681ab;"><b style="display:block;font-size:13.5px;color:#141033;">Превышает ожидания</b>взвешенный результат по циклу</span>
-                <span style="padding:5px 11px;border-radius:999px;background:#fff;color:#4a3bff;font-size:12px;font-weight:800;">грейд +1</span>
-              </div>
-              <div class="mgapchip"><span>Решение подкреплено четырьмя источниками данных</span><b style="font-size:12px;">без «мне кажется»</b></div>
+            </div>
+            <div class="prdeck__nav" role="tablist" aria-label="Экраны мокапа">
+              <button type="button" class="prdeck__tab is-on" data-pr-flip="team" role="tab" aria-selected="true">Результат команды</button>
+              <button type="button" class="prdeck__tab" data-pr-flip="phases" role="tab" aria-selected="false">Этапы цикла</button>
             </div>
           </div>
         </div>
@@ -125,32 +382,57 @@
       <div class="mreel__grid">
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
-            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Управленческая панель · цикл планирования</span></div>
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Управленческая панель · циклы планирования</span></div>
             <div class="mwin__body">
-              <div style="padding:11px 13px;border-radius:12px;background:#f1eefe;margin-bottom:12px;">
-                <div style="font-size:13.5px;font-weight:800;color:#141033;">1 полугодие 2026</div>
-                <div style="font-size:11.5px;font-weight:700;color:#4a3bff;margin-top:2px;">Применён к 4 подразделениям · 168 сотрудников</div>
+              <div class="mcycles__top">
+                <p class="msub">Циклы компании</p>
+                <span class="mcycles__count">2 идут параллельно</span>
               </div>
-              <p class="msub">К циклу привязано</p>
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;">
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Цели и Key Results</span><b style="color:#4a3bff;">312</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>KPI</span><b style="color:#4a3bff;">24 метрики</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Шаблон Self Review</span><b style="color:#4a3bff;">2 варианта</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Шаблон оценки 360°</span><b style="color:#4a3bff;">2 варианта</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Анкета руководителя</span><b style="color:#4a3bff;">3 варианта</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Веса компонентов</span><b style="color:#4a3bff;">50 / 30 / 20</b></div>
+              <div class="mcycles">
+                <article class="mcycles__card">
+                  <header class="mcycles__head">
+                    <div class="mcycles__id">
+                      <p class="mcycles__name">1 полугодие 2026 · продукт</p>
+                      <p class="mcycles__scope">Продукт и аналитика · 168 сотрудников · веса 50 / 30 / 20</p>
+                    </div>
+                    <span class="mcycles__badge mcycles__badge--live">идёт</span>
+                  </header>
+                  <div class="mcycles__phases">
+                    <span class="mcycles__ph is-done">Цели и KPI<b>янв — март</b></span>
+                    <span class="mcycles__ph is-done">Self Review<b>1—10 апр</b></span>
+                    <span class="mcycles__ph is-done">Оценка 360°<b>5—15 апр</b></span>
+                    <span class="mcycles__ph is-done">Анкета PR<b>16—25 апр</b></span>
+                    <span class="mcycles__ph is-now">Калибровка<b>26—30 апр</b></span>
+                    <span class="mcycles__ph">Публикация<b>1 мая</b></span>
+                  </div>
+                </article>
+                <article class="mcycles__card">
+                  <header class="mcycles__head">
+                    <div class="mcycles__id">
+                      <p class="mcycles__name">Q2 2026 · продажи</p>
+                      <p class="mcycles__scope">Коммерческий блок · 54 сотрудника · веса 20 / 20 / 60</p>
+                    </div>
+                    <span class="mcycles__badge mcycles__badge--live">идёт</span>
+                  </header>
+                  <div class="mcycles__phases">
+                    <span class="mcycles__ph is-done">Цели и KPI<b>апр — июн</b></span>
+                    <span class="mcycles__ph is-now">Self Review<b>1—5 июл</b></span>
+                    <span class="mcycles__ph">Анкета PR<b>6—15 июл</b></span>
+                    <span class="mcycles__ph">Публикация<b>20 июл</b></span>
+                  </div>
+                </article>
               </div>
-              <div class="mgapchip"><span>HR настраивает правила один раз, дальше платформа ведёт процесс сама</span><b style="font-size:12px;">1 экран</b></div>
+              <div class="mgapchip"><span>Циклы идут параллельно и не мешают друг другу: у каждой команды свои шаблоны, веса и даты этапов</span></div>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>01</b> Одна точка настройки</p>
-          <h2 class="mclaim" id="r1-title">Всё держится <em>на цикле планирования</em></h2>
+          <p class="meyebrow"><b>01</b> Удобно координировать</p>
+          <h2 class="mclaim" id="r1-title">Управляйте циклами: <em>общее пространство для настройки кампаний</em></h2>
           <p class="mlead">Цели, KPI, шаблоны Self Review и 360°, анкета руководителя, веса и даты этапов привязаны к одному циклу. HR не запускает каждый модуль вручную: он задаёт правила и даты, а платформа показывает нужные формы нужным людям в нужное время.</p>
           <div class="mproof">
-            <span class="mproof__num">6</span>
-            <span class="mproof__txt">процессов живут в единой временной логике: цели, KPI, Self Review, 360°, оценка руководителя и калибровка</span>
+            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
+            <span class="mproof__txt">Циклы можно дублировать, редактируя лишь определённые компоненты (например, даты)</span>
           </div>
         </div>
       </div>
@@ -162,12 +444,12 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>02</b> Попробуйте сами</p>
-          <h2 class="mclaim" id="r2-title">Каждый знает, <em>что делать и когда</em></h2>
-          <p class="mlead">Нажмите на любой этап цикла и посмотрите, что в этот момент делает сотрудник, что руководитель, а что HR. Ни одна роль не ждёт письма с инструкцией: форма появляется сама, а после закрытия окна правки блокируются.</p>
+          <p class="meyebrow"><b>02</b> Легко запустить</p>
+          <h2 class="mclaim" id="r2-title">Каждый участник знает, <em>что и когда делать</em></h2>
+          <p class="mlead">Каждый пользователь видит соответствующий его роли и назначенному циклу пошаговый гайд для прохождения процесса. Формы открываются в назначенные даты, а после их закрытия правки блокируются.</p>
           <div class="mproof">
             <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
-            <span class="mproof__txt">Даты фаз задаёт HR: окна могут пересекаться, как Self Review и 360° в примере ниже</span>
+            <span class="mproof__txt">Даты этапов задаёт HR: они могут пересекаться и идти в одно время или последовательно</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
@@ -295,11 +577,52 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>03</b> Гибкость без хаоса</p>
-          <h2 class="mclaim" id="r3-title">Не обязательно <em>гонять всю компанию одним календарём</em></h2>
-          <p class="mlead">Продажи живут в квартальном цикле, разработка в полугодовом, топ-менеджмент в годовом, а пилотная команда в отдельном проектном. Шаблоны и веса тоже назначаются на подразделение, роль или конкретного человека, поэтому у каждой команды свой уместный вопросник.</p>
-          <div class="mproof">
-            <span class="mproof__num">4</span>
-            <span class="mproof__txt">уровня применимости цикла и шаблона: вся компания, подразделение, роль, конкретный сотрудник или их комбинация</span>
+          <h2 class="mclaim" id="r3-title">Не обязательно <em>«загонять» всю компанию под один календарь</em></h2>
+          <p class="mlead">Это нормально, что разные команды имеют свои циклы планирования: например, продажи живут в кварталах, разработка и IT в полугодиях. Платформа позволяет назначить цикл только на выбранное подразделение или конкретных сотрудников, а также выбрать удобные для них даты и этапы оценки.</p>
+          <div class="mproof mproof--notify mproof--sovereign">
+            <span class="mproof__obj" aria-hidden="true">
+              <svg width="54" height="50" viewBox="0 0 88 80" fill="none">
+                <defs>
+                  <linearGradient id="sov-base" x1="14" y1="58" x2="74" y2="72" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#cec8ff"/>
+                    <stop offset=".55" stop-color="#4a3bff"/>
+                    <stop offset="1" stop-color="#050230"/>
+                  </linearGradient>
+                  <linearGradient id="sov-body" x1="22" y1="30" x2="66" y2="62" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb8e2"/>
+                    <stop offset=".45" stop-color="#cec8ff"/>
+                    <stop offset="1" stop-color="#4a3bff"/>
+                  </linearGradient>
+                  <linearGradient id="sov-dome" x1="30" y1="10" x2="58" y2="34" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#fff" stop-opacity=".9"/>
+                    <stop offset=".4" stop-color="#ffb777"/>
+                    <stop offset="1" stop-color="#ff8f3d"/>
+                  </linearGradient>
+                  <linearGradient id="sov-flag" x1="62" y1="12" x2="78" y2="28" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#d5fff3"/>
+                    <stop offset="1" stop-color="#5fce87"/>
+                  </linearGradient>
+                  <filter id="sov-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#4a3bff" flood-opacity=".32"/>
+                  </filter>
+                </defs>
+                <g filter="url(#sov-shadow)" transform="rotate(-8 44 40)">
+                  <path d="M12 58 L44 70 L76 58 L76 64 C76 68 72 72 68 72 H20 C16 72 12 68 12 64 Z" fill="url(#sov-base)"/>
+                  <rect x="24" y="34" width="40" height="26" rx="4" fill="url(#sov-body)"/>
+                  <rect x="24" y="34" width="40" height="8" rx="4" fill="rgba(255,255,255,.16)"/>
+                  <rect x="30" y="42" width="5" height="18" rx="1.5" fill="rgba(255,255,255,.55)"/>
+                  <rect x="41.5" y="42" width="5" height="18" rx="1.5" fill="rgba(255,255,255,.55)"/>
+                  <rect x="53" y="42" width="5" height="18" rx="1.5" fill="rgba(255,255,255,.55)"/>
+                  <path d="M28 34 C28 22 36 14 44 14 C52 14 60 22 60 34" fill="url(#sov-dome)"/>
+                  <circle cx="44" cy="16" r="2.2" fill="#fff" fill-opacity=".85"/>
+                  <path d="M64 18 V42" stroke="#ffb777" stroke-width="1.6" stroke-linecap="round"/>
+                  <path d="M64 18 C70 18 74 20 74 24 C74 28 70 30 64 30" fill="url(#sov-flag)"/>
+                  <path d="M64 30 C70 30 74 32 74 36 C74 40 70 42 64 42" fill="url(#sov-flag)" fill-opacity=".72"/>
+                  <circle cx="64" cy="18" r="2" fill="#ffb777"/>
+                </g>
+              </svg>
+            </span>
+            <span class="mproof__txt">Удобно для компаний, где каждое подразделение — своё маленькое «государство»</span>
           </div>
         </div>
       </div>
@@ -311,31 +634,68 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>04</b> Решение на фактах</p>
+          <p class="meyebrow"><b>04</b> Обоснованные решения</p>
           <h2 class="mclaim" id="r4-title">Руководитель открывает анкету <em>уже подготовленным</em></h2>
-          <p class="mlead">Перед тем как поставить оценку, руководитель видит на одном экране цели и вклад в OKR, KPI, результаты 360°, Self Review, достижения сотрудника и результаты предыдущих периодов. Оценка перестаёт зависеть от того, что запомнилось за последний месяц.</p>
+          <p class="mlead">Перед тем как поставить оценку, руководитель видит на одном экране цели и вклад в OKR, KPI, результаты 360°, Self Review, достижения сотрудника и результаты предыдущих периодов. Оценка перестаёт зависеть от того, какие впечатления оставил о себе сотрудник, а базируется на конкретных измеримых показателях.</p>
           <div class="mproof">
             <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
             <span class="mproof__txt">В анкете фиксируются не только оценка и комментарий, но и решения: изменение должности или грейда, изменение оклада, зоны развития</span>
+          </div>
+          <div class="mproof mproof--brand">
+            <img class="mproof__logo" src="images/icon-1c.png" width="20" height="20" alt="" aria-hidden="true" decoding="async">
+            <span class="mproof__txt">Может быть настроена интеграция с 1С для отправки кадровых сведений о ротациях и повышениях</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Анкета руководителя · Дмитрий К., аналитик</span></div>
             <div class="mwin__body">
-              <p class="msub">Контекст периода</p>
-              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px;">
-                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8681ab;">Цели и OKR</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">92%</div><div style="font-size:10.5px;font-weight:700;color:#8681ab;">4 цели, 11 Key Results</div></div>
-                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8681ab;">KPI</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">78%</div><div style="font-size:10.5px;font-weight:700;color:#8681ab;">факт / план по 3 метрикам</div></div>
-                <div style="padding:10px 12px;border-radius:11px;background:#f8f7fb;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8681ab;">Оценка 360°</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">4,3 из 5</div><div style="font-size:10.5px;font-weight:700;color:#8681ab;">7 респондентов</div></div>
-                <div style="padding:10px 12px;border-radius:11px;background:#eafaf0;"><div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2f9d5b;">Self Review</div><div style="font-size:14px;font-weight:800;color:#141033;margin-top:2px;">заполнен</div><div style="font-size:10.5px;font-weight:700;color:#5c7a67;">самооценка 4,0</div></div>
-              </div>
-              <p class="msub">Решения в анкете</p>
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;">
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f1eefe;"><span>Итоговая оценка</span><b style="color:#4a3bff;">Превышает ожидания</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Изменение грейда</span><b style="color:#141033;">да, +1</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Изменение оклада</span><b style="color:#141033;">на рассмотрении</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Зона развития</span><b style="color:#141033;">публичные презентации</b></div>
+              <div class="mrevb">
+                <article class="mrevb__hero">
+                  <img src="images/avatar-successor-dmitry.jpg" alt="" width="40" height="40" loading="lazy" decoding="async">
+                  <div class="mrevb__who">
+                    <p class="mrevb__name">Дмитрий К.</p>
+                    <p class="mrevb__role">Аналитик · Product Analytics</p>
+                  </div>
+                  <span class="mrevb__cycle">1 полугодие 2026</span>
+                </article>
+                <article class="mrevb__t mrevb__t--2 mrevb__t--peri">
+                  <p class="mrevb__k">Цели и OKR</p>
+                  <p class="mrevb__v">92%</p>
+                  <p class="mrevb__n">4 цели, 11 KR</p>
+                </article>
+                <article class="mrevb__t mrevb__t--2 mrevb__t--fog">
+                  <p class="mrevb__k">KPI</p>
+                  <p class="mrevb__v">78%</p>
+                  <p class="mrevb__n">факт / план, 3 метрики</p>
+                </article>
+                <article class="mrevb__t mrevb__t--2 mrevb__t--mac">
+                  <p class="mrevb__k">Оценка 360°</p>
+                  <p class="mrevb__v">4,3 из 5</p>
+                  <p class="mrevb__n">7 респондентов</p>
+                </article>
+                <article class="mrevb__t mrevb__t--3 mrevb__t--mint">
+                  <p class="mrevb__k">Self Review</p>
+                  <p class="mrevb__v">заполнен</p>
+                  <p class="mrevb__n">самооценка 4,0 · 6 апреля</p>
+                </article>
+                <article class="mrevb__t mrevb__t--3 mrevb__t--accent">
+                  <p class="mrevb__k">Итоговая оценка</p>
+                  <p class="mrevb__v">Превышает ожидания</p>
+                  <p class="mrevb__n">взвешенный балл 87</p>
+                </article>
+                <article class="mrevb__t mrevb__t--2 mrevb__t--fog">
+                  <p class="mrevb__k">Грейд</p>
+                  <p class="mrevb__v">да, +1</p>
+                </article>
+                <article class="mrevb__t mrevb__t--2 mrevb__t--peri">
+                  <p class="mrevb__k">Оклад</p>
+                  <p class="mrevb__v">на рассмотрении</p>
+                </article>
+                <article class="mrevb__t mrevb__t--2 mrevb__t--candy">
+                  <p class="mrevb__k">Зона развития</p>
+                  <p class="mrevb__v">публичные презентации</p>
+                </article>
               </div>
             </div>
           </div>
@@ -350,20 +710,48 @@
       <div class="mreel__grid">
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
-            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Веса компонентов · Дмитрий К., аналитик</span></div>
+            <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title" data-weights-title>Модель оценки · продажи</span></div>
             <div class="mwin__body">
               <div data-weights>
+                <div class="mwt__teams"></div>
                 <div class="mwt__rows">
-                  <p class="msub">Включите JavaScript, чтобы собрать модель оценки ползунками.</p>
+                  <p class="msub">Включите JavaScript, чтобы менять факты сотрудника и смотреть итоговый балл.</p>
                 </div>
                 <div class="mwt__out"></div>
                 <div class="mwt__hint"></div>
                 <script type="application/json" data-weights-json>
                 {
-                  "components": [
-                    { "name": "Цели и OKR", "fact": "Факт сотрудника: 92% выполнения", "result": 92, "weight": 50 },
-                    { "name": "Оценка 360°", "fact": "Факт сотрудника: 4,3 из 5 — это 86%", "result": 86, "weight": 30 },
-                    { "name": "KPI", "fact": "Факт сотрудника: 78% плана", "result": 78, "weight": 20 }
+                  "teams": [
+                    {
+                      "id": "sales",
+                      "label": "Продажи",
+                      "role": "менеджер по продажам",
+                      "components": [
+                        { "name": "KPI", "kind": "kpi", "result": 78, "weight": 60, "min": 55, "max": 100 },
+                        { "name": "Цели и OKR", "kind": "okr", "result": 92, "weight": 20, "min": 60, "max": 100 },
+                        { "name": "Оценка 360°", "kind": "360", "result": 86, "weight": 20, "min": 65, "max": 100 }
+                      ]
+                    },
+                    {
+                      "id": "it",
+                      "label": "IT",
+                      "role": "аналитик",
+                      "components": [
+                        { "name": "Цели и OKR", "kind": "okr", "result": 92, "weight": 45, "min": 60, "max": 100 },
+                        { "name": "Оценка 360°", "kind": "360", "result": 86, "weight": 40, "min": 65, "max": 100 },
+                        { "name": "KPI", "kind": "kpi", "result": 78, "weight": 15, "min": 55, "max": 100 }
+                      ]
+                    },
+                    {
+                      "id": "leads",
+                      "label": "Руководители",
+                      "role": "руководитель направления",
+                      "components": [
+                        { "name": "Оценка 360°", "kind": "360", "result": 86, "weight": 50, "min": 65, "max": 100 },
+                        { "name": "Цели и OKR", "kind": "okr", "result": 92, "weight": 30, "min": 60, "max": 100 },
+                        { "name": "KPI", "kind": "kpi", "result": 78, "weight": 20, "min": 55, "max": 100 }
+                      ]
+                    }
                   ],
                   "scale": [
                     { "from": 90, "code": "A", "title": "Значительно превышает ожидания", "note": "кандидат в кадровый резерв, зона «звёзды» в 9-box", "decision": "повышение грейда и включение в резерв на ключевую позицию." },
@@ -379,11 +767,11 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>05</b> Попробуйте сами</p>
-          <h2 class="mclaim" id="r5-title">Модель оценки <em>подстраивается под компанию</em></h2>
-          <p class="mlead">Подвигайте ползунки весов: результаты сотрудника не меняются, а итоговый балл и рекомендация — да. В продажах логично усилить KPI, в продуктовой команде — OKR, у руководителей — командную оценку 360°. Веса задаёт HR один раз в управленческой панели.</p>
+          <h2 class="mclaim" id="r5-title">Модель оценки <em>подстраивается под каждую команду</em></h2>
+          <p class="mlead">Каждая команда задаёт свои веса компонентов — так регулируется значимость OKR, KPI и 360°. В продажах KPI тянет итог сильнее, в IT — оценка 360°. Переключите команду и подвигайте факты сотрудника: веса фиксированы, а итоговый балл и рекомендация меняются.</p>
           <div class="mproof">
             <span class="mproof__num">4</span>
-            <span class="mproof__txt">компонента сходятся в один балл: цели и OKR, KPI, оценка 360° и оценка руководителя, где Self Review и достижения дают контекст</span>
+            <span class="mproof__txt">компонента сходятся в один балл: цели и OKR, KPI, оценка 360° и оценка руководителя, где Self Review и достижения дают контекст для 1:1 встречи и обсуждения итогов</span>
           </div>
         </div>
       </div>
@@ -395,32 +783,36 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>06</b> Справедливость</p>
-          <h2 class="mclaim" id="r6-title">Строгий и мягкий руководитель <em>приводятся к одной шкале</em></h2>
-          <p class="mlead">Перед публикацией HR и вышестоящие руководители видят распределение оценок по командам. Если у одного руководителя все «превышают ожидания», а у другого никто, это видно сразу — и обсуждается до того, как решения о повышении уйдут людям.</p>
-          <div class="mproof">
-            <span class="mproof__num">1</span>
-            <span class="mproof__txt">таблица на всю компанию: цикл, команда, должность, оценка, решения по грейду и окладу, комментарий и reviewer с фильтрами и выгрузкой</span>
-          </div>
+          <p class="meyebrow"><b>06</b> Калибровка</p>
+          <h2 class="mclaim" id="r6-title">Нивелируется разница <em>между субъективными оценками руководителей</em></h2>
+          <p class="mlead">Перед публикацией HR и вышестоящие руководители видят распределение оценок по командам. Если у руководителя наблюдается перекос результатов в ту или иную сторону — это видно на диаграмме и обсуждается до того, как решения о повышении будут приняты и согласованы.</p>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Калибровка · распределение оценок по циклу</span></div>
             <div class="mwin__body">
-              <p class="msub">До калибровки</p>
-              <div style="display:flex;align-items:flex-end;gap:8px;height:78px;margin-bottom:12px;">
-                <span style="flex:1;height:26%;border-radius:8px 8px 0 0;background:#ede9f6;"></span>
-                <span style="flex:1;height:38%;border-radius:8px 8px 0 0;background:#ede9f6;"></span>
-                <span style="flex:1;height:100%;border-radius:8px 8px 0 0;background:#ffd3ec;"></span>
-                <span style="flex:1;height:82%;border-radius:8px 8px 0 0;background:#ffd3ec;"></span>
-              </div>
-              <div style="padding:10px 12px;border-radius:11px;background:#fdf4f9;font-size:12px;line-height:1.45;color:#b06699;font-weight:700;margin-bottom:12px;">У двух руководителей 84% сотрудников получили две верхние оценки — шкала «съехала» вверх.</div>
-              <p class="msub">После калибровки</p>
-              <div style="display:flex;align-items:flex-end;gap:8px;height:78px;margin-bottom:12px;">
-                <span style="flex:1;height:34%;border-radius:8px 8px 0 0;background:#d5fff3;"></span>
-                <span style="flex:1;height:76%;border-radius:8px 8px 0 0;background:#d5fff3;"></span>
-                <span style="flex:1;height:100%;border-radius:8px 8px 0 0;background:#cec8ff;"></span>
-                <span style="flex:1;height:46%;border-radius:8px 8px 0 0;background:#cec8ff;"></span>
+              <div class="mcalib">
+                <p class="msub">До калибровки</p>
+                <div class="mcalib__chart mcalib__chart--before" role="img" aria-label="Распределение оценок до калибровки: перекос в верхние грейды">
+                  <div class="mcalib__bars">
+                    <div class="mcalib__bar"><span class="mcalib__pct">38%</span><div class="mcalib__track"><span class="mcalib__col" style="height:95%"></span></div><span class="mcalib__code">A</span><span class="mcalib__lbl">Значительно выше ожиданий</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">46%</span><div class="mcalib__track"><span class="mcalib__col" style="height:100%"></span></div><span class="mcalib__code">B</span><span class="mcalib__lbl">Выше ожиданий</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">12%</span><div class="mcalib__track"><span class="mcalib__col" style="height:26%"></span></div><span class="mcalib__code">C</span><span class="mcalib__lbl">Соответствует ожиданиям</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">3%</span><div class="mcalib__track"><span class="mcalib__col" style="height:8%"></span></div><span class="mcalib__code">D</span><span class="mcalib__lbl">Ниже ожиданий</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">1%</span><div class="mcalib__track"><span class="mcalib__col" style="height:4%"></span></div><span class="mcalib__code">E</span><span class="mcalib__lbl">Не соответствует</span></div>
+                  </div>
+                </div>
+                <div class="mcalib__note mcalib__note--warn">У двух руководителей 84% сотрудников получили две верхние оценки — шкала «съехала» вверх.</div>
+                <p class="msub">После калибровки</p>
+                <div class="mcalib__chart mcalib__chart--after" role="img" aria-label="Распределение оценок после калибровки: выровненная шкала">
+                  <div class="mcalib__bars">
+                    <div class="mcalib__bar"><span class="mcalib__pct">8%</span><div class="mcalib__track"><span class="mcalib__col" style="height:17%"></span></div><span class="mcalib__code">A</span><span class="mcalib__lbl">Значительно выше ожиданий</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">22%</span><div class="mcalib__track"><span class="mcalib__col" style="height:48%"></span></div><span class="mcalib__code">B</span><span class="mcalib__lbl">Выше ожиданий</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">46%</span><div class="mcalib__track"><span class="mcalib__col" style="height:100%"></span></div><span class="mcalib__code">C</span><span class="mcalib__lbl">Соответствует ожиданиям</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">18%</span><div class="mcalib__track"><span class="mcalib__col" style="height:39%"></span></div><span class="mcalib__code">D</span><span class="mcalib__lbl">Ниже ожиданий</span></div>
+                    <div class="mcalib__bar"><span class="mcalib__pct">6%</span><div class="mcalib__track"><span class="mcalib__col" style="height:13%"></span></div><span class="mcalib__code">E</span><span class="mcalib__lbl">Не соответствует</span></div>
+                  </div>
+                </div>
               </div>
               <div class="mgapchip"><span>Оценка скорректирована, комментарий и автор изменения сохранены</span><b style="font-size:12px;">решения согласованы</b></div>
             </div>
@@ -435,36 +827,40 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__mock" data-reveal>
-          <div class="mduet">
-            <div class="mduet__col mduet__col--bad">
-              <p class="mduet__h">Пока фаза не закрыта</p>
-              <ul class="mduet__list">
-                <li>Сотрудник не видит оценку</li>
-                <li>Решения по грейду и окладу не опубликованы</li>
-                <li>Слухи «кому что поставили» не опережают калибровку</li>
-              </ul>
-            </div>
-            <span class="mduet__arrow" aria-hidden="true">→</span>
-            <div class="mduet__col mduet__col--good">
-              <p class="mduet__h">После завершения</p>
-              <ul class="mduet__list">
-                <li>Итоговая оценка в профиле</li>
-                <li>Описание шкалы: что означает эта оценка</li>
-                <li>Зоны развития на следующий период</li>
-                <li>Решения по должности и окладу</li>
-              </ul>
+          <div class="mpubb">
+            <div class="mpubb__glow" aria-hidden="true"></div>
+            <div class="mpubb__grid">
+              <article class="mpubb__tile mpubb__tile--lock">
+                <span class="mpubb__badge">До закрытия фазы</span>
+                <h3 class="mpubb__title">Пока фаза не закрыта</h3>
+                <ul class="mpubb__list">
+                  <li><span class="mpubb__mark" aria-hidden="true">×</span>Сотрудник не видит оценку</li>
+                  <li><span class="mpubb__mark" aria-hidden="true">×</span>Решения по грейду и окладу не опубликованы</li>
+                  <li><span class="mpubb__mark" aria-hidden="true">×</span>Слухи «кому что поставили» не опережают калибровку</li>
+                </ul>
+              </article>
+              <div class="mpubb__bridge" aria-hidden="true"><span>→</span></div>
+              <article class="mpubb__tile mpubb__tile--open">
+                <span class="mpubb__badge">После публикации</span>
+                <h3 class="mpubb__title">После завершения</h3>
+                <ul class="mpubb__list">
+                  <li><span class="mpubb__mark" aria-hidden="true">✓</span>Итоговая оценка в профиле</li>
+                  <li><span class="mpubb__mark" aria-hidden="true">✓</span>Описание шкалы: что означает эта оценка</li>
+                  <li><span class="mpubb__mark" aria-hidden="true">✓</span>Зоны развития на следующий период</li>
+                  <li><span class="mpubb__mark" aria-hidden="true">✓</span>Решения по должности и окладу</li>
+                </ul>
+              </article>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>07</b> Разговор, а не приговор</p>
+          <p class="meyebrow"><b>07</b> Диалог</p>
           <h2 class="mclaim" id="r7-title">Сотрудник получает результат <em>и понимает, что он значит</em></h2>
-          <p class="mlead">Оценка открывается только после закрытия фазы Performance Review — уже откалиброванная. Вместе с ней сотрудник видит описание шкалы, что нужно улучшить и какие зоны развития важны дальше. Ревью перестаёт быть односторонним: человек сам работал по целям, заполнял Self Review и участвовал в 360°.</p>
+          <p class="mlead">Оценка открывается только после закрытия фазы Performance Review — уже откалиброванная. Вместе с ней сотрудник видит описание шкалы, что нужно улучшить и какие зоны развития важны дальше.</p>
           <div class="mtags">
             <span class="mtag">Итоговая оценка</span>
-            <span class="mtag">Смысл шкалы</span>
-            <span class="mtag">Что улучшить</span>
-            <span class="mtag">Решения по роли</span>
+            <span class="mtag">Пояснения к оценке</span>
+            <span class="mtag">Кадровое решение</span>
           </div>
         </div>
       </div>
@@ -478,33 +874,48 @@
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>08</b> Что дальше с данными</p>
           <h2 class="mclaim" id="r8-title">Итоги ревью <em>не остаются в архиве</em></h2>
-          <p class="mlead">Собранные данные сразу работают дальше: строят матрицу 9-box по осям результата и компетенций, задают фокус индивидуальных планов развития и подсказывают кандидатов в кадровый резерв. Один цикл питает весь HR-контур, а не один отчёт.</p>
-          <div class="mproof">
+          <p class="mlead">Собранные данные сразу работают дальше: строится матрица 9-box, формируются индивидуальные планы развития. Циклы хранятся в системе и подкрепляют информацию о сотруднике.</p>
+          <div class="mproof mproof--wide">
             <span class="mproof__num">0</span>
             <span class="mproof__txt">выгрузок нужно, чтобы передать итоги в 9-box, ИПР и преемственность: модули читают данные цикла напрямую</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
-          <div class="meco">
-            <div class="meco__card meco__card--candy">
-              <b>Матрица 9-box</b>
-              <span>Результат по целям и KPI на одной оси, компетенции 360° на другой</span>
-              <i>Аналитический взгляд</i>
-            </div>
-            <div class="meco__card meco__card--mac">
-              <b>Карьера и ИПР</b>
-              <span>Зоны развития из анкеты становятся фокусом плана развития</span>
-              <i>Что делать дальше</i>
-            </div>
-            <div class="meco__card meco__card--peach">
-              <b>Преемственность</b>
-              <span>Сильные результаты — сигнал для кадрового резерва по ключевым ролям</span>
-              <i>Кто следующий</i>
-            </div>
-            <div class="meco__card meco__card--peri">
-              <b>Целеполагание</b>
-              <span>Новый цикл стартует с целей, связанных со стратегией компании</span>
-              <i>Следующий круг</i>
+          <div class="mecob">
+            <div class="mecob__glow" aria-hidden="true"></div>
+            <div class="mecob__grid">
+              <article class="mecob__card mecob__card--tall mecob__card--candy">
+                <span class="mecob__glyph" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="9" height="9" rx="2" fill="#4a3bff" opacity=".85"/><rect x="16" y="3" width="9" height="9" rx="2" fill="#5fce87" opacity=".75"/><rect x="3" y="16" width="9" height="9" rx="2" fill="#ffb777" opacity=".8"/><rect x="16" y="16" width="9" height="9" rx="2" fill="#e35aa4" opacity=".7"/></svg>
+                </span>
+                <b>Матрица 9-box</b>
+                <span>Результат по целям и KPI на одной оси, компетенции 360° на другой</span>
+                <i>Аналитический взгляд</i>
+              </article>
+              <article class="mecob__card mecob__card--mac">
+                <span class="mecob__glyph" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 22V12l8-6 8 6v10" stroke="#6a3f08" stroke-width="2" stroke-linejoin="round"/><path d="M11 22v-6h6v6" stroke="#6a3f08" stroke-width="2" stroke-linejoin="round"/></svg>
+                </span>
+                <b>Карьера и ИПР</b>
+                <span>Зоны развития из анкеты становятся фокусом плана развития</span>
+                <i>Что делать дальше</i>
+              </article>
+              <article class="mecob__card mecob__card--peri">
+                <span class="mecob__glyph" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="9" stroke="#4a3bff" stroke-width="2"/><path d="M14 9v5l3 2" stroke="#4a3bff" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <b>Целеполагание</b>
+                <span>Новый цикл стартует с целей, связанных со стратегией компании</span>
+                <i>Следующий круг</i>
+              </article>
+              <article class="mecob__card mecob__card--wide mecob__card--mint">
+                <span class="mecob__glyph" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 20c0-4 3.5-7 6-9s6-2 6-5" stroke="#1f5a47" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="20" r="2.5" fill="#1f5a47"/><circle cx="20" cy="6" r="2.5" fill="#5fce87"/></svg>
+                </span>
+                <b>Преемственность</b>
+                <span>Сильные результаты — сигнал для кадрового резерва по ключевым ролям</span>
+                <i>Кто следующий</i>
+              </article>
             </div>
           </div>
         </div>
@@ -517,7 +928,7 @@
     <div class="shell mswitch__inner">
       <div>
         <h2 class="mswitch__t">Дальше — детали</h2>
-        <p class="mswitch__d">Управленческая панель и настройка циклов, применимость и шаблоны, блокировки по датам, состав анкеты руководителя, веса и расчёт, аналитика и колонки таблицы, калибровка по ролям, правила публикации.</p>
+        <p class="mswitch__d">Управленческая панель и создание циклов, настройка и применение шаблонов, блокировки по датам, содержание анкеты руководителя, веса компонентов, калибровка. Если вы хотите узнать о модуле подробнее, изучите информацию ниже или оставьте заявку на демонстрацию решения.</p>
       </div>
       <button type="button" class="mswitch__btn" data-mode="details">
         Разобраться
@@ -692,17 +1103,17 @@
     <div class="shell">
       <h2 class="mnext__h" id="next-title">Модули внутри процесса</h2>
       <div class="mnext__row">
-        <a class="mnext__card" href="page102390004.html" style="background:var(--t-peri);">
+        <a class="mnext__card" href="/modul-tselepolaganie" style="background:var(--t-peri);">
           <b>Целеполагание</b>
           <span>Цели и Key Results, привязанные к циклу, с маршрутами согласования</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="page102360001.html" style="background:var(--t-mint);">
+        <a class="mnext__card" href="/modul-otsenka-360" style="background:var(--t-mint);">
           <b>Оценка 360°</b>
           <span>Компетенции сотрудника глазами команды как компонент итогового балла</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="page102380003.html" style="background:var(--t-candy);">
+        <a class="mnext__card" href="/modul-matritsa-9-box" style="background:var(--t-candy);">
           <b>Матрица талантов 9 Box</b>
           <span>Результат и компетенции на двух осях по данным цикла</span>
           <i>Смотреть модуль →</i>
@@ -716,8 +1127,8 @@
     <div class="shell">
       <div class="mfin__inner">
         <div>
-          <h2 class="mfin__t">Проведите ревью без авралов и спорных решений</h2>
-          <p class="mfin__d">Покажем настройку цикла и дат фаз, шаблоны для разных команд, анкету руководителя с фактическими данными, калибровку и публикацию результата. Демодоступ на пять рабочих дней.</p>
+          <h2 class="mfin__t">Проведите ревью <em>без авралов и спорных решений</em></h2>
+          <p class="mfin__d">Покажем и объясним, как работает модуль. После встречи вы получите бесплатный демо-доступ на 5 рабочих дней.</p>
         </div>
         <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
       </div>
@@ -760,6 +1171,11 @@
         <div class="ef-lead-form__field">
           <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
         </div>
+        <fieldset class="ef-lead-form__field ef-lead-form__modules" data-ef-demo-modules>
+          <legend class="ef-lead-form__legend">Какие модули вас интересуют?</legend>
+          <p class="ef-lead-form__modules-hint">Можно выбрать несколько</p>
+          <div class="ef-lead-form__checks" data-ef-demo-modules-list role="group" aria-label="Модули платформы"></div>
+        </fieldset>
         <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
           <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
           <div class="ef-lead-form__radios">
@@ -786,8 +1202,9 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260805q" defer></script>
+<script src="js/emplyflow-module.js?v=20260809x" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-demo-modules.js" defer></script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 
 <!-- Yandex.Metrika counter 105450350 -->

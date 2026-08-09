@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<base href="/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050230">
@@ -27,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/emplyflow-module.css?v=20260803h">
+<link rel="stylesheet" href="css/emplyflow-module.css?v=20260809ag">
 <link rel="stylesheet" href="css/emplyflow-demo-modal.css?v=20260803a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 
@@ -81,41 +82,95 @@
         <div class="mreel__copy" data-reveal>
           <p class="mcover__kicker">Модуль платформы</p>
           <h1 class="mcover__title" id="cover-title">Преемственность <em>и кадровый резерв</em></h1>
-          <p class="mcover__q">«Кто закроет эту роль, если руководитель уйдёт в понедельник?» — вопрос, на который у компании обычно есть только имена в чьей-то голове. Модуль превращает их в измеримое покрытие ключевых позиций.</p>
+          <p class="mcover__q">Иметь надёжную опору из преемников на случай кадровых изменений — необходимость в текущее время для любой компании. Модуль поможет организовать процесс сбора данных с руководителей и визуализировать их в единую структуру резервистов.</p>
           <div class="mcover__meta">
-            <span class="mtag">Циклы вместо вечной таблицы</span>
-            <span class="mtag">Готовность и gap по каждому преемнику</span>
-            <span class="mtag">AI-подбор резервистов</span>
+            <span class="mtag">AI-подбор по компетенциям и опыту</span>
+            <span class="mtag">Расчёт готовности по каждому сотруднику</span>
+            <span class="mtag">Сбор информации «снизу вверх» — от руководителей к HR-менеджерам</span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Планирование преемственности · цикл 2026 · активен</span></div>
             <div class="mwin__body">
-              <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:13px;background:#f1eefe;border:1px solid #e0daff;margin-bottom:14px;">
-                <span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:#4a3bff;">60%</span>
-                <span style="font-size:12px;line-height:1.35;color:#403c68;"><b style="display:block;font-size:13.5px;color:#141033;">Покрытие ключевых позиций</b>12 из 20 позиций имеют хотя бы одного преемника</span>
+              <div class="msuct">
+                <div class="msuct__kpi">
+                  <span class="msuct__pct">60%</span>
+                  <span class="msuct__kpi-txt"><b>Покрытие ключевых позиций</b>12 из 20 ролей с преемником</span>
+                </div>
+                <div class="msuct__tree" role="img" aria-label="Дерево преемственности: ключевые позиции и резервисты">
+                  <article class="msuct__root">
+                    <img src="images/avatar-goal-approver.jpg" alt="" width="34" height="34" loading="lazy" decoding="async">
+                    <div class="msuct__root-meta">
+                      <b>Генеральный директор</b>
+                      <span>Корень оргдерева · цикл 2026</span>
+                    </div>
+                    <span class="msuct__pill msuct__pill--peri">4 ключевые роли</span>
+                  </article>
+                  <div class="msuct__stem" aria-hidden="true"><span></span></div>
+                  <div class="msuct__grid">
+                    <article class="msuct__pos">
+                      <p class="msuct__role">Директор по производству</p>
+                      <div class="msuct__holder">
+                        <img src="images/avatar-route-alexey.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
+                        <span>Алексей В.</span>
+                      </div>
+                      <div class="msuct__succs">
+                        <div class="msuct__succ">
+                          <img src="images/avatar-successor-dmitry.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                          <span>Дмитрий К.</span>
+                          <i class="msuct__pill msuct__pill--ready">Готов сейчас</i>
+                        </div>
+                        <div class="msuct__succ">
+                          <img src="images/avatar-successor-maria.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                          <span>Мария С.</span>
+                          <i class="msuct__pill msuct__pill--mid">1–2 года</i>
+                        </div>
+                      </div>
+                    </article>
+                    <article class="msuct__pos">
+                      <p class="msuct__role">Финансовый директор</p>
+                      <div class="msuct__holder">
+                        <img src="images/avatar-career-anna.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
+                        <span>Анна Л.</span>
+                      </div>
+                      <div class="msuct__succs">
+                        <div class="msuct__succ">
+                          <img src="images/avatar-successor-anna.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                          <span>Ольга П.</span>
+                          <i class="msuct__pill msuct__pill--ready">Готов сейчас</i>
+                        </div>
+                      </div>
+                    </article>
+                    <article class="msuct__pos msuct__pos--warn">
+                      <p class="msuct__role">Руководитель отдела продаж</p>
+                      <div class="msuct__holder">
+                        <img src="images/avatar-route-olga.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
+                        <span>Ольга М.</span>
+                      </div>
+                      <div class="msuct__empty">
+                        <span class="msuct__pill msuct__pill--none">Без преемника</span>
+                        <span class="msuct__hint">AI-подбор доступен</span>
+                      </div>
+                    </article>
+                    <article class="msuct__pos msuct__pos--vacant">
+                      <p class="msuct__role">Главный технолог</p>
+                      <div class="msuct__vacant">
+                        <span class="msuct__pill msuct__pill--vacant">Позиция вакантна</span>
+                        <span class="msuct__hint">2 кандидата в резерве</span>
+                      </div>
+                      <div class="msuct__succs msuct__succs--ghost">
+                        <div class="msuct__succ">
+                          <img src="images/avatar-route-dmitry.jpg" alt="" width="22" height="22" loading="lazy" decoding="async">
+                          <span>Игорь Д.</span>
+                          <i class="msuct__pill msuct__pill--mid">6–12 мес.</i>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+                <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Дедлайн цикла — 30 июня</span><b style="font-size:12px;color:#4a3bff;">после него правки закрыты</b></div>
               </div>
-              <p class="msub">Ключевые позиции цикла</p>
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;">
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;">
-                  <span>Директор по производству</span>
-                  <span style="text-align:right;"><span style="padding:3px 9px;border-radius:999px;background:#eafaf0;color:#2f9d5b;font-size:10.5px;white-space:nowrap;">2 преемника</span></span>
-                </div>
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#f8f7fb;">
-                  <span>Финансовый директор</span>
-                  <span style="text-align:right;"><span style="padding:3px 9px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:10.5px;white-space:nowrap;">готов сейчас</span></span>
-                </div>
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#fff5ea;">
-                  <span>Руководитель отдела продаж</span>
-                  <span style="text-align:right;"><span style="padding:3px 9px;border-radius:999px;background:#ffe8cd;color:#c47a2c;font-size:10.5px;white-space:nowrap;">без преемника</span></span>
-                </div>
-                <div style="display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;padding:9px 12px;border-radius:11px;background:#fdf4f9;">
-                  <span>Главный технолог</span>
-                  <span style="text-align:right;"><span style="padding:3px 9px;border-radius:999px;background:#ffd3ec;color:#b06699;font-size:10.5px;white-space:nowrap;">позиция вакантна</span></span>
-                </div>
-              </div>
-              <div class="mgapchip" style="background:#f5f4fb;border-color:#cec8ff;color:#4a3bff;"><span>Дедлайн цикла — 30 июня</span><b style="font-size:12px;color:#4a3bff;">после него правки закрыты</b></div>
             </div>
           </div>
         </div>
@@ -136,24 +191,47 @@
             </div>
             <div class="mflow__step is-key">
               <span class="mflow__n">2</span>
-              <div><p class="mflow__t">Активен</p><p class="mflow__d">Руководители и HR назначают держателей и преемников в своих ветках</p></div>
+              <div><p class="mflow__t">Активен</p><p class="mflow__d">Вносятся правки и коррективы на протяжении всего интервала времени</p></div>
             </div>
             <div class="mflow__step">
               <span class="mflow__n">3</span>
-              <div><p class="mflow__t">Закрыт</p><p class="mflow__d">Редактирование завершено, цикл остаётся срезом периода</p></div>
+              <div><p class="mflow__t">Закрыт</p><p class="mflow__d">Редактирование завершено, цикл становится срезом периода</p></div>
             </div>
             <div class="mflow__step">
               <span class="mflow__n">4</span>
-              <div><p class="mflow__t">Дублирование</p><p class="mflow__d">Следующий период стартует копией цикла, а не с чистого листа</p></div>
+              <div><p class="mflow__t">Дублирование</p><p class="mflow__d">Следующий цикл подготовки резерва вы можете создать на базе прошлого цикла</p></div>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>01</b> Цикловая модель</p>
-          <h2 class="mclaim" id="r1-title">Не вечная таблица, <em>а период с дедлайном</em></h2>
-          <p class="mlead">Ключевые позиции, держатели, преемники, готовность и gap фиксируются внутри цикла. Дедлайн блокирует редактирование, поэтому у комитета есть зафиксированный срез, а не документ, который правят задним числом.</p>
-          <div class="mproof">
-            <span class="mproof__num">1</span>
+          <h2 class="mclaim" id="r1-title">Фиксация карты резерва <em>по каждому периоду</em></h2>
+          <p class="mlead">Ключевые позиции, текущие держатели, их преемники, готовность занять позицию фиксируются внутри каждого цикла.</p>
+          <div class="mproof mproof--sparkle">
+            <span class="mproof__obj" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+                <defs>
+                  <linearGradient id="succ-spark-grad" x1="8" y1="6" x2="92" y2="94" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#d5fff3"/>
+                    <stop offset=".32" stop-color="#ffb8e2"/>
+                    <stop offset=".68" stop-color="#cec8ff"/>
+                    <stop offset="1" stop-color="#4a3bff"/>
+                  </linearGradient>
+                  <radialGradient id="succ-spark-glow" cx="50" cy="50" r="50%">
+                    <stop stop-color="#fff" stop-opacity=".55"/>
+                    <stop offset=".55" stop-color="#fff" stop-opacity=".08"/>
+                    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                  </radialGradient>
+                  <filter id="succ-spark-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#4a3bff" flood-opacity=".35"/>
+                  </filter>
+                </defs>
+                <g filter="url(#succ-spark-shadow)" transform="rotate(-12 50 50)">
+                  <path fill="url(#succ-spark-grad)" d="M50 2 L56 38 L98 50 L56 62 L50 98 L44 62 L2 50 L44 38 Z"/>
+                  <circle cx="50" cy="50" r="18" fill="url(#succ-spark-glow)"/>
+                </g>
+              </svg>
+            </span>
             <span class="mproof__txt">KPI в шапке модуля: покрытие ключевых позиций считается как доля ролей, у которых есть хотя бы один преемник</span>
           </div>
         </div>
@@ -166,42 +244,116 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>02</b> Фундамент</p>
-          <h2 class="mclaim" id="r2-title">Позиция попадает в цикл <em>тремя дорогами</em></h2>
-          <p class="mlead">Из справочника должностей, из фактической оргструктуры или вручную. Разница принципиальная: только у должностей с признаком «Кадровый резерв» и заполненными компетенциями появляется AI-подбор — сравнивать кандидата иначе просто не с чем.</p>
-          <div class="mproof">
-            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
-            <span class="mproof__txt">Импорт оргструктуры обновляет людей и подразделения, но сам по себе позиции в цикл не заводит — это отдельное решение HR</span>
-          </div>
+          <p class="meyebrow"><b>02</b> Опора на орг структуру и базу должностей</p>
+          <h2 class="mclaim" id="r2-title">Быстрый <em>импорт позиций</em></h2>
+          <p class="mlead">Чтобы не заполнять позиции вручную, мы предусмотрели несколько вариантов для импорта должностей: из вашей <strong>организационной структуры</strong> или из <strong>базы должностей</strong>. В базе должностей есть функция встроенного <strong>ИИ-ассистента для модели компетенций</strong>, что позволяет под такие позиции запустить <strong>автоматический поиск преемников</strong> на основе ИИ-сравнения компетенций.</p>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Ключевые позиции · добавить позицию</span></div>
             <div class="mwin__body">
-              <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="padding:13px 14px;border-radius:13px;background:#f1eefe;border:1.5px solid #4a3bff;">
-                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:4px;">
-                    <span style="font-size:13.5px;font-weight:800;color:#141033;">Из справочника должностей</span>
-                    <span style="padding:3px 9px;border-radius:999px;background:#4a3bff;color:#fff;font-size:10.5px;font-weight:800;white-space:nowrap;">AI доступен</span>
+              <div class="mimp">
+                <article class="mimp__row mimp__row--lead">
+                  <span class="mimp__icon" aria-hidden="true">
+                    <svg width="44" height="44" viewBox="0 0 88 88" fill="none">
+                      <defs>
+                        <linearGradient id="imp-dir-body" x1="14" y1="16" x2="74" y2="76" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#cec8ff"/><stop offset=".45" stop-color="#4a3bff"/><stop offset="1" stop-color="#141033"/>
+                        </linearGradient>
+                        <linearGradient id="imp-dir-page" x1="24" y1="22" x2="64" y2="58" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#d5fff3"/>
+                        </linearGradient>
+                        <linearGradient id="imp-dir-tab" x1="30" y1="10" x2="58" y2="28" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#ffb8e2"/><stop offset="1" stop-color="#4a3bff"/>
+                        </linearGradient>
+                        <filter id="imp-dir-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#4a3bff" flood-opacity=".32"/>
+                        </filter>
+                      </defs>
+                      <g filter="url(#imp-dir-shadow)" transform="rotate(-8 44 44)">
+                        <rect x="18" y="24" width="46" height="54" rx="8" fill="url(#imp-dir-body)"/>
+                        <rect x="26" y="18" width="46" height="54" rx="8" fill="url(#imp-dir-page)" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+                        <path d="M34 18 H58 C62 18 64 20 64 24 V30 H34 Z" fill="url(#imp-dir-tab)"/>
+                        <rect x="34" y="34" width="24" height="3.5" rx="1.75" fill="#4a3bff" fill-opacity=".35"/>
+                        <rect x="34" y="42" width="30" height="3.5" rx="1.75" fill="#4a3bff" fill-opacity=".22"/>
+                        <rect x="34" y="50" width="20" height="3.5" rx="1.75" fill="#4a3bff" fill-opacity=".22"/>
+                      </g>
+                    </svg>
+                  </span>
+                  <div class="mimp__body">
+                    <div class="mimp__top">
+                      <span class="mimp__title">Из справочника должностей</span>
+                      <span class="mimp__badge mimp__badge--ai">AI-подбор преемников</span>
+                    </div>
+                    <p class="mimp__desc">Должности с признаком «Кадровый резерв» и матрицей компетенций</p>
                   </div>
-                  <div style="font-size:12px;line-height:1.4;color:#403c68;">Должности с признаком «Кадровый резерв» и матрицей компетенций</div>
-                </div>
-                <div style="padding:13px 14px;border-radius:13px;background:#f8f7fb;">
-                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:4px;">
-                    <span style="font-size:13.5px;font-weight:800;color:#141033;">Из оргструктуры</span>
-                    <span style="padding:3px 9px;border-radius:999px;background:#ede9f6;color:#8681ab;font-size:10.5px;font-weight:800;white-space:nowrap;">без AI</span>
+                </article>
+                <article class="mimp__row">
+                  <span class="mimp__icon" aria-hidden="true">
+                    <svg width="44" height="44" viewBox="0 0 88 88" fill="none">
+                      <defs>
+                        <linearGradient id="imp-org-node" x1="10" y1="10" x2="78" y2="78" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#d5fff3"/><stop offset=".5" stop-color="#cec8ff"/><stop offset="1" stop-color="#4a3bff"/>
+                        </linearGradient>
+                        <linearGradient id="imp-org-line" x1="20" y1="20" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#ffb8e2"/><stop offset="1" stop-color="#4a3bff"/>
+                        </linearGradient>
+                        <filter id="imp-org-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#4a3bff" flood-opacity=".28"/>
+                        </filter>
+                      </defs>
+                      <g filter="url(#imp-org-shadow)" transform="rotate(6 44 44)">
+                        <path d="M44 16 L68 30 V54 L44 68 L20 54 V30 Z" fill="url(#imp-org-node)" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
+                        <circle cx="44" cy="34" r="7" fill="#fff" fill-opacity=".9"/>
+                        <path d="M44 41 V52" stroke="url(#imp-org-line)" stroke-width="2.4" stroke-linecap="round"/>
+                        <path d="M30 58 H58" stroke="url(#imp-org-line)" stroke-width="2.4" stroke-linecap="round"/>
+                        <circle cx="30" cy="62" r="6.5" fill="#ffb777"/>
+                        <circle cx="58" cy="62" r="6.5" fill="#ffb8e2"/>
+                        <circle cx="44" cy="34" r="3" fill="#4a3bff"/>
+                      </g>
+                    </svg>
+                  </span>
+                  <div class="mimp__body">
+                    <div class="mimp__top">
+                      <span class="mimp__title">Из оргструктуры</span>
+                      <span class="mimp__badge">без AI</span>
+                    </div>
+                    <p class="mimp__desc">Фактические должности сотрудников подразделения, быстрый старт цикла</p>
                   </div>
-                  <div style="font-size:12px;line-height:1.4;color:#403c68;">Фактические должности сотрудников подразделения, быстрый старт цикла</div>
-                </div>
-                <div style="padding:13px 14px;border-radius:13px;background:#f8f7fb;">
-                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:4px;">
-                    <span style="font-size:13.5px;font-weight:800;color:#141033;">Вручную</span>
-                    <span style="padding:3px 9px;border-radius:999px;background:#ede9f6;color:#8681ab;font-size:10.5px;font-weight:800;white-space:nowrap;">без AI</span>
+                </article>
+                <article class="mimp__row">
+                  <span class="mimp__icon" aria-hidden="true">
+                    <svg width="44" height="44" viewBox="0 0 88 88" fill="none">
+                      <defs>
+                        <linearGradient id="imp-man-body" x1="16" y1="18" x2="72" y2="74" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#ffb777"/><stop offset=".45" stop-color="#ffb8e2"/><stop offset="1" stop-color="#4a3bff"/>
+                        </linearGradient>
+                        <linearGradient id="imp-man-tip" x1="54" y1="12" x2="78" y2="36" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#d5fff3"/>
+                        </linearGradient>
+                        <filter id="imp-man-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#ffb777" flood-opacity=".3"/>
+                        </filter>
+                      </defs>
+                      <g filter="url(#imp-man-shadow)" transform="rotate(-10 44 44)">
+                        <path d="M24 62 L34 22 L48 26 L38 66 Z" fill="url(#imp-man-body)"/>
+                        <path d="M34 22 L48 26 L54 14 L40 10 Z" fill="url(#imp-man-tip)"/>
+                        <path d="M52 18 L66 54 L58 58 L44 22 Z" fill="#141033" fill-opacity=".88"/>
+                        <path d="M20 66 C20 62 23 60 27 60 H61 C65 60 68 62 68 66 C68 70 65 72 61 72 H27 C23 72 20 70 20 66 Z" fill="#cec8ff"/>
+                        <path d="M30 66 H58" stroke="#4a3bff" stroke-width="2" stroke-linecap="round" stroke-opacity=".35"/>
+                      </g>
+                    </svg>
+                  </span>
+                  <div class="mimp__body">
+                    <div class="mimp__top">
+                      <span class="mimp__title">Вручную</span>
+                      <span class="mimp__badge">без AI</span>
+                    </div>
+                    <p class="mimp__desc">Новая или уникальная роль, которой ещё нет ни в справочнике, ни в структуре</p>
                   </div>
-                  <div style="font-size:12px;line-height:1.4;color:#403c68;">Новая или уникальная роль, которой ещё нет ни в справочнике, ни в структуре</div>
-                </div>
+                </article>
               </div>
-              <div class="mgapchip"><span>Массовое создание позиций доступно HR на вкладке «Ключевые позиции»</span><b style="font-size:12px;">20 ролей</b></div>
+              <div class="mgapchip"><span>После импорта орг.структуры или наполнения базы должностей просто отметьте позицию галочкой «Ключевая», чтобы она отображалась в модуле кадрового резерва</span></div>
             </div>
           </div>
         </div>
@@ -224,16 +376,28 @@
                 <script type="application/json" data-succ-json>
                 {
                   "position": "Руководитель отдела продаж",
-                  "holder": "Виктор С., в роли 6 лет",
+                  "holder": {
+                    "name": "Виктор С.",
+                    "meta": "в роли 6 лет",
+                    "avatar": "images/avatar-route-dmitry.jpg"
+                  },
                   "covered": 12,
                   "totalPositions": 20,
                   "candidates": [
                     {
                       "name": "Ирина М.",
                       "role": "Руководитель группы продаж, Северо-Запад",
+                      "avatar": "images/avatar-successor-maria.jpg",
                       "match": 84,
-                      "why": "закрывает 5 из 6 компетенций роли, в карьерном треке уже выбрана целевая позиция того же уровня, высокие результаты в Performance Review за два цикла",
-                      "strengths": ["Компетенции 5 из 6", "Целевая позиция совпадает", "360°: 4,4 из 5"],
+                      "comp": { "hit": 5, "total": 6 },
+                      "career": "Целевая позиция совпадает",
+                      "careerOk": true,
+                      "pr": {
+                        "score": "4,6",
+                        "grade": "A",
+                        "manager": "Виктор С., руководитель",
+                        "review": "Стабильно перевыполняет план по СЗФО, уверенно ведёт команду из 8 человек. Готова к расширению зоны ответственности."
+                      },
                       "gaps": ["Управление бюджетом"],
                       "readiness": "В течение 1 года",
                       "gap": "1 год",
@@ -242,9 +406,17 @@
                     {
                       "name": "Сергей Т.",
                       "role": "Старший менеджер по ключевым клиентам",
+                      "avatar": "images/avatar-route-alexey.jpg",
                       "match": 71,
-                      "why": "сильные продажи и работа с крупными контрактами, но управленческого опыта пока нет: команда ни разу не была в зоне ответственности",
-                      "strengths": ["Компетенции 4 из 6", "Лучший результат по выручке"],
+                      "comp": { "hit": 4, "total": 6 },
+                      "career": "Целевая позиция не выбрана",
+                      "careerOk": false,
+                      "pr": {
+                        "score": "4,2",
+                        "grade": "B",
+                        "manager": "Виктор С., руководитель",
+                        "review": "Лучший результат по выручке в отделе, сильные переговоры. Для руководящей роли нужен опыт управления командой."
+                      },
                       "gaps": ["Управление командой", "Финансовое планирование"],
                       "readiness": "2–5 лет",
                       "gap": "2 года",
@@ -253,9 +425,17 @@
                     {
                       "name": "Алина Р.",
                       "role": "Руководитель партнёрского канала",
+                      "avatar": "images/avatar-career-anna.jpg",
                       "match": 66,
-                      "why": "управленческий опыт есть, компетенции переносимы, но розничный канал для неё новый — потребуется погружение в другую модель продаж",
-                      "strengths": ["Компетенции 4 из 6", "Опыт руководства 3 года"],
+                      "comp": { "hit": 4, "total": 6 },
+                      "career": "Смежная управленческая роль",
+                      "careerOk": true,
+                      "pr": {
+                        "score": "4,0",
+                        "grade": "B",
+                        "manager": "Директор по продажам",
+                        "review": "Управленческий опыт 3 года, сильна в партнёрских продажах. Розничный канал потребует адаптации."
+                      },
                       "gaps": ["Работа с розницей"],
                       "readiness": "В течение 1 года",
                       "gap": "1 год",
@@ -270,8 +450,8 @@
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>03</b> Попробуйте сами</p>
-          <h2 class="mclaim" id="r3-title">Резервиста ищет не память, <em>а данные</em></h2>
-          <p class="mlead">Запустите подбор на непокрытую позицию: ИИ предложит до пяти кандидатов из поддерева подразделения с процентом соответствия, совпадением по компетенциям и карьерному треку и честно названными зонами развития. После номинации покрытие цикла пересчитается.</p>
+          <h2 class="mclaim" id="r3-title">Кандидата поможет подобрать <em>ИИ</em></h2>
+          <p class="mlead">Запустите подбор на непокрытую позицию: ИИ предложит до пяти кандидатов из поддерева подразделения с процентом соответствия, совпадением по компетенциям и карьерному треку.</p>
           <div class="mproof">
             <span class="mproof__num">6</span>
             <span class="mproof__txt">источников данных в подборе: требования должности, 360°, Performance Review, Self Review, карьерный трек и оргструктура подразделения</span>
@@ -286,43 +466,85 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>04</b> Глубина скамейки</p>
-          <h2 class="mclaim" id="r4-title">На роль назначают <em>не одного человека</em></h2>
-          <p class="mlead">У каждого преемника своя готовность, свой gap в годах и свой тип связи: прямая линия управления, функциональная связь или через уровень. Так видно не просто «преемник есть», а кто закроет роль завтра, а кто — через два года.</p>
-          <div class="mproof">
-            <svg class="mproof__spark" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6 0)"></path></svg>
-            <span class="mproof__txt">Чувствительную номинацию HR может скрыть от нижестоящих руководителей: ранние гипотезы по замене не должны влиять на команду</span>
+          <p class="meyebrow"><b>04</b> Защита от рисков</p>
+          <h2 class="mclaim" id="r4-title">Нет ограничений <em>по числу преемников</em></h2>
+          <p class="mlead">У каждого преемника своя готовность, свой gap в годах и свой тип связи с позицией. Так видно целую цепочку: кто готов закрыть роль «уже завтра», а кто на горизонте нескольких лет.</p>
+          <div class="mproof mproof--hide mproof--wide">
+            <span class="mproof__obj" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+                <defs>
+                  <linearGradient id="succ-hide-eye" x1="18" y1="28" x2="82" y2="72" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ffb8e2"/>
+                    <stop offset=".45" stop-color="#cec8ff"/>
+                    <stop offset="1" stop-color="#4a3bff"/>
+                  </linearGradient>
+                  <linearGradient id="succ-hide-lid" x1="24" y1="22" x2="76" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#fff" stop-opacity=".9"/>
+                    <stop offset="1" stop-color="#d5fff3"/>
+                  </linearGradient>
+                  <filter id="succ-hide-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#b06699" flood-opacity=".32"/>
+                  </filter>
+                </defs>
+                <g filter="url(#succ-hide-shadow)" transform="rotate(-8 50 50)">
+                  <path d="M14 52 C24 34 40 26 50 26 C60 26 76 34 86 52 C76 70 60 78 50 78 C40 78 24 70 14 52 Z" fill="url(#succ-hide-eye)"/>
+                  <ellipse cx="50" cy="52" rx="11" ry="11" fill="#141033" fill-opacity=".88"/>
+                  <circle cx="50" cy="52" r="5" fill="#fff" fill-opacity=".92"/>
+                  <path d="M22 30 C34 24 42 22 50 22 C58 22 66 24 78 30 L72 38 C62 34 56 33 50 33 C44 33 38 34 28 38 Z" fill="url(#succ-hide-lid)"/>
+                  <path d="M24 24 L76 76" stroke="#ffb777" stroke-width="5.5" stroke-linecap="round"/>
+                  <path d="M24 24 L76 76" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-opacity=".55"/>
+                </g>
+              </svg>
+            </span>
+            <span class="mproof__txt"><strong>Чувствительную номинацию</strong> HR может <strong>скрыть от нижестоящих руководителей</strong>, чтобы <strong>не влиять на команду</strong></span>
           </div>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Позиция · Директор по производству · преемники</span></div>
             <div class="mwin__body">
-              <div style="padding:11px 13px;border-radius:12px;background:#f1eefe;margin-bottom:12px;font-size:12.5px;font-weight:700;color:#403c68;">Держатель: <b style="color:#141033;">Андрей К.</b> · в роли 4 года</div>
-              <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="padding:12px 13px;border-radius:12px;background:#eafaf0;">
-                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;">
-                    <span style="font-size:13px;font-weight:800;color:#141033;">Наталья Г.</span>
-                    <span style="padding:3px 9px;border-radius:999px;background:#fff;color:#2f9d5b;font-size:10.5px;font-weight:800;white-space:nowrap;">Готов</span>
+              <div class="msucc">
+                <div class="msucc__holder">
+                  <img src="images/avatar-route-alexey.jpg" alt="" width="38" height="38" loading="lazy" decoding="async">
+                  <div class="msucc__holder-main">
+                    <span class="msucc__holder-tag">Текущий держатель</span>
+                    <span class="msucc__holder-name"><b>Андрей К.</b> · в роли 4 года</span>
                   </div>
-                  <div style="margin-top:5px;font-size:11.5px;font-weight:700;color:#5c7a67;">gap 0 · прямая связь · назначил HRD, 12 марта</div>
                 </div>
-                <div style="padding:12px 13px;border-radius:12px;background:#f8f7fb;">
-                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;">
-                    <span style="font-size:13px;font-weight:800;color:#141033;">Максим Л.</span>
-                    <span style="padding:3px 9px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:10.5px;font-weight:800;white-space:nowrap;">В течение 1 года</span>
-                  </div>
-                  <div style="margin-top:5px;font-size:11.5px;font-weight:700;color:#8681ab;">gap 1 · функциональная связь · разрыв закрывается в ИПР</div>
+                <div class="msucc__list">
+                  <article class="msucc__person msucc__person--ready">
+                    <img src="images/avatar-successor-maria.jpg" alt="" width="34" height="34" loading="lazy" decoding="async">
+                    <div>
+                      <div class="msucc__top">
+                        <b>Наталья Г.</b>
+                        <span class="msucc__pill msucc__pill--ready">Готов</span>
+                      </div>
+                      <p>готов сейчас · прямая связь · назначил HRD, 12 марта</p>
+                    </div>
+                  </article>
+                  <article class="msucc__person msucc__person--mid">
+                    <img src="images/avatar-successor-dmitry.jpg" alt="" width="34" height="34" loading="lazy" decoding="async">
+                    <div>
+                      <div class="msucc__top">
+                        <b>Максим Л.</b>
+                        <span class="msucc__pill msucc__pill--mid">В течение 1 года</span>
+                      </div>
+                      <p>через 10 месяцев · функциональная связь · разрыв закрывается в ИПР</p>
+                    </div>
+                  </article>
+                  <article class="msucc__person msucc__person--long">
+                    <img src="images/avatar-career-anna.jpg" alt="" width="34" height="34" loading="lazy" decoding="async">
+                    <div>
+                      <div class="msucc__top">
+                        <b>Елена Ш.</b>
+                        <span class="msucc__pill msucc__pill--long">2–5 лет</span>
+                      </div>
+                      <p>через 3 года · через голову</p>
+                    </div>
+                  </article>
                 </div>
-                <div style="padding:12px 13px;border-radius:12px;background:#fff;border:1px dashed #ffb8e2;">
-                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;">
-                    <span style="font-size:13px;font-weight:800;color:#141033;">Елена Ш.</span>
-                    <span style="padding:3px 9px;border-radius:999px;background:#fdf4f9;color:#b06699;font-size:10.5px;font-weight:800;white-space:nowrap;">2–5 лет</span>
-                  </div>
-                  <div style="margin-top:5px;font-size:11.5px;font-weight:700;color:#b06699;">gap 3 · через голову · скрыто от нижестоящих руководителей</div>
-                </div>
+                <div class="mgapchip"><span>Готовность: готов · в течение 1 года · 2–5 лет · не готов</span><b style="font-size:12px;">4 значения</b></div>
               </div>
-              <div class="mgapchip"><span>Готовность: готов · в течение 1 года · 2–5 лет · не готов</span><b style="font-size:12px;">4 значения</b></div>
             </div>
           </div>
         </div>
@@ -338,39 +560,68 @@
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Матрица преемственности · цикл 2026 · 20 позиций</span></div>
             <div class="mwin__body">
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:700;color:#403c68;">
-                <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 108px;gap:8px;font-size:10.5px;color:#8681ab;">
-                  <span>Позиция и держатель</span><span>Преемник</span><span style="text-align:right;">Готовность</span>
+              <div class="mmat">
+                <div class="mmat__wrap">
+                  <table class="mmat__table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Позиция и держатель</th>
+                        <th scope="col">Преемник</th>
+                        <th scope="col">Готовность</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <b>Директор по производству</b>
+                          <span>Андрей К.</span>
+                        </td>
+                        <td>Наталья Г. <i>+2</i></td>
+                        <td><span class="mmat__pill mmat__pill--ready">Готов</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <b>Финансовый директор</b>
+                          <span>Ольга В.</span>
+                        </td>
+                        <td>Павел Р.</td>
+                        <td><span class="mmat__pill mmat__pill--mid">1 год · gap 1</span></td>
+                      </tr>
+                      <tr class="is-warn">
+                        <td>
+                          <b>Руководитель отдела продаж</b>
+                          <span class="is-warn">Виктор С.</span>
+                        </td>
+                        <td class="is-warn">не назначен</td>
+                        <td><span class="mmat__pill mmat__pill--warn">нет данных</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <b>Главный технолог</b>
+                          <span class="is-vacant">позиция вакантна</span>
+                        </td>
+                        <td>Игорь Д.</td>
+                        <td><span class="mmat__pill mmat__pill--long">2–5 лет</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 108px;gap:8px;align-items:center;padding:9px 11px;border-radius:10px;background:#f8f7fb;">
-                  <span>Директор по производству<br><span style="font-size:10.5px;color:#8681ab;">Андрей К.</span></span>
-                  <span>Наталья Г. <span style="font-size:10.5px;color:#8681ab;">+2</span></span>
-                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#eafaf0;color:#2f9d5b;font-size:10.5px;white-space:nowrap;">Готов</span></span>
-                </div>
-                <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 108px;gap:8px;align-items:center;padding:9px 11px;border-radius:10px;background:#f8f7fb;">
-                  <span>Финансовый директор<br><span style="font-size:10.5px;color:#8681ab;">Ольга В.</span></span>
-                  <span>Павел Р.</span>
-                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#f1eefe;color:#4a3bff;font-size:10.5px;white-space:nowrap;">1 год · gap 1</span></span>
-                </div>
-                <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 108px;gap:8px;align-items:center;padding:9px 11px;border-radius:10px;background:#fff5ea;">
-                  <span>Руководитель отдела продаж<br><span style="font-size:10.5px;color:#c47a2c;">Виктор С.</span></span>
-                  <span style="color:#c47a2c;">не назначен</span>
-                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#ffe8cd;color:#c47a2c;font-size:10.5px;white-space:nowrap;">нет данных</span></span>
-                </div>
-                <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 108px;gap:8px;align-items:center;padding:9px 11px;border-radius:10px;background:#fdf4f9;">
-                  <span>Главный технолог<br><span style="font-size:10.5px;color:#b06699;">позиция вакантна</span></span>
-                  <span>Игорь Д.</span>
-                  <span style="text-align:right;"><span style="padding:3px 8px;border-radius:999px;background:#ffd3ec;color:#b06699;font-size:10.5px;white-space:nowrap;">2–5 лет</span></span>
-                </div>
+                <button type="button" class="mmat__export">
+                  <img src="images/icon-excel.png" alt="" width="22" height="22" decoding="async" aria-hidden="true">
+                  <span>
+                    <b>Экспорт в Excel</b>
+                    <small>18 полей и лист «Справка» · для комитета</small>
+                  </span>
+                  <svg class="mmat__dl" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v7m0 0 2.5-2.5M8 9 5.5 6.5M3 11.5v1.2c0 .7.6 1.3 1.3 1.3h7.4c.7 0 1.3-.6 1.3-1.3v-1.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
               </div>
-              <div class="mgapchip" style="background:#141033;border-color:#141033;color:#fff;"><span>Экспорт в Excel: 18 полей и лист «Справка»</span><b style="font-size:12px;color:#fff;">для комитета</b></div>
             </div>
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
           <p class="meyebrow"><b>05</b> Два представления</p>
           <h2 class="mclaim" id="r5-title">Дерево для работы, <em>матрица для контроля</em></h2>
-          <p class="mlead">Руководителю удобно работать в дереве своей ветки: подразделение, позиция, держатель, преемники. HR на масштабе компании нужен табличный свод с поиском, фильтрами и агрегированной строкой «N преемников» — и выгрузка, которую можно принести на кадровый комитет.</p>
+          <p class="mlead">Руководителю удобно работать в дереве своей ветки: подразделение, позиция, держатель, преемники. HR на масштабе компании нужен табличный свод с поиском, фильтрами и выгрузкой, которую удобно принести на кадровый комитет.</p>
           <div class="mtags">
             <span class="mtag">Кто назначил и когда</span>
             <span class="mtag">Скрытые номинации в выгрузке</span>
@@ -386,41 +637,84 @@
     <div class="shell">
       <div class="mreel__grid">
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>06</b> Человек, а не строка</p>
-          <h2 class="mclaim" id="r6-title">Не «кто на какую позицию», <em>а что с человеком</em></h2>
-          <p class="mlead">Карточка резервиста собирает номинации, профиль, результаты оценок и план развития в одном месте. Здесь же HR ведёт свою анкету: потенциал, риск ухода, влияние ухода, мобильность и подход к удержанию. Если кандидат не готов — разрыв уходит в ИПР, а не остаётся пометкой в таблице.</p>
-          <div class="mproof">
-            <span class="mproof__num">3</span>
-            <span class="mproof__txt">слоя в карточке: номинации в преемственности, сводка из профиля и плана развития, HR-анкета с историей изменений</span>
-          </div>
+          <p class="meyebrow"><b>06</b> Профиль резервиста</p>
+          <h2 class="mclaim" id="r6-title">Полная сводка <em>с индикаторами и рисками</em></h2>
+          <p class="mlead">Вы видите полную сводку о сотруднике: результаты оценок, план развития, Self Review. Здесь же вы можете заполнить по нему анкету, указав такую дополнительную информацию как: потенциал, риск ухода, влияние ухода, подход к удержанию.</p>
         </div>
         <div class="mreel__mock" data-reveal>
           <div class="mwin">
             <div class="mwin__bar"><span class="mwin__dot"></span><span class="mwin__dot"></span><span class="mwin__title">Карточка резервиста · Наталья Г.</span></div>
             <div class="mwin__body">
-              <p class="msub">HR-профиль</p>
-              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px;">
-                <div style="padding:10px;border-radius:11px;background:#eafaf0;">
-                  <div style="font-size:10.5px;font-weight:700;color:#2f9d5b;">Потенциал</div>
-                  <div style="font-size:13px;font-weight:800;color:#141033;margin-top:2px;">Высокий</div>
-                </div>
-                <div style="padding:10px;border-radius:11px;background:#fff5ea;">
-                  <div style="font-size:10.5px;font-weight:700;color:#c47a2c;">Риск ухода</div>
-                  <div style="font-size:13px;font-weight:800;color:#141033;margin-top:2px;">Средний</div>
-                </div>
-                <div style="padding:10px;border-radius:11px;background:#fdf4f9;">
-                  <div style="font-size:10.5px;font-weight:700;color:#b06699;">Влияние ухода</div>
-                  <div style="font-size:13px;font-weight:800;color:#141033;margin-top:2px;">Критичное</div>
+              <div class="mres">
+                <header class="mres__hero">
+                  <img class="mres__av" src="images/avatar-successor-maria.jpg" alt="" width="44" height="44" loading="lazy" decoding="async">
+                  <div class="mres__who">
+                    <b>Наталья Г.</b>
+                    <span>Руководитель группы продаж · Северо-Запад</span>
+                  </div>
+                  <span class="mres__pill">резервист</span>
+                </header>
+
+                <section class="mres__block">
+                  <h3 class="mres__lbl">Анкета <i class="mres__hint">редактируется HR</i></h3>
+                  <div class="mres__ank">
+                    <article class="mres__fld mres__fld--hi">
+                      <svg class="mres__pen" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.7 2.3a1.2 1.2 0 0 1 1.7 0l1.3 1.3a1.2 1.2 0 0 1 0 1.7L6.2 12.1 2.7 13l.9-3.5 7.1-7.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.4 3.6 12.4 6.6" stroke="currentColor" stroke-width="1.3"/></svg>
+                      <i>Потенциал</i>
+                      <b>Высокий</b>
+                    </article>
+                    <article class="mres__fld mres__fld--mid">
+                      <svg class="mres__pen" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.7 2.3a1.2 1.2 0 0 1 1.7 0l1.3 1.3a1.2 1.2 0 0 1 0 1.7L6.2 12.1 2.7 13l.9-3.5 7.1-7.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.4 3.6 12.4 6.6" stroke="currentColor" stroke-width="1.3"/></svg>
+                      <i>Риск ухода</i>
+                      <b>Средний</b>
+                    </article>
+                    <article class="mres__fld mres__fld--crit">
+                      <svg class="mres__pen" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.7 2.3a1.2 1.2 0 0 1 1.7 0l1.3 1.3a1.2 1.2 0 0 1 0 1.7L6.2 12.1 2.7 13l.9-3.5 7.1-7.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.4 3.6 12.4 6.6" stroke="currentColor" stroke-width="1.3"/></svg>
+                      <i>Влияние ухода</i>
+                      <b>Критичное</b>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="mres__block">
+                  <h3 class="mres__lbl">Связано с развитием</h3>
+                  <div class="mres__dev">
+                    <article class="mres__row">
+                      <span class="mres__ico" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 72 72" fill="none"><defs><linearGradient id="res-trk" x1="10" y1="10" x2="62" y2="62"><stop stop-color="#d5fff3"/><stop offset=".5" stop-color="#cec8ff"/><stop offset="1" stop-color="#4a3bff"/></linearGradient></defs><path d="M14 52 L28 38 L42 44 L58 22" stroke="url(#res-trk)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="58" cy="22" r="6" fill="#2f9d5b"/><circle cx="14" cy="52" r="5" fill="#ffb777"/></svg>
+                      </span>
+                      <div class="mres__row-txt"><i>Карьерный трек</i><span>Целевая позиция</span></div>
+                      <b class="mres__val mres__val--ok">совпадает</b>
+                    </article>
+                    <article class="mres__row">
+                      <span class="mres__ico" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 72 72" fill="none"><defs><linearGradient id="res-ipr" x1="12" y1="58" x2="60" y2="14"><stop stop-color="#ffb777"/><stop offset="1" stop-color="#4a3bff"/></linearGradient></defs><rect x="14" y="18" width="44" height="36" rx="8" fill="#f1eefe" stroke="#cec8ff"/><rect x="20" y="42" width="10" height="12" rx="2" fill="url(#res-ipr)"/><rect x="34" y="34" width="10" height="20" rx="2" fill="url(#res-ipr)" fill-opacity=".85"/><rect x="48" y="26" width="10" height="28" rx="2" fill="url(#res-ipr)" fill-opacity=".65"/></svg>
+                      </span>
+                      <div class="mres__row-txt"><i>Прогресс ИПР</i><span>6 из 10 действий</span></div>
+                      <b class="mres__val mres__val--mid">62%</b>
+                    </article>
+                    <article class="mres__row">
+                      <span class="mres__ico" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 72 72" fill="none"><defs><linearGradient id="res-360" x1="16" y1="16" x2="56" y2="56"><stop stop-color="#ffb8e2"/><stop offset="1" stop-color="#4a3bff"/></linearGradient></defs><circle cx="36" cy="36" r="22" stroke="url(#res-360)" stroke-width="4" fill="#fdf4f9"/><path d="M36 14 A22 22 0 0 1 54 44" stroke="#2f9d5b" stroke-width="4" stroke-linecap="round" fill="none"/></svg>
+                      </span>
+                      <div class="mres__row-txt"><i>Оценка 360°</i><span>последний цикл</span></div>
+                      <b class="mres__val mres__val--hi">4,4 из 5</b>
+                    </article>
+                    <article class="mres__row">
+                      <span class="mres__ico" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 72 72" fill="none"><defs><linearGradient id="res-nom" x1="14" y1="20" x2="58" y2="54"><stop stop-color="#cec8ff"/><stop offset="1" stop-color="#141033"/></linearGradient></defs><rect x="18" y="24" width="36" height="28" rx="7" fill="url(#res-nom)"/><rect x="24" y="18" width="24" height="8" rx="4" fill="#ffb8e2"/><circle cx="30" cy="38" r="4" fill="#fff" fill-opacity=".9"/><circle cx="42" cy="38" r="4" fill="#fff" fill-opacity=".7"/></svg>
+                      </span>
+                      <div class="mres__row-txt"><i>Номинации в цикле</i><span>ключевые позиции</span></div>
+                      <b class="mres__val mres__val--ind">2 позиции</b>
+                    </article>
+                  </div>
+                </section>
+
+                <div class="mres__foot">
+                  <span>Мобильность, языки, подход к удержанию и фокус развития</span>
+                  <b>доп. поля анкеты</b>
                 </div>
               </div>
-              <p class="msub">Связано с развитием</p>
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:#403c68;">
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Целевая позиция в карьерном треке</span><b style="color:#4a3bff;">совпадает</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Прогресс ИПР</span><b style="color:#4a3bff;">62%</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Оценка 360° · последний цикл</span><b style="color:#4a3bff;">4,4 из 5</b></div>
-                <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#f8f7fb;"><span>Номинации в цикле</span><b style="color:#4a3bff;">2 позиции</b></div>
-              </div>
-              <div class="mgapchip"><span>Мобильность, языки, подход к удержанию и фокус развития</span><b style="font-size:12px;">HR-анкета</b></div>
             </div>
           </div>
         </div>
@@ -457,13 +751,9 @@
           </div>
         </div>
         <div class="mreel__copy" data-reveal>
-          <p class="meyebrow"><b>07</b> Зачем это компании</p>
-          <h2 class="mclaim" id="r7-title">Резерв, который <em>не живёт в презентации</em></h2>
-          <p class="mlead">Модуль не просит заводить отдельную базу людей: он собирает картину из должностей, оценок и карьерных данных, которые уже есть в платформе. Поэтому список преемников не устаревает через месяц после кадрового комитета.</p>
-          <div class="mproof">
-            <span class="mproof__num">18</span>
-            <span class="mproof__txt">полей в выгрузке матрицы вместе с листом «Справка»: от готовности и gap до автора номинации и даты изменения</span>
-          </div>
+          <p class="meyebrow"><b>07</b> Что приобретает компания</p>
+          <h2 class="mclaim" id="r7-title">Кадровый резерв, который <em>регулярно обновляется и пополняется</em></h2>
+          <p class="mlead">Модуль не просит заводить отдельную базу сотрудников: он собирает картину из должностей, оценок и карьерных данных, которые уже есть в платформе. Поэтому список преемников не устаревает через месяц после кадрового комитета.</p>
         </div>
       </div>
     </div>
@@ -625,7 +915,7 @@
           <p class="mcard__lbl"><i></i>Границы</p>
           <h3 class="mcard__t">Что важно учесть до внедрения</h3>
           <div class="mnote">
-            Сотрудник <b>по умолчанию не видит модуль</b>: это управленческий контур, а не персональный экран. AI-подбор работает <b>только для позиций из кадрового резерва с заполненными компетенциями</b> — на позициях, созданных из оргструктуры, рекомендаций не будет. Оргструктура сама по себе <b>не создаёт позиции в цикле</b>, их переносит HR отдельными действиями. Закрытый цикл или прошедший дедлайн блокирует редактирование. Руководитель видит только свою ветку и не может скрывать номинации. Отдельного поля «критичность позиции» нет: близкий смысл несут признак «Ключевая» и HR-поля риска и влияния ухода в карточке резервиста.
+            Сотрудник <b>по умолчанию не видит модуль</b>: это управленческий контур, а не персональный экран. AI-подбор работает <b>только для позиций из кадрового резерва с заполненными компетенциями</b> — на позициях, созданных из оргструктуры, рекомендаций не будет. Оргструктура сама по себе <b>не создаёт позиции в цикле</b>, их переносит HR отдельными действиями. Закрытый цикл или прошедший дедлайн блокирует редактирование. Руководитель видит только свою ветку и не может скрывать номинации.
           </div>
         </article>
 
@@ -638,17 +928,17 @@
     <div class="shell">
       <h2 class="mnext__h" id="next-title">Откуда берутся данные</h2>
       <div class="mnext__row">
-        <a class="mnext__card" href="page102370002.html" style="background:var(--t-mac);">
+        <a class="mnext__card" href="/modul-karyera-i-razvitie" style="background:var(--t-mac);">
           <b>Карьера и развитие</b>
           <span>База должностей с компетенциями и ИПР, который закрывает gap преемника</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="page102360001.html" style="background:var(--t-mint);">
+        <a class="mnext__card" href="/modul-otsenka-360" style="background:var(--t-mint);">
           <b>Оценка 360°</b>
           <span>Компетенции кандидата глазами команды: один из источников подбора</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="page102380003.html" style="background:var(--t-candy);">
+        <a class="mnext__card" href="/modul-matritsa-9-box" style="background:var(--t-candy);">
           <b>Матрица талантов 9 Box</b>
           <span>Зоны «Звёзды» и «Высокий потенциал» как поле для обсуждения резерва</span>
           <i>Смотреть модуль →</i>
@@ -662,8 +952,8 @@
     <div class="shell">
       <div class="mfin__inner">
         <div>
-          <h2 class="mfin__t">Посчитайте покрытие своих ключевых ролей</h2>
-          <p class="mfin__d">Покажем цикл преемственности, дерево назначений, AI-подбор резервистов и выгрузку матрицы для кадрового комитета. Демодоступ на пять рабочих дней.</p>
+          <h2 class="mfin__t">Обеспечьте надёжность <em>ключевых позиций</em></h2>
+          <p class="mfin__d">Покажем цикл преемственности, дерево назначений, AI-подбор резервистов и выгрузку матрицы для кадрового комитета. После встречи вы получите бесплатный демо-доступ на 5 рабочих дней.</p>
         </div>
         <button type="button" class="mfin__cta" data-ef-demo-open data-track="cta-final">Получить демодоступ</button>
       </div>
@@ -706,6 +996,11 @@
         <div class="ef-lead-form__field">
           <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
         </div>
+        <fieldset class="ef-lead-form__field ef-lead-form__modules" data-ef-demo-modules>
+          <legend class="ef-lead-form__legend">Какие модули вас интересуют?</legend>
+          <p class="ef-lead-form__modules-hint">Можно выбрать несколько</p>
+          <div class="ef-lead-form__checks" data-ef-demo-modules-list role="group" aria-label="Модули платформы"></div>
+        </fieldset>
         <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
           <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
           <div class="ef-lead-form__radios">
@@ -732,8 +1027,9 @@
   </div>
 </div>
 
-<script src="js/emplyflow-module.js?v=20260805q" defer></script>
+<script src="js/emplyflow-module.js?v=20260809aa" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-demo-modules.js" defer></script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 
 <!-- Yandex.Metrika counter 105450350 -->

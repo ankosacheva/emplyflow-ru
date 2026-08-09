@@ -1326,22 +1326,106 @@
     var stage = $('.msc__stage', root);
     if (!stage) return;
 
-    function kpi(covered) {
-      var total = cfg.totalPositions;
-      return '<div class="msc__kpi"><b>' + Math.round((covered / total) * 100) + '%</b>' +
-        '<span><i>Покрытие ключевых позиций</i>' + covered + ' из ' + total + ' позиций имеют хотя бы одного преемника</span></div>';
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (ch) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch];
+      });
     }
 
-    function position() {
-      return '<div class="msc__pos"><b>' + cfg.position + '</b>' +
-        '<span>Держатель: ' + cfg.holder + ' · источник: справочник должностей · кадровый резерв</span></div>';
+    function matchTier(pct) {
+      if (pct >= 80) return 'hi';
+      if (pct >= 70) return 'mid';
+      return 'low';
+    }
+
+    function holderInfo() {
+      if (cfg.holder && typeof cfg.holder === 'object') return cfg.holder;
+      return { name: cfg.holder || '', meta: '', avatar: 'images/avatar-route-dmitry.jpg' };
+    }
+
+    function headerBento(covered) {
+      var total = cfg.totalPositions;
+      var pct = Math.round((covered / total) * 100);
+      var holder = holderInfo();
+      return '<div class="mscb__hero">' +
+        '<article class="mscb__kpi">' +
+          '<span class="mscb__kpi-num">' + pct + '%</span>' +
+          '<span class="mscb__kpi-txt"><b>Покрытие ключевых позиций</b>' + covered + ' из ' + total + ' позиций с преемником</span>' +
+        '</article>' +
+        '<article class="mscb__role">' +
+          '<div class="mscb__role-top"><span>Ключевая позиция</span><i>справочник · кадровый резерв</i></div>' +
+          '<div class="mscb__role-main">' +
+            '<img class="mscb__av" src="' + esc(holder.avatar) + '" alt="" width="40" height="40" loading="lazy" decoding="async">' +
+            '<div><b>' + esc(cfg.position) + '</b><span>Держатель: ' + esc(holder.name) + (holder.meta ? ', ' + esc(holder.meta) : '') + '</span></div>' +
+          '</div>' +
+        '</article>' +
+      '</div>';
+    }
+
+    function metricTiles(c) {
+      var compPct = Math.round((c.comp.hit / c.comp.total) * 100);
+      var compClass = compPct >= 83 ? 'is-ok' : (compPct >= 67 ? 'is-mid' : 'is-warn');
+      var careerClass = c.careerOk ? 'is-ok' : 'is-warn';
+      return '<div class="mscb__metrics">' +
+        '<div class="mscb__metric ' + compClass + '">' +
+          '<i>Компетенции</i><b>' + c.comp.hit + ' из ' + c.comp.total + '</b><span>Совпадение с моделью роли</span>' +
+        '</div>' +
+        '<div class="mscb__metric ' + careerClass + '">' +
+          '<i>Карьерный трек</i><b>' + (c.careerOk ? 'Совпадает' : 'Частично') + '</b><span>' + esc(c.career) + '</span>' +
+        '</div>' +
+        '<div class="mscb__metric is-pr">' +
+          '<i>Performance Review</i><b>' + esc(c.pr.score) + ' · ' + esc(c.pr.grade) + '</b>' +
+          '<button type="button" class="mscb__pr-btn" data-pr-toggle>Посмотреть</button>' +
+          '<div class="mscb__pr-quote" hidden><q>' + esc(c.pr.review) + '</q><cite>— ' + esc(c.pr.manager) + '</cite></div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function gapTags(gaps) {
+      if (!gaps || !gaps.length) return '';
+      var tags = '';
+      gaps.forEach(function (t) { tags += '<span class="is-gap">' + esc(t) + '</span>'; });
+      return '<div class="mscb__gaps"><i>Зоны развития</i><span>' + tags + '</span></div>';
+    }
+
+    function candidateCard(c, i) {
+      var tier = matchTier(c.match);
+      return '<article class="mscb__card' + (i === 0 ? ' mscb__card--lead' : '') + '">' +
+        '<div class="mscb__head">' +
+          '<img class="mscb__av" src="' + esc(c.avatar) + '" alt="" width="36" height="36" loading="lazy" decoding="async">' +
+          '<div class="mscb__who"><b>' + esc(c.name) + '</b><span>' + esc(c.role) + '</span></div>' +
+          '<span class="mscb__match mscb__match--' + tier + '">' + c.match + '%</span>' +
+        '</div>' +
+        metricTiles(c) +
+        gapTags(c.gaps) +
+        '<button type="button" class="mscb__nom" data-nom="' + i + '">Номинировать</button>' +
+      '</article>';
+    }
+
+    function bindPrToggles() {
+      $$('[data-pr-toggle]', stage).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var quote = btn.nextElementSibling;
+          if (!quote) return;
+          var open = quote.hasAttribute('hidden');
+          $$('.mscb__pr-quote', stage).forEach(function (q) { q.setAttribute('hidden', ''); });
+          $$('[data-pr-toggle]', stage).forEach(function (b) { b.classList.remove('is-on'); });
+          if (open) {
+            quote.removeAttribute('hidden');
+            btn.classList.add('is-on');
+            btn.textContent = 'Скрыть';
+          } else {
+            btn.textContent = 'Посмотреть';
+          }
+        });
+      });
     }
 
     function renderStart() {
       stage.innerHTML =
-        kpi(cfg.covered) + position() +
-        '<button type="button" class="msc__go" data-succ-go>Подобрать резервистов с ИИ</button>' +
-        '<p class="msc__note" style="margin-top:12px;">ИИ сравнивает кандидатов из поддерева подразделения с требованиями роли: компетенции должности, данные 360°, Performance Review, Self Review и карьерный трек.</p>';
+        headerBento(cfg.covered) +
+        '<button type="button" class="mscb__go" data-succ-go>Подобрать резервистов с ИИ</button>' +
+        '<p class="mscb__note">ИИ сравнивает кандидатов из поддерева подразделения с требованиями роли: компетенции должности, 360°, Performance Review, Self Review и карьерный трек.</p>';
       $('[data-succ-go]', stage).addEventListener('click', function () {
         track('succ_ai');
         renderList();
@@ -1350,27 +1434,13 @@
 
     function renderList() {
       var cards = '';
-      cfg.candidates.forEach(function (c, i) {
-        var tags = '';
-        (c.strengths || []).forEach(function (t) { tags += '<span>' + t + '</span>'; });
-        (c.gaps || []).forEach(function (t) { tags += '<span class="is-gap">' + t + '</span>'; });
-        cards +=
-          '<div class="msc__card">' +
-            '<div class="msc__top">' +
-              '<span class="msc__name">' + c.name + '<small>' + c.role + '</small></span>' +
-              '<span class="msc__match">' + c.match + '%</span>' +
-            '</div>' +
-            '<p class="msc__why"><b>Почему подходит:</b> ' + c.why + '</p>' +
-            '<span class="msc__tags">' + tags + '</span>' +
-            '<button type="button" class="msc__nom" data-nom="' + i + '">Номинировать</button>' +
-          '</div>';
-      });
+      cfg.candidates.forEach(function (c, i) { cards += candidateCard(c, i); });
 
       stage.innerHTML =
-        kpi(cfg.covered) + position() +
-        '<p class="msc__why" style="margin:0 0 8px;"><b>ИИ предложил ' + cfg.candidates.length + ' кандидатов</b> из поддерева подразделения</p>' +
-        '<div class="msc__cands">' + cards + '</div>' +
-        '<button type="button" class="msc__back" data-succ-restart>Начать заново</button>';
+        headerBento(cfg.covered) +
+        '<p class="mscb__lead"><b>ИИ предложил ' + cfg.candidates.length + ' кандидатов</b> из поддерева подразделения</p>' +
+        '<div class="mscb__grid">' + cards + '</div>' +
+        '<button type="button" class="mscb__back" data-succ-restart>Начать заново</button>';
 
       $$('[data-nom]', stage).forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -1379,21 +1449,24 @@
           renderDone(c);
         });
       });
+      bindPrToggles();
       $('[data-succ-restart]', stage).addEventListener('click', renderStart);
     }
 
     function renderDone(c) {
       stage.innerHTML =
-        kpi(cfg.covered + 1) + position() +
-        '<div class="msc__done"><b>Номинация сохранена: ' + c.name + '</b>' +
-        '<span>Позиция перестала быть непокрытой, KPI цикла пересчитан автоматически.</span></div>' +
-        '<div class="msc__meta">' +
-          '<div><i>Готовность</i><b>' + c.readiness + '</b></div>' +
-          '<div><i>Gap</i><b>' + c.gap + '</b></div>' +
-          '<div><i>Тип связи</i><b>' + c.link + '</b></div>' +
+        headerBento(cfg.covered + 1) +
+        '<div class="mscb__done">' +
+          '<img class="mscb__av" src="' + esc(c.avatar) + '" alt="" width="40" height="40" loading="lazy" decoding="async">' +
+          '<div><b>Номинация сохранена: ' + esc(c.name) + '</b><span>Позиция перестала быть непокрытой, KPI цикла пересчитан автоматически.</span></div>' +
         '</div>' +
-        '<p class="msc__note"><b>Дальше по процессу.</b> На эту же позицию можно назначить ещё преемников со своей готовностью и gap, а HR может скрыть чувствительную номинацию от нижестоящих руководителей. Разрыв компетенций уходит в план развития резервиста.</p>' +
-        '<button type="button" class="msc__back" data-succ-restart>Подобрать другого кандидата</button>';
+        '<div class="mscb__meta">' +
+          '<div><i>Готовность</i><b>' + esc(c.readiness) + '</b></div>' +
+          '<div><i>Gap</i><b>' + esc(c.gap) + '</b></div>' +
+          '<div><i>Тип связи</i><b>' + esc(c.link) + '</b></div>' +
+        '</div>' +
+        '<p class="mscb__note"><b>Дальше по процессу.</b> На эту же позицию можно назначить ещё преемников со своей готовностью и gap, а HR может скрыть чувствительную номинацию от нижестоящих руководителей. Разрыв компетенций уходит в план развития резервиста.</p>' +
+        '<button type="button" class="mscb__back" data-succ-restart>Подобрать другого кандидата</button>';
       $('[data-succ-restart]', stage).addEventListener('click', renderStart);
     }
 
@@ -1521,6 +1594,616 @@
     render();
   }
 
+  function initPrDeck(deck) {
+    if (!deck) return;
+
+    var active = 'team';
+    var touchStartX = 0;
+    var touchStartY = 0;
+
+    function setActive(which) {
+      if (which !== 'team' && which !== 'phases') return;
+      active = which;
+      deck.setAttribute('data-active', which);
+      deck.classList.add('is-touched');
+      $$('.prdeck__tab', deck).forEach(function (tab) {
+        var on = tab.getAttribute('data-pr-flip') === which;
+        tab.classList.toggle('is-on', on);
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      $$('.prdeck__sheet', deck).forEach(function (sheet) {
+        sheet.classList.toggle('is-front', sheet.getAttribute('data-pr-sheet') === which);
+      });
+      track('pr_deck_flip', { screen: which });
+    }
+
+    deck.addEventListener('click', function (e) {
+      var flip = e.target.closest('[data-pr-flip]');
+      if (flip && deck.contains(flip)) {
+        setActive(flip.getAttribute('data-pr-flip'));
+        return;
+      }
+      var sheet = e.target.closest('.prdeck__sheet');
+      if (sheet && deck.contains(sheet) && !sheet.classList.contains('is-front')) {
+        setActive(sheet.getAttribute('data-pr-sheet'));
+      }
+    });
+
+    deck.addEventListener('touchstart', function (e) {
+      if (!e.touches || e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    deck.addEventListener('touchend', function (e) {
+      if (!e.changedTouches.length) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      if (dx < 0 && active === 'team') setActive('phases');
+      else if (dx > 0 && active === 'phases') setActive('team');
+    }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------------
+     HERO PERFORMANCE REVIEW — РЕЗУЛЬТАТ КОМАНДЫ
+     --------------------------------------------------------------- */
+  function initPrHero() {
+    var root = $('[data-pr-hero]');
+    if (!root) return;
+
+    var raw = $('[data-pr-hero-json]', root);
+    var cfg;
+    try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
+    if (!cfg.employees || !cfg.employees.length) return;
+
+    var empIdx = 0;
+    var compId = null;
+    var detailOpen = false;
+    var swapTimer;
+
+    var mockWrap = root.closest('.mreel__mock--prstack');
+    var phasesEl = mockWrap ? $('[data-pr-phases]', mockWrap) : null;
+
+    function phaseStatusLabel(status) {
+      if (status === 'done') return 'завершён';
+      if (status === 'active') return 'сейчас';
+      return 'ожидает';
+    }
+
+    function drawPhases() {
+      if (!phasesEl || !cfg.phases || !cfg.phases.length) return;
+      var steps = cfg.phases.map(function (p) {
+        return '<li class="mprstack__step is-' + p.status + '">' +
+          '<i class="mprstack__dot" aria-hidden="true"></i>' +
+          '<div><b>' + esc(p.name) + '</b><span>' + esc(p.dates) + '</span></div>' +
+          '<em>' + phaseStatusLabel(p.status) + '</em>' +
+          '</li>';
+      }).join('');
+      phasesEl.innerHTML = '<p class="mprstack__k">Этапы цикла</p><ol class="mprstack__list mprstack__list--fill">' + steps + '</ol>';
+    }
+
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function maxGradeCount() {
+      var m = 0;
+      cfg.grades.forEach(function (g) { if (g.count > m) m = g.count; });
+      return m || 1;
+    }
+
+    function compValue(emp, id) {
+      var c = emp[id];
+      return c ? c.value : '—';
+    }
+
+    function radarPoint(cx, cy, radius, index, total, value) {
+      var angle = (-Math.PI / 2) + ((2 * Math.PI * index) / total);
+      var r = radius * (value / 5);
+      return (cx + r * Math.cos(angle)).toFixed(1) + ',' + (cy + r * Math.sin(angle)).toFixed(1);
+    }
+
+    function radarRing(cx, cy, radius, total, level) {
+      var pts = [];
+      for (var i = 0; i < total; i++) {
+        pts.push(radarPoint(cx, cy, radius * level, i, total, 5));
+      }
+      return pts.join(' ');
+    }
+
+    function radarLabelPos(cx, cy, radius, index, total) {
+      var angle = (-Math.PI / 2) + ((2 * Math.PI * index) / total);
+      var r = radius + 10;
+      return {
+        x: (cx + r * Math.cos(angle)).toFixed(1),
+        y: (cy + r * Math.sin(angle) + 3).toFixed(1),
+        anchor: Math.abs(Math.cos(angle)) < 0.2 ? 'middle' : (Math.cos(angle) > 0 ? 'start' : 'end')
+      };
+    }
+
+    function fmtScore(v) {
+      return String(v).replace('.', ',');
+    }
+
+    function radar360Delta(team, bench) {
+      var d = Math.round((team - bench) * 10) / 10;
+      if (d > 0) return { text: '+' + fmtScore(d), cls: 'is-up' };
+      if (d < 0) return { text: fmtScore(d), cls: 'is-down' };
+      return { text: '0', cls: 'is-flat' };
+    }
+
+    function radar360SvgMarkup() {
+      var t = cfg.team360;
+      if (!t || !t.competencies || !t.competencies.length) return '';
+      var n = t.competencies.length;
+      var cx = 60;
+      var cy = 60;
+      var R = 42;
+      var teamPts = [];
+      var benchPts = [];
+      var labels = '';
+      t.competencies.forEach(function (c, i) {
+        teamPts.push(radarPoint(cx, cy, R, i, n, c.team));
+        benchPts.push(radarPoint(cx, cy, R, i, n, c.bench));
+        var lp = radarLabelPos(cx, cy, R, i, n);
+        labels += '<text x="' + lp.x + '" y="' + lp.y + '" text-anchor="' + lp.anchor + '">' + esc(c.label) + '</text>';
+      });
+      return '<svg viewBox="-8 -8 136 136" role="img" aria-label="Многогранник компетенций команды">' +
+        '<polygon class="grid-line" points="' + radarRing(cx, cy, R, n, 1) + '"></polygon>' +
+        '<polygon class="grid-line" points="' + radarRing(cx, cy, R, n, 0.66) + '"></polygon>' +
+        '<polygon class="grid-line" points="' + radarRing(cx, cy, R, n, 0.33) + '"></polygon>' +
+        '<g class="grid-line">' +
+          t.competencies.map(function (_, i) {
+            var pt = radarPoint(cx, cy, R, i, n, 5).split(',');
+            return '<line x1="' + cx + '" y1="' + cy + '" x2="' + pt[0] + '" y2="' + pt[1] + '"></line>';
+          }).join('') +
+        '</g>' +
+        '<polygon class="poly-bench" points="' + benchPts.join(' ') + '"></polygon>' +
+        '<polygon class="poly-team" points="' + teamPts.join(' ') + '"></polygon>' +
+        labels +
+      '</svg>';
+    }
+
+    function radar360KeysHtml(className) {
+      return '<div class="' + (className || 'mprhero__radar-keys') + '">' +
+        '<span><i style="background:#4a3bff"></i>Команда</span>' +
+        '<span><i style="background:#c4c0dc"></i>Бенчмарк</span>' +
+      '</div>';
+    }
+
+    function radar360TableHtml() {
+      var t = cfg.team360;
+      if (!t || !t.competencies || !t.competencies.length) return '';
+      return '<div class="mprzoom__table">' +
+        '<div class="mprzoom__tr mprzoom__tr--h">' +
+          '<span>Компетенция</span><b>Команда</b><b>Бенчмарк</b><b>Δ</b>' +
+        '</div>' +
+        t.competencies.map(function (c) {
+          var d = radar360Delta(c.team, c.bench);
+          return '<div class="mprzoom__tr">' +
+            '<span>' + esc(c.label) + '</span>' +
+            '<b>' + fmtScore(c.team) + '</b>' +
+            '<b>' + fmtScore(c.bench) + '</b>' +
+            '<b class="mprzoom__delta ' + d.cls + '">' + d.text + '</b>' +
+          '</div>';
+        }).join('') +
+      '</div>';
+    }
+
+    function insight360Html() {
+      var t = cfg.team360;
+      if (!t || !t.competencies || !t.competencies.length) return '';
+      var ai = (t.ai || []).map(function (block) {
+        return '<div class="mprhero__ai-block">' +
+          '<span class="mprhero__ai-tag mprhero__ai-tag--' + block.type + '">' + esc(block.tag) + '</span>' +
+          '<p>' + esc(block.text) + '</p></div>';
+      }).join('');
+      return '<div class="mprhero__radar-col">' +
+          '<p class="msub">Многогранник по команде</p>' +
+          '<button type="button" class="mprhero__radar-btn" data-pr-radar-open aria-label="Раскрыть многогранник по команде">' +
+            '<span class="mprhero__radar-zoom-hint" aria-hidden="true">' +
+              '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>' +
+              'Раскрыть' +
+            '</span>' +
+            '<div class="mprhero__radar m360hero__radar">' +
+              radar360SvgMarkup() +
+              radar360KeysHtml() +
+            '</div>' +
+          '</button>' +
+        '</div>' +
+        '<div class="mprhero__ai-col">' +
+          '<p class="mprhero__ai-h"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.1 6.4L21 10l-6.9 1.6L12 18l-2.1-6.4L3 10l6.9-1.6L12 2z"/></svg> AI-разбор 360°</p>' +
+          '<div class="mprhero__ai-blocks">' + ai + '</div>' +
+        '</div>';
+    }
+
+    var radarZoomOverlay = null;
+    var radarZoomLastFocus = null;
+
+    function buildRadarZoom() {
+      radarZoomOverlay = document.createElement('div');
+      radarZoomOverlay.className = 'mprzoom';
+      radarZoomOverlay.setAttribute('role', 'dialog');
+      radarZoomOverlay.setAttribute('aria-modal', 'true');
+      radarZoomOverlay.setAttribute('aria-label', 'Многогранник компетенций команды');
+      radarZoomOverlay.innerHTML =
+        '<div class="mprzoom__backdrop" data-radar-close></div>' +
+        '<div class="mprzoom__card">' +
+          '<button type="button" class="mprzoom__close" data-radar-close aria-label="Закрыть">✕</button>' +
+          '<p class="mprzoom__k">Многогранник по команде · H1 2026</p>' +
+          '<div class="mprzoom__radar m360hero__radar"></div>' +
+          '<div class="mprzoom__table-wrap"></div>' +
+          '<p class="mprzoom__hint">Нажмите Esc или кликните вне карточки, чтобы закрыть</p>' +
+        '</div>';
+      document.body.appendChild(radarZoomOverlay);
+
+      $$('[data-radar-close]', radarZoomOverlay).forEach(function (el) {
+        el.addEventListener('click', closeRadarZoom);
+      });
+    }
+
+    function openRadarZoom() {
+      if (!cfg.team360) return;
+      if (!radarZoomOverlay) buildRadarZoom();
+      radarZoomLastFocus = document.activeElement;
+      var radar = $('.mprzoom__radar', radarZoomOverlay);
+      var table = $('.mprzoom__table-wrap', radarZoomOverlay);
+      if (radar) {
+        radar.innerHTML = radar360SvgMarkup() + radar360KeysHtml('mprzoom__radar-keys');
+      }
+      if (table) table.innerHTML = radar360TableHtml();
+      radarZoomOverlay.classList.add('is-open');
+      var closeBtn = $('.mprzoom__close', radarZoomOverlay);
+      if (closeBtn) closeBtn.focus();
+      track('pr_hero_radar_zoom');
+    }
+
+    function closeRadarZoom() {
+      if (!radarZoomOverlay) return;
+      radarZoomOverlay.classList.remove('is-open');
+      if (radarZoomLastFocus && radarZoomLastFocus.focus) radarZoomLastFocus.focus();
+    }
+
+    function bindRadarZoom(scope) {
+      var btn = scope ? $('[data-pr-radar-open]', scope) : null;
+      if (!btn) return;
+      btn.addEventListener('click', openRadarZoom);
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && radarZoomOverlay && radarZoomOverlay.classList.contains('is-open')) {
+        closeRadarZoom();
+      }
+    });
+
+    function managerQuoteHtml() {
+      return '<img src="' + esc(cfg.manager.avatar) + '" alt="" width="32" height="32">' +
+        '<b>' + esc(cfg.manager.name) + ' · ' + esc(cfg.manager.role) + '</b>' +
+        '<p>«' + esc(cfg.manager.quote) + '»</p>';
+    }
+
+    function drawInsight() {
+      var el = $('.mprhero__insight', root);
+      if (!el) return;
+
+      if (detailOpen && compId === 'self') {
+        el.hidden = false;
+        el.className = 'mprhero__insight mprhero__insight--self is-in';
+        el.innerHTML = insightSelfHtml(empIdx);
+        bindSelfInsight(el);
+        return;
+      }
+
+      if (detailOpen) {
+        el.hidden = true;
+        el.className = 'mprhero__insight is-empty';
+        el.innerHTML = '';
+        return;
+      }
+
+      el.hidden = false;
+      el.className = 'mprhero__insight mprhero__insight--mgr';
+      el.innerHTML = managerQuoteHtml();
+    }
+
+    function selfAiSummaryHtml() {
+      var t = cfg.teamSelf;
+      if (!t || !t.ai || !t.ai.length) {
+        return '<p class="msub">Нет сводки по Self Review.</p>';
+      }
+      var ai = t.ai.map(function (block) {
+        return '<div class="mprhero__ai-block">' +
+          '<span class="mprhero__ai-tag mprhero__ai-tag--' + block.type + '">' + esc(block.tag) + '</span>' +
+          '<p>' + esc(block.text) + '</p></div>';
+      }).join('');
+      var meta = (t.filled != null && t.total != null)
+        ? '<span class="mprhero__self-meta">Проанализировано ' + t.filled + ' из ' + t.total + ' анкет · H1 2026</span>'
+        : '';
+      return '<div class="mprhero__self-ai">' +
+        '<p class="mprhero__ai-h"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.1 6.4L21 10l-6.9 1.6L12 18l-2.1-6.4L3 10l6.9-1.6L12 2z"/></svg> AI-сводка по Self Review</p>' +
+        meta +
+        '<div class="mprhero__ai-blocks">' + ai + '</div>' +
+        '</div>';
+    }
+
+    function insightSelfHtml(activeIdx) {
+      var e = cfg.employees[activeIdx];
+      if (!e || !e.self) return '';
+      var pick = cfg.employees.map(function (emp, i) {
+        return '<button type="button" class="mprhero__self-pick' + (i === activeIdx ? ' is-on' : '') + '" data-sr-idx="' + i + '" role="tab" aria-selected="' + (i === activeIdx ? 'true' : 'false') + '">' +
+          '<img src="' + esc(emp.avatar) + '" alt="" width="20" height="20"><span>' + esc(emp.name) + '</span></button>';
+      }).join('');
+      var answers = (e.self.answers || []).map(function (a) {
+        return '<div class="mprhero__self-qa"><b>' + esc(a.q) + '</b><p>' + esc(a.a) + '</p></div>';
+      }).join('');
+      return '<p class="msub">Анкета Self Review · H1 2026</p>' +
+        '<div class="mprhero__self-picks" role="tablist" aria-label="Сотрудники">' + pick + '</div>' +
+        '<div class="mprhero__self-card">' +
+          '<div class="mprhero__self-head">' +
+            '<img src="' + esc(e.avatar) + '" alt="" width="28" height="28">' +
+            '<div><b>' + esc(e.name) + '</b><span>' + esc(e.role) + ' · ' + esc(e.self.value) + '</span></div>' +
+          '</div>' +
+          '<div class="mprhero__self-body">' + answers + '</div>' +
+        '</div>';
+    }
+
+    function bindSelfInsight(el) {
+      $$('[data-sr-idx]', el).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          empIdx = parseInt(btn.getAttribute('data-sr-idx'), 10);
+          drawEmps();
+          drawFocus();
+          drawComps();
+          drawDetail();
+          drawInsight();
+        });
+      });
+    }
+
+    function kpiPct(val) {
+      var m = String(val || '').match(/(\d+)/);
+      return m ? Math.min(100, parseInt(m[1], 10)) : 0;
+    }
+
+    function kpiTeamHtml(activeIdx) {
+      return '<div class="mprhero__kpiteam">' + cfg.employees.map(function (e, i) {
+        var k = e.kpi;
+        if (!k) return '';
+        var pct = k.progress != null ? k.progress : kpiPct(k.value);
+        var metrics = (k.items || []).map(function (it) {
+          return '<span>' + esc(it.metric) + ' · <b>' + esc(it.fact) + '</b> / ' + esc(it.plan) + '</span>';
+        }).join('');
+        return '<div class="mprhero__kpirow' + (i === activeIdx ? ' is-on' : '') + '">' +
+          '<img src="' + esc(e.avatar) + '" alt="" width="24" height="24">' +
+          '<div class="mprhero__kpiwho"><b>' + esc(e.name) + '</b><span>' + esc(e.role) + '</span></div>' +
+          '<b class="mprhero__kpival">' + esc(k.value) + '</b>' +
+          '<div class="mprhero__prog"><i style="width:' + pct + '%"></i></div>' +
+          (metrics ? '<div class="mprhero__kpimetrics">' + metrics + '</div>' : '') +
+          '</div>';
+      }).join('') + '</div>';
+    }
+
+    function detailHtml(emp, id) {
+      if (id === 'kpi') {
+        return kpiTeamHtml(empIdx);
+      }
+
+      if (id === 'self') {
+        return selfAiSummaryHtml();
+      }
+
+      var c = emp[id];
+      if (!c) return '<p class="msub">Нет данных по компоненту.</p>';
+
+      if (id === 'okr' && c.items) {
+        return c.items.map(function (it) {
+          return '<div class="mprhero__item">' +
+            '<div>' + esc(it.title) + '</div>' +
+            '<b>' + it.progress + '%</b>' +
+            '<div class="mprhero__prog"><i style="width:' + it.progress + '%"></i></div>' +
+            (it.note ? '<span>' + esc(it.note) + '</span>' : '') +
+            '</div>';
+        }).join('');
+      }
+
+      if (id === '360' && c.items) {
+        var rows = c.items.map(function (it) {
+          return '<div class="mprhero__item"><div>' + esc(it.group) + '</div><b>' + esc(it.score) + '</b></div>';
+        }).join('');
+        var team = cfg.team360
+          ? '<div class="mprhero__360team mprhero__insight--360 is-in">' + insight360Html() + '</div>'
+          : '';
+        return '<div class="mprhero__360rows">' + rows + '</div>' + team;
+      }
+
+      return '';
+    }
+
+    function drawBars() {
+      var max = maxGradeCount();
+      var bars = $('.mprhero__bars', root);
+      if (!bars) return;
+      bars.innerHTML = cfg.grades.map(function (g) {
+        var pct = Math.round((g.count / max) * 100);
+        return '<div class="mprhero__bar"><span>' + g.code + '</span><i><em data-bar style="background:' + g.color + '" data-w="' + pct + '"></em></i><b>' + g.count + '</b></div>';
+      }).join('');
+      requestAnimationFrame(function () {
+        $$('[data-bar]', bars).forEach(function (el) {
+          el.style.width = el.getAttribute('data-w') + '%';
+        });
+      });
+    }
+
+    function drawFocus() {
+      var emp = cfg.employees[empIdx];
+      var focus = $('.mprhero__focus', root);
+      if (!focus || !emp) return;
+      focus.classList.add('is-swap');
+      clearTimeout(swapTimer);
+      swapTimer = setTimeout(function () {
+        focus.innerHTML =
+          '<img src="' + esc(emp.avatar) + '" alt="" width="36" height="36">' +
+          '<span class="mprhero__score">' + emp.score + '</span>' +
+          '<span class="mprhero__who"><b>' + esc(emp.name) + ' · ' + esc(emp.gradeLabel) + '</b><span>взвешенный результат · грейд ' + esc(emp.grade) + '</span></span>' +
+          '<span class="mprhero__badge">' + esc(emp.promo) + '</span>';
+        focus.classList.remove('is-swap');
+      }, 120);
+    }
+
+    function drawComps() {
+      var emp = cfg.employees[empIdx];
+      $$('.mprhero__comp', root).forEach(function (btn) {
+        var id = btn.getAttribute('data-comp');
+        var val = compValue(emp, id);
+        var valEl = $('.mprhero__comp-val', btn);
+        if (valEl) valEl.textContent = val;
+        var on = id === compId;
+        btn.classList.toggle('is-on', on);
+        btn.classList.toggle('is-self', id === 'self');
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+
+    function syncHeroState() {
+      var hero = $('.mprhero', root);
+      if (!hero) return;
+      hero.classList.toggle('is-expanded', detailOpen);
+      if (detailOpen && compId) hero.setAttribute('data-comp', compId);
+      else hero.removeAttribute('data-comp');
+    }
+
+    function drawDetail() {
+      var emp = cfg.employees[empIdx];
+      var detail = $('.mprhero__detail', root);
+      var panel = $('.mprhero__panel', root);
+      if (!detail || !panel || !emp) return;
+      if (!detailOpen || !compId) {
+        detail.classList.remove('is-open');
+        panel.innerHTML = '';
+        panel.className = 'mprhero__panel';
+        syncHeroState();
+        return;
+      }
+      var panelMod = '';
+      if (compId === 'kpi') panelMod = ' mprhero__panel--kpi';
+      else if (compId === 'self') panelMod = ' mprhero__panel--self';
+      else if (compId === '360') panelMod = ' mprhero__panel--360';
+      else if (compId === 'okr') panelMod = ' mprhero__panel--okr';
+      panel.className = 'mprhero__panel' + panelMod;
+      panel.innerHTML = detailHtml(emp, compId);
+      detail.classList.add('is-open');
+      syncHeroState();
+      if (compId === 'okr') {
+        requestAnimationFrame(function () {
+          $$('.mprhero__prog i', panel).forEach(function (bar) {
+            var w = bar.style.width;
+            bar.style.width = '0';
+            requestAnimationFrame(function () { bar.style.width = w; });
+          });
+        });
+      }
+      if (compId === '360') bindRadarZoom(panel);
+    }
+
+    function drawEmps() {
+      $$('.mprhero__emp', root).forEach(function (btn, i) {
+        btn.classList.toggle('is-on', i === empIdx);
+        btn.setAttribute('aria-selected', i === empIdx ? 'true' : 'false');
+      });
+    }
+
+    function render() {
+      drawEmps();
+      drawFocus();
+      drawComps();
+      drawDetail();
+      drawInsight();
+    }
+
+    var stackImgs = cfg.employees.slice(0, 5).map(function (e) {
+      return '<img src="' + esc(e.avatar) + '" alt="" width="24" height="24">';
+    }).join('');
+
+    root.innerHTML =
+      '<div class="mprhero">' +
+        '<p class="mprhero__crumb">' + esc(cfg.unit) + '</p>' +
+        '<div class="mprhero__head">' +
+          '<div class="mprhero__team"><h4>' + esc(cfg.team) + '</h4><span class="mprhero__meta">' + cfg.employees.length + ' сотрудников · ' + esc(cfg.cycle) + '</span></div>' +
+          '<div class="mprhero__stack" aria-hidden="true">' + stackImgs + '<span>команда</span></div>' +
+        '</div>' +
+        '<div class="mprhero__emps" role="tablist" aria-label="Сотрудники команды"></div>' +
+        '<div class="mprhero__grid">' +
+          '<div class="mprhero__dist"><p class="msub">Распределение оценок</p><div class="mprhero__bars"></div></div>' +
+          '<div class="mprhero__focus"></div>' +
+        '</div>' +
+        '<div class="mprhero__comps">' +
+          '<p class="msub">Компоненты результата · нажмите, чтобы раскрыть</p>' +
+          '<div class="mprhero__rowline" role="tablist" aria-label="Компоненты оценки"></div>' +
+          '<p class="mprhero__hint">Детали появятся ниже после выбора компонента</p>' +
+        '</div>' +
+        '<div class="mprhero__detail"><div class="mprhero__panel"></div></div>' +
+        '<div class="mprhero__insight" data-pr-insight></div>' +
+      '</div>';
+
+    if (raw) root.appendChild(raw);
+
+    var empsEl = $('.mprhero__emps', root);
+    cfg.employees.forEach(function (e, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'mprhero__emp';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      b.innerHTML = '<img src="' + esc(e.avatar) + '" alt="" width="22" height="22"><span>' + esc(e.name) + '</span>';
+      b.addEventListener('click', function () {
+        empIdx = i;
+        track('pr_hero_employee', { employee: e.id });
+        render();
+      });
+      empsEl.appendChild(b);
+    });
+
+    var rowline = $('.mprhero__rowline', root);
+    cfg.components.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'mprhero__comp' + (c.id === 'self' ? ' is-self' : '') + (c.id === compId ? ' is-on' : '');
+      b.setAttribute('data-comp', c.id);
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', c.id === compId ? 'true' : 'false');
+      b.innerHTML = '<b>' + esc(c.label) + '</b><i class="mprhero__comp-val">—</i>' +
+        (c.weight ? '<em>вес ' + c.weight + '</em>' : '<em>контекст</em>');
+      b.addEventListener('click', function () {
+        if (compId === c.id && detailOpen) {
+          detailOpen = false;
+          compId = null;
+        } else {
+          compId = c.id;
+          detailOpen = true;
+        }
+        track('pr_hero_component', { component: c.id });
+        drawComps();
+        drawDetail();
+        drawInsight();
+        var hint = $('.mprhero__hint', root);
+        if (hint) hint.style.display = detailOpen ? 'none' : '';
+      });
+      rowline.appendChild(b);
+    });
+
+    drawPhases();
+    drawBars();
+    render();
+
+    var deck = mockWrap ? $('[data-pr-deck]', mockWrap) : null;
+    initPrDeck(deck);
+  }
+
   /* ---------------------------------------------------------------
      ФАЗЫ ЦИКЛА PERFORMANCE REVIEW
      --------------------------------------------------------------- */
@@ -1584,14 +2267,17 @@
     var raw = $('[data-weights-json]', root);
     var cfg;
     try { cfg = JSON.parse(raw ? raw.textContent : '{}'); } catch (e) { return; }
-    if (!cfg || !cfg.components || !cfg.components.length) return;
+    if (!cfg || !cfg.teams || !cfg.teams.length) return;
 
+    var teamsEl = $('.mwt__teams', root);
     var rows = $('.mwt__rows', root);
     var out = $('.mwt__out', root);
     var hint = $('.mwt__hint', root);
-    if (!rows || !out) return;
+    var titleEl = $('[data-weights-title]');
+    if (!teamsEl || !rows || !out) return;
 
-    var inputs = [];
+    var activeTeam = 0;
+    var resultInputs = [];
 
     function grade(score) {
       for (var i = 0; i < cfg.scale.length; i++) {
@@ -1600,17 +2286,24 @@
       return cfg.scale[cfg.scale.length - 1];
     }
 
-    function draw() {
-      var sum = 0;
-      inputs.forEach(function (inp) { sum += parseInt(inp.value, 10); });
-      if (sum <= 0) sum = 1;
+    function formatFact(c, value) {
+      if (c.kind === '360') {
+        var score = Math.round(value / 20 * 10) / 10;
+        return score.toFixed(1).replace('.', ',') + ' из 5 — это ' + value + '%';
+      }
+      if (c.kind === 'kpi') return value + '% плана';
+      return value + '% выполнения';
+    }
 
+    function draw() {
+      var team = cfg.teams[activeTeam];
       var score = 0;
-      cfg.components.forEach(function (c, i) {
-        var w = parseInt(inputs[i].value, 10) / sum;
-        score += c.result * w;
-        var label = $('[data-weight-label="' + i + '"]', rows);
-        if (label) label.textContent = Math.round(w * 100) + '%';
+
+      team.components.forEach(function (c, i) {
+        var result = parseInt(resultInputs[i].value, 10);
+        score += result * c.weight / 100;
+        var factLabel = $('[data-fact-label="' + i + '"]', rows);
+        if (factLabel) factLabel.textContent = formatFact(c, result);
       });
 
       score = Math.round(score);
@@ -1622,22 +2315,55 @@
       if (hint) hint.innerHTML = '<b>Решение руководителя:</b> ' + g.decision;
     }
 
-    rows.innerHTML = '';
-    cfg.components.forEach(function (c, i) {
-      var row = document.createElement('div');
-      row.className = 'mwt__row';
-      row.innerHTML =
-        '<span class="mwt__top"><b>' + c.name + '</b><span data-weight-label="' + i + '">0%</span></span>' +
-        '<p class="mwt__fact">' + c.fact + '</p>' +
-        '<input class="mwt__range" type="range" min="0" max="100" step="5" value="' + c.weight + '" aria-label="Вес компонента «' + c.name + '»">';
-      rows.appendChild(row);
-      var inp = row.querySelector('input');
-      inputs.push(inp);
-      inp.addEventListener('input', draw);
-      inp.addEventListener('change', function () { track('weights_change', { component: c.name }); });
+    function renderTeam(index) {
+      activeTeam = index;
+      var team = cfg.teams[index];
+      resultInputs = [];
+      rows.innerHTML = '';
+
+      if (titleEl) titleEl.textContent = 'Модель оценки · ' + team.label.toLowerCase();
+
+      teamsEl.querySelectorAll('[data-team]').forEach(function (btn, i) {
+        btn.classList.toggle('is-on', i === index);
+        btn.setAttribute('aria-pressed', i === index ? 'true' : 'false');
+      });
+
+      team.components.forEach(function (c, i) {
+        var row = document.createElement('div');
+        row.className = 'mwt__row';
+        row.innerHTML =
+          '<span class="mwt__top"><b>' + c.name + '</b><span class="mwt__weight mwt__weight--' + c.kind + '">вес ' + c.weight + '%</span></span>' +
+          '<label class="mwt__ctrl mwt__ctrl--fact">' +
+            '<span>Факт</span>' +
+            '<input class="mwt__range mwt__range--fact" type="range" min="' + c.min + '" max="' + c.max + '" step="1" value="' + c.result + '" aria-label="Факт компонента «' + c.name + '»">' +
+            '<span class="mwt__factval" data-fact-label="' + i + '">' + formatFact(c, c.result) + '</span>' +
+          '</label>';
+        rows.appendChild(row);
+
+        var resultInp = row.querySelector('.mwt__range--fact');
+        resultInputs.push(resultInp);
+        resultInp.addEventListener('input', draw);
+        resultInp.addEventListener('change', function () {
+          track('weights_change', { team: team.id, component: c.name, type: 'fact' });
+        });
+      });
+
+      draw();
+    }
+
+    teamsEl.innerHTML = '';
+    cfg.teams.forEach(function (team, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mwt__team';
+      btn.setAttribute('data-team', team.id);
+      btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      btn.textContent = team.label;
+      btn.addEventListener('click', function () { renderTeam(i); });
+      teamsEl.appendChild(btn);
     });
 
-    draw();
+    renderTeam(0);
   }
 
   /* ---------------------------------------------------------------
@@ -1964,6 +2690,7 @@
     initPlatformBackLinks();
     init360Hero();
     initCampaignCover();
+    initPrHero();
     initFeed();
     initMode();
     collectReveals();

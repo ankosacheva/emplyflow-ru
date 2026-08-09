@@ -30,4 +30,4 @@ echo "Проверка: View Source → data-loader-version=\"video-v1\""
 echo "Остановка: Ctrl+C"
 echo ""
 
-exec python3 -m http.server "$PORT" --bind 127.0.0.1
+exec python3 scripts/dev_server.py --port "$PORT" --bind 127.0.0.1

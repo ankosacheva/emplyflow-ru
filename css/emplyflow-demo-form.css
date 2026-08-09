@@ -61,6 +61,158 @@
   color: #000;
 }
 
+.ef-lead-form__modules {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.ef-lead-form__modules .ef-lead-form__legend {
+  display: block;
+  width: 100%;
+  margin: 0 0 4px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #050230;
+}
+
+.ef-lead-form__modules .ef-lead-form__legend::before {
+  content: 'Модули платформы';
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4a3bff;
+}
+
+.ef-lead-form__modules-hint {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: rgba(5, 2, 48, 0.52);
+}
+
+.ef-lead-form__checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid rgba(5, 2, 48, 0.06);
+  border-radius: 18px;
+  background:
+    linear-gradient(155deg, rgba(213, 255, 243, 0.42) 0%, #fff 42%, rgba(233, 228, 255, 0.38) 100%);
+  box-shadow: 0 16px 36px -28px rgba(5, 2, 48, 0.22);
+}
+
+.ef-lead-form__chip {
+  position: relative;
+  display: block;
+  margin: 0;
+  min-width: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ef-lead-form__chip--ai-assessment-assistant {
+  grid-column: 1 / -1;
+}
+
+.ef-lead-form__chip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ef-lead-form__chip span {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 11px;
+  border: 1px solid rgba(5, 2, 48, 0.06);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #050230;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  box-shadow: 0 10px 24px -20px rgba(5, 2, 48, 0.28);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ef-lead-form__chip span::before {
+  content: '';
+  flex: 0 0 15px;
+  width: 15px;
+  height: 15px;
+  margin-top: 1px;
+  border: 1.5px solid rgba(5, 2, 48, 0.14);
+  border-radius: 5px;
+  background: #fff;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ef-lead-form__chip:hover span {
+  border-color: rgba(74, 59, 255, 0.18);
+  box-shadow: 0 14px 28px -18px rgba(5, 2, 48, 0.34);
+  transform: translateY(-1px);
+}
+
+.ef-lead-form__chip input:checked + span {
+  border-color: rgba(74, 59, 255, 0.28);
+  box-shadow: 0 14px 28px -16px rgba(74, 59, 255, 0.28);
+}
+
+.ef-lead-form__chip input:checked + span::before {
+  border-color: #4a3bff;
+  background: #4a3bff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2 5 8.7 9.5 3.8' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px no-repeat;
+  box-shadow: 0 4px 10px -4px rgba(74, 59, 255, 0.55);
+}
+
+.ef-lead-form__chip--performance-review input:checked + span { background: #ece9ff; }
+.ef-lead-form__chip--assessment-360 input:checked + span { background: #dffcf3; }
+.ef-lead-form__chip--career-development input:checked + span { background: #fff0dc; }
+.ef-lead-form__chip--nine-box input:checked + span { background: #ffe8f4; }
+.ef-lead-form__chip--goal-setting input:checked + span { background: #eef2f8; }
+.ef-lead-form__chip--succession input:checked + span { background: #fff2df; }
+.ef-lead-form__chip--recognition input:checked + span { background: #e8faf2; }
+.ef-lead-form__chip--ai-assessment-assistant input:checked + span {
+  background: linear-gradient(135deg, #fff0f8 0%, #f1edff 100%);
+  border-style: dashed;
+  border-color: rgba(255, 184, 226, 0.85);
+}
+
+.ef-lead-form__chip input:focus-visible + span {
+  outline: 2px solid #4a3bff;
+  outline-offset: 2px;
+}
+
+.ef-lead-form__modules.is-error {
+  border: 0;
+  box-shadow: none;
+}
+
+.ef-lead-form__modules.is-error .ef-lead-form__checks {
+  border-color: rgba(255, 90, 90, 0.42);
+  box-shadow: 0 0 0 3px rgba(255, 90, 90, 0.1), 0 16px 36px -28px rgba(5, 2, 48, 0.22);
+}
+
 .ef-lead-form__radios {
   display: flex;
   flex-wrap: wrap;
@@ -192,6 +344,14 @@
 @media screen and (max-width: 639px) {
   .ef-lead-form {
     max-width: 290px;
+  }
+
+  .ef-lead-form__checks {
+    grid-template-columns: 1fr;
+  }
+
+  .ef-lead-form__chip--ai-assessment-assistant {
+    grid-column: auto;
   }
 
   .ef-lead-form__submit {

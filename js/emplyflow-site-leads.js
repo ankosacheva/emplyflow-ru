@@ -21,6 +21,17 @@
     return '';
   }
 
+  function collectSelectedModules(form) {
+    var labels = [];
+    Array.prototype.forEach.call(
+      form.querySelectorAll('[name="modules[]"]:checked'),
+      function (cb) {
+        labels.push(cb.getAttribute('data-label') || cb.value);
+      }
+    );
+    return labels;
+  }
+
   function collectPayload(form) {
     var fd = new FormData(form);
     var contactPref = firstVal(fd, [
@@ -29,10 +40,15 @@
       'Contact',
     ]);
     var comment = firstVal(fd, ['Textarea', 'comment', 'Comment', 'Message']);
+    var modules = collectSelectedModules(form);
+    var modulesLine = modules.length ? 'Модули: ' + modules.join(', ') : '';
     if (contactPref) {
       comment = comment
         ? 'Связь: ' + contactPref + '\n' + comment
         : 'Связь: ' + contactPref;
+    }
+    if (modulesLine) {
+      comment = comment ? modulesLine + '\n' + comment : modulesLine;
     }
 
     return {
@@ -41,7 +57,7 @@
       email: firstVal(fd, ['Email', 'email']),
       phone: firstVal(fd, ['Phone', 'phone', 'Телефон']),
       industry: contactPref,
-      who: '',
+      who: modules.join(', '),
       count: '',
       competency: '',
       competencyTitle: '',
@@ -140,6 +156,24 @@
       } catch (e) {}
       return false;
     }
+
+    var modulesList = form.querySelector('[data-ef-demo-modules-list]');
+    if (modulesList && modulesList.children.length) {
+      var modulesChecked = form.querySelectorAll('[name="modules[]"]:checked');
+      if (!modulesChecked.length) {
+        var modulesField = form.querySelector('[data-ef-demo-modules]');
+        if (modulesField) modulesField.classList.add('is-error');
+        setError(form, 'Выберите хотя бы один модуль.');
+        var firstModule = modulesList.querySelector('input');
+        if (firstModule) {
+          try {
+            firstModule.focus();
+          } catch (e) {}
+        }
+        return false;
+      }
+    }
+
     return true;
   }
 

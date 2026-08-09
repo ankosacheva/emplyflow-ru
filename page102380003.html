@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<base href="/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050230">
@@ -692,7 +693,7 @@
     <div class="shell">
       <h2 class="mnext__h" id="next-title">Откуда берутся данные</h2>
       <div class="mnext__row">
-        <a class="mnext__card" href="page102360001.html" style="background:var(--t-mint);">
+        <a class="mnext__card" href="/modul-otsenka-360" style="background:var(--t-mint);">
           <b>Оценка 360°</b>
           <span>Ось Y: оценка компетенций глазами руководителя, коллег и подчинённых</span>
           <i>Смотреть модуль →</i>
@@ -702,7 +703,7 @@
           <span>Ось X: каскад целей от стратегии компании до вклада каждого сотрудника</span>
           <i>Смотреть модуль →</i>
         </a>
-        <a class="mnext__card" href="page102370002.html" style="background:var(--t-mac);">
+        <a class="mnext__card" href="/modul-karyera-i-razvitie" style="background:var(--t-mac);">
           <b>Карьера и развитие</b>
           <span>Что делать с результатом: ИПР под целевую роль и контроль динамики</span>
           <i>Смотреть модуль →</i>
@@ -760,6 +761,11 @@
         <div class="ef-lead-form__field">
           <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
         </div>
+        <fieldset class="ef-lead-form__field ef-lead-form__modules" data-ef-demo-modules>
+          <legend class="ef-lead-form__legend">Какие модули вас интересуют?</legend>
+          <p class="ef-lead-form__modules-hint">Можно выбрать несколько</p>
+          <div class="ef-lead-form__checks" data-ef-demo-modules-list role="group" aria-label="Модули платформы"></div>
+        </fieldset>
         <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
           <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
           <div class="ef-lead-form__radios">
@@ -788,6 +794,7 @@
 
 <script src="js/emplyflow-module.js?v=20260805q" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-demo-modules.js" defer></script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 
 <!-- Yandex.Metrika counter 105450350 -->
