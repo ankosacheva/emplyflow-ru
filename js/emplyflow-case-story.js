@@ -284,6 +284,8 @@
     var stations = root.querySelectorAll('[data-station]');
     var line = root.querySelector('[data-route-line]');
     var panel = root.querySelector('[data-route-panel]');
+    var track = root.querySelector('.route__track');
+    var section = root.closest('[data-route-scroll]') || root.closest('.chapter');
     if (!stations.length || !panel) return;
 
     var titleEl = panel.querySelector('[data-route-title]');
@@ -291,6 +293,18 @@
     var phaseEl = panel.querySelector('[data-route-phase]');
     var metricEl = panel.querySelector('[data-route-metric]');
     var current = -1;
+    var scrubbing = false;
+    var count = stations.length;
+
+    function setLineProgress(p) {
+      if (!line) return;
+      line.style.setProperty('--route-progress', clamp(p, 0, 1));
+    }
+
+    function indexFromProgress(p) {
+      if (count <= 1) return 0;
+      return clamp(Math.floor(p * count), 0, count - 1);
+    }
 
     function select(index, focus) {
       if (index === current) return;
@@ -302,8 +316,6 @@
         el.setAttribute('tabindex', i === index ? '0' : '-1');
         el.classList.toggle('is-done', i < index);
       });
-
-      if (line) line.style.setProperty('--route-progress', stations.length > 1 ? index / (stations.length - 1) : 0);
 
       if (titleEl) titleEl.textContent = st.getAttribute('data-title') || '';
       if (textEl) textEl.textContent = st.getAttribute('data-text') || '';
@@ -324,34 +336,68 @@
       if (focus) st.focus();
     }
 
+    function applyProgress(p, focus) {
+      setLineProgress(p);
+      select(indexFromProgress(p), focus);
+    }
+
     Array.prototype.forEach.call(stations, function (el, i) {
-      el.addEventListener('click', function () { select(i); });
-      el.addEventListener('mouseenter', function () { select(i); });
+      el.addEventListener('click', function () {
+        scrubbing = false;
+        if (line) line.classList.remove('is-scrubbing');
+        applyProgress(count > 1 ? i / (count - 1) : 0);
+      });
       el.addEventListener('keydown', function (e) {
         var next = null;
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = Math.min(i + 1, stations.length - 1);
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = Math.min(i + 1, count - 1);
         if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = Math.max(i - 1, 0);
         if (e.key === 'Home') next = 0;
-        if (e.key === 'End') next = stations.length - 1;
+        if (e.key === 'End') next = count - 1;
         if (next === null) return;
         e.preventDefault();
-        select(next, true);
+        applyProgress(count > 1 ? next / (count - 1) : 0, true);
       });
     });
 
-    select(0);
+    if (track) {
+      track.addEventListener('mousemove', function (e) {
+        var rect = track.getBoundingClientRect();
+        if (!rect.height) return;
+        scrubbing = true;
+        if (line) line.classList.add('is-scrubbing');
+        applyProgress(clamp((e.clientY - rect.top) / rect.height, 0, 1));
+      });
+      track.addEventListener('mouseleave', function () {
+        scrubbing = false;
+        if (line) line.classList.remove('is-scrubbing');
+      });
+    }
 
-    // Скролл ведёт Flow по маршруту
+    if (section && section.hasAttribute('data-route-scroll')) {
+      section.style.setProperty('--route-steps', String(count));
+    }
+
+    applyProgress(0);
+
     if (!reduced) {
       onScrollFrame(function () {
-        var rect = root.getBoundingClientRect();
+        if (scrubbing) return;
+
+        var el = section || root;
+        var rect = el.getBoundingClientRect();
         var vh = window.innerHeight;
         if (rect.bottom < 0 || rect.top > vh) return;
-        var span = rect.height - vh * 0.5;
-        if (span <= 0) return;
-        var p = clamp((vh * 0.5 - rect.top) / span, 0, 1);
-        var idx = Math.round(p * (stations.length - 1));
-        select(idx);
+
+        var start = vh * 0.24;
+        var span = rect.height - vh * 0.52;
+        if (span <= 0) {
+          span = root.getBoundingClientRect().height - vh * 0.5;
+          if (span <= 0) return;
+          applyProgress(clamp((vh * 0.5 - root.getBoundingClientRect().top) / span, 0, 1));
+          return;
+        }
+
+        applyProgress(clamp((start - rect.top) / span, 0, 1));
       });
     }
   }

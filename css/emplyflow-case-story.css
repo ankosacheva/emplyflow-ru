@@ -709,6 +709,16 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
 /* ========================= ROUTE MAP =========================== */
 
+#route[data-route-scroll] {
+  --route-steps: 7;
+  min-height: calc(88vh + (var(--route-steps) - 1) * 38vh);
+}
+
+.route__sticky {
+  position: sticky;
+  top: clamp(88px, 12vh, 112px);
+}
+
 .route { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
 
 .route__track {
@@ -732,8 +742,9 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   height: calc(var(--route-progress, 0) * 100%);
   border-radius: 2px;
   background: linear-gradient(180deg, var(--indigo), var(--pink));
-  transition: height 0.5s var(--ease-soft);
+  transition: height 0.35s var(--ease-soft);
 }
+.route__line.is-scrubbing i { transition: none; }
 
 .station {
   position: relative;
@@ -1457,6 +1468,10 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 
 @media (max-width: 900px) {
   body { font-size: 16px; }
+  #route[data-route-scroll] {
+    min-height: auto;
+  }
+  .route__sticky { position: static; }
   .context, .route { grid-template-columns: 1fr; }
   .route__panel { position: static; }
   .principles { grid-template-columns: 1fr; }
