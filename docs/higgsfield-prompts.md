@@ -2,29 +2,25 @@
 
 ## Статус
 
-**Видео не сгенерированы.** На момент сборки страницы Higgsfield не был подключён к MCP:
-в сессии доступны только `cursor-app-control` и Context7.
+**Видео сгенерированы и подключены** (коммит `a910a5e`, 28 июля 2026).
 
-Поэтому все сцены реализованы без видео — на canvas, SVG и CSS:
+В чате «EmplyFlow дизайн система» сначала страница собрана на canvas (`8f77af6`), затем после подключения MCP `user-higgsfield` сгенерированы 7 сцен, закодированы в `media/case-pr/` и встроены в `page101071766.html` через `data-video`. Hero перегенерирован и апскейлен до 1080p (`upscale_video`).
 
-| Сцена | Реализация сейчас | Файл |
+| Сцена | Файлы | Разметка |
 |---|---|---|
-| Hero — хаос данных | Canvas 2D: дрейфующие полупрозрачные «таблицы», Flow огибает препятствия | `js/emplyflow-case-story.js` → `initCanvasScene(..., 'chaos')` |
-| Результаты — порядок | Canvas 2D: те же объекты выстраиваются в сетку, Flow связывает узлы | `js/emplyflow-case-story.js` → `initCanvasScene(..., 'order')` |
-| Блок «до» | Story-карточки с градиентными свечениями | `css/emplyflow-case-story.css` → `.story` |
-| Продуктовые сцены | SVG/DOM-мокапы EmplyFlow | `.scene` в `page101071766.html` |
+| `hero-chaos` | mp4/webm 1920×1080 + mobile 1080×1920 | Hero, `data-video-priority` |
+| `before-scattered` | mp4/webm | Story «Цели жили порознь» |
+| `before-scales` | mp4/webm | Story «Оценкам не доверяли» |
+| `before-calendar` | mp4/webm | Story «HR тонул в Excel» |
+| `before-hidden` | mp4/webm | Story «Лучших не было видно» |
+| `after-converge` | mp4/webm | Глава «После запуска» |
+| `final-flow` | mp4/webm | Финал |
 
-Это осознанный выбор: canvas-сцены весят килобайты вместо мегабайт, не требуют poster-кадров
-и корректно отключаются в `prefers-reduced-motion`.
+**Не сгенерировано:** `after-talentmap` — в разметке не используется (Talent Matrix на SVG/DOM).
 
-## Как подключить видео, когда Higgsfield появится
+Загрузка: `js/emplyflow-case-story.js` → `initVideoScenes()` — один источник desktop/mobile, lazy load ниже первого экрана, poster при `prefers-reduced-motion`.
 
-1. Сгенерировать сцены по промптам ниже.
-2. Положить файлы в `media/case-pr/`.
-3. В `page101071766.html` заменить `<canvas data-canvas="chaos">` на `<video>` с `poster`,
-   оставив `.hero__veil` без изменений.
-4. Обязательно: `muted`, `playsinline`, `loop`, `preload="none"` для всего ниже первого экрана.
-5. Останавливать видео вне viewport — переиспользовать `observe()` из `emplyflow-case-story.js`.
+Первоначальная сборка без Higgsfield (canvas) описана в коммите `8f77af6`; canvas-код удалён в `a910a5e`.
 
 ## Общий visual direction
 
