@@ -1882,6 +1882,21 @@
     gap: 6px;
   }
 
+  .seq3d-org__tier--team {
+    display: none;
+  }
+
+  .seq3d-org__tier--dept {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+  }
+
+  .seq3d-org__tier--dept .seq3d-card {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
   .seq3d-orbit--flat {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1913,11 +1928,11 @@
   }
 
   #product .sequence__stage--light {
-    min-height: min(300px, 46vh);
+    min-height: min(340px, 54vh);
   }
 
   #product .stage__body {
-    min-height: min(240px, 40vh);
+    min-height: min(280px, 48vh);
   }
 
   .seq3d-card {
@@ -1953,12 +1968,18 @@
     height: 12px;
   }
 
-  /* Уровень 03 скрыт — на телефоне только CEO + департаменты */
-  .seq3d-org__tier--team { display: none; }
+  /* Уровень 03 скрыт на телефоне — правило дублируется для надёжности */
+  .seq3d-org__tier--team { display: none !important; }
 
   .seq3d-org__tier--dept {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: nowrap;
     gap: 4px;
+  }
+
+  .seq3d-org__tier--dept .seq3d-card {
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .seq3d__legend {
