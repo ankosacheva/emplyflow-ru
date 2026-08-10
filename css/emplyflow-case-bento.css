@@ -971,145 +971,249 @@
   .vsbar__num { grid-column: 2; text-align: left; }
 }
 
-/* ===================== СЕКВЕНЦИЯ 05 · БЕНТО-ИНФОГРАФИКА ================= */
+/* ===================== СЕКВЕНЦИЯ 05 · СВЕТЛЫЙ 3D ================= */
+
+.sequence__stage--light {
+  height: min(620px, 80vh);
+  background:
+    radial-gradient(120% 90% at 12% 0%, rgba(206, 200, 255, 0.55), transparent 52%),
+    radial-gradient(90% 80% at 92% 100%, rgba(213, 255, 243, 0.45), transparent 48%),
+    linear-gradient(165deg, #f7f6ff 0%, #ebe8ff 48%, #f4fbff 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(5, 2, 48, 0.08),
+    0 40px 90px -50px rgba(5, 2, 48, 0.55);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--ink);
+  --fg1: var(--ink);
+  --fg2: rgba(5, 2, 48, 0.72);
+  --fg3: rgba(5, 2, 48, 0.5);
+  --stroke: rgba(5, 2, 48, 0.1);
+}
+
+.sequence__stage--light .stage__chrome {
+  border-bottom-color: rgba(5, 2, 48, 0.08);
+}
+
+.sequence__stage--light .stage__chrome i {
+  background: rgba(5, 2, 48, 0.18);
+}
+
+.sequence__stage--light .stage__chrome b {
+  color: rgba(5, 2, 48, 0.55);
+}
 
 .sequence .scene {
-  align-content: start;
-  padding: clamp(14px, 2vw, 22px);
-  overflow: auto;
+  align-content: stretch;
+  padding: clamp(12px, 1.8vw, 20px);
+  overflow: hidden;
 }
 
-.sequence__stage {
-  height: min(600px, 78vh);
+.seq3d {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
 }
 
-.seq-viz {
+.seq3d__floor {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  height: 42%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(74, 59, 255, 0.12), transparent 68%);
+  transform: rotateX(72deg) translateZ(-40px);
+  pointer-events: none;
+}
+
+.seq3d__stage {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 12px;
-  width: 100%;
+  align-content: center;
+  height: 100%;
   min-height: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(14deg) rotateY(-8deg);
 }
 
-@keyframes seq-pop {
-  from { opacity: 0; transform: translateY(10px) scale(0.98); }
-  to { opacity: 1; transform: none; }
-}
-
-@keyframes seq-line-glow {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 1; }
-}
-
-.scene.is-active .seq-org__node,
-.scene.is-active .seq-role,
-.scene.is-active .seq-review__tile,
-.scene.is-active .seq-review__core,
-.scene.is-active .seq-ai__card {
-  animation: seq-pop 0.55s var(--ease) backwards;
-}
-
-.scene.is-active .seq-org__row .seq-org__node:nth-child(1) { animation-delay: 0.06s; }
-.scene.is-active .seq-org__row .seq-org__node:nth-child(2) { animation-delay: 0.12s; }
-.scene.is-active .seq-org__row .seq-org__node:nth-child(3) { animation-delay: 0.18s; }
-.scene.is-active .seq-role:nth-child(1) { animation-delay: 0.05s; }
-.scene.is-active .seq-role:nth-child(2) { animation-delay: 0.12s; }
-.scene.is-active .seq-role:nth-child(3) { animation-delay: 0.19s; }
-
-/* —— Шаг 01: дерево оргструктуры —— */
-.seq-viz--org {
+.seq3d__legend {
   position: relative;
-  gap: 10px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--fg3);
 }
 
-.seq-org__lines {
+.seq3d__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.seq3d__legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1f8a68;
+}
+
+.seq3d__legend i.is-wait { background: #c44d8a; }
+
+@keyframes seq3d-float {
+  from { transform: translateZ(var(--z, 0px)) translateY(0); }
+  to { transform: translateZ(var(--z, 0px)) translateY(-6px); }
+}
+
+@keyframes seq3d-pop {
+  from { opacity: 0; transform: translateZ(var(--z, 0px)) translateY(14px) scale(0.96); }
+  to { opacity: 1; transform: translateZ(var(--z, 0px)) translateY(0) scale(1); }
+}
+
+@keyframes seq3d-scan {
+  0%, 100% { transform: translateY(-40%); opacity: 0.15; }
+  50% { transform: translateY(40%); opacity: 0.55; }
+}
+
+@keyframes seq3d-ring {
+  from { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(0deg); }
+  to { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(360deg); }
+}
+
+.scene.is-active .seq3d-card,
+.scene.is-active .seq3d-hub__tile,
+.scene.is-active .seq3d-hub__core,
+.scene.is-active .seq3d-lens__row {
+  animation: seq3d-pop 0.55s var(--ease) backwards, seq3d-float 6.5s ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s), calc(var(--d, 0s) + 0.55s);
+}
+
+.scene.is-active .seq3d-orbit__chip {
+  animation: seq3d-pop 0.55s var(--ease) backwards;
+}
+
+/* —— Шаг 01: оргдерево —— */
+.seq3d-org__links {
   position: absolute;
-  left: 4%;
-  right: 4%;
-  top: 58px;
-  height: 108px;
+  inset: 6% 4% 18%;
   width: 92%;
+  height: 74%;
   pointer-events: none;
   z-index: 0;
 }
 
-.seq-org__line {
+.seq3d-org__link {
   fill: none;
-  stroke: rgba(206, 200, 255, 0.35);
-  stroke-width: 1.5;
+  stroke: rgba(74, 59, 255, 0.28);
+  stroke-width: 1.6;
   stroke-linecap: round;
 }
 
-.seq-org__line.is-active { stroke: rgba(106, 92, 255, 0.75); }
-.seq-org__line.is-pending {
-  stroke: rgba(255, 184, 226, 0.35);
+.seq3d-org__link.is-off {
+  stroke: rgba(196, 77, 138, 0.35);
   stroke-dasharray: 4 5;
 }
 
-.scene.is-active .seq-org__line.is-active {
-  animation: seq-line-glow 2.4s ease-in-out infinite;
-}
-
-.seq-org__ceo,
-.seq-org__row {
+.seq3d-org__tier {
   position: relative;
   z-index: 1;
-}
-
-.seq-org__row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 
-.seq-org__node {
+.seq3d-org__tier--ceo { justify-items: center; }
+.seq3d-org__tier--dept,
+.seq3d-org__tier--team {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.seq3d-card {
+  position: relative;
   display: grid;
-  gap: 6px;
-  padding: 10px 10px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 0 0 1px var(--stroke);
+  gap: 3px;
   min-width: 0;
-}
-
-.seq-org__ceo .seq-org__node {
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  background: linear-gradient(145deg, rgba(74, 59, 255, 0.38), rgba(255, 255, 255, 0.06));
+  padding: 11px 12px;
+  border-radius: 18px;
+  color: var(--ink);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(232, 230, 255, 0.88) 55%, rgba(206, 200, 255, 0.55));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 0 0 1px rgba(160, 150, 255, 0.35);
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(5, 2, 48, 0.06),
+    0 18px 36px -18px rgba(5, 2, 48, 0.35),
+    0 8px 0 rgba(74, 59, 255, 0.08);
+  transform: translateZ(var(--z, 0px));
+  transform-style: preserve-3d;
 }
 
-.seq-org__node.is-done {
-  background: linear-gradient(150deg, rgba(74, 59, 255, 0.2), rgba(255, 255, 255, 0.04));
+.seq3d-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 36%, rgba(255, 255, 255, 0.55) 48%, transparent 62%);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
-.seq-org__node.is-locked {
+.seq3d-card--ceo {
+  width: min(100%, 320px);
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  align-items: center;
+  background:
+    linear-gradient(150deg, #fff 0%, #ddd8ff 45%, #4a3bff 100%);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 22px 40px -18px rgba(74, 59, 255, 0.55),
+    0 10px 0 rgba(43, 31, 176, 0.18);
+}
+
+.seq3d-card--ceo .seq3d-card__meta,
+.seq3d-card--ceo .seq3d-card__state { color: rgba(255, 255, 255, 0.82); }
+.seq3d-card--ceo .seq3d-card__ic { background: rgba(255, 255, 255, 0.2); color: #fff; }
+.seq3d-card--ceo b { grid-column: 2; color: #fff; }
+.seq3d-card--ceo .seq3d-card__meta { grid-column: 2; }
+.seq3d-card--ceo .seq3d-card__state { grid-column: 3; grid-row: 1 / span 2; }
+
+.seq3d-card.is-locked {
   opacity: 0.78;
-  background: rgba(255, 255, 255, 0.03);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.9), rgba(240, 238, 255, 0.75));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 0 0 1px rgba(5, 2, 48, 0.05),
+    0 12px 24px -16px rgba(5, 2, 48, 0.25);
 }
 
-.seq-org__icon {
-  flex: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
+.seq3d-card__ic {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
-  background: rgba(217, 214, 255, 0.1);
-  color: var(--fg2);
+  background: rgba(74, 59, 255, 0.1);
+  color: var(--indigo);
 }
 
-.seq-org__icon--ceo { background: var(--indigo); color: #fff; box-shadow: 0 10px 24px -12px rgba(74, 59, 255, 0.9); }
-.seq-org__icon--prod { background: rgba(213, 255, 243, 0.16); color: var(--mint); }
-.seq-org__icon--rnd { background: rgba(206, 200, 255, 0.18); color: var(--peri); }
-.seq-org__icon--sales { background: rgba(255, 184, 226, 0.14); color: var(--pink); }
-.seq-org__icon--team { width: 28px; height: 28px; border-radius: 9px; }
+.seq3d-card__ic--prod { background: rgba(31, 138, 104, 0.12); color: #1f8a68; }
+.seq3d-card__ic--rnd { background: rgba(74, 59, 255, 0.12); color: var(--indigo); }
+.seq3d-card__ic--sales { background: rgba(196, 77, 138, 0.12); color: #c44d8a; }
 
-.seq-org__copy { display: grid; gap: 2px; min-width: 0; }
-.seq-org__lvl {
+.seq3d-card__meta {
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -1117,380 +1221,419 @@
   color: var(--fg3);
 }
 
-.seq-org__copy b {
-  font-size: clamp(10px, 1.1vw, 12.5px);
+.seq3d-card b {
+  font-size: clamp(11px, 1.15vw, 13px);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.15;
   overflow-wrap: anywhere;
 }
 
-.seq-org__badge {
+.seq3d-card__state {
   justify-self: start;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 4px 8px;
+  padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(217, 214, 255, 0.08);
+  background: rgba(5, 2, 48, 0.06);
   color: var(--fg3);
 }
 
-.seq-org__ceo .seq-org__badge { justify-self: end; }
-.seq-org__badge.is-done { background: rgba(213, 255, 243, 0.12); color: var(--mint); }
-.seq-org__badge.is-wait { background: rgba(255, 184, 226, 0.1); color: var(--pink); }
-
-.seq-org__hint {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 14px;
-  margin: 2px 0 0;
-  font-size: 10px;
-  color: var(--fg3);
+.seq3d-card__state.is-done {
+  background: rgba(31, 138, 104, 0.12);
+  color: #1f8a68;
 }
 
-.seq-org__hint span {
-  display: inline-flex;
+.seq3d-card__state.is-wait {
+  background: rgba(196, 77, 138, 0.12);
+  color: #c44d8a;
+}
+
+/* —— Шаг 02: орбита 360 —— */
+.seq3d__stage--360 {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
   align-items: center;
-  gap: 6px;
+  gap: 16px;
+  transform: rotateX(10deg) rotateY(-6deg);
 }
 
-.seq-org__hint i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--mint);
-}
-
-.seq-org__hint .is-wait i { background: var(--pink); }
-
-/* —— Шаг 02: 360° —— */
-.seq-360__head {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 12px;
-  align-items: center;
-}
-
-.seq-360__dial {
+.seq3d-orbit {
+  --r: clamp(84px, 11vw, 108px);
   position: relative;
-  width: clamp(108px, 14vw, 132px);
+  width: min(100%, 280px);
   aspect-ratio: 1;
-  flex: none;
+  justify-self: center;
+  transform-style: preserve-3d;
 }
 
-.seq-360__dial svg {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.seq-360__dial-cap {
+.seq3d-orbit__ring {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--r) * 2);
+  height: calc(var(--r) * 2);
+  border-radius: 50%;
+  border: 1.5px dashed rgba(74, 59, 255, 0.28);
+  transform: translate(-50%, -50%) rotateX(68deg);
+  animation: seq3d-ring 18s linear infinite;
+}
+
+.seq3d-orbit__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 104px;
+  height: 104px;
+  border-radius: 28px;
   display: grid;
   place-content: center;
   justify-items: center;
   gap: 2px;
+  transform: translate(-50%, -50%) translateZ(40px);
+  background: linear-gradient(150deg, #fff, #cec8ff 55%, #4a3bff);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 24px 40px -18px rgba(74, 59, 255, 0.55),
+    0 12px 0 rgba(43, 31, 176, 0.12);
+  color: #fff;
 }
 
-.seq-360__dial-cap b {
-  font-size: clamp(22px, 2.8vw, 30px);
+.seq3d-orbit__core b {
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
-.seq-360__dial-cap span {
+.seq3d-orbit__core span {
   font-size: 10px;
   font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.seq3d-orbit__chip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 108px;
+  padding: 10px 10px;
+  border-radius: 16px;
+  display: grid;
+  gap: 2px;
+  background: linear-gradient(155deg, #fff, #f2f0ff);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 16px 28px -16px rgba(5, 2, 48, 0.35),
+    0 6px 0 rgba(74, 59, 255, 0.08);
+  transform:
+    translate(-50%, -50%)
+    rotateY(var(--a))
+    translateZ(var(--r))
+    rotateY(calc(var(--a) * -1));
+  transform-style: preserve-3d;
+}
+
+.seq3d-orbit__ic {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: rgba(74, 59, 255, 0.1);
+  color: var(--indigo);
+}
+
+.seq3d-orbit__chip b {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.seq3d-orbit__chip span {
+  font-size: 9px;
+  line-height: 1.25;
   color: var(--fg3);
 }
 
-.seq-360__ai {
+.seq3d-ai-callout {
   display: grid;
   gap: 4px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  min-width: 0;
+  align-content: start;
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 2px dashed rgba(196, 77, 138, 0.45);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 34px -20px rgba(5, 2, 48, 0.28);
+  transform: translateZ(24px);
 }
 
-.seq-360__ai-spark {
-  display: grid;
-  place-items: center;
-  line-height: 0;
-  color: var(--pink);
-}
-
-.seq-360__ai b {
-  font-size: 12.5px;
+.seq3d-ai-callout__spark { color: #c44d8a; line-height: 0; }
+.seq3d-ai-callout b {
+  font-size: 13px;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
-
-.seq-360__ai span {
+.seq3d-ai-callout span {
   font-size: 11px;
   line-height: 1.4;
   color: var(--fg3);
 }
 
-.seq-360__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.seq-role {
-  display: grid;
-  gap: 8px;
-  padding: 12px 10px;
-  border-radius: 18px;
-  min-width: 0;
-  box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.06);
-}
-
-.seq-role.is-mint { background: var(--t-mint); color: var(--ink); }
-.seq-role.is-peri { background: var(--t-peri); color: var(--ink); }
-.seq-role.is-candy { background: var(--t-candy); color: var(--ink); }
-
-.seq-role__icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: rgba(21, 21, 21, 0.08);
-}
-
-.seq-role b {
-  font-size: 12.5px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.seq-role__tags {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.seq-role__tags li {
-  font-size: 9.5px;
-  font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 999px;
-  background: rgba(21, 21, 21, 0.07);
-}
-
-/* —— Шаг 03: единый Review —— */
-.seq-viz--review {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1.15fr 1fr;
+/* —— Шаг 03: хаб Review —— */
+.seq3d__stage--review {
+  grid-template-columns: 1fr 1.1fr 1fr;
   grid-template-rows: auto auto auto;
-  gap: 10px;
-  align-items: center;
+  gap: 12px;
   justify-items: center;
-  min-height: 250px;
-  padding: 4px 0;
+  align-items: center;
+  min-height: 280px;
 }
 
-.seq-review__arrows {
-  position: absolute;
-  inset: 0;
+.seq3d-hub__tile--okr { grid-column: 2; grid-row: 1; }
+.seq3d-hub__tile--deg { grid-column: 1; grid-row: 2; }
+.seq3d-hub__core { grid-column: 2; grid-row: 2; }
+.seq3d-hub__tile--proj { grid-column: 3; grid-row: 2; }
+.seq3d-hub__tile--beh { grid-column: 2; grid-row: 3; }
+
+.seq3d-hub__tile {
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.seq-review__arrow {
-  fill: none;
-  stroke: rgba(206, 200, 255, 0.28);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  marker-end: none;
-}
-
-.scene.is-active .seq-review__arrow {
-  stroke: rgba(106, 92, 255, 0.55);
-  animation: seq-line-glow 2.2s ease-in-out infinite;
-}
-
-.seq-review__tile,
-.seq-review__core {
-  position: relative;
-  z-index: 1;
-}
-
-.seq-review__tile {
+  max-width: 124px;
   display: grid;
   gap: 2px;
-  padding: 12px 14px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: inset 0 0 0 1px var(--stroke);
+  justify-items: center;
   text-align: center;
-  min-width: 0;
-  width: 100%;
-  max-width: 118px;
+  padding: 12px 10px;
+  border-radius: 18px;
+  background: linear-gradient(155deg, #fff, #ece9ff);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 16px 30px -16px rgba(5, 2, 48, 0.32),
+    0 7px 0 rgba(74, 59, 255, 0.08);
+  transform: translateZ(var(--z, 0px));
 }
 
-.seq-review__tile--okr { grid-column: 2; grid-row: 1; }
-.seq-review__tile--360 { grid-column: 1; grid-row: 2; }
-.seq-review__tile--proj { grid-column: 3; grid-row: 2; }
-.seq-review__tile--beh { grid-column: 2; grid-row: 3; }
-
-.seq-review__icon {
-  width: 32px;
-  height: 32px;
-  margin: 0 auto 4px;
+.seq3d-hub__ic {
+  width: 30px;
+  height: 30px;
   border-radius: 10px;
   display: grid;
   place-items: center;
-  background: rgba(217, 214, 255, 0.1);
-  color: var(--peri);
+  background: rgba(74, 59, 255, 0.1);
+  color: var(--indigo);
+  margin-bottom: 2px;
 }
 
-.seq-review__tile--okr .seq-review__icon { color: var(--indigo); background: rgba(74, 59, 255, 0.2); }
-.seq-review__tile--360 .seq-review__icon { color: var(--peri); }
-.seq-review__tile--proj .seq-review__icon { color: var(--mint); background: rgba(213, 255, 243, 0.12); }
-.seq-review__tile--beh .seq-review__icon { color: var(--pink); background: rgba(255, 184, 226, 0.12); }
-
-.seq-review__tile b {
-  font-size: 11.5px;
+.seq3d-hub__tile b {
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.seq-review__val {
-  font-size: clamp(18px, 2.2vw, 22px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--fg1);
-}
-
-.seq-review__sub {
-  font-size: 9.5px;
-  line-height: 1.3;
   color: var(--fg3);
 }
 
-.seq-review__core {
-  grid-column: 2;
-  grid-row: 2;
-  width: clamp(108px, 14vw, 132px);
+.seq3d-hub__tile strong {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.seq3d-hub__tile span {
+  font-size: 10px;
+  color: var(--fg3);
+}
+
+.seq3d-hub__core {
+  width: clamp(112px, 14vw, 136px);
   aspect-ratio: 1;
-  border-radius: 24px;
+  border-radius: 28px;
   display: grid;
   place-content: center;
   justify-items: center;
-  gap: 4px;
+  gap: 3px;
   text-align: center;
-  background: linear-gradient(155deg, var(--indigo), #2b1fb0);
+  color: #fff;
+  background: linear-gradient(155deg, #6a5cff, #4a3bff 55%, #2b1fb0);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    0 24px 50px -20px rgba(74, 59, 255, 0.95);
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 28px 48px -20px rgba(74, 59, 255, 0.7),
+    0 12px 0 rgba(43, 31, 176, 0.2);
+  transform: translateZ(var(--z, 56px));
 }
 
-.seq-review__core b {
-  font-size: clamp(18px, 2.4vw, 24px);
+.seq3d-hub__core b {
+  font-size: clamp(18px, 2.3vw, 24px);
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
-.seq-review__core span {
-  font-size: 10.5px;
-  color: rgba(217, 214, 255, 0.82);
+.seq3d-hub__core span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.82);
 }
 
-.seq-review__core em {
+.seq3d-hub__core em {
   font-size: 9px;
   font-style: normal;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mint);
+  color: #d5fff3;
 }
 
-/* —— Шаг 04: AI-сигналы —— */
-.seq-ai__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+/* —— Шаг 04: AI-линза (не цветная таблица) —— */
+.seq3d__stage--lens {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  transform: rotateX(8deg) rotateY(-5deg);
 }
 
-.seq-ai__card {
-  display: grid;
-  gap: 6px;
-  padding: 12px 12px;
-  border-radius: 18px;
-  min-width: 0;
-  box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.06);
-}
-
-.seq-ai__card.is-mint { background: var(--t-mint); color: var(--ink); }
-.seq-ai__card.is-mac { background: var(--t-mac); color: var(--ink); }
-.seq-ai__card.is-candy { background: var(--t-candy); color: var(--ink); }
-.seq-ai__card.is-peri { background: var(--t-peri); color: var(--ink); }
-
-.seq-ai__icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
+.seq3d-lens__orb {
+  position: relative;
+  width: clamp(110px, 14vw, 140px);
+  aspect-ratio: 1;
+  border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(21, 21, 21, 0.08);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 35% 30%, #fff 0%, #cec8ff 38%, #4a3bff 78%, #2b1fb0 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 24px 40px -16px rgba(74, 59, 255, 0.55),
+    0 10px 0 rgba(43, 31, 176, 0.15);
+  transform: translateZ(40px);
 }
 
-.seq-ai__card b {
-  font-size: 12.5px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+.seq3d-lens__glow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.45);
 }
 
-.seq-ai__card > span:not(.seq-ai__tag) {
-  font-size: 10.5px;
-  line-height: 1.4;
-  opacity: 0.72;
-}
-
-.seq-ai__tag {
-  justify-self: start;
-  font-size: 9px;
+.seq3d-lens__core {
+  position: relative;
+  z-index: 1;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: rgba(21, 21, 21, 0.08);
+  color: #fff;
 }
 
-@media (max-width: 900px) {
-  .seq-360__grid { grid-template-columns: 1fr; }
-  .seq-360__head { grid-template-columns: 1fr; }
-  .seq-360__dial { justify-self: center; }
-  .seq-org__row { grid-template-columns: 1fr; }
-  .seq-org__lines { display: none; }
-  .seq-review__tile { max-width: none; }
+.seq3d-lens__scan {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 28%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  animation: seq3d-scan 2.8s ease-in-out infinite;
+}
+
+.seq3d-lens__feed {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.seq3d-lens__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 12px;
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(244, 243, 255, 0.9));
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 14px 26px -18px rgba(5, 2, 48, 0.3),
+    0 5px 0 rgba(74, 59, 255, 0.06);
+  transform: translateZ(18px);
+}
+
+.seq3d-lens__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--indigo);
+  box-shadow: 0 0 0 4px rgba(74, 59, 255, 0.12);
+}
+
+.seq3d-lens__dot.is-up { background: #1f8a68; box-shadow: 0 0 0 4px rgba(31, 138, 104, 0.12); }
+.seq3d-lens__dot.is-warn { background: #c47a1f; box-shadow: 0 0 0 4px rgba(196, 122, 31, 0.12); }
+.seq3d-lens__dot.is-risk { background: #c44d8a; box-shadow: 0 0 0 4px rgba(196, 77, 138, 0.12); }
+.seq3d-lens__dot.is-plan { background: var(--indigo); }
+
+.seq3d-lens__row b {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.seq3d-lens__row div span {
+  display: block;
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: var(--fg3);
+}
+
+.seq3d-lens__row em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--indigo);
+}
+
+@media (max-width: 1080px) {
+  .sequence__stage--light { height: min(480px, 64vh); }
+  .seq3d__stage { transform: none; }
+  .seq3d__floor { display: none; }
+  .seq3d-orbit__chip {
+    position: static;
+    width: auto;
+    transform: none !important;
+  }
+  .seq3d-orbit {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    aspect-ratio: auto;
+  }
+  .seq3d-orbit__ring { display: none; }
+  .seq3d-orbit__core {
+    position: static;
+    width: 100%;
+    grid-column: 1 / -1;
+    transform: none;
+    margin-bottom: 4px;
+  }
+  .seq3d__stage--360 { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
-  .seq-ai__grid { grid-template-columns: 1fr; }
-  .seq-viz--review {
+  .seq3d-org__tier--dept,
+  .seq3d-org__tier--team { grid-template-columns: 1fr; }
+  .seq3d-org__links { display: none; }
+  .seq3d__stage--review {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
+    min-height: 0;
   }
-  .seq-review__tile--okr { grid-column: 1 / -1; grid-row: 1; max-width: 200px; }
-  .seq-review__tile--360 { grid-column: 1; grid-row: 2; }
-  .seq-review__core { grid-column: 2; grid-row: 2; width: 100%; max-width: 140px; aspect-ratio: 1; }
-  .seq-review__tile--proj { grid-column: 1; grid-row: 3; }
-  .seq-review__tile--beh { grid-column: 2; grid-row: 3; }
-  .seq-review__arrows { display: none; }
+  .seq3d-hub__tile--okr { grid-column: 1 / -1; max-width: 200px; }
+  .seq3d-hub__tile--deg { grid-column: 1; }
+  .seq3d-hub__core { grid-column: 2; width: 100%; max-width: 140px; }
+  .seq3d-hub__tile--proj { grid-column: 1; }
+  .seq3d-hub__tile--beh { grid-column: 2; }
+  .seq3d__stage--lens { grid-template-columns: 1fr; justify-items: center; }
+  .seq3d-lens__feed { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1498,11 +1641,13 @@
   .orbit__ring,
   .orbit__chip,
   .cascade__pulse,
-  .scene.is-active .seq-org__node,
-  .scene.is-active .seq-role,
-  .scene.is-active .seq-review__tile,
-  .scene.is-active .seq-review__core,
-  .scene.is-active .seq-ai__card {
+  .seq3d-orbit__ring,
+  .seq3d-lens__scan,
+  .scene.is-active .seq3d-card,
+  .scene.is-active .seq3d-hub__tile,
+  .scene.is-active .seq3d-hub__core,
+  .scene.is-active .seq3d-orbit__chip,
+  .scene.is-active .seq3d-lens__row {
     animation: none !important;
   }
   .hero3d__stage { transition: none; }
