@@ -845,8 +845,8 @@
     order: unset;
     position: relative;
     min-height: 0;
-    height: clamp(300px, 62vw, 380px);
-    max-height: min(72svh, 400px);
+    height: clamp(340px, 72vw, 400px);
+    max-height: min(76svh, 420px);
     margin: 2px 0 4px;
     perspective: none;
     border-radius: 28px;
@@ -861,15 +861,6 @@
   }
 
   .hero--3d .hero3d__floor { display: none; }
-
-  .hero--3d .orbit {
-    overflow: hidden;
-    border-radius: 50%;
-  }
-
-  .hero--3d .orbit__halo {
-    inset: -4%;
-  }
 
   .hero--3d .hero3d__stage {
     position: relative;
@@ -919,18 +910,76 @@
     min-height: 0;
     margin: 0 auto;
     transform: none;
-    --tilt: 52deg;
-    --r: clamp(68px, 19vw, 92px);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 6px;
+    align-content: center;
+    overflow: visible;
+    border-radius: 0;
   }
 
-  .hero--3d .orbit__disc {
-    transform: rotateX(var(--tilt));
+  /* Плоская сетка вместо 3D-кольца — на узком экране чипы не наезжают */
+  .hero--3d .orbit__disc,
+  .hero--3d .orbit__halo {
+    display: none;
   }
 
   .hero--3d .orbit__core {
-    max-width: 38%;
-    padding: 10px 8px;
-    transform: translate(-50%, -50%) translateZ(0);
+    position: relative;
+    left: auto;
+    top: auto;
+    max-width: none;
+    width: auto;
+    padding: 8px 12px;
+    transform: none;
+    justify-self: center;
+    grid-row: 1;
+  }
+
+  .hero--3d .orbit__ring {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 5px 4px;
+    align-content: center;
+    width: 100%;
+    height: auto;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .hero--3d .orbit__slot {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none !important;
+  }
+
+  .hero--3d .orbit__slot:nth-child(1) { grid-column: 1 / span 2; }
+  .hero--3d .orbit__slot:nth-child(2) { grid-column: 3 / span 2; }
+  .hero--3d .orbit__slot:nth-child(3) { grid-column: 5 / span 2; }
+  .hero--3d .orbit__slot:nth-child(4) { grid-column: 2 / span 2; }
+  .hero--3d .orbit__slot:nth-child(5) { grid-column: 4 / span 2; }
+
+  .hero--3d .orbit__chip {
+    width: 100%;
+    max-width: none;
+    padding: 6px 4px;
+    transform: none !important;
+    animation: none !important;
+    rotate: none;
+  }
+
+  .hero--3d .orbit__chip img,
+  .hero--3d .orbit__chip i {
+    width: 26px;
+    height: 26px;
+  }
+
+  .hero--3d .orbit__chip span {
+    font-size: 7px;
+    line-height: 1.2;
   }
 
   .hero--3d .orbit__core b { font-size: 15px; }
@@ -961,16 +1010,39 @@
   .b-tall { grid-row: auto; }
   .hero__facts { grid-template-columns: 1fr; }
   .hero--3d .hero3d {
-    height: clamp(280px, 88vw, 360px);
+    height: clamp(320px, 88vw, 380px);
     border-radius: 24px;
   }
   .hero--3d .hero3d__stage { padding: 12px 10px 8px; }
   .hero--3d .cascade__tier--team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero--3d .cascade__tier--dept .plate b,
   .hero--3d .cascade__tier--team .plate b { font-size: 9px; }
-  .hero--3d .orbit { --r: clamp(58px, 17vw, 78px); }
-  .hero--3d .orbit__chip { width: 72px; padding: 6px 5px; }
-  .hero--3d .orbit__chip span { font-size: 7.5px; }
+
+  .hero--3d .orbit__ring {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .hero--3d .orbit__slot:nth-child(1),
+  .hero--3d .orbit__slot:nth-child(2),
+  .hero--3d .orbit__slot:nth-child(3),
+  .hero--3d .orbit__slot:nth-child(4),
+  .hero--3d .orbit__slot:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .hero--3d .orbit__chip {
+    padding: 5px 2px;
+  }
+
+  .hero--3d .orbit__chip img,
+  .hero--3d .orbit__chip i {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hero--3d .orbit__chip span { font-size: 6.5px; }
+
   .hero--3d .hero3d__legend {
     flex-wrap: wrap;
     font-size: 8.5px;
