@@ -192,6 +192,113 @@
 
 
   /* ---------------------------------------------------------- *
+   * 2b. Hero 3D — каскад целей и кольцо оценки 360°
+   *
+   * Связи каскада рисуются по фактическим позициям плиток,
+   * поэтому геометрия не расходится при любой ширине экрана.
+   * Импульсы идут сверху вниз: цель закрыта — уровень открылся.
+   * ---------------------------------------------------------- */
+  function initHero3D() {
+    var root = document.querySelector('[data-hero3d]');
+    if (!root) return;
+
+    var stage = root.querySelector('[data-hero3d-stage]');
+    var cascade = root.querySelector('[data-cascade]');
+    var svg = root.querySelector('[data-cascade-links]');
+    if (!cascade || !svg) return;
+
+    var NS = 'http://www.w3.org/2000/svg';
+    var tiers = cascade.querySelectorAll('.cascade__tier');
+    if (tiers.length < 2) return;
+
+    function centers(tier, edge) {
+      var box = svg.getBoundingClientRect();
+      var plates = tier.querySelectorAll('[data-plate]');
+      return Array.prototype.map.call(plates, function (plate) {
+        var r = plate.getBoundingClientRect();
+        return {
+          x: r.left - box.left + r.width / 2,
+          y: edge === 'top' ? r.top - box.top : r.bottom - box.top
+        };
+      });
+    }
+
+    function drawLinks() {
+      var box = svg.getBoundingClientRect();
+      if (!box.width || !box.height) return;
+
+      svg.setAttribute('viewBox', '0 0 ' + box.width + ' ' + box.height);
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      for (var t = 0; t < tiers.length - 1; t++) {
+        var from = centers(tiers[t], 'bottom');
+        var to = centers(tiers[t + 1], 'top');
+        if (!from.length || !to.length) continue;
+
+        to.forEach(function (target, i) {
+          var source = from[Math.min(i, from.length - 1)];
+          var midY = source.y + (target.y - source.y) / 2;
+          var d = 'M' + source.x + ',' + source.y +
+            ' C' + source.x + ',' + midY + ' ' + target.x + ',' + midY +
+            ' ' + target.x + ',' + target.y;
+
+          var path = document.createElementNS(NS, 'path');
+          path.setAttribute('d', d);
+          path.setAttribute('class', 'cascade__link' + (i % 2 ? ' cascade__link--dashed' : ''));
+          svg.appendChild(path);
+
+          if (reduced) return;
+
+          var dot = document.createElementNS(NS, 'circle');
+          dot.setAttribute('r', '3');
+          dot.setAttribute('class', 'cascade__dot');
+          dot.setAttribute('fill', '#d5fff3');
+
+          var motion = document.createElementNS(NS, 'animateMotion');
+          motion.setAttribute('dur', '3.2s');
+          motion.setAttribute('repeatCount', 'indefinite');
+          motion.setAttribute('begin', (0.45 * i + 0.9 * t).toFixed(2) + 's');
+          motion.setAttribute('path', d);
+          motion.setAttribute('keyPoints', '0;1');
+          motion.setAttribute('keyTimes', '0;1');
+          motion.setAttribute('calcMode', 'spline');
+          motion.setAttribute('keySplines', '0.4 0 0.2 1');
+          dot.appendChild(motion);
+          svg.appendChild(dot);
+        });
+      }
+    }
+
+    drawLinks();
+    window.addEventListener('resize', function () {
+      window.clearTimeout(drawLinks._t);
+      drawLinks._t = window.setTimeout(drawLinks, 180);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawLinks);
+
+    if (reduced || !stage) return;
+
+    // Параллакс: сцена доворачивается за курсором в пределах своего блока.
+    root.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var r = root.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      root.style.setProperty('--px', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+      root.style.setProperty('--py', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+    });
+
+    root.addEventListener('pointerleave', function () {
+      root.style.setProperty('--px', '0');
+      root.style.setProperty('--py', '0');
+    });
+
+    // Вне экрана сцена не тратит кадры.
+    observe([root], function (el, isIn) {
+      el.classList.toggle('is-paused', !isIn);
+    }, { threshold: 0.05 });
+  }
+
+  /* ---------------------------------------------------------- *
    * 3. Reveal-эффекты
    * ---------------------------------------------------------- */
   function initReveals() {
@@ -537,6 +644,7 @@
     initDemoModal();
     if (window.__efEnsureDemoModules) window.__efEnsureDemoModules();
     initVideoScenes();
+    initHero3D();
 
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);

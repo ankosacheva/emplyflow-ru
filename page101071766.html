@@ -28,6 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/emplyflow-case-story.css?v=20260810d">
+<link rel="stylesheet" href="css/emplyflow-case-bento.css?v=20260810a">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 <link rel="stylesheet" href="css/emplyflow-site-footer.css">
 
@@ -103,51 +104,139 @@
 <main id="story">
 
   <!-- ============ ГЛАВА 1 · HERO ============ -->
-  <section class="hero" data-chapter data-flow-tint="#ffb8e2" aria-labelledby="hero-title">
-    <video class="hero__media" aria-hidden="true" muted playsinline loop preload="none"
-           poster="media/case-pr/posters/hero-chaos.jpg"
-           data-video="media/case-pr/hero-chaos"
-           data-video-mobile="media/case-pr/hero-chaos-mobile"
-           data-video-priority></video>
-    <div class="hero__veil" aria-hidden="true"></div>
+  <section class="hero hero--3d" data-chapter data-flow-tint="#ffb8e2" aria-labelledby="hero-title">
+    <div class="hero__aurora" aria-hidden="true"></div>
 
     <div class="shell hero__inner">
-      <p class="eyebrow">История клиента · Performance Review · FMCG</p>
+      <div class="hero__copy">
+        <p class="eyebrow">История клиента · Performance Review · FMCG</p>
 
-      <ul class="hero__kinetic">
-        <li data-hero-line><b>1–2</b><span>месяца ручного сбора занимал один цикл Performance Review</span></li>
-        <li data-hero-line><b>180°</b><span>всей оценки — только руководитель и самооценка</span></li>
-        <li data-hero-line><b>45%</b><span>согласованность целей между департаментами</span></li>
-      </ul>
+        <h1 class="h-display hero__title" id="hero-title">
+          Как производитель детского питания <em>перестроил</em>
+          <em class="is-pink">Performance&nbsp;Review</em>
+        </h1>
 
-      <h1 class="h-display hero__title" id="hero-title">
-        Как производитель детского питания перестроил <span class="t-pink">Performance&nbsp;Review</span>
-      </h1>
+        <p class="lead hero__sub">
+          Компания с 7 000+ сотрудников за один цикл ушла от Excel-марафона и субъективных оценок
+          к единой и масштабируемой системе результативности и пересмотра вознаграждений.
+        </p>
 
-      <p class="lead hero__sub">
-        Компания с 7 000+ сотрудников за один цикл ушла от Excel-марафона и субъективных оценок
-        к единой и масштабируемой системе результативности и пересмотра вознаграждений.
-      </p>
+        <div class="hero__facts">
+          <div class="hero__fact hero__fact--pink"><b>1–2 мес.</b><span>занимал один цикл Review вручную</span></div>
+          <div class="hero__fact"><b>180°</b><span>охват оценки: руководитель и самооценка</span></div>
+          <div class="hero__fact hero__fact--mint"><b>45%</b><span>согласованность целей департаментов</span></div>
+        </div>
 
-      <div class="hero__chips">
-        <span>7 000+ сотрудников</span>
-        <span>Сеть заводов и лабораторий</span>
-        <span>R&amp;D-центры</span>
-        <span>Федеральный отдел продаж</span>
+        <div class="hero__chips">
+          <span>7 000+ сотрудников</span>
+          <span>Сеть заводов и лабораторий</span>
+          <span>R&amp;D-центры</span>
+          <span>Федеральный отдел продаж</span>
+        </div>
+
+        <div class="hero__cta">
+          <a class="btn btn--indigo" href="#before">Изучить проект</a>
+          <span class="hero__hint"><i aria-hidden="true"></i>Листайте, чтобы узнать больше</span>
+        </div>
       </div>
 
-      <dl class="hero__modules">
-        <dt>Модули</dt>
-        <dd>OKR и каскадирование</dd>
-        <dd>Оценка 360°</dd>
-        <dd>Performance Review</dd>
-        <dd>Talent Matrix</dd>
-        <dd>AI-аналитика</dd>
-      </dl>
+      <div class="hero3d" data-hero3d role="img"
+           aria-label="Схема системы результативности: каскад целей от CEO к департаментам и командам, вокруг профиля сотрудника вращается кольцо оценки 360° с участниками — руководитель, коллеги, подчинённые, кросс-функция и самооценка">
+        <div class="hero3d__stage" data-hero3d-stage>
+          <div class="hero3d__floor" aria-hidden="true"></div>
 
-      <div class="hero__cta">
-        <a class="btn btn--indigo" href="#before">Изучить проект</a>
-        <span class="hero__hint"><i aria-hidden="true"></i>Листайте, чтобы узнать больше</span>
+          <div class="cascade" data-cascade>
+            <svg class="cascade__links" data-cascade-links aria-hidden="true" preserveAspectRatio="none"></svg>
+
+            <div class="cascade__tier cascade__tier--ceo">
+              <div class="plate plate--ceo" data-plate style="--z:120px;--d:0s">
+                <b>CEO · стратегические OKR</b>
+                <span>Уровень 01</span>
+                <span class="plate__state">Закрыто</span>
+              </div>
+            </div>
+
+            <div class="cascade__tier cascade__tier--dept">
+              <div class="plate" data-plate style="--z:64px;--d:.4s">
+                <b>Производство</b><span>Уровень 02</span>
+                <span class="plate__state">Закрыто</span>
+              </div>
+              <div class="plate" data-plate style="--z:78px;--d:.8s">
+                <b>R&amp;D</b><span>Уровень 02</span>
+                <span class="plate__state">Закрыто</span>
+              </div>
+              <div class="plate" data-plate style="--z:58px;--d:1.2s">
+                <b>Продажи</b><span>Уровень 02</span>
+                <span class="plate__state">Закрыто</span>
+              </div>
+            </div>
+
+            <div class="cascade__tier cascade__tier--team">
+              <div class="plate" data-plate style="--z:22px;--d:.6s">
+                <b>Смены</b><span class="plate__state">Открыто</span>
+              </div>
+              <div class="plate" data-plate style="--z:30px;--d:1s">
+                <b>Лаборатории</b><span class="plate__state">Открыто</span>
+              </div>
+              <div class="plate plate--locked" data-plate style="--z:14px;--d:1.4s">
+                <b>Регионы</b><span class="plate__state">Ожидает</span>
+              </div>
+              <div class="plate plate--locked" data-plate style="--z:18px;--d:1.8s">
+                <b>Сотрудники</b><span class="plate__state">Ожидает</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="orbit" data-orbit>
+            <div class="orbit__halo" aria-hidden="true"></div>
+            <div class="orbit__disc" aria-hidden="true"></div>
+
+            <div class="orbit__core">
+              <img src="images/avatar-case-b.jpg" alt="" width="42" height="42" loading="lazy" decoding="async">
+              <b>360°</b>
+              <span>под роль</span>
+            </div>
+
+            <div class="orbit__ring" data-orbit-ring>
+              <div class="orbit__slot" style="--a:0deg">
+                <div class="orbit__chip">
+                  <img src="images/avatar-route-alexey.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
+                  <span>Руководитель</span>
+                </div>
+              </div>
+              <div class="orbit__slot" style="--a:72deg">
+                <div class="orbit__chip">
+                  <img src="images/avatar-route-maria.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
+                  <span>Коллеги</span>
+                </div>
+              </div>
+              <div class="orbit__slot" style="--a:144deg">
+                <div class="orbit__chip">
+                  <img src="images/avatar-route-dmitry.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
+                  <span>Подчинённые</span>
+                </div>
+              </div>
+              <div class="orbit__slot" style="--a:216deg">
+                <div class="orbit__chip">
+                  <img src="images/avatar-route-olga.jpg" alt="" width="26" height="26" loading="lazy" decoding="async">
+                  <span>Кросс-функция</span>
+                </div>
+              </div>
+              <div class="orbit__slot" style="--a:288deg">
+                <div class="orbit__chip">
+                  <i aria-hidden="true">я</i>
+                  <span>Самооценка</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="hero3d__legend" aria-hidden="true">
+          <b><i></i>Каскад OKR</b>
+          <b><i></i>Оценка 360°</b>
+          <b><i></i>AI-сигналы</b>
+        </p>
       </div>
     </div>
   </section>
@@ -157,30 +246,61 @@
     <div class="shell">
       <div class="chapter__head">
         <p class="eyebrow"><b>02</b> Контекст</p>
-        <h2 class="h-chapter" id="context-title">Рост обогнал систему оценки</h2>
+        <h2 class="h-chapter" id="context-title">Рост обогнал <em>систему оценки</em></h2>
       </div>
 
-      <div class="context">
-        <div class="context__copy" data-reveal>
-          <p>
+      <div class="bento">
+        <div class="tile tile--glass b-4" data-reveal>
+          <span class="tile__eyebrow">Ситуация клиента</span>
+          <p class="tile__text">
             Крупный российский производитель детского питания рос быстрее, чем обновлялись его HR-процессы.
             Высокие требования к качеству — от технологических карт на производстве до инновационных рецептур
             в R&amp;D и KPI по дистрибуции — соседствовали с устаревшей оценкой: ручные Excel-формы,
             субъективные мнения руководителей и несогласованные между подразделениями цели.
           </p>
-          <p>
-            Задача была поставлена прямолинейно: полностью перестроить оценку эффективности и перейти на модель
-            Performance Management, основанную на данных и прозрачных бизнес-целях.
+          <p class="tile__foot">
+            Отрасль FMCG · детское питание · заводы, лаборатории, R&amp;D-центры и федеральный отдел продаж
           </p>
         </div>
 
-        <dl class="facts" data-reveal>
-          <div><dt>Отрасль</dt><dd>FMCG · детское питание</dd></div>
-          <div><dt>Масштаб</dt><dd>7 000+ сотрудников</dd></div>
-          <div><dt>Структура</dt><dd>Заводы · лаборатории · R&amp;D · продажи</dd></div>
-          <div><dt>Было</dt><dd class="is-was">Excel + оценка 180°</dd></div>
-          <div><dt>Стало</dt><dd class="is-now">EmplyFlow Performance Review</dd></div>
-        </dl>
+        <div class="tile tile--candy b-2" data-reveal>
+          <svg class="tile__spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12Z"></path>
+          </svg>
+          <span class="tile__eyebrow">Задача</span>
+          <h3 class="tile__title">Перестроить оценку эффективности целиком</h3>
+          <p class="tile__text">
+            Перейти на модель Performance Management, основанную на данных и прозрачных бизнес-целях,
+            а не на субъективных мнениях руководителей.
+          </p>
+        </div>
+
+        <div class="tile tile--mint b-2" data-reveal>
+          <span class="tile__eyebrow">Масштаб</span>
+          <p class="tile__value">7 000+</p>
+          <p class="tile__label">сотрудников в периметре Performance Review</p>
+        </div>
+
+        <div class="tile tile--peri b-2" data-reveal>
+          <span class="tile__eyebrow">Периметр оценки</span>
+          <p class="tile__value">4 блока</p>
+          <p class="tile__label">производство, лаборатории, R&amp;D и продажи — с разными критериями оценки</p>
+        </div>
+
+        <div class="tile tile--ribbon b-2" data-reveal>
+          <span class="tile__eyebrow">Точка перехода</span>
+          <div class="vs vs--stack">
+            <div class="vs__side vs__side--was">
+              <span class="vs__tag">Было</span>
+              <span class="vs__note">Excel-формы и оценка 180°</span>
+            </div>
+            <div class="vs__arrow"><b>↓</b></div>
+            <div class="vs__side vs__side--now">
+              <span class="vs__tag">Стало</span>
+              <span class="vs__note">EmplyFlow Performance Review</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -190,7 +310,7 @@
     <div class="shell">
       <div class="chapter__head">
         <p class="eyebrow"><b>03</b> До EmplyFlow</p>
-        <h2 class="h-chapter" id="before-title">Оценка, которой не доверял никто</h2>
+        <h2 class="h-chapter" id="before-title">Оценка, которой <em class="is-pink">не доверял никто</em></h2>
         <p class="lead">
           Каждый цикл отнимал недели ручной работы на согласование результатов — и всё равно на них нельзя было
           опереться. Руководители часто давали оценки сотрудникам без опоры на чёткие показатели, а сотрудники
@@ -282,6 +402,39 @@
         </article>
 
       </div>
+
+      <div class="bento">
+        <div class="tile tile--dashed b-6" data-reveal>
+          <span class="tile__eyebrow">Что сравниваем по итогам проекта</span>
+          <h3 class="tile__title">Четыре измерения: было и <em>стало</em></h3>
+          <div class="vsgrid">
+            <div class="vsgrid__row">
+              <span class="vsgrid__label">Охват оценки</span>
+              <span class="vsgrid__was">180° — руководитель и самооценка</span>
+              <span class="vsgrid__sign" aria-hidden="true">→</span>
+              <span class="vsgrid__now">360° — своя модель под каждую роль</span>
+            </div>
+            <div class="vsgrid__row">
+              <span class="vsgrid__label">Скорость цикла</span>
+              <span class="vsgrid__was">1–2 месяца ручного сбора</span>
+              <span class="vsgrid__sign" aria-hidden="true">→</span>
+              <span class="vsgrid__now">6–7 дней на платформе</span>
+            </div>
+            <div class="vsgrid__row">
+              <span class="vsgrid__label">Согласованность целей</span>
+              <span class="vsgrid__was">45% — цели блоков жили порознь</span>
+              <span class="vsgrid__sign" aria-hidden="true">→</span>
+              <span class="vsgrid__now">87% — единое дерево OKR</span>
+            </div>
+            <div class="vsgrid__row">
+              <span class="vsgrid__label">Кадровый резерв</span>
+              <span class="vsgrid__was">Данных для матрицы потенциала не было</span>
+              <span class="vsgrid__sign" aria-hidden="true">→</span>
+              <span class="vsgrid__now">5 800 сотрудников на карте, 240 HiPo</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -290,7 +443,7 @@
     <div class="shell">
       <div class="chapter__head">
         <p class="eyebrow"><b>04</b> Маршрут проекта</p>
-        <h2 class="h-chapter" id="route-title">Карта трансформации</h2>
+        <h2 class="h-chapter" id="route-title">Карта <em>трансформации</em></h2>
         <p class="lead">Наш подход к проекту заключался в поэтапной цифровизации процессов на платформе: так мы запустили
           оценку 360°, целеполагание и построили для компании непрерывный процесс обновления матрицы талантов.</p>
       </div>
@@ -380,7 +533,7 @@
     <div class="shell">
       <div class="chapter__head">
         <p class="eyebrow"><b>05</b> Что изменили</p>
-        <h2 class="h-chapter" id="product-title">Весь цикл результативности — в одной платформе</h2>
+        <h2 class="h-chapter" id="product-title">Весь цикл результативности — <em>в одной платформе</em></h2>
         <p class="lead">OKR, промежуточные check-in, оценка 360°, итоговый Review и AI-аналитика перестали быть отдельными файлами и стали единым управляемым процессом.</p>
       </div>
 
@@ -486,20 +639,24 @@
         </div>
       </div>
 
-      <div class="principles">
-        <div class="principle" data-reveal>
-          <b>Иерархия целей</b>
-          <p>«Вшитая» на платформе механика постановки целей не позволяет нарушить определённые правила каскадирования —
-            что позволяет выстроить согласованное дерево целей всей компании.</p>
+      <div class="bento">
+        <div class="tile tile--peri b-2" data-reveal>
+          <span class="tile__eyebrow">Принцип 01</span>
+          <h3 class="tile__title">Иерархия целей</h3>
+          <p class="tile__text">«Вшитая» на платформе механика постановки целей не позволяет нарушить определённые правила
+            каскадирования — что позволяет выстроить согласованное дерево целей всей компании.</p>
         </div>
-        <div class="principle" data-reveal>
-          <b>Глубина и гибкость оценки</b>
-          <p>Отдельные модели 360° под роль оценивают людей по релевантным для них критериям, а не по общему шаблону.</p>
+        <div class="tile tile--mint b-2" data-reveal>
+          <span class="tile__eyebrow">Принцип 02</span>
+          <h3 class="tile__title">Глубина и гибкость оценки</h3>
+          <p class="tile__text">Отдельные модели 360° под роль оценивают людей по релевантным для них критериям,
+            а не по общему шаблону.</p>
         </div>
-        <div class="principle" data-reveal>
-          <b>Скорость и объективность</b>
-          <p>Единое окно вместо десятков Excel-файлов: решения принимаются на агрегированных и проанализированных данных,
-            а не на ощущениях.</p>
+        <div class="tile tile--candy b-2" data-reveal>
+          <span class="tile__eyebrow">Принцип 03</span>
+          <h3 class="tile__title">Скорость и объективность</h3>
+          <p class="tile__text">Единое окно вместо десятков Excel-файлов: решения принимаются на агрегированных
+            и проанализированных данных, а не на ощущениях.</p>
         </div>
       </div>
     </div>
@@ -510,7 +667,7 @@
     <div class="shell">
       <div class="chapter__head">
         <p class="eyebrow"><b>06</b> Попробуйте сами</p>
-        <h2 class="h-chapter" id="decision-title">Кого включить в кадровый резерв?</h2>
+        <h2 class="h-chapter" id="decision-title">Кого включить в <em class="is-pink">кадровый резерв</em>?</h2>
         <p class="lead">Подобные профили были сформированы для каждого сотрудника по итогам проекта. Попробуйте угадать HiPo
           и сравните свой выбор с анализом от ИИ.</p>
       </div>
@@ -600,60 +757,92 @@
     <div class="shell">
       <div class="chapter__head">
         <p class="eyebrow"><b>07</b> После запуска</p>
-        <h2 class="h-chapter" id="results-title">Единая, объективная и масштабируемая оценка</h2>
+        <h2 class="h-chapter" id="results-title">Единая, объективная и <em>масштабируемая</em> оценка</h2>
       </div>
 
-      <div class="result-scenes">
+      <div class="bento">
 
-        <article class="result" data-reveal style="--from:45%;--to:87%">
-          <p class="result__num">
-            <span class="was">45%</span>
-            <span data-count-to="87" data-count-from="45" data-count-suffix="%">45%</span>
-          </p>
-          <div class="result__copy">
-            <h3>Согласованность целей между департаментами</h3>
-            <p>Каскад OKR с блокировкой уровней выстроил цели сверху вниз по всей компании.</p>
-            <span class="result__rail"><b></b><i></i></span>
+        <article class="tile tile--glass b-2" data-reveal>
+          <span class="tile__eyebrow">Согласованность целей</span>
+          <h3 class="tile__title">Цели департаментов сошлись в одно дерево</h3>
+          <div class="vsbar">
+            <div class="vsbar__row vsbar__row--was">
+              <span class="vsbar__tag">Было</span>
+              <span class="vsbar__rail" style="--val:45%"><i></i></span>
+              <span class="vsbar__num">45%</span>
+            </div>
+            <div class="vsbar__row vsbar__row--now">
+              <span class="vsbar__tag">Стало</span>
+              <span class="vsbar__rail" style="--val:87%"><i></i></span>
+              <span class="vsbar__num" data-count-to="87" data-count-from="45" data-count-suffix="%">45%</span>
+            </div>
+            <span class="vsbar__delta">+42 п.п.</span>
           </div>
+          <p class="tile__text">Каскад OKR с блокировкой уровней выстроил цели сверху вниз по всей компании.</p>
         </article>
 
-        <article class="result" data-reveal style="--from:52%;--to:81%">
-          <p class="result__num">
-            <span class="was">52%</span>
-            <span data-count-to="81" data-count-from="52" data-count-suffix="%">52%</span>
-          </p>
-          <div class="result__copy">
-            <h3>Сотрудники понимают свой вклад в стратегию</h3>
-            <p>Связь личных задач с целями компании стала видимой на каждом уровне.</p>
-            <span class="result__rail"><b></b><i></i></span>
+        <article class="tile tile--glass b-2" data-reveal>
+          <span class="tile__eyebrow">Понимание вклада</span>
+          <h3 class="tile__title">Сотрудники видят связь задач со стратегией</h3>
+          <div class="vsbar">
+            <div class="vsbar__row vsbar__row--was">
+              <span class="vsbar__tag">Было</span>
+              <span class="vsbar__rail" style="--val:52%"><i></i></span>
+              <span class="vsbar__num">52%</span>
+            </div>
+            <div class="vsbar__row vsbar__row--now">
+              <span class="vsbar__tag">Стало</span>
+              <span class="vsbar__rail" style="--val:81%"><i></i></span>
+              <span class="vsbar__num" data-count-to="81" data-count-from="52" data-count-suffix="%">52%</span>
+            </div>
+            <span class="vsbar__delta">+29 п.п.</span>
           </div>
+          <p class="tile__text">Связь личных задач с целями компании стала видимой на каждом уровне.</p>
         </article>
 
-        <article class="result" data-reveal style="--from:33%;--to:72%">
-          <p class="result__num">
-            <span class="was">33%</span>
-            <span data-count-to="72" data-count-from="33" data-count-suffix="%">33%</span>
-          </p>
-          <div class="result__copy">
-            <h3>Цели с прямой привязкой к бизнес-показателям</h3>
-            <p>Формулировки целей стали измеримыми и связанными с результатом бизнеса.</p>
-            <span class="result__rail"><b></b><i></i></span>
+        <article class="tile tile--glass b-2" data-reveal>
+          <span class="tile__eyebrow">Качество формулировок</span>
+          <h3 class="tile__title">Цели привязаны к бизнес-показателям</h3>
+          <div class="vsbar">
+            <div class="vsbar__row vsbar__row--was">
+              <span class="vsbar__tag">Было</span>
+              <span class="vsbar__rail" style="--val:33%"><i></i></span>
+              <span class="vsbar__num">33%</span>
+            </div>
+            <div class="vsbar__row vsbar__row--now">
+              <span class="vsbar__tag">Стало</span>
+              <span class="vsbar__rail" style="--val:72%"><i></i></span>
+              <span class="vsbar__num" data-count-to="72" data-count-from="33" data-count-suffix="%">33%</span>
+            </div>
+            <span class="vsbar__delta">+39 п.п.</span>
           </div>
+          <p class="tile__text">Формулировки целей стали измеримыми и связанными с результатом бизнеса.</p>
         </article>
 
-        <article class="result" data-reveal>
-          <p class="result__num"><span>6–7 дней</span><small>вместо 1–2 месяцев</small></p>
-          <div class="result__copy">
-            <h3>Скорость Performance Review</h3>
-            <p>Сбор, сверка и консолидация — с 1–2 месяцев до 6–7 дней. Полностью без Excel.</p>
-            <div class="timeline-compress" aria-hidden="true">
-              <div><span>было</span><i class="was-bar"></i><em class="timeline-compress__axis">1–2 месяца</em></div>
-              <div><span>стало</span><i class="now-bar"></i><em class="timeline-compress__axis">7 дней</em></div>
+        <article class="tile tile--ribbon b-3" data-reveal>
+          <span class="tile__eyebrow">Скорость цикла Performance Review</span>
+          <div class="vs">
+            <div class="vs__side vs__side--was">
+              <span class="vs__tag">Было</span>
+              <span class="vs__value">1–2 месяца</span>
+              <span class="vs__note">ручной сбор, сверка форм и пересчёт коэффициентов в Excel</span>
+            </div>
+            <div class="vs__arrow"><b>в 4–8 раз</b><span>быстрее</span></div>
+            <div class="vs__side vs__side--now">
+              <span class="vs__tag">Стало</span>
+              <span class="vs__value">6–7 дней</span>
+              <span class="vs__note">сбор и консолидация на платформе, полностью без Excel</span>
             </div>
           </div>
+          <div class="timeline-compress" aria-hidden="true">
+            <div><span>было</span><i class="was-bar"></i><em class="timeline-compress__axis">1–2 месяца</em></div>
+            <div><span>стало</span><i class="now-bar"></i><em class="timeline-compress__axis">7 дней</em></div>
+          </div>
         </article>
 
-        <article class="result" data-reveal>
+        <article class="tile tile--glass b-3" data-reveal>
+          <span class="tile__eyebrow">Talent Matrix</span>
+          <h3 class="tile__title">Кадровый резерв стал виден</h3>
           <div class="talent">
             <div class="talent__grid" aria-hidden="true">
               <span></span><span></span><span class="hi"></span>
@@ -667,13 +856,11 @@
               <span>выявлено HiPo и зоны риска</span>
             </div>
           </div>
-          <div class="result__copy">
-            <h3>Кадровый резерв стал виден</h3>
-            <p>На интегрированных данных OKR, 360° и KPI собрана матрица потенциала по ключевым подразделениям.</p>
-          </div>
+          <p class="tile__text">На интегрированных данных OKR, 360° и KPI собрана матрица потенциала
+            по ключевым подразделениям.</p>
         </article>
 
-        <article class="result" data-reveal>
+        <article class="tile tile--glass b-6 tile--wide" data-reveal>
           <p class="result__num result__num--growth" role="img" aria-label="Качественный рост в управлении талантами">
             <span class="growth-stack" aria-hidden="true">
               <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -770,9 +957,12 @@
               </svg>
             </span>
           </p>
-          <div class="result__copy">
-            <h3>Качественный сдвиг в управлении талантами</h3>
-            <p>Компания перешла от реактивного управления талантами к планированию развития и преемственности. Руководители получили структурированную аналитику как основу для честного разговора о результатах с командами.</p>
+          <div class="tile__copy">
+            <span class="tile__eyebrow">Управленческий эффект</span>
+            <h3 class="tile__title">Качественный сдвиг в управлении талантами</h3>
+            <p class="tile__text">Компания перешла от реактивного управления талантами к планированию развития
+              и преемственности. Руководители получили структурированную аналитику как основу для честного
+              разговора о результатах с командами.</p>
           </div>
         </article>
 
@@ -813,7 +1003,7 @@
                data-video="media/case-pr/final-flow"></video>
         <div class="final__scrim" aria-hidden="true"></div>
         <p class="eyebrow">Итог</p>
-        <h2 class="h-chapter" id="final-title">Собрали управляемую систему результативности без постоянного контроля 24/7 со стороны HR</h2>
+        <h2 class="h-chapter" id="final-title">Собрали <em>управляемую систему результативности</em> без постоянного контроля <em class="is-pink">24/7 со стороны HR</em></h2>
         <p class="lead">Покажем EmplyFlow на ваших процессах и соберём объективную картину результативности по всей компании.</p>
         <div class="final__cta">
           <button type="button" class="btn btn--peach" data-ef-demo-open>Посмотреть демо Performance Review</button>
@@ -926,7 +1116,7 @@
   </div>
 </div>
 
-<script src="js/emplyflow-case-story.js?v=20260810b" defer></script>
+<script src="js/emplyflow-case-story.js?v=20260810c" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
 <script src="js/emplyflow-demo-modules.js" defer></script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
