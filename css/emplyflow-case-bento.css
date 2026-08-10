@@ -1690,6 +1690,20 @@
 }
 
 @media (max-width: 1080px) {
+  #product .sequence__grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 4vw, 32px);
+  }
+
+  #product .sequence__stage {
+    order: -1;
+  }
+
+  #product .sequence__step {
+    max-width: none;
+  }
+
   .sequence__stage--light,
   #product .sequence__stage {
     position: relative;
@@ -1742,6 +1756,36 @@
 }
 
 @media (max-width: 640px) {
+  #product .sequence__steps {
+    gap: clamp(32px, 8vh, 56px);
+    padding-bottom: clamp(32px, 8vh, 56px);
+  }
+
+  #product .sequence__stage--light {
+    height: auto;
+    min-height: min(320px, 46vh);
+  }
+
+  .seq3d-orbit--flat {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .seq3d-orbit__core {
+    width: auto;
+    max-width: 220px;
+    justify-self: center;
+    height: 88px;
+  }
+
+  .seq3d-orbit__chip b { font-size: 10px; }
+  .seq3d-orbit__chip span { font-size: 8.5px; line-height: 1.25; }
+
+  .seq3d-ai-callout {
+    transform: none;
+    padding: 12px;
+  }
+
   .seq3d-org__tier--dept,
   .seq3d-org__tier--team { grid-template-columns: 1fr; }
   .seq3d-org__links { display: none; }
