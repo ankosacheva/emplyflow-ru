@@ -1173,19 +1173,27 @@
   grid-template-rows: auto auto;
   column-gap: 10px;
   align-items: center;
-  background:
-    linear-gradient(150deg, #fff 0%, #ddd8ff 45%, #4a3bff 100%);
+  background: linear-gradient(150deg, #6a5cff 0%, #4a3bff 52%, #2b1fb0 100%);
   color: #fff;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
     0 22px 40px -18px rgba(74, 59, 255, 0.55),
     0 10px 0 rgba(43, 31, 176, 0.18);
 }
 
+.seq3d-card--ceo::after {
+  opacity: 0.22;
+  background: linear-gradient(120deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 62%);
+}
+
 .seq3d-card--ceo .seq3d-card__meta,
-.seq3d-card--ceo .seq3d-card__state { color: rgba(255, 255, 255, 0.82); }
-.seq3d-card--ceo .seq3d-card__ic { background: rgba(255, 255, 255, 0.2); color: #fff; }
-.seq3d-card--ceo b { grid-column: 2; color: #fff; }
+.seq3d-card--ceo .seq3d-card__state { color: rgba(255, 255, 255, 0.88); }
+.seq3d-card--ceo .seq3d-card__ic { background: rgba(255, 255, 255, 0.22); color: #fff; }
+.seq3d-card--ceo b {
+  grid-column: 2;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(5, 2, 48, 0.22);
+}
 .seq3d-card--ceo .seq3d-card__meta { grid-column: 2; }
 .seq3d-card--ceo .seq3d-card__state { grid-column: 3; grid-row: 1 / span 2; }
 
