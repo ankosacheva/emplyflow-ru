@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/emplyflow-case-story.css?v=20260810f">
-<link rel="stylesheet" href="css/emplyflow-case-bento.css?v=20260810e">
+<link rel="stylesheet" href="css/emplyflow-case-bento.css?v=20260810f">
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
 <link rel="stylesheet" href="css/emplyflow-site-footer.css">
 
@@ -569,65 +569,228 @@
           </div>
           <div class="stage__body">
 
-            <div class="scene" data-seq-scene role="img" aria-label="Дерево целей: уровень CEO закрыт, блоки закрыты, команды открываются следующими">
-              <div class="tree">
-                <div class="tree__node is-open"><span class="tree__lock">✓</span>CEO · стратегические OKR<span class="tree__state">закрыто</span></div>
-                <div class="tree__node tree__node--l2 is-open"><span class="tree__lock">✓</span>Производство · R&amp;D · продажи<span class="tree__state">закрыто</span></div>
-                <div class="tree__node tree__node--l3"><span class="tree__lock">🔒</span>Команды и сотрудники<span class="tree__state">откроется</span></div>
+            <!-- Шаг 01 · каскад целей -->
+            <div class="scene" data-seq-scene role="img" aria-label="Дерево оргструктуры: CEO закрыл OKR, департаменты закрыты, команды ждут открытия уровня">
+              <div class="seq-viz seq-viz--org">
+                <svg class="seq-org__lines" viewBox="0 0 400 118" preserveAspectRatio="none" aria-hidden="true">
+                  <path class="seq-org__line is-active" d="M200 8 V38"/>
+                  <path class="seq-org__line is-active" d="M200 38 H68 V68"/>
+                  <path class="seq-org__line is-active" d="M200 38 H200 V68"/>
+                  <path class="seq-org__line is-active" d="M200 38 H332 V68"/>
+                  <path class="seq-org__line is-pending" d="M68 92 V108 M200 92 V108 M332 92 V108"/>
+                </svg>
+
+                <div class="seq-org__ceo">
+                  <div class="seq-org__node is-done">
+                    <span class="seq-org__icon seq-org__icon--ceo" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </span>
+                    <div class="seq-org__copy">
+                      <span class="seq-org__lvl">Уровень 01</span>
+                      <b>CEO · стратегические OKR</b>
+                    </div>
+                    <span class="seq-org__badge is-done">Закрыто</span>
+                  </div>
+                </div>
+
+                <div class="seq-org__row">
+                  <div class="seq-org__node is-done">
+                    <span class="seq-org__icon seq-org__icon--prod" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/><path d="M9 20v-6h6v6"/></svg>
+                    </span>
+                    <div class="seq-org__copy"><span class="seq-org__lvl">Уровень 02</span><b>Производство</b></div>
+                    <span class="seq-org__badge is-done">Закрыто</span>
+                  </div>
+                  <div class="seq-org__node is-done">
+                    <span class="seq-org__icon seq-org__icon--rnd" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v7l5 9H4l5-9V3z"/><path d="M10 3V1h4v2"/></svg>
+                    </span>
+                    <div class="seq-org__copy"><span class="seq-org__lvl">Уровень 02</span><b>R&amp;D</b></div>
+                    <span class="seq-org__badge is-done">Закрыто</span>
+                  </div>
+                  <div class="seq-org__node is-done">
+                    <span class="seq-org__icon seq-org__icon--sales" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 5 5-9"/></svg>
+                    </span>
+                    <div class="seq-org__copy"><span class="seq-org__lvl">Уровень 02</span><b>Продажи</b></div>
+                    <span class="seq-org__badge is-done">Закрыто</span>
+                  </div>
+                </div>
+
+                <div class="seq-org__row seq-org__row--teams">
+                  <div class="seq-org__node is-locked">
+                    <span class="seq-org__icon seq-org__icon--team" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg>
+                    </span>
+                    <div class="seq-org__copy"><span class="seq-org__lvl">Уровень 03</span><b>Смены · лаборатории</b></div>
+                    <span class="seq-org__badge is-wait">Ожидает</span>
+                  </div>
+                  <div class="seq-org__node is-locked">
+                    <span class="seq-org__icon seq-org__icon--team" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg>
+                    </span>
+                    <div class="seq-org__copy"><span class="seq-org__lvl">Уровень 03</span><b>Команды R&amp;D</b></div>
+                    <span class="seq-org__badge is-wait">Ожидает</span>
+                  </div>
+                  <div class="seq-org__node is-locked">
+                    <span class="seq-org__icon seq-org__icon--team" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg>
+                    </span>
+                    <div class="seq-org__copy"><span class="seq-org__lvl">Уровень 03</span><b>Регионы · сотрудники</b></div>
+                    <span class="seq-org__badge is-wait">Ожидает</span>
+                  </div>
+                </div>
+
+                <p class="seq-org__hint">
+                  <span class="is-done"><i aria-hidden="true"></i>Уровень открыт после закрытия вышестоящего</span>
+                  <span class="is-wait"><i aria-hidden="true"></i>Блокировка каскада</span>
+                </p>
               </div>
             </div>
 
-            <div class="scene" data-seq-scene role="img" aria-label="Кольцо оценки 360 градусов и три ролевые модели: производство, R&amp;D, продажи">
-              <div class="ring360">
-                <div class="ring360__dial">
-                  <svg viewBox="0 0 120 120" aria-hidden="true">
-                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(217,214,255,.16)" stroke-width="11"></circle>
-                    <circle cx="60" cy="60" r="50" fill="none" stroke="#4a3bff" stroke-width="11"
-                            stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="0"></circle>
-                  </svg>
-                  <div class="ring360__cap"><b>360°</b><span>было 180°</span></div>
+            <!-- Шаг 02 · оценка 360° -->
+            <div class="scene" data-seq-scene role="img" aria-label="Оценка 360°: три ролевые модели с иконками и AI-разбор комментариев">
+              <div class="seq-viz seq-viz--360">
+                <div class="seq-360__head">
+                  <div class="seq-360__dial">
+                    <svg viewBox="0 0 120 120" aria-hidden="true">
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(217,214,255,.14)" stroke-width="10"/>
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#4a3bff" stroke-width="10" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="0"/>
+                      <circle cx="60" cy="60" r="34" fill="none" stroke="rgba(255,184,226,.35)" stroke-width="4" stroke-dasharray="4 6"/>
+                    </svg>
+                    <div class="seq-360__dial-cap"><b>360°</b><span>было 180°</span></div>
+                  </div>
+                  <div class="seq-360__ai tile--dashed">
+                    <span class="seq-360__ai-spark" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 17.8 5.7 19l2.3-7-6-4.6h7.6z"/></svg>
+                    </span>
+                    <b>AI в текстовых комментариях</b>
+                    <span>Сильные стороны · повторяющиеся сигналы · зоны риска</span>
+                  </div>
                 </div>
-                <div class="ring360__roles">
-                  <div class="ring360__role"><b>Производство</b><span>Регламенты, взаимодействие в смене, ответственность за качество</span></div>
-                  <div class="ring360__role"><b>R&amp;D</b><span>Инновационность, эксперименты, связка с производством</span></div>
-                  <div class="ring360__role"><b>Продажи</b><span>Клиентоориентированность, проактивность, влияние в команде</span></div>
+                <div class="seq-360__grid">
+                  <article class="seq-role is-mint">
+                    <span class="seq-role__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/><path d="M9 20v-6h6v6"/></svg>
+                    </span>
+                    <b>Производство</b>
+                    <ul class="seq-role__tags">
+                      <li>Регламенты</li>
+                      <li>Смены</li>
+                      <li>Качество</li>
+                    </ul>
+                  </article>
+                  <article class="seq-role is-peri">
+                    <span class="seq-role__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v7l5 9H4l5-9V3z"/><path d="M10 3V1h4v2"/></svg>
+                    </span>
+                    <b>R&amp;D</b>
+                    <ul class="seq-role__tags">
+                      <li>Инновации</li>
+                      <li>Эксперименты</li>
+                      <li>Связка с заводом</li>
+                    </ul>
+                  </article>
+                  <article class="seq-role is-candy">
+                    <span class="seq-role__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 5 5-9"/></svg>
+                    </span>
+                    <b>Продажи</b>
+                    <ul class="seq-role__tags">
+                      <li>Клиент</li>
+                      <li>Проактивность</li>
+                      <li>Влияние</li>
+                    </ul>
+                  </article>
                 </div>
               </div>
             </div>
 
-            <div class="scene" data-seq-scene role="img" aria-label="Четыре источника данных сходятся в единый Performance Review">
-              <div class="converge">
-                <div class="converge__sources">
-                  <div class="converge__src"><i style="background:#4a3bff"></i>Прогресс OKR</div>
-                  <div class="converge__src"><i style="background:#6a5cff"></i>Оценка 360°</div>
-                  <div class="converge__src"><i style="background:#d5fff3"></i>Проекты</div>
-                  <div class="converge__src"><i style="background:#ffb8e2"></i>Поведение</div>
+            <!-- Шаг 03 · единый Review -->
+            <div class="scene" data-seq-scene role="img" aria-label="Четыре компонента Performance Review сходятся в единый результат">
+              <div class="seq-viz seq-viz--review">
+                <svg class="seq-review__arrows" viewBox="0 0 320 280" aria-hidden="true">
+                  <path d="M160 44 L160 108" class="seq-review__arrow"/>
+                  <path d="M56 140 L124 140" class="seq-review__arrow"/>
+                  <path d="M264 140 L196 140" class="seq-review__arrow"/>
+                  <path d="M160 172 L160 236" class="seq-review__arrow"/>
+                </svg>
+                <div class="seq-review__tile seq-review__tile--okr">
+                  <span class="seq-review__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  </span>
+                  <b>OKR</b>
+                  <span class="seq-review__val">94%</span>
+                  <span class="seq-review__sub">прогресс целей</span>
                 </div>
-                <div class="converge__card"><b>Review</b><span>один результат</span></div>
+                <div class="seq-review__tile seq-review__tile--360">
+                  <span class="seq-review__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9"/><path d="M12 12l4-2"/></svg>
+                  </span>
+                  <b>360°</b>
+                  <span class="seq-review__val">4,2</span>
+                  <span class="seq-review__sub">оценка коллег</span>
+                </div>
+                <div class="seq-review__core">
+                  <b>Review</b>
+                  <span>единый балл</span>
+                  <em>без Excel</em>
+                </div>
+                <div class="seq-review__tile seq-review__tile--proj">
+                  <span class="seq-review__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+                  </span>
+                  <b>Проекты</b>
+                  <span class="seq-review__val">Высокий</span>
+                  <span class="seq-review__sub">вклад в команды</span>
+                </div>
+                <div class="seq-review__tile seq-review__tile--beh">
+                  <span class="seq-review__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 1 5 5c0 2-1 3.5-2.5 4.5L12 22l-2.5-8.5C8 14.5 7 13 7 11a5 5 0 0 1 5-5z"/></svg>
+                  </span>
+                  <b>Поведение</b>
+                  <span class="seq-review__val">Стабильно</span>
+                  <span class="seq-review__sub">индикаторы</span>
+                </div>
               </div>
             </div>
 
-            <div class="scene" data-seq-scene role="img" aria-label="AI-сигналы: Best Performers, риск недостижения целей, выгорание, дефицит компетенций">
-              <div class="signals">
-                <div class="signal">
-                  <span class="signal__dot" style="background:#d5fff3"></span>
-                  <span class="signal__text"><b>Best Performers</b><span>Команды с лучшими практиками</span></span>
-                  <span class="signal__tag">Сильные</span>
-                </div>
-                <div class="signal">
-                  <span class="signal__dot" style="background:#ffb777"></span>
-                  <span class="signal__text"><b>Риск недостижения целей</b><span>Отставание по ключевым OKR</span></span>
-                  <span class="signal__tag">Внимание</span>
-                </div>
-                <div class="signal">
-                  <span class="signal__dot" style="background:#ffb8e2"></span>
-                  <span class="signal__text"><b>Риск выгорания</b><span>Сигналы в комментариях 360°</span></span>
-                  <span class="signal__tag">Риск</span>
-                </div>
-                <div class="signal">
-                  <span class="signal__dot" style="background:#cec8ff"></span>
-                  <span class="signal__text"><b>Дефицит компетенций</b><span>Разрыв между ролью и профилем</span></span>
-                  <span class="signal__tag">План</span>
+            <!-- Шаг 04 · AI-сигналы -->
+            <div class="scene" data-seq-scene role="img" aria-label="AI подсвечивает Best Performers, риски по целям, выгорание и дефицит компетенций">
+              <div class="seq-viz seq-viz--ai">
+                <div class="seq-ai__grid">
+                  <article class="seq-ai__card is-mint">
+                    <span class="seq-ai__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 17.8 5.7 19l2.3-7-6-4.6h7.6z"/></svg>
+                    </span>
+                    <b>Best Performers</b>
+                    <span>Команды с лучшими практиками и стабильным ростом OKR</span>
+                    <span class="seq-ai__tag">Сильные</span>
+                  </article>
+                  <article class="seq-ai__card is-mac">
+                    <span class="seq-ai__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18"/><path d="M6 16l3-8 3 4 4-7"/></svg>
+                    </span>
+                    <b>Риск по целям</b>
+                    <span>Отставание по ключевым OKR на уровне департамента</span>
+                    <span class="seq-ai__tag">Внимание</span>
+                  </article>
+                  <article class="seq-ai__card is-candy">
+                    <span class="seq-ai__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4"/><circle cx="12" cy="16" r=".5" fill="currentColor"/><path d="M10.3 3.6h3.4L22 21H2L10.3 3.6z"/></svg>
+                    </span>
+                    <b>Риск выгорания</b>
+                    <span>Повторяющиеся сигналы в комментариях 360°</span>
+                    <span class="seq-ai__tag">Риск</span>
+                  </article>
+                  <article class="seq-ai__card is-peri">
+                    <span class="seq-ai__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M17 14v6M14 17h6"/></svg>
+                    </span>
+                    <b>Дефицит компетенций</b>
+                    <span>Разрыв между ролью и профилем на матрице</span>
+                    <span class="seq-ai__tag">План</span>
+                  </article>
                 </div>
               </div>
             </div>

@@ -971,11 +971,538 @@
   .vsbar__num { grid-column: 2; text-align: left; }
 }
 
+/* ===================== СЕКВЕНЦИЯ 05 · БЕНТО-ИНФОГРАФИКА ================= */
+
+.sequence .scene {
+  align-content: start;
+  padding: clamp(14px, 2vw, 22px);
+  overflow: auto;
+}
+
+.sequence__stage {
+  height: min(600px, 78vh);
+}
+
+.seq-viz {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  min-height: 0;
+}
+
+@keyframes seq-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes seq-line-glow {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+.scene.is-active .seq-org__node,
+.scene.is-active .seq-role,
+.scene.is-active .seq-review__tile,
+.scene.is-active .seq-review__core,
+.scene.is-active .seq-ai__card {
+  animation: seq-pop 0.55s var(--ease) backwards;
+}
+
+.scene.is-active .seq-org__row .seq-org__node:nth-child(1) { animation-delay: 0.06s; }
+.scene.is-active .seq-org__row .seq-org__node:nth-child(2) { animation-delay: 0.12s; }
+.scene.is-active .seq-org__row .seq-org__node:nth-child(3) { animation-delay: 0.18s; }
+.scene.is-active .seq-role:nth-child(1) { animation-delay: 0.05s; }
+.scene.is-active .seq-role:nth-child(2) { animation-delay: 0.12s; }
+.scene.is-active .seq-role:nth-child(3) { animation-delay: 0.19s; }
+
+/* —— Шаг 01: дерево оргструктуры —— */
+.seq-viz--org {
+  position: relative;
+  gap: 10px;
+}
+
+.seq-org__lines {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 58px;
+  height: 108px;
+  width: 92%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.seq-org__line {
+  fill: none;
+  stroke: rgba(206, 200, 255, 0.35);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.seq-org__line.is-active { stroke: rgba(106, 92, 255, 0.75); }
+.seq-org__line.is-pending {
+  stroke: rgba(255, 184, 226, 0.35);
+  stroke-dasharray: 4 5;
+}
+
+.scene.is-active .seq-org__line.is-active {
+  animation: seq-line-glow 2.4s ease-in-out infinite;
+}
+
+.seq-org__ceo,
+.seq-org__row {
+  position: relative;
+  z-index: 1;
+}
+
+.seq-org__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.seq-org__node {
+  display: grid;
+  gap: 6px;
+  padding: 10px 10px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px var(--stroke);
+  min-width: 0;
+}
+
+.seq-org__ceo .seq-org__node {
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: linear-gradient(145deg, rgba(74, 59, 255, 0.38), rgba(255, 255, 255, 0.06));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(160, 150, 255, 0.35);
+}
+
+.seq-org__node.is-done {
+  background: linear-gradient(150deg, rgba(74, 59, 255, 0.2), rgba(255, 255, 255, 0.04));
+}
+
+.seq-org__node.is-locked {
+  opacity: 0.78;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.seq-org__icon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: rgba(217, 214, 255, 0.1);
+  color: var(--fg2);
+}
+
+.seq-org__icon--ceo { background: var(--indigo); color: #fff; box-shadow: 0 10px 24px -12px rgba(74, 59, 255, 0.9); }
+.seq-org__icon--prod { background: rgba(213, 255, 243, 0.16); color: var(--mint); }
+.seq-org__icon--rnd { background: rgba(206, 200, 255, 0.18); color: var(--peri); }
+.seq-org__icon--sales { background: rgba(255, 184, 226, 0.14); color: var(--pink); }
+.seq-org__icon--team { width: 28px; height: 28px; border-radius: 9px; }
+
+.seq-org__copy { display: grid; gap: 2px; min-width: 0; }
+.seq-org__lvl {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg3);
+}
+
+.seq-org__copy b {
+  font-size: clamp(10px, 1.1vw, 12.5px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.seq-org__badge {
+  justify-self: start;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(217, 214, 255, 0.08);
+  color: var(--fg3);
+}
+
+.seq-org__ceo .seq-org__badge { justify-self: end; }
+.seq-org__badge.is-done { background: rgba(213, 255, 243, 0.12); color: var(--mint); }
+.seq-org__badge.is-wait { background: rgba(255, 184, 226, 0.1); color: var(--pink); }
+
+.seq-org__hint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 2px 0 0;
+  font-size: 10px;
+  color: var(--fg3);
+}
+
+.seq-org__hint span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.seq-org__hint i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.seq-org__hint .is-wait i { background: var(--pink); }
+
+/* —— Шаг 02: 360° —— */
+.seq-360__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.seq-360__dial {
+  position: relative;
+  width: clamp(108px, 14vw, 132px);
+  aspect-ratio: 1;
+  flex: none;
+}
+
+.seq-360__dial svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.seq-360__dial-cap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2px;
+}
+
+.seq-360__dial-cap b {
+  font-size: clamp(22px, 2.8vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.seq-360__dial-cap span {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--fg3);
+}
+
+.seq-360__ai {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  min-width: 0;
+}
+
+.seq-360__ai-spark {
+  display: grid;
+  place-items: center;
+  line-height: 0;
+  color: var(--pink);
+}
+
+.seq-360__ai b {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.seq-360__ai span {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg3);
+}
+
+.seq-360__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.seq-role {
+  display: grid;
+  gap: 8px;
+  padding: 12px 10px;
+  border-radius: 18px;
+  min-width: 0;
+  box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.06);
+}
+
+.seq-role.is-mint { background: var(--t-mint); color: var(--ink); }
+.seq-role.is-peri { background: var(--t-peri); color: var(--ink); }
+.seq-role.is-candy { background: var(--t-candy); color: var(--ink); }
+
+.seq-role__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(21, 21, 21, 0.08);
+}
+
+.seq-role b {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.seq-role__tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.seq-role__tags li {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(21, 21, 21, 0.07);
+}
+
+/* —— Шаг 03: единый Review —— */
+.seq-viz--review {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+  min-height: 250px;
+  padding: 4px 0;
+}
+
+.seq-review__arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.seq-review__arrow {
+  fill: none;
+  stroke: rgba(206, 200, 255, 0.28);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  marker-end: none;
+}
+
+.scene.is-active .seq-review__arrow {
+  stroke: rgba(106, 92, 255, 0.55);
+  animation: seq-line-glow 2.2s ease-in-out infinite;
+}
+
+.seq-review__tile,
+.seq-review__core {
+  position: relative;
+  z-index: 1;
+}
+
+.seq-review__tile {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px var(--stroke);
+  text-align: center;
+  min-width: 0;
+  width: 100%;
+  max-width: 118px;
+}
+
+.seq-review__tile--okr { grid-column: 2; grid-row: 1; }
+.seq-review__tile--360 { grid-column: 1; grid-row: 2; }
+.seq-review__tile--proj { grid-column: 3; grid-row: 2; }
+.seq-review__tile--beh { grid-column: 2; grid-row: 3; }
+
+.seq-review__icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 4px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(217, 214, 255, 0.1);
+  color: var(--peri);
+}
+
+.seq-review__tile--okr .seq-review__icon { color: var(--indigo); background: rgba(74, 59, 255, 0.2); }
+.seq-review__tile--360 .seq-review__icon { color: var(--peri); }
+.seq-review__tile--proj .seq-review__icon { color: var(--mint); background: rgba(213, 255, 243, 0.12); }
+.seq-review__tile--beh .seq-review__icon { color: var(--pink); background: rgba(255, 184, 226, 0.12); }
+
+.seq-review__tile b {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.seq-review__val {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--fg1);
+}
+
+.seq-review__sub {
+  font-size: 9.5px;
+  line-height: 1.3;
+  color: var(--fg3);
+}
+
+.seq-review__core {
+  grid-column: 2;
+  grid-row: 2;
+  width: clamp(108px, 14vw, 132px);
+  aspect-ratio: 1;
+  border-radius: 24px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  text-align: center;
+  background: linear-gradient(155deg, var(--indigo), #2b1fb0);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 24px 50px -20px rgba(74, 59, 255, 0.95);
+}
+
+.seq-review__core b {
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.seq-review__core span {
+  font-size: 10.5px;
+  color: rgba(217, 214, 255, 0.82);
+}
+
+.seq-review__core em {
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mint);
+}
+
+/* —— Шаг 04: AI-сигналы —— */
+.seq-ai__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.seq-ai__card {
+  display: grid;
+  gap: 6px;
+  padding: 12px 12px;
+  border-radius: 18px;
+  min-width: 0;
+  box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.06);
+}
+
+.seq-ai__card.is-mint { background: var(--t-mint); color: var(--ink); }
+.seq-ai__card.is-mac { background: var(--t-mac); color: var(--ink); }
+.seq-ai__card.is-candy { background: var(--t-candy); color: var(--ink); }
+.seq-ai__card.is-peri { background: var(--t-peri); color: var(--ink); }
+
+.seq-ai__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: rgba(21, 21, 21, 0.08);
+}
+
+.seq-ai__card b {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.seq-ai__card > span:not(.seq-ai__tag) {
+  font-size: 10.5px;
+  line-height: 1.4;
+  opacity: 0.72;
+}
+
+.seq-ai__tag {
+  justify-self: start;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(21, 21, 21, 0.08);
+}
+
+@media (max-width: 900px) {
+  .seq-360__grid { grid-template-columns: 1fr; }
+  .seq-360__head { grid-template-columns: 1fr; }
+  .seq-360__dial { justify-self: center; }
+  .seq-org__row { grid-template-columns: 1fr; }
+  .seq-org__lines { display: none; }
+  .seq-review__tile { max-width: none; }
+}
+
+@media (max-width: 640px) {
+  .seq-ai__grid { grid-template-columns: 1fr; }
+  .seq-viz--review {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+  }
+  .seq-review__tile--okr { grid-column: 1 / -1; grid-row: 1; max-width: 200px; }
+  .seq-review__tile--360 { grid-column: 1; grid-row: 2; }
+  .seq-review__core { grid-column: 2; grid-row: 2; width: 100%; max-width: 140px; aspect-ratio: 1; }
+  .seq-review__tile--proj { grid-column: 1; grid-row: 3; }
+  .seq-review__tile--beh { grid-column: 2; grid-row: 3; }
+  .seq-review__arrows { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .plate,
   .orbit__ring,
   .orbit__chip,
-  .cascade__pulse {
+  .cascade__pulse,
+  .scene.is-active .seq-org__node,
+  .scene.is-active .seq-role,
+  .scene.is-active .seq-review__tile,
+  .scene.is-active .seq-review__core,
+  .scene.is-active .seq-ai__card {
     animation: none !important;
   }
   .hero3d__stage { transition: none; }
