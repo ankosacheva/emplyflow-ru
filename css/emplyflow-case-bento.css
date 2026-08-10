@@ -1120,9 +1120,9 @@
   animation-delay: var(--d, 0s), calc(var(--d, 0s) + 0.55s);
 }
 
-.scene.is-active .seq3d-orbit__slot {
-  animation: seq3d-fade-in 0.55s var(--ease) backwards;
-  animation-delay: var(--d, 0s);
+@keyframes seq3d-chip-float {
+  from { translate: 0 0; }
+  to { translate: 0 -5px; }
 }
 
 @keyframes seq3d-fade-in {
@@ -1286,56 +1286,51 @@
   color: #c44d8a;
 }
 
-/* —— Шаг 02: орбита 360 —— */
+/* —— Шаг 02: орбита 360 (плоская, с объёмом карточек) —— */
+.seq3d--360 .seq3d__floor {
+  display: none;
+}
+
 .seq3d__stage--360 {
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   align-items: center;
   gap: 16px;
 }
 
-.seq3d-orbit {
-  --tilt: 58deg;
-  --r: clamp(92px, 12vw, 118px);
+.seq3d-orbit--flat {
+  --orbit-r: clamp(96px, 12vw, 122px);
   position: relative;
-  width: min(100%, 300px);
+  width: min(100%, 320px);
   aspect-ratio: 1;
   justify-self: center;
-  transform-style: preserve-3d;
-  perspective: 900px;
-  perspective-origin: 50% 46%;
 }
 
 .seq3d-orbit__ring {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: calc(var(--r) * 2);
-  height: calc(var(--r) * 2);
+  width: calc(var(--orbit-r) * 2 + 72px);
+  height: calc(var(--orbit-r) * 2 + 72px);
   border-radius: 50%;
-  border: 1.5px dashed rgba(74, 59, 255, 0.28);
-  transform: translate(-50%, -50%) rotateX(var(--tilt));
+  border: 1.5px dashed rgba(74, 59, 255, 0.32);
+  transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
-.seq3d-orbit__spin {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
+.scene.is-active .seq3d-orbit__ring {
+  animation: seq3d-orbit-glow 3.2s ease-in-out infinite;
 }
 
-.seq3d-orbit__slot {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform-style: preserve-3d;
-  transform: translate(-50%, -50%) rotateY(var(--a)) translateZ(var(--r));
+@keyframes seq3d-orbit-glow {
+  0%, 100% { opacity: 0.55; scale: 1; }
+  50% { opacity: 1; scale: 1.015; }
 }
 
 .seq3d-orbit__core {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 2;
+  z-index: 3;
   width: 104px;
   height: 104px;
   border-radius: 28px;
@@ -1343,7 +1338,7 @@
   place-content: center;
   justify-items: center;
   gap: 2px;
-  transform: translate(-50%, -50%) translateZ(48px);
+  transform: translate(-50%, -50%);
   background: linear-gradient(150deg, #6a5cff, #4a3bff 55%, #2b1fb0);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.45),
@@ -1365,7 +1360,9 @@
 }
 
 .seq3d-orbit__chip {
-  width: 108px;
+  position: absolute;
+  z-index: 2;
+  width: 112px;
   padding: 10px 10px;
   border-radius: 16px;
   display: grid;
@@ -1375,8 +1372,39 @@
     inset 0 1px 0 #fff,
     0 16px 28px -16px rgba(5, 2, 48, 0.35),
     0 6px 0 rgba(74, 59, 255, 0.08);
-  transform: rotateY(calc(-1 * var(--a))) rotateX(calc(-1 * var(--tilt)));
-  transform-style: preserve-3d;
+}
+
+.seq3d-orbit__chip--prod {
+  left: 50%;
+  top: calc(50% - var(--orbit-r));
+  transform: translate(-50%, -100%);
+}
+
+.seq3d-orbit__chip--rnd {
+  left: calc(50% + var(--orbit-r) * 0.866);
+  top: calc(50% + var(--orbit-r) * 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.seq3d-orbit__chip--sales {
+  left: calc(50% - var(--orbit-r) * 0.866);
+  top: calc(50% + var(--orbit-r) * 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.scene.is-active .seq3d-orbit__chip--prod {
+  animation: seq3d-fade-in 0.55s var(--ease) backwards, seq3d-chip-float 5.5s ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s), calc(var(--d, 0s) + 0.55s);
+}
+
+.scene.is-active .seq3d-orbit__chip--rnd {
+  animation: seq3d-fade-in 0.55s var(--ease) backwards, seq3d-chip-float 5.8s ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s), calc(var(--d, 0s) + 0.7s);
+}
+
+.scene.is-active .seq3d-orbit__chip--sales {
+  animation: seq3d-fade-in 0.55s var(--ease) backwards, seq3d-chip-float 6.1s ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s), calc(var(--d, 0s) + 0.85s);
 }
 
 .seq3d-orbit__ic {
@@ -1663,22 +1691,18 @@
 
   .seq3d__stage { transform: none; }
   .seq3d__floor { display: none; }
-  .seq3d-orbit__spin { position: static; display: contents; }
-  .seq3d-orbit__slot {
-    position: static;
-    transform: none !important;
-  }
-  .seq3d-orbit__chip {
-    width: auto;
-    transform: none !important;
-  }
-  .seq3d-orbit {
+  .seq3d-orbit--flat {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
     width: 100%;
     aspect-ratio: auto;
-    perspective: none;
+  }
+  .seq3d-orbit__chip {
+    position: static;
+    width: auto;
+    transform: none !important;
+    animation: none !important;
   }
   .seq3d-orbit__ring { display: none; }
   .seq3d-orbit__core {
@@ -1719,7 +1743,7 @@
   .scene.is-active .seq3d-hub__tile,
   .scene.is-active .seq3d-hub__core,
   .scene.is-active .seq3d-lens__row,
-  .scene.is-active .seq3d-orbit__slot {
+  .scene.is-active .seq3d-orbit__chip {
     animation: none !important;
   }
   .hero3d__stage { transition: none; }
