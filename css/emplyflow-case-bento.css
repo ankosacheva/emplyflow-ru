@@ -28,7 +28,7 @@
 .h-display em,
 .h-chapter em,
 .h-scene em {
-  color: var(--mint);
+  color: var(--mint-text);
 }
 
 .h-display em.is-pink,

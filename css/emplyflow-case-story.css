@@ -12,6 +12,7 @@
   --indigo-2: #6a5cff;
   --pink: #ffb8e2;
   --mint: #d5fff3;
+  --mint-text: #7fe9cd;
   --peri: #cec8ff;
   --fog: #d9d6ff;
   --peach: #ffb777;
@@ -163,7 +164,7 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 .muted { color: var(--fg3); }
 
 .t-pink { color: var(--pink); }
-.t-mint { color: var(--mint); }
+.t-mint { color: var(--mint-text); }
 .t-peri { color: var(--peri); }
 
 /* ========================== PRELOADER ========================== */
