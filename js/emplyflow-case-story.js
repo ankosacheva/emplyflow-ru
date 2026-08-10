@@ -537,6 +537,7 @@
       if (i === active) return;
       active = i;
       Array.prototype.forEach.call(steps, function (el, idx) { el.classList.toggle('is-active', idx === i); });
+      if (mqMobileSeq.matches) return;
       Array.prototype.forEach.call(scenes, function (el, idx) { el.classList.toggle('is-active', idx === i); });
       if (chromeLabel && steps[i]) chromeLabel.textContent = steps[i].getAttribute('data-chrome') || '';
     }

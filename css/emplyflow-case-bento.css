@@ -1782,49 +1782,13 @@
 }
 
 @media (max-width: 1080px) {
-  #product .sequence__grid {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 4vw, 32px);
-  }
-
+  /* Планшеты и телефоны: только текст шагов, без sticky-панели графики */
   #product .sequence__stage {
-    order: -1;
-    position: sticky;
-    top: clamp(72px, 11vh, 88px);
-    z-index: 3;
+    display: none;
   }
 
   #product .sequence__step {
     max-width: none;
-  }
-
-  .sequence__stage--light,
-  #product .sequence__stage {
-    position: sticky;
-    top: clamp(72px, 11vh, 88px);
-    bottom: auto;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: min(320px, 50vh);
-    max-height: none;
-  }
-
-  .sequence__stage--light .stage__body {
-    flex: 1 1 auto;
-    min-height: min(260px, 44vh);
-    height: auto;
-  }
-
-  #product .sequence .scene {
-    position: absolute;
-    inset: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    align-content: start;
-    padding: 10px 12px;
   }
 
   .sequence .sequence__steps {
@@ -1834,198 +1798,13 @@
   .sequence .bento {
     margin-top: clamp(32px, 6vh, 64px);
   }
-
-  /* Без 3D-анимаций — transform перезаписывает позиции и вызывает наслоение */
-  .seq3d-card,
-  .seq3d-hub__tile,
-  .seq3d-hub__core,
-  .seq3d-lens__row,
-  .seq3d-orbit__chip {
-    transform: none !important;
-  }
-
-  .scene.is-active .seq3d-card,
-  .scene.is-active .seq3d-hub__tile,
-  .scene.is-active .seq3d-hub__core,
-  .scene.is-active .seq3d-lens__row,
-  .scene.is-active .seq3d-orbit__chip {
-    animation: none !important;
-  }
-
-  .seq3d {
-    perspective: none;
-  }
-
-  .seq3d__stage {
-    transform: none;
-    min-height: 0;
-    align-content: start;
-    gap: 8px;
-  }
-
-  .seq3d__floor { display: none; }
-
-  .seq3d--org {
-    grid-template-rows: auto auto;
-    min-height: 0;
-    gap: 8px;
-  }
-
-  .seq3d--org .seq3d__stage {
-    overflow: visible;
-    gap: 6px;
-  }
-
-  .seq3d--org .seq3d__legend {
-    flex-shrink: 0;
-    margin-top: 2px;
-    padding: 6px 8px;
-    border-top: 1px solid rgba(5, 2, 48, 0.06);
-    background: rgba(255, 255, 255, 0.55);
-    border-radius: 12px;
-  }
-
-  .seq3d-org__tier {
-    gap: 6px;
-  }
-
-  .seq3d-org__tier--team {
-    display: none;
-  }
-
-  .seq3d-org__tier--dept {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 4px;
-  }
-
-  .seq3d-org__tier--dept .seq3d-card {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .seq3d-orbit--flat {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    width: 100%;
-    aspect-ratio: auto;
-  }
-  .seq3d-orbit__chip {
-    position: static;
-    width: auto;
-    transform: none !important;
-    animation: none !important;
-  }
-  .seq3d-orbit__ring { display: none; }
-  .seq3d-orbit__core {
-    position: static;
-    width: 100%;
-    grid-column: 1 / -1;
-    transform: none;
-    margin-bottom: 4px;
-  }
-  .seq3d__stage--360 { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
   #product .sequence__steps {
-    gap: clamp(32px, 8vh, 56px);
+    gap: clamp(28px, 6vh, 48px);
     padding-bottom: clamp(32px, 8vh, 56px);
   }
-
-  #product .sequence__stage--light {
-    min-height: min(340px, 54vh);
-  }
-
-  #product .stage__body {
-    min-height: min(280px, 48vh);
-  }
-
-  .seq3d-card {
-    padding: 7px 8px;
-    border-radius: 12px;
-    gap: 2px;
-  }
-
-  .seq3d-card b {
-    font-size: 9px;
-    line-height: 1.15;
-    overflow-wrap: anywhere;
-  }
-
-  .seq3d-card__meta,
-  .seq3d-card__state { font-size: 7px; }
-
-  .seq3d-card--ceo {
-    width: 100%;
-    padding: 8px 10px;
-    column-gap: 6px;
-  }
-
-  .seq3d-card--ceo b { font-size: 10px; }
-
-  .seq3d-card__ic {
-    width: 14px;
-    height: 14px;
-  }
-
-  .seq3d-card__ic svg {
-    width: 12px;
-    height: 12px;
-  }
-
-  /* Уровень 03 скрыт на телефоне — правило дублируется для надёжности */
-  .seq3d-org__tier--team { display: none !important; }
-
-  .seq3d-org__tier--dept {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 4px;
-  }
-
-  .seq3d-org__tier--dept .seq3d-card {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .seq3d__legend {
-    font-size: 9px;
-    gap: 6px 10px;
-  }
-
-  .seq3d-orbit--flat {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-
-  .seq3d-orbit__core {
-    width: auto;
-    max-width: 220px;
-    justify-self: center;
-    height: 88px;
-  }
-
-  .seq3d-orbit__chip b { font-size: 10px; }
-  .seq3d-orbit__chip span { font-size: 8.5px; line-height: 1.25; }
-
-  .seq3d-ai-callout {
-    transform: none;
-    padding: 12px;
-  }
-
-  .seq3d-org__links { display: none; }
-  .seq3d__stage--review {
-    grid-template-columns: 1fr 1fr;
-    min-height: 0;
-  }
-  .seq3d-hub__tile--okr { grid-column: 1 / -1; max-width: 200px; }
-  .seq3d-hub__tile--deg { grid-column: 1; }
-  .seq3d-hub__core { grid-column: 2; width: 100%; max-width: 140px; }
-  .seq3d-hub__tile--proj { grid-column: 1; }
-  .seq3d-hub__tile--beh { grid-column: 2; }
-  .seq3d__stage--lens { grid-template-columns: 1fr; justify-items: center; }
-  .seq3d-lens__feed { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
