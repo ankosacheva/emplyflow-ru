@@ -973,8 +973,25 @@
 
 /* ===================== СЕКВЕНЦИЯ 05 · СВЕТЛЫЙ 3D ================= */
 
+.sequence .sequence__steps {
+  padding-bottom: clamp(96px, 16vh, 180px);
+}
+
+.sequence .bento {
+  position: relative;
+  z-index: 6;
+  margin-top: clamp(40px, 7vh, 88px);
+  isolation: isolate;
+}
+
 .sequence__stage--light {
-  height: min(620px, 80vh);
+  position: sticky;
+  top: 96px;
+  bottom: clamp(32px, 6vh, 64px);
+  z-index: 1;
+  height: auto;
+  min-height: min(400px, 52vh);
+  max-height: min(520px, calc(100vh - 200px));
   background:
     radial-gradient(120% 90% at 12% 0%, rgba(206, 200, 255, 0.55), transparent 52%),
     radial-gradient(90% 80% at 92% 100%, rgba(213, 255, 243, 0.45), transparent 48%),
