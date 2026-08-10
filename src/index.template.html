@@ -534,7 +534,8 @@ html, body {
 <style>
   html,body{margin:0;padding:0;background:#050230;color:#fff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
   *{box-sizing:border-box;}
-  img,svg{display:block;max-width:100%;}
+  img{display:block;max-width:100%;height:auto;}
+  svg{display:block;max-width:none;}
   button{font-family:inherit;}
   a{color:#cec8ff;text-decoration:none;}
   a:hover{color:#ffffff;}
@@ -549,8 +550,8 @@ html, body {
   .ef-hero__scribble{position:absolute;opacity:0.5;pointer-events:none;}
   .ef-hero__scribble--1{top:clamp(28px,5vw,74px);left:clamp(96px,17vw,270px);width:clamp(52px,6vw,90px);}
   .ef-hero__scribble--2{top:clamp(150px,20vw,270px);left:clamp(150px,26vw,400px);width:clamp(44px,5vw,74px);transform:rotate(168deg);}
-  .ef-hero__sparkle3d{position:absolute;left:clamp(-8px,2vw,56px);top:clamp(190px,24vw,300px);width:clamp(88px,12vw,180px);animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 22px 48px rgba(74,59,255,.55));pointer-events:none;}
-  .ef-hero__star{position:absolute;right:clamp(6vw,14vw,200px);top:clamp(150px,20vw,260px);width:clamp(74px,10vw,150px);animation:efFloat 8s ease-in-out infinite;pointer-events:none;}
+  .ef-hero__sparkle3d{position:absolute;left:clamp(-8px,2vw,56px);top:clamp(190px,24vw,300px);width:clamp(88px,12vw,180px);height:auto;animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 22px 48px rgba(74,59,255,.55));pointer-events:none;}
+  .ef-hero__star{position:absolute;right:clamp(6vw,14vw,200px);top:clamp(150px,20vw,260px);width:clamp(74px,10vw,150px);height:auto;animation:efFloat 8s ease-in-out infinite;pointer-events:none;}
 
   .ef-hero__inner{position:relative;max-width:1200px;margin:0 auto;}
   .ef-hero__title{max-width:1000px;margin:0 auto;font-weight:800;font-size:clamp(27px,4.1vw,56px);line-height:0.98;letter-spacing:-0.032em;text-align:center;color:#fff;}
@@ -612,7 +613,11 @@ html, body {
   .ef-card--pink{background:#ffb8e2;min-height:clamp(190px,18vw,260px);}
   .ef-card__title{max-width:14ch;font-weight:800;font-size:clamp(19px,2.2vw,28px);line-height:1.02;letter-spacing:-0.025em;}
   .ef-card__body{font-size:clamp(12.5px,1.15vw,15px);font-weight:500;line-height:1.35;color:rgba(21,21,21,0.82);}
-  .ef-card__sparkle{position:absolute;pointer-events:none;}
+  .ef-card__sparkle{position:absolute;pointer-events:none;width:clamp(24px,2.8vw,42px);height:auto;}
+  .ef-card--mint .ef-card__sparkle{top:18px;right:22px;width:clamp(26px,3vw,42px);fill:#ffb8e2;}
+  .ef-card--peri .ef-card__sparkle{bottom:16px;right:20px;width:clamp(24px,2.6vw,36px);}
+  .ef-card--pink .ef-card__sparkle:nth-of-type(1){top:24px;right:26px;width:clamp(30px,3.4vw,48px);}
+  .ef-card--pink .ef-card__sparkle:nth-of-type(2){top:74px;right:70px;width:clamp(18px,2vw,26px);}
 
   @media (max-width:900px){
     .ef-hero{padding-top:clamp(28px,6vw,48px);}
@@ -925,18 +930,18 @@ html, body {
 
       <div class="ef-cards">
         <div class="ef-card ef-card--mint">
-          <svg class="ef-card__sparkle" style="top:18px;right:22px;width:clamp(26px,3vw,42px);" sc-camel-view-box="0 0 24 24" fill="#ffb8e2" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
           <div class="ef-card__title">Целеполагание и KPI</div>
           <div class="ef-card__body">Настройте процессы Performance Review, управляя компонентами эффективности сотрудников: достижения целей, KPI и т.д.</div>
         </div>
         <div class="ef-card ef-card--peri">
-          <svg class="ef-card__sparkle" style="bottom:16px;right:20px;width:clamp(24px,2.6vw,36px);" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.85)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.85)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
           <div class="ef-card__title">Оценка компетенций</div>
           <div class="ef-card__body">Проведите оценку 360°, используйте ИИ-ассистента оценки компетенций и составьте 9-box матрицу талантов вашей компании</div>
         </div>
         <div class="ef-card ef-card--pink">
-          <svg class="ef-card__sparkle" style="top:24px;right:26px;width:clamp(30px,3.4vw,48px);" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.9)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <svg class="ef-card__sparkle" style="top:74px;right:70px;width:clamp(18px,2vw,26px);" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.7)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.9)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.7)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
           <div class="ef-card__title">ИПР и кадровый резерв</div>
           <div class="ef-card__body">Получите готовые индивидуальные планы развития (ИПР) для каждого сотрудника и контролируйте их прохождение!</div>
         </div>
