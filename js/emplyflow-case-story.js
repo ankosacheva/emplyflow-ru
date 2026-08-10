@@ -274,6 +274,9 @@
       window.clearTimeout(drawLinks._t);
       drawLinks._t = window.setTimeout(drawLinks, 180);
     });
+    window.addEventListener('orientationchange', function () {
+      window.setTimeout(drawLinks, 320);
+    });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawLinks);
 
     if (reduced || !stage) return;

@@ -809,12 +809,141 @@
   .b-6 { grid-column: 1 / -1; }
 }
 
-@media (max-width: 900px) {
-  .hero--3d .hero__inner { grid-template-columns: 1fr; }
-  .hero3d { min-height: clamp(320px, 76vw, 460px); order: 2; }
-  .orbit { right: 22%; bottom: 10%; --r: clamp(88px, 18vw, 118px); }
+/* Планшеты и телефоны: текст сверху, схема в бенто-карточке, CTA под ней */
+@media (max-width: 1100px) {
+  .hero--3d {
+    min-height: auto;
+    padding-bottom: clamp(40px, 6vh, 64px);
+  }
+
+  .hero--3d .hero__copy { display: contents; }
+
+  .hero--3d .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "eyebrow"
+      "title"
+      "sub"
+      "facts"
+      "viz"
+      "chips"
+      "cta";
+    gap: clamp(14px, 2.4vw, 22px);
+    align-items: stretch;
+  }
+
+  .hero--3d .hero__copy > .eyebrow { grid-area: eyebrow; }
+  .hero--3d .hero__title { grid-area: title; }
+  .hero--3d .hero__sub { grid-area: sub; max-width: none; }
+  .hero--3d .hero__facts { grid-area: facts; }
+  .hero--3d .hero__chips { grid-area: chips; }
+  .hero--3d .hero__cta { grid-area: cta; }
+
+  /* Бенто-карточка: каскад сверху, кольцо 360° снизу — без наложения на CTA */
+  .hero--3d .hero3d {
+    grid-area: viz;
+    order: unset;
+    position: relative;
+    min-height: 0;
+    height: clamp(300px, 62vw, 380px);
+    max-height: min(72svh, 400px);
+    margin: 2px 0 4px;
+    perspective: none;
+    border-radius: 28px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      linear-gradient(155deg, rgba(217, 214, 255, 0.1), rgba(217, 214, 255, 0.03)),
+      rgba(5, 2, 48, 0.42);
+    box-shadow:
+      inset 0 0 0 1px rgba(217, 214, 255, 0.16),
+      0 28px 64px -36px rgba(5, 2, 48, 0.95);
+  }
+
+  .hero--3d .hero3d__floor { display: none; }
+
+  .hero--3d .hero3d__stage {
+    position: relative;
+    inset: auto;
+    height: 100%;
+    display: grid;
+    grid-template-rows: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 6px;
+    padding: 14px 12px 10px;
+    transform: none !important;
+    transition: none;
+  }
+
+  .hero--3d .cascade {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    min-height: 0;
+    transform: none;
+  }
+
+  .hero--3d .cascade__links {
+    inset: -2% -4% -2% -2%;
+    width: 106%;
+    height: 104%;
+  }
+
+  .hero--3d .cascade__tier {
+    margin-bottom: clamp(10px, 2.2vw, 16px);
+    gap: 6px;
+  }
+
+  .hero--3d .cascade__tier--ceo .plate { padding: 10px 12px; }
+
+  .hero--3d .plate {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hero--3d .orbit {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0 auto;
+    transform: none;
+    --tilt: 52deg;
+    --r: clamp(68px, 19vw, 92px);
+  }
+
+  .hero--3d .orbit__disc {
+    transform: rotateX(var(--tilt));
+  }
+
+  .hero--3d .orbit__core {
+    max-width: 38%;
+    padding: 10px 8px;
+    transform: translate(-50%, -50%) translateZ(0);
+  }
+
+  .hero--3d .orbit__core b { font-size: 15px; }
+
+  .hero--3d .hero3d__legend {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    max-width: none;
+    justify-content: center;
+    gap: 10px 14px;
+    font-size: 9px;
+    pointer-events: none;
+  }
+
   .vs { grid-template-columns: 1fr; }
   .vs__arrow { justify-self: start; }
+}
+
+@media (max-width: 900px) {
+  .hero--3d .hero__title { font-size: clamp(30px, 7.8vw, 44px); }
 }
 
 @media (max-width: 640px) {
@@ -822,9 +951,22 @@
   .bento > *, .b-3, .b-4, .b-6 { grid-column: 1 / -1; }
   .b-tall { grid-row: auto; }
   .hero__facts { grid-template-columns: 1fr; }
-  .cascade { width: 74%; }
-  .cascade__tier--team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .orbit { width: 62%; height: 62%; }
+  .hero--3d .hero3d {
+    height: clamp(280px, 88vw, 360px);
+    border-radius: 24px;
+  }
+  .hero--3d .hero3d__stage { padding: 12px 10px 8px; }
+  .hero--3d .cascade__tier--team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hero--3d .cascade__tier--dept .plate b,
+  .hero--3d .cascade__tier--team .plate b { font-size: 9px; }
+  .hero--3d .orbit { --r: clamp(58px, 17vw, 78px); }
+  .hero--3d .orbit__chip { width: 72px; padding: 6px 5px; }
+  .hero--3d .orbit__chip span { font-size: 7.5px; }
+  .hero--3d .hero3d__legend {
+    flex-wrap: wrap;
+    font-size: 8.5px;
+    gap: 6px 10px;
+  }
   .vsbar__row { grid-template-columns: 46px 1fr; }
   .vsbar__num { grid-column: 2; text-align: left; }
 }
