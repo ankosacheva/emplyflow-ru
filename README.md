@@ -24,7 +24,9 @@
 
 - `/` → `index.html` (или `page94832006.html`)
 - `/privacy` → `page92826026.html`
-- `/avtomatizatsiya-otsenki-po-keysam-v-telekome` → `page96476846.html`
+- `/performance-review-dlya-proizvoditelya` → `page101071766.html`
+- `/avtomatizatsiya-otsenki-po-keysam-v-telekome` → `page101340001.html`
+- `/karyernye-treki-inzhiniring` → `page96490096.html`
 - и остальные rewrite из `htaccess`
 
 Каталог `/hub/` на сервере **не** из этого репозитория — его деплоит Competency Hub.
@@ -120,7 +122,12 @@ python3 -m http.server 8080
 # http://localhost:8080/   или   http://localhost:8080/index.html
 ```
 
-Главная (`index.html`) самодостаточна и работает офлайн. ЧПУ остальных страниц локально без nginx не работают — открывайте `page*.html` напрямую.
+Главная (`index.html`) самодостаточна и работает офлайн. Локально ЧПУ кейсов и модулей поднимает `scripts/dev_server.sh` (читает `htaccess`):
+
+```bash
+PORT=8899 ./scripts/dev_server.sh
+# http://127.0.0.1:8899/performance-review-dlya-proizvoditelya
+```
 
 ## Деплой
 

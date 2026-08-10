@@ -8,9 +8,22 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} /robots.txt
 RewriteCond "%{DOCUMENT_ROOT}/robots_%{HTTP_HOST}.txt" -f
 RewriteRule ^(.*)$ robots_%{HTTP_HOST}.txt [NC,L]
-RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome$ page101340001.html [NC]
-RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome/$ page101340001.html [NC]
 
+# --- Кейсы (публичные ЧПУ) ---
+RewriteRule ^performance-review-dlya-proizvoditelya$ page101071766.html [NC,L]
+RewriteRule ^performance-review-dlya-proizvoditelya/$ page101071766.html [NC,L]
+# старый slug с опечаткой
+RewriteRule ^perfomance_review_dlya_proizvoditelya/?$ /performance-review-dlya-proizvoditelya [R=301,NC,L]
+
+RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome$ page101340001.html [NC,L]
+RewriteRule ^avtomatizatsiya-otsenki-po-keysam-v-telekome/$ page101340001.html [NC,L]
+
+RewriteRule ^karyernye-treki-inzhiniring$ page96490096.html [NC,L]
+RewriteRule ^karyernye-treki-inzhiniring/$ page96490096.html [NC,L]
+# прежний длинный slug
+RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii/?$ /karyernye-treki-inzhiniring [R=301,NC,L]
+
+# --- Модули ---
 RewriteRule ^modul-otsenka-360$ page102360001.html [NC]
 RewriteRule ^modul-otsenka-360/$ page102360001.html [NC]
 
@@ -32,9 +45,7 @@ RewriteRule ^modul-nematerialnaya-motivatsiya/$ page102410006.html [NC]
 RewriteRule ^performance-review-kak-eto-rabotaet$ page102420007.html [NC]
 RewriteRule ^performance-review-kak-eto-rabotaet/$ page102420007.html [NC]
 
-RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii$ page96490096.html [NC]
-RewriteRule ^postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii/$ page96490096.html [NC]
-
+# --- Прочее ---
 RewriteRule ^prototype_01$ page88831166.html [NC]
 RewriteRule ^prototype_01/$ page88831166.html [NC]
 
@@ -55,8 +66,3 @@ RewriteRule ^design_04/$ page94622536.html [NC]
 
 RewriteRule ^design_05$ page94715026.html [NC]
 RewriteRule ^design_05/$ page94715026.html [NC]
-
-RewriteRule ^perfomance_review_dlya_proizvoditelya$ page101071766.html [NC]
-RewriteRule ^perfomance_review_dlya_proizvoditelya/$ page101071766.html [NC]
-
-
