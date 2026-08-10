@@ -2742,10 +2742,6 @@ html, body {
     // без явного hash тоже должен открывать блок модулей, а не верх главной.
     var initialHash=String(location.hash||'');
     if(initialHash==='#')initialHash='';
-    var fromModule;
-    try{fromModule=new URLSearchParams(location.search).get('from')==='module';}
-    catch(err){fromModule=String(location.search||'').indexOf('from=module')!==-1;}
-    if(fromModule&&!initialHash)initialHash='#platform';
     var cornerTimer=0;
     var MODULE_HASHES={
       'module-performance-review':1,

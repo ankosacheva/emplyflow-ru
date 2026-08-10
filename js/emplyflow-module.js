@@ -2447,18 +2447,6 @@
     window.requestAnimationFrame(tick);
   }
 
-  function initPlatformBackLinks() {
-    document.querySelectorAll('a[href*="index.html"]').forEach(function (link) {
-      var raw = link.getAttribute('href') || '';
-      if (!/#platform$/.test(raw) && raw.indexOf('#platform') === -1) return;
-      if (raw.indexOf('from=module') !== -1) return;
-      var url = new URL('index.html', location.href);
-      url.searchParams.set('from', 'module');
-      url.hash = 'platform';
-      link.href = url.pathname + url.search + url.hash;
-    });
-  }
-
   function init360Hero() {
     var root = $('[data-360hero]');
     if (!root) return;
@@ -2687,7 +2675,6 @@
   }
 
   function boot() {
-    initPlatformBackLinks();
     init360Hero();
     initCampaignCover();
     initPrHero();
