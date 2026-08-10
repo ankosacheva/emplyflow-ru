@@ -1790,6 +1790,9 @@
 
   #product .sequence__stage {
     order: -1;
+    position: sticky;
+    top: clamp(72px, 11vh, 88px);
+    z-index: 3;
   }
 
   #product .sequence__step {
@@ -1798,8 +1801,8 @@
 
   .sequence__stage--light,
   #product .sequence__stage {
-    position: relative;
-    top: auto;
+    position: sticky;
+    top: clamp(72px, 11vh, 88px);
     bottom: auto;
     display: flex;
     flex-direction: column;

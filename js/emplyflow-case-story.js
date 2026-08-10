@@ -531,6 +531,7 @@
     }
 
     var active = -1;
+    var mqMobileSeq = window.matchMedia('(max-width: 1080px)');
 
     function setActive(i) {
       if (i === active) return;
@@ -540,7 +541,17 @@
       if (chromeLabel && steps[i]) chromeLabel.textContent = steps[i].getAttribute('data-chrome') || '';
     }
 
-    onScrollFrame(function () {
+    function pickMobileStep() {
+      /* Линия чтения ниже sticky-панели: последний шаг, чей верх прошёл якорь */
+      var anchor = window.innerHeight * 0.46;
+      var best = 0;
+      for (var i = 0; i < steps.length; i++) {
+        if (steps[i].getBoundingClientRect().top <= anchor) best = i;
+      }
+      return best;
+    }
+
+    function pickDesktopStep() {
       var mid = window.innerHeight * 0.5;
       var best = 0;
       var bestDist = Infinity;
@@ -549,8 +560,18 @@
         var d = Math.abs(r.top + r.height / 2 - mid);
         if (d < bestDist) { bestDist = d; best = i; }
       }
-      setActive(best);
+      return best;
+    }
+
+    onScrollFrame(function () {
+      setActive(mqMobileSeq.matches ? pickMobileStep() : pickDesktopStep());
     });
+
+    if (mqMobileSeq.addEventListener) {
+      mqMobileSeq.addEventListener('change', function () { schedule(); });
+    } else if (mqMobileSeq.addListener) {
+      mqMobileSeq.addListener(function () { schedule(); });
+    }
 
     setActive(0);
   }
