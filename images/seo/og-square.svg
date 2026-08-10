@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="glowA" cx="15%" cy="20%" r="45%">
+      <stop offset="0%" stop-color="#4a3bff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#4a3bff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="85%" cy="15%" r="35%">
+      <stop offset="0%" stop-color="#ffb8e2" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffb8e2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowC" cx="60%" cy="90%" r="55%">
+      <stop offset="0%" stop-color="#cec8ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#cec8ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="#050230"/>
+  <rect width="1200" height="1200" fill="url(#glowA)"/>
+  <rect width="1200" height="1200" fill="url(#glowB)"/>
+  <rect width="1200" height="1200" fill="url(#glowC)"/>
+
+  <g transform="translate(60 78) scale(2.5000)"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z" fill="#ffffff"/></g>
+<text x="140" y="128" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="66" letter-spacing="-1.4" fill="#ffffff">emplyflow</text>
+<g transform="translate(1072 60) scale(1.0000)"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z" fill="#ffb8e2"/></g>
+<text x="1140" y="196" text-anchor="end" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="20" fill="#d9d6ff">TMS-платформа для оценки, мотивации и развития персонала</text>
+
+  <rect x="60" y="260" width="340" height="330" rx="24" ry="24" fill="#cec8ff"/>
+<text x="84" y="306" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="24" fill="#050230">9-box</text>
+<text x="84" y="334" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="15" fill="#050230" opacity="0.72">матрица талантов</text>
+<rect x="84" y="360" width="84" height="84" rx="12" ry="12" fill="#d9d6ff"/>
+<circle cx="98" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="118" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<rect x="176" y="360" width="84" height="84" rx="12" ry="12" fill="#cec8ff"/>
+<circle cx="190" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="210" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="230" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<rect x="268" y="360" width="84" height="84" rx="12" ry="12" fill="#ffb8e2"/>
+<circle cx="282" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="302" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="322" cy="382" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="282" cy="402" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="302" cy="402" r="6" fill="#050230" opacity="0.72"/>
+<rect x="84" y="452" width="84" height="84" rx="12" ry="12" fill="#cec8ff"/>
+<circle cx="98" cy="474" r="6" fill="#050230" opacity="0.72"/>
+<rect x="176" y="452" width="84" height="84" rx="12" ry="12" fill="#d5fff3"/>
+<circle cx="190" cy="474" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="210" cy="474" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="230" cy="474" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="190" cy="494" r="6" fill="#050230" opacity="0.72"/>
+<rect x="268" y="452" width="84" height="84" rx="12" ry="12" fill="#ffb8e2"/>
+<circle cx="282" cy="474" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="302" cy="474" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="322" cy="474" r="6" fill="#050230" opacity="0.72"/>
+<rect x="84" y="544" width="84" height="84" rx="12" ry="12" fill="#d9d6ff"/>
+<circle cx="98" cy="566" r="6" fill="#050230" opacity="0.72"/>
+<rect x="176" y="544" width="84" height="84" rx="12" ry="12" fill="#d5fff3"/>
+<circle cx="190" cy="566" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="210" cy="566" r="6" fill="#050230" opacity="0.72"/>
+<rect x="268" y="544" width="84" height="84" rx="12" ry="12" fill="#ffb777"/>
+<circle cx="282" cy="566" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="302" cy="566" r="6" fill="#050230" opacity="0.72"/>
+<circle cx="322" cy="566" r="6" fill="#050230" opacity="0.72"/>
+<text x="84" y="658" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="12" fill="#050230" opacity="0.6">потенциал →</text>
+  <rect x="420" y="260" width="340" height="330" rx="24" ry="24" fill="#d5fff3"/>
+<text x="444" y="306" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="24" fill="#050230">Оценка 360°</text>
+<text x="444" y="334" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="15" fill="#050230" opacity="0.72">компетенции руководителя</text>
+<text x="444" y="368" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">Стратегия</text>
+<rect x="444" y="376" width="240" height="10" rx="5" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="376" width="148" height="10" rx="5" fill="#4a3bff"/>
+<rect x="444" y="390" width="240" height="6" rx="3" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="390" width="192" height="6" rx="3" fill="#ffb8e2"/>
+<text x="444" y="416" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">Люди</text>
+<rect x="444" y="424" width="240" height="10" rx="5" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="424" width="204" height="10" rx="5" fill="#4a3bff"/>
+<rect x="444" y="438" width="240" height="6" rx="3" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="438" width="132" height="6" rx="3" fill="#ffb8e2"/>
+<text x="444" y="464" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">Клиент</text>
+<rect x="444" y="472" width="240" height="10" rx="5" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="472" width="168" height="10" rx="5" fill="#4a3bff"/>
+<rect x="444" y="486" width="240" height="6" rx="3" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="486" width="187" height="6" rx="3" fill="#ffb8e2"/>
+<text x="444" y="512" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">Результат</text>
+<rect x="444" y="520" width="240" height="10" rx="5" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="520" width="216" height="10" rx="5" fill="#4a3bff"/>
+<rect x="444" y="534" width="240" height="6" rx="3" fill="#ffffff" opacity="0.55"/>
+<rect x="444" y="534" width="158" height="6" rx="3" fill="#ffb8e2"/>
+<rect x="444" y="556" width="12" height="10" rx="3" fill="#4a3bff"/>
+<text x="462" y="565" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="12" fill="#050230">self</text>
+<rect x="516" y="556" width="12" height="10" rx="3" fill="#ffb8e2"/>
+<text x="534" y="565" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="12" fill="#050230">коллеги</text>
+  <rect x="780" y="260" width="360" height="330" rx="24" ry="24" fill="#ffb8e2"/>
+<text x="804" y="306" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="24" fill="#050230">Performance review</text>
+<text x="804" y="334" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="15" fill="#050230" opacity="0.72">итог цикла</text>
+<circle cx="832" cy="396" r="28" fill="#4a3bff"/>
+<text x="832" y="403" text-anchor="middle" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="20" fill="#ffffff">МК</text>
+<text x="876" y="390" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="18" fill="#050230">Мария К.</text>
+<text x="876" y="412" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="13" fill="#050230" opacity="0.7">HRBP · IT-департамент</text>
+<text x="804" y="446" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">Достижение целей</text>
+<text x="1116" y="446" text-anchor="end" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">+18%</text>
+<rect x="804" y="454" width="312" height="8" rx="4" fill="#ffffff" opacity="0.55"/>
+<rect x="804" y="454" width="287" height="8" rx="4" fill="#4a3bff"/>
+<text x="804" y="488" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">Оценка 360°</text>
+<text x="1116" y="488" text-anchor="end" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">выше нормы</text>
+<rect x="804" y="496" width="312" height="8" rx="4" fill="#ffffff" opacity="0.55"/>
+<rect x="804" y="496" width="243" height="8" rx="4" fill="#4a3bff"/>
+<text x="804" y="530" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">Готовность к росту</text>
+<text x="1116" y="530" text-anchor="end" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13" fill="#050230">H1 2027</text>
+<rect x="804" y="538" width="312" height="8" rx="4" fill="#ffffff" opacity="0.55"/>
+<rect x="804" y="538" width="265" height="8" rx="4" fill="#4a3bff"/>
+<rect x="804" y="546" width="150" height="30" rx="15" fill="#050230"/>
+<text x="879" y="566" text-anchor="middle" font-family="Manrope, 'Manrope Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" fill="#ffffff">рекомендовано ↑</text>
+</svg>

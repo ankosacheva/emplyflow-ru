@@ -1,7 +1,7 @@
 {
-  "name": "EmplyFlow — HRM-платформа",
+  "name": "EmplyFlow — TMS-платформа",
   "short_name": "EmplyFlow",
-  "description": "Российская HRM-платформа с ИИ: оценка 360°, performance review, целеполагание, 9-box, кадровый резерв и карьерные треки.",
+  "description": "Российская TMS-платформа с ИИ: оценка 360°, performance review, целеполагание, 9-box, кадровый резерв, мотивация и карьерные треки.",
   "lang": "ru",
   "start_url": "/",
   "scope": "/",
