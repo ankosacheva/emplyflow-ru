@@ -1045,8 +1045,12 @@
   height: 42%;
   border-radius: 50%;
   background: radial-gradient(ellipse at center, rgba(74, 59, 255, 0.12), transparent 68%);
-  transform: rotateX(72deg) translateZ(-40px);
+  transform: translateZ(-40px);
   pointer-events: none;
+}
+
+.seq3d--org .seq3d__floor {
+  display: none;
 }
 
 .seq3d__stage {
@@ -1058,7 +1062,7 @@
   height: 100%;
   min-height: 0;
   transform-style: preserve-3d;
-  transform: rotateX(14deg) rotateY(-8deg);
+  transform: none;
 }
 
 .seq3d__legend {
@@ -1287,7 +1291,6 @@
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   align-items: center;
   gap: 16px;
-  transform: rotateX(10deg) rotateY(-6deg);
 }
 
 .seq3d-orbit {
@@ -1529,14 +1532,18 @@
 /* —— Шаг 04: AI-линза (не цветная таблица) —— */
 .seq3d__stage--lens {
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 16px;
+  gap: 12px;
   align-items: center;
-  transform: rotateX(8deg) rotateY(-5deg);
+  max-height: 100%;
+}
+
+.seq3d--lens {
+  min-height: 0;
 }
 
 .seq3d-lens__orb {
   position: relative;
-  width: clamp(110px, 14vw, 140px);
+  width: clamp(92px, 11vw, 118px);
   aspect-ratio: 1;
   border-radius: 50%;
   display: grid;
@@ -1579,16 +1586,17 @@
 
 .seq3d-lens__feed {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
+  max-height: 100%;
 }
 
 .seq3d-lens__row {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
-  padding: 11px 12px;
+  padding: 8px 10px;
   border-radius: 16px;
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(244, 243, 255, 0.9));
   box-shadow:
@@ -1635,7 +1643,24 @@
 }
 
 @media (max-width: 1080px) {
-  .sequence__stage--light { height: min(480px, 64vh); }
+  .sequence__stage--light,
+  #product .sequence__stage {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    height: min(400px, 54vh);
+    max-height: none;
+    min-height: 0;
+  }
+
+  .sequence .sequence__steps {
+    padding-bottom: clamp(48px, 10vh, 96px);
+  }
+
+  .sequence .bento {
+    margin-top: clamp(32px, 6vh, 64px);
+  }
+
   .seq3d__stage { transform: none; }
   .seq3d__floor { display: none; }
   .seq3d-orbit__spin { position: static; display: contents; }
