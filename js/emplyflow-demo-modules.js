@@ -29,8 +29,12 @@
     return bodyMod || '';
   }
 
+  function hasModuleInputs(list) {
+    return list && list.querySelector('[name="modules[]"]');
+  }
+
   function buildList(list) {
-    if (!list || list.children.length) return;
+    if (!list || hasModuleInputs(list)) return;
     MODULES.forEach(function (mod) {
       var label = document.createElement('label');
       label.className = 'ef-lead-form__chip ef-lead-form__chip--' + mod.id;
@@ -172,11 +176,21 @@
     wrapOpenDemoForm();
   }
 
+  window.__efEnsureDemoModules = function (root) {
+    initForms(root || document);
+    wrapOpenDemoForm();
+  };
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
   } else {
     boot();
   }
+
+  window.addEventListener('load', boot, { once: true });
+  [0, 120, 500, 1500, 3200, 4000].forEach(function (ms) {
+    window.setTimeout(boot, ms);
+  });
 
   window.setTimeout(wrapOpenDemoForm, 0);
   window.setTimeout(wrapOpenDemoForm, 120);
