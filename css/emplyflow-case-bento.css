@@ -129,6 +129,15 @@
   letter-spacing: -0.035em;
   line-height: 0.96;
   font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+/* Плитка «Периметр оценки»: подпись под числом */
+.tile--peri .tile__value + .tile__label {
+  margin-top: 2px;
+  font-weight: 700;
+  color: var(--fg1);
 }
 
 .tile__title {
