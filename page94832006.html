@@ -63,6 +63,11 @@
 function __efBundleReady() {
   return !!document.getElementById('platform') || !!document.querySelector('x-dc');
 }
+function __efBundleInteractive() {
+  return !!document.getElementById('platform')
+    && typeof window.__efOpenDemoForm === 'function'
+    && document.querySelector('.ef-swipe-cta');
+}
 document.documentElement.classList.add('ef-booting');
 function __efDismissBundlerVeil() {
   var html = document.documentElement;
@@ -87,10 +92,9 @@ function __efDismissBundlerVeil() {
 function __efRecoverBundleSurface() {
   if (!__efBundleReady()) return false;
   __efDismissBundlerVeil();
+  if (!__efBundleInteractive()) return false;
   window.__efBundleBooted = true;
-  var fromModule = false;
-  try { fromModule = new URLSearchParams(location.search).get('from') === 'module'; } catch (err) {}
-  var hash = window.__efInitialHash || (fromModule ? '#platform' : '');
+  var hash = window.__efInitialHash || '';
   if (hash && hash !== '#' && hash !== '#top' && window.__efScrollToHash) {
     var tries = 0;
     var go = function() {
@@ -107,9 +111,25 @@ function __efEnsureBundleVisible(retries) {
   if (__efRecoverBundleSurface()) return;
   if (retries < 50) setTimeout(function() { __efEnsureBundleVisible(retries + 1); }, 120);
 }
+window.addEventListener('pagehide', function(e) {
+  if (!e.persisted) return;
+  window.__efBundleBooting = false;
+  __efDismissBundlerVeil();
+  try {
+    document.body.classList.remove('ef-demo-open');
+    var modal = document.getElementById('ef-demo-modal');
+    if (modal) {
+      modal.classList.remove('is-open');
+      modal.hidden = true;
+      modal.removeAttribute('data-ef-mode');
+    }
+  } catch (err) {}
+});
 window.addEventListener('pageshow', function(e) {
-  if (__efRecoverBundleSurface()) return;
+  __efDismissBundlerVeil();
+  if (__efBundleInteractive() && __efRecoverBundleSurface()) return;
   if (e.persisted) location.reload();
+  if (__efBundleReady()) location.reload();
 });
 window.addEventListener('load', function() {
   __efEnsureBundleVisible(0);
@@ -118,7 +138,11 @@ window.addEventListener('load', function() {
 async function __efBootBundle() {
   if (window.__efBundleBooting) return;
   if (__efBundleReady()) {
-    __efRecoverBundleSurface();
+    if (__efBundleInteractive()) {
+      __efRecoverBundleSurface();
+      return;
+    }
+    location.reload();
     return;
   }
   window.__efBundleBooting = true;
@@ -165,12 +189,15 @@ async function __efBootBundle() {
     const manifestEl = document.querySelector('script[type="__bundler/manifest"]');
     const templateEl = document.querySelector('script[type="__bundler/template"]');
     if (!manifestEl || !templateEl) {
-      if (__efBundleReady()) {
+      if (__efBundleInteractive()) {
         __efRecoverBundleSurface();
         return;
       }
-      setStatus('Error: missing bundle data');
-      console.error('[bundler] Missing script tags — manifestEl:', !!manifestEl, 'templateEl:', !!templateEl);
+      if (__efBundleReady()) {
+        location.reload();
+        return;
+      }
+      location.reload();
       return;
     }
 
