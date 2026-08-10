@@ -558,50 +558,20 @@ html, body {
   .ef-hero__callout-row{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(18px,2.6vw,34px);}
   .ef-hero__callout{grid-column:2;justify-self:start;border:1.6px dashed #ffb8e2;border-radius:20px;padding:clamp(6px,0.9vw,14px) clamp(14px,1.9vw,28px);font-weight:800;font-size:clamp(23px,3.2vw,42px);line-height:1;letter-spacing:-0.03em;color:#ffb8e2;white-space:nowrap;}
 
-  .ef-hero__lead-wrap{
-    position:relative;
+  .ef-hero__lead{
     margin:clamp(28px,4vw,56px) auto 0;
     max-width:min(920px,100%);
-    padding:clamp(22px,2.8vw,34px) clamp(24px,3.4vw,48px);
-    border-radius:var(--r-lg);
-    background:rgba(217,214,255,0.07);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border:1px solid var(--stroke-strong);
-    box-shadow:var(--shadow-card);
-    text-align:center;
-  }
-  .ef-hero__lead-wrap::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
-    background:linear-gradient(135deg,rgba(213,255,243,0.08) 0%,transparent 38%,rgba(255,184,226,0.1) 72%,rgba(74,59,255,0.12) 100%);
-    pointer-events:none;
-  }
-  .ef-hero__lead-sparkle{
-    position:absolute;
-    top:clamp(10px,1.4vw,16px);
-    right:clamp(14px,2vw,22px);
-    width:clamp(18px,2.2vw,26px);
-    pointer-events:none;
-    opacity:0.92;
-  }
-  .ef-hero__lead{
-    position:relative;
-    margin:0;
-    max-width:none;
     font-family:var(--font-display);
-    font-size:clamp(22px,2.5vw,32px);
-    font-weight:var(--fw-bold);
-    line-height:1.22;
-    letter-spacing:-0.025em;
+    font-size:clamp(18px,2vw,26px);
+    font-weight:var(--fw-med);
+    line-height:1.38;
+    letter-spacing:-0.018em;
     text-align:center;
-    color:var(--fg1);
+    color:var(--fg2);
     text-wrap:balance;
   }
   .ef-hero__lead .t-mint,
-  .ef-hero__lead .t-pink{ font-weight:var(--fw-black); }
+  .ef-hero__lead .t-pink{ font-weight:var(--fw-semi); }
   .ef-hero__cta{display:flex;justify-content:center;margin-top:clamp(20px,2.6vw,32px);}
   .ef-btn{display:inline-flex;align-items:center;gap:12px;border-radius:999px;font-size:15px;font-weight:600;transition:filter 150ms,box-shadow 150ms;}
   .ef-btn--indigo{background:#4a3bff;color:#fff;padding:9px 30px 9px 9px;}
@@ -650,9 +620,7 @@ html, body {
     .ef-hero__sparkle3d{position:static;margin:clamp(18px,4vw,28px) auto 0;width:clamp(72px,18vw,110px);}
     .ef-hero__callout-row{grid-template-columns:1fr;justify-items:center;}
     .ef-hero__callout{grid-column:1;justify-self:center;}
-    .ef-hero__lead-wrap{padding:clamp(18px,4vw,24px) clamp(18px,4vw,22px);}
-    .ef-hero__lead{font-size:clamp(20px,5.2vw,26px);line-height:1.26;}
-    .ef-hero__lead-sparkle{width:20px;top:12px;right:14px;}
+    .ef-hero__lead{font-size:clamp(17px,4.6vw,22px);line-height:1.42;}
     .ef-hero__award{position:static;display:block;margin:clamp(24px,5vw,34px) auto 0;width:clamp(168px,46vw,210px);}
     .ef-cards{grid-template-columns:1fr;align-items:stretch;}
     .ef-card{min-height:0;}
@@ -931,10 +899,7 @@ html, body {
       <h1 class="ef-hero__title">Уникальная TMS-система для <span class="t-mint">оценки, развития</span> сотрудников и проведения Performance Review</h1>
       <div class="ef-hero__callout-row"><span class="ef-hero__callout">на базе ИИ</span></div>
 
-      <div class="ef-hero__lead-wrap">
-        <svg class="ef-hero__lead-sparkle" viewBox="0 0 24 24" fill="#ffb8e2" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-        <p class="ef-hero__lead">Используйте возможности платформы <span class="t-mint">EmplyFlow</span>, если устали контролировать <span class="t-pink">все внутренние HR-процессы</span> вручную</p>
-      </div>
+      <p class="ef-hero__lead">Используйте возможности платформы <span class="t-mint">EmplyFlow</span>, если устали контролировать <span class="t-pink">все внутренние HR-процессы</span> вручную</p>
 
       <div class="ef-hero__cta">
         <div class="ef-swipe-cta" data-href="#platform" role="group" aria-label="Свайпните вправо, чтобы перейти к модулям платформы">
