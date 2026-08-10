@@ -872,7 +872,7 @@
     height: auto;
     display: grid;
     grid-template-rows: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: 6px;
+    gap: clamp(14px, 3.5vw, 20px);
     padding: 14px 12px 6px;
     transform: none !important;
     transition: none;
@@ -894,8 +894,12 @@
   }
 
   .hero--3d .cascade__tier {
-    margin-bottom: clamp(10px, 2.2vw, 16px);
+    margin-bottom: clamp(8px, 1.8vw, 12px);
     gap: 6px;
+  }
+
+  .hero--3d .cascade__tier--team {
+    margin-bottom: 2px;
   }
 
   .hero--3d .cascade__tier--ceo .plate { padding: 10px 12px; }
@@ -912,7 +916,7 @@
     width: 100%;
     height: 100%;
     min-height: 0;
-    margin: 0 auto;
+    margin: clamp(4px, 1.2vw, 8px) auto 0;
     transform: none;
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
@@ -1020,7 +1024,7 @@
     height: clamp(320px, 88vw, 380px);
     border-radius: 24px;
   }
-  .hero--3d .hero3d__stage { padding: 12px 10px 8px; }
+  .hero--3d .hero3d__stage { padding: 12px 10px 8px; gap: clamp(16px, 4vw, 22px); }
   .hero--3d .cascade__tier--team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero--3d .cascade__tier--dept .plate b,
   .hero--3d .cascade__tier--team .plate b { font-size: 9px; }
