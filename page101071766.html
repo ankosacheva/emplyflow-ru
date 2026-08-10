@@ -88,15 +88,16 @@
 </div>
 
 <!-- ============ TOPBAR ============ -->
-<header class="topbar" data-topbar>
-  <div class="topbar__inner">
-    <a class="topbar__brand" href="/">EmplyFlow</a>
-    <div class="topbar__side">
-      <a class="topbar__back" href="/">← Все кейсы</a>
-      <button type="button" class="btn btn--peach btn--sm" data-ef-demo-open>Получить доступ</button>
+<header class="topbar" id="topbar" data-topbar>
+  <div class="shell">
+    <a class="topbar__back" href="/">
+      <span aria-hidden="true">←</span> Все проекты
+    </a>
+    <div class="topbar__right">
+      <button type="button" class="btn btn--primary topbar__cta" data-ef-demo-open>Получить доступ</button>
     </div>
   </div>
-  <span class="topbar__progress" data-read-progress aria-hidden="true"></span>
+  <span class="topbar__progress" id="topbar-progress" data-read-progress aria-hidden="true"></span>
 </header>
 
 <main id="story">
@@ -813,7 +814,7 @@
         <div class="final__cta">
           <button type="button" class="btn btn--peach" data-ef-demo-open>Посмотреть демо Performance Review</button>
           <button type="button" class="btn btn--indigo" data-ef-demo-open>Обсудить похожий проект</button>
-          <a class="btn btn--ghost" href="/">Все кейсы</a>
+          <a class="btn btn--ghost" href="/">Все проекты</a>
         </div>
         <a class="final__link" href="/">Все модули платформы EmplyFlow →</a>
       </div>

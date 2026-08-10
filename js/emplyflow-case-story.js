@@ -84,6 +84,11 @@
     else window.addEventListener('load', function () { window.setTimeout(finish, 500); }, { once: true });
 
     window.setTimeout(finish, 3200); // страховка
+
+    window.addEventListener('pageshow', function () { finish(); });
+    window.addEventListener('pagehide', function (e) {
+      if (e.persisted) finish();
+    });
   }
 
   /* ---------------------------------------------------------- *
@@ -455,8 +460,8 @@
     document.addEventListener('click', function (e) {
       if (e.target.closest('[data-ef-demo-close]')) { window.__efCloseDemoForm(); return; }
       var open = e.target.closest('[data-ef-demo-open]');
-      if (open) { e.preventDefault(); window.__efOpenDemoForm(); }
-    });
+      if (open) { e.preventDefault(); e.stopPropagation(); window.__efOpenDemoForm(); }
+    }, true);
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') window.__efCloseDemoForm();
