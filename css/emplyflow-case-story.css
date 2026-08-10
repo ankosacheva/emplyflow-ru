@@ -25,6 +25,8 @@
   --glass-2: rgba(217, 214, 255, 0.09);
 
   --font: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --accent: var(--indigo-2);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -101,13 +103,27 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--fg3);
+}
+
+.eyebrow b {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hero .eyebrow {
   color: var(--pink);
 }
-.eyebrow::before {
+.hero .eyebrow::before {
   content: "";
-  width: 26px; height: 1px;
+  width: 26px;
+  height: 1px;
   background: linear-gradient(90deg, var(--pink), transparent);
 }
+.hero .eyebrow b { color: var(--pink); font-family: var(--font); letter-spacing: 0.14em; }
 
 .h-display {
   margin: 0;
@@ -382,17 +398,8 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 }
 .chapter__head { display: grid; gap: 18px; margin-bottom: clamp(34px, 5vw, 64px); }
 
-.chapter-tag {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--fg3);
-  font-variant-numeric: tabular-nums;
-}
-.chapter-tag b { color: var(--pink); font-size: 14px; }
+.final .eyebrow { color: var(--fg3); }
+.final .eyebrow b { color: var(--accent); font-family: var(--mono); letter-spacing: 0.06em; }
 
 /* ============================= HERO ============================ */
 
