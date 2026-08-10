@@ -862,6 +862,15 @@
 
   .hero--3d .hero3d__floor { display: none; }
 
+  .hero--3d .orbit {
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .hero--3d .orbit__halo {
+    inset: -4%;
+  }
+
   .hero--3d .hero3d__stage {
     position: relative;
     inset: auto;
@@ -1729,8 +1738,17 @@
     margin-top: clamp(32px, 6vh, 64px);
   }
 
-  .seq3d__stage { transform: none; }
+  .seq3d__stage {
+    transform: none;
+    min-height: 0;
+    align-content: start;
+  }
   .seq3d__floor { display: none; }
+  .seq3d--org .seq3d__legend {
+    flex-shrink: 0;
+    padding-top: 6px;
+    border-top: 1px solid rgba(5, 2, 48, 0.06);
+  }
   .seq3d-orbit--flat {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1763,8 +1781,18 @@
 
   #product .sequence__stage--light {
     height: auto;
-    min-height: min(320px, 46vh);
+    min-height: min(360px, 52vh);
   }
+
+  .seq3d-card {
+    padding: 8px 10px;
+    border-radius: 14px;
+  }
+
+  .seq3d-card b { font-size: 10.5px; }
+  .seq3d-card__meta,
+  .seq3d-card__state { font-size: 8px; }
+  .seq3d-card--ceo b { font-size: 11px; }
 
   .seq3d-orbit--flat {
     grid-template-columns: 1fr;

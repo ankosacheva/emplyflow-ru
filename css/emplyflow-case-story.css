@@ -1474,6 +1474,10 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   .sequence__grid { grid-template-columns: 1fr; }
   .sequence__stage { position: sticky; top: 84px; height: min(440px, 62vh); }
   .sequence__steps { gap: clamp(40px, 14vh, 110px); padding-top: 34px; }
+  /* На мобилке шаги читаются как лента, без «затемнения» неактивных */
+  .sequence__step { opacity: 1; }
+  .sequence__step:not(.is-active) h3 { color: var(--fg2); }
+  .sequence__step.is-active h3 { color: var(--fg1); }
 }
 
 @media (max-width: 900px) {
