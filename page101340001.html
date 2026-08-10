@@ -88,7 +88,7 @@
 <!-- ============ ТОПБАР ============ -->
 <header class="topbar" id="topbar">
   <div class="shell">
-    <a class="topbar__back" href="index.html#cases">
+    <a class="topbar__back" href="/#cases">
       <span aria-hidden="true">←</span> Все кейсы
     </a>
     <div class="topbar__right">
@@ -903,7 +903,7 @@
       <div class="finale__cta">
         <a class="btn btn--primary" href="/hub/" data-track="cta-hub" target="_blank" rel="noopener">Открыть библиотеку кейсов</a>
         <button type="button" class="btn btn--ghost" data-ef-demo-open data-track="cta-scenario">Обсудить сценарий для нашей компании</button>
-        <a class="btn btn--ghost" href="index.html#platform" data-track="cta-platform">Изучить платформу EmplyFlow</a>
+        <a class="btn btn--ghost" href="/#platform" data-track="cta-platform">Изучить платформу EmplyFlow</a>
       </div>
 
       <div class="finale__next">
@@ -950,6 +950,44 @@
         <div class="ef-lead-form__field">
           <input class="ef-lead-form__input" type="email" name="Email" placeholder="Ваш Email" autocomplete="email" required>
         </div>
+        <fieldset class="ef-lead-form__field ef-lead-form__modules" data-ef-demo-modules>
+      <legend class="ef-lead-form__legend">Какие модули вас интересуют?</legend>
+      <p class="ef-lead-form__modules-hint">Можно выбрать несколько</p>
+      <div class="ef-lead-form__checks" data-ef-demo-modules-list role="group" aria-label="Модули платформы">
+        <label class="ef-lead-form__chip ef-lead-form__chip--performance-review">
+          <input type="checkbox" name="modules[]" value="performance-review" data-label="Performance Review" />
+          <span>Performance Review</span>
+        </label>
+        <label class="ef-lead-form__chip ef-lead-form__chip--assessment-360">
+          <input type="checkbox" name="modules[]" value="assessment-360" data-label="Оценка 360°" />
+          <span>Оценка 360°</span>
+        </label>
+        <label class="ef-lead-form__chip ef-lead-form__chip--career-development">
+          <input type="checkbox" name="modules[]" value="career-development" data-label="Карьера и развитие" />
+          <span>Карьера и развитие</span>
+        </label>
+        <label class="ef-lead-form__chip ef-lead-form__chip--nine-box">
+          <input type="checkbox" name="modules[]" value="nine-box" data-label="Матрица потенциала" />
+          <span>Матрица потенциала</span>
+        </label>
+        <label class="ef-lead-form__chip ef-lead-form__chip--goal-setting">
+          <input type="checkbox" name="modules[]" value="goal-setting" data-label="Целеполагание" />
+          <span>Целеполагание</span>
+        </label>
+        <label class="ef-lead-form__chip ef-lead-form__chip--succession">
+          <input type="checkbox" name="modules[]" value="succession" data-label="Планирование преемственности" />
+          <span>Планирование преемственности</span>
+        </label>
+        <label class="ef-lead-form__chip ef-lead-form__chip--recognition">
+          <input type="checkbox" name="modules[]" value="recognition" data-label="Нематериальная мотивация" />
+          <span>Нематериальная мотивация</span>
+        </label>
+        <label class="ef-lead-form__chip ef-lead-form__chip--ai-assessment-assistant">
+          <input type="checkbox" name="modules[]" value="ai-assessment-assistant" data-label="ИИ-ассистент оценки компетенций" />
+          <span>ИИ-ассистент оценки компетенций</span>
+        </label>
+      </div>
+    </fieldset>
         <fieldset class="ef-lead-form__field" style="border:0;padding:0;margin:0 0 16px;">
           <legend class="ef-lead-form__legend">Как с вами удобнее связаться?</legend>
           <div class="ef-lead-form__radios">
@@ -979,6 +1017,7 @@
 <script src="js/emplyflow-telecom-case-data.js?v=20260730" defer></script>
 <script src="js/emplyflow-telecom-case.js?v=20260730" defer></script>
 <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+<script src="js/emplyflow-demo-modules.js" defer></script>
 <script src="js/emplyflow-site-leads.js" charset="utf-8" defer></script>
 
 <!-- Yandex.Metrika counter 105450350 -->

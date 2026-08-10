@@ -484,6 +484,7 @@
     initSequence();
     initDecisionDemo();
     initDemoModal();
+    if (window.__efEnsureDemoModules) window.__efEnsureDemoModules();
     initVideoScenes();
 
     window.addEventListener('scroll', schedule, { passive: true });

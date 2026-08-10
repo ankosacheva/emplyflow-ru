@@ -1489,6 +1489,7 @@
     initFinaleCanvas();
     collectReveals();
     initDemoModal();
+    if (window.__efEnsureDemoModules) window.__efEnsureDemoModules();
     initCta();
     initScroll();
   }

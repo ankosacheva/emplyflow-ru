@@ -49,7 +49,17 @@
   <!-- EF_LOADER_HTML_END -->
 
   <script>
-    
+(function () {
+  var hash = String(location.hash || '');
+  if (hash === '#') hash = '';
+  window.__efInitialHash = hash;
+  var path = location.pathname || '';
+  if (/\/index\.html$/i.test(path)) {
+    location.replace('/' + (location.search || '') + hash);
+    return;
+  }
+})();
+
 function __efBundleReady() {
   return !!document.getElementById('platform') || !!document.querySelector('x-dc');
 }

@@ -1303,6 +1303,7 @@
     initHero();
     initScroll();
     initDemoModal();
+    if (window.__efEnsureDemoModules) window.__efEnsureDemoModules();
     initCta();
 
     initHeroVideo(function () {
