@@ -458,7 +458,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 58%;
+  width: 64%;
   transform-style: preserve-3d;
 }
 
@@ -500,15 +500,21 @@
   margin-bottom: clamp(20px, 3vw, 34px);
 }
 
-.cascade__tier--dept { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.cascade__tier--team { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.cascade__tier--team .plate { padding: 10px 10px; }
+.cascade__tier--dept { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.cascade__tier--team { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+
+.cascade__tier--dept .plate,
+.cascade__tier--team .plate { padding: 9px 9px; }
+
+.cascade__tier--dept .plate b,
+.cascade__tier--team .plate b { font-size: clamp(9.5px, 0.74vw, 11px); }
 
 .plate {
   position: relative;
   display: grid;
-  gap: 4px;
-  padding: 12px 14px;
+  gap: 3px;
+  min-width: 0;
+  padding: 10px 12px;
   border-radius: 16px;
   background:
     linear-gradient(150deg, rgba(255, 255, 255, 0.22), rgba(217, 214, 255, 0.05) 42%, rgba(74, 59, 255, 0.16));
@@ -538,18 +544,26 @@
   to { transform: translateZ(var(--z, 0px)) translateY(-7px); }
 }
 
+/* подписи переносятся внутри плитки: длинные названия департаментов
+   не должны выходить за её границы ни на одной ширине */
 .plate b {
-  font-size: clamp(10.5px, 1vw, 13px);
+  min-width: 0;
+  font-size: clamp(9.5px, 0.82vw, 12px);
   font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .plate span {
-  font-size: clamp(9px, 0.8vw, 10.5px);
-  letter-spacing: 0.06em;
+  min-width: 0;
+  font-size: clamp(8px, 0.62vw, 9.5px);
+  line-height: 1.2;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--fg3);
+  overflow-wrap: anywhere;
 }
 
 .plate--ceo {
@@ -633,11 +647,14 @@
   text-align: center;
 }
 
+/* портреты в полный рост: кадрируем по верхней трети, иначе в круге
+   диаметром 30–36px оказывается фон, а не лицо */
 .orbit__core img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 50% 14%;
   box-shadow: 0 0 0 2px rgba(213, 255, 243, 0.6);
 }
 
@@ -683,8 +700,8 @@
   display: grid;
   justify-items: center;
   gap: 4px;
-  width: 68px;
-  padding: 8px 6px;
+  width: 84px;
+  padding: 8px 7px;
   border-radius: 18px;
   text-align: center;
   background: linear-gradient(140deg, rgba(255, 255, 255, 0.26), rgba(217, 214, 255, 0.08));
@@ -709,6 +726,7 @@
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 50% 14%;
   box-shadow: 0 0 0 1.5px rgba(255, 184, 226, 0.5);
 }
 
@@ -727,11 +745,15 @@
 }
 
 .orbit__chip span {
-  font-size: 9px;
-  line-height: 1.2;
+  max-width: 100%;
+  font-size: 8.5px;
+  line-height: 1.15;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
+  text-align: center;
   color: var(--fg2);
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 /* легенда под сценой */

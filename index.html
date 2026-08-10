@@ -94,6 +94,7 @@ function __efRecoverBundleSurface() {
   __efDismissBundlerVeil();
   if (!__efBundleInteractive()) return false;
   window.__efBundleBooted = true;
+  try { sessionStorage.removeItem('__efHealedBundle'); } catch (err) {}
   var hash = window.__efInitialHash || '';
   if (hash && hash !== '#' && hash !== '#top' && window.__efScrollToHash) {
     var tries = 0;
@@ -109,7 +110,24 @@ function __efRecoverBundleSurface() {
 function __efEnsureBundleVisible(retries) {
   retries = retries || 0;
   if (__efRecoverBundleSurface()) return;
-  if (retries < 50) setTimeout(function() { __efEnsureBundleVisible(retries + 1); }, 120);
+  if (retries < 50) {
+    setTimeout(function() { __efEnsureBundleVisible(retries + 1); }, 120);
+    return;
+  }
+  __efHealDeadBundle();
+}
+// Разметка собрана, но обработчики так и не поднялись: страница выглядит
+// готовой, а CTA и свайп-слайдеры не реагируют. Один раз перезагружаемся;
+// флаг в sessionStorage исключает цикл перезагрузок.
+function __efHealDeadBundle() {
+  if (!__efBundleReady() || __efBundleInteractive()) return;
+  try {
+    if (sessionStorage.getItem('__efHealedBundle')) return;
+    sessionStorage.setItem('__efHealedBundle', '1');
+  } catch (err) {
+    return;
+  }
+  location.reload();
 }
 window.addEventListener('pagehide', function(e) {
   if (!e.persisted) return;
