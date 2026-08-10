@@ -1799,14 +1799,25 @@
     bottom: auto;
     display: flex;
     flex-direction: column;
-    height: min(400px, 54vh);
-    min-height: min(360px, 50vh);
+    height: auto;
+    min-height: min(320px, 50vh);
     max-height: none;
   }
 
   .sequence__stage--light .stage__body {
     flex: 1 1 auto;
-    min-height: 0;
+    min-height: min(260px, 44vh);
+    height: auto;
+  }
+
+  #product .sequence .scene {
+    position: absolute;
+    inset: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    align-content: start;
+    padding: 10px 12px;
   }
 
   .sequence .sequence__steps {
@@ -1817,17 +1828,60 @@
     margin-top: clamp(32px, 6vh, 64px);
   }
 
+  /* Без 3D-анимаций — transform перезаписывает позиции и вызывает наслоение */
+  .seq3d-card,
+  .seq3d-hub__tile,
+  .seq3d-hub__core,
+  .seq3d-lens__row,
+  .seq3d-orbit__chip {
+    transform: none !important;
+  }
+
+  .scene.is-active .seq3d-card,
+  .scene.is-active .seq3d-hub__tile,
+  .scene.is-active .seq3d-hub__core,
+  .scene.is-active .seq3d-lens__row,
+  .scene.is-active .seq3d-orbit__chip {
+    animation: none !important;
+  }
+
+  .seq3d {
+    perspective: none;
+  }
+
   .seq3d__stage {
     transform: none;
     min-height: 0;
     align-content: start;
+    gap: 8px;
   }
+
   .seq3d__floor { display: none; }
+
+  .seq3d--org {
+    grid-template-rows: auto auto;
+    min-height: 0;
+    gap: 8px;
+  }
+
+  .seq3d--org .seq3d__stage {
+    overflow: visible;
+    gap: 6px;
+  }
+
   .seq3d--org .seq3d__legend {
     flex-shrink: 0;
-    padding-top: 6px;
+    margin-top: 2px;
+    padding: 6px 8px;
     border-top: 1px solid rgba(5, 2, 48, 0.06);
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 12px;
   }
+
+  .seq3d-org__tier {
+    gap: 6px;
+  }
+
   .seq3d-orbit--flat {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1859,19 +1913,58 @@
   }
 
   #product .sequence__stage--light {
-    height: auto;
-    min-height: min(360px, 52vh);
+    min-height: min(300px, 46vh);
+  }
+
+  #product .stage__body {
+    min-height: min(240px, 40vh);
   }
 
   .seq3d-card {
-    padding: 8px 10px;
-    border-radius: 14px;
+    padding: 7px 8px;
+    border-radius: 12px;
+    gap: 2px;
   }
 
-  .seq3d-card b { font-size: 10.5px; }
+  .seq3d-card b {
+    font-size: 9px;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
   .seq3d-card__meta,
-  .seq3d-card__state { font-size: 8px; }
-  .seq3d-card--ceo b { font-size: 11px; }
+  .seq3d-card__state { font-size: 7px; }
+
+  .seq3d-card--ceo {
+    width: 100%;
+    padding: 8px 10px;
+    column-gap: 6px;
+  }
+
+  .seq3d-card--ceo b { font-size: 10px; }
+
+  .seq3d-card__ic {
+    width: 14px;
+    height: 14px;
+  }
+
+  .seq3d-card__ic svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Уровень 03 скрыт — на телефоне только CEO + департаменты */
+  .seq3d-org__tier--team { display: none; }
+
+  .seq3d-org__tier--dept {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .seq3d__legend {
+    font-size: 9px;
+    gap: 6px 10px;
+  }
 
   .seq3d-orbit--flat {
     grid-template-columns: 1fr;
@@ -1893,8 +1986,6 @@
     padding: 12px;
   }
 
-  .seq3d-org__tier--dept,
-  .seq3d-org__tier--team { grid-template-columns: 1fr; }
   .seq3d-org__links { display: none; }
   .seq3d__stage--review {
     grid-template-columns: 1fr 1fr;
