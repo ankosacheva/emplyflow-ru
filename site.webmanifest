@@ -1,0 +1,16 @@
+{
+  "name": "EmplyFlow — HRM-платформа",
+  "short_name": "EmplyFlow",
+  "description": "Российская HRM-платформа с ИИ: оценка 360°, performance review, целеполагание, 9-box, кадровый резерв и карьерные треки.",
+  "lang": "ru",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050230",
+  "theme_color": "#050230",
+  "icons": [
+    { "src": "/images/seo/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/seo/favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/images/seo/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,20 +1,26 @@
-User-Agent: *
+User-agent: *
+Allow: /
+Allow: /hub/
+
+# Прототипы и служебные страницы
 Disallow: /page88831166.html
-Disallow: /prototype_01
-Disallow: /page92627706.html
-Disallow: /design_03
-Disallow: /page92826026.html
-Disallow: /privacy
-Disallow: /page92821626.html
-Disallow: /error
 Disallow: /page89911026.html
-Disallow: /prototype_02
 Disallow: /page91559416.html
 Disallow: /page92416046.html
+Disallow: /page92627706.html
+Disallow: /page92821626.html
+Disallow: /page92826026.html
 Disallow: /page94622536.html
-Disallow: /design_04
 Disallow: /page94715026.html
+Disallow: /prototype_01
+Disallow: /prototype_02
+Disallow: /design_03
+Disallow: /design_04
 Disallow: /design_05
+Disallow: /error
+Disallow: /privacy
+
+# Внутренние endpoints Tilda
 Disallow: /tilda/form*
 Disallow: /tilda/rec*
 Disallow: /tilda/click*
@@ -23,13 +29,6 @@ Disallow: /tilda/popup*
 Disallow: /tilda/cart*
 Disallow: /tilda/product*
 Disallow: /tilda/event*
-Disallow:
 
-
-Sitemap: http://emplyflow.ru/sitemap.xml
-Sitemap: http://emplyflow.ru/sitemap-feeds.xml
-
+Sitemap: https://emplyflow.ru/sitemap.xml
 Sitemap: https://emplyflow.ru/hub/sitemap.xml
-
-User-agent: *
-Allow: /hub/
