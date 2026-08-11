@@ -2831,7 +2831,7 @@ html, body {
       <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
       <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
       <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
-      <form id="ef-lead-form-demo" class="ef-lead-form" method="post" action="" data-ef-lead-source="site_demo_popup" novalidate>
+      <form id="ef-lead-form-demo" class="ef-lead-form" data-ef-lead-source="site_demo_popup" novalidate onsubmit="return false;">
         <div class="ef-lead-form__fields">
           <div class="ef-lead-form__field">
             <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required />
@@ -2900,7 +2900,7 @@ html, body {
           </label>
           <div class="ef-lead-form__error" data-ef-error role="alert"></div>
         </div>
-        <button class="ef-lead-form__submit" type="submit">Получить демодоступ</button>
+        <button class="ef-lead-form__submit" type="button">Получить демодоступ</button>
         <div class="ef-lead-form__success" data-ef-success>
           <h3>Заявка отправлена</h3>
           <p>Спасибо! Менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
@@ -3139,6 +3139,29 @@ html, body {
   })();
   </script>
   <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
+  <script>
+  /* Страховка: никогда не даём форме лида уйти на nginx (405/GET-reload) */
+  (function(){
+    if(window.__efLeadNavGuard)return;
+    window.__efLeadNavGuard=true;
+    document.addEventListener('submit',function(e){
+      var f=e.target;
+      if(!f||!f.classList||!f.classList.contains('ef-lead-form'))return;
+      e.preventDefault();
+      e.stopPropagation();
+      if(window.__efHandleLeadSubmit)window.__efHandleLeadSubmit(f);
+    },true);
+    document.addEventListener('click',function(e){
+      var btn=e.target.closest&&e.target.closest('.ef-lead-form__submit');
+      if(!btn)return;
+      var f=btn.closest('form.ef-lead-form');
+      if(!f)return;
+      e.preventDefault();
+      e.stopPropagation();
+      if(window.__efHandleLeadSubmit)window.__efHandleLeadSubmit(f);
+    },true);
+  })();
+  </script>
   <script src="js/emplyflow-demo-modules.js" charset="utf-8"></script>
   <script src="js/emplyflow-site-leads.js" charset="utf-8"></script>
 

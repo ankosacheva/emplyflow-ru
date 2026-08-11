@@ -1,6 +1,9 @@
 /**
  * EmplyFlow marketing site — нативные формы заявок → Google Apps Script.
  * Не зависит от Tilda Forms API / подписки Tilda.
+ *
+ * Важно: не используем method=post на ту же страницу — nginx отдаёт 405.
+ * Отправка только через fetch; нативный submit всегда блокируется.
  */
 (function () {
   'use strict';
@@ -209,7 +212,7 @@
     if (success) success.classList.remove('is-visible');
     setError(form, '');
     clearFieldErrors(form);
-    var btn = form.querySelector('[type="submit"]');
+    var btn = form.querySelector('.ef-lead-form__submit');
     if (btn) {
       btn.disabled = false;
       if (btn.dataset.efOriginalText) btn.textContent = btn.dataset.efOriginalText;
@@ -223,29 +226,23 @@
 
   window.__efResetLeadForm = resetLeadForm;
 
-  function patchDemoOpen() {
-    var prev = window.__efOpenDemoForm;
-    if (!prev || prev.__efBindWrapped) return;
-    window.__efOpenDemoForm = function () {
-      var r = prev.apply(this, arguments);
-      var modal = document.getElementById('ef-demo-modal');
-      if (modal) bindForms(modal);
-      return r;
-    };
-    window.__efOpenDemoForm.__efBindWrapped = true;
+  function hardenForm(form) {
+    if (!form) return;
+    form.removeAttribute('method');
+    form.removeAttribute('action');
+    form.setAttribute('onsubmit', 'return false;');
+    var btn = form.querySelector('.ef-lead-form__submit');
+    if (btn) btn.setAttribute('type', 'button');
   }
 
-  function onSubmit(event) {
-    var form = event.target;
+  function handleLeadSubmit(form) {
     if (!form || !form.classList || !form.classList.contains('ef-lead-form')) return;
-
-    event.preventDefault();
-    event.stopPropagation();
+    hardenForm(form);
 
     if (form.getAttribute('data-ef-sending') === '1') return;
     if (!validate(form)) return;
 
-    var btn = form.querySelector('[type="submit"]');
+    var btn = form.querySelector('.ef-lead-form__submit');
     var payload = collectPayload(form);
 
     form.setAttribute('data-ef-sending', '1');
@@ -277,39 +274,64 @@
       });
   }
 
-  function bindForms(root) {
+  window.__efHandleLeadSubmit = handleLeadSubmit;
+
+  function prepareForms(root) {
     var scope = root && root.querySelectorAll ? root : document;
     var forms = scope.querySelectorAll
       ? scope.querySelectorAll(FORM_SELECTOR)
       : document.querySelectorAll(FORM_SELECTOR);
+    if (root && root.matches && root.matches(FORM_SELECTOR)) forms = [root];
+    Array.prototype.forEach.call(forms, hardenForm);
+  }
 
-    // if root itself is the form
-    if (root && root.matches && root.matches(FORM_SELECTOR)) {
-      forms = [root];
-    }
+  function patchDemoOpen() {
+    var prev = window.__efOpenDemoForm;
+    if (!prev || prev.__efBindWrapped) return;
+    window.__efOpenDemoForm = function () {
+      var r = prev.apply(this, arguments);
+      var modal = document.getElementById('ef-demo-modal');
+      if (modal) prepareForms(modal);
+      return r;
+    };
+    window.__efOpenDemoForm.__efBindWrapped = true;
+  }
 
-    Array.prototype.forEach.call(forms, function (form) {
-      if (form.__efBound) return;
-      form.__efBound = true;
-      form.setAttribute('method', 'post');
-      form.setAttribute('action', '');
-      if (!form.__efSubmitGuard) {
-        form.__efSubmitGuard = true;
-        form.addEventListener(
-          'submit',
-          function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-          },
-          true
-        );
-      }
-      form.addEventListener('submit', onSubmit);
-    });
+  if (!window.__efLeadListenersBound) {
+    window.__efLeadListenersBound = true;
+
+    // Блокируем любой нативный submit формы лида (Enter в поле и т.п.)
+    document.addEventListener(
+      'submit',
+      function (e) {
+        var form = e.target;
+        if (!form || !form.classList || !form.classList.contains('ef-lead-form')) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+        handleLeadSubmit(form);
+      },
+      true
+    );
+
+    // Клик по кнопке отправки (type=button или type=submit)
+    document.addEventListener(
+      'click',
+      function (e) {
+        var btn = e.target.closest('.ef-lead-form__submit');
+        if (!btn) return;
+        var form = btn.closest(FORM_SELECTOR);
+        if (!form) return;
+        e.preventDefault();
+        e.stopPropagation();
+        handleLeadSubmit(form);
+      },
+      true
+    );
   }
 
   function boot() {
-    bindForms(document);
+    prepareForms(document);
     patchDemoOpen();
   }
 
@@ -318,8 +340,9 @@
   } else {
     boot();
   }
-  window.setTimeout(patchDemoOpen, 0);
-  window.setTimeout(patchDemoOpen, 400);
+  window.setTimeout(boot, 0);
+  window.setTimeout(boot, 400);
+  window.setTimeout(boot, 1500);
 
   if (typeof MutationObserver !== 'undefined') {
     var mo = new MutationObserver(function (mutations) {
@@ -328,8 +351,8 @@
         for (var j = 0; j < nodes.length; j++) {
           var n = nodes[j];
           if (n.nodeType !== 1) continue;
-          if (n.matches && n.matches(FORM_SELECTOR)) bindForms(n);
-          else if (n.querySelectorAll) bindForms(n);
+          if (n.matches && n.matches(FORM_SELECTOR)) prepareForms(n);
+          else if (n.querySelectorAll) prepareForms(n);
         }
       }
     });
