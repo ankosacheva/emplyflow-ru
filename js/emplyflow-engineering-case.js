@@ -1353,6 +1353,7 @@
     };
 
     window.__efCloseDemoForm = function () {
+      if (window.__efResetLeadForm) window.__efResetLeadForm();
       if (modal.hidden) return;
       modal.hidden = true;
       modal.setAttribute('aria-hidden', 'true');

@@ -177,12 +177,24 @@
     return true;
   }
 
+  function ensureDemoModalVisible() {
+    var modal = document.getElementById('ef-demo-modal');
+    if (!modal) return;
+    modal.classList.add('is-open');
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    if (modal.getAttribute('data-ef-mode') !== 'corner') {
+      document.body.classList.add('ef-demo-open');
+    }
+  }
+
   function showSuccess(form) {
     form.classList.add('is-success');
     var success = form.querySelector('[data-ef-success]');
     if (success) success.classList.add('is-visible');
     var panel = form.closest('.ef-demo-modal__panel');
     if (panel) panel.classList.add('ef-demo-modal__panel--success');
+    ensureDemoModalVisible();
   }
 
   function resetLeadForm(form) {
@@ -211,14 +223,16 @@
 
   window.__efResetLeadForm = resetLeadForm;
 
-  function patchDemoClose() {
-    var prev = window.__efCloseDemoForm;
-    if (!prev || prev.__efResetWrapped) return;
-    window.__efCloseDemoForm = function () {
-      resetLeadForm();
-      return prev.apply(this, arguments);
+  function patchDemoOpen() {
+    var prev = window.__efOpenDemoForm;
+    if (!prev || prev.__efBindWrapped) return;
+    window.__efOpenDemoForm = function () {
+      var r = prev.apply(this, arguments);
+      var modal = document.getElementById('ef-demo-modal');
+      if (modal) bindForms(modal);
+      return r;
     };
-    window.__efCloseDemoForm.__efResetWrapped = true;
+    window.__efOpenDemoForm.__efBindWrapped = true;
   }
 
   function onSubmit(event) {
@@ -277,13 +291,26 @@
     Array.prototype.forEach.call(forms, function (form) {
       if (form.__efBound) return;
       form.__efBound = true;
+      form.setAttribute('method', 'post');
+      form.setAttribute('action', '');
+      if (!form.__efSubmitGuard) {
+        form.__efSubmitGuard = true;
+        form.addEventListener(
+          'submit',
+          function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          },
+          true
+        );
+      }
       form.addEventListener('submit', onSubmit);
     });
   }
 
   function boot() {
     bindForms(document);
-    patchDemoClose();
+    patchDemoOpen();
   }
 
   if (document.readyState === 'loading') {
@@ -291,8 +318,8 @@
   } else {
     boot();
   }
-  window.setTimeout(patchDemoClose, 0);
-  window.setTimeout(patchDemoClose, 400);
+  window.setTimeout(patchDemoOpen, 0);
+  window.setTimeout(patchDemoOpen, 400);
 
   if (typeof MutationObserver !== 'undefined') {
     var mo = new MutationObserver(function (mutations) {

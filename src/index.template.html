@@ -2831,7 +2831,7 @@ html, body {
       <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
       <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
       <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
-      <form id="ef-lead-form-demo" class="ef-lead-form" data-ef-lead-source="site_demo_popup" novalidate>
+      <form id="ef-lead-form-demo" class="ef-lead-form" method="post" action="" data-ef-lead-source="site_demo_popup" novalidate>
         <div class="ef-lead-form__fields">
           <div class="ef-lead-form__field">
             <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required />
@@ -2996,6 +2996,7 @@ html, body {
       }
     };
     window.__efCloseDemoForm=function(){
+      if(window.__efResetLeadForm)window.__efResetLeadForm();
       var modal=document.getElementById('ef-demo-modal');
       if(!modal)return;
       modal.classList.remove('is-open');
@@ -3153,6 +3154,7 @@ class Component extends DCLogic {
     this._upd();
     this._mq.addEventListener('change', this._upd);
     this._onDocClick = (e) => {
+      if (e.target.closest('.ef-demo-modal')) return;
       if (!e.target.closest('.ef-nav-modules')) this.setState({ modulesOpen: false });
     };
     document.addEventListener('click', this._onDocClick);
