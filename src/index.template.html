@@ -1428,9 +1428,10 @@ html, body {
   .ef-mod__pr-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;gap:8px;min-width:0;}
   .ef-mod__pr-head > span:first-child{font-size:10px;font-weight:800;color:#8681ab;letter-spacing:.06em;text-transform:uppercase;}
   .ef-mod__pr-flow{width:72px;height:220px;align-self:center;flex:none;}
-  .ef-mod__pr-score{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0;}
-  .ef-mod__pr-score small{font-size:11px;font-weight:700;color:#6c6790;line-height:1.25;}
-  .ef-mod__pr-score > span:last-child{font-size:10px;font-weight:700;color:#8681ab;}
+  .ef-mod__pr-score{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0;max-width:100%;}
+  .ef-mod__pr-meta{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0;max-width:100%;}
+  .ef-mod__pr-meta small{font-size:11px;font-weight:700;color:#6c6790;line-height:1.25;}
+  .ef-mod__pr-vs{font-size:10px;font-weight:700;color:#8681ab;}
   @media (max-width:980px){
     .ef-mod--flag{grid-template-columns:1fr;}
     .ef-mod--flag .ef-mod__panel{order:-1;min-height:280px;}
@@ -1450,10 +1451,12 @@ html, body {
     .ef-mod:hover .ef-mod__win{transform:none;}
     .ef-mod__pr-body{grid-template-columns:minmax(0,1fr);min-height:0;gap:14px;}
     .ef-mod__pr-flow{display:none;}
-    .ef-mod__pr-score{flex-direction:row;align-items:center;justify-content:space-between;text-align:left;gap:12px;}
-    .ef-mod__pr-score .ef-ui-score{width:64px;height:64px;font-size:34px;flex:none;}
-    .ef-mod__pr-score small br{display:none;}
-    .ef-mod__pr-score small{margin:0;}
+    .ef-mod__pr-score{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:12px;row-gap:6px;align-items:center;text-align:left;}
+    .ef-mod__pr-score .ef-ui-score{grid-row:1 / span 2;width:64px;height:64px;font-size:34px;}
+    .ef-mod__pr-meta{grid-column:2;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;align-items:flex-start;text-align:left;}
+    .ef-mod__pr-meta small br{display:none;}
+    .ef-mod__pr-meta small{margin:0;flex:1 1 auto;min-width:0;}
+    .ef-mod__pr-meta .ef-ui-pill{flex:none;white-space:nowrap;}
   }
   @media (prefers-reduced-motion:reduce){
     .ef-ui-src,.ef-mod__win,.ef-mod,.ef-mod__arw,.ef-mod__orb,.ef-ui-score{animation:none!important;transition:none!important;}
@@ -1512,9 +1515,11 @@ html, body {
               </svg>
               <div class="ef-mod__pr-score">
                 <div class="ef-ui-score">B</div>
-                <small>Прекрасный<br>результат</small>
-                <span class="ef-ui-pill" style="background:#e7f7ee;color:#2fa565;">Премия 60%</span>
-                <span>vs команда +12%</span>
+                <div class="ef-mod__pr-meta">
+                  <small>Прекрасный<br>результат</small>
+                  <span class="ef-ui-pill" style="background:#e7f7ee;color:#2fa565;">Премия 60%</span>
+                  <span class="ef-mod__pr-vs">vs команда +12%</span>
+                </div>
               </div>
             </div>
           </div>
