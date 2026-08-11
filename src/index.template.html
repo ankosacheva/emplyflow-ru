@@ -1234,14 +1234,15 @@ html, body {
   .ef-mods__lead{margin:0;max-width:640px;font-size:clamp(15px,1.4vw,18px);line-height:1.5;color:rgba(217,214,255,.78);}
   .ef-mod{display:flex;flex-direction:column;background:#fff;border-radius:clamp(22px,2.4vw,28px);overflow:hidden;border:1px solid rgba(217,214,255,.14);box-shadow:0 30px 70px -40px rgba(5,2,48,.75);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;}
   .ef-mod:hover{transform:translateY(-6px);box-shadow:0 40px 80px -36px rgba(5,2,48,.85);}
-  .ef-mod--flag{display:grid;grid-template-columns:1fr 1.05fr;margin-bottom:22px;}
+  .ef-mod--flag .ef-mod__win{min-width:0;}
+  .ef-mod--flag > *{min-width:0;}
   .ef-mod__copy{padding:clamp(28px,3vw,44px);display:flex;flex-direction:column;}
   .ef-mod__tag{display:inline-flex;align-self:flex-start;margin:0 0 14px;padding:7px 14px;border-radius:999px;border:1px solid rgba(74,59,255,.28);color:var(--c-blue-ribbon);font-size:12px;font-weight:700;letter-spacing:.02em;}
-  .ef-mod__h{margin:0 0 12px;font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;color:#141033;}
+  .ef-mod__h{margin:0 0 12px;font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;color:#141033;text-wrap:balance;overflow-wrap:break-word;}
   .ef-mod__h span{color:var(--c-blue-ribbon);}
   .ef-mod__p{margin:0 0 20px;max-width:460px;font-size:15px;line-height:1.55;color:#5b567e;}
   .ef-mod__chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
-  .ef-mod__chip{padding:7px 12px;border-radius:999px;background:#f1eefe;border:1px solid #e5e1fb;color:#3a3568;font-size:12.5px;font-weight:600;}
+  .ef-mod__chip{padding:7px 12px;border-radius:999px;background:#f1eefe;border:1px solid #e5e1fb;color:#3a3568;font-size:12.5px;font-weight:600;max-width:100%;}
   .ef-mod__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;}
   .ef-mod__btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font-size:14.5px;font-weight:700;text-decoration:none;transition:filter .2s,transform .2s;}
   button.ef-mod__btn{border:0;font-family:inherit;cursor:pointer;}
@@ -1421,6 +1422,14 @@ html, body {
   .ef-ui-meter > i{display:block;height:100%;border-radius:inherit;background:var(--c-blue-ribbon);}
   .ef-ui-row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10.5px;font-weight:700;color:#403c68;margin-bottom:4px;}
   .ef-ui-pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800;}
+  .ef-mod__pr-body{display:grid;grid-template-columns:minmax(0,1.15fr) 72px 112px;gap:8px;align-items:center;min-height:250px;}
+  .ef-mod__pr-sources{display:flex;flex-direction:column;gap:8px;min-width:0;}
+  .ef-mod__pr-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;gap:8px;min-width:0;}
+  .ef-mod__pr-head > span:first-child{font-size:10px;font-weight:800;color:#8681ab;letter-spacing:.06em;text-transform:uppercase;}
+  .ef-mod__pr-flow{width:72px;height:220px;align-self:center;flex:none;}
+  .ef-mod__pr-score{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0;}
+  .ef-mod__pr-score small{font-size:11px;font-weight:700;color:#6c6790;line-height:1.25;}
+  .ef-mod__pr-score > span:last-child{font-size:10px;font-weight:700;color:#8681ab;}
   @media (max-width:980px){
     .ef-mod--flag{grid-template-columns:1fr;}
     .ef-mod--flag .ef-mod__panel{order:-1;min-height:280px;}
@@ -1431,6 +1440,19 @@ html, body {
   @media (max-width:640px){
     .ef-mod__grid{grid-template-columns:1fr;}
     .ef-mod--wide,.ef-mod--narrow,.ef-mod--half,.ef-mod--third{grid-column:span 1;}
+    .ef-mod--flag .ef-mod__copy{padding:clamp(18px,4.8vw,24px);}
+    .ef-mod--flag .ef-mod__p{max-width:none;}
+    .ef-mod--flag .ef-mod__h{font-size:clamp(20px,5.2vw,24px);}
+    .ef-mod--flag .ef-mod__panel{min-height:0;padding:clamp(14px,3.6vw,18px);}
+    .ef-mod--flag .ef-mod__cta{flex-direction:column;width:100%;}
+    .ef-mod--flag .ef-mod__btn{width:100%;justify-content:center;}
+    .ef-mod:hover .ef-mod__win{transform:none;}
+    .ef-mod__pr-body{grid-template-columns:minmax(0,1fr);min-height:0;gap:14px;}
+    .ef-mod__pr-flow{display:none;}
+    .ef-mod__pr-score{flex-direction:row;align-items:center;justify-content:space-between;text-align:left;gap:12px;}
+    .ef-mod__pr-score .ef-ui-score{width:64px;height:64px;font-size:34px;flex:none;}
+    .ef-mod__pr-score small br{display:none;}
+    .ef-mod__pr-score small{margin:0;}
   }
   @media (prefers-reduced-motion:reduce){
     .ef-ui-src,.ef-mod__win,.ef-mod,.ef-mod__arw,.ef-mod__orb,.ef-ui-score{animation:none!important;transition:none!important;}
@@ -1467,10 +1489,10 @@ html, body {
               <span class="ef-mod__dot"></span><span class="ef-mod__dot"></span><span class="ef-mod__dot"></span>
               <span class="ef-mod__bar-title">PR · Анна Ковалёва · Product · Q2’26</span>
             </div>
-            <div class="ef-mod__body" style="display:grid;grid-template-columns:1.15fr 72px 112px;gap:8px;align-items:center;min-height:250px;">
-              <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
-                  <span style="font-size:10px;font-weight:800;color:#8681ab;letter-spacing:.06em;text-transform:uppercase;">Источники оценки</span>
+            <div class="ef-mod__body ef-mod__pr-body">
+              <div class="ef-mod__pr-sources">
+                <div class="ef-mod__pr-head">
+                  <span>Источники оценки</span>
                   <span class="ef-ui-pill" style="background:#eef2ff;color:#4a3bff;">4 сигнала</span>
                 </div>
                 <div class="ef-ui-src"><b style="background:#4a3bff"></b>Цели OKR<em>54%</em></div>
@@ -1478,7 +1500,7 @@ html, body {
                 <div class="ef-ui-src"><b style="background:#5fce87"></b>Оценка 360°<em>4.1</em></div>
                 <div class="ef-ui-src"><b style="background:#ffb8e2"></b>Компетенции<em>A</em></div>
               </div>
-              <svg viewBox="0 0 72 220" preserveAspectRatio="none" style="width:72px;height:220px;align-self:center;" aria-hidden="true">
+              <svg class="ef-mod__pr-flow" viewBox="0 0 72 220" preserveAspectRatio="none" aria-hidden="true">
                 <g fill="none" stroke="#c9c3f2" stroke-width="1.6" stroke-dasharray="5 6" style="animation:efModFlow 1.6s linear infinite;">
                   <path d="M0,34 C40,34 36,110 72,110"></path>
                   <path d="M0,82 C40,82 42,110 72,110"></path>
@@ -1487,11 +1509,11 @@ html, body {
                 </g>
                 <circle cx="72" cy="110" r="5" fill="#4a3bff"></circle>
               </svg>
-              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;">
+              <div class="ef-mod__pr-score">
                 <div class="ef-ui-score">B</div>
-                <small style="font-size:11px;font-weight:700;color:#6c6790;line-height:1.25;">Прекрасный<br>результат</small>
+                <small>Прекрасный<br>результат</small>
                 <span class="ef-ui-pill" style="background:#e7f7ee;color:#2fa565;">Премия 60%</span>
-                <span style="font-size:10px;font-weight:700;color:#8681ab;">vs команда +12%</span>
+                <span>vs команда +12%</span>
               </div>
             </div>
           </div>
