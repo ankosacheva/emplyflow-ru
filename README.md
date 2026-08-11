@@ -3,7 +3,7 @@
 Основной маркетинговый сайт EmplyFlow. Экспорт с Tilda, хостинг на Timeweb VPS.
 
 - Прод: https://emplyflow.ru
-- VPS: `212.113.123.95`, web-root `/var/www/emplyflow.ru/`
+- VPS: `89.108.70.110`, web-root `/var/www/emplyflow.ru/`
 - Hub (отдельный репозиторий): https://emplyflow.ru/hub/ → `ankosacheva/emplyflow-competency-hub`
 
 ## Структура
@@ -131,17 +131,21 @@ PORT=8899 ./scripts/dev_server.sh
 
 ## Деплой
 
+Полный runbook: **[docs/DEPLOY-SERVER.md](docs/DEPLOY-SERVER.md)** (сервер `89.108.70.110`, `deploy-site` / `deploy-hub`).
+
+Кратко после push в `main`:
+
 ```bash
-rsync -avz --delete \
-  --exclude .git --exclude .gitignore --exclude README.md \
-  --exclude hub --exclude src \
-  ./ root@212.113.123.95:/var/www/emplyflow.ru/
+ssh root@89.108.70.110
+deploy-site    # сайт: git pull в /root/emplyflow-ru → rsync в /var/www/emplyflow.ru/
+deploy-hub     # hub: отдельный репозиторий emplyflow-competency-hub
 ```
 
-Важно: не затирать `/var/www/emplyflow.ru/hub/` (если rsync с `--delete`, обязательно `--exclude hub`).
+Не деплоить в `/var/www/emplyflow.ru/emplyflow-ru/` — прод живёт в `/var/www/emplyflow.ru/`.
 
 После деплоя проверить:
 
 - https://emplyflow.ru/
 - https://emplyflow.ru/privacy
-- https://emplyflow.ru/hub/ (должен остаться Hub)
+- https://emplyflow.ru/performance-review-dlya-proizvoditelya
+- https://emplyflow.ru/hub/
