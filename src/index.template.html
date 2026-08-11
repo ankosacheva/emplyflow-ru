@@ -551,9 +551,17 @@ html, body {
   .ef-hero__scribble--1{top:clamp(28px,5vw,74px);left:clamp(96px,17vw,270px);width:clamp(52px,6vw,90px);}
   .ef-hero__scribble--2{top:clamp(150px,20vw,270px);left:clamp(150px,26vw,400px);width:clamp(44px,5vw,74px);transform:rotate(168deg);}
   .ef-hero__sparkle3d{position:absolute;left:clamp(-8px,2vw,56px);top:clamp(190px,24vw,300px);width:clamp(88px,12vw,180px);height:auto;animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 22px 48px rgba(74,59,255,.55));pointer-events:none;}
-  .ef-hero__star{position:absolute;right:clamp(48px,10vw,180px);top:clamp(56px,7.5vw,120px);width:clamp(48px,6vw,88px);height:auto;animation:efFloat 8s ease-in-out infinite;pointer-events:none;z-index:1;}
+  .ef-hero__star{width:clamp(40px,4.5vw,56px);height:auto;margin:0 auto clamp(10px,1.4vw,16px);animation:efFloat 8s ease-in-out infinite;pointer-events:none;}
   .ef-hero__inner{position:relative;max-width:1200px;margin:0 auto;}
-  .ef-hero__title{max-width:1000px;margin:0 auto;font-weight:800;font-size:clamp(27px,4.1vw,56px);line-height:0.98;letter-spacing:-0.032em;text-align:center;color:#fff;}
+  .ef-hero__head{
+    display:grid;grid-template-columns:1fr min(760px,100%) 1fr;
+    align-items:start;gap:0 clamp(16px,2.5vw,28px);max-width:none;margin:0;}
+  .ef-hero__head-main{grid-column:2;min-width:0;width:100%;}
+  .ef-hero__aside{
+    grid-column:3;justify-self:start;width:clamp(148px,14vw,188px);min-width:0;
+    padding-top:clamp(72px,11vw,148px);}
+  .ef-hero__award{width:100%;height:auto;display:block;}
+  .ef-hero__title{max-width:100%;margin:0 auto;font-weight:800;font-size:clamp(27px,4.1vw,56px);line-height:0.98;letter-spacing:-0.032em;text-align:center;color:#fff;}
   /* левый край плашки стоит по центру заголовка — как на сайте */
   .ef-hero__callout-row{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(18px,2.6vw,34px);}
   .ef-hero__callout{grid-column:2;justify-self:start;border:1.6px dashed #ffb8e2;border-radius:20px;padding:clamp(6px,0.9vw,14px) clamp(14px,1.9vw,28px);font-weight:800;font-size:clamp(23px,3.2vw,42px);line-height:1;letter-spacing:-0.03em;color:#ffb8e2;white-space:nowrap;}
@@ -573,13 +581,11 @@ html, body {
   .ef-hero__lead .t-mint,
   .ef-hero__lead .t-pink{ font-weight:var(--fw-semi); }
   .ef-hero__cta{display:flex;justify-content:center;align-items:center;margin-top:clamp(20px,2.6vw,32px);width:100%;}
-  .ef-hero__cta .ef-swipe-cta{margin-left:auto;margin-right:auto;flex:0 0 auto;}
+  .ef-hero__cta .ef-swipe-cta{width:min(100%,340px);margin:0 auto;flex:0 0 auto;}
   .ef-btn{display:inline-flex;align-items:center;gap:12px;border-radius:999px;font-size:15px;font-weight:600;transition:filter 150ms,box-shadow 150ms;}
   .ef-btn--indigo{background:#4a3bff;color:#fff;padding:9px 30px 9px 9px;}
   .ef-btn--indigo:hover{color:#fff;filter:brightness(1.09);}
   .ef-btn__ic{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;background:#fff;color:#4a3bff;}
-
-  .ef-hero__award{position:absolute;right:0;top:clamp(200px,24vw,310px);width:clamp(158px,16vw,215px);height:auto;z-index:2;}
 
   /* фон ролика совпадает с canvas Black Rock, поэтому рамка не нужна — он читается как часть страницы */
   .ef-hero__anim{position:relative;margin:clamp(18px,2.6vw,40px) auto 0;max-width:1180px;}
@@ -610,6 +616,14 @@ html, body {
   .ef-card--pink .ef-card__sparkle:nth-of-type(1){top:clamp(18px,2.8vw,24px);right:clamp(14px,3.2vw,26px);width:clamp(26px,3.2vw,40px);}
   .ef-card--pink .ef-card__sparkle:nth-of-type(2){top:auto;bottom:clamp(14px,2.4vw,18px);right:clamp(14px,3.2vw,22px);width:clamp(16px,2vw,22px);}
 
+  @media (max-width:1100px){
+    .ef-hero__head{flex-direction:column;align-items:center;}
+    .ef-hero__head-main{flex:1 1 auto;max-width:100%;}
+    .ef-hero__aside{
+      flex:none;width:clamp(168px,46vw,210px);padding-top:0;
+      margin:clamp(24px,5vw,34px) auto 0;}
+    .ef-hero__star{margin-bottom:clamp(8px,2vw,12px);}
+  }
   @media (max-width:900px){
     .ef-hero{padding-top:clamp(28px,6vw,48px);}
     .ef-hero__scribble,.ef-hero__star{display:none;}
@@ -617,7 +631,6 @@ html, body {
     .ef-hero__callout-row{grid-template-columns:1fr;justify-items:center;}
     .ef-hero__callout{grid-column:1;justify-self:center;}
     .ef-hero__lead{font-size:clamp(17px,4.6vw,22px);line-height:1.42;}
-    .ef-hero__award{position:static;display:block;margin:clamp(24px,5vw,34px) auto 0;width:clamp(168px,46vw,210px);}
     .ef-cards{grid-template-columns:1fr;align-items:stretch;}
     .ef-card{min-height:0;}
     .ef-card__title{max-width:calc(100% - clamp(48px,16vw,60px));}
@@ -880,38 +893,42 @@ html, body {
       <circle cx="50" cy="50" r="18" fill="url(#efSparkleGlow)"></circle>
     </svg>
 
-    <svg class="ef-hero__star" sc-camel-view-box="0 0 100 100" aria-hidden="true">
-      <defs>
-        <linearGradient id="efStarGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#d5fff3"></stop>
-          <stop offset="38%" stop-color="#cec8ff"></stop>
-          <stop offset="76%" stop-color="#4a3bff"></stop>
-          <stop offset="100%" stop-color="#0a0540"></stop>
-        </linearGradient>
-      </defs>
-      <path fill="url(#efStarGrad)" d="M50 2 C 53 30, 58 42, 98 50 C 58 58, 53 70, 50 98 C 47 70, 42 58, 2 50 C 42 42, 47 30, 50 2 Z"></path>
-    </svg>
-
     <div class="ef-hero__inner">
-      <h1 class="ef-hero__title">Уникальная TMS-система для <span class="t-mint">оценки, развития</span> сотрудников и проведения Performance Review</h1>
-      <div class="ef-hero__callout-row"><span class="ef-hero__callout">на базе ИИ</span></div>
+      <div class="ef-hero__head">
+        <div class="ef-hero__head-main">
+          <h1 class="ef-hero__title">Уникальная TMS-система для <span class="t-mint">оценки, развития</span> сотрудников и проведения Performance Review</h1>
+          <div class="ef-hero__callout-row"><span class="ef-hero__callout">на базе ИИ</span></div>
 
-      <p class="ef-hero__lead">Используйте возможности платформы <span class="t-mint">EmplyFlow</span>, если устали контролировать <span class="t-pink">все внутренние HR-процессы</span> вручную</p>
+          <p class="ef-hero__lead">Используйте возможности платформы <span class="t-mint">EmplyFlow</span>, если устали контролировать <span class="t-pink">все внутренние HR-процессы</span> вручную</p>
 
-      <div class="ef-hero__cta">
-        <div class="ef-swipe-cta" data-href="#platform" role="group" aria-label="Свайпните вправо, чтобы перейти к модулям платформы">
-          <div class="ef-swipe-cta__track">
-            <div class="ef-swipe-cta__fill" aria-hidden="true"></div>
-            <span class="ef-swipe-cta__label">Что входит в платформу</span>
-            <span class="ef-swipe-cta__hint" aria-hidden="true">→</span>
-            <span class="ef-swipe-cta__handle" role="button" tabindex="0" aria-label="Потяните вправо к модулям">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-            </span>
+          <div class="ef-hero__cta">
+            <div class="ef-swipe-cta" data-href="#platform" role="group" aria-label="Свайпните вправо, чтобы перейти к модулям платформы">
+              <div class="ef-swipe-cta__track">
+                <div class="ef-swipe-cta__fill" aria-hidden="true"></div>
+                <span class="ef-swipe-cta__label">Что входит в платформу</span>
+                <span class="ef-swipe-cta__hint" aria-hidden="true">→</span>
+                <span class="ef-swipe-cta__handle" role="button" tabindex="0" aria-label="Потяните вправо к модулям">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
+        <aside class="ef-hero__aside" aria-label="Награда Rusbase">
+          <svg class="ef-hero__star" sc-camel-view-box="0 0 100 100" aria-hidden="true">
+            <defs>
+              <linearGradient id="efStarGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#d5fff3"></stop>
+                <stop offset="38%" stop-color="#cec8ff"></stop>
+                <stop offset="76%" stop-color="#4a3bff"></stop>
+                <stop offset="100%" stop-color="#0a0540"></stop>
+              </linearGradient>
+            </defs>
+            <path fill="url(#efStarGrad)" d="M50 2 C 53 30, 58 42, 98 50 C 58 58, 53 70, 50 98 C 47 70, 42 58, 2 50 C 42 42, 47 30, 50 2 Z"></path>
+          </svg>
+          <img src="3ac3d2a1-e6b6-47aa-a918-ef167e497d70" alt="Лучший проект в сфере HR по версии Rusbase в 2024 году" class="ef-hero__award">
+        </aside>
       </div>
-
-      <img src="3ac3d2a1-e6b6-47aa-a918-ef167e497d70" alt="Лучший проект в сфере HR по версии Rusbase в 2024 году" class="ef-hero__award">
 
       <div class="ef-hero__anim">
         <video sc-camel-auto-play="{{ true }}" loop="{{ true }}" muted="{{ true }}" sc-camel-plays-inline="{{ true }}" preload="metadata" poster="media/hero-animation-poster.jpg" aria-label="Данные из 1С:ЗУП, Excel, целей и KPI, отзывов коллег, оценки 360° и модели компетенций собираются в профиль сотрудника: выполнение целей, вовлечённость, оценка 360°, динамика результатов и рекомендации ИИ — кадровый резерв, готовый ИПР, риск перегрузки">
