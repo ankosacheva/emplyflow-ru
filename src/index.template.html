@@ -617,11 +617,11 @@ html, body {
   .ef-card--pink .ef-card__sparkle:nth-of-type(2){top:auto;bottom:clamp(14px,2.4vw,18px);right:clamp(14px,3.2vw,22px);width:clamp(16px,2vw,22px);}
 
   @media (max-width:1100px){
-    .ef-hero__head{flex-direction:column;align-items:center;}
-    .ef-hero__head-main{flex:1 1 auto;max-width:100%;}
+    .ef-hero__head{grid-template-columns:1fr;gap:0;}
+    .ef-hero__head-main{grid-column:1;}
     .ef-hero__aside{
-      flex:none;width:clamp(168px,46vw,210px);padding-top:0;
-      margin:clamp(24px,5vw,34px) auto 0;}
+      grid-column:1;justify-self:center;width:clamp(168px,46vw,210px);
+      padding-top:0;margin:clamp(24px,5vw,34px) auto 0;}
     .ef-hero__star{margin-bottom:clamp(8px,2vw,12px);}
   }
   @media (max-width:900px){
@@ -3055,99 +3055,32 @@ html, body {
   <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
   <script src="js/emplyflow-demo-modules.js" charset="utf-8"></script>
   <script src="js/emplyflow-site-leads.js" charset="utf-8"></script>
-
-</div>
-</x-dc>
-<div id="ef-review-modal" class="ef-review-modal" aria-hidden="true">
-  <div class="ef-review-modal__backdrop" data-ef-review-close></div>
-  <div class="ef-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-review-modal-title">
-    <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Скрыть">Скрыть</button>
-    <div class="ef-review-bento">
-      <div class="ef-review-tile ef-review-tile--person">
-        <svg class="ef-review-tile__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-        <div class="ef-review-tile__avatar" data-ef-review-field="initials" aria-hidden="true"></div>
-        <div class="ef-review-tile__meta">
-          <p class="ef-review-tile__name" id="ef-review-modal-title" data-ef-review-field="name"></p>
-          <p class="ef-review-tile__role" data-ef-review-field="role"></p>
-          <p class="ef-review-tile__company" data-ef-review-field="company"></p>
+  <script src="js/emplyflow-review-modal.js" charset="utf-8"></script>
+  <div id="ef-review-modal" class="ef-review-modal" aria-hidden="true">
+    <div class="ef-review-modal__backdrop" data-ef-review-close></div>
+    <div class="ef-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-review-modal-title">
+      <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Скрыть">Скрыть</button>
+      <div class="ef-review-bento">
+        <div class="ef-review-tile ef-review-tile--person">
+          <svg class="ef-review-tile__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <div class="ef-review-tile__avatar" data-ef-review-field="initials" aria-hidden="true"></div>
+          <div class="ef-review-tile__meta">
+            <p class="ef-review-tile__name" id="ef-review-modal-title" data-ef-review-field="name"></p>
+            <p class="ef-review-tile__role" data-ef-review-field="role"></p>
+            <p class="ef-review-tile__company" data-ef-review-field="company"></p>
+          </div>
         </div>
-      </div>
-      <div class="ef-review-tile ef-review-tile--quote">
-        <span class="ef-review-tile__quote-mark" aria-hidden="true">«</span>
-        <p class="ef-review-tile__label">Отзыв</p>
-        <blockquote class="ef-review-tile__quote" data-ef-review-field="quote"></blockquote>
+        <div class="ef-review-tile ef-review-tile--quote">
+          <span class="ef-review-tile__quote-mark" aria-hidden="true">«</span>
+          <p class="ef-review-tile__label">Отзыв</p>
+          <blockquote class="ef-review-tile__quote" data-ef-review-field="quote"></blockquote>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
-<script>
-(function(){
-  var lastTrigger=null;
-  function getModal(){return document.getElementById('ef-review-modal');}
-  function fill(card,modal){
-    var name=(card&&card.getAttribute('data-ef-review-name'))||'';
-    var role=(card&&card.getAttribute('data-ef-review-role'))||'';
-    var company=(card&&card.getAttribute('data-ef-review-company'))||'';
-    var quote=(card&&card.getAttribute('data-ef-review-quote'))||'';
-    var initials='';
-    if(name){
-      initials=name.trim().split(/\s+/).slice(0,2).map(function(p){return p.charAt(0);}).join('').toUpperCase();
-    }
-    modal.querySelectorAll('[data-ef-review-field]').forEach(function(el){
-      var key=el.getAttribute('data-ef-review-field');
-      var val='';
-      if(key==='name')val=name;
-      else if(key==='role')val=role;
-      else if(key==='company')val=company;
-      else if(key==='quote')val=quote?('\u00ab'+quote+'\u00bb'):'';
-      else if(key==='initials')val=initials;
-      el.textContent=val;
-    });
-  }
-  window.__efOpenReviewModal=function(card,trigger){
-    var modal=getModal();
-    if(!modal||!card)return;
-    lastTrigger=trigger||null;
-    fill(card,modal);
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden','false');
-    document.body.classList.add('ef-review-open');
-    var closeBtn=modal.querySelector('.ef-review-modal__close');
-    if(closeBtn)closeBtn.focus();
-  };
-  window.__efCloseReviewModal=function(){
-    var modal=getModal();
-    if(modal){
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden','true');
-    }
-    document.body.classList.remove('ef-review-open');
-    if(lastTrigger)lastTrigger.focus();
-    lastTrigger=null;
-  };
-  if(window.__efReviewModalBound)return;
-  window.__efReviewModalBound=true;
-  document.addEventListener('click',function(e){
-    var openBtn=e.target.closest('[data-ef-review-open]');
-    if(openBtn){
-      e.preventDefault();
-      e.stopPropagation();
-      var card=openBtn.closest('.ef-client');
-      if(card)window.__efOpenReviewModal(card,openBtn);
-      return;
-    }
-    if(e.target.closest('[data-ef-review-close]')){
-      e.preventDefault();
-      window.__efCloseReviewModal();
-    }
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&getModal()&&getModal().classList.contains('is-open')){
-      window.__efCloseReviewModal();
-    }
-  });
-})();
-</script>
+</x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900}}">
 class Component extends DCLogic {
   state = { menuOpen: false, compact: false, modulesOpen: false, mobileModulesOpen: false };
