@@ -1209,67 +1209,71 @@ html, body {
     position:relative;display:flex;flex-direction:column;min-width:0;
     border-radius:clamp(20px,2.4vw,26px);overflow:hidden;
     box-shadow:
-      0 22px 48px -28px rgba(5,2,48,0.55),
-      inset 0 1px 0 rgba(255,255,255,0.55);}
+      0 22px 48px -28px rgba(5,2,48,0.7),
+      inset 0 1px 0 rgba(255,255,255,0.12);}
   .ef-review-tile--person{
     padding:clamp(22px,2.8vw,30px);gap:14px;justify-content:flex-end;min-height:240px;
     background:
-      radial-gradient(90% 80% at 0% 0%,rgba(255,255,255,0.55),transparent 55%),
-      linear-gradient(160deg,#e8fff8 0%,var(--c-frosted-mint) 48%,#bff5e6 100%);
-    border:1px solid rgba(255,255,255,0.35);}
+      radial-gradient(90% 80% at 0% 0%,rgba(74,59,255,0.38),transparent 55%),
+      radial-gradient(70% 60% at 100% 100%,rgba(255,184,226,0.14),transparent 50%),
+      linear-gradient(160deg,#1a1548 0%,#0d0a2e 55%,#08061f 100%);
+    border:1px solid rgba(217,214,255,0.18);
+    color:#fff;}
   .ef-review-tile--person .ef-review-tile__spark{
     position:absolute;top:18px;right:18px;width:24px;height:24px;fill:#ffb8e2;pointer-events:none;
-    filter:drop-shadow(0 4px 10px rgba(255,184,226,0.45));}
+    filter:drop-shadow(0 4px 12px rgba(255,184,226,0.4));}
   .ef-review-tile__avatar{
     width:72px;height:72px;border-radius:999px;flex:none;
     display:grid;place-items:center;
     background:
-      radial-gradient(circle at 30% 25%,rgba(255,255,255,0.9),transparent 50%),
-      linear-gradient(145deg,#fff 0%,rgba(255,255,255,0.55) 100%);
-    border:1.5px solid rgba(255,255,255,0.7);
+      radial-gradient(circle at 30% 25%,rgba(255,255,255,0.22),transparent 50%),
+      linear-gradient(145deg,rgba(217,214,255,0.18),rgba(74,59,255,0.28));
+    border:1.5px solid rgba(217,214,255,0.28);
     box-shadow:
-      0 12px 28px -12px rgba(5,2,48,0.28),
-      inset 0 1px 0 rgba(255,255,255,0.9);
-    color:rgba(21,21,21,0.58);font-size:20px;font-weight:800;letter-spacing:-0.02em;}
+      0 12px 28px -12px rgba(0,0,0,0.45),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    color:rgba(255,255,255,0.82);font-size:20px;font-weight:800;letter-spacing:-0.02em;}
   .ef-review-tile__avatar:empty::before{
     content:"";width:24px;height:24px;border-radius:999px;
-    background:linear-gradient(145deg,rgba(74,59,255,0.28),rgba(255,184,226,0.45));}
+    background:linear-gradient(145deg,rgba(255,184,226,0.55),rgba(74,59,255,0.55));}
   .ef-review-tile__meta{display:flex;flex-direction:column;gap:5px;margin-top:auto;}
-  .ef-review-tile__name{margin:0;font-size:clamp(19px,2.1vw,24px);font-weight:800;line-height:1.12;letter-spacing:-0.03em;color:#151515;}
-  .ef-review-tile__name:empty::before{content:"ФИО";color:rgba(21,21,21,0.26);}
-  .ef-review-tile__role{margin:0;font-size:13.5px;font-weight:600;line-height:1.35;color:rgba(21,21,21,0.62);}
-  .ef-review-tile__role:empty::before{content:"Должность";color:rgba(21,21,21,0.26);}
+  .ef-review-tile__name{margin:0;font-size:clamp(19px,2.1vw,24px);font-weight:800;line-height:1.12;letter-spacing:-0.03em;color:#fff;}
+  .ef-review-tile__name:empty::before{content:"ФИО";color:rgba(255,255,255,0.28);}
+  .ef-review-tile__role{margin:0;font-size:13.5px;font-weight:600;line-height:1.35;color:rgba(255,255,255,0.62);}
+  .ef-review-tile__role:empty::before{content:"Должность";color:rgba(255,255,255,0.28);}
   .ef-review-tile__company{
     margin:8px 0 0;align-self:flex-start;padding:5px 10px;border-radius:999px;
-    font-size:11.5px;font-weight:700;letter-spacing:0.01em;color:rgba(21,21,21,0.7);
-    background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.7);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,0.8);}
+    font-size:11.5px;font-weight:700;letter-spacing:0.01em;color:rgba(255,255,255,0.82);
+    background:rgba(217,214,255,0.1);border:1px solid rgba(217,214,255,0.22);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);}
   .ef-review-tile__company:empty{display:none;}
   .ef-review-tile--quote{
     padding:clamp(24px,3vw,34px);gap:16px;min-height:240px;
     background:
-      radial-gradient(80% 70% at 100% 0%,rgba(255,255,255,0.5),transparent 55%),
-      linear-gradient(155deg,#ebe7ff 0%,var(--c-periwinkle) 52%,#b9b0f5 100%);
-    border:1.5px dashed rgba(255,184,226,0.85);
+      radial-gradient(80% 70% at 100% 0%,rgba(255,184,226,0.16),transparent 55%),
+      radial-gradient(70% 60% at 0% 100%,rgba(74,59,255,0.28),transparent 55%),
+      linear-gradient(155deg,#221c58 0%,#120e38 52%,#0a0724 100%);
+    border:1.5px dashed rgba(255,184,226,0.55);
     box-shadow:
-      0 22px 48px -28px rgba(5,2,48,0.55),
-      inset 0 1px 0 rgba(255,255,255,0.55);}
+      0 22px 48px -28px rgba(5,2,48,0.7),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+    color:#fff;}
   .ef-review-tile__label{
     display:inline-flex;align-items:center;gap:8px;margin:0;
-    font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(21,21,21,0.45);}
+    font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(217,214,255,0.55);}
   .ef-review-tile__label::before{
     content:"";width:18px;height:1.5px;
     background:linear-gradient(90deg,#ffb8e2,transparent);}
   .ef-review-tile__quote-mark{
     position:absolute;top:18px;right:22px;
     font-size:64px;font-weight:800;line-height:1;letter-spacing:-0.06em;
-    color:rgba(74,59,255,0.12);pointer-events:none;user-select:none;}
+    color:rgba(255,184,226,0.14);pointer-events:none;user-select:none;}
   .ef-review-tile__quote{
     margin:0;flex:1;position:relative;z-index:1;
     font-size:clamp(16px,1.7vw,19px);font-weight:600;line-height:1.48;
-    letter-spacing:-0.018em;color:#151515;font-style:normal;}
+    letter-spacing:-0.018em;color:rgba(255,255,255,0.9);font-style:normal;}
   .ef-review-tile__quote:empty::before{
-    content:"«Текст отзыва появится здесь»";color:rgba(21,21,21,0.3);font-weight:600;}
+    content:"«Текст отзыва появится здесь»";color:rgba(255,255,255,0.28);font-weight:600;}
   @media (max-width:640px){
     .ef-review-modal__panel{max-height:min(92vh,760px);}
     .ef-review-bento{grid-template-columns:1fr;}
