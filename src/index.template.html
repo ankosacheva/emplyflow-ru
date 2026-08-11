@@ -1134,6 +1134,8 @@ html, body {
 
   <!-- ===================== CLIENTS & PARTNERS ===================== -->
   <style>
+  /* Временно скрыт: убрать класс ef-clients--hidden с <section> */
+  .ef-clients--hidden{display:none!important;}
   .ef-clients{padding:clamp(28px,4vw,60px) clamp(16px,4vw,40px) clamp(44px,6vw,80px);}
   .ef-clients__panel{position:relative;max-width:1360px;margin:0 auto;overflow:hidden;border-radius:clamp(26px,3vw,40px);
     padding:clamp(28px,4vw,56px) clamp(20px,4vw,56px);
@@ -1301,7 +1303,7 @@ html, body {
     .ef-review-modal__panel{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(20,16,56,0.96);}
   }
   </style>
-  <section class="ef-clients" aria-labelledby="ef-clients-title">
+  <section class="ef-clients ef-clients--hidden" aria-labelledby="ef-clients-title" hidden>
     <div class="ef-clients__panel">
       <div class="ef-clients__head">
         <span class="ef-clients__eyebrow">Клиенты и партнёры</span>
