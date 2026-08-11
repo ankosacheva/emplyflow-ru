@@ -1171,38 +1171,61 @@ html, body {
   @media (max-width:640px){ .ef-client{min-height:auto;} }
   @media (prefers-reduced-motion:reduce){ .ef-client,.ef-client__cta,.ef-client__arw{transition:none;} }
 
-  .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:20px;}
+  .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:clamp(16px,3vw,28px);}
   .ef-review-modal.is-open{display:grid;}
   body.ef-review-open{overflow:hidden;}
-  .ef-review-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,0.72);}
+  .ef-review-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,0.78);}
   .ef-review-modal__panel{
-    position:relative;z-index:1;width:min(420px,calc(100vw - 32px));max-height:min(88vh,640px);overflow:auto;
-    padding:clamp(22px,4vw,30px);padding-top:clamp(42px,5vw,48px);border-radius:28px;border:1px solid rgba(217,214,255,0.22);
-    background:linear-gradient(155deg,rgba(36,32,78,0.97),rgba(16,12,44,0.96));
-    box-shadow:0 40px 90px -40px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.12);color:#fff;}
+    position:relative;z-index:1;width:min(720px,calc(100vw - 32px));max-height:min(90vh,560px);overflow:auto;
+    padding:clamp(16px,2.4vw,22px);padding-top:clamp(48px,5vw,56px);
+    border-radius:clamp(24px,3vw,32px);border:1px solid rgba(217,214,255,0.18);
+    background:
+      radial-gradient(70% 80% at 0% 0%,rgba(74,59,255,0.28),transparent 55%),
+      radial-gradient(60% 70% at 100% 100%,rgba(255,184,226,0.16),transparent 55%),
+      linear-gradient(155deg,rgba(28,24,64,0.98),rgba(10,8,36,0.98));
+    box-shadow:0 40px 90px -40px rgba(5,2,48,0.92),inset 0 1px 0 rgba(255,255,255,0.1);color:#151515;}
   .ef-review-modal__close{
-    position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;justify-content:center;
-    padding:6px 12px;border-radius:999px;border:1px solid rgba(217,214,255,0.24);
-    background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.88);
+    position:absolute;top:14px;right:14px;z-index:2;display:inline-flex;align-items:center;justify-content:center;
+    padding:7px 14px;border-radius:999px;border:1px solid rgba(217,214,255,0.28);
+    background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.9);
     font-size:12px;font-weight:600;font-family:inherit;line-height:1;cursor:pointer;transition:background .2s,border-color .2s;}
-  .ef-review-modal__close:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.36);color:#fff;}
-  .ef-review-card{display:flex;flex-direction:column;gap:14px;}
-  .ef-review-card__top{display:flex;align-items:center;gap:14px;}
-  .ef-review-card__avatar{
-    flex:none;width:56px;height:56px;border-radius:999px;
-    background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,0.12);}
-  .ef-review-card__meta{min-width:0;display:flex;flex-direction:column;gap:4px;}
-  .ef-review-card__name{margin:0;font-size:17px;font-weight:800;line-height:1.2;letter-spacing:-0.02em;color:#fff;}
-  .ef-review-card__name:empty{display:none;}
-  .ef-review-card__company{margin:0;font-size:13px;font-weight:700;color:rgba(217,214,255,0.88);}
-  .ef-review-card__role{margin:0;font-size:12.5px;font-weight:500;color:rgba(255,255,255,0.62);}
-  .ef-review-card__role:empty{display:none;}
-  .ef-review-card__quote{
-    margin:0;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.1);font-size:14px;line-height:1.55;color:rgba(255,255,255,0.84);
-    font-style:normal;min-height:72px;}
-  .ef-review-card__quote:empty::before{content:"«»";color:rgba(255,255,255,0.28);}
+  .ef-review-modal__close:hover{background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.4);color:#fff;}
+  .ef-review-bento{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.35fr);gap:14px;align-items:stretch;}
+  .ef-review-tile{position:relative;display:flex;flex-direction:column;min-width:0;border-radius:clamp(18px,2.2vw,24px);overflow:hidden;}
+  .ef-review-tile--person{
+    padding:clamp(20px,2.6vw,28px);gap:12px;justify-content:flex-end;
+    background:var(--c-frosted-mint);min-height:220px;}
+  .ef-review-tile--person .ef-review-tile__spark{
+    position:absolute;top:16px;right:16px;width:22px;height:22px;fill:#ffb8e2;pointer-events:none;}
+  .ef-review-tile__avatar{
+    width:64px;height:64px;border-radius:999px;flex:none;
+    display:grid;place-items:center;
+    background:rgba(21,21,21,0.08);border:1.5px solid rgba(21,21,21,0.12);
+    color:rgba(21,21,21,0.55);font-size:18px;font-weight:800;letter-spacing:-0.02em;}
+  .ef-review-tile__avatar:empty::before{content:"";width:22px;height:22px;border-radius:999px;background:rgba(21,21,21,0.18);}
+  .ef-review-tile__meta{display:flex;flex-direction:column;gap:4px;margin-top:auto;}
+  .ef-review-tile__name{margin:0;font-size:clamp(18px,2vw,22px);font-weight:800;line-height:1.15;letter-spacing:-0.025em;color:#151515;}
+  .ef-review-tile__name:empty::before{content:"ФИО";color:rgba(21,21,21,0.28);}
+  .ef-review-tile__role{margin:0;font-size:13.5px;font-weight:600;line-height:1.3;color:rgba(21,21,21,0.62);}
+  .ef-review-tile__role:empty::before{content:"Должность";color:rgba(21,21,21,0.28);}
+  .ef-review-tile__company{margin:4px 0 0;font-size:12px;font-weight:700;letter-spacing:0.02em;color:rgba(21,21,21,0.48);}
+  .ef-review-tile__company:empty{display:none;}
+  .ef-review-tile--quote{
+    padding:clamp(22px,2.8vw,32px);gap:14px;
+    background:var(--c-periwinkle);min-height:220px;}
+  .ef-review-tile__label{
+    margin:0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(21,21,21,0.42);}
+  .ef-review-tile__quote{
+    margin:0;flex:1;font-size:clamp(15px,1.6vw,18px);font-weight:600;line-height:1.45;
+    letter-spacing:-0.015em;color:#151515;font-style:normal;}
+  .ef-review-tile__quote:empty::before{
+    content:"«Текст отзыва появится здесь»";color:rgba(21,21,21,0.32);font-weight:600;}
+  @media (max-width:640px){
+    .ef-review-modal__panel{max-height:min(92vh,720px);}
+    .ef-review-bento{grid-template-columns:1fr;}
+    .ef-review-tile--person,.ef-review-tile--quote{min-height:0;}
+    .ef-review-tile--person{min-height:160px;}
+  }
   </style>
   <section class="ef-clients" aria-labelledby="ef-clients-title">
     <div class="ef-clients__panel">
@@ -2965,16 +2988,20 @@ html, body {
   <div class="ef-review-modal__backdrop" data-ef-review-close></div>
   <div class="ef-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-review-modal-title">
     <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Скрыть">Скрыть</button>
-    <div class="ef-review-card">
-      <div class="ef-review-card__top">
-        <div class="ef-review-card__avatar" aria-hidden="true"></div>
-        <div class="ef-review-card__meta">
-          <p class="ef-review-card__name" id="ef-review-modal-title" data-ef-review-field="name"></p>
-          <p class="ef-review-card__company" data-ef-review-field="company"></p>
-          <p class="ef-review-card__role" data-ef-review-field="role"></p>
+    <div class="ef-review-bento">
+      <div class="ef-review-tile ef-review-tile--person">
+        <svg class="ef-review-tile__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+        <div class="ef-review-tile__avatar" data-ef-review-field="initials" aria-hidden="true"></div>
+        <div class="ef-review-tile__meta">
+          <p class="ef-review-tile__name" id="ef-review-modal-title" data-ef-review-field="name"></p>
+          <p class="ef-review-tile__role" data-ef-review-field="role"></p>
+          <p class="ef-review-tile__company" data-ef-review-field="company"></p>
         </div>
       </div>
-      <blockquote class="ef-review-card__quote" data-ef-review-field="quote"></blockquote>
+      <div class="ef-review-tile ef-review-tile--quote">
+        <p class="ef-review-tile__label">Отзыв</p>
+        <blockquote class="ef-review-tile__quote" data-ef-review-field="quote"></blockquote>
+      </div>
     </div>
   </div>
 </div>
@@ -2983,18 +3010,23 @@ html, body {
   var lastTrigger=null;
   function getModal(){return document.getElementById('ef-review-modal');}
   function fill(card,modal){
+    var name=(card&&card.getAttribute('data-ef-review-name'))||'';
+    var role=(card&&card.getAttribute('data-ef-review-role'))||'';
+    var company=(card&&card.getAttribute('data-ef-review-company'))||'';
+    var quote=(card&&card.getAttribute('data-ef-review-quote'))||'';
+    var initials='';
+    if(name){
+      initials=name.trim().split(/\s+/).slice(0,2).map(function(p){return p.charAt(0);}).join('').toUpperCase();
+    }
     modal.querySelectorAll('[data-ef-review-field]').forEach(function(el){
       var key=el.getAttribute('data-ef-review-field');
       var val='';
-      if(card&&card.getAttribute)val=card.getAttribute('data-ef-review-'+key)||'';
-      if(key==='company'&&card&&card.getAttribute){
-        val=val||card.getAttribute('data-ef-review-company')||'';
-      }
-      if(el.tagName==='BLOCKQUOTE'){
-        el.textContent=val?('\u00ab'+val+'\u00bb'):'';
-      }else{
-        el.textContent=val;
-      }
+      if(key==='name')val=name;
+      else if(key==='role')val=role;
+      else if(key==='company')val=company;
+      else if(key==='quote')val=quote?('\u00ab'+quote+'\u00bb'):'';
+      else if(key==='initials')val=initials;
+      el.textContent=val;
     });
   }
   window.__efOpenReviewModal=function(card,trigger){
