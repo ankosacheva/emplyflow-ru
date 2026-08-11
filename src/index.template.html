@@ -551,8 +551,7 @@ html, body {
   .ef-hero__scribble--1{top:clamp(28px,5vw,74px);left:clamp(96px,17vw,270px);width:clamp(52px,6vw,90px);}
   .ef-hero__scribble--2{top:clamp(150px,20vw,270px);left:clamp(150px,26vw,400px);width:clamp(44px,5vw,74px);transform:rotate(168deg);}
   .ef-hero__sparkle3d{position:absolute;left:clamp(-8px,2vw,56px);top:clamp(190px,24vw,300px);width:clamp(88px,12vw,180px);height:auto;animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 22px 48px rgba(74,59,255,.55));pointer-events:none;}
-  .ef-hero__star{position:absolute;right:clamp(6vw,14vw,200px);top:clamp(150px,20vw,260px);width:clamp(74px,10vw,150px);height:auto;animation:efFloat 8s ease-in-out infinite;pointer-events:none;}
-
+  .ef-hero__star{position:absolute;right:clamp(48px,10vw,180px);top:clamp(56px,7.5vw,120px);width:clamp(48px,6vw,88px);height:auto;animation:efFloat 8s ease-in-out infinite;pointer-events:none;z-index:1;}
   .ef-hero__inner{position:relative;max-width:1200px;margin:0 auto;}
   .ef-hero__title{max-width:1000px;margin:0 auto;font-weight:800;font-size:clamp(27px,4.1vw,56px);line-height:0.98;letter-spacing:-0.032em;text-align:center;color:#fff;}
   /* левый край плашки стоит по центру заголовка — как на сайте */
@@ -573,13 +572,14 @@ html, body {
   }
   .ef-hero__lead .t-mint,
   .ef-hero__lead .t-pink{ font-weight:var(--fw-semi); }
-  .ef-hero__cta{display:flex;justify-content:center;margin-top:clamp(20px,2.6vw,32px);width:100%;}
+  .ef-hero__cta{display:flex;justify-content:center;align-items:center;margin-top:clamp(20px,2.6vw,32px);width:100%;}
+  .ef-hero__cta .ef-swipe-cta{margin-left:auto;margin-right:auto;flex:0 0 auto;}
   .ef-btn{display:inline-flex;align-items:center;gap:12px;border-radius:999px;font-size:15px;font-weight:600;transition:filter 150ms,box-shadow 150ms;}
   .ef-btn--indigo{background:#4a3bff;color:#fff;padding:9px 30px 9px 9px;}
   .ef-btn--indigo:hover{color:#fff;filter:brightness(1.09);}
   .ef-btn__ic{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;background:#fff;color:#4a3bff;}
 
-  .ef-hero__award{position:absolute;right:0;top:clamp(180px,22vw,280px);width:clamp(158px,16vw,215px);height:auto;}
+  .ef-hero__award{position:absolute;right:0;top:clamp(200px,24vw,310px);width:clamp(158px,16vw,215px);height:auto;z-index:2;}
 
   /* фон ролика совпадает с canvas Black Rock, поэтому рамка не нужна — он читается как часть страницы */
   .ef-hero__anim{position:relative;margin:clamp(18px,2.6vw,40px) auto 0;max-width:1180px;}
