@@ -1171,9 +1171,8 @@ html, body {
   @media (max-width:640px){ .ef-client{min-height:auto;} }
   @media (prefers-reduced-motion:reduce){ .ef-client,.ef-client__cta,.ef-client__arw{transition:none;} }
 
-  .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:20px;pointer-events:none;}
-  .ef-review-modal.is-open{display:grid;pointer-events:auto;}
-  .ef-review-modal[hidden]{display:none!important;pointer-events:none;}
+  .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:20px;}
+  .ef-review-modal.is-open{display:grid;}
   body.ef-review-open{overflow:hidden;}
   .ef-review-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,0.72);}
   .ef-review-modal__panel{
@@ -1231,85 +1230,6 @@ html, body {
       </div>
     </div>
   </section>
-
-  <div id="ef-review-modal" class="ef-review-modal" hidden aria-hidden="true">
-    <div class="ef-review-modal__backdrop" data-ef-review-close></div>
-    <div class="ef-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-review-modal-title">
-      <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Скрыть">Скрыть</button>
-      <div class="ef-review-card">
-        <div class="ef-review-card__top">
-          <div class="ef-review-card__avatar" aria-hidden="true"></div>
-          <div class="ef-review-card__meta">
-            <p class="ef-review-card__name" id="ef-review-modal-title" data-ef-review-field="name"></p>
-            <p class="ef-review-card__company" data-ef-review-field="company"></p>
-            <p class="ef-review-card__role" data-ef-review-field="role"></p>
-          </div>
-        </div>
-        <blockquote class="ef-review-card__quote" data-ef-review-field="quote"></blockquote>
-      </div>
-    </div>
-  </div>
-  <script>
-  (function(){
-    if(window.__efReviewModalBound)return;
-    window.__efReviewModalBound=true;
-    var modal=document.getElementById('ef-review-modal');
-    if(!modal)return;
-    var lastTrigger=null;
-    function fill(card){
-      modal.querySelectorAll('[data-ef-review-field]').forEach(function(el){
-        var key=el.getAttribute('data-ef-review-field');
-        var val='';
-        if(card&&card.getAttribute)val=card.getAttribute('data-ef-review-'+key)||'';
-        if(key==='company'&&card&&card.getAttribute){
-          val=val||card.getAttribute('data-ef-review-company')||'';
-        }
-        if(el.tagName==='BLOCKQUOTE'){
-          el.textContent=val?('\u00ab'+val+'\u00bb'):'';
-        }else{
-          el.textContent=val;
-        }
-      });
-    }
-    function openReview(card,trigger){
-      if(modal.classList.contains('is-open'))return;
-      lastTrigger=trigger||null;
-      fill(card);
-      modal.hidden=false;
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden','false');
-      document.body.classList.add('ef-review-open');
-      var closeBtn=modal.querySelector('.ef-review-modal__close');
-      if(closeBtn)closeBtn.focus();
-    }
-    function closeReview(){
-      if(!modal.classList.contains('is-open'))return;
-      modal.classList.remove('is-open');
-      modal.hidden=true;
-      modal.setAttribute('aria-hidden','true');
-      document.body.classList.remove('ef-review-open');
-      if(lastTrigger)lastTrigger.focus();
-      lastTrigger=null;
-    }
-    document.addEventListener('click',function(e){
-      var openBtn=e.target.closest('[data-ef-review-open]');
-      if(openBtn){
-        e.preventDefault();
-        e.stopPropagation();
-        var card=openBtn.closest('.ef-client');
-        if(card)openReview(card,openBtn);
-        return;
-      }
-      if(e.target.closest('[data-ef-review-close]')){
-        e.preventDefault();
-        closeReview();
-      }
-    });
-    document.addEventListener('keydown',function(e){
-      if(e.key==='Escape'&&modal.classList.contains('is-open'))closeReview();
-    });
-  })();
-  </script>
 
   <!-- ===================== BENEFIT TILES ===================== -->
   <section class="ef-benefits">
@@ -3041,6 +2961,86 @@ html, body {
 
 </div>
 </x-dc>
+<div id="ef-review-modal" class="ef-review-modal" aria-hidden="true">
+  <div class="ef-review-modal__backdrop" data-ef-review-close></div>
+  <div class="ef-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-review-modal-title">
+    <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Скрыть">Скрыть</button>
+    <div class="ef-review-card">
+      <div class="ef-review-card__top">
+        <div class="ef-review-card__avatar" aria-hidden="true"></div>
+        <div class="ef-review-card__meta">
+          <p class="ef-review-card__name" id="ef-review-modal-title" data-ef-review-field="name"></p>
+          <p class="ef-review-card__company" data-ef-review-field="company"></p>
+          <p class="ef-review-card__role" data-ef-review-field="role"></p>
+        </div>
+      </div>
+      <blockquote class="ef-review-card__quote" data-ef-review-field="quote"></blockquote>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var lastTrigger=null;
+  function getModal(){return document.getElementById('ef-review-modal');}
+  function fill(card,modal){
+    modal.querySelectorAll('[data-ef-review-field]').forEach(function(el){
+      var key=el.getAttribute('data-ef-review-field');
+      var val='';
+      if(card&&card.getAttribute)val=card.getAttribute('data-ef-review-'+key)||'';
+      if(key==='company'&&card&&card.getAttribute){
+        val=val||card.getAttribute('data-ef-review-company')||'';
+      }
+      if(el.tagName==='BLOCKQUOTE'){
+        el.textContent=val?('\u00ab'+val+'\u00bb'):'';
+      }else{
+        el.textContent=val;
+      }
+    });
+  }
+  window.__efOpenReviewModal=function(card,trigger){
+    var modal=getModal();
+    if(!modal||!card)return;
+    lastTrigger=trigger||null;
+    fill(card,modal);
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('ef-review-open');
+    var closeBtn=modal.querySelector('.ef-review-modal__close');
+    if(closeBtn)closeBtn.focus();
+  };
+  window.__efCloseReviewModal=function(){
+    var modal=getModal();
+    if(modal){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden','true');
+    }
+    document.body.classList.remove('ef-review-open');
+    if(lastTrigger)lastTrigger.focus();
+    lastTrigger=null;
+  };
+  if(window.__efReviewModalBound)return;
+  window.__efReviewModalBound=true;
+  document.addEventListener('click',function(e){
+    var openBtn=e.target.closest('[data-ef-review-open]');
+    if(openBtn){
+      e.preventDefault();
+      e.stopPropagation();
+      var card=openBtn.closest('.ef-client');
+      if(card)window.__efOpenReviewModal(card,openBtn);
+      return;
+    }
+    if(e.target.closest('[data-ef-review-close]')){
+      e.preventDefault();
+      window.__efCloseReviewModal();
+    }
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&getModal()&&getModal().classList.contains('is-open')){
+      window.__efCloseReviewModal();
+    }
+  });
+})();
+</script>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900}}">
 class Component extends DCLogic {
   state = { menuOpen: false, compact: false, modulesOpen: false, mobileModulesOpen: false };
