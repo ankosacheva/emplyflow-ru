@@ -1150,7 +1150,7 @@ html, body {
   .ef-client:hover{transform:translateY(-6px);border-color:rgba(217,214,255,0.4);
     box-shadow:0 30px 60px -30px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.16);}
   .ef-client:hover::before{opacity:1;}
-  .ef-client__logo{display:flex;align-items:center;min-height:clamp(40px,5vw,58px);padding-right:clamp(46px,5vw,58px);}
+  .ef-client__logo{display:flex;align-items:center;min-height:clamp(40px,5vw,58px);}
   .ef-client__logo-pad{display:inline-flex;align-items:center;padding:clamp(8px,1vw,12px) clamp(12px,1.4vw,16px);border-radius:14px;
     background:rgba(255,255,255,0.94);box-shadow:0 8px 24px -12px rgba(0,0,0,0.35);}
   .ef-client__logo img{display:block;max-width:min(100%,210px);max-height:clamp(34px,4vw,52px);width:auto;object-fit:contain;
@@ -1158,19 +1158,51 @@ html, body {
   .ef-client__logo--plain img{max-width:min(100%,230px);max-height:clamp(36px,4.2vw,56px);}
   .ef-client__logo--big .ef-client__logo-pad{padding:clamp(10px,1.2vw,14px) clamp(14px,1.6vw,18px);}
   .ef-client__logo--big img{max-width:min(100%,116px);max-height:clamp(52px,6vw,72px);filter:none;}
-  .ef-client__cta{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:rgba(255,255,255,0.82);}
-  .ef-client__cta svg{transition:transform .4s cubic-bezier(.16,1,.3,1);}
-  .ef-client:hover .ef-client__cta{color:#fff;}
-  .ef-client:hover .ef-client__cta svg{transform:translate(4px,-4px);}
-  /* Временно: отзывы клиентов ещё не готовы — убрать display:none, когда появятся */
-  .ef-client__cta{display:none !important;}
-  .ef-client__arrow{position:absolute;top:clamp(16px,2vw,24px);right:clamp(16px,2vw,24px);width:38px;height:38px;border-radius:999px;
-    display:grid;place-items:center;color:#fff;
-    border:1px solid rgba(217,214,255,0.22);background:rgba(255,255,255,0.06);
-    transition:transform .4s cubic-bezier(.16,1,.3,1),background .4s,border-color .4s;}
-  .ef-client:hover .ef-client__arrow{transform:rotate(0) scale(1.06);background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.4);}
+  .ef-client__name{margin:0;font-size:15px;font-weight:700;line-height:1.25;color:rgba(255,255,255,0.92);}
+  .ef-client__cta{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin:0;padding:9px 16px;border-radius:999px;
+    border:1px solid rgba(217,214,255,0.28);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.9);
+    font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-decoration:none;
+    transition:background .3s,border-color .3s,color .3s,transform .3s cubic-bezier(.16,1,.3,1);}
+  button.ef-client__cta{-webkit-appearance:none;appearance:none;}
+  .ef-client:hover .ef-client__cta,.ef-client__cta:hover{color:#fff;border-color:rgba(255,255,255,0.42);background:rgba(255,255,255,0.14);}
+  .ef-client__cta:focus-visible{outline:2px solid var(--c-cotton-candy);outline-offset:3px;}
+  .ef-client__arrow{display:none;}
   @media (max-width:640px){ .ef-client{min-height:auto;} }
-  @media (prefers-reduced-motion:reduce){ .ef-client,.ef-client__cta svg,.ef-client__arrow{transition:none;} }
+  @media (prefers-reduced-motion:reduce){ .ef-client,.ef-client__cta{transition:none;} }
+
+  .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:20px;}
+  .ef-review-modal.is-open{display:grid;}
+  .ef-review-modal[hidden]{display:none!important;}
+  body.ef-review-open{overflow:hidden;}
+  .ef-review-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,0.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+  .ef-review-modal__panel{
+    position:relative;z-index:1;width:min(420px,calc(100vw - 32px));max-height:min(88vh,640px);overflow:auto;
+    padding:clamp(22px,4vw,30px);border-radius:28px;border:1px solid rgba(217,214,255,0.22);
+    background:linear-gradient(158deg,rgba(255,255,255,0.14),rgba(255,255,255,0.06));
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    box-shadow:0 40px 90px -40px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.12);color:#fff;}
+  .ef-review-modal__close{
+    position:absolute;top:12px;right:12px;width:34px;height:34px;border:0;border-radius:999px;
+    background:rgba(255,255,255,0.08);color:#fff;font-size:22px;line-height:1;cursor:pointer;
+    border:1px solid rgba(217,214,255,0.2);transition:background .2s;}
+  .ef-review-modal__close:hover{background:rgba(255,255,255,0.16);}
+  .ef-review-card{display:flex;flex-direction:column;gap:14px;}
+  .ef-review-card__top{display:flex;align-items:center;gap:14px;}
+  .ef-review-card__avatar{
+    flex:none;width:56px;height:56px;border-radius:999px;
+    background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.12);}
+  .ef-review-card__meta{min-width:0;display:flex;flex-direction:column;gap:4px;}
+  .ef-review-card__name{margin:0;font-size:17px;font-weight:800;line-height:1.2;letter-spacing:-0.02em;color:#fff;}
+  .ef-review-card__name:empty{display:none;}
+  .ef-review-card__company{margin:0;font-size:13px;font-weight:700;color:rgba(217,214,255,0.88);}
+  .ef-review-card__role{margin:0;font-size:12.5px;font-weight:500;color:rgba(255,255,255,0.62);}
+  .ef-review-card__role:empty{display:none;}
+  .ef-review-card__quote{
+    margin:0;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);font-size:14px;line-height:1.55;color:rgba(255,255,255,0.84);
+    font-style:normal;min-height:72px;}
+  .ef-review-card__quote:empty::before{content:"«»";color:rgba(255,255,255,0.28);}
   </style>
   <section class="ef-clients" aria-labelledby="ef-clients-title">
     <div class="ef-clients__panel">
@@ -1180,24 +1212,96 @@ html, body {
         <p class="ef-clients__lead">Отзывы о работе с командой EmplyFlow: от партнёров по совместным проектам и заказчиков, внедривших платформу в своей компании. О ходе совместной работы и результатах на практике.</p>
       </div>
       <div class="ef-clients__grid">
-        <a class="ef-client" style="--client-glow:rgba(56,180,74,0.42);" href="/karyernye-treki-inzhiniring">
-          <span class="ef-client__arrow" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-          <span class="ef-client__logo ef-client__logo--big"><span class="ef-client__logo-pad"><img src="images/partner-b1.png?v=3" alt="Б1 — Новые вызовы, новые решения"></span></span>
-          <span class="ef-client__cta">Читать отзыв <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-        </a>
-        <a class="ef-client" style="--client-glow:rgba(123,0,255,0.45);" href="/avtomatizatsiya-otsenki-po-keysam-v-telekome">
-          <span class="ef-client__arrow" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+        <article class="ef-client" style="--client-glow:rgba(56,180,74,0.42);" data-ef-review-company="Б1">
+          <span class="ef-client__logo ef-client__logo--big"><span class="ef-client__logo-pad"><img src="images/partner-b1.png?v=3" alt="Б1"></span></span>
+          <p class="ef-client__name">Б1</p>
+          <button type="button" class="ef-client__cta" data-ef-review-open>Читать</button>
+        </article>
+        <article class="ef-client" style="--client-glow:rgba(123,0,255,0.45);" data-ef-review-company="Ростелеком">
           <span class="ef-client__logo ef-client__logo--plain"><img src="images/partner-rostelecom.png" alt="Ростелеком"></span>
-          <span class="ef-client__cta">Читать отзыв <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-        </a>
-        <a class="ef-client" style="--client-glow:rgba(191,255,0,0.38);" href="#cases">
-          <span class="ef-client__arrow" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+          <p class="ef-client__name">Ростелеком</p>
+          <button type="button" class="ef-client__cta" data-ef-review-open>Читать</button>
+        </article>
+        <article class="ef-client" style="--client-glow:rgba(191,255,0,0.38);" data-ef-review-company="Золотое Яблоко">
           <span class="ef-client__logo"><span class="ef-client__logo-pad"><img src="images/partner-zolotoe-yabloko.png?v=2" alt="Золотое Яблоко"></span></span>
-          <span class="ef-client__cta">Читать отзыв <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-        </a>
+          <p class="ef-client__name">Золотое Яблоко</p>
+          <button type="button" class="ef-client__cta" data-ef-review-open>Читать</button>
+        </article>
       </div>
     </div>
   </section>
+
+  <div id="ef-review-modal" class="ef-review-modal" hidden aria-hidden="true">
+    <div class="ef-review-modal__backdrop" data-ef-review-close></div>
+    <div class="ef-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-review-modal-title">
+      <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Закрыть">×</button>
+      <div class="ef-review-card">
+        <div class="ef-review-card__top">
+          <div class="ef-review-card__avatar" aria-hidden="true"></div>
+          <div class="ef-review-card__meta">
+            <p class="ef-review-card__name" id="ef-review-modal-title" data-ef-review-field="name"></p>
+            <p class="ef-review-card__company" data-ef-review-field="company"></p>
+            <p class="ef-review-card__role" data-ef-review-field="role"></p>
+          </div>
+        </div>
+        <blockquote class="ef-review-card__quote" data-ef-review-field="quote"></blockquote>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var modal=document.getElementById('ef-review-modal');
+    if(!modal)return;
+    var lastTrigger=null;
+    function fill(card){
+      var data=card||{};
+      modal.querySelectorAll('[data-ef-review-field]').forEach(function(el){
+        var key=el.getAttribute('data-ef-review-field');
+        var val='';
+        if(card&&card.getAttribute)val=card.getAttribute('data-ef-review-'+key)||'';
+        if(key==='company'&&card&&card.getAttribute){
+          val=val||card.getAttribute('data-ef-review-company')||'';
+        }
+        if(el.tagName==='BLOCKQUOTE'){
+          el.textContent=val?('\u00ab'+val+'\u00bb'):'';
+        }else{
+          el.textContent=val;
+        }
+      });
+    }
+    function openReview(card,trigger){
+      lastTrigger=trigger||null;
+      fill(card);
+      modal.classList.add('is-open');
+      modal.hidden=false;
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('ef-review-open');
+      var closeBtn=modal.querySelector('.ef-review-modal__close');
+      if(closeBtn)setTimeout(function(){closeBtn.focus();},40);
+    }
+    function closeReview(){
+      modal.classList.remove('is-open');
+      modal.hidden=true;
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('ef-review-open');
+      if(lastTrigger)lastTrigger.focus();
+      lastTrigger=null;
+    }
+    document.addEventListener('click',function(e){
+      var openBtn=e.target.closest('[data-ef-review-open]');
+      if(openBtn){
+        e.preventDefault();
+        var card=openBtn.closest('.ef-client');
+        if(card)openReview(card,openBtn);
+        return;
+      }
+      if(e.target.closest('[data-ef-review-close]'))closeReview();
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&modal.classList.contains('is-open'))closeReview();
+    });
+  })();
+  </script>
 
   <!-- ===================== BENEFIT TILES ===================== -->
   <section class="ef-benefits">
