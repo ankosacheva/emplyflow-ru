@@ -1166,9 +1166,11 @@ html, body {
   button.ef-client__cta{-webkit-appearance:none;appearance:none;}
   .ef-client:hover .ef-client__cta,.ef-client__cta:hover{color:#fff;border-color:rgba(255,255,255,0.42);background:rgba(255,255,255,0.14);}
   .ef-client__cta:focus-visible{outline:2px solid var(--c-cotton-candy);outline-offset:3px;}
+  .ef-client__arw{flex:none;transition:transform .35s cubic-bezier(.16,1,.3,1);}
+  .ef-client:hover .ef-client__arw,.ef-client__cta:hover .ef-client__arw{transform:translate(3px,-3px);}
   .ef-client__arrow{display:none;}
   @media (max-width:640px){ .ef-client{min-height:auto;} }
-  @media (prefers-reduced-motion:reduce){ .ef-client,.ef-client__cta{transition:none;} }
+  @media (prefers-reduced-motion:reduce){ .ef-client,.ef-client__cta,.ef-client__arw{transition:none;} }
 
   .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:20px;}
   .ef-review-modal.is-open{display:grid;}
@@ -1215,17 +1217,17 @@ html, body {
         <article class="ef-client" style="--client-glow:rgba(56,180,74,0.42);" data-ef-review-company="Группа компаний Б1 (B1)">
           <span class="ef-client__logo ef-client__logo--big"><span class="ef-client__logo-pad"><img src="images/partner-b1.png?v=3" alt="Группа компаний Б1 (B1)"></span></span>
           <p class="ef-client__name">Группа компаний Б1 (B1)</p>
-          <button type="button" class="ef-client__cta" data-ef-review-open>Читать</button>
+          <button type="button" class="ef-client__cta" data-ef-review-open>Читать <svg class="ef-client__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></button>
         </article>
         <article class="ef-client" style="--client-glow:rgba(123,0,255,0.45);" data-ef-review-company="ПАО «Ростелеком»">
           <span class="ef-client__logo ef-client__logo--plain"><img src="images/partner-rostelecom.png" alt="ПАО «Ростелеком»"></span>
           <p class="ef-client__name">ПАО «Ростелеком»</p>
-          <button type="button" class="ef-client__cta" data-ef-review-open>Читать</button>
+          <button type="button" class="ef-client__cta" data-ef-review-open>Читать <svg class="ef-client__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></button>
         </article>
         <article class="ef-client" style="--client-glow:rgba(191,255,0,0.38);" data-ef-review-company="Компания «Золотое Яблоко»">
           <span class="ef-client__logo"><span class="ef-client__logo-pad"><img src="images/partner-zolotoe-yabloko.png?v=2" alt="Компания «Золотое Яблоко»"></span></span>
           <p class="ef-client__name">Компания «Золотое Яблоко»</p>
-          <button type="button" class="ef-client__cta" data-ef-review-open>Читать</button>
+          <button type="button" class="ef-client__cta" data-ef-review-open>Читать <svg class="ef-client__arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></button>
         </article>
       </div>
     </div>
