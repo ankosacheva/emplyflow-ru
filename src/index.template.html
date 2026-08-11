@@ -1125,8 +1125,7 @@ html, body {
       radial-gradient(80% 130% at 8% 0%,rgba(74,59,255,0.42),transparent 60%),
       radial-gradient(70% 120% at 100% 10%,rgba(255,184,226,0.30),transparent 62%),
       radial-gradient(90% 140% at 60% 120%,rgba(213,255,243,0.20),transparent 60%),
-      linear-gradient(155deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
-    backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);
+      linear-gradient(155deg,rgba(32,28,72,0.88),rgba(18,14,48,0.82));
     box-shadow:0 40px 90px -40px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.12);}
   .ef-clients__panel::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
     background:radial-gradient(60% 40% at 84% 0%,rgba(255,255,255,0.18),transparent 60%);opacity:0.7;}
@@ -1139,22 +1138,22 @@ html, body {
   .ef-client{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(20px,3vw,34px);min-height:clamp(150px,15vw,196px);
     padding:clamp(20px,2.4vw,30px);border-radius:clamp(20px,2.2vw,28px);
     border:1px solid rgba(217,214,255,0.16);
-    background:linear-gradient(158deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    background:linear-gradient(158deg,rgba(48,42,96,0.72),rgba(28,24,64,0.58));
     box-shadow:inset 0 1px 0 rgba(255,255,255,0.10);
-    text-decoration:none;overflow:hidden;isolation:isolate;
-    transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s,box-shadow .4s,background .4s;}
+    text-decoration:none;overflow:hidden;isolation:isolate;contain:layout paint;
+    transition:border-color .35s,box-shadow .35s,background .35s;}
   .ef-client::before{content:"";position:absolute;z-index:-1;inset:-1px;border-radius:inherit;opacity:0;
     background:radial-gradient(80% 120% at 20% 0%,var(--client-glow,rgba(74,59,255,0.5)),transparent 62%);
-    transition:opacity .4s;}
-  .ef-client:hover{transform:translateY(-6px);border-color:rgba(217,214,255,0.4);
-    box-shadow:0 30px 60px -30px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.16);}
-  .ef-client:hover::before{opacity:1;}
+    transition:opacity .35s;}
+  @media (hover:hover){
+    .ef-client:hover{transform:translateY(-6px);border-color:rgba(217,214,255,0.4);
+      box-shadow:0 30px 60px -30px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.16);}
+    .ef-client:hover::before{opacity:1;}
+  }
   .ef-client__logo{display:flex;align-items:center;min-height:clamp(40px,5vw,58px);}
   .ef-client__logo-pad{display:inline-flex;align-items:center;padding:clamp(8px,1vw,12px) clamp(12px,1.4vw,16px);border-radius:14px;
     background:rgba(255,255,255,0.94);box-shadow:0 8px 24px -12px rgba(0,0,0,0.35);}
-  .ef-client__logo img{display:block;max-width:min(100%,210px);max-height:clamp(34px,4vw,52px);width:auto;object-fit:contain;
-    filter:drop-shadow(0 4px 14px rgba(0,0,0,0.25));}
+  .ef-client__logo img{display:block;max-width:min(100%,210px);max-height:clamp(34px,4vw,52px);width:auto;object-fit:contain;}
   .ef-client__logo--plain img{max-width:min(100%,230px);max-height:clamp(36px,4.2vw,56px);}
   .ef-client__logo--big .ef-client__logo-pad{padding:clamp(10px,1.2vw,14px) clamp(14px,1.6vw,18px);}
   .ef-client__logo--big img{max-width:min(100%,116px);max-height:clamp(52px,6vw,72px);filter:none;}
@@ -1172,22 +1171,22 @@ html, body {
   @media (max-width:640px){ .ef-client{min-height:auto;} }
   @media (prefers-reduced-motion:reduce){ .ef-client,.ef-client__cta,.ef-client__arw{transition:none;} }
 
-  .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:20px;}
-  .ef-review-modal.is-open{display:grid;}
-  .ef-review-modal[hidden]{display:none!important;}
+  .ef-review-modal{position:fixed;inset:0;z-index:100001;display:none;place-items:center;padding:20px;pointer-events:none;}
+  .ef-review-modal.is-open{display:grid;pointer-events:auto;}
+  .ef-review-modal[hidden]{display:none!important;pointer-events:none;}
   body.ef-review-open{overflow:hidden;}
-  .ef-review-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,0.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+  .ef-review-modal__backdrop{position:absolute;inset:0;background:rgba(5,2,48,0.72);}
   .ef-review-modal__panel{
     position:relative;z-index:1;width:min(420px,calc(100vw - 32px));max-height:min(88vh,640px);overflow:auto;
-    padding:clamp(22px,4vw,30px);border-radius:28px;border:1px solid rgba(217,214,255,0.22);
-    background:linear-gradient(158deg,rgba(255,255,255,0.14),rgba(255,255,255,0.06));
-    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    padding:clamp(22px,4vw,30px);padding-top:clamp(42px,5vw,48px);border-radius:28px;border:1px solid rgba(217,214,255,0.22);
+    background:linear-gradient(155deg,rgba(36,32,78,0.97),rgba(16,12,44,0.96));
     box-shadow:0 40px 90px -40px rgba(5,2,48,0.9),inset 0 1px 0 rgba(255,255,255,0.12);color:#fff;}
   .ef-review-modal__close{
-    position:absolute;top:12px;right:12px;width:34px;height:34px;border:0;border-radius:999px;
-    background:rgba(255,255,255,0.08);color:#fff;font-size:22px;line-height:1;cursor:pointer;
-    border:1px solid rgba(217,214,255,0.2);transition:background .2s;}
-  .ef-review-modal__close:hover{background:rgba(255,255,255,0.16);}
+    position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;justify-content:center;
+    padding:6px 12px;border-radius:999px;border:1px solid rgba(217,214,255,0.24);
+    background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.88);
+    font-size:12px;font-weight:600;font-family:inherit;line-height:1;cursor:pointer;transition:background .2s,border-color .2s;}
+  .ef-review-modal__close:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.36);color:#fff;}
   .ef-review-card{display:flex;flex-direction:column;gap:14px;}
   .ef-review-card__top{display:flex;align-items:center;gap:14px;}
   .ef-review-card__avatar{
@@ -1236,7 +1235,7 @@ html, body {
   <div id="ef-review-modal" class="ef-review-modal" hidden aria-hidden="true">
     <div class="ef-review-modal__backdrop" data-ef-review-close></div>
     <div class="ef-review-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ef-review-modal-title">
-      <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Закрыть">×</button>
+      <button type="button" class="ef-review-modal__close" data-ef-review-close aria-label="Скрыть">Скрыть</button>
       <div class="ef-review-card">
         <div class="ef-review-card__top">
           <div class="ef-review-card__avatar" aria-hidden="true"></div>
@@ -1252,11 +1251,12 @@ html, body {
   </div>
   <script>
   (function(){
+    if(window.__efReviewModalBound)return;
+    window.__efReviewModalBound=true;
     var modal=document.getElementById('ef-review-modal');
     if(!modal)return;
     var lastTrigger=null;
     function fill(card){
-      var data=card||{};
       modal.querySelectorAll('[data-ef-review-field]').forEach(function(el){
         var key=el.getAttribute('data-ef-review-field');
         var val='';
@@ -1272,16 +1272,18 @@ html, body {
       });
     }
     function openReview(card,trigger){
+      if(modal.classList.contains('is-open'))return;
       lastTrigger=trigger||null;
       fill(card);
-      modal.classList.add('is-open');
       modal.hidden=false;
+      modal.classList.add('is-open');
       modal.setAttribute('aria-hidden','false');
       document.body.classList.add('ef-review-open');
       var closeBtn=modal.querySelector('.ef-review-modal__close');
-      if(closeBtn)setTimeout(function(){closeBtn.focus();},40);
+      if(closeBtn)closeBtn.focus();
     }
     function closeReview(){
+      if(!modal.classList.contains('is-open'))return;
       modal.classList.remove('is-open');
       modal.hidden=true;
       modal.setAttribute('aria-hidden','true');
@@ -1293,11 +1295,15 @@ html, body {
       var openBtn=e.target.closest('[data-ef-review-open]');
       if(openBtn){
         e.preventDefault();
+        e.stopPropagation();
         var card=openBtn.closest('.ef-client');
         if(card)openReview(card,openBtn);
         return;
       }
-      if(e.target.closest('[data-ef-review-close]'))closeReview();
+      if(e.target.closest('[data-ef-review-close]')){
+        e.preventDefault();
+        closeReview();
+      }
     });
     document.addEventListener('keydown',function(e){
       if(e.key==='Escape'&&modal.classList.contains('is-open'))closeReview();
