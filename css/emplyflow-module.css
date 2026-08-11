@@ -8992,6 +8992,14 @@ body[data-module="nine-box"] .mdet__grid--bento .mcard--bento-nb-zones .mcols {
   .mtop__inner { gap: 10px; }
   .mmode__btn { padding: 7px 12px; font-size: 12.5px; }
   .mtop__cta { display: none; }
+  .mfin__inner { flex-direction: column; align-items: stretch; }
+  .mfin__cta {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
   .mwin__body { padding: 14px; }
   .mgd__stage { min-height: 340px; }
   .mgd__step { flex: 1 1 calc(50% - 6px); text-align: left; }

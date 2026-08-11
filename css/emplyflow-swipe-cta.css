@@ -1,0 +1,164 @@
+/* EmplyFlow — свайп-кнопки (главная) */
+.ef-swipe-cta {
+  --ef-swipe-handle: 38px;
+  --ef-swipe-pad-l: 9px;
+  --ef-swipe-pad-r: 18px;
+  width: min(100%, 340px);
+  --offset: 0px;
+  --progress: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+
+.ef-swipe-cta__track {
+  position: relative;
+  min-height: 56px;
+  height: auto;
+  border-radius: 999px;
+  background: #4a3bff;
+  overflow: hidden;
+  box-shadow: 0 12px 26px -10px rgba(74, 59, 255, 0.7);
+  cursor: pointer;
+}
+
+.ef-swipe-cta__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px calc(var(--ef-swipe-handle) + var(--ef-swipe-pad-r) + 6px) 8px calc(var(--ef-swipe-pad-l) + var(--ef-swipe-handle) + 8px);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-wrap: balance;
+  color: #fff;
+  pointer-events: none;
+  opacity: calc(1 - var(--progress) * 1.15);
+  transition: opacity 0.15s ease;
+  box-sizing: border-box;
+}
+
+.ef-swipe-cta__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--ef-swipe-pad-l) + var(--ef-swipe-handle) + var(--offset));
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.ef-swipe-cta__hint {
+  position: absolute;
+  right: var(--ef-swipe-pad-r);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.42);
+  pointer-events: none;
+  opacity: calc(0.85 - var(--progress));
+  transition: opacity 0.15s ease;
+}
+
+.ef-swipe-cta__handle {
+  position: absolute;
+  left: calc(var(--ef-swipe-pad-l) + var(--offset));
+  top: 50%;
+  width: var(--ef-swipe-handle);
+  height: var(--ef-swipe-handle);
+  margin-top: calc(var(--ef-swipe-handle) / -2);
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  color: #4a3bff;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  z-index: 2;
+  touch-action: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  transition: left 0.24s cubic-bezier(0.2, 0.7, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(5, 2, 48, 0.12);
+}
+
+.ef-swipe-cta.is-dragging .ef-swipe-cta__handle {
+  cursor: grabbing;
+  transition: none;
+}
+
+.ef-swipe-cta.is-dragging {
+  touch-action: none;
+}
+
+.ef-swipe-cta.is-complete .ef-swipe-cta__track {
+  filter: brightness(1.06);
+}
+
+.ef-swipe-cta--wide {
+  width: min(100%, 420px);
+}
+
+.ef-swipe-cta--wide .ef-swipe-cta__label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ef-contacts-cta {
+  width: min(100%, 520px);
+}
+
+@media (max-width: 640px) {
+  .ef-swipe-cta,
+  .ef-swipe-cta--wide,
+  .ef-contacts-cta {
+    width: 100%;
+    max-width: none;
+  }
+
+  .ef-hero__cta {
+    width: 100%;
+  }
+
+  .ef-hero__cta .ef-swipe-cta {
+    width: 100%;
+  }
+
+  .ef-swipe-cta {
+    --ef-swipe-handle: 34px;
+    --ef-swipe-pad-r: 12px;
+  }
+
+  .ef-swipe-cta__track {
+    min-height: 52px;
+  }
+
+  .ef-swipe-cta__label {
+    font-size: clamp(12px, 3.4vw, 14px);
+    padding: 6px calc(var(--ef-swipe-handle) + var(--ef-swipe-pad-r) + 4px) 6px calc(var(--ef-swipe-pad-l) + var(--ef-swipe-handle) + 6px);
+  }
+
+  .ef-swipe-cta--wide .ef-swipe-cta__label {
+    font-size: clamp(11.5px, 3.1vw, 13.5px);
+    line-height: 1.25;
+  }
+
+  .ef-swipe-cta__hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ef-swipe-cta__handle {
+    cursor: pointer;
+  }
+
+  .ef-swipe-cta__hint {
+    display: none;
+  }
+}

@@ -573,26 +573,11 @@ html, body {
   }
   .ef-hero__lead .t-mint,
   .ef-hero__lead .t-pink{ font-weight:var(--fw-semi); }
-  .ef-hero__cta{display:flex;justify-content:center;margin-top:clamp(20px,2.6vw,32px);}
+  .ef-hero__cta{display:flex;justify-content:center;margin-top:clamp(20px,2.6vw,32px);width:100%;}
   .ef-btn{display:inline-flex;align-items:center;gap:12px;border-radius:999px;font-size:15px;font-weight:600;transition:filter 150ms,box-shadow 150ms;}
   .ef-btn--indigo{background:#4a3bff;color:#fff;padding:9px 30px 9px 9px;}
   .ef-btn--indigo:hover{color:#fff;filter:brightness(1.09);}
   .ef-btn__ic{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;background:#fff;color:#4a3bff;}
-  .ef-swipe-cta{width:min(340px,calc(100vw - 48px));--offset:0px;--progress:0;user-select:none;-webkit-user-select:none;touch-action:pan-y;}
-  .ef-swipe-cta__track{position:relative;height:56px;border-radius:999px;background:#4a3bff;overflow:hidden;box-shadow:0 12px 26px -10px rgba(74,59,255,.7);cursor:pointer;}
-  .ef-swipe-cta__label{position:absolute;inset:0;display:grid;place-items:center;padding:0 52px 0 56px;font-size:15px;font-weight:600;color:#fff;pointer-events:none;opacity:calc(1 - var(--progress) * 1.15);transition:opacity .15s ease;}
-  .ef-swipe-cta__fill{position:absolute;left:0;top:0;bottom:0;width:calc(9px + 38px + var(--offset));background:rgba(255,255,255,.12);border-radius:999px;pointer-events:none;}
-  .ef-swipe-cta__hint{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:18px;line-height:1;color:rgba(255,255,255,.42);pointer-events:none;opacity:calc(.85 - var(--progress));transition:opacity .15s ease;}
-  .ef-swipe-cta__handle{position:absolute;left:calc(9px + var(--offset));top:50%;width:38px;height:38px;margin-top:-19px;border:none;border-radius:999px;background:#fff;color:#4a3bff;display:grid;place-items:center;cursor:grab;z-index:2;touch-action:none;-webkit-user-drag:none;user-drag:none;transition:left .24s cubic-bezier(.2,.7,.2,1);box-shadow:0 2px 8px rgba(5,2,48,.12);}
-  .ef-swipe-cta.is-dragging .ef-swipe-cta__handle{cursor:grabbing;transition:none;}
-  .ef-swipe-cta.is-dragging{touch-action:none;}
-  .ef-swipe-cta.is-complete .ef-swipe-cta__track{filter:brightness(1.06);}
-  .ef-swipe-cta--wide{width:min(420px,calc(100vw - 48px));}
-  .ef-swipe-cta--wide .ef-swipe-cta__label{font-size:16px;font-weight:500;padding:0 52px 0 56px;}
-  @media (prefers-reduced-motion:reduce){
-    .ef-swipe-cta__handle{cursor:pointer;}
-    .ef-swipe-cta__hint{display:none;}
-  }
 
   .ef-hero__award{position:absolute;right:0;top:clamp(180px,22vw,280px);width:clamp(158px,16vw,215px);height:auto;}
 
@@ -769,7 +754,8 @@ html, body {
   }
 </style>
 <link rel="stylesheet" href="css/emplyflow-demo-form.css">
-<link rel="stylesheet" href="css/emplyflow-site-footer.css">
+<link rel="stylesheet" href="css/emplyflow-swipe-cta.css?v=20260811b">
+<link rel="stylesheet" href="css/emplyflow-site-footer.css?v=20260811b">
 </helmet>
 
 <div style="background:#050230;overflow-x:hidden;">
@@ -2597,7 +2583,8 @@ html, body {
   <section id="contacts" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px) clamp(40px,6vw,56px);background:linear-gradient(180deg,#050230 0%,#0a0540 100%);">
     <div style="max-width:1360px;margin:0 auto;">
       <h2 style="font-weight:800;font-size:clamp(30px,5.4vw,68px);line-height:1.04;letter-spacing:-0.03em;color:#fff;max-width:1000px;margin:0 0 clamp(28px,4vw,40px);">Сделайте процессы прозрачными и управляемыми</h2>
-      <div class="ef-swipe-cta ef-swipe-cta--wide" data-action="demo-form" role="group" aria-label="Свайпните вправо или нажмите, чтобы оставить заявку на демодоступ">
+      <div class="ef-contacts-cta">
+        <div class="ef-swipe-cta ef-swipe-cta--wide" data-action="demo-form" role="group" aria-label="Свайпните вправо или нажмите, чтобы оставить заявку на демодоступ">
         <div class="ef-swipe-cta__track">
           <div class="ef-swipe-cta__fill" aria-hidden="true"></div>
           <span class="ef-swipe-cta__label">Получить демодоступ к платформе</span>
@@ -2605,6 +2592,7 @@ html, body {
           <span class="ef-swipe-cta__handle" role="button" tabindex="0" aria-label="Потяните вправо, чтобы открыть форму заявки">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
           </span>
+        </div>
         </div>
       </div>
     </div>
