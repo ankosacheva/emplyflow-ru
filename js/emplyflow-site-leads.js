@@ -181,6 +181,44 @@
     form.classList.add('is-success');
     var success = form.querySelector('[data-ef-success]');
     if (success) success.classList.add('is-visible');
+    var panel = form.closest('.ef-demo-modal__panel');
+    if (panel) panel.classList.add('ef-demo-modal__panel--success');
+  }
+
+  function resetLeadForm(form) {
+    if (!form) {
+      var modal = document.getElementById('ef-demo-modal');
+      form = modal ? modal.querySelector(FORM_SELECTOR) : null;
+    }
+    if (!form) return;
+    form.classList.remove('is-success');
+    form.removeAttribute('data-ef-sending');
+    var success = form.querySelector('[data-ef-success]');
+    if (success) success.classList.remove('is-visible');
+    setError(form, '');
+    clearFieldErrors(form);
+    var btn = form.querySelector('[type="submit"]');
+    if (btn) {
+      btn.disabled = false;
+      if (btn.dataset.efOriginalText) btn.textContent = btn.dataset.efOriginalText;
+    }
+    var panel = form.closest('.ef-demo-modal__panel');
+    if (panel) panel.classList.remove('ef-demo-modal__panel--success');
+    try {
+      form.reset();
+    } catch (e) {}
+  }
+
+  window.__efResetLeadForm = resetLeadForm;
+
+  function patchDemoClose() {
+    var prev = window.__efCloseDemoForm;
+    if (!prev || prev.__efResetWrapped) return;
+    window.__efCloseDemoForm = function () {
+      resetLeadForm();
+      return prev.apply(this, arguments);
+    };
+    window.__efCloseDemoForm.__efResetWrapped = true;
   }
 
   function onSubmit(event) {
@@ -245,6 +283,7 @@
 
   function boot() {
     bindForms(document);
+    patchDemoClose();
   }
 
   if (document.readyState === 'loading') {
@@ -252,6 +291,8 @@
   } else {
     boot();
   }
+  window.setTimeout(patchDemoClose, 0);
+  window.setTimeout(patchDemoClose, 400);
 
   if (typeof MutationObserver !== 'undefined') {
     var mo = new MutationObserver(function (mutations) {

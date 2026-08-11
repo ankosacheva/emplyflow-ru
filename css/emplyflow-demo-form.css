@@ -341,6 +341,16 @@
   display: none;
 }
 
+/* После отправки — скрыть вводный текст модалки («Заполните форму…») */
+.ef-demo-modal__panel--success .ef-demo-modal__title,
+.ef-demo-modal__panel--success .ef-demo-modal__lead {
+  display: none !important;
+}
+
+.ef-demo-modal__panel--success .ef-lead-form__success {
+  padding-top: 8px;
+}
+
 @media screen and (max-width: 639px) {
   .ef-lead-form {
     max-width: 290px;

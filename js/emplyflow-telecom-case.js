@@ -1237,7 +1237,7 @@
     };
 
     document.addEventListener('click', function (e) {
-      if (e.target.closest('[data-ef-demo-close]')) {
+      if (e.target.closest('.ef-demo-modal__close')) {
         window.__efCloseDemoForm();
         return;
       }
@@ -1249,7 +1249,6 @@
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') window.__efCloseDemoForm();
       if (e.key !== 'Tab' || modal.hidden) return;
 
       var focusables = modal.querySelectorAll(

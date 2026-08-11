@@ -636,13 +636,12 @@
     };
 
     document.addEventListener('click', function (e) {
-      if (e.target.closest('[data-ef-demo-close]')) { window.__efCloseDemoForm(); return; }
+      if (e.target.closest('.ef-demo-modal__close')) { window.__efCloseDemoForm(); return; }
       var open = e.target.closest('[data-ef-demo-open]');
       if (open) { e.preventDefault(); e.stopPropagation(); window.__efOpenDemoForm(); }
     }, true);
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') window.__efCloseDemoForm();
       if (e.key !== 'Tab' || modal.hidden) return;
 
       var focusables = modal.querySelectorAll('a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])');
