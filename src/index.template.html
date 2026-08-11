@@ -3136,34 +3136,141 @@ html, body {
         }
       });
     }
+
+    /* ---- Lead form (inline: внешний site-leads.js в DC-бандле не всегда исполняется) ---- */
+    var LEAD_ENDPOINT=(window.EMPLYFLOW_LEAD_ENDPOINT||'').trim();
+    function leadVal(fd,name){var v=fd.get(name);return v==null?'':String(v).trim();}
+    function leadFirst(fd,names){for(var i=0;i<names.length;i++){var v=leadVal(fd,names[i]);if(v)return v;}return '';}
+    function leadModules(form){
+      var labels=[];
+      Array.prototype.forEach.call(form.querySelectorAll('[name="modules[]"]:checked'),function(cb){
+        labels.push(cb.getAttribute('data-label')||cb.value);
+      });
+      return labels;
+    }
+    function leadSetError(form,message){
+      var box=form.querySelector('[data-ef-error]');
+      if(!box)return;
+      if(message){box.textContent=message;box.classList.add('is-visible');}
+      else{box.textContent='';box.classList.remove('is-visible');}
+    }
+    function leadValidate(form){
+      leadSetError(form,'');
+      Array.prototype.forEach.call(form.querySelectorAll('.is-error'),function(el){el.classList.remove('is-error');});
+      var invalid=[];
+      Array.prototype.forEach.call(form.querySelectorAll('[required]'),function(el){
+        var ok=true;
+        if(el.type==='radio'){
+          ok=Array.prototype.some.call(form.querySelectorAll('[name="'+el.name+'"]'),function(r){return r.checked;});
+        }else if(el.type==='checkbox'){ok=!!el.checked;}
+        else if(el.type==='email'){ok=!!el.value.trim()&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());}
+        else{ok=!!el.value.trim();}
+        if(!ok){invalid.push(el);el.classList.add('is-error');}
+      });
+      if(invalid.length){leadSetError(form,'Пожалуйста, заполните обязательные поля.');try{invalid[0].focus();}catch(err){}return false;}
+      var list=form.querySelector('[data-ef-demo-modules-list]');
+      if(list&&list.children.length&&!form.querySelectorAll('[name="modules[]"]:checked').length){
+        var field=form.querySelector('[data-ef-demo-modules]');
+        if(field)field.classList.add('is-error');
+        leadSetError(form,'Выберите хотя бы один модуль.');
+        return false;
+      }
+      return true;
+    }
+    function leadPayload(form){
+      var fd=new FormData(form);
+      var contact=leadFirst(fd,['Как с вами удобнее связаться?','contact','Contact']);
+      var comment=leadFirst(fd,['Textarea','comment','Comment','Message']);
+      var modules=leadModules(form);
+      if(contact)comment=comment?('Связь: '+contact+'\n'+comment):('Связь: '+contact);
+      if(modules.length)comment=comment?('Модули: '+modules.join(', ')+'\n'+comment):('Модули: '+modules.join(', '));
+      return{
+        name:leadFirst(fd,['Name','name','Имя']),
+        company:leadFirst(fd,['Input','company','Company','Компания']),
+        email:leadFirst(fd,['Email','email']),
+        phone:leadFirst(fd,['Phone','phone','Телефон']),
+        industry:contact,who:modules.join(', '),count:'',competency:'',competencyTitle:'',caseId:'',caseTitle:'',
+        comment:comment,source:form.getAttribute('data-ef-lead-source')||'site_demo',
+        page:location.href,ts:new Date().toISOString(),visitor_id:'',session_id:''
+      };
+    }
+    function leadSend(payload){
+      var endpoint=(window.EMPLYFLOW_LEAD_ENDPOINT||LEAD_ENDPOINT||'').trim();
+      if(!endpoint)return Promise.resolve({ok:true,demo:true});
+      var body=JSON.stringify(payload);
+      return fetch(endpoint,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:body})
+        .then(function(res){if(res.type==='opaque'||res.ok)return res;throw new Error('HTTP '+res.status);})
+        .catch(function(){return fetch(endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:body});});
+    }
+    function leadShowSuccess(form){
+      form.classList.add('is-success');
+      var success=form.querySelector('[data-ef-success]');
+      if(success)success.classList.add('is-visible');
+      var panel=form.closest('.ef-demo-modal__panel');
+      if(panel)panel.classList.add('ef-demo-modal__panel--success');
+      var modal=document.getElementById('ef-demo-modal');
+      if(modal){
+        modal.classList.add('is-open');
+        modal.hidden=false;
+        modal.setAttribute('aria-hidden','false');
+        if(modal.getAttribute('data-ef-mode')!=='corner')document.body.classList.add('ef-demo-open');
+      }
+    }
+    window.__efResetLeadForm=function(form){
+      if(!form){var m=document.getElementById('ef-demo-modal');form=m&&m.querySelector('form.ef-lead-form');}
+      if(!form)return;
+      form.classList.remove('is-success');
+      form.removeAttribute('data-ef-sending');
+      var success=form.querySelector('[data-ef-success]');
+      if(success)success.classList.remove('is-visible');
+      leadSetError(form,'');
+      var btn=form.querySelector('.ef-lead-form__submit');
+      if(btn){btn.disabled=false;if(btn.dataset.efOriginalText)btn.textContent=btn.dataset.efOriginalText;}
+      var panel=form.closest('.ef-demo-modal__panel');
+      if(panel)panel.classList.remove('ef-demo-modal__panel--success');
+      try{form.reset();}catch(err){}
+    };
+    window.__efHandleLeadSubmit=function(form){
+      if(!form||!form.classList||!form.classList.contains('ef-lead-form'))return;
+      if(form.getAttribute('data-ef-sending')==='1')return;
+      if(!leadValidate(form))return;
+      var btn=form.querySelector('.ef-lead-form__submit');
+      var payload=leadPayload(form);
+      form.setAttribute('data-ef-sending','1');
+      if(btn){btn.disabled=true;btn.dataset.efOriginalText=btn.textContent;btn.textContent='Отправляем…';}
+      leadSend(payload).then(function(){
+        leadShowSuccess(form);
+      }).catch(function(){
+        leadSetError(form,'Не удалось отправить заявку. Напишите на headoffice@emplyflow.ru или попробуйте позже.');
+      }).then(function(){
+        form.removeAttribute('data-ef-sending');
+        if(btn){btn.disabled=false;if(btn.dataset.efOriginalText)btn.textContent=btn.dataset.efOriginalText;}
+      });
+    };
+    if(!window.__efLeadListenersBound){
+      window.__efLeadListenersBound=true;
+      document.addEventListener('submit',function(e){
+        var f=e.target;
+        if(!f||!f.classList||!f.classList.contains('ef-lead-form'))return;
+        e.preventDefault();
+        e.stopPropagation();
+        window.__efHandleLeadSubmit(f);
+      },true);
+      document.addEventListener('click',function(e){
+        var btn=e.target.closest('.ef-lead-form__submit');
+        if(!btn)return;
+        var f=btn.closest('form.ef-lead-form');
+        if(!f)return;
+        e.preventDefault();
+        e.stopPropagation();
+        window.__efHandleLeadSubmit(f);
+      },true);
+    }
   })();
   </script>
   <script>window.EMPLYFLOW_LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbwPSsRtsDOqa1U-d65K_bEtECTYT7F1RHJgwEvnZLSs83N_Fc0ZXfZaB3zljpsr9w-H/exec';</script>
-  <script>
-  /* Страховка: никогда не даём форме лида уйти на nginx (405/GET-reload) */
-  (function(){
-    if(window.__efLeadNavGuard)return;
-    window.__efLeadNavGuard=true;
-    document.addEventListener('submit',function(e){
-      var f=e.target;
-      if(!f||!f.classList||!f.classList.contains('ef-lead-form'))return;
-      e.preventDefault();
-      e.stopPropagation();
-      if(window.__efHandleLeadSubmit)window.__efHandleLeadSubmit(f);
-    },true);
-    document.addEventListener('click',function(e){
-      var btn=e.target.closest&&e.target.closest('.ef-lead-form__submit');
-      if(!btn)return;
-      var f=btn.closest('form.ef-lead-form');
-      if(!f)return;
-      e.preventDefault();
-      e.stopPropagation();
-      if(window.__efHandleLeadSubmit)window.__efHandleLeadSubmit(f);
-    },true);
-  })();
-  </script>
   <script src="js/emplyflow-demo-modules.js" charset="utf-8"></script>
-  <script src="js/emplyflow-site-leads.js" charset="utf-8"></script>
+  <script src="js/emplyflow-site-leads.js?v=20260811b" charset="utf-8"></script>
 
 </div>
 </x-dc>
