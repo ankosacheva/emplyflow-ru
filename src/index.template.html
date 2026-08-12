@@ -2831,7 +2831,7 @@ html, body {
       <button type="button" class="ef-demo-modal__close" data-ef-demo-close aria-label="Закрыть">×</button>
       <h2 id="ef-demo-modal-title" class="ef-demo-modal__title">Протестируйте платформу в течение 5 рабочих дней</h2>
       <p class="ef-demo-modal__lead">Заполните форму — менеджер свяжется с вами и предоставит демодоступ к платформе.</p>
-      <form id="ef-lead-form-demo" class="ef-lead-form" data-ef-lead-source="site_demo_popup" novalidate onsubmit="return false;">
+      <form id="ef-lead-form-demo" class="ef-lead-form" data-clarity-mask="true" data-ef-lead-source="site_demo_popup" novalidate onsubmit="return false;">
         <div class="ef-lead-form__fields">
           <div class="ef-lead-form__field">
             <input class="ef-lead-form__input" type="text" name="Name" placeholder="Ваше имя" autocomplete="name" required />
@@ -3450,5 +3450,17 @@ class Component extends DCLogic {
 }
 </script>
 
+<!-- Microsoft Clarity y09sx09973 -->
+<script type="text/javascript">
+(function(){
+  if(window.__efClarityLoaded)return;
+  window.__efClarityLoaded=true;
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window,document,"clarity","script","y09sx09973");
+})();
+</script>
 
 </body></html>
