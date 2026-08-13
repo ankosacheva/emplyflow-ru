@@ -129,6 +129,20 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   text-wrap: balance;
 }
 
+/* акценты в заголовках (mint / peach) — как в emplyflow-case-bento.css */
+.h-display em,
+.h-chapter em {
+  font-style: normal;
+  font-synthesis: none;
+  font-weight: inherit;
+  color: var(--mint);
+}
+
+.h-display em.is-orange,
+.h-chapter em.is-orange {
+  color: var(--peach);
+}
+
 .lead {
   margin: 20px 0 0;
   max-width: 62ch;
@@ -893,7 +907,6 @@ img, svg, canvas, video { display: block; max-width: 100%; }
 }
 
 .hero__title { max-width: 17ch; }
-.hero__title em { font-style: normal; color: var(--mint); }
 
 .hero__lead { max-width: 46ch; }
 
@@ -2888,6 +2901,15 @@ img, svg, canvas, video { display: block; max-width: 100%; }
   .slot__main { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
   .slot__n { width: 28px; height: 28px; font-size: 11px; }
   .slot__cta { min-height: 38px; font-size: 12px; }
+}
+
+/* WebKit: em в заголовках без font-style:normal даёт синтетический курсив */
+@media (max-width: 1080px) {
+  .h-display em,
+  .h-chapter em {
+    font-style: normal !important;
+    font-synthesis: none !important;
+  }
 }
 
 /* =============================================================
