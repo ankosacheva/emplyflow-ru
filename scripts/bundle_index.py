@@ -30,6 +30,47 @@ LOADER_CSS_SRC = ROOT / "src" / "bundler-loader.css"
 LOADER_HTML_SRC = ROOT / "src" / "bundler-loader.html"
 ASSETS_DIR = ROOT / "src" / "assets"
 
+SEO_TITLE = "EmplyFlow — платформа для оценки, развития и Performance Review"
+SEO_DESCRIPTION = (
+    "Платформа EmplyFlow: skill-based оценка и развитие сотрудников, "
+    "Performance Review, 360°, карьерные треки и матрица 9 box."
+)
+SEO_CANONICAL = "https://emplyflow.ru/"
+SEO_OG_IMAGE = "https://emplyflow.ru/media/hero-animation-poster.jpg"
+
+SEO_HEAD_BLOCK = "\n".join(
+    [
+        "<!-- EF_SEO_BEGIN -->",
+        f"<title>{SEO_TITLE}</title>",
+        f'<meta name="description" content="{SEO_DESCRIPTION}">',
+        f'<link rel="canonical" href="{SEO_CANONICAL}">',
+        '<meta property="og:type" content="website">',
+        f'<meta property="og:url" content="{SEO_CANONICAL}">',
+        f'<meta property="og:title" content="{SEO_TITLE}">',
+        f'<meta property="og:description" content="{SEO_DESCRIPTION}">',
+        f'<meta property="og:image" content="{SEO_OG_IMAGE}">',
+        '<meta property="og:site_name" content="EmplyFlow">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{SEO_TITLE}">',
+        f'<meta name="twitter:description" content="{SEO_DESCRIPTION}">',
+        f'<meta name="twitter:image" content="{SEO_OG_IMAGE}">',
+        "<!-- EF_SEO_END -->",
+    ]
+)
+
+SEO_NOSCRIPT_BLOCK = "\n".join(
+    [
+        "<!-- EF_SEO_NOSCRIPT_BEGIN -->",
+        "<noscript>",
+        '  <main style="padding:32px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">',
+        f"    <h1>{SEO_TITLE}</h1>",
+        f"    <p>{SEO_DESCRIPTION}</p>",
+        "  </main>",
+        "</noscript>",
+        "<!-- EF_SEO_NOSCRIPT_END -->",
+    ]
+)
+
 TEMPLATE_RE = re.compile(
     r'(<script type="__bundler/template">)(.*?)(</script>)', re.S
 )
@@ -41,6 +82,11 @@ LOADER_CSS_RE = re.compile(
 )
 LOADER_HTML_RE = re.compile(
     r'<!-- EF_LOADER_HTML_BEGIN -->.*?<!-- EF_LOADER_HTML_END -->', re.S
+)
+
+SEO_HEAD_RE = re.compile(r'<!-- EF_SEO_BEGIN -->.*?<!-- EF_SEO_END -->', re.S)
+SEO_NOSCRIPT_RE = re.compile(
+    r'<!-- EF_SEO_NOSCRIPT_BEGIN -->.*?<!-- EF_SEO_NOSCRIPT_END -->', re.S
 )
 
 EXT_BY_MIME = {
@@ -98,6 +144,60 @@ def patch_loader(html: str) -> str:
     return html
 
 
+def patch_outer_seo(html: str) -> str:
+    """Патчит внешний (первичный) head/body бандла.
+
+    Важно: OG/Twitter теги должны присутствовать в исходном HTML без JS,
+    иначе соцсети/часть SEO-аудитов их не увидят.
+    """
+
+    marker = '<script type="__bundler/template">'
+    if marker in html:
+        pre, post = html.split(marker, 1)
+    else:
+        pre, post = html, ""
+
+    # --- head ---
+    if "<!-- EF_SEO_BEGIN -->" in pre:
+        pre, count = SEO_HEAD_RE.subn(SEO_HEAD_BLOCK, pre, count=1)
+        if count != 1:
+            sys.exit("не удалось пропатчить EF_SEO в head бандла")
+    else:
+        # Вставляем рядом с другими meta, до <style>/<title> не принципиально.
+        insert_after = re.search(r'(<meta name="theme-color"[^>]*>\s*)', pre, re.I)
+        if not insert_after:
+            insert_after = re.search(r"(<head[^>]*>\s*)", pre, re.I)
+        if not insert_after:
+            sys.exit("не найден head для вставки EF_SEO")
+        i = insert_after.end(1)
+        pre = pre[:i] + SEO_HEAD_BLOCK + "\n" + pre[i:]
+
+    # Удаляем старые <title> вне EF_SEO блока, иначе браузер может взять последний.
+    seo_match = SEO_HEAD_RE.search(pre)
+    if not seo_match:
+        sys.exit("EF_SEO блок не найден после патча head")
+    pre_before = pre[: seo_match.start()]
+    pre_block = pre[seo_match.start() : seo_match.end()]
+    pre_after = pre[seo_match.end() :]
+    pre_before = re.sub(r"<title[^>]*>.*?</title>\s*", "", pre_before, flags=re.I | re.S)
+    pre_after = re.sub(r"<title[^>]*>.*?</title>\s*", "", pre_after, flags=re.I | re.S)
+    pre = pre_before + pre_block + pre_after
+
+    # --- body noscript ---
+    if "<!-- EF_SEO_NOSCRIPT_BEGIN -->" in pre:
+        pre, count = SEO_NOSCRIPT_RE.subn(SEO_NOSCRIPT_BLOCK, pre, count=1)
+        if count != 1:
+            sys.exit("не удалось пропатчить EF_SEO_NOSCRIPT в body бандла")
+    else:
+        body_open = re.search(r"(<body[^>]*>\s*)", pre, re.I)
+        if not body_open:
+            sys.exit("не найден body для вставки EF_SEO_NOSCRIPT")
+        i = body_open.end(1)
+        pre = pre[:i] + SEO_NOSCRIPT_BLOCK + "\n" + pre[i:]
+
+    return pre + marker + post if post != "" else pre
+
+
 def build() -> None:
     if not TEMPLATE_SRC.exists():
         sys.exit(f"нет {TEMPLATE_SRC.relative_to(ROOT)}, сначала extract")
@@ -116,6 +216,7 @@ def build() -> None:
         sys.exit("не удалось заменить template в бандле")
 
     html = patch_loader(html)
+    html = patch_outer_seo(html)
 
     BUNDLE.write_text(html, encoding="utf-8")
     MIRROR.write_text(html, encoding="utf-8")
