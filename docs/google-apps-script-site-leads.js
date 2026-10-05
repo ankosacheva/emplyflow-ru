@@ -13,7 +13,7 @@
  *    - Who has access: Anyone
  * 5. URL вида https://script.google.com/macros/s/.../exec
  *    положите в window.EMPLYFLOW_LEAD_ENDPOINT на сайте
- *    (см. page94832006.html и js/emplyflow-site-leads.js)
+ *    (см. index.html / src/index.template.html и js/emplyflow-site-leads.js)
  *
  * Можно использовать ОДИН скрипт/таблицу и для Hub, и для сайта:
  * поле source будет site_demo_popup / site_demo / nav / case / …

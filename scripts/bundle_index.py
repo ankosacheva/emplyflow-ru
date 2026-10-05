@@ -9,7 +9,6 @@ base64 в манифесте и подставляются по uuid в рант
     python3 scripts/bundle_index.py build     # src/index.template.html + src/bundler-loader.* -> бандл
     python3 scripts/bundle_index.py assets    # выгрузить ассеты в src/assets/
 
-`build` также синхронизирует `page94832006.html` (старый DirectoryIndex).
 """
 
 from __future__ import annotations
@@ -24,7 +23,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BUNDLE = ROOT / "index.html"
-MIRROR = ROOT / "page94832006.html"
 TEMPLATE_SRC = ROOT / "src" / "index.template.html"
 LOADER_CSS_SRC = ROOT / "src" / "bundler-loader.css"
 LOADER_HTML_SRC = ROOT / "src" / "bundler-loader.html"
@@ -219,11 +217,10 @@ def build() -> None:
     html = patch_outer_seo(html)
 
     BUNDLE.write_text(html, encoding="utf-8")
-    MIRROR.write_text(html, encoding="utf-8")
 
     # Обратная проверка: бандл должен парситься и отдавать тот же шаблон.
     assert json.loads(get_block(read_bundle(), TEMPLATE_RE, "template")) == template
-    print(f"{BUNDLE.name} и {MIRROR.name} обновлены — {len(html)} байт")
+    print(f"{BUNDLE.name} обновлён — {len(html)} байт")
 
 
 def assets() -> None:

@@ -11,9 +11,8 @@ FORM_HTML = (ROOT / "partials/ef-lead-form.html").read_text(encoding="utf-8").st
 
 # Pages that contain Zero Block form with EmplyFlow demo receivers
 TARGETS = [
-    ROOT / "page94832006.html",
+    ROOT / "index.html",
     ROOT / "page92627706.html",
-    ROOT / "files/page94832006body.html",
     ROOT / "files/page92627706body.html",
 ]
 

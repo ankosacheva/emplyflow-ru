@@ -1,9 +1,12 @@
 ErrorDocument 403 /page92821626.html
 ErrorDocument 404 /page92821626.html
 
-DirectoryIndex index.html page94832006.html
+DirectoryIndex index.html
 
 RewriteEngine On
+
+# бывшая главная Tilda (page id 94832006)
+RewriteRule ^page94832006\.html$ / [R=301,L,NC]
 
 RewriteCond %{REQUEST_FILENAME} /robots.txt
 RewriteCond "%{DOCUMENT_ROOT}/robots_%{HTTP_HOST}.txt" -f

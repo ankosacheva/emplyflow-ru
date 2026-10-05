@@ -7,8 +7,7 @@ import re
 from pathlib import Path
 
 FILES = [
-    Path("page94832006.html"),
-    Path("files/page94832006body.html"),
+    Path("index.html"),
 ]
 
 W_MODULES = 100
