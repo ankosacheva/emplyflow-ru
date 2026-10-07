@@ -10,4 +10,4 @@ For every new or modified visual block:
 4. Keep UI copy Russian-first, formal, quantified where appropriate, and free of emoji.
 5. If a required pattern is missing, add it to the design system before using it in the site.
 
-Do not edit generated `index.html` or `page94832006.html` directly. Edit `src/index.template.html` and rebuild with `python3 scripts/bundle_index.py build`.
+Do not edit generated `index.html` directly. Edit `src/index.template.html` and rebuild with `python3 scripts/bundle_index.py build`.

@@ -11,7 +11,6 @@
 | Файл / папка | Назначение |
 |---|---|
 | `index.html` | Главная (самодостаточный бандл: стили/шрифты/картинки внутри) |
-| `page94832006.html` | Та же главная (для совместимости со старым DirectoryIndex / nginx) |
 | `src/index.template.html` | Редактируемый исходник главной, из него собирается бандл |
 | `media/` | Ролик первого экрана: `hero-animation.mp4`, `.webm`, стоп-кадр `-poster.jpg` |
 | `page92826026.html` | `/privacy` |
@@ -22,7 +21,7 @@
 
 ЧПУ на nginx (фрагмент):
 
-- `/` → `index.html` (или `page94832006.html`)
+- `/` → `index.html`
 - `/privacy` → `page92826026.html`
 - `/performance-review-dlya-proizvoditelya` → `page101071766.html`
 - `/avtomatizatsiya-otsenki-po-keysam-v-telekome` → `page101340001.html`
@@ -50,11 +49,11 @@
 ```bash
 python3 scripts/bundle_index.py extract   # бандл -> src/index.template.html (одноразово, если файла нет)
 # правим src/index.template.html
-python3 scripts/bundle_index.py build     # обратно в index.html + page94832006.html
+python3 scripts/bundle_index.py build     # обратно в index.html
 python3 scripts/bundle_index.py assets    # выгрузить ассеты бандла в src/assets/ (по необходимости)
 ```
 
-`build` синхронизирует `page94832006.html` и проверяет, что бандл снова парсится. Стили главной живут в `<style>`-блоках внутри `<helmet>` (там же токены дизайн-системы), разметка — в `<x-dc>`, данные секций (модули, кейсы, логотипы) — в `<script type="text/x-dc">` в конце файла.
+`build` пересобирает `index.html` и проверяет, что бандл снова парсится. Стили главной живут в `<style>`-блоках внутри `<helmet>` (там же токены дизайн-системы), разметка — в `<x-dc>`, данные секций (модули, кейсы, логотипы) — в `<script type="text/x-dc">` в конце файла.
 
 Первый экран повторяет композицию сайта и собран на токенах дизайн-системы: тёмный canvas Black Rock, центрированный заголовок «HRM-платформа для оценки, целеполагания и мотивации сотрудников», пунктирная плашка «на базе ИИ» (Cotton Candy) правее центра, indigo-пилюля «Что входит в платформу», стеклянная карточка Rusbase справа и три пастельные карточки снизу — Оценка результатов (Frosted Mint), Анализ потенциала (Periwinkle), План развития (Cotton Candy), выровненные по нижнему краю с разной высотой.
 
@@ -89,7 +88,7 @@ ffmpeg -y -ss 4.7 -i "Hero Animation.mp4" -frames:v 1 -vf scale=1600:-2 -q:v 3 m
 ## Адаптив / мобильное меню
 
 На iPad/планшетах меню раньше открывалось пустым светлым блоком: пункты были сверстаны только для ≤639px.  
-Фикс: `css/emplyflow-responsive.css` + настройки NLM-попапа в `page94832006.html` (тёмный fullscreen-фон, вертикальный список на ≤1199px).
+Фикс: `css/emplyflow-responsive.css` + настройки NLM-попапа на главной (тёмный fullscreen-фон, вертикальный список на ≤1199px).
 
 ## Формы заявок (демо / получить доступ)
 

@@ -157,7 +157,7 @@ bash /root/emplyflow-competency-hub/scripts/deploy-emplyflow-ru-local.sh
 ```bash
 cd /path/to/emplyflow-ru
 python3 scripts/bundle_index.py build
-git add index.html page94832006.html src/index.template.html
+git add index.html src/index.template.html
 git commit -m "..."
 git push origin main
 ```
@@ -255,6 +255,7 @@ git push origin main
 | `/karyernye-treki-inzhiniring` | `page96490096.html` |
 | `/perfomance_review_dlya_proizvoditelya` | редирект → новый slug |
 | `/postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii` | редирект → `/karyernye-treki-inzhiniring` |
+| `/page94832006.html` | редирект 301 → `/` (удалён дубликат главной Tilda) |
 
 Модули: `/modul-otsenka-360`, `/modul-karyera-i-razvitie`, `/modul-matritsa-9-box`, `/modul-tselepolaganie`, `/modul-preemstvennost`, `/modul-nematerialnaya-motivatsiya`, `/performance-review-kak-eto-rabotaet` — см. конфиг nginx.
 
