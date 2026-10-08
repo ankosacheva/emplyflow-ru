@@ -28,10 +28,10 @@ LOADER_CSS_SRC = ROOT / "src" / "bundler-loader.css"
 LOADER_HTML_SRC = ROOT / "src" / "bundler-loader.html"
 ASSETS_DIR = ROOT / "src" / "assets"
 
-SEO_TITLE = "EmplyFlow — платформа для оценки, развития и Performance Review"
+SEO_TITLE = "EmplyFlow — HRM-платформа для оценки и развития сотрудников"
 SEO_DESCRIPTION = (
-    "Платформа EmplyFlow: skill-based оценка и развитие сотрудников, "
-    "Performance Review, 360°, карьерные треки и матрица 9 box."
+    "EmplyFlow — HRM-платформа для оценки компетенций, Performance Review, "
+    "целей, развития и карьерных треков сотрудников с AI-инструментами."
 )
 SEO_CANONICAL = "https://emplyflow.ru/"
 SEO_OG_IMAGE = "https://emplyflow.ru/media/hero-animation-poster.jpg"
@@ -59,12 +59,10 @@ SEO_HEAD_BLOCK = "\n".join(
 SEO_NOSCRIPT_BLOCK = "\n".join(
     [
         "<!-- EF_SEO_NOSCRIPT_BEGIN -->",
-        "<noscript>",
-        '  <main style="padding:32px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">',
-        f"    <h1>{SEO_TITLE}</h1>",
-        f"    <p>{SEO_DESCRIPTION}</p>",
-        "  </main>",
-        "</noscript>",
+        '<main id="ef-seo-shell" style="min-height:100vh;padding:32px;color:#fff;background:#050230;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">',
+        f"  <h1>{SEO_TITLE}</h1>",
+        f"  <p>{SEO_DESCRIPTION}</p>",
+        "</main>",
         "<!-- EF_SEO_NOSCRIPT_END -->",
     ]
 )
