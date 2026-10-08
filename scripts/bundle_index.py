@@ -28,13 +28,110 @@ LOADER_CSS_SRC = ROOT / "src" / "bundler-loader.css"
 LOADER_HTML_SRC = ROOT / "src" / "bundler-loader.html"
 ASSETS_DIR = ROOT / "src" / "assets"
 
-SEO_TITLE = "EmplyFlow — HRM-платформа для оценки и развития сотрудников"
+SEO_TITLE = "EmplyFlow — TMS-платформа: оценка 360°, Performance Review, цели и ИПР"
 SEO_DESCRIPTION = (
+    "Российская TMS-платформа EmplyFlow: цели и KPI, оценка 360°, Performance Review, "
+    "матрица 9-box, карьерные треки, ИПР, кадровый резерв и ИИ-оценка компетенций в едином контуре."
+)
+SEO_OG_TITLE = "EmplyFlow — TMS-платформа для оценки и развития сотрудников на базе ИИ"
+SEO_OG_DESCRIPTION = (
+    "От разрозненных таблиц и ручных процессов — к объективным данным и понятным кадровым решениям. "
+    "Единый контур: цели, оценка, развитие, карьера, преемственность."
+)
+SEO_CANONICAL = "https://emplyflow.ru/"
+SEO_OG_IMAGE = "https://emplyflow.ru/og-image-emplyflow.jpg"
+SEO_OG_IMAGE_ALT = (
+    "EmplyFlow — российская TMS-платформа для оценки и развития персонала: "
+    "OKR и KPI, оценка 360°, ИИ-ассистент"
+)
+SEO_TWITTER_IMAGE_ALT = "EmplyFlow — российская TMS-платформа для оценки и развития персонала"
+
+# Серверная оболочка с H1 не привязана к title: её текст меняется отдельным проходом по заголовкам.
+SEO_SHELL_H1 = "EmplyFlow — HRM-платформа для оценки и развития сотрудников"
+SEO_SHELL_LEAD = (
     "EmplyFlow — HRM-платформа для оценки компетенций, Performance Review, "
     "целей, развития и карьерных треков сотрудников с AI-инструментами."
 )
-SEO_CANONICAL = "https://emplyflow.ru/"
-SEO_OG_IMAGE = "https://emplyflow.ru/media/hero-animation-poster.jpg"
+
+SEO_JSONLD = """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://emplyflow.ru/#software",
+  "name": "EmplyFlow",
+  "alternateName": "ЭмплиФлоу",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "Talent Management System (TMS)",
+  "operatingSystem": "Web, Cloud, On-premise",
+  "inLanguage": "ru-RU",
+  "url": "https://emplyflow.ru/",
+  "image": "https://emplyflow.ru/og-image-emplyflow.jpg",
+  "description": "Российская TMS-платформа для оценки, развития сотрудников и проведения Performance Review на базе ИИ. Объединяет цели и KPI, оценку 360°, матрицу 9-box, карьерные треки, ИПР, кадровый резерв и ИИ-оценку компетенций в едином контуре.",
+  "featureList": [
+    "Цели и KPI по формату OKR",
+    "Оценка 360 градусов",
+    "Performance Review",
+    "ИИ-оценка компетенций в формате кейс-интервью",
+    "Матрица потенциала 9-box",
+    "Карьерные треки и индивидуальные планы развития (ИПР)",
+    "Кадровый резерв и преемственность",
+    "Talent Marketplace: проекты, задачи и внутренние вакансии",
+    "Нематериальная мотивация и признание",
+    "Аналитика и управленческие отчёты"
+  ],
+  "audience": {
+    "@type": "BusinessAudience",
+    "name": "HR-команды среднего и крупного бизнеса"
+  },
+  "countriesSupported": "RU",
+  "publisher": { "@id": "https://emplyflow.ru/#organization" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://emplyflow.ru/#organization",
+  "name": "EmplyFlow",
+  "legalName": "Общество с ограниченной ответственностью «ЭМПЛИФЛОУ»",
+  "alternateName": "ЭмплиФлоу",
+  "url": "https://emplyflow.ru/",
+  "logo": "https://emplyflow.ru/logo-emplyflow.png",
+  "image": "https://emplyflow.ru/og-image-emplyflow.jpg",
+  "description": "Технологическая компания — российский разработчик TMS-платформы для оценки и развития персонала в среднем и крупном бизнесе.",
+  "email": "headoffice@emplyflow.ru",
+  "taxID": "7743422816",
+  "vatID": "7743422816",
+  "identifier": [
+    { "@type": "PropertyValue", "name": "ОГРН", "value": "1237700492479" },
+    { "@type": "PropertyValue", "name": "ИНН",  "value": "7743422816" },
+    { "@type": "PropertyValue", "name": "КПП",  "value": "773301001" }
+  ],
+  "areaServed": { "@type": "Country", "name": "Россия" },
+  "knowsLanguage": "ru",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "headoffice@emplyflow.ru",
+    "availableLanguage": ["Russian"]
+  },
+  "award": "Лучший HR-проект года по версии Альфа-Банка и Rusbase",
+  "sameAs": [
+    "https://vk.ru/emplyflow"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://emplyflow.ru/#website",
+  "url": "https://emplyflow.ru/",
+  "name": "EmplyFlow",
+  "inLanguage": "ru-RU",
+  "publisher": { "@id": "https://emplyflow.ru/#organization" }
+}
+</script>"""
 
 SEO_HEAD_BLOCK = "\n".join(
     [
@@ -42,16 +139,32 @@ SEO_HEAD_BLOCK = "\n".join(
         f"<title>{SEO_TITLE}</title>",
         f'<meta name="description" content="{SEO_DESCRIPTION}">',
         f'<link rel="canonical" href="{SEO_CANONICAL}">',
+        '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">',
         '<meta property="og:type" content="website">',
-        f'<meta property="og:url" content="{SEO_CANONICAL}">',
-        f'<meta property="og:title" content="{SEO_TITLE}">',
-        f'<meta property="og:description" content="{SEO_DESCRIPTION}">',
-        f'<meta property="og:image" content="{SEO_OG_IMAGE}">',
         '<meta property="og:site_name" content="EmplyFlow">',
+        '<meta property="og:locale" content="ru_RU">',
+        f'<meta property="og:url" content="{SEO_CANONICAL}">',
+        f'<meta property="og:title" content="{SEO_OG_TITLE}">',
+        f'<meta property="og:description" content="{SEO_OG_DESCRIPTION}">',
+        f'<meta property="og:image" content="{SEO_OG_IMAGE}">',
+        f'<meta property="og:image:secure_url" content="{SEO_OG_IMAGE}">',
+        '<meta property="og:image:type" content="image/jpeg">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        f'<meta property="og:image:alt" content="{SEO_OG_IMAGE_ALT}">',
         '<meta name="twitter:card" content="summary_large_image">',
-        f'<meta name="twitter:title" content="{SEO_TITLE}">',
-        f'<meta name="twitter:description" content="{SEO_DESCRIPTION}">',
+        f'<meta name="twitter:title" content="{SEO_OG_TITLE}">',
+        f'<meta name="twitter:description" content="{SEO_OG_DESCRIPTION}">',
         f'<meta name="twitter:image" content="{SEO_OG_IMAGE}">',
+        f'<meta name="twitter:image:alt" content="{SEO_TWITTER_IMAGE_ALT}">',
+        '<meta name="author" content="ООО «Эмплифлоу»">',
+        '<meta name="theme-color" content="#050230">',
+        '<meta http-equiv="content-language" content="ru">',
+        '<link rel="icon" href="/favicon.ico" sizes="32x32">',
+        '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
+        '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+        '<link rel="manifest" href="/site.webmanifest">',
+        SEO_JSONLD,
         "<!-- EF_SEO_END -->",
     ]
 )
@@ -60,8 +173,8 @@ SEO_NOSCRIPT_BLOCK = "\n".join(
     [
         "<!-- EF_SEO_NOSCRIPT_BEGIN -->",
         '<main id="ef-seo-shell" style="min-height:100vh;padding:32px;color:#fff;background:#050230;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">',
-        f"  <h1>{SEO_TITLE}</h1>",
-        f"  <p>{SEO_DESCRIPTION}</p>",
+        f"  <h1>{SEO_SHELL_H1}</h1>",
+        f"  <p>{SEO_SHELL_LEAD}</p>",
         "</main>",
         "<!-- EF_SEO_NOSCRIPT_END -->",
     ]
