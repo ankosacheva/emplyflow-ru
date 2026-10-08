@@ -257,6 +257,16 @@ git push origin main
 | `/postroenie-sistemy-karyernykh-trekov-dlya-inzhiniringovoy-korporatsii` | редирект → `/karyernye-treki-inzhiniring` |
 | `/page94832006.html` | редирект 301 → `/` (удалён дубликат главной Tilda) |
 
+### Редиректы (дубликат главной)
+
+Старый Tilda/DirectoryIndex-файл главной не должен открываться напрямую — только канонический `/` (`index.html`).
+
+```nginx
+location = /page94832006.html { return 301 /; }
+```
+
+Сниппет в репозитории: `deploy/nginx/emplyflow.ru-redirects.conf`.
+
 Модули: `/modul-otsenka-360`, `/modul-karyera-i-razvitie`, `/modul-matritsa-9-box`, `/modul-tselepolaganie`, `/modul-preemstvennost`, `/modul-nematerialnaya-motivatsiya`, `/performance-review-kak-eto-rabotaet` — см. конфиг nginx.
 
 Референс правил Apache: файл `htaccess` в репозитории.
