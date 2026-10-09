@@ -164,6 +164,14 @@
 
   <script>
 (function () {
+  // Яндекс дописывает ysclid к клику из поиска. Страница та же, параметр из адреса убираем.
+  try {
+    var clean = new URL(location.href);
+    if (clean.searchParams.has('ysclid')) {
+      clean.searchParams.delete('ysclid');
+      history.replaceState(null, '', clean.pathname + clean.search + clean.hash);
+    }
+  } catch (err) {}
   var hash = String(location.hash || '');
   if (hash === '#') hash = '';
   window.__efInitialHash = hash;
@@ -598,7 +606,21 @@ async function __efBootBundle() {
     }
     function rAF2() {
       return new Promise(function(resolve) {
-        requestAnimationFrame(function() { requestAnimationFrame(resolve); });
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          resolve();
+        }
+        // Если кадр анимации не приходит (фоновая вкладка, экономия батареи),
+        // сборка не должна зависнуть: иначе остаётся пустая оболочка без кнопок.
+        var timer = setTimeout(finish, 120);
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            clearTimeout(timer);
+            finish();
+          });
+        });
       });
     }
 
@@ -736,14 +758,24 @@ async function __efBootBundle() {
     await new Promise(function(resolve) {
       var frames = 0;
       var tick = function() {
-        if (__efRecoverBundleSurface() || frames > 600) {
+        if (__efRecoverBundleSurface() || frames > 160) {
           resolve();
           return;
         }
         frames += 1;
-        requestAnimationFrame(tick);
+        var finished = false;
+        function step() {
+          if (finished) return;
+          finished = true;
+          tick();
+        }
+        var timer = setTimeout(step, 50);
+        requestAnimationFrame(function() {
+          clearTimeout(timer);
+          step();
+        });
       };
-      requestAnimationFrame(tick);
+      tick();
     });
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
