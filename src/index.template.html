@@ -1103,16 +1103,9 @@ html, body {
     }
     var href=root.getAttribute('data-href')||'#platform';
     var target=document.querySelector(href);
-    if(target){
-      scrollToTarget(target,true);
-      try{
-        var nextUrl=location.pathname+location.search+href;
-        if(history.replaceState)history.replaceState(null,'',nextUrl);
-        else location.hash=href.slice(1);
-      }catch(err){}
-    }else{
-      location.hash=href.slice(1);
-    }
+    if(target)scrollToTarget(target,true);
+    // Хэш в адресе — не отдельная страница. После прокрутки остаёмся на главной.
+    try{history.replaceState(null,'',location.pathname+location.search);}catch(err){}
   }
   function go(root){
     if(!root)return;
@@ -3057,6 +3050,10 @@ html, body {
         try{history.replaceState(null,'',location.pathname+location.search);}catch(err){}
         return;
       }
+      // https://emplyflow.ru/# и #top — та же главная. У «/#» location.hash пустой.
+      if((location.href||'').slice(-1)==='#'||location.hash==='#top'){
+        try{history.replaceState(null,'',location.pathname+location.search);}catch(err){}
+      }
       var toTop=function(){try{window.scrollTo(0,0);}catch(err){}};
       toTop();
       if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',toTop,{once:true});
@@ -3155,16 +3152,32 @@ html, body {
       return window.__efScrollToElement(target);
     };
     window.addEventListener('hashchange',function(){
-      // Только явная смена hash пользователем/ссылкой, не polling
-      window.__efScrollToHash(location.hash);
+      var href=location.href||'';
+      var hash=location.hash||'';
+      var bare=href.charAt(href.length-1)==='#';
+      if(bare||hash==='#top'){
+        try{window.scrollTo({top:0,behavior:'smooth'});}catch(err){window.scrollTo(0,0);}
+        try{history.replaceState(null,'',location.pathname+location.search);}catch(err2){}
+        return;
+      }
+      if(window.__efScrollToHash&&window.__efScrollToHash(hash)){
+        try{history.replaceState(null,'',location.pathname+location.search);}catch(err){}
+      }
     });
     document.addEventListener('click',function(e){
       var link=e.target.closest('a[href^="#"]');
-      if(!link||link.getAttribute('href')==='#')return;
+      if(!link)return;
       if(link.hasAttribute('data-ef-demo-open'))return;
-      var hash=link.getAttribute('href');
+      var hash=link.getAttribute('href')||'#';
+      if(hash==='#'||hash==='#top'){
+        e.preventDefault();
+        try{window.scrollTo({top:0,behavior:'smooth'});}catch(err){window.scrollTo(0,0);}
+        try{history.replaceState(null,'',location.pathname+location.search);}catch(err2){}
+        return;
+      }
       if(window.__efScrollToHash&&window.__efScrollToHash(hash)){
         e.preventDefault();
+        try{history.replaceState(null,'',location.pathname+location.search);}catch(err){}
       }
     });
 
