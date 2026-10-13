@@ -776,103 +776,102 @@ html, body {
 </style>
 <style>
   /* ===== EmplyFlow в цифрах ===== */
-  .ef-figures,.ef-mods,.ef-about,.ef-cases,.ef-impl,.ef-clients{background:transparent;}
-  .ef-figures{padding:16px 16px 28px;}
-  .ef-figures__panel{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:28px;max-width:1440px;margin:0 auto;border-radius:36px;padding:clamp(22px,3vw,40px);background:#483AE7;color:#fff;}
-  .ef-figures__watermark{position:absolute;right:-2%;top:-8%;z-index:0;margin:0;font-weight:800;font-size:clamp(140px,22vw,280px);line-height:1;letter-spacing:-0.06em;color:rgba(255,255,255,0.06);pointer-events:none;}
+  .ef-figures,.ef-ease,.ef-mods,.ef-about,.ef-cases,.ef-impl,.ef-clients{background:transparent;}
+  .ef-figures{padding:16px 16px 20px;}
+  .ef-figures__panel{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:22px;max-width:1440px;margin:0 auto;border-radius:32px;padding:clamp(20px,2.8vw,36px);background:#3F36C8;color:#fff;}
+  .ef-figures__watermark{position:absolute;right:-2%;top:-6%;z-index:0;margin:0;font-weight:800;font-size:clamp(120px,18vw,220px);line-height:1;letter-spacing:-0.06em;color:rgba(255,255,255,0.04);pointer-events:none;}
   .ef-figures__glow{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
-  .ef-figures__glow--light{left:-100px;bottom:-120px;width:280px;height:280px;background:rgba(255,255,255,0.07);}
-  .ef-figures__glow--pink{right:28%;top:-70px;width:160px;height:160px;background:rgba(238,180,216,0.3);}
-  .ef-figures__head{position:relative;z-index:2;display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 40px;}
-  .ef-figures__intro{flex:1 1 420px;display:flex;flex-direction:column;gap:12px;min-width:0;}
-  .ef-figures__badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;margin:0;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.28);background:rgba(255,255,255,0.14);font-size:12px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;}
-  .ef-figures__badge span{width:8px;height:8px;border-radius:50%;background:#B9F2E1;}
-  .ef-figures__title{margin:0;font-weight:800;font-size:clamp(28px,3.4vw,48px);line-height:1.06;letter-spacing:-0.04em;text-wrap:pretty;}
-  .ef-figures__mark{display:inline-block;margin-top:0.1em;line-height:1.05;color:#151515;background:#EEB4D8;padding:0.02em 10px 0.05em;border-radius:10px;}
-  .ef-figures__lead{flex:1 1 300px;max-width:460px;display:grid;gap:10px;}
-  .ef-figures__lead p{margin:0;font-size:clamp(15px,1.15vw,17px);font-weight:500;line-height:1.4;color:#E9E7FF;}
-  .ef-figures__grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch;}
+  .ef-figures__glow--light{left:-90px;bottom:-100px;width:220px;height:220px;background:rgba(255,255,255,0.05);}
+  .ef-figures__glow--pink{right:30%;top:-60px;width:120px;height:120px;background:rgba(238,180,216,0.18);}
+  .ef-figures__head{position:relative;z-index:2;display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 36px;}
+  .ef-figures__intro{flex:1 1 420px;display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .ef-figures__badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;margin:0;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+  .ef-figures__badge span{width:7px;height:7px;border-radius:50%;background:#B9F2E1;}
+  .ef-figures__title{margin:0;font-weight:800;font-size:clamp(26px,3.1vw,42px);line-height:1.08;letter-spacing:-0.035em;text-wrap:pretty;}
+  .ef-figures__mark{display:inline-block;margin-top:0.08em;line-height:1.05;color:#fff;background:rgba(238,180,216,0.22);padding:0.02em 8px 0.04em;border-radius:8px;}
+  .ef-figures__lead{flex:1 1 280px;max-width:420px;display:grid;gap:10px;}
+  .ef-figures__lead p{margin:0;font-size:clamp(14px,1.1vw,16px);font-weight:500;line-height:1.4;color:rgba(233,231,255,0.82);}
+  .ef-figures__grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch;}
   .ef-tile{position:relative;height:100%;}
-  .ef-tile--goals{transform:rotate(-1deg);}
-  .ef-tile--ease{transform:rotate(1deg);margin-top:12px;}
-  .ef-tile--effect{transform:rotate(-0.6deg);margin-top:6px;}
-  .ef-tile--reviews{grid-column:1 / -1;transform:rotate(-0.4deg);margin-top:2px;}
+  .ef-tile--goals{transform:rotate(-0.4deg);}
+  .ef-tile--ease{transform:rotate(0.4deg);margin-top:8px;}
+  .ef-tile--effect{transform:rotate(-0.3deg);margin-top:4px;}
   .ef-figures__spark{position:absolute;z-index:3;right:-26px;top:-46px;width:min(11vw,130px);height:auto;transform:rotate(10deg);pointer-events:none;}
-  .ef-stat{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:16px;height:100%;min-height:0;border-radius:28px;padding:20px;color:#151515;}
-  .ef-stat--mint{background:#B9F2E1;}
-  .ef-stat--pink{background:#EEB4D8;}
-  .ef-stat--lilac{background:#CEC8FF;}
-  .ef-stat__orb{position:absolute;right:-36px;bottom:-60px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.45);pointer-events:none;}
+  .ef-stat{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:14px;height:100%;min-height:0;border-radius:24px;padding:18px;color:#151515;}
+  .ef-stat--mint{background:#C8EFE3;}
+  .ef-stat--pink{background:#E8C4DA;}
+  .ef-stat--lilac{background:#D3CFF0;}
+  .ef-stat__orb{position:absolute;right:-36px;bottom:-60px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.35);pointer-events:none;}
   .ef-stat__top,.ef-stat__bottom{position:relative;display:flex;flex-direction:column;}
-  .ef-stat__top{gap:10px;}
-  .ef-stat__bottom{gap:6px;padding-top:2px;}
-  .ef-stat__pill{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;margin:0;padding:5px 11px;border-radius:999px;background:#151515;color:#fff;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;}
+  .ef-stat__top{gap:9px;}
+  .ef-stat__bottom{gap:5px;padding-top:2px;}
+  .ef-stat__pill{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;margin:0;padding:5px 10px;border-radius:999px;background:rgba(21,21,21,0.88);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;}
   .ef-stat__pill i{width:6px;height:6px;border-radius:50%;background:#B9F2E1;font-style:normal;}
   .ef-stat--pink .ef-stat__pill i{background:#EEB4D8;}
   .ef-stat--lilac .ef-stat__pill i{background:#CEC8FF;}
-  .ef-stat__concern{display:flex;flex-direction:column;gap:5px;max-width:100%;padding:8px 10px;border-radius:14px;background:rgba(21,21,21,0.055);border:1.5px dashed rgba(21,21,21,0.22);}
-  .ef-stat__kicker{margin:0;font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:rgba(21,21,21,0.48);}
-  .ef-stat__pain{margin:0;font-size:13px;font-weight:600;line-height:1.25;color:rgba(21,21,21,0.78);}
-  .ef-stat__proof{align-self:flex-start;margin:0;padding:4px 8px;border-radius:999px;background:#151515;color:#B9F2E1;font-size:10px;font-weight:800;letter-spacing:0.11em;text-transform:uppercase;}
+  .ef-stat__concern{display:flex;flex-direction:column;gap:4px;max-width:100%;padding:7px 9px;border-radius:12px;background:rgba(21,21,21,0.04);border:1px dashed rgba(21,21,21,0.16);}
+  .ef-stat__kicker{margin:0;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(21,21,21,0.42);}
+  .ef-stat__pain{margin:0;font-size:13px;font-weight:500;line-height:1.25;color:rgba(21,21,21,0.72);}
+  .ef-stat__proof{align-self:flex-start;margin:0;padding:3px 8px;border-radius:999px;background:rgba(21,21,21,0.82);color:#B9F2E1;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
   .ef-stat--pink .ef-stat__proof{color:#EEB4D8;}
   .ef-stat--lilac .ef-stat__proof{color:#CEC8FF;}
-  .ef-360 .ef-stat__proof{color:#FEBE86;}
+  .ef-360 .ef-stat__proof{color:#F3D0A8;}
   .ef-stat__figure{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;}
-  .ef-stat__value{margin:0;font-size:clamp(52px,5.4vw,78px);font-weight:800;line-height:0.9;letter-spacing:-0.05em;font-variant-numeric:tabular-nums;white-space:nowrap;transform-origin:left bottom;}
-  .ef-stat__score{margin:0 0 4px;padding:6px 11px;border-radius:999px;background:#151515;color:#fff;font-size:13px;font-weight:700;}
-  .ef-stat__caption{margin:0;font-size:clamp(14px,1.15vw,17px);font-weight:700;line-height:1.25;transform-origin:left top;}
-  .ef-stat__note{margin:0;font-size:12px;font-weight:500;line-height:1.3;color:rgba(21,21,21,0.55);}
+  .ef-stat__value{margin:0;font-size:clamp(48px,4.8vw,68px);font-weight:800;line-height:0.9;letter-spacing:-0.045em;font-variant-numeric:tabular-nums;white-space:nowrap;transform-origin:left bottom;}
+  .ef-stat__score{margin:0 0 4px;padding:5px 10px;border-radius:999px;background:rgba(21,21,21,0.88);color:#fff;font-size:12px;font-weight:600;}
+  .ef-stat__caption{margin:0;font-size:clamp(13px,1.05vw,16px);font-weight:600;line-height:1.25;transform-origin:left top;}
+  .ef-stat__note{margin:0;font-size:12px;font-weight:500;line-height:1.3;color:rgba(21,21,21,0.5);}
   .ef-stat__value,.ef-stat__caption,.ef-stat__score{
     opacity:0;
-    transform:scale(0.72) translateY(18px);
+    transform:scale(0.86) translateY(10px);
     will-change:transform,opacity;
   }
   .ef-stat.is-in .ef-stat__value,.ef-360.is-in .ef-stat__value{
     opacity:1;
     transform:scale(1) translateY(0);
-    transition:transform 1.15s cubic-bezier(.16,1,.3,1),opacity .55s ease;
+    transition:transform .9s cubic-bezier(.16,1,.3,1),opacity .45s ease;
   }
   .ef-stat.is-in .ef-stat__score,.ef-360.is-in .ef-stat__score{
     opacity:1;
     transform:scale(1) translateY(0);
-    transition:transform 1s cubic-bezier(.16,1,.3,1) .12s,opacity .5s ease .12s;
+    transition:transform .8s cubic-bezier(.16,1,.3,1) .08s,opacity .4s ease .08s;
   }
   .ef-stat.is-in .ef-stat__caption,.ef-360.is-in .ef-stat__caption{
     opacity:1;
     transform:scale(1) translateY(0);
-    transition:transform 1.05s cubic-bezier(.16,1,.3,1) .18s,opacity .55s ease .18s;
+    transition:transform .85s cubic-bezier(.16,1,.3,1) .12s,opacity .45s ease .12s;
   }
   @media (prefers-reduced-motion:reduce){
     .ef-stat__value,.ef-stat__caption,.ef-stat__score{opacity:1;transform:none;transition:none;}
   }
-  .ef-360{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:stretch;gap:20px 28px;border-radius:28px;padding:clamp(18px,2.2vw,28px);background:#FEBE86;color:#151515;}
-  .ef-360 .ef-stat__pill i{background:#FEBE86;}
-  .ef-360__orb{position:absolute;left:-50px;bottom:-90px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.35);pointer-events:none;}
-  .ef-360__main{position:relative;flex:1 1 280px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;}
+  .ef-ease{padding:8px 16px 28px;}
+  .ef-ease__inner{max-width:1440px;margin:0 auto;}
+  .ef-360{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:stretch;gap:18px 24px;border-radius:28px;padding:clamp(18px,2.2vw,28px);background:#F0C49A;color:#151515;}
+  .ef-360 .ef-stat__pill i{background:#F0C49A;}
+  .ef-360__orb{position:absolute;left:-50px;bottom:-90px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;}
+  .ef-360__main{position:relative;flex:1 1 280px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;}
   .ef-360__main .ef-stat__concern{max-width:380px;}
-  .ef-360__main .ef-stat__value{font-size:clamp(64px,6.5vw,96px);line-height:0.88;}
+  .ef-360__main .ef-stat__value{font-size:clamp(56px,5.6vw,84px);line-height:0.9;}
   .ef-360__main .ef-stat__caption{max-width:400px;}
   .ef-360__side{position:relative;flex:1.15 1 340px;display:flex;flex-direction:column;gap:10px;}
-  .ef-360__why{margin:0;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;}
+  .ef-360__why{margin:0;font-size:11px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;color:rgba(21,21,21,0.7);}
   .ef-360__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-  .ef-reason{display:flex;flex-direction:column;gap:8px;background:#fff;border-radius:18px;padding:14px;color:#151515;}
-  .ef-reason__ic{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#483AE7;color:#fff;}
-  .ef-reason__ic svg{width:17px;height:17px;}
-  .ef-reason h3{margin:0;font-size:15px;font-weight:800;}
-  .ef-reason p{margin:0;font-size:13px;font-weight:500;line-height:1.3;color:#3a3a3a;}
-  .ef-figures__close{position:relative;z-index:2;max-width:900px;margin:0;font-size:clamp(22px,2.4vw,34px);font-weight:800;line-height:1.15;letter-spacing:-0.035em;}
-  .ef-figures__close span{color:#B9F2E1;white-space:nowrap;border-bottom:4px dashed #B9F2E1;}
+  .ef-reason{display:flex;flex-direction:column;gap:7px;background:rgba(255,255,255,0.88);border-radius:16px;padding:12px 14px;color:#151515;}
+  .ef-reason__ic{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#483AE7;color:#fff;}
+  .ef-reason__ic svg{width:15px;height:15px;}
+  .ef-reason h3{margin:0;font-size:14px;font-weight:700;}
+  .ef-reason p{margin:0;font-size:12px;font-weight:500;line-height:1.3;color:#4a4a4a;}
+  .ef-figures__close{position:relative;z-index:2;max-width:820px;margin:0;font-size:clamp(18px,2vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.03em;color:rgba(255,255,255,0.92);}
+  .ef-figures__close span{color:#B9F2E1;white-space:nowrap;border-bottom:3px dashed rgba(185,242,225,0.75);}
   @media (max-width:700px){
-    .ef-figures{padding:12px 12px 24px;}
-    .ef-figures__panel{gap:20px;border-radius:28px;padding:20px;}
-    .ef-figures__grid{grid-template-columns:1fr;gap:12px;}
-    .ef-tile--goals{transform:rotate(-0.6deg);}
-    .ef-tile--ease{transform:rotate(0.6deg);margin-top:0;}
-    .ef-tile--effect{transform:rotate(-0.4deg);margin-top:0;}
-    .ef-tile--reviews{transform:rotate(-0.3deg);}
+    .ef-figures{padding:12px 12px 16px;}
+    .ef-ease{padding:4px 12px 24px;}
+    .ef-figures__panel{gap:16px;border-radius:24px;padding:18px;}
+    .ef-figures__grid{grid-template-columns:1fr;gap:10px;}
+    .ef-tile--goals,.ef-tile--ease,.ef-tile--effect{transform:none;margin-top:0;}
     .ef-figures__spark{right:-8px;top:-30px;width:90px;}
-    .ef-stat{padding:18px;}
-    .ef-stat__value{font-size:56px;}
+    .ef-stat{padding:16px;}
+    .ef-stat__value{font-size:48px;}
   }
   @media (max-width:1100px) and (min-width:701px){
     .ef-figures__grid{grid-template-columns:repeat(2,minmax(0,1fr));}
@@ -1576,7 +1575,7 @@ html, body {
   <!-- ===================== EMPLYFLOW В ЦИФРАХ ===================== -->
   <section class="ef-figures" aria-labelledby="ef-figures-title">
     <div class="ef-figures__panel">
-      <p class="ef-figures__watermark" aria-hidden="true">92%</p>
+      <p class="ef-figures__watermark" aria-hidden="true">90%</p>
       <span class="ef-figures__glow ef-figures__glow--light" aria-hidden="true"></span>
       <span class="ef-figures__glow ef-figures__glow--pink" aria-hidden="true"></span>
       <div class="ef-figures__head">
@@ -1638,53 +1637,6 @@ html, body {
               <p class="ef-stat__value" data-ef-count="90" data-ef-prefix="≈">≈90%</p>
               <p class="ef-stat__caption">сотрудников считают Performance Review полезным для себя</p>
               <p class="ef-stat__note">Доля участников, оценивших пользу на 4–5 баллов из 5</p>
-            </div>
-          </article>
-        </div>
-        <div class="ef-tile ef-tile--reviews">
-          <article class="ef-360">
-            <span class="ef-360__orb" aria-hidden="true"></span>
-            <div class="ef-360__main">
-              <div class="ef-stat__top">
-                <p class="ef-stat__pill"><i aria-hidden="true"></i>удобство процесса Performance Review</p>
-                <div class="ef-stat__concern">
-                  <p class="ef-stat__kicker">Опасение</p>
-                  <p class="ef-stat__pain">Система окажется сложной для работы и проведения ревью</p>
-                </div>
-              </div>
-              <div class="ef-stat__bottom">
-                <p class="ef-stat__proof">В EmplyFlow</p>
-                <div class="ef-stat__figure">
-                  <p class="ef-stat__value" data-ef-count="86.8" data-ef-dec="1">86,8%</p>
-                  <p class="ef-stat__score">поставили &gt;8 из 10 баллов</p>
-                </div>
-                <p class="ef-stat__caption">пользователей подтверждают удобство и прозрачность функционала платформы</p>
-              </div>
-            </div>
-            <div class="ef-360__side">
-              <p class="ef-360__why">За счёт чего достигается высокий уровень?</p>
-              <div class="ef-360__grid">
-                <article class="ef-reason">
-                  <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9"></path><path d="M10 21a2 2 0 0 0 4 0"></path></svg></span>
-                  <h3>Автонапоминания</h3>
-                  <p>Система сама напоминает участникам о незаполненных анкетах</p>
-                </article>
-                <article class="ef-reason">
-                  <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22 11 13 2 9 22 2z"></path></svg></span>
-                  <h3>Дорожная карта</h3>
-                  <p>Каждый пользователь видит свой список заданий и сроков к ним</p>
-                </article>
-                <article class="ef-reason">
-                  <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path><path d="M16 2v4M8 2v4M3 10h5"></path><circle cx="16" cy="16" r="6"></circle><path d="M16 14v2l1 1"></path></svg></span>
-                  <h3>Дедлайны</h3>
-                  <p>У каждого этапа оценки свой срок завершения</p>
-                </article>
-                <article class="ef-reason">
-                  <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"></path><path d="m3 7 2 2 4-4"></path><path d="M13 6h8M13 12h8M13 18h8"></path></svg></span>
-                  <h3>Контроль статусов</h3>
-                  <p>Видны промежуточные итоги по каждому процессу</p>
-                </article>
-              </div>
             </div>
           </article>
         </div>
@@ -2504,6 +2456,56 @@ html, body {
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="ef-ease" aria-label="Удобство процесса Performance Review">
+    <div class="ef-ease__inner">
+      <article class="ef-360">
+        <span class="ef-360__orb" aria-hidden="true"></span>
+        <div class="ef-360__main">
+          <div class="ef-stat__top">
+            <p class="ef-stat__pill"><i aria-hidden="true"></i>удобство процесса Performance Review</p>
+            <div class="ef-stat__concern">
+              <p class="ef-stat__kicker">Опасение</p>
+              <p class="ef-stat__pain">Система окажется сложной для работы и проведения ревью</p>
+            </div>
+          </div>
+          <div class="ef-stat__bottom">
+            <p class="ef-stat__proof">В EmplyFlow</p>
+            <div class="ef-stat__figure">
+              <p class="ef-stat__value" data-ef-count="86.8" data-ef-dec="1">86,8%</p>
+              <p class="ef-stat__score">поставили &gt;8 из 10 баллов</p>
+            </div>
+            <p class="ef-stat__caption">пользователей подтверждают удобство и прозрачность функционала платформы</p>
+          </div>
+        </div>
+        <div class="ef-360__side">
+          <p class="ef-360__why">За счёт чего достигается высокий уровень?</p>
+          <div class="ef-360__grid">
+            <article class="ef-reason">
+              <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9"></path><path d="M10 21a2 2 0 0 0 4 0"></path></svg></span>
+              <h3>Автонапоминания</h3>
+              <p>Система сама напоминает участникам о незаполненных анкетах</p>
+            </article>
+            <article class="ef-reason">
+              <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22 11 13 2 9 22 2z"></path></svg></span>
+              <h3>Дорожная карта</h3>
+              <p>Каждый пользователь видит свой список заданий и сроков к ним</p>
+            </article>
+            <article class="ef-reason">
+              <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path><path d="M16 2v4M8 2v4M3 10h5"></path><circle cx="16" cy="16" r="6"></circle><path d="M16 14v2l1 1"></path></svg></span>
+              <h3>Дедлайны</h3>
+              <p>У каждого этапа оценки свой срок завершения</p>
+            </article>
+            <article class="ef-reason">
+              <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"></path><path d="m3 7 2 2 4-4"></path><path d="M13 6h8M13 12h8M13 18h8"></path></svg></span>
+              <h3>Контроль статусов</h3>
+              <p>Видны промежуточные итоги по каждому процессу</p>
+            </article>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
