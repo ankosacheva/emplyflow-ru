@@ -770,15 +770,17 @@ html, body {
   .ef-figures__mark{display:inline-block;margin-top:0.16em;line-height:1.05;color:#151515;background:#EEB4D8;padding:0.02em 12px 0.06em;border-radius:12px;}
   .ef-figures__lead{flex:1 1 360px;max-width:520px;display:grid;gap:14px;}
   .ef-figures__lead p{margin:0;font-size:clamp(17px,1.3vw,19px);font-weight:500;line-height:1.45;color:#E9E7FF;}
-  .ef-figures__grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:start;}
+  .ef-figures__grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start;}
   .ef-tile{position:relative;}
   .ef-tile--goals{transform:rotate(-1.5deg);}
   .ef-tile--ease{transform:rotate(1.5deg);margin-top:36px;}
+  .ef-tile--effect{transform:rotate(-1deg);margin-top:18px;}
   .ef-tile--reviews{grid-column:1 / -1;transform:rotate(-0.6deg);margin-top:8px;}
   .ef-figures__spark{position:absolute;z-index:3;right:-26px;top:-46px;width:min(11vw,130px);height:auto;transform:rotate(10deg);pointer-events:none;}
   .ef-stat{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:32px;min-height:400px;border-radius:40px;padding:34px;color:#151515;}
   .ef-stat--mint{background:#B9F2E1;}
   .ef-stat--pink{background:#EEB4D8;}
+  .ef-stat--lilac{background:#CEC8FF;}
   .ef-stat__orb{position:absolute;right:-40px;bottom:-70px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.5);pointer-events:none;}
   .ef-stat__top,.ef-stat__bottom{position:relative;display:flex;flex-direction:column;}
   .ef-stat__top{gap:16px;}
@@ -786,10 +788,12 @@ html, body {
   .ef-stat__pill{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin:0;padding:7px 14px;border-radius:999px;background:#151515;color:#fff;font-size:12px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;}
   .ef-stat__pill i{width:7px;height:7px;border-radius:50%;background:#B9F2E1;font-style:normal;}
   .ef-stat--pink .ef-stat__pill i{background:#EEB4D8;}
+  .ef-stat--lilac .ef-stat__pill i{background:#CEC8FF;}
   .ef-stat__kicker{margin:0;font-size:12px;font-weight:800;letter-spacing:0.04em;color:rgba(21,21,21,0.55);}
   .ef-stat__pain{margin:0;font-size:17px;font-weight:600;line-height:1.3;}
   .ef-stat--mint .ef-stat__pain{max-width:78%;}
   .ef-stat--pink .ef-stat__pain{max-width:85%;}
+  .ef-stat--lilac .ef-stat__pain{max-width:92%;}
   .ef-stat__figure{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;}
   .ef-stat__value{margin:0;font-size:clamp(80px,8vw,128px);font-weight:800;line-height:0.88;letter-spacing:-0.05em;font-variant-numeric:tabular-nums;white-space:nowrap;transform-origin:left bottom;}
   .ef-stat__score{margin:0 0 8px;padding:8px 14px;border-radius:999px;background:#151515;color:#fff;font-size:15px;font-weight:700;}
@@ -837,12 +841,18 @@ html, body {
   @media (max-width:700px){
     .ef-figures{padding:16px 16px 32px;}
     .ef-figures__panel{gap:32px;border-radius:32px;}
+    .ef-figures__grid{grid-template-columns:1fr;}
     .ef-tile--goals{transform:rotate(-0.8deg);}
     .ef-tile--ease{transform:rotate(0.8deg);margin-top:0;}
+    .ef-tile--effect{transform:rotate(-0.5deg);margin-top:0;}
     .ef-tile--reviews{transform:rotate(-0.4deg);}
     .ef-figures__spark{right:-8px;top:-30px;width:90px;}
     .ef-stat{min-height:0;padding:24px;}
     .ef-stat__value{font-size:72px;}
+  }
+  @media (max-width:1100px) and (min-width:701px){
+    .ef-figures__grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .ef-tile--effect{margin-top:0;}
   }
   @media (max-width:520px){
     .ef-360__grid{grid-template-columns:1fr;}
@@ -1583,6 +1593,19 @@ html, body {
             <div class="ef-stat__bottom">
               <p class="ef-stat__value" data-ef-count="92">92%</p>
               <p class="ef-stat__caption">запросов на оценку 360° успешно получили отзывы респондентов-коллег</p>
+            </div>
+          </article>
+        </div>
+        <div class="ef-tile ef-tile--effect">
+          <article class="ef-stat ef-stat--lilac">
+            <span class="ef-stat__orb" aria-hidden="true"></span>
+            <div class="ef-stat__top">
+              <p class="ef-stat__pill"><i aria-hidden="true"></i>Реальный эффект</p>
+              <p class="ef-stat__pain">Доля участников, оценивших пользу от прохождения Performance Review на 4–5 баллов из 5</p>
+            </div>
+            <div class="ef-stat__bottom">
+              <p class="ef-stat__value" data-ef-count="90" data-ef-prefix="≈">≈90%</p>
+              <p class="ef-stat__caption">сотрудников считают Performance Review полезным для себя</p>
             </div>
           </article>
         </div>

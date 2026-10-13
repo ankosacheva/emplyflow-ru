@@ -10,17 +10,18 @@ body { display:block; padding:16px; }
 .dot { width:8px; height:8px; border-radius:50%; background:#7dffc8; }
 h2 { margin:14px 0 0; font-size:32px; line-height:1.05; letter-spacing:-.04em; max-width:12em; }
 h2 span { background:#ffb8e2; color:#151515; border-radius:6px; padding:0 6px; }
-.pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+.row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:16px; }
 .card { border-radius:18px; padding:14px; color:#151515; min-height:140px; }
-.mint { background:#d8ffe9; } .pink { background:#ffc6e4; }
+.mint { background:#d8ffe9; } .pink { background:#ffc6e4; } .lilac { background:#cec8ff; }
 .num { font-size:40px; font-weight:800; letter-spacing:-.04em; margin:8px 0 0; }
 </style></head><body>
 <div class="panel">
   <div class="badge"><span class="dot"></span>EmplyFlow в цифрах</div>
   <h2>Ваши HR-процессы. Ваши правила.<br><span>Результат под контролем.</span></h2>
-  <div class="pair">
-    <div class="card mint"><div>Цели</div><div class="num">81%</div></div>
-    <div class="card pink"><div>Удобство</div><div class="num">86,8%</div></div>
+  <div class="row">
+    <div class="card mint"><div>Цели</div><div class="num">&gt;81%</div></div>
+    <div class="card pink"><div>Оценка 360°</div><div class="num">92%</div></div>
+    <div class="card lilac"><div>Реальный эффект</div><div class="num">≈90%</div></div>
   </div>
 </div>
 </body></html>
