@@ -651,7 +651,7 @@ html, body {
 <style>
   /* ===== Первый экран: заголовок, обводка «на базе ИИ», счётчики по краям ===== */
   .ef-hero{position:relative;padding:clamp(40px,6vw,86px) clamp(16px,4vw,40px) clamp(40px,5vw,72px);overflow:hidden;}
-  .ef-hero__scene{position:absolute;left:0;right:0;top:0;height:min(1080px,125%);pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 58%,transparent 94%);mask-image:linear-gradient(to bottom,#000 0%,#000 58%,transparent 94%);}
+  .ef-hero__scene{position:absolute;left:0;right:0;top:0;height:100%;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 42%,transparent 78%);mask-image:linear-gradient(to bottom,#000 0%,#000 42%,transparent 78%);}
   .ef-hero__waves{position:absolute;inset:0;width:100%;height:100%;}
   .ef-hero__scribble{position:absolute;opacity:0.38;pointer-events:none;z-index:1;}
   .ef-hero__scribble--1{top:clamp(28px,5vw,74px);left:clamp(96px,17vw,270px);width:clamp(52px,6vw,90px);}
@@ -727,6 +727,7 @@ html, body {
 </style>
 <style>
   /* ===== EmplyFlow в цифрах ===== */
+  .ef-figures,.ef-mods,.ef-about,.ef-cases,.ef-impl,.ef-clients{background:transparent;}
   .ef-figures{padding:24px 24px 40px;}
   .ef-figures__panel{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:48px;max-width:1440px;margin:0 auto;border-radius:48px;padding:clamp(32px,5vw,72px);background:#483AE7;color:#fff;}
   .ef-figures__watermark{position:absolute;right:-4%;top:-12%;z-index:0;margin:0;font-weight:800;font-size:clamp(240px,34vw,520px);line-height:1;letter-spacing:-0.06em;color:rgba(255,255,255,0.07);pointer-events:none;}
@@ -1516,7 +1517,7 @@ html, body {
             </div>
             <div class="ef-stat__bottom">
               <p class="ef-stat__value" data-ef-count="81" data-ef-prefix="&gt;">&gt;81%</p>
-              <p class="ef-stat__caption">в EmplyFlow &gt;81% всех заведенных целей в среднем по времени регулярно обновляются или имеют подтвержденные итоги</p>
+              <p class="ef-stat__caption">в EmplyFlow &gt;81% всех целей по статистике регулярно обновляются или имеют подтвержденные итоги</p>
             </div>
           </article>
         </div>
@@ -1625,7 +1626,7 @@ html, body {
   @keyframes efModPulse{0%{transform:scale(.92);opacity:.55}70%{transform:scale(1.55);opacity:0}100%{opacity:0}}
   @keyframes efModBar{0%,100%{width:var(--w0,40%)}55%{width:var(--w1,86%)}}
   .ef-mods{position:relative;overflow:hidden;padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px);}
-  .ef-mods__bloom{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 12% -8%,rgba(74,59,255,.38),transparent 66%),radial-gradient(40% 40% at 92% 18%,rgba(255,184,226,.18),transparent 70%);}
+  .ef-mods__bloom{display:none;}
   .ef-mods__inner{position:relative;z-index:1;max-width:1360px;margin:0 auto;}
   .ef-mods__head{max-width:860px;margin:0 0 clamp(28px,4vw,48px);}
   .ef-mods__eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 14px;color:var(--c-fog);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
