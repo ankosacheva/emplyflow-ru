@@ -699,10 +699,9 @@ html, body {
   .ef-btn--indigo:hover{color:#fff;filter:brightness(1.09);}
   .ef-btn__ic{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;background:#fff;color:#4a3bff;}
 
-  /* фон ролика совпадает с canvas Black Rock, поэтому рамка не нужна — он читается как часть страницы */
-  .ef-hero__anim{position:relative;margin:clamp(18px,2.6vw,40px) auto 0;max-width:1180px;}
-  /* верхний край растворяем — там ролик встречается с подсветкой заголовка */
-  .ef-hero__anim video{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 6%);mask-image:linear-gradient(to bottom,transparent 0,#000 6%);}
+  /* ролик под блоком «EmplyFlow в цифрах»; фон совпадает с canvas Black Rock */
+  .ef-hero__anim{position:relative;margin:0 auto;padding:8px clamp(16px,4vw,40px) clamp(28px,5vw,56px);max-width:1260px;}
+  .ef-hero__anim video{display:block;width:100%;height:auto;}
   /* на узком экране и при отключённой анимации показываем стоп-кадр: мелкий текст в ролике всё равно не читается */
   @media (prefers-reduced-motion:reduce),(max-width:700px){
     .ef-hero__anim video{display:none;}
@@ -1153,13 +1152,6 @@ html, body {
           </svg>
           <img src="3ac3d2a1-e6b6-47aa-a918-ef167e497d70" alt="Лучший проект в сфере HR по версии Rusbase в 2024 году" class="ef-hero__award">
         </aside>
-      </div>
-
-      <div class="ef-hero__anim">
-        <video sc-camel-auto-play="{{ true }}" loop="{{ true }}" muted="{{ true }}" sc-camel-plays-inline="{{ true }}" preload="metadata" poster="media/hero-animation-poster.jpg" aria-label="Данные из 1С:ЗУП, Excel, целей и KPI, отзывов коллег, оценки 360° и модели компетенций собираются в профиль сотрудника: выполнение целей, вовлечённость, оценка 360°, динамика результатов и рекомендации ИИ — кадровый резерв, готовый ИПР, риск перегрузки">
-          <source src="media/hero-animation.mp4" type="video/mp4">
-          <source src="media/hero-animation.webm" type="video/webm">
-        </video>
       </div>
 
     </div>
@@ -1657,6 +1649,14 @@ html, body {
       <p class="ef-figures__close">Меньше ручного контроля. <span>Больше управляемости</span> на каждом этапе.</p>
     </div>
   </section>
+
+  <div class="ef-hero__anim">
+    <video sc-camel-auto-play="{{ true }}" loop="{{ true }}" muted="{{ true }}" sc-camel-plays-inline="{{ true }}" preload="metadata" poster="media/hero-animation-poster.jpg" aria-label="Данные из 1С:ЗУП, Excel, целей и KPI, отзывов коллег, оценки 360° и модели компетенций собираются в профиль сотрудника: выполнение целей, вовлечённость, оценка 360°, динамика результатов и рекомендации ИИ — кадровый резерв, готовый ИПР, риск перегрузки">
+      <source src="media/hero-animation.mp4" type="video/mp4">
+      <source src="media/hero-animation.webm" type="video/webm">
+    </video>
+  </div>
+
   <script>
   (function(){
     if(window.__efFigCountBoot)return;
