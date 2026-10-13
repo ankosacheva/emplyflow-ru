@@ -726,37 +726,56 @@ html, body {
   }
 </style>
 <style>
-  /* ===== EmplyFlow в цифрах: шесть карточек одной сеткой ===== */
+  /* ===== EmplyFlow в цифрах ===== */
   .ef-figures{padding:clamp(8px,2vw,20px) clamp(16px,4vw,40px) clamp(48px,6vw,84px);}
-  .ef-figures__inner{max-width:1200px;margin:0 auto;}
-  .ef-figures__title{margin:0 0 clamp(18px,2.4vw,28px);font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-0.032em;color:#fff;}
-  .ef-figures__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,18px);align-items:stretch;}
-  .ef-fig{position:relative;overflow:hidden;border-radius:30px;min-width:0;}
-  .ef-fig--note{display:flex;flex-direction:column;gap:clamp(10px,1.2vw,14px);min-height:clamp(168px,16vw,220px);padding:clamp(18px,2vw,26px);color:#151515;}
-  .ef-fig--mint{background:#d5fff3;}
-  .ef-fig--peri{background:#cec8ff;}
-  .ef-fig--pink{background:#ffb8e2;}
-  .ef-fig__title{max-width:min(16ch,calc(100% - 44px));margin:0;font-weight:800;font-size:clamp(20px,2.05vw,28px);line-height:1.02;letter-spacing:-0.03em;}
-  .ef-fig__body{margin:0;font-size:clamp(13px,1.12vw,15px);font-weight:500;line-height:1.35;color:rgba(21,21,21,0.82);}
-  .ef-fig__spark{position:absolute;pointer-events:none;width:clamp(22px,2.6vw,36px);height:auto;}
-  .ef-fig--mint .ef-fig__spark{top:16px;right:18px;fill:#ffb8e2;}
-  .ef-fig--peri .ef-fig__spark{right:16px;bottom:16px;width:clamp(18px,2vw,26px);fill:rgba(255,255,255,0.9);}
-  .ef-fig--pink .ef-fig__spark:nth-of-type(1){top:18px;right:20px;width:clamp(26px,3vw,38px);fill:rgba(255,255,255,0.92);}
-  .ef-fig--pink .ef-fig__spark:nth-of-type(2){right:18px;bottom:16px;width:clamp(16px,1.8vw,22px);fill:rgba(255,255,255,0.72);}
-  .ef-fig--stat{display:flex;align-items:center;min-height:clamp(280px,28vw,380px);padding:clamp(28px,3vw,40px);color:#fff;}
-  .ef-fig--lilac{background:#7b46ff;box-shadow:0 28px 64px -28px rgba(5,2,48,0.72),0 0 72px -24px rgba(123,70,255,0.55);}
-  .ef-fig--orange{background:#ff6a2b;box-shadow:0 28px 64px -28px rgba(5,2,48,0.72),0 0 72px -24px rgba(255,106,43,0.5);}
-  .ef-fig__stat{margin:0;font-weight:800;font-size:clamp(26px,2.7vw,40px);line-height:1.05;letter-spacing:-0.03em;color:#fff;}
-  .ef-fig--lilac .ef-fig__spark{top:28px;left:28px;width:24px;fill:#ffcf8a;}
-  .ef-fig--orange .ef-fig__spark{top:30px;left:26px;width:22px;fill:#ffe1cf;}
-  .ef-fig--photo{min-height:clamp(280px,28vw,380px);background:#10243a;}
-  .ef-fig--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;}
-  .ef-fig__caption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:clamp(28px,3.2vw,40px) clamp(14px,1.8vw,22px) clamp(16px,2vw,22px);text-align:center;font-weight:800;font-size:clamp(20px,2.15vw,30px);line-height:1.08;letter-spacing:-0.03em;color:#151515;background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,0.72) 42%,rgba(255,255,255,0.94) 100%);}
+  .ef-figures__panel{position:relative;overflow:hidden;max-width:1180px;margin:0 auto;border-radius:clamp(28px,3vw,44px);padding:clamp(28px,3.6vw,56px);background:#6246ff;color:#fff;box-shadow:0 36px 80px -40px rgba(74,59,255,0.7);}
+  .ef-figures__blob{position:absolute;border-radius:50%;pointer-events:none;}
+  .ef-figures__blob--a{width:clamp(180px,28vw,340px);height:clamp(180px,28vw,340px);right:-40px;top:-90px;background:rgba(154,126,255,0.55);}
+  .ef-figures__blob--b{width:clamp(120px,16vw,200px);height:clamp(120px,16vw,200px);right:18%;top:36px;background:rgba(122,92,255,0.45);}
+  .ef-figures__badge{position:relative;display:inline-flex;align-items:center;gap:8px;margin:0 0 clamp(18px,2vw,26px);padding:8px 16px 8px 12px;border-radius:999px;background:rgba(255,255,255,0.16);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+  .ef-figures__badge span{width:8px;height:8px;border-radius:50%;background:#7dffc8;}
+  .ef-figures__title{position:relative;max-width:16em;margin:0;font-weight:800;font-size:clamp(32px,4.4vw,58px);line-height:1.02;letter-spacing:-0.04em;}
+  .ef-figures__mark{display:inline;background:#ffb8e2;color:#151515;padding:0.02em 0.16em 0.08em;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+  .ef-figures__lead{position:relative;max-width:640px;margin:clamp(18px,2.2vw,28px) 0 0;display:grid;gap:14px;}
+  .ef-figures__lead p{margin:0;font-size:clamp(15px,1.35vw,18px);font-weight:500;line-height:1.45;color:rgba(255,255,255,0.92);}
+  .ef-figures__pair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,22px);margin-top:clamp(28px,3.4vw,44px);align-items:stretch;}
+  .ef-figures__spark{position:absolute;z-index:2;left:50%;top:-28px;width:clamp(72px,8vw,108px);height:auto;transform:translateX(-58%) rotate(-8deg);pointer-events:none;filter:drop-shadow(0 16px 28px rgba(40,10,90,0.35));}
+  .ef-stat{position:relative;overflow:hidden;border-radius:28px;padding:clamp(20px,2.2vw,28px);color:#151515;min-height:clamp(280px,26vw,360px);display:flex;flex-direction:column;}
+  .ef-stat--mint{background:#d8ffe9;}
+  .ef-stat--pink{background:#ffc6e4;}
+  .ef-stat__orb{position:absolute;border-radius:50%;background:rgba(255,255,255,0.45);pointer-events:none;}
+  .ef-stat--mint .ef-stat__orb{width:140px;height:140px;right:-20px;bottom:-36px;}
+  .ef-stat--pink .ef-stat__orb:nth-of-type(1){width:120px;height:120px;right:-10px;bottom:18px;background:rgba(255,255,255,0.35);}
+  .ef-stat--pink .ef-stat__orb:nth-of-type(2){width:90px;height:90px;right:70px;bottom:-28px;background:rgba(255,184,226,0.55);}
+  .ef-stat__pill{position:relative;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;padding:7px 14px 7px 10px;border-radius:999px;background:#151515;color:#fff;font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;}
+  .ef-stat__pill i{width:8px;height:8px;border-radius:50%;background:#7dffc8;font-style:normal;}
+  .ef-stat--pink .ef-stat__pill i{background:#ff8ad4;}
+  .ef-stat__kicker{position:relative;margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(21,21,21,0.45);}
+  .ef-stat__pain{position:relative;margin:0;max-width:16em;font-size:clamp(18px,1.7vw,24px);font-weight:700;line-height:1.15;letter-spacing:-0.03em;}
+  .ef-stat__value{position:relative;margin:auto 0 8px;font-size:clamp(56px,6.4vw,84px);font-weight:800;line-height:0.9;letter-spacing:-0.05em;}
+  .ef-stat__score{position:relative;align-self:flex-start;margin:0 0 10px;padding:6px 12px;border-radius:999px;background:#151515;color:#fff;font-size:14px;font-weight:800;}
+  .ef-stat__caption{position:relative;margin:0;max-width:18em;font-size:clamp(15px,1.35vw,18px);font-weight:700;line-height:1.25;letter-spacing:-0.02em;}
+  .ef-360{position:relative;margin-top:clamp(14px,1.8vw,22px);border-radius:32px;padding:clamp(22px,2.6vw,36px);background:#ffc48a;color:#151515;overflow:hidden;}
+  .ef-360 .ef-stat__pill i{background:#ff8a3d;}
+  .ef-360 .ef-stat__value{margin-top:18px;}
+  .ef-360__why{margin:clamp(22px,2.6vw,32px) 0 14px;font-size:13px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;}
+  .ef-360__grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .ef-reason{background:#fff;border-radius:22px;padding:18px 18px 16px;color:#151515;}
+  .ef-reason__ic{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#6246ff;color:#fff;margin-bottom:12px;}
+  .ef-reason__ic svg{width:20px;height:20px;}
+  .ef-reason h3{margin:0 0 6px;font-size:18px;font-weight:800;letter-spacing:-0.03em;}
+  .ef-reason p{margin:0;font-size:14px;font-weight:500;line-height:1.35;color:rgba(21,21,21,0.72);}
+  .ef-figures__close{position:relative;max-width:16em;margin:clamp(28px,3.4vw,42px) 0 0;font-size:clamp(26px,3vw,40px);font-weight:800;line-height:1.08;letter-spacing:-0.035em;}
+  .ef-figures__close span{text-decoration:underline dashed #7dffc8;text-decoration-thickness:3px;text-underline-offset:6px;}
+  .ef-figures__note{position:relative;display:flex;align-items:center;gap:8px;margin:18px 0 0;font-size:14px;font-weight:600;color:rgba(255,255,255,0.88);}
+  .ef-figures__note i{width:8px;height:8px;border-radius:50%;background:#7dffc8;font-style:normal;flex:0 0 auto;}
+  .ef-figures__cta{position:relative;display:inline-flex;align-items:center;margin-top:22px;padding:14px 26px;border:0;border-radius:999px;background:#ffb777;color:#151515;font:inherit;font-size:16px;font-weight:800;cursor:pointer;}
+  .ef-figures__cta:hover{filter:brightness(1.05);}
   @media (max-width:860px){
-    .ef-figures__grid{grid-template-columns:1fr;}
-    .ef-fig--note{min-height:0;}
-    .ef-fig--stat,.ef-fig--photo{min-height:280px;}
-    .ef-fig__title{max-width:calc(100% - 52px);}
+    .ef-figures__pair,.ef-360__grid{grid-template-columns:1fr;}
+    .ef-figures__spark{left:auto;right:12px;top:-18px;transform:none;width:64px;}
+    .ef-stat{min-height:0;}
+    .ef-stat__value{margin-top:22px;}
   }
 </style>
 <style>
@@ -1453,38 +1472,79 @@ html, body {
 
   <!-- ===================== EMPLYFLOW В ЦИФРАХ ===================== -->
   <section class="ef-figures" aria-labelledby="ef-figures-title">
-    <div class="ef-figures__inner">
-      <h2 id="ef-figures-title" class="ef-figures__title">EmplyFlow в цифрах</h2>
-      <div class="ef-figures__grid">
-        <article class="ef-fig ef-fig--note ef-fig--mint">
-          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <h3 class="ef-fig__title">Целеполагание и KPI</h3>
-          <p class="ef-fig__body">Настройте процессы Performance Review, управляя компонентами эффективности сотрудников: достижения целей, KPI и т.д.</p>
+    <div class="ef-figures__panel">
+      <div class="ef-figures__blob ef-figures__blob--a" aria-hidden="true"></div>
+      <div class="ef-figures__blob ef-figures__blob--b" aria-hidden="true"></div>
+      <p class="ef-figures__badge"><span aria-hidden="true"></span>EmplyFlow в цифрах</p>
+      <h2 id="ef-figures-title" class="ef-figures__title">Ваши HR-процессы. Ваши правила.<br><span class="ef-figures__mark">Результат под контролем.</span></h2>
+      <div class="ef-figures__lead">
+        <p>В каждой компании свои подходы к оценке, целеполаганию и развитию сотрудников. EmplyFlow позволяет адаптировать процессы под вашу организацию, а не наоборот.</p>
+        <p>Гибкие маршруты согласования, автоматические напоминания, прозрачные статусы и удобный интерфейс помогают не просто запускать HR-процессы, а доводить их до результата.</p>
+      </div>
+      <div class="ef-figures__pair">
+        <svg class="ef-figures__spark" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <linearGradient id="efFigSpark" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2a1458"></stop>
+              <stop offset="42%" stop-color="#7a4dff"></stop>
+              <stop offset="100%" stop-color="#d5fff3"></stop>
+            </linearGradient>
+          </defs>
+          <path fill="url(#efFigSpark)" d="M50 2 L58 36 L98 50 L58 64 L50 98 L42 64 L2 50 L42 36 Z"></path>
+          <path fill="#1a0a38" d="M62 8 L66 28 L86 34 L66 40 L62 60 L58 40 L38 34 L58 28 Z"></path>
+        </svg>
+        <article class="ef-stat ef-stat--mint">
+          <span class="ef-stat__orb" aria-hidden="true"></span>
+          <p class="ef-stat__pill"><i aria-hidden="true"></i>Цели</p>
+          <p class="ef-stat__kicker">Боль HR</p>
+          <p class="ef-stat__pain">Цели поставили, но дальше о них забыли</p>
+          <p class="ef-stat__value">81%</p>
+          <p class="ef-stat__caption">целей уже перешли от постановки к исполнению и подведению итогов</p>
         </article>
-        <article class="ef-fig ef-fig--note ef-fig--peri">
-          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <h3 class="ef-fig__title">Оценка компетенций</h3>
-          <p class="ef-fig__body">Проведите оценку 360°, используйте ИИ-ассистента оценки компетенций и составьте 9-box матрицу талантов вашей компании</p>
-        </article>
-        <article class="ef-fig ef-fig--note ef-fig--pink">
-          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <h3 class="ef-fig__title">ИПР и кадровый резерв</h3>
-          <p class="ef-fig__body">Получите готовые индивидуальные планы развития (ИПР) для каждого сотрудника и контролируйте их прохождение!</p>
-        </article>
-        <article class="ef-fig ef-fig--stat ef-fig--lilac">
-          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <p class="ef-fig__stat">Экономия более 1000 часов команды по персоналу в год</p>
-        </article>
-        <article class="ef-fig ef-fig--photo">
-          <img src="96ee6a4c-d36d-4986-8970-f7c61beb0e23" alt="Сотрудница смотрит на аналитические панели">
-          <p class="ef-fig__caption">Удержание ценных специалистов</p>
-        </article>
-        <article class="ef-fig ef-fig--stat ef-fig--orange">
-          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <p class="ef-fig__stat">Повышение вовлечённости и уровня достижения целей на 10–15%</p>
+        <article class="ef-stat ef-stat--pink">
+          <span class="ef-stat__orb" aria-hidden="true"></span>
+          <span class="ef-stat__orb" aria-hidden="true"></span>
+          <p class="ef-stat__pill"><i aria-hidden="true"></i>Удобство</p>
+          <p class="ef-stat__kicker">Боль HR</p>
+          <p class="ef-stat__pain">Сотрудники не хотят пользоваться сложными HR-системами</p>
+          <p class="ef-stat__value">86,8%</p>
+          <p class="ef-stat__score">8–10 из 10</p>
+          <p class="ef-stat__caption">пользователей высоко оценивают удобство функционала</p>
         </article>
       </div>
+      <article class="ef-360">
+        <p class="ef-stat__pill"><i aria-hidden="true"></i>Оценка 360°</p>
+        <p class="ef-stat__kicker">Боль HR</p>
+        <p class="ef-stat__pain">HR приходится вручную напоминать каждому участнику</p>
+        <p class="ef-stat__value">92%</p>
+        <p class="ef-stat__caption">запросов на оценку 360° завершены заполнением анкеты</p>
+        <p class="ef-360__why">Почему запросы получают ответы</p>
+        <div class="ef-360__grid">
+          <article class="ef-reason">
+            <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9"></path><path d="M10 21a2 2 0 0 0 4 0"></path></svg></span>
+            <h3>Автонапоминания</h3>
+            <p>Система сама напоминает участникам о незаполненных анкетах</p>
+          </article>
+          <article class="ef-reason">
+            <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg></span>
+            <h3>Напоминание от HR</h3>
+            <p>HR-менеджер отправляет напоминание вручную в один клик</p>
+          </article>
+          <article class="ef-reason">
+            <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg></span>
+            <h3>Дедлайны</h3>
+            <p>У каждого этапа оценки свой срок завершения</p>
+          </article>
+          <article class="ef-reason">
+            <span class="ef-reason__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path></svg></span>
+            <h3>Контроль статусов</h3>
+            <p>Видно, кто заполнил анкету, а кто ещё нет</p>
+          </article>
+        </div>
+      </article>
+      <p class="ef-figures__close">Меньше ручного контроля. <span>Больше управляемости на каждом этапе.</span></p>
+      <p class="ef-figures__note"><i aria-hidden="true"></i>Реальные данные с платформы по состоянию на 13 октября 2026 г.</p>
+      <button type="button" class="ef-figures__cta" data-ef-demo-open>Получить демодоступ к платформе</button>
     </div>
   </section>
 
