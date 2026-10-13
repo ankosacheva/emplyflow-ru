@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- @dsCard group="Components" name="Figures Panel" subtitle="EmplyFlow в цифрах — панель с показателями" viewport="980x720" -->
+<!-- @dsCard group="Components" name="Figures Panel" subtitle="EmplyFlow в цифрах — опасение → доказательство цифрой" viewport="980x720" -->
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="../colors_and_type.css">
 <link rel="stylesheet" href="_base.css">
@@ -11,17 +11,34 @@ body { display:block; padding:16px; }
 h2 { margin:14px 0 0; font-size:32px; line-height:1.05; letter-spacing:-.04em; max-width:12em; }
 h2 span { background:#ffb8e2; color:#151515; border-radius:6px; padding:0 6px; }
 .row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:16px; }
-.card { border-radius:18px; padding:14px; color:#151515; min-height:140px; }
+.card { border-radius:18px; padding:14px; color:#151515; min-height:180px; display:flex; flex-direction:column; gap:10px; }
 .mint { background:#d8ffe9; } .pink { background:#ffc6e4; } .lilac { background:#cec8ff; }
-.num { font-size:40px; font-weight:800; letter-spacing:-.04em; margin:8px 0 0; }
+.concern { padding:8px 10px; border-radius:12px; border:1.5px dashed rgba(21,21,21,.22); background:rgba(21,21,21,.05); font-size:12px; font-weight:600; line-height:1.3; color:rgba(21,21,21,.75); }
+.proof { align-self:flex-start; margin-top:auto; padding:4px 8px; border-radius:999px; background:#151515; color:#d5fff3; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+.num { font-size:36px; font-weight:800; letter-spacing:-.04em; margin:0; }
 </style></head><body>
 <div class="panel">
   <div class="badge"><span class="dot"></span>EmplyFlow в цифрах</div>
   <h2>Ваши HR-процессы. Ваши правила.<br><span>Результат под контролем.</span></h2>
   <div class="row">
-    <div class="card mint"><div>Цели</div><div class="num">&gt;81%</div></div>
-    <div class="card pink"><div>Оценка 360°</div><div class="num">92%</div></div>
-    <div class="card lilac"><div>Реальный эффект</div><div class="num">≈90%</div></div>
+    <div class="card mint">
+      <div>Цели</div>
+      <div class="concern">Опасение: прогресс по целям не отслеживается</div>
+      <div class="proof">В EmplyFlow</div>
+      <div class="num">&gt;81%</div>
+    </div>
+    <div class="card pink">
+      <div>Оценка 360°</div>
+      <div class="concern">Опасение: сотрудники не захотят проходить оценку</div>
+      <div class="proof">В EmplyFlow</div>
+      <div class="num">92%</div>
+    </div>
+    <div class="card lilac">
+      <div>Реальный эффект</div>
+      <div class="concern">Опасение: ревью кажется формальностью</div>
+      <div class="proof">В EmplyFlow</div>
+      <div class="num">≈90%</div>
+    </div>
   </div>
 </div>
 </body></html>
