@@ -1623,11 +1623,10 @@ html, body {
   </section>
   <script>
   (function(){
-    if(window.__efFigCount)return;
-    window.__efFigCount=true;
-    var nodes=[].slice.call(document.querySelectorAll('[data-ef-count]'));
-    if(!nodes.length)return;
+    if(window.__efFigCountBoot)return;
+    window.__efFigCountBoot=true;
     var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var io=null;
     function cardOf(el){return el.closest('.ef-stat, .ef-360');}
     function paint(el,t){
       var n=parseFloat(el.getAttribute('data-ef-count'));
@@ -1640,6 +1639,8 @@ html, body {
       if(card)card.classList.add('is-in');
     }
     function run(el){
+      if(el.__efFigDone)return;
+      el.__efFigDone=true;
       reveal(el);
       if(reduce){paint(el,1);return;}
       var start=performance.now();
@@ -1650,15 +1651,36 @@ html, body {
       }
       requestAnimationFrame(frame);
     }
-    if(!('IntersectionObserver' in window)){nodes.forEach(function(el){paint(el,1);reveal(el);});return;}
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(!en.isIntersecting)return;
-        io.unobserve(en.target);
-        run(en.target);
+    function bind(){
+      var nodes=[].slice.call(document.querySelectorAll('[data-ef-count]'));
+      if(!nodes.length)return;
+      if(!('IntersectionObserver' in window)){
+        nodes.forEach(function(el){run(el);});
+        return;
+      }
+      if(!io){
+        io=new IntersectionObserver(function(entries){
+          entries.forEach(function(en){
+            if(!en.isIntersecting)return;
+            io.unobserve(en.target);
+            run(en.target);
+          });
+        },{threshold:0.28,rootMargin:'0px 0px -8% 0px'});
+      }
+      nodes.forEach(function(el){
+        if(el.__efFigBound)return;
+        el.__efFigBound=true;
+        io.observe(el);
       });
-    },{threshold:0.28,rootMargin:'0px 0px -8% 0px'});
-    nodes.forEach(function(el){io.observe(el);});
+    }
+    bind();
+    if(typeof MutationObserver==='function'){
+      var mo=new MutationObserver(function(){bind();});
+      mo.observe(document.documentElement,{childList:true,subtree:true});
+    }else{
+      setTimeout(bind,800);
+      setTimeout(bind,2400);
+    }
   })();
   </script>
 
