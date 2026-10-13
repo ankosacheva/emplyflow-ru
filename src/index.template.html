@@ -711,15 +711,30 @@ html, body {
   }
   @media (max-width:980px){
     .ef-hero{padding-top:clamp(28px,6vw,48px);}
-    .ef-hero__stage{display:grid;grid-template-columns:1fr 1fr;justify-items:center;gap:16px 12px;min-height:0;}
-    .ef-hero__copy{grid-column:1 / -1;width:min(100%,680px);order:-1;}
-    .ef-metric,.ef-hero__aside{position:static;transform:none;width:min(100%,260px);}
+    .ef-hero__stage{display:grid;grid-template-columns:1fr 1fr;justify-items:stretch;align-items:stretch;gap:12px;min-height:0;}
+    .ef-hero__copy{grid-column:1 / -1;width:100%;max-width:680px;margin:0 auto;order:-1;}
+    .ef-metric,.ef-hero__aside{position:static;transform:none;width:100%;}
     .ef-hero__scribble,.ef-hero__star,.ef-hero__sparkle3d{display:none;}
     .ef-hero__callout{margin-left:auto;margin-right:auto;}
     .ef-hero__lead{font-size:clamp(17px,4.6vw,22px);line-height:1.42;}
+    .ef-hero__cta .ef-swipe-cta{width:100%;max-width:none;}
+    .ef-metric--goals{order:1;}
+    .ef-metric--reviews{order:2;}
+    .ef-metric--idp{order:3;grid-column:1 / -1;}
+    .ef-hero__aside{order:4;grid-column:1 / -1;max-width:180px;margin:4px auto 0;justify-self:center;}
   }
-  @media (max-width:640px){
-    .ef-hero__stage{grid-template-columns:1fr;}
+  @media (max-width:700px){
+    .ef-hero__stage{grid-template-columns:1.05fr 1fr;gap:10px;}
+    .ef-metric{padding:14px 14px 16px;border-radius:22px;min-height:100%;}
+    .ef-metric--goals{min-height:148px;}
+    .ef-metric--reviews{min-height:168px;margin-top:18px;}
+    .ef-metric--idp{grid-column:1 / -1;min-height:132px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:14px;align-content:center;}
+    .ef-metric--idp .ef-metric__eyebrow{grid-column:1 / -1;}
+    .ef-metric--idp .ef-metric__value{margin:0;font-size:clamp(36px,11vw,48px);}
+    .ef-metric--idp .ef-metric__label{align-self:end;margin:0 0 4px;}
+    .ef-metric__value{font-size:clamp(30px,9vw,40px);}
+    .ef-metric__label{font-size:14px;}
+    .ef-hero__aside{display:none;}
   }
   @media (prefers-reduced-motion:reduce){
     .ef-hero__sparkle3d,.ef-hero__star{animation:none;}
