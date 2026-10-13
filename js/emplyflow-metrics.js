@@ -86,11 +86,6 @@
     return new Date(Date.UTC(y, m, d)).getUTCDay();
   }
 
-  /* hour:00:second по Москве. Секунда внутри часа не бывает 0, чтобы событие не попадало ровно на полночь. */
-  function stamp(y, m, d, hour, secondInHour) {
-    return Date.UTC(y, m, d, hour, 0, secondInHour) - MOSCOW_OFFSET_MS;
-  }
-
   function pickWeighted(weights, u) {
     var total = 0;
     var i;
@@ -144,21 +139,63 @@
       return value;
     }
 
+    function atClock(y, m, d, hour, minute, second) {
+      return Date.UTC(y, m, d, hour, minute, second) - MOSCOW_OFFSET_MS;
+    }
+
     function schedule(metricId, key) {
       var cacheKey = metricId + '|' + key;
       if (scheduleCache.has(cacheKey)) return scheduleCache.get(cacheKey);
       var parts = parseDateKey(key);
       var count = dailyIncrement(metricId, key);
+      var gapMs = (config.minEventGapMinutes || 25) * 60 * 1000;
       var events = [];
-      var used = {};
-      for (var i = 0; i < count; i++) {
-        var hour = pickWeighted(config.hourWeights, unit(config.seed + '|' + key + '|' + metricId + '|h|' + i));
-        var second = 1 + Math.floor(unit(config.seed + '|' + key + '|' + metricId + '|s|' + i) * 3598);
-        var at = stamp(parts.y, parts.m, parts.d, hour, second);
-        while (used[at]) at += 1000;
-        used[at] = true;
-        events.push(at);
+
+      function tooClose(at) {
+        for (var k = 0; k < events.length; k++) {
+          if (Math.abs(events[k] - at) < gapMs) return true;
+        }
+        return false;
       }
+
+      for (var i = 0; i < count; i++) {
+        var placed = false;
+        for (var attempt = 0; attempt < 48 && !placed; attempt++) {
+          var hour = pickWeighted(config.hourWeights, unit(config.seed + '|' + key + '|' + metricId + '|h|' + i + '|' + attempt));
+          var minute = Math.floor(unit(config.seed + '|' + key + '|' + metricId + '|min|' + i + '|' + attempt) * 60);
+          var second = 1 + Math.floor(unit(config.seed + '|' + key + '|' + metricId + '|s|' + i + '|' + attempt) * 58);
+          var at = atClock(parts.y, parts.m, parts.d, hour, minute, second);
+          if (!tooClose(at)) {
+            events.push(at);
+            placed = true;
+          }
+        }
+        if (placed) continue;
+
+        var bestMinute = 0;
+        var bestScore = -1;
+        var found = false;
+        for (var pass = 0; pass < 2 && !found; pass++) {
+          for (var minuteOfDay = 0; minuteOfDay < 1440; minuteOfDay++) {
+            var fallbackHour = Math.floor(minuteOfDay / 60);
+            var night = fallbackHour < 6;
+            if (pass === 0 && night) continue;
+            var fallbackMinute = minuteOfDay % 60;
+            var candidate = atClock(parts.y, parts.m, parts.d, fallbackHour, fallbackMinute, 30);
+            if (tooClose(candidate)) continue;
+            var score = config.hourWeights[fallbackHour] + unit(config.seed + '|' + key + '|' + metricId + '|scan|' + i + '|' + minuteOfDay) * 0.001;
+            if (score > bestScore) {
+              bestScore = score;
+              bestMinute = minuteOfDay;
+              found = true;
+            }
+          }
+          if (found) break;
+          bestScore = -1;
+        }
+        events.push(atClock(parts.y, parts.m, parts.d, Math.floor(bestMinute / 60), bestMinute % 60, 30));
+      }
+
       events.sort(function (a, b) { return a - b; });
       scheduleCache.set(cacheKey, events);
       return events;

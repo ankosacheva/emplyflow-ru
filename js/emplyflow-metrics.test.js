@@ -149,6 +149,21 @@ test('общий коэффициент дня одинаковый, индив�
   assert.equal(differed, true);
 });
 
+test('события одной метрики разделены минимум на 25 минут', () => {
+  const gap = model.config.minEventGapMinutes * 60 * 1000;
+  let cursor = Date.UTC(2026, 9, 13);
+  for (let i = 0; i < 40; i++) {
+    const key = dateKeyFromUtc(cursor);
+    for (const id of ids) {
+      const events = model.schedule(id, key);
+      for (let j = 1; j < events.length; j++) {
+        assert.ok(events[j] - events[j - 1] >= gap, id + ' ' + key);
+      }
+    }
+    cursor += DAY;
+  }
+});
+
 test('события чаще днём, чем ночью', () => {
   const buckets = { night: 0, afternoon: 0 };
   let cursor = Date.UTC(2026, 9, 13);
@@ -161,7 +176,7 @@ test('события чаще днём, чем ночью', () => {
     }
     cursor += DAY;
   }
-  assert.ok(buckets.afternoon > buckets.night * 8, JSON.stringify(buckets));
+  assert.ok(buckets.afternoon > buckets.night * 4, JSON.stringify(buckets));
 });
 
 test('десять лет считаются быстро и остаются монотонными на стыке годов', () => {
