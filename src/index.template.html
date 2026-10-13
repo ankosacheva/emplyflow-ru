@@ -651,8 +651,12 @@ html, body {
 <style>
   /* ===== Первый экран: заголовок, обводка «на базе ИИ», 3D-декор вместо счётчиков ===== */
   .ef-hero{position:relative;padding:clamp(40px,6vw,86px) clamp(16px,4vw,40px) clamp(40px,5vw,72px);overflow:hidden;}
-  .ef-hero__scene{position:absolute;left:0;right:0;top:0;height:100%;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 42%,transparent 78%);mask-image:linear-gradient(to bottom,#000 0%,#000 42%,transparent 78%);}
+  .ef-hero__scene{position:absolute;left:0;right:0;top:0;height:100%;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 48%,transparent 82%);mask-image:linear-gradient(to bottom,#000 0%,#000 48%,transparent 82%);}
   .ef-hero__waves{position:absolute;inset:0;width:100%;height:100%;}
+  .ef-hero__glow{position:absolute;border-radius:999px;filter:blur(60px);opacity:0.72;pointer-events:none;}
+  .ef-hero__glow--indigo{left:-10%;top:-2%;width:clamp(300px,48vw,720px);height:clamp(220px,30vw,440px);background:radial-gradient(closest-side,rgba(74,59,255,0.68),transparent);animation:efDrift 22s ease-in-out infinite;}
+  .ef-hero__glow--pink{right:-8%;top:18%;width:clamp(220px,34vw,520px);height:clamp(180px,24vw,340px);background:radial-gradient(closest-side,rgba(255,184,226,0.42),transparent);animation:efDrift 27s ease-in-out infinite reverse;}
+  .ef-hero__glow--mint{left:38%;bottom:8%;width:clamp(180px,26vw,400px);height:clamp(150px,20vw,280px);background:radial-gradient(closest-side,rgba(213,255,243,0.28),transparent);animation:efDrift 33s ease-in-out infinite;}
   .ef-hero__scribble{position:absolute;opacity:0.38;pointer-events:none;z-index:1;}
   .ef-hero__scribble--1{top:clamp(28px,5vw,74px);left:clamp(96px,17vw,270px);width:clamp(52px,6vw,90px);}
   .ef-hero__scribble--2{top:clamp(150px,20vw,270px);left:clamp(150px,26vw,400px);width:clamp(44px,5vw,74px);transform:rotate(168deg);}
@@ -769,7 +773,7 @@ html, body {
     */
   }
   @media (prefers-reduced-motion:reduce){
-    .ef-hero__sparkle3d,.ef-hero__star,.ef-hero__deco{animation:none;}
+    .ef-hero__sparkle3d,.ef-hero__star,.ef-hero__deco,.ef-hero__glow{animation:none;}
     .ef-hero__deco{transform:rotate(var(--ef-deco-rot,0deg));}
     .ef-metric{animation:none;opacity:1;transform:rotate(var(--ef-metric-rot,0deg));}
   }
@@ -1077,34 +1081,43 @@ html, body {
   <!-- ===================== HERO ===================== -->
   <section id="top" class="ef-hero">
     <div class="ef-hero__scene" aria-hidden="true">
+      <span class="ef-hero__glow ef-hero__glow--indigo"></span>
+      <span class="ef-hero__glow ef-hero__glow--pink"></span>
+      <span class="ef-hero__glow ef-hero__glow--mint"></span>
       <svg class="ef-hero__waves" viewBox="0 0 1440 920" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <radialGradient id="efHeroGlow" cx="30%" cy="16%" r="64%">
-            <stop offset="0%" stop-color="#4a3bff" stop-opacity="0.62"></stop>
-            <stop offset="46%" stop-color="#241470" stop-opacity="0.28"></stop>
+          <radialGradient id="efHeroGlow" cx="28%" cy="12%" r="68%">
+            <stop offset="0%" stop-color="#4a3bff" stop-opacity="0.7"></stop>
+            <stop offset="40%" stop-color="#6d52ff" stop-opacity="0.34"></stop>
             <stop offset="100%" stop-color="#050230" stop-opacity="0"></stop>
           </radialGradient>
           <linearGradient id="efHeroBandA" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#140b52" stop-opacity="0"></stop>
-            <stop offset="32%" stop-color="#3a2ad4" stop-opacity="0.72"></stop>
-            <stop offset="68%" stop-color="#6d52ff" stop-opacity="0.4"></stop>
+            <stop offset="0%" stop-color="#4a3bff" stop-opacity="0"></stop>
+            <stop offset="30%" stop-color="#4a3bff" stop-opacity="0.55"></stop>
+            <stop offset="62%" stop-color="#cec8ff" stop-opacity="0.28"></stop>
             <stop offset="100%" stop-color="#050230" stop-opacity="0"></stop>
           </linearGradient>
           <linearGradient id="efHeroBandB" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#9b86ff" stop-opacity="0"></stop>
-            <stop offset="42%" stop-color="#533cf0" stop-opacity="0.5"></stop>
-            <stop offset="100%" stop-color="#100848" stop-opacity="0"></stop>
+            <stop offset="0%" stop-color="#ffb8e2" stop-opacity="0"></stop>
+            <stop offset="40%" stop-color="#ffb8e2" stop-opacity="0.32"></stop>
+            <stop offset="72%" stop-color="#4a3bff" stop-opacity="0.22"></stop>
+            <stop offset="100%" stop-color="#050230" stop-opacity="0"></stop>
+          </linearGradient>
+          <linearGradient id="efHeroBandC" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#d5fff3" stop-opacity="0"></stop>
+            <stop offset="45%" stop-color="#d5fff3" stop-opacity="0.18"></stop>
+            <stop offset="100%" stop-color="#050230" stop-opacity="0"></stop>
           </linearGradient>
           <filter id="efHeroSoft" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="18"></feGaussianBlur>
+            <feGaussianBlur stdDeviation="22"></feGaussianBlur>
           </filter>
         </defs>
         <rect width="1440" height="920" fill="#050230"></rect>
         <rect width="1440" height="920" fill="url(#efHeroGlow)"></rect>
         <g filter="url(#efHeroSoft)">
-          <ellipse cx="180" cy="-20" rx="1180" ry="380" fill="url(#efHeroBandA)" transform="rotate(-24 480 180)"></ellipse>
-          <ellipse cx="1180" cy="620" rx="980" ry="300" fill="url(#efHeroBandB)" transform="rotate(-30 980 560)"></ellipse>
-          <ellipse cx="160" cy="820" rx="860" ry="240" fill="url(#efHeroBandA)" opacity="0.85" transform="rotate(-14 420 760)"></ellipse>
+          <ellipse cx="220" cy="40" rx="1100" ry="360" fill="url(#efHeroBandA)" transform="rotate(-22 480 180)"></ellipse>
+          <ellipse cx="1200" cy="520" rx="900" ry="280" fill="url(#efHeroBandB)" transform="rotate(-28 980 560)"></ellipse>
+          <ellipse cx="420" cy="780" rx="780" ry="220" fill="url(#efHeroBandC)" opacity="0.9" transform="rotate(-12 420 760)"></ellipse>
         </g>
       </svg>
     </div>
