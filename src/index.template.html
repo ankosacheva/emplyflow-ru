@@ -649,7 +649,7 @@ html, body {
   @keyframes efFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 </style>
 <style>
-  /* ===== Первый экран: заголовок, обводка «на базе ИИ», счётчики по краям ===== */
+  /* ===== Первый экран: заголовок, обводка «на базе ИИ», 3D-декор вместо счётчиков ===== */
   .ef-hero{position:relative;padding:clamp(40px,6vw,86px) clamp(16px,4vw,40px) clamp(40px,5vw,72px);overflow:hidden;}
   .ef-hero__scene{position:absolute;left:0;right:0;top:0;height:100%;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 42%,transparent 78%);mask-image:linear-gradient(to bottom,#000 0%,#000 42%,transparent 78%);}
   .ef-hero__waves{position:absolute;inset:0;width:100%;height:100%;}
@@ -659,13 +659,22 @@ html, body {
   .ef-hero__sparkle3d{position:absolute;left:clamp(4px,0.8vw,16px);top:clamp(-4px,0.2vw,6px);width:clamp(52px,4.6vw,72px);height:auto;animation:efFloat2 7s ease-in-out infinite;filter:drop-shadow(0 22px 48px rgba(74,59,255,.55));pointer-events:none;z-index:1;}
   .ef-hero__sparkle3d--sm{left:clamp(58px,5.4vw,84px);top:clamp(26px,2.6vw,40px);width:clamp(24px,2vw,34px);animation-delay:-2.4s;}
   .ef-hero__star{width:clamp(40px,4.5vw,56px);height:auto;margin:0 auto clamp(10px,1.4vw,16px);animation:efFloat 8s ease-in-out infinite;pointer-events:none;}
+  .ef-hero__deco{position:absolute;z-index:2;height:auto;pointer-events:none;filter:drop-shadow(0 28px 48px rgba(74,59,255,.48));animation:efDecoFloat 8s ease-in-out infinite;}
+  .ef-hero__deco--a{left:0;top:18%;width:clamp(120px,15vw,200px);--ef-deco-rot:-14deg;animation-delay:-1.2s;}
+  .ef-hero__deco--b{left:4%;bottom:4%;width:clamp(78px,10vw,132px);--ef-deco-rot:16deg;animation-duration:7.2s;animation-delay:-3.1s;}
+  .ef-hero__deco--c{right:0;top:2%;width:clamp(108px,13vw,176px);--ef-deco-rot:11deg;animation-delay:-2s;}
+  @keyframes efDecoFloat{
+    0%,100%{transform:rotate(var(--ef-deco-rot,0deg)) translateY(0);}
+    50%{transform:rotate(var(--ef-deco-rot,0deg)) translateY(-16px);}
+  }
   .ef-hero__inner{position:relative;z-index:1;max-width:1360px;margin:0 auto;}
   .ef-hero__stage{position:relative;min-height:520px;}
-  .ef-hero__copy{position:relative;z-index:4;width:min(720px,calc(100% - 460px));margin:0 auto;padding-top:clamp(8px,1.6vw,28px);}
+  .ef-hero__copy{position:relative;z-index:4;width:min(780px,100%);margin:0 auto;padding-top:clamp(8px,1.6vw,28px);}
   .ef-hero__aside{position:absolute;right:0;bottom:2%;width:clamp(156px,15vw,200px);min-width:0;z-index:3;}
   .ef-hero__award{width:100%;height:auto;display:block;}
   .ef-hero__title{max-width:100%;margin:0 auto;font-weight:800;font-size:clamp(27px,4.1vw,56px);line-height:0.98;letter-spacing:-0.032em;text-align:center;color:#fff;}
   .ef-hero__callout{display:block;width:fit-content;margin:clamp(16px,2.2vw,28px) 4% 10px auto;transform:rotate(-7deg);border:2px dashed #ffb8e2;border-radius:18px;padding:clamp(8px,1vw,12px) clamp(16px,2vw,26px);font-weight:800;font-size:clamp(23px,3.2vw,42px);line-height:1;letter-spacing:-0.03em;color:#ffb8e2;white-space:nowrap;}
+  /* Счётчики временно скрыты в разметке — стили оставлены на случай возврата */
   .ef-metric{position:absolute;z-index:3;width:min(210px,22vw);padding:16px 16px 18px;border-radius:22px;color:#151515;box-shadow:0 18px 40px -20px rgba(5,2,48,.62),inset 0 1px 0 rgba(255,255,255,.72);opacity:0;animation:efMetricIn 780ms cubic-bezier(.16,1,.3,1) both;}
   .ef-metric--goals{left:0;top:28%;background:#d5fff3;--ef-metric-rot:-8deg;--ef-metric-from:translate(-36px,18px) scale(.92);animation-delay:180ms;}
   .ef-metric--idp{left:2%;top:calc(28% + 188px);background:#ffb777;--ef-metric-rot:-6deg;--ef-metric-from:translate(-28px,36px) scale(.92);animation-delay:520ms;}
@@ -709,13 +718,23 @@ html, body {
   }
 
   @media (max-width:1100px){
-    .ef-hero__copy{width:min(640px,calc(100% - 400px));}
+    .ef-hero__copy{width:min(700px,100%);}
     .ef-metric{width:min(188px,20vw);}
   }
   @media (max-width:980px){
     .ef-hero{padding-top:clamp(28px,6vw,48px);}
+    .ef-hero__stage{min-height:0;}
+    .ef-hero__copy{width:100%;max-width:680px;margin:0 auto;}
+    .ef-hero__aside{position:static;width:100%;max-width:180px;margin:18px auto 0;}
+    .ef-hero__scribble,.ef-hero__star,.ef-hero__sparkle3d{display:none;}
+    .ef-hero__deco--a{width:72px;top:auto;bottom:8%;left:0;opacity:.9;}
+    .ef-hero__deco--b{width:56px;left:auto;right:8%;bottom:0;opacity:.85;}
+    .ef-hero__deco--c{width:64px;top:0;right:0;opacity:.9;}
+    .ef-hero__callout{margin-left:auto;margin-right:auto;}
+    .ef-hero__lead{font-size:clamp(17px,4.6vw,22px);line-height:1.42;}
+    .ef-hero__cta .ef-swipe-cta{width:100%;max-width:none;}
+    /* стили bento-счётчиков на мобиле сохранены на случай возврата метрик
     .ef-hero__stage{display:grid;grid-template-columns:1fr 1fr;justify-items:stretch;align-items:stretch;gap:12px;min-height:0;}
-    .ef-hero__copy{grid-column:1 / -1;width:100%;max-width:680px;margin:0 auto;order:-1;}
     .ef-metric,.ef-hero__aside{position:static;width:100%;}
     .ef-metric{--ef-metric-rot:0deg;animation-name:efMetricInMobile;}
     .ef-metric--goals{--ef-metric-from:translate(-18px,16px) scale(.94);animation-delay:160ms;}
@@ -725,16 +744,18 @@ html, body {
       from{opacity:0;transform:var(--ef-metric-from,translateY(20px) scale(.94));}
       to{opacity:1;transform:none;}
     }
-    .ef-hero__scribble,.ef-hero__star,.ef-hero__sparkle3d{display:none;}
-    .ef-hero__callout{margin-left:auto;margin-right:auto;}
-    .ef-hero__lead{font-size:clamp(17px,4.6vw,22px);line-height:1.42;}
-    .ef-hero__cta .ef-swipe-cta{width:100%;max-width:none;}
     .ef-metric--goals{order:1;}
     .ef-metric--reviews{order:2;}
     .ef-metric--idp{order:3;grid-column:1 / -1;}
     .ef-hero__aside{order:4;grid-column:1 / -1;max-width:180px;margin:4px auto 0;justify-self:center;}
+    */
   }
   @media (max-width:700px){
+    .ef-hero__aside{display:none;}
+    .ef-hero__deco--a{width:58px;}
+    .ef-hero__deco--b{width:46px;}
+    .ef-hero__deco--c{width:54px;}
+    /* стили bento-счётчиков на узком экране сохранены на случай возврата метрик
     .ef-hero__stage{grid-template-columns:1.05fr 1fr;gap:10px;}
     .ef-metric{padding:14px 14px 16px;border-radius:22px;min-height:100%;}
     .ef-metric--goals{min-height:148px;}
@@ -745,10 +766,11 @@ html, body {
     .ef-metric--idp .ef-metric__label{align-self:end;margin:0 0 4px;}
     .ef-metric__value{font-size:clamp(30px,9vw,40px);}
     .ef-metric__label{font-size:14px;}
-    .ef-hero__aside{display:none;}
+    */
   }
   @media (prefers-reduced-motion:reduce){
-    .ef-hero__sparkle3d,.ef-hero__star{animation:none;}
+    .ef-hero__sparkle3d,.ef-hero__star,.ef-hero__deco{animation:none;}
+    .ef-hero__deco{transform:rotate(var(--ef-deco-rot,0deg));}
     .ef-metric{animation:none;opacity:1;transform:rotate(var(--ef-metric-rot,0deg));}
   }
 </style>
@@ -1107,6 +1129,11 @@ html, body {
           <path fill="url(#efSparkleGrad)" d="M50 2 L56 38 L98 50 L56 62 L50 98 L44 62 L2 50 L44 38 Z"></path>
         </svg>
 
+        <img class="ef-hero__deco ef-hero__deco--a" src="media/ef-sparkle.png" alt="" aria-hidden="true">
+        <img class="ef-hero__deco ef-hero__deco--b" src="media/ef-sparkle.png" alt="" aria-hidden="true">
+        <img class="ef-hero__deco ef-hero__deco--c" src="media/ef-sparkle.png" alt="" aria-hidden="true">
+
+        <!-- Счётчики временно скрыты — возможно вернём позже
         <div class="ef-metric ef-metric--goals" data-ef-metric="goals">
           <p class="ef-metric__eyebrow"><span class="ef-metric__dot" aria-hidden="true"></span>Сейчас в системе</p>
           <p class="ef-metric__value" data-ef-metric-value>6 116</p>
@@ -1122,6 +1149,7 @@ html, body {
           <p class="ef-metric__value" data-ef-metric-value>1 835</p>
           <p class="ef-metric__label">сформированных ИПР</p>
         </div>
+        -->
 
         <div class="ef-hero__copy">
           <h1 class="ef-hero__title">Российская TMS-платформа для оценки, развития сотрудников и Performance Review <span class="ef-hero__callout">на базе ИИ</span></h1>
