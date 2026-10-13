@@ -782,21 +782,24 @@ html, body {
   .ef-stat--lilac{background:#CEC8FF;}
   .ef-stat__orb{position:absolute;right:-40px;bottom:-70px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.5);pointer-events:none;}
   .ef-stat__top,.ef-stat__bottom{position:relative;display:flex;flex-direction:column;}
-  .ef-stat__top{gap:16px;}
-  .ef-stat__bottom{gap:12px;}
+  .ef-stat__top{gap:14px;}
+  .ef-stat__bottom{gap:10px;padding-top:6px;}
   .ef-stat__pill{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin:0;padding:7px 14px;border-radius:999px;background:#151515;color:#fff;font-size:12px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;}
   .ef-stat__pill i{width:7px;height:7px;border-radius:50%;background:#B9F2E1;font-style:normal;}
   .ef-stat--pink .ef-stat__pill i{background:#EEB4D8;}
   .ef-stat--lilac .ef-stat__pill i{background:#CEC8FF;}
-  .ef-stat__kicker{margin:0;font-size:12px;font-weight:800;letter-spacing:0.04em;color:rgba(21,21,21,0.55);}
-  .ef-stat__pain{margin:0;font-size:17px;font-weight:600;line-height:1.3;}
-  .ef-stat--mint .ef-stat__pain{max-width:78%;}
-  .ef-stat--pink .ef-stat__pain{max-width:85%;}
-  .ef-stat--lilac .ef-stat__pain{max-width:92%;}
+  .ef-stat__concern{display:flex;flex-direction:column;gap:8px;max-width:100%;padding:12px 14px;border-radius:18px;background:rgba(21,21,21,0.055);border:1.5px dashed rgba(21,21,21,0.22);}
+  .ef-stat__kicker{margin:0;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:rgba(21,21,21,0.48);}
+  .ef-stat__pain{margin:0;font-size:16px;font-weight:600;line-height:1.3;color:rgba(21,21,21,0.78);}
+  .ef-stat__proof{align-self:flex-start;margin:0;padding:5px 10px;border-radius:999px;background:#151515;color:#B9F2E1;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;}
+  .ef-stat--pink .ef-stat__proof{color:#EEB4D8;}
+  .ef-stat--lilac .ef-stat__proof{color:#CEC8FF;}
+  .ef-360 .ef-stat__proof{color:#FEBE86;}
   .ef-stat__figure{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;}
   .ef-stat__value{margin:0;font-size:clamp(80px,8vw,128px);font-weight:800;line-height:0.88;letter-spacing:-0.05em;font-variant-numeric:tabular-nums;white-space:nowrap;transform-origin:left bottom;}
   .ef-stat__score{margin:0 0 8px;padding:8px 14px;border-radius:999px;background:#151515;color:#fff;font-size:15px;font-weight:700;}
   .ef-stat__caption{margin:0;font-size:clamp(19px,1.5vw,23px);font-weight:700;line-height:1.25;transform-origin:left top;}
+  .ef-stat__note{margin:0;font-size:13px;font-weight:500;line-height:1.35;color:rgba(21,21,21,0.55);}
   .ef-stat__value,.ef-stat__caption,.ef-stat__score{
     opacity:0;
     transform:scale(0.72) translateY(18px);
@@ -824,7 +827,7 @@ html, body {
   .ef-360 .ef-stat__pill i{background:#FEBE86;}
   .ef-360__orb{position:absolute;left:-60px;bottom:-110px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,0.4);pointer-events:none;}
   .ef-360__main{position:relative;flex:1 1 340px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;}
-  .ef-360__main .ef-stat__pain{max-width:420px;}
+  .ef-360__main .ef-stat__concern{max-width:420px;}
   .ef-360__main .ef-stat__value{font-size:clamp(96px,10vw,168px);line-height:0.86;}
   .ef-360__main .ef-stat__caption{max-width:440px;}
   .ef-360__side{position:relative;flex:1.2 1 400px;display:flex;flex-direction:column;gap:16px;}
@@ -1565,10 +1568,13 @@ html, body {
             <span class="ef-stat__orb" aria-hidden="true"></span>
             <div class="ef-stat__top">
               <p class="ef-stat__pill"><i aria-hidden="true"></i>Цели</p>
-              <p class="ef-stat__kicker">#проблема 1</p>
-              <p class="ef-stat__pain">Цели завели в систему, но реальный прогресс не отслеживается</p>
+              <div class="ef-stat__concern">
+                <p class="ef-stat__kicker">Опасение</p>
+                <p class="ef-stat__pain">Цели завели в систему, но реальный прогресс не отслеживается</p>
+              </div>
             </div>
             <div class="ef-stat__bottom">
+              <p class="ef-stat__proof">В EmplyFlow</p>
               <p class="ef-stat__value" data-ef-count="81" data-ef-prefix="&gt;">&gt;81%</p>
               <p class="ef-stat__caption">всех целей по статистике регулярно обновляются или имеют подтвержденные итоги</p>
             </div>
@@ -1579,10 +1585,13 @@ html, body {
             <span class="ef-stat__orb" aria-hidden="true"></span>
             <div class="ef-stat__top">
               <p class="ef-stat__pill"><i aria-hidden="true"></i>Оценка 360°</p>
-              <p class="ef-stat__kicker">#проблема 2</p>
-              <p class="ef-stat__pain">Сотрудники не захотят проходить оценку 360</p>
+              <div class="ef-stat__concern">
+                <p class="ef-stat__kicker">Опасение</p>
+                <p class="ef-stat__pain">Сотрудники не захотят проходить оценку 360</p>
+              </div>
             </div>
             <div class="ef-stat__bottom">
+              <p class="ef-stat__proof">В EmplyFlow</p>
               <p class="ef-stat__value" data-ef-count="92">92%</p>
               <p class="ef-stat__caption">запросов на оценку 360° успешно получили отзывы респондентов-коллег</p>
             </div>
@@ -1593,11 +1602,16 @@ html, body {
             <span class="ef-stat__orb" aria-hidden="true"></span>
             <div class="ef-stat__top">
               <p class="ef-stat__pill"><i aria-hidden="true"></i>Реальный эффект</p>
-              <p class="ef-stat__pain">Доля участников, оценивших пользу от прохождения Performance Review на 4–5 баллов из 5</p>
+              <div class="ef-stat__concern">
+                <p class="ef-stat__kicker">Опасение</p>
+                <p class="ef-stat__pain">Performance Review воспринимается как формальность без пользы для сотрудника</p>
+              </div>
             </div>
             <div class="ef-stat__bottom">
+              <p class="ef-stat__proof">В EmplyFlow</p>
               <p class="ef-stat__value" data-ef-count="90" data-ef-prefix="≈">≈90%</p>
               <p class="ef-stat__caption">сотрудников считают Performance Review полезным для себя</p>
+              <p class="ef-stat__note">Доля участников, оценивших пользу на 4–5 баллов из 5</p>
             </div>
           </article>
         </div>
@@ -1607,10 +1621,13 @@ html, body {
             <div class="ef-360__main">
               <div class="ef-stat__top">
                 <p class="ef-stat__pill"><i aria-hidden="true"></i>удобство процесса Performance Review</p>
-                <p class="ef-stat__kicker">#проблема 3</p>
-                <p class="ef-stat__pain">Система окажется сложной для работы и проведения ревью</p>
+                <div class="ef-stat__concern">
+                  <p class="ef-stat__kicker">Опасение</p>
+                  <p class="ef-stat__pain">Система окажется сложной для работы и проведения ревью</p>
+                </div>
               </div>
               <div class="ef-stat__bottom">
+                <p class="ef-stat__proof">В EmplyFlow</p>
                 <div class="ef-stat__figure">
                   <p class="ef-stat__value" data-ef-count="86.8" data-ef-dec="1">86,8%</p>
                   <p class="ef-stat__score">поставили &gt;8 из 10 баллов</p>
