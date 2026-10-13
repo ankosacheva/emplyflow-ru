@@ -705,25 +705,6 @@ html, body {
     .ef-hero__anim{aspect-ratio:16/9;background:url("media/hero-animation-poster.jpg") center/contain no-repeat;}
   }
 
-  .ef-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);align-items:end;max-width:1200px;margin:clamp(34px,4.6vw,70px) auto 0;}
-  .ef-card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px);border-radius:30px;padding:clamp(18px,2vw,30px);color:#151515;}
-  .ef-card--mint{background:#d5fff3;min-height:clamp(150px,14vw,200px);}
-  .ef-card--peri{background:#cec8ff;min-height:clamp(170px,16vw,230px);}
-  .ef-card--pink{background:#ffb8e2;min-height:clamp(190px,18vw,260px);}
-  .ef-card__title{
-    max-width:min(14ch,calc(100% - clamp(44px,12vw,56px)));
-    font-weight:800;
-    font-size:clamp(19px,2.2vw,28px);
-    line-height:1.02;
-    letter-spacing:-0.025em;
-  }
-  .ef-card__body{font-size:clamp(12.5px,1.15vw,15px);font-weight:500;line-height:1.35;color:rgba(21,21,21,0.82);}
-  .ef-card__sparkle{position:absolute;pointer-events:none;width:clamp(24px,2.8vw,42px);height:auto;}
-  .ef-card--mint .ef-card__sparkle{top:clamp(14px,2.4vw,18px);right:clamp(14px,3.2vw,22px);width:clamp(22px,2.8vw,36px);fill:#ffb8e2;}
-  .ef-card--peri .ef-card__sparkle{bottom:clamp(14px,2.4vw,16px);right:clamp(14px,3vw,20px);width:clamp(18px,2.2vw,28px);}
-  .ef-card--pink .ef-card__sparkle:nth-of-type(1){top:clamp(18px,2.8vw,24px);right:clamp(14px,3.2vw,26px);width:clamp(26px,3.2vw,40px);}
-  .ef-card--pink .ef-card__sparkle:nth-of-type(2){top:auto;bottom:clamp(14px,2.4vw,18px);right:clamp(14px,3.2vw,22px);width:clamp(16px,2vw,22px);}
-
   @media (max-width:1100px){
     .ef-hero__copy{width:min(640px,calc(100% - 400px));}
     .ef-metric{width:min(188px,20vw);}
@@ -736,9 +717,6 @@ html, body {
     .ef-hero__scribble,.ef-hero__star,.ef-hero__sparkle3d{display:none;}
     .ef-hero__callout{margin-left:auto;margin-right:auto;}
     .ef-hero__lead{font-size:clamp(17px,4.6vw,22px);line-height:1.42;}
-    .ef-cards{grid-template-columns:1fr;align-items:stretch;}
-    .ef-card{min-height:0;}
-    .ef-card__title{max-width:calc(100% - clamp(48px,16vw,60px));}
   }
   @media (max-width:640px){
     .ef-hero__stage{grid-template-columns:1fr;}
@@ -748,38 +726,37 @@ html, body {
   }
 </style>
 <style>
-  /* ===== Benefit tiles: падение / всплытие по скроллу ===== */
-  .ef-benefits{padding:0 clamp(16px,4vw,40px) clamp(40px,6vw,70px);}
-  .ef-benefits__grid{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-
-  .ef-benefit{position:relative;overflow:hidden;border-radius:32px;min-height:clamp(300px,34vw,440px);box-shadow:0 28px 64px -28px rgba(5,2,48,0.72);}
-  .ef-benefit__sparkle{position:absolute;pointer-events:none;}
-  .ef-benefit__title{font-weight:800;font-size:clamp(26px,3.4vw,44px);line-height:1.05;letter-spacing:-0.02em;}
-
-  .ef-benefit--lilac{background:#7b46ff;padding:clamp(28px,3vw,40px);display:flex;align-items:center;box-shadow:0 28px 64px -28px rgba(5,2,48,0.72),0 0 72px -24px rgba(123,70,255,0.55);}
-  .ef-benefit--lilac .ef-benefit__sparkle{top:36px;left:34px;width:26px;height:26px;fill:#ffcf8a;}
-  .ef-benefit--lilac .ef-benefit__title{color:#fff;}
-
-  .ef-benefit--photo{background:linear-gradient(180deg,#ffd3e0 0%,#d9fff0 100%);display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 28px 64px -28px rgba(5,2,48,0.72),0 0 68px -26px rgba(213,255,243,0.42);}
-  .ef-benefit--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;}
-  .ef-benefit__caption{position:relative;padding:clamp(20px,2.4vw,30px);text-align:center;font-weight:800;font-size:clamp(20px,2.4vw,30px);letter-spacing:-0.02em;color:#0e2b25;background:linear-gradient(180deg,transparent,rgba(217,255,240,0.9) 42%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
-
-  .ef-benefit--orange{background:#ff6a2b;padding:clamp(28px,3vw,40px);display:flex;align-items:center;box-shadow:0 28px 64px -28px rgba(5,2,48,0.72),0 0 72px -24px rgba(255,106,43,0.5);}
-  .ef-benefit--orange .ef-benefit__sparkle{top:40px;left:32px;width:22px;height:22px;fill:#ffe1cf;}
-  .ef-benefit--orange .ef-benefit__title{color:#fff;}
-
-  @keyframes efBenefitDrop{from{opacity:0;transform:translateY(-152px);}to{opacity:1;transform:none;}}
-  @keyframes efBenefitRise{from{opacity:0;transform:translateY(152px);}to{opacity:1;transform:none;}}
-
-  .ef-benefit{transition:opacity 0.92s cubic-bezier(.22,1,.36,1),transform 0.92s cubic-bezier(.22,1,.36,1);}
-  .ef-benefits--animate .ef-benefit--drop:not(.is-visible){opacity:0;transform:translateY(-152px);}
-  .ef-benefits--animate .ef-benefit--rise:not(.is-visible){opacity:0;transform:translateY(152px);}
-
-  @supports (animation-timeline:view()){
-    @media (prefers-reduced-motion:no-preference){
-      .ef-benefits:not(.ef-benefits--animate) .ef-benefit--drop{animation:efBenefitDrop linear both;animation-timeline:view();animation-range:entry 0% cover 32%;}
-      .ef-benefits:not(.ef-benefits--animate) .ef-benefit--rise{animation:efBenefitRise linear both;animation-timeline:view();animation-range:entry 0% cover 32%;}
-    }
+  /* ===== EmplyFlow в цифрах: шесть карточек одной сеткой ===== */
+  .ef-figures{padding:clamp(8px,2vw,20px) clamp(16px,4vw,40px) clamp(48px,6vw,84px);}
+  .ef-figures__inner{max-width:1200px;margin:0 auto;}
+  .ef-figures__title{margin:0 0 clamp(18px,2.4vw,28px);font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-0.032em;color:#fff;}
+  .ef-figures__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,18px);align-items:stretch;}
+  .ef-fig{position:relative;overflow:hidden;border-radius:30px;min-width:0;}
+  .ef-fig--note{display:flex;flex-direction:column;gap:clamp(10px,1.2vw,14px);min-height:clamp(168px,16vw,220px);padding:clamp(18px,2vw,26px);color:#151515;}
+  .ef-fig--mint{background:#d5fff3;}
+  .ef-fig--peri{background:#cec8ff;}
+  .ef-fig--pink{background:#ffb8e2;}
+  .ef-fig__title{max-width:min(16ch,calc(100% - 44px));margin:0;font-weight:800;font-size:clamp(20px,2.05vw,28px);line-height:1.02;letter-spacing:-0.03em;}
+  .ef-fig__body{margin:0;font-size:clamp(13px,1.12vw,15px);font-weight:500;line-height:1.35;color:rgba(21,21,21,0.82);}
+  .ef-fig__spark{position:absolute;pointer-events:none;width:clamp(22px,2.6vw,36px);height:auto;}
+  .ef-fig--mint .ef-fig__spark{top:16px;right:18px;fill:#ffb8e2;}
+  .ef-fig--peri .ef-fig__spark{right:16px;bottom:16px;width:clamp(18px,2vw,26px);fill:rgba(255,255,255,0.9);}
+  .ef-fig--pink .ef-fig__spark:nth-of-type(1){top:18px;right:20px;width:clamp(26px,3vw,38px);fill:rgba(255,255,255,0.92);}
+  .ef-fig--pink .ef-fig__spark:nth-of-type(2){right:18px;bottom:16px;width:clamp(16px,1.8vw,22px);fill:rgba(255,255,255,0.72);}
+  .ef-fig--stat{display:flex;align-items:center;min-height:clamp(280px,28vw,380px);padding:clamp(28px,3vw,40px);color:#fff;}
+  .ef-fig--lilac{background:#7b46ff;box-shadow:0 28px 64px -28px rgba(5,2,48,0.72),0 0 72px -24px rgba(123,70,255,0.55);}
+  .ef-fig--orange{background:#ff6a2b;box-shadow:0 28px 64px -28px rgba(5,2,48,0.72),0 0 72px -24px rgba(255,106,43,0.5);}
+  .ef-fig__stat{margin:0;font-weight:800;font-size:clamp(26px,2.7vw,40px);line-height:1.05;letter-spacing:-0.03em;color:#fff;}
+  .ef-fig--lilac .ef-fig__spark{top:28px;left:28px;width:24px;fill:#ffcf8a;}
+  .ef-fig--orange .ef-fig__spark{top:30px;left:26px;width:22px;fill:#ffe1cf;}
+  .ef-fig--photo{min-height:clamp(280px,28vw,380px);background:#10243a;}
+  .ef-fig--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;}
+  .ef-fig__caption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:clamp(28px,3.2vw,40px) clamp(14px,1.8vw,22px) clamp(16px,2vw,22px);text-align:center;font-weight:800;font-size:clamp(20px,2.15vw,30px);line-height:1.08;letter-spacing:-0.03em;color:#151515;background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,0.72) 42%,rgba(255,255,255,0.94) 100%);}
+  @media (max-width:860px){
+    .ef-figures__grid{grid-template-columns:1fr;}
+    .ef-fig--note{min-height:0;}
+    .ef-fig--stat,.ef-fig--photo{min-height:280px;}
+    .ef-fig__title{max-width:calc(100% - 52px);}
   }
 </style>
 <style>
@@ -1086,24 +1063,6 @@ html, body {
         </video>
       </div>
 
-      <div class="ef-cards">
-        <div class="ef-card ef-card--mint">
-          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <div class="ef-card__title">Целеполагание и KPI</div>
-          <div class="ef-card__body">Настройте процессы Performance Review, управляя компонентами эффективности сотрудников: достижения целей, KPI и т.д.</div>
-        </div>
-        <div class="ef-card ef-card--peri">
-          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.85)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <div class="ef-card__title">Оценка компетенций</div>
-          <div class="ef-card__body">Проведите оценку 360°, используйте ИИ-ассистента оценки компетенций и составьте 9-box матрицу талантов вашей компании</div>
-        </div>
-        <div class="ef-card ef-card--pink">
-          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.9)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <svg class="ef-card__sparkle" sc-camel-view-box="0 0 24 24" fill="rgba(255,255,255,0.7)" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-          <div class="ef-card__title">ИПР и кадровый резерв</div>
-          <div class="ef-card__body">Получите готовые индивидуальные планы развития (ИПР) для каждого сотрудника и контролируйте их прохождение!</div>
-        </div>
-      </div>
     </div>
   </section>
   <script>
@@ -1492,20 +1451,39 @@ html, body {
     </div>
   </section>
 
-  <!-- ===================== BENEFIT TILES ===================== -->
-  <section class="ef-benefits">
-    <div class="ef-benefits__grid">
-      <div class="ef-benefit ef-benefit--lilac ef-benefit--drop">
-        <svg class="ef-benefit__sparkle" sc-camel-view-box="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-        <div class="ef-benefit__title">Экономия более 1000 часов команды по персоналу в год</div>
-      </div>
-      <div class="ef-benefit ef-benefit--photo ef-benefit--rise">
-        <img src="96ee6a4c-d36d-4986-8970-f7c61beb0e23" alt="Сотрудница">
-        <div class="ef-benefit__caption">Удержание ценных специалистов</div>
-      </div>
-      <div class="ef-benefit ef-benefit--orange ef-benefit--drop">
-        <svg class="ef-benefit__sparkle" sc-camel-view-box="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
-        <div class="ef-benefit__title">Повышение вовлечённости и уровня достижения целей на 10–15%</div>
+  <!-- ===================== EMPLYFLOW В ЦИФРАХ ===================== -->
+  <section class="ef-figures" aria-labelledby="ef-figures-title">
+    <div class="ef-figures__inner">
+      <h2 id="ef-figures-title" class="ef-figures__title">EmplyFlow в цифрах</h2>
+      <div class="ef-figures__grid">
+        <article class="ef-fig ef-fig--note ef-fig--mint">
+          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <h3 class="ef-fig__title">Целеполагание и KPI</h3>
+          <p class="ef-fig__body">Настройте процессы Performance Review, управляя компонентами эффективности сотрудников: достижения целей, KPI и т.д.</p>
+        </article>
+        <article class="ef-fig ef-fig--note ef-fig--peri">
+          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <h3 class="ef-fig__title">Оценка компетенций</h3>
+          <p class="ef-fig__body">Проведите оценку 360°, используйте ИИ-ассистента оценки компетенций и составьте 9-box матрицу талантов вашей компании</p>
+        </article>
+        <article class="ef-fig ef-fig--note ef-fig--pink">
+          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <h3 class="ef-fig__title">ИПР и кадровый резерв</h3>
+          <p class="ef-fig__body">Получите готовые индивидуальные планы развития (ИПР) для каждого сотрудника и контролируйте их прохождение!</p>
+        </article>
+        <article class="ef-fig ef-fig--stat ef-fig--lilac">
+          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <p class="ef-fig__stat">Экономия более 1000 часов команды по персоналу в год</p>
+        </article>
+        <article class="ef-fig ef-fig--photo">
+          <img src="96ee6a4c-d36d-4986-8970-f7c61beb0e23" alt="Сотрудница смотрит на аналитические панели">
+          <p class="ef-fig__caption">Удержание ценных специалистов</p>
+        </article>
+        <article class="ef-fig ef-fig--stat ef-fig--orange">
+          <svg class="ef-fig__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L13.5 10.5 24 12 13.5 13.5 12 24 10.5 13.5 0 12 10.5 10.5z"></path></svg>
+          <p class="ef-fig__stat">Повышение вовлечённости и уровня достижения целей на 10–15%</p>
+        </article>
       </div>
     </div>
   </section>
