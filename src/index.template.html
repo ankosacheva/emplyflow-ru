@@ -850,6 +850,7 @@ html, body {
   }
   .ef-ease{padding:8px 16px 28px;}
   .ef-ease__inner{max-width:1440px;margin:0 auto;}
+  .ef-ease__title{margin:0 0 16px;max-width:18em;font-weight:800;font-size:clamp(24px,3vw,40px);line-height:1.12;letter-spacing:-0.03em;color:#fff;text-wrap:balance;}
   .ef-ease__bento{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.2fr);gap:12px;padding:14px;border-radius:32px;background:#FFB777;color:#151515;}
   .ef-360{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:100%;border-radius:24px;padding:clamp(18px,2vw,26px);background:rgba(255,255,255,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
   .ef-360 .ef-stat__pill i{background:#FFB777;}
@@ -2443,8 +2444,9 @@ html, body {
     </div>
   </section>
 
-  <section class="ef-ease" aria-label="Удобство процесса Performance Review">
+  <section class="ef-ease" aria-labelledby="ef-ease-title">
     <div class="ef-ease__inner">
+      <h2 id="ef-ease-title" class="ef-ease__title">Что сотрудники говорят о платформе?</h2>
       <div class="ef-ease__bento">
         <article class="ef-360">
           <span class="ef-360__orb" aria-hidden="true"></span>
